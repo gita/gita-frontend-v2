@@ -8,7 +8,10 @@ module.exports = {
         'inter': ['"Inter"', 'cursive']
       },
       colors:{
-        'my-orange':'#F57903'
+        'my-orange':'#F57903',
+        'lead-text':'#FEDF89',
+        'box-bg':'#FFFAEC',
+        'box-stroke':'#FFE9B1'
       }
     },
   },

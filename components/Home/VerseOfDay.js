@@ -10,7 +10,7 @@ const VerseOfDay = () => {
         what did they do? Dhṛtarāṣṭra said: O Sañjaya, after my sons and the
         sons of Pāṇḍu assembled in the place of pilgrimage at Kurukṣetra,
         desiring to fight, what did they do? </p>
-        <button className="uppercase text-black mt-4 font-bold text-sm">See more</button>
+        <button className="uppercase text-black mt-4 font-bold text-sm hover:text-gray-700">See more</button>
       </div>
     </div>
   );

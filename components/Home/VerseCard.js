@@ -2,7 +2,7 @@ import React from "react";
 
 const VerseCard = () => {
   return (
-    <div className="bg-white shadow-xl  border-2 border-white mt-6 rounded-md p-6 hover:bg-yellow-100 hover:shadow-none hover:border-yellow-500 hover:border-2 ">
+    <div className="bg-white shadow-xl  border-2 border-white mt-6 rounded-md p-6 hover:bg-box-bg hover:shadow-none hover:border-box-stroke hover:border-2 ">
       <h3 className="text-my-orange font-bold">Chapter 1</h3>
       <h2 className="text-xl font-bold">Sraddhatraya Vibhaga Yoga</h2>
       <p className="text-gray-500 mt-2">

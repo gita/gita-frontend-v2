@@ -102,7 +102,7 @@ export default function IndexHeader() {
     <div>
       <Popover className="relative bg-white font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
+          <div className="flex justify-between items-center  py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <a href="#" className="font-bold text-3xl">
                 <span className="sr-only">Workflow</span>
@@ -122,14 +122,14 @@ export default function IndexHeader() {
                     <Popover.Button
                       className={classNames(
                         open ? "text-gray-900" : "text-black",
-                        "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none "
+                        "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-500 focus:outline-none "
                       )}
                     >
                       <span>Chapters</span>
                       <ChevronDownIcon
                         className={classNames(
-                          open ? "text-gray-600" : "text-gray-400",
-                          "ml-2 h-5 w-5 group-hover:text-black"
+                          open ? "text-gray-600" : "text-gray-500",
+                          "ml-2 h-5 w-5 group-hover:text-gray-500"
                         )}
                         aria-hidden="true"
                       />
@@ -145,7 +145,7 @@ export default function IndexHeader() {
                       leaveTo="opacity-0 translate-y-1"
                     >
                       <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-                        <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                        <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                           <div className="relative grid md:grid-cols-2 gap-6 bg-white  py-2 sm:gap-8 sm:p-8">
                             {chapters.map((item) => (
                               <a
@@ -174,19 +174,19 @@ export default function IndexHeader() {
 
               <a
                 href="#"
-                className="text-base font-medium text-black hover:text-gray-900"
+                className="text-base font-medium text-black hover:text-gray-500"
               >
                 Quotes
               </a>
               <a
                 href="#"
-                className="text-base font-medium text-black hover:text-gray-900"
+                className="text-base font-medium text-black hover:text-gray-500"
               >
                 About Geeta
               </a>
             </Popover.Group>
-            <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              <div className="pt-2 relative mx-auto text-gray-600">
+            <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
+              <div className="pt-2 relative  text-gray-600">
                 <button
                   type="submit"
                   className="absolute left-3 top-0 mt-5 mr-4"
@@ -205,7 +205,7 @@ export default function IndexHeader() {
                   </svg>
                 </button>
                 <input
-                  className="border-2 border-gray-300 bg-white h-10 px-8 pr-16 rounded-lg text-sm focus:outline-none"
+                  className="border-2 border-gray-300 bg-white h-10 px-8 w-auto rounded-lg text-sm focus:outline-none outline-none  focus:border-my-orange"
                   type="search"
                   name="search"
                   placeholder="Search"
@@ -232,31 +232,31 @@ export default function IndexHeader() {
               <div className="pt-5">
                 <div className="flex items-center pl-2 pr-5 justify-between">
                   <a href="#" className="font-bold text-3xl">
-                  <div className="px-3 py-2 border-l-4 border-white text-sm font-medium relative mx-auto text-gray-600">
-                        <button
-                          type="submit"
-                          className="absolute left-6 top-0 mt-5 mr-4"
+                    <div className="px-3 py-2 border-l-4 border-white text-sm font-medium relative mx-auto text-gray-600">
+                      <button
+                        type="submit"
+                        className="absolute left-6 top-0 mt-5 mr-4"
+                      >
+                        <svg
+                          className="text-gray-600 h-4 w-4 fill-current"
+                          version="1.1"
+                          id="Capa_1"
+                          x="0px"
+                          y="0px"
+                          viewBox="0 0 56.966 56.966"
+                          width="512px"
+                          height="512px"
                         >
-                          <svg
-                            className="text-gray-600 h-4 w-4 fill-current"
-                            version="1.1"
-                            id="Capa_1"
-                            x="0px"
-                            y="0px"
-                            viewBox="0 0 56.966 56.966"
-                            width="512px"
-                            height="512px"
-                          >
-                            <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                          </svg>
-                        </button>
-                        <input
-                          className="border-2 border-gray-300 w-full bg-white h-10 px-8 pr-16 rounded-lg text-sm focus:outline-none"
-                          type="search"
-                          name="search"
-                          placeholder="Search"
-                        />
-                      </div>
+                          <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                        </svg>
+                      </button>
+                      <input
+                        className="border-2 border-gray-300 w-max	 bg-white h-10 px-8 pr-16 rounded-lg text-sm focus:outline-none"
+                        type="search"
+                        name="search"
+                        placeholder="Search"
+                      />
+                    </div>
                   </a>
                   <div className="-mr-2">
                     <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
@@ -303,14 +303,13 @@ export default function IndexHeader() {
                             item.current
                               ? "bg-yellow-100 border-l-4 border-my-orange text-gray-900"
                               : "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900",
-                            "flex items-center mb-2 px-3 py-2 border-l-4 border-white text-sm font-medium"
+                            "flex items-center mb-2 px-3 py-2 border-l-4 border-white  font-medium"
                           )}
                           aria-current={item.current ? "page" : undefined}
                         >
                           <span className="truncate">{item.name}</span>
                         </a>
                       ))}
-                     
                     </nav>
                   </nav>
                 </div>

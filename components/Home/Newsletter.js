@@ -12,18 +12,18 @@ const Newsletter = () => {
 
           <div className="flex flex-col md:flex-row">
           <input
-            className="appearance-none mt-4 md:mt-0 border rounded-md w-full py-3 mr-6  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="appearance-none mt-4 md:mt-0 border rounded-md w-full py-3 mr-6  px-3 text-gray-700 leading-tight focus:outline-none  focus:border-my-orange"
             id="username"
             type="text"
             placeholder="Enter Your Name"
           />
           <input
-            className="appearance-none mt-4 md:mt-0 border rounded-md w-full py-3 mr-6  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="appearance-none mt-4 md:mt-0 border rounded-md w-full py-3 mr-6  px-3 text-gray-700 leading-tight focus:outline-none  focus:border-my-orange"
             id="username"
             type="text"
             placeholder="Enter Your Email"
           />
-          <button className="bg-my-orange mt-4 md:mt-0 shadow text-white px-8 py-3 rounded-md">Subscribe</button>
+          <button className="bg-my-orange mt-4 md:mt-0 shadow text-white px-8 py-3 rounded-md hover:bg-opacity-75">Subscribe</button>
           </div>
         </div>
       </div>

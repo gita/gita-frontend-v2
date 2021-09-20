@@ -26,7 +26,7 @@ const FooterBar = () => {
             <div className="relative inline-flex align-middle w-full">
               <button
                 className={
-                  "text-black flex align-middle font-bold uppercase border-2 border-gray-300 text-sm px-6 py-2 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 " +
+                  "text-black flex align-middle  border font-bold border-gray-300 text-sm px-6 py-2 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 " +
                   bgColor
                 }
                 type="button"
@@ -58,7 +58,7 @@ const FooterBar = () => {
                 ref={popoverDropdownRef}
                 className={
                   (dropdownPopoverShow ? "block " : "hidden ") +
-                  +"text-base z-50 float-left py-2 list-none text-left rounded shadow-lg bg-white mb-1 "
+                  +"text-base z-50 float-left py-2 list-none text-left rounded shadow-lg border border-gray-300 bg-white mb-1 "
                 }
                 style={{ minWidth: "12rem" }}
               >
@@ -94,7 +94,7 @@ const FooterBar = () => {
             </div>
           </div>
 
-          <div className="mt-4 md:mt-0">© 2021 BhagavadGita.io.</div>
+          <div className="mt-4 md:mt-0 text-gray-400">© 2021 BhagavadGita.io.</div>
 
           <div className="mt-4 md:mt-0">App Icon</div>
         </div>
