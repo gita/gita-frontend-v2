@@ -1,0 +1,56 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap');
+
+body{
+    font-family: 'Inter', sans-serif;
+}
+
+
+.banner{
+    background: url('/banner2.png') no-repeat;
+    background-size: cover;
+    border-radius: 16px;
+
+    
+  }
+
+
+  .yellow-bg-banner{
+    background: url('/main.png') no-repeat center center;
+    background-size: cover;
+    z-index: -9999 !important;
+  
+  
+  }
+
+  .divider {
+    display: flex;
+  }
+ .divider:after {
+    content: "";
+    flex: 1;
+  }
+
+  
+.line {
+    align-items: center;
+    justify-content: flex-end;
+    margin: 1em -1em;
+  }
+  .line:before, .line:after {
+    height: 2px;
+    margin: 0 1em;
+  }
+  
+  .one-line:before, .one-line:after {
+    background: #E5E7EB;
+  }
+  .newsletter{
+    background: url('/newsbg.png')  no-repeat bottom center; ;
+    background-size: cover;
+  
+    background-color: #FFE9D5;
+    width:100%;
+  
+  
+  }
