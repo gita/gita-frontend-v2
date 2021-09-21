@@ -7,7 +7,7 @@ import VerseOfDay from '../components/Home/VerseOfDay'
 
 export default function Home() {
   return (
-    <div className=" font-inter min-h-screen py-2">
+    <div className="font-inter min-h-screen py-2">
       <Head>
         <title>Bhagwat Gita App</title>
         <link rel="icon" href="/favicon.ico" />

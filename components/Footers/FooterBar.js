@@ -1,100 +1,115 @@
-import React from "react";
+import React,{Fragment} from "react";
 import { createPopper } from "@popperjs/core";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronUpIcon } from "@heroicons/react/solid";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const FooterBar = () => {
-  // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
-  const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "top-end",
-    });
-    setDropdownPopoverShow(true);
-  };
-  const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false);
-  };
-  // bg colors
-  let bgColor;
-
+  
   return (
     <div>
       <>
-        <div className="flex flex-col max-w-7xl mx-auto md:flex-row items-center justify-between align-baseline flex-wrap font-inter">
+        <div className="flex flex-col max-w-7xl mx-auto md:flex-row mb-4 justify-between align-baseline flex-wrap font-inter">
           <div className="">
             <div className="relative inline-flex align-middle w-full">
-              <button
-                className={
-                  "text-black flex align-middle  border font-bold border-gray-300 text-sm px-6 py-2 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 " +
-                  bgColor
-                }
-                type="button"
-                ref={btnDropdownRef}
-                onClick={() => {
-                  dropdownPopoverShow
-                    ? closeDropdownPopover()
-                    : openDropdownPopover();
-                }}
-              >
-                Language
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <Menu as="div" className="relative inline-block text-left">
+              <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 15l7-7 7 7"
-                  />
-                </svg>
-                {/* {color === "white" ? "White Dropdown" : color + " Dropdown"} */}
-              </button>
-              <div
-                ref={popoverDropdownRef}
-                className={
-                  (dropdownPopoverShow ? "block " : "hidden ") +
-                  +"text-base z-50 float-left py-2 list-none text-left rounded shadow-lg border border-gray-300 bg-white mb-1 "
-                }
-                style={{ minWidth: "12rem" }}
-              >
-                <a
-                  href="#pablo"
-                  className={
-                    "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-white "
-                  }
-                  onClick={(e) => e.preventDefault()}
-                >
-                  English
-                </a>
-                <a
-                  href="#pablo"
-                  className={
-                    "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-white "
-                  }
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Hindi
-                </a>
-                <a
-                  href="#pablo"
-                  className={
-                    "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-white "
-                  }
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Spanish
-                </a>
-                <div className="h-0 my-2 border border-solid border-t-0 border-blueGray-800 opacity-25" />
-              </div>
+                  <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                           English
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            French
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            Spanish
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <form method="POST" action="#">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              type="submit"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block w-full text-left px-4 py-2 text-sm"
+                              )}
+                            >
+                              Hindi
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </form>
+                    </div>
+                  </Menu.Items>
+                </Transition>
+                <div>
+                  <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+                    Language
+                    <ChevronUpIcon
+                      className="-mr-1 ml-2 h-5 w-5"
+                      aria-hidden="true"
+                    />
+                  </Menu.Button>
+                </div>
+
+              
+              </Menu>
             </div>
           </div>
 
-          <div className="mt-4 md:mt-0 text-gray-400">© 2021 BhagavadGita.io.</div>
+          <div className="mt-4 md:mt-0 text-gray-400">
+            © 2021 BhagavadGita.io.
+          </div>
 
           <div className="mt-4 md:mt-0">App Icon</div>
         </div>

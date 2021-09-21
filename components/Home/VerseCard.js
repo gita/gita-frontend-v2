@@ -11,20 +11,20 @@ const VerseCard = () => {
       </p>
 
       <div className="flex justify-between">
-        <div className="flex text-sm align-middle mt-4">
-          <img src="/list.png" className="h-5 w-5 mr-4" />
+        <div className="flex text-sm items-center mt-4">
+          <img src="/list.svg" className="h-5 w-5 mr-4" />
           42 Verses
         </div>
 
         <div className="flex mt-4">
-          <div className="flex text-sm">
-          <img src="/bookmark.png" className="h-5 w-5 mr-1" />
+          <div className="flex text-sm items-center align-middle mr-3">
+          <img src="/bookmark.svg" className="h-4  w-4 mr-1" />
 
             2
           </div>
 
-          <div className="flex text-sm">
-          <img src="/shuffle.png" className="h-5 w-5 mr-1" />
+          <div className="flex text-sm items-center">
+          <img src="/shuffle.svg" className="h-5 w-5 mr-1" />
 
             2
           </div>
