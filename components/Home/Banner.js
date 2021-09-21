@@ -5,10 +5,10 @@ const Banner = () => {
     <>
       <div className="max-w-full  mx-auto  xl:px-24 z-50">
         <div className="banner xl:rounded-lg flex flex-col h-4/5 px-8 py-36">
-          <h1 className="text-5xl text-center font-extrabold text-shadow text-white t-shadow">
+          <h1 className="text-3xl md:text-5xl text-center font-extrabold text-shadow text-white t-shadow">
             Experice the Gita
           </h1>
-          <h1 className="text-5xl text-center font-extrabold text-shadow text-lead-text t-shadow">
+          <h1 className="text-3xl md:text-5xl text-center font-extrabold text-shadow text-lead-text t-shadow">
             Anywhere, Anytime
           </h1>
          

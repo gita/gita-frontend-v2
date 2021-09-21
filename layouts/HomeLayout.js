@@ -9,7 +9,7 @@ const HomeLayout = ({ children }) => {
       <IndexHeader />
       {children}
       <Footer />
-      <FooterBar/>
+      {/* <FooterBar/> */}
     </>
   );
 };

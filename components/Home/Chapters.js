@@ -3,7 +3,7 @@ import VerseCard from "./VerseCard";
 
 const Chapters = () => {
   return (
-    <div className="chapters mt-14">
+    <div className="chapters mt-14 mb-20">
       <div className="max-w-7xl mx-auto z-50 px-4 sm:px-6">
         <div className="">
           <h1 className="text-5xl font-bold">Chapters</h1>
