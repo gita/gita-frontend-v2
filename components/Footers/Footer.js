@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 
@@ -69,98 +69,285 @@ const navigation = {
 };
 
 const Footer = () => {
+  useEffect(() => {
+    console.log(open);
+  });
   return (
     <div className="w-full mt-24 fixed bottom-0 px-4  bg-white font-inter border-gray-200 border-t border-b">
-    
-
       <div className="flex py-3 justify-between items-center">
-        <div className="flex-none w-1/3 lg:w-1/5">
+        <div className="flex-none w-1/2 lg:w-1/5">
           <Menu as="div" className="relative inline-block text-left">
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
-            >
-              <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div className="py-1">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm"
+            {({ open }) => (
+              <>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            English
+                          </a>
                         )}
-                      >
-                        English
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm"
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            French
+                          </a>
                         )}
-                      >
-                        French
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm"
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            Spanish
+                          </a>
                         )}
-                      >
-                        Spanish
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <form method="POST" action="#">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          type="submit"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block w-full text-left px-4 py-2 text-sm"
+                      </Menu.Item>
+                      <form method="POST" action="#">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              type="submit"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block w-full text-left px-4 py-2 text-sm"
+                              )}
+                            >
+                              Hindi
+                            </button>
                           )}
-                        >
-                          Hindi
-                        </button>
-                      )}
-                    </Menu.Item>
-                  </form>
+                        </Menu.Item>
+                      </form>
+                    </div>
+                  </Menu.Items>
+                </Transition>
+                <div>
+                  <Menu.Button className="inline-flex justify-centerw-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white text-xs text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+                    Language
+                    {open ? (
+                      <ChevronUpIcon
+                        className="-mr-1 ml-1 h-4 w-4 rotate-180"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <ChevronUpIcon
+                        className="-mr-1 ml-1 h-4 w-4"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </Menu.Button>
                 </div>
-              </Menu.Items>
-            </Transition>
-            <div>
-              <Menu.Button className="inline-flex justify-center w-full rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
-                Language
-                <ChevronUpIcon
-                  className="-mr-1 ml-2 h-5 w-5"
-                  aria-hidden="true"
-                />
-              </Menu.Button>
-            </div>
+              </>
+            )}
+          </Menu>
+
+          <Menu as="div" className="relative inline-block text-left">
+            {({ open }) => (
+              <>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            About Us
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            Blog
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            Donate
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            Press
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            API
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <div className="py-1  border-t border-gray-200">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Facebook
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Instagram
+                            </a>
+                          )}
+                        </Menu.Item>
+
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Twitter
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Github
+                            </a>
+                          )}
+                        </Menu.Item>
+                      </div>
+                    </div>
+                  </Menu.Items>
+                </Transition>
+                <div>
+                  <Menu.Button className="inline-flex text-xs  justify-center w-full rounded-lg border  border-gray-300 ml-1 shadow-sm px-2 py-2 bg-white  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+                    More
+                    {open ? (
+                      <ChevronUpIcon
+                        className="-mr-1 ml-1 h-4 w-4 rotate-180"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <ChevronUpIcon
+                        className="-mr-1 ml-1 h-4 w-4"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </Menu.Button>
+                </div>
+              </>
+            )}
           </Menu>
         </div>
         <div className="flex-none hidden lg:block lg:w-3/5">
@@ -189,171 +376,6 @@ const Footer = () => {
           </footer>
         </div>
 
-        <div className="flex-none lg:hidden justify-center text-center w-1/3 lg:w-1/3">
-          <Menu as="div" className="relative inline-block text-left">
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
-            >
-              <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div className="py-1">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm"
-                        )}
-                      >
-                        About Us
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm"
-                        )}
-                      >
-                        Blog
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm"
-                        )}
-                      >
-                        Donate
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm"
-                        )}
-                      >
-                        Press
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm"
-                        )}
-                      >
-                        API
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <div className="py-1  border-t border-gray-200">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm"
-                          )}
-                        >
-                          Facebook
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm"
-                          )}
-                        >
-                          Instagram
-                        </a>
-                      )}
-                    </Menu.Item>
-
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm"
-                          )}
-                        >
-                          Twitter
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm"
-                          )}
-                        >
-                          Github
-                        </a>
-                      )}
-                    </Menu.Item>
-                  </div>
-                </div>
-              </Menu.Items>
-            </Transition>
-            <div>
-              <Menu.Button className="inline-flex justify-center w-full rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
-                More
-                <ChevronUpIcon
-                  className="-mr-1 ml-2 h-5 w-5"
-                  aria-hidden="true"
-                />
-              </Menu.Button>
-            </div>
-          </Menu>
-        </div>
         <div className="flex-none text-right w-1/3 lg:w-1/5">
           <div className="mt-1 justify-end  hidden lg:flex  items-center  space-x-6">
             {navigation.social.map((item) => (
