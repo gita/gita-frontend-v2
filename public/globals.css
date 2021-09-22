@@ -62,3 +62,9 @@ body{
   background: url('/bg-verses-fixed.png') no-repeat bottom;
   background-size: cover;
 }
+.chapter-intro{
+  background: url('/mandala.png') no-repeat center center;
+}
+.z-neg{
+  z-index: -9999;
+}

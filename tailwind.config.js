@@ -11,7 +11,8 @@ module.exports = {
         'my-orange':'#F57903',
         'lead-text':'#FEDF89',
         'box-bg':'#FFFAEC',
-        'box-stroke':'#FFE9B1'
+        'box-stroke':'#FFE9B1',
+        'nav-hover':'#FFF4D8'
       }
     },
   },
