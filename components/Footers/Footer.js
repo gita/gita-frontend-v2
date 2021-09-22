@@ -175,7 +175,7 @@ const Footer = () => {
             )}
           </Menu>
 
-          <Menu as="div" className="relative inline-block text-left">
+          <Menu as="div" className="relative inline-block text-left lg:hidden">
             {({ open }) => (
               <>
                 <Transition
