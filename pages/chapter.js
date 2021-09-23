@@ -18,21 +18,21 @@ export default function Chapter() {
       </Head>
 
       <div className="max-w-5xl font-inter py-24 chapter-intro mx-auto text-center  px-4 sm:px-6">
-          <img src="arrow-left.png" className="absolute z-neg top-1/2 md:top-1/3 left-3"/>
-          <img src="arrow-right.png" className="absolute z-neg top-1/2 md:top-1/3 right-3"/>
+          <img src="arrow-left.png" className="fixed z-neg top-1/2 md:top-1/3 left-3"/>
+          <img src="arrow-right.png" className="fixed z-neg top-1/2 md:top-1/3 right-3"/>
 
         <h3 className="text-my-orange font-medium uppercase">Chapter 1</h3>
         <h1 className="font-extrabold text-3xl my-8">
           Sraddhatraya Vibhaga Yoga
         </h1>
-        <p className="text-left px-16 mt-3">
+        <p className="text-left  mt-3">
           The first chapter of the Bhagavad Gita - Arjuna Vishada Yoga
           introduces the setup, the setting, the characters and the
           circumstances that led to the epic battle of Mahabharata, fought
           between the Pandavas and the Kauravas. It outlines the reasons that
           led to the revelation of the of Bhagavad Gita.{" "}
         </p>
-        <p className="text-left px-16 mt-3">
+        <p className="text-left  mt-3">
           As both armies stand ready for the battle, the mighty warrior Arjuna,
           on observing the warriors on both sides becomes increasingly sad and
           depressed due to the fear of losing his relatives and friends and the

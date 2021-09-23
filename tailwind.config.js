@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'inter': ['"Inter"', 'cursive']
+        'inter': ['"Inter"', 'cursive'],
+        'dev': ['Noto Sans Devanagari', 'sans-serif']
       },
       colors:{
         'my-orange':'#F57903',
