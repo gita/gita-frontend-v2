@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'inter': ['"Inter"', 'cursive'],
+        'inter': ['"Inter"', 'sans-serif'],
         'dev': ['Noto Sans Devanagari', 'sans-serif']
       },
       colors:{

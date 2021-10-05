@@ -12,6 +12,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import Link from 'next/link'
 
 const chapters = [
   {
@@ -104,10 +105,13 @@ export default function IndexHeader() {
         <div className="max-w-full mx-auto  xl:px-24 px-4">
           <div className="flex justify-between items-center  py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
+            <Link href="/">
+
               <a href="#" className="font-bold text-3xl">
                 <span className="sr-only">Workflow</span>
                 Bhagavad Gita
               </a>
+              </Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
               <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">

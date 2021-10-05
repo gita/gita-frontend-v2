@@ -1,14 +1,41 @@
-import { Fragment ,useState } from "react";
-import { Disclosure, Switch, Transition } from "@headlessui/react";
+import { Fragment, useState, useEffect } from "react";
+import { Disclosure, Switch } from "@headlessui/react";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import AudioPlayer from "./AudioPlayer";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const PageHeader = () => {
-    const [enabled, setEnabled] = useState(false)
+  const [enabled, setEnabled] = useState(false);
+  const router = useRouter();
+  const [showMenuItems, setShowMenuItems] = useState(false);
+  const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
+  function closeModal() {
+    setIsOpen(false)
+  }
+
+  function openModal() {
+    setIsOpen(true)
+  }
+  const toggleClass = () => {
+    setAdvancedOptionsActive(!advancedOptionsActive);
+  };
+  useEffect(() => {
+    console.log(router.route);
+    if (router.route == "/chapter") {
+      setShowMenuItems(true);
+      console.log(showMenuItems);
+    } else {
+      setShowMenuItems(false);
+      console.log(showMenuItems);
+    }
+  });
   return (
     <>
       <Disclosure as="nav" className="bg-white shadow font-inter">
@@ -21,43 +48,95 @@ const PageHeader = () => {
                     {/* Current: "border-my-orange text-gray-900", Default: "border-transparent text-gray-500 " */}
 
                     <div className="">
+                      <Link href="/">
+                        <a
+                          href="#"
+                          className="border-transparent flex flex-col text-gray-900  items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover"
+                        >
+                          <img className="w-6 h-6" src="/Home.svg" />
+                          Home
+                        </a>
+                      </Link>
+                    </div>
+                    <Link href="/">
                       <a
                         href="#"
-                        className="border-transparent flex flex-col text-gray-900  items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover"
+                        className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
                       >
-                        <img className="w-6 h-6" src="/Home.svg" />
-                        Home
+                        <img className="w-6 h-6" src="/content.svg" />
+                        Content
                       </a>
-                    </div>
-                    <a
-                      href="#"
-                      className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
-                    >
-                      <img className="w-6 h-6" src="/content.svg" />
-                      Content
-                    </a>
-                    <a
-                      href="#"
-                      className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
-                    >
-                      <img className="w-6 h-6" src="/appearance.svg" />
-                      Appearance
-                    </a>
-                    <a
-                      href="#"
-                      className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
-                    >
-                      <img className="w-6 h-6" src="/notes.svg" />
-                      Notes
-                    </a>
+                    </Link>
+                    <Link href="/">
+                      <a
+                        href="#"
+                        className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
+                      >
+                        <img className="w-6 h-6" src="/appearance.svg" />
+                        Appearance
+                      </a>
+                    </Link>
 
-                    <a
-                      href="#"
-                      className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
-                    >
-                      <img className="w-6 h-6" src="/bookmark-header.svg" />
-                      Bookmark
-                    </a>
+                    <Link href="/verseParellel">
+                      <a
+                        href="#"
+                        className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
+                      >
+                        <img className="w-6 h-6" src="/Parellel.svg" />
+                        Parellel Mode
+                      </a>
+                    </Link>
+
+                    <Link href="#">
+                      <a
+                        href="#"
+                        onClick={openModal}
+                        className={classNames(
+                          isOpen ? "bg-nav-hover" : null,
+                          "border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
+                        )}
+                      >
+                        <img className="w-6 h-6" src="/Audio.svg" />
+                        Play Audio
+                      </a>
+                    </Link>
+
+                    <Link href="">
+                      <a
+                        href="#"
+                        className={advancedOptionsActive ? 'bg-nav-hover': 'bg-nav-hover'} 
+                        onClick={toggleClass} 
+
+                        className={classNames(
+                          advancedOptionsActive ? "bg-nav-hover" : null,
+                          "border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
+                        )}
+
+             
+                      >
+                        <img className="w-6 h-6" src="/Advanced.svg" />
+                        Advanced View{" "}
+                      </a>
+                    </Link>
+
+                    <Link href="/">
+                      <a
+                        href="#"
+                        className="border-transparent   text-gray-900  flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover"
+                      >
+                        <img className="w-6 h-6" src="/notes.svg" />
+                        Notes
+                      </a>
+                    </Link>
+                    <Link href="/">
+                      <a
+                        href="#"
+                        className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
+                      >
+                        <img className="w-6 h-6" src="/bookmark-header.svg" />
+                        Bookmark
+                      </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="flex-1 flex items-center justify-start pr-2  lg:ml-6 lg:justify-end">
@@ -149,7 +228,6 @@ const PageHeader = () => {
                       >
                         Devnagari
                       </Switch.Label>
-                     
                     </span>
                     <Switch
                       checked={enabled}
@@ -168,7 +246,6 @@ const PageHeader = () => {
                       />
                     </Switch>
                   </Switch.Group>
-
 
                   <Switch.Group
                     as="div"
@@ -182,7 +259,6 @@ const PageHeader = () => {
                       >
                         Verse Text
                       </Switch.Label>
-                     
                     </span>
                     <Switch
                       checked={enabled}
@@ -212,9 +288,8 @@ const PageHeader = () => {
                         className=" font-medium text-gray-600"
                         passive
                       >
-                       Synonyms
+                        Synonyms
                       </Switch.Label>
-                     
                     </span>
                     <Switch
                       checked={enabled}
@@ -245,7 +320,6 @@ const PageHeader = () => {
                       >
                         Transition
                       </Switch.Label>
-                     
                     </span>
                     <Switch
                       checked={enabled}
@@ -274,9 +348,8 @@ const PageHeader = () => {
                         className=" font-medium text-gray-600"
                         passive
                       >
-                       Purport
+                        Purport
                       </Switch.Label>
-                     
                     </span>
                     <Switch
                       checked={enabled}
@@ -295,16 +368,350 @@ const PageHeader = () => {
                       />
                     </Switch>
                   </Switch.Group>
-
-                  
                 </Disclosure.Panel>
               </Disclosure>
             </Disclosure.Panel>
           </>
         )}
       </Disclosure>
+
+      {advancedOptionsActive?<AppearanceOptions />:null}
+      <AudioPlayer isOpen={isOpen} closeModal={closeModal}/>
+      
     </>
   );
 };
 
 export default PageHeader;
+
+const AppearanceOptions = () => {
+  const [enabledDevnagari, setEnabledDevnagari] = useState(false);
+  const [enabledVerseText, setEnabledVerseText] = useState(false);
+  const [enabledSynomyms, setEnabledSynomyms] = useState(false);
+  const [enabledTranslation, setEnabledTranslation] = useState(false);
+  const [enabledPurport, setEnabledPurport] = useState(false);
+
+  return (
+    <div className="max-w-full mx-auto px-2 sm:hidden transition duration-500 ease-in-out lg:block mt-10 lg:px-8">
+      <span className="flex justify-center  z-0 flex rounded-md">
+        <button
+          type="button"
+          className="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+        >
+          <Switch
+            checked={enabledDevnagari}
+            onChange={setEnabledDevnagari}
+            className={classNames(
+              enabledDevnagari ? "bg-my-orange" : "bg-gray-200",
+              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+            )}
+          >
+            <span className="sr-only">Use setting</span>
+            <span
+              className={classNames(
+                enabledDevnagari ? "translate-x-5" : "translate-x-0",
+                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+              )}
+            >
+              <span
+                className={classNames(
+                  enabledDevnagari
+                    ? "opacity-0 ease-out duration-100"
+                    : "opacity-100 ease-in duration-200",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 12 12"
+                >
+                  <path
+                    d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span
+                className={classNames(
+                  enabledDevnagari
+                    ? "opacity-100 ease-in duration-200"
+                    : "opacity-0 ease-out duration-100",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-my-orange"
+                  fill="currentColor"
+                  viewBox="0 0 12 12"
+                >
+                  <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                </svg>
+              </span>
+            </span>
+          </Switch>
+          Devnagari
+        </button>
+        <button
+          type="button"
+          className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+        >
+          <Switch
+            checked={enabledVerseText}
+            onChange={setEnabledVerseText}
+            className={classNames(
+              enabledVerseText ? "bg-my-orange" : "bg-gray-200",
+              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+            )}
+          >
+            <span className="sr-only">Use setting</span>
+            <span
+              className={classNames(
+                enabledVerseText ? "translate-x-5" : "translate-x-0",
+                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+              )}
+            >
+              <span
+                className={classNames(
+                  enabledVerseText
+                    ? "opacity-0 ease-out duration-100"
+                    : "opacity-100 ease-in duration-200",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 12 12"
+                >
+                  <path
+                    d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span
+                className={classNames(
+                  enabledVerseText
+                    ? "opacity-100 ease-in duration-200"
+                    : "opacity-0 ease-out duration-100",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-my-orange"
+                  fill="currentColor"
+                  viewBox="0 0 12 12"
+                >
+                  <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                </svg>
+              </span>
+            </span>
+          </Switch>
+          Verse Text
+        </button>
+        <button
+          type="button"
+          className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+        >
+          <Switch
+            checked={enabledSynomyms}
+            onChange={setEnabledSynomyms}
+            className={classNames(
+              enabledSynomyms ? "bg-my-orange" : "bg-gray-200",
+              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+            )}
+          >
+            <span className="sr-only">Use setting</span>
+            <span
+              className={classNames(
+                enabledSynomyms ? "translate-x-5" : "translate-x-0",
+                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+              )}
+            >
+              <span
+                className={classNames(
+                  enabledSynomyms
+                    ? "opacity-0 ease-out duration-100"
+                    : "opacity-100 ease-in duration-200",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 12 12"
+                >
+                  <path
+                    d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span
+                className={classNames(
+                  enabledSynomyms
+                    ? "opacity-100 ease-in duration-200"
+                    : "opacity-0 ease-out duration-100",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-my-orange"
+                  fill="currentColor"
+                  viewBox="0 0 12 12"
+                >
+                  <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                </svg>
+              </span>
+            </span>
+          </Switch>
+          Synonyms
+        </button>
+
+        <button
+          type="button"
+          className="-ml-px relative inline-flex items-center px-4 py-2  border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+        >
+          <Switch
+            checked={enabledTranslation}
+            onChange={setEnabledTranslation}
+            className={classNames(
+              enabledTranslation ? "bg-my-orange" : "bg-gray-200",
+              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+            )}
+          >
+            <span className="sr-only">Use setting</span>
+            <span
+              className={classNames(
+                enabledTranslation ? "translate-x-5" : "translate-x-0",
+                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+              )}
+            >
+              <span
+                className={classNames(
+                  enabledTranslation
+                    ? "opacity-0 ease-out duration-100"
+                    : "opacity-100 ease-in duration-200",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 12 12"
+                >
+                  <path
+                    d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span
+                className={classNames(
+                  enabledTranslation
+                    ? "opacity-100 ease-in duration-200"
+                    : "opacity-0 ease-out duration-100",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-my-orange"
+                  fill="currentColor"
+                  viewBox="0 0 12 12"
+                >
+                  <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                </svg>
+              </span>
+            </span>
+          </Switch>
+          Translation
+        </button>
+
+        <button
+          type="button"
+          className="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+        >
+          <Switch
+            checked={enabledPurport}
+            onChange={setEnabledPurport}
+            className={classNames(
+              enabledPurport ? "bg-my-orange" : "bg-gray-200",
+              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+            )}
+          >
+            <span className="sr-only">Use setting</span>
+            <span
+              className={classNames(
+                enabledPurport ? "translate-x-5" : "translate-x-0",
+                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+              )}
+            >
+              <span
+                className={classNames(
+                  enabledPurport
+                    ? "opacity-0 ease-out duration-100"
+                    : "opacity-100 ease-in duration-200",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 12 12"
+                >
+                  <path
+                    d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span
+                className={classNames(
+                  enabledPurport
+                    ? "opacity-100 ease-in duration-200"
+                    : "opacity-0 ease-out duration-100",
+                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                )}
+                aria-hidden="true"
+              >
+                <svg
+                  className="h-3 w-3 text-my-orange"
+                  fill="currentColor"
+                  viewBox="0 0 12 12"
+                >
+                  <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                </svg>
+              </span>
+            </span>
+          </Switch>
+          Purport
+        </button>
+      </span>
+    </div>
+  );
+};

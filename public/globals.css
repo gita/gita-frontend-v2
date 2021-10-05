@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap');
 body{
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif !important;
 }
 
 
@@ -12,6 +12,11 @@ body{
     box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04);
 
     
+  }
+
+  .about{
+    background: url('/about-gita.png') no-repeat center center;
+    background-size: cover;
   }
 
 
