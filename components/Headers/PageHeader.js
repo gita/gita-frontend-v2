@@ -5,6 +5,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import AudioPlayer from "./AudioPlayer";
+import Settings from "../Shared/Settings";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -14,15 +15,26 @@ const PageHeader = () => {
   const router = useRouter();
   const [showMenuItems, setShowMenuItems] = useState(false);
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
-  const [isOpen, setIsOpen] = useState(false)
+  const [playerIsOpen, setplayerIsOpen] = useState(false)
+  const [settingsIsOpen, setSettingsIsOpen] = useState(false)
 
-  function closeModal() {
-    setIsOpen(false)
+  function closePlayerModal() {
+    setplayerIsOpen(false)
   }
 
-  function openModal() {
-    setIsOpen(true)
+  function openPlayerModal() {
+    setplayerIsOpen(true)
   }
+
+  function openSettingsModal(){
+    setSettingsIsOpen(true)
+  }
+
+  function closeSettingsModal(){
+    setSettingsIsOpen(false)
+  }
+
+
   const toggleClass = () => {
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
@@ -67,10 +79,14 @@ const PageHeader = () => {
                         Content
                       </a>
                     </Link>
-                    <Link href="/">
+                    <Link href="#">
                       <a
                         href="#"
-                        className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
+                        onClick={openSettingsModal}
+                        className={classNames(
+                          settingsIsOpen ? "bg-nav-hover" : null,
+                          "border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
+                        )}
                       >
                         <img className="w-6 h-6" src="/appearance.svg" />
                         Appearance
@@ -90,9 +106,9 @@ const PageHeader = () => {
                     <Link href="#">
                       <a
                         href="#"
-                        onClick={openModal}
+                        onClick={openPlayerModal}
                         className={classNames(
-                          isOpen ? "bg-nav-hover" : null,
+                          playerIsOpen ? "bg-nav-hover" : null,
                           "border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
                         )}
                       >
@@ -376,8 +392,8 @@ const PageHeader = () => {
       </Disclosure>
 
       {advancedOptionsActive?<AppearanceOptions />:null}
-      <AudioPlayer isOpen={isOpen} closeModal={closeModal}/>
-      
+      <AudioPlayer playerIsOpen={playerIsOpen} closePlayerModal={closePlayerModal}/>
+      <Settings settingsIsOpen={settingsIsOpen} closeSettingsModal={closeSettingsModal}/>
     </>
   );
 };

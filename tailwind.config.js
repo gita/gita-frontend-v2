@@ -13,7 +13,10 @@ module.exports = {
         'lead-text':'#FEDF89',
         'box-bg':'#FFFAEC',
         'box-stroke':'#FFE9B1',
-        'nav-hover':'#FFF4D8'
+        'nav-hover':'#FFF4D8',
+        'light-bg':'#F7F7FC',
+        'yellow-bg':'#FFF4D8',
+        'dark-bg':'#6E7191'
       }
     },
   },

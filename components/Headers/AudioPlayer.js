@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-export default function AudioPlayer({ isOpen, closeModal }) {
+export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
   return (
     <div>
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition appear show={playerIsOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 -top-20 z-10 overflow-y-auto"
-          onClose={closeModal}
+          onClose={closePlayerModal}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child

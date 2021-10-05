@@ -175,19 +175,22 @@ export default function IndexHeader() {
                   </>
                 )}
               </Popover>
-
+              <Link href="/quotes">
               <a
                 href="#"
                 className="text-base font-medium text-black hover:text-gray-500"
               >
                 Quotes
               </a>
+              </Link>
+              <Link href="/about">
               <a
-                href="#"
+                
                 className="text-base font-medium text-black hover:text-gray-500"
               >
                 About Geeta
               </a>
+              </Link>
             </Popover.Group>
             <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
               <div className="pt-2 relative  text-gray-600">
