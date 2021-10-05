@@ -135,7 +135,7 @@ const PageHeader = () => {
                       </a>
                     </Link>
 
-                    <Link href="/">
+                    <Link href="/notes">
                       <a
                         href="#"
                         className="border-transparent   text-gray-900  flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover"
@@ -144,7 +144,7 @@ const PageHeader = () => {
                         Notes
                       </a>
                     </Link>
-                    <Link href="/">
+                    <Link href="/bookmark">
                       <a
                         href="#"
                         className="border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
