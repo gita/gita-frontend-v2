@@ -16,7 +16,7 @@ module.exports = {
         'nav-hover':'#FFF4D8',
         'light-bg':'#F7F7FC',
         'yellow-bg':'#FFF4D8',
-        'dark-bg':'#6E7191'
+        'dark-bg':'#1a1a1a'
       }
     },
   },

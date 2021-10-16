@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../components/Footers/Footer";
 import IndexHeader from "../components/Headers/IndexHeader";
+import { useDispatch, useSelector } from "react-redux";
 
 const HomeLayout = ({ children }) => {
+
+  const dispatch = useDispatch()
+  const settings = useSelector(state => state.settings);
+
+  useEffect(() => {
+    console.log(settings)
+  })
+
   return (
-    <>
-      <IndexHeader />
+    <div className=" bg-dark-bg">
+      <IndexHeader  />
       {children}
       <Footer />
       {/* <FooterBar/> */}
-    </>
+    </div>
   );
 };
 

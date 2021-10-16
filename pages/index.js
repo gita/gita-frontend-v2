@@ -1,12 +1,22 @@
+import {useEffect} from 'react'
 import Head from 'next/head'
 import Banner from '../components/Home/Banner'
 import Chapters from '../components/Home/Chapters'
 import Newsletter from '../components/Home/Newsletter'
 import VerseOfDay from '../components/Home/VerseOfDay'
 import HomeLayout from '../layouts/HomeLayout'
+import { useDispatch, useSelector } from "react-redux";
 
 
 export default function Home() {
+
+  const dispatch = useDispatch()
+  const settings = useSelector(state => state.settings);
+
+  useEffect(() => {
+    console.log(settings)
+  })
+
   return (
     <div className="font-inter min-h-screen py-2">
       <Head>
