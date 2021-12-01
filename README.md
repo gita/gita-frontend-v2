@@ -1,29 +1,101 @@
-# Next.js + Tailwind CSS Example
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+<!-- markdownlint-disable -->
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+<p align="center">
 
-## Preview
+<a href="https://bhagavadgita.io">
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+<img src="https://raw.githubusercontent.com/gita/bhagavad-gita-api/main/.github/gita.png" alt="Logo" width="300">
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+</a>
 
-## Deploy your own
+<h3 align="center">Bhagavad Gita Website</h3>
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+<p align="center">
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+Code for the Bhagavad gita website, which is an website built for Gita readers by Gita readers.
 
-## How to use
+<br />
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+<img alt="GitHub issues" src="https://img.shields.io/github/issues/gita/bg-frontend">
+<a href="https://github.com/gita/bg-frontend/blob/master/LICENSE">
+<img alt="LICENSE" src="https://img.shields.io/badge/License-MIT-yellow.svg?maxAge=43200">
+</a>
+<a href="https://api.bhagavadgita.io/docs"><img src="https://img.shields.io/badge/docs-passing-green" alt="Docs"></a>
+<a href="https://starcharts.herokuapp.com/gita/bg-frontend"><img alt="Stars" src="https://img.shields.io/github/stars/gita/bg-frontend.svg?style=social"></a>
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
+</p>
+
+## Setup
+
+Get the code by either cloning this repository using git
+
+```
+git clone https://github.com/gita/bg-frontend
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+... or [downloading source code](https://github.com/gita/bg-frontend/archive/refs/heads/main.zip) code as a zip archive.
+
+Once downloaded, open the terminal in the project directory, and install dependencies with:
+
+```
+npm install
+```
+
+Then start the app with:
+
+```
+npm run dev
+```
+
+The app should now be up and running at http://localhost:3000 🚀
+
+##  Projects
+
+This project uses the APIs from
+
+- [Bhagavad Gita API](https://github.com/gita/bhagavad-gita-api)
+
+
+##  Development
+
+Feel free to use the [issue tracker](https://github.com/gita/bg-frontend/issues)
+
+for bugs and feature requests.
+
+Looking to contribute code ? PRs are most welcome!
+
+To get started with developing this API, please read the [contributing guide](.github/CONTRIBUTING.md).
+  
+## How It Works
+This project uses:
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/docs/)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+
+##  Community
+
+Join the [Discord chat server](https://discord.gg/gX8dstApZX) and hang out with others in the community.
+
+You can also use [GitHub Discussions](https://github.com/gita/bhagavad-gita-api/discussions) to ask questions or tell us about projects you have built using this API.
+
+##  Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
+<!-- prettier-ignore-start -->
+
+<!-- markdownlint-disable -->
+
+<a href="https://github.com/git/bg-frontend/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=gita/bg-frontend" />
+</a>
+<!-- markdownlint-restore -->
+
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
