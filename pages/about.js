@@ -5,7 +5,7 @@ import AboutBanner from "../components/Shared/AboutBanner";
 
 export default function About() {
   return (
-    <div className="mb-16">
+    <div>
       <Head>
         <title>Bhagwat Gita App - About</title>
         <link rel="icon" href="/favicon.ico" />
@@ -13,7 +13,7 @@ export default function About() {
       </Head>
       <AboutBanner />
       <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
-      <p className="mt-8 text-xl ">
+        <p className="mt-8 text-xl ">
           Bhagavad Gita, also known as the Gita - "The Song of The Lord" is a
           practical guide to one's life that guides one to re-organise their
           life, achieve inner peace and approach the Supreme Lord (the Ultimate

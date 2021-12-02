@@ -4,18 +4,17 @@ import IndexHeader from "../components/Headers/IndexHeader";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomeLayout = ({ children }) => {
-
-  const dispatch = useDispatch()
-  const settings = useSelector(state => state.settings);
+  const dispatch = useDispatch();
+  const settings = useSelector((state) => state.settings);
 
   useEffect(() => {
-    console.log(settings)
-  })
+    console.log(settings);
+  });
 
   return (
-    <div className=" bg-dark-bg">
-      <IndexHeader  />
-      {children}
+    <div className="bg-dark-bg">
+      <IndexHeader />
+      <div className="pt-28">{children}</div>
       <Footer />
       {/* <FooterBar/> */}
     </div>
