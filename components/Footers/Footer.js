@@ -74,9 +74,335 @@ const Footer = () => {
   });
   return (
     <div className="w-full mt-24 fixed bottom-0 px-4  bg-white font-inter border-gray-200 border-t border-b">
-      <div className="flex py-3 justify-between items-center">
-        <div className="flex-none w-1/2 lg:w-1/5">
-          <Menu as="div" className="relative inline-block text-left">
+      <div className="py-4 lg:py-8">
+        <div className="flex justify-between items-center">
+          <div className="flex-none w-1/2 lg:w-1/5">
+            <Menu
+              as="div"
+              className="relative inline-block text-left lg:hidden"
+            >
+              {({ open }) => (
+                <>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="py-1">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              English
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              French
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Spanish
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <form method="POST" action="#">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <button
+                                type="submit"
+                                className={classNames(
+                                  active
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700",
+                                  "block w-full text-left px-4 py-2 text-sm"
+                                )}
+                              >
+                                Hindi
+                              </button>
+                            )}
+                          </Menu.Item>
+                        </form>
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                  <div>
+                    <Menu.Button className="inline-flex justify-centerw-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white text-xs text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+                      Language
+                      {open ? (
+                        <ChevronUpIcon
+                          className="-mr-1 ml-1 h-4 w-4 rotate-180"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <ChevronUpIcon
+                          className="-mr-1 ml-1 h-4 w-4"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </Menu.Button>
+                  </div>
+                </>
+              )}
+            </Menu>
+
+            <Menu
+              as="div"
+              className="relative inline-block text-left lg:hidden"
+            >
+              {({ open }) => (
+                <>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="py-1">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              About Us
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Blog
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Donate
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Press
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              API
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <div className="py-1  border-t border-gray-200">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={classNames(
+                                  active
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700",
+                                  "block px-4 py-2 text-sm"
+                                )}
+                              >
+                                Facebook
+                              </a>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={classNames(
+                                  active
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700",
+                                  "block px-4 py-2 text-sm"
+                                )}
+                              >
+                                Instagram
+                              </a>
+                            )}
+                          </Menu.Item>
+
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={classNames(
+                                  active
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700",
+                                  "block px-4 py-2 text-sm"
+                                )}
+                              >
+                                Twitter
+                              </a>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={classNames(
+                                  active
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700",
+                                  "block px-4 py-2 text-sm"
+                                )}
+                              >
+                                Github
+                              </a>
+                            )}
+                          </Menu.Item>
+                        </div>
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                  <div>
+                    <Menu.Button className="inline-flex text-xs  justify-center w-full rounded-lg border  border-gray-300 ml-1 shadow-sm px-2 py-2 bg-white  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+                      More
+                      {open ? (
+                        <ChevronUpIcon
+                          className="-mr-1 ml-1 h-4 w-4 rotate-180"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <ChevronUpIcon
+                          className="-mr-1 ml-1 h-4 w-4"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </Menu.Button>
+                  </div>
+                </>
+              )}
+            </Menu>
+          </div>
+          <div className="flex-none hidden lg:block lg:w-3/5">
+            <footer className="bg-white">
+              <div className="max-w-7xl mx-auto  overflow-hidden sm:px-6 lg:px-8">
+                <nav
+                  className="-mx-5 -my-2 flex flex-wrap justify-center"
+                  aria-label="Footer"
+                >
+                  {navigation.main.map((item) => (
+                    <div key={item.name} className="px-5 py-2">
+                      <a
+                        href={item.href}
+                        className="text-sm text-gray-500 hover:text-gray-900"
+                      >
+                        {item.name}
+                      </a>
+                    </div>
+                  ))}
+                </nav>
+              </div>
+            </footer>
+          </div>
+          <div className="flex-none text-right w-1/3 lg:w-1/5"></div>
+        </div>
+        <div className="flex-none text-right w-1/3 lg:w-full">
+          <div className="mt-5 justify-center  hidden lg:flex  items-center  space-x-6">
+            {navigation.social.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon className="h-6 w-6" aria-hidden="true" />
+              </a>
+            ))}
+            {/* <a href="#">App Icon</a> */}
+          </div>
+          {/* <a href="#" className="text-right block lg:hidden">
+          App Icon
+        </a> */}
+        </div>
+      </div>
+      <hr />
+      <div className="flex justify-between items-center py-2 ">
+        <div className="flex-none w-1/2 lg:w-1/5 hidden lg:inline-block">
+          <Menu as="div" className="relative text-left ">
             {({ open }) => (
               <>
                 <Transition
@@ -174,225 +500,18 @@ const Footer = () => {
               </>
             )}
           </Menu>
-
-          <Menu as="div" className="relative inline-block text-left lg:hidden">
-            {({ open }) => (
-              <>
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="py-1">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                          >
-                            About Us
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                          >
-                            Blog
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                          >
-                            Donate
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                          >
-                            Press
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                          >
-                            API
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <div className="py-1  border-t border-gray-200">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
-                                "block px-4 py-2 text-sm"
-                              )}
-                            >
-                              Facebook
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
-                                "block px-4 py-2 text-sm"
-                              )}
-                            >
-                              Instagram
-                            </a>
-                          )}
-                        </Menu.Item>
-
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
-                                "block px-4 py-2 text-sm"
-                              )}
-                            >
-                              Twitter
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
-                                "block px-4 py-2 text-sm"
-                              )}
-                            >
-                              Github
-                            </a>
-                          )}
-                        </Menu.Item>
-                      </div>
-                    </div>
-                  </Menu.Items>
-                </Transition>
-                <div>
-                  <Menu.Button className="inline-flex text-xs  justify-center w-full rounded-lg border  border-gray-300 ml-1 shadow-sm px-2 py-2 bg-white  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
-                    More
-                    {open ? (
-                      <ChevronUpIcon
-                        className="-mr-1 ml-1 h-4 w-4 rotate-180"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <ChevronUpIcon
-                        className="-mr-1 ml-1 h-4 w-4"
-                        aria-hidden="true"
-                      />
-                    )}
-                  </Menu.Button>
-                </div>
-              </>
-            )}
-          </Menu>
         </div>
-        <div className="flex-none hidden lg:block lg:w-3/5">
-          <footer className="bg-white">
-            <div className="max-w-7xl mx-auto  overflow-hidden sm:px-6 lg:px-8">
-              <nav
-                className="-mx-5 -my-2 flex flex-wrap justify-center"
-                aria-label="Footer"
-              >
-                {navigation.main.map((item) => (
-                  <div key={item.name} className="px-5 py-2">
-                    <a
-                      href={item.href}
-                      className="text-sm text-gray-500 hover:text-gray-900"
-                    >
-                      {item.name}
-                    </a>
-                  </div>
-                ))}
-              </nav>
-
-              <p className="mt-1 text-sm text-center  text-gray-400">
-                &copy; 2021 BhagwatGita.io
-              </p>
-            </div>
-          </footer>
+        <div className="flex-none block w-full lg:w-3/5">
+          <p className="text-sm text-center text-gray-400">
+            &copy; 2021 BhagwatGita.io
+          </p>
         </div>
-
         <div className="flex-none text-right w-1/3 lg:w-1/5">
-          <div className="mt-1 justify-end  hidden lg:flex  items-center  space-x-6">
-            {navigation.social.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-gray-400 hover:text-gray-500"
-              >
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" aria-hidden="true" />
-              </a>
-            ))}
-            <a href="#">App Icon</a>
-          </div>
-          <a href="#" className="text-right block lg:hidden">
-            App Icon
-          </a>
+          <input
+            type="color"
+            className="h-10 w-10 appearance-none border-none"
+            value="#F57903"
+          />
         </div>
       </div>
     </div>
