@@ -3,7 +3,7 @@ import React from 'react'
 const quotes = () => {
     return (
         <div>
-            <h1>Testing</h1>
+            <h1>Testing netlify</h1>
         </div>
     )
 }
