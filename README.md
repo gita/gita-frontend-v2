@@ -65,7 +65,7 @@ for bugs and feature requests.
 
 Looking to contribute code ? PRs are most welcome!
 
-To get started with developing this API, please read the [contributing guide](.github/CONTRIBUTING.md).
+To get started with developing this API, please read the [contributing guide](.github/Contributing.md).
   
 ## How It Works
 This project uses:
