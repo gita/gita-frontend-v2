@@ -106,7 +106,9 @@ export default function IndexHeader() {
           <div className="flex justify-between items-center  py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <Link href="/">
-                <a href="#" className="font-bold text-3xl">
+
+                <a href="#" className="font-bold text-3xl focus:outline-none">
+
                   <span className="sr-only">Workflow</span>
                   Bhagavad Gita
                 </a>
@@ -177,13 +179,17 @@ export default function IndexHeader() {
               <Link href="/quotes">
                 <a
                   href="#"
-                  className="text-base font-medium text-black hover:text-gray-500"
+
+                  className="text-base font-medium text-black hover:text-gray-500 focus:outline-none"
+
                 >
                   Quotes
                 </a>
               </Link>
               <Link href="/about">
-                <a className="text-base font-medium text-black hover:text-gray-500">
+
+                <a className="text-base font-medium text-black hover:text-gray-500 focus:outline-none">
+
                   About Geeta
                 </a>
               </Link>
@@ -192,7 +198,7 @@ export default function IndexHeader() {
               <div className="pt-2 relative  text-gray-600">
                 <button
                   type="submit"
-                  className="absolute left-3 top-0 mt-5 mr-4"
+                  className="absolute left-3 top-0 mt-5 mr-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange rounded-sm"
                 >
                   <svg
                     className="text-gray-600 h-4 w-4 fill-current"
