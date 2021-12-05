@@ -73,7 +73,7 @@ const Footer = () => {
     console.log(open);
   });
   return (
-    <div className="w-full mt-24 fixed bottom-0 px-4  bg-white font-inter border-gray-200 border-t border-b">
+    <div className="w-full mt-24 bottom-0 px-4  bg-white font-inter border-gray-200 border-t border-b">
       <div className="flex py-3 justify-between items-center">
         <div className="flex-none w-1/2 lg:w-1/5">
           <Menu as="div" className="relative inline-block text-left">
