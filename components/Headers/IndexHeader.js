@@ -12,7 +12,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import Link from 'next/link'
+import Link from "next/link";
 
 const chapters = [
   {
@@ -100,17 +100,18 @@ function classNames(...classes) {
 
 export default function IndexHeader() {
   return (
-    <div>
+    <div className="w-full fixed top-0">
       <Popover className="relative bg-white font-inter">
         <div className="max-w-full mx-auto  xl:px-24 px-4">
           <div className="flex justify-between items-center  py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-            <Link href="/">
+              <Link href="/">
 
-              <a href="#" className="font-bold text-3xl">
-                <span className="sr-only">Workflow</span>
-                Bhagavad Gita
-              </a>
+                <a href="#" className="font-bold text-3xl focus:outline-none">
+
+                  <span className="sr-only">Workflow</span>
+                  Bhagavad Gita
+                </a>
               </Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
@@ -176,27 +177,28 @@ export default function IndexHeader() {
                 )}
               </Popover>
               <Link href="/quotes">
-              <a
-                href="#"
-                className="text-base font-medium text-black hover:text-gray-500"
-              >
-                Quotes
-              </a>
+                <a
+                  href="#"
+
+                  className="text-base font-medium text-black hover:text-gray-500 focus:outline-none"
+
+                >
+                  Quotes
+                </a>
               </Link>
               <Link href="/about">
-              <a
-                
-                className="text-base font-medium text-black hover:text-gray-500"
-              >
-                About Geeta
-              </a>
+
+                <a className="text-base font-medium text-black hover:text-gray-500 focus:outline-none">
+
+                  About Geeta
+                </a>
               </Link>
             </Popover.Group>
             <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
               <div className="pt-2 relative  text-gray-600">
                 <button
                   type="submit"
-                  className="absolute left-3 top-0 mt-5 mr-4"
+                  className="absolute left-3 top-0 mt-5 mr-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange rounded-sm"
                 >
                   <svg
                     className="text-gray-600 h-4 w-4 fill-current"
