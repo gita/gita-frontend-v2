@@ -1,17 +1,1 @@
-<svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d)">
-<rect x="2" y="1" width="50" height="50" rx="25" fill="#F57903"/>
-<path d="M22.2345 34.6251C21.9467 34.6245 21.6639 34.5491 21.4141 34.4062C20.8516 34.0874 20.502 33.4687 20.502 32.797V19.2032C20.502 18.5296 20.8516 17.9127 21.4141 17.594C21.6699 17.447 21.9604 17.3714 22.2554 17.3751C22.5503 17.3788 22.8389 17.4617 23.0909 17.6151L34.7088 24.5695C34.951 24.7213 35.1506 24.9321 35.2889 25.1822C35.4273 25.4322 35.4999 25.7134 35.4999 25.9991C35.4999 26.2849 35.4273 26.566 35.2889 26.8161C35.1506 27.0662 34.951 27.277 34.7088 27.4288L23.089 34.3851C22.8311 34.541 22.5358 34.6239 22.2345 34.6251Z" fill="white"/>
-</g>
-<defs>
-<filter id="filter0_d" x="0" y="0" width="54" height="54" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="1"/>
-<feGaussianBlur stdDeviation="1"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
-</filter>
-</defs>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" fill="none" viewBox="0 0 54 54"><g filter="url(#filter0_d)"><rect width="50" height="50" x="2" y="1" fill="#F57903" rx="25"/><path fill="#fff" d="M22.2345 34.6251C21.9467 34.6245 21.6639 34.5491 21.4141 34.4062C20.8516 34.0874 20.502 33.4687 20.502 32.797V19.2032C20.502 18.5296 20.8516 17.9127 21.4141 17.594C21.6699 17.447 21.9604 17.3714 22.2554 17.3751C22.5503 17.3788 22.8389 17.4617 23.0909 17.6151L34.7088 24.5695C34.951 24.7213 35.1506 24.9321 35.2889 25.1822C35.4273 25.4322 35.4999 25.7134 35.4999 25.9991C35.4999 26.2849 35.4273 26.566 35.2889 26.8161C35.1506 27.0662 34.951 27.277 34.7088 27.4288L23.089 34.3851C22.8311 34.541 22.5358 34.6239 22.2345 34.6251Z"/></g><defs><filter id="filter0_d" width="54" height="54" x="0" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="1"/><feGaussianBlur stdDeviation="1"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/><feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow"/><feBlend in="SourceGraphic" in2="effect1_dropShadow" mode="normal" result="shape"/></filter></defs></svg>

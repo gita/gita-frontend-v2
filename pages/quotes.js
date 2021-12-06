@@ -1,3 +1,15 @@
+import React from 'react'
+
+const quotes = () => {
+    return (
+        <div>
+            <h1>Quotes</h1>
+        </div>
+    )
+}
+
+export default quotes
+
 // import React from 'react';
 
 // import Head from "next/head";
