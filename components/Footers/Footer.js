@@ -506,10 +506,11 @@ const Footer = () => {
             &copy; 2021 BhagwatGita.io
           </p>
         </div>
-        <div className='flex-none text-right w-1/3 lg:w-1/5'>
+        <div className='flex-none text-right absolute right-3 lg:relative lg:w-1/5'>
           <input
             type='color'
-            className='h-10 w-10 appearance-none border-none'
+            className='h-7 w-7 appearance-none border-none lg:h-10 lg:w-10'
+            onChange={(e) => console.log(e.target.value)}
             value='#F57903'
           />
         </div>
