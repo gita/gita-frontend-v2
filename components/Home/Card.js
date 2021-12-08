@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const VerseCard = ({ chapter }) => {
+const Card = ({ chapter }) => {
   return (
     // <Link href={`/chapter/${chapter.id}`}>
     <Link href='/verse'>
@@ -33,4 +33,4 @@ const VerseCard = ({ chapter }) => {
   );
 };
 
-export default VerseCard;
+export default Card;
