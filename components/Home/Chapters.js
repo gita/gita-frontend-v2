@@ -2,7 +2,6 @@ import React from "react";
 import Card from "./Card";
 
 const Chapters = ({ chapters }) => {
-  console.log(chapters);
   return (
     <div className='chapters my-14 '>
       <div className='max-w-7xl mx-auto z-50 px-4 sm:px-6'>
