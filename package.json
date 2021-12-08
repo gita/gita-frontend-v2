@@ -6,9 +6,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.5",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
     "@popperjs/core": "2.9.1",
+    "graphql": "^16.0.1",
     "next": "latest",
     "next-redux-wrapper": "^7.0.5",
     "react": "^17.0.2",
