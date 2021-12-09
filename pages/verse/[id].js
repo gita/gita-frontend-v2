@@ -40,7 +40,7 @@ export async function getStaticProps({ params }) {
     uri: "https://gql.bhagavadgita.io/graphql",
     cache: new InMemoryCache(),
   });
-  // todo: add translation to the query and pass transation data to Translation and Commentary commponent
+  // todo: add translation to the query and pass transation data to Translation and Commentary component
   const { data } = await client.query({
     query: gql`
       query MyQuery {
