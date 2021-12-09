@@ -30,7 +30,7 @@ export const getStaticProps = async () => {
     `,
   });
   return {
-    props: { chapters: data.allGitaChapters.nodes },
+    props: { chapters: data?.allGitaChapters.nodes },
   };
 };
 export default function Home({ chapters }) {
