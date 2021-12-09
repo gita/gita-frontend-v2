@@ -12,9 +12,9 @@ const HomeLayout = ({ children }) => {
   });
 
   return (
-    <div className='bg-dark-bg'>
+    <div className="">
       <IndexHeader />
-      <div className='pt-24 lg:pt-28'>{children}</div>
+      <div className="pt-24 lg:pt-28">{children}</div>
       <Footer />
       {/* <FooterBar/> */}
     </div>
