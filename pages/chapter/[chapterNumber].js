@@ -7,8 +7,79 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/solid";
 import VerseList from "../../components/Chapter/VerseList";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
-export default function Chapter() {
+export async function getStaticPaths() {
+  const client = new ApolloClient({
+    uri: "https://gql.bhagavadgita.io/graphql",
+    cache: new InMemoryCache(),
+  });
+
+  const { data } = await client.query({
+    query: gql`
+      query MyQuery {
+        allGitaChapters {
+          nodes {
+            chapterNumber
+          }
+        }
+      }
+    `,
+  });
+  const chapters = data.allGitaChapters.nodes;
+  const paths = chapters.map(({ chapterNumber }) => {
+    return {
+      params: { chapterNumber: chapterNumber.toString() },
+    };
+  });
+  return {
+    paths,
+    fallback: false,
+  };
+}
+export async function getStaticProps({ params }) {
+  const { chapterNumber } = params;
+  const client = new ApolloClient({
+    uri: "https://gql.bhagavadgita.io/graphql",
+    cache: new InMemoryCache(),
+  });
+
+  const { data } = await client.query({
+    query: gql`
+      query MyQuery {
+        gitaChapterById(id: ${chapterNumber}) {
+          chapterSummary
+          chapterNumber
+          nameTranslated
+          versesCount
+          gitaVersesByChapterId {
+            nodes {
+              id
+              verseNumber
+              wordMeanings
+              transliteration
+            }
+          }
+        }
+      }
+    `,
+  });
+  const chapterData = data?.gitaChapterById;
+  return {
+    props: {
+      chapterData,
+    },
+  };
+}
+export default function Chapter({ chapterData }) {
+  const {
+    chapterNumber,
+    chapterSummary,
+    nameTranslated,
+    versesCount,
+    gitaVersesByChapterId,
+  } = chapterData;
+  const verses = gitaVersesByChapterId.nodes;
   return (
     <div>
       <Head>
@@ -19,38 +90,24 @@ export default function Chapter() {
 
       <div className='max-w-5xl font-inter py-24 chapter-intro mx-auto text-center  px-4 sm:px-6'>
         <img
-          src='arrow-left.png'
+          src='/arrow-left.png'
           className='fixed z-neg top-1/2 md:top-1/3 left-3'
         />
         <img
-          src='arrow-right.png'
+          src='/arrow-right.png'
           className='fixed z-neg top-1/2 md:top-1/3 right-3'
         />
 
-        <h3 className='text-my-orange font-medium uppercase'>Chapter 1</h3>
-        <h1 className='font-extrabold text-3xl my-8'>
-          Sraddhatraya Vibhaga Yoga
-        </h1>
-        <p className='text-left  mt-3'>
-          The first chapter of the Bhagavad Gita - Arjuna Vishada Yoga
-          introduces the setup, the setting, the characters and the
-          circumstances that led to the epic battle of Mahabharata, fought
-          between the Pandavas and the Kauravas. It outlines the reasons that
-          led to the revelation of the of Bhagavad Gita.{" "}
-        </p>
-        <p className='text-left  mt-3'>
-          As both armies stand ready for the battle, the mighty warrior Arjuna,
-          on observing the warriors on both sides becomes increasingly sad and
-          depressed due to the fear of losing his relatives and friends and the
-          consequent sins attributed to killing his own relatives. So, he
-          surrenders to Lord Krishna, seeking a solution. Thus, follows the
-          wisdom of the Bhagavad Gita.
-        </p>
+        <h3 className='text-my-orange font-medium uppercase'>
+          Chapter {chapterNumber}
+        </h3>
+        <h1 className='font-extrabold text-3xl my-8'>{nameTranslated}</h1>
+        <p className='text-left  mt-3'>{chapterSummary}</p>
       </div>
 
       <div className='max-w-5xl font-inter mx-auto text-center  px-4 sm:px-6'>
         <div className='flex items-center justify-between border-t py-6 border-b border-gray-200'>
-          <div className='font-extrabold'>48 Verses</div>
+          <div className='font-extrabold'>{versesCount} Verses</div>
           <div className='mt-1 flex rounded-md shadow-sm'>
             <div className='relative flex items-stretch flex-grow focus-within:z-10'>
               <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'></div>
@@ -82,32 +139,9 @@ export default function Chapter() {
       </div>
 
       <div className='max-w-5xl font-inter py-8 mb-16 mx-auto   px-4 sm:px-6'>
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
-        <VerseList />
+        {verses.map((verse) => (
+          <VerseList verseData={verse} key={verse.id} />
+        ))}
       </div>
     </div>
   );
