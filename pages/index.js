@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
+import Modal from "../components/Home/Modal";
 import Banner from "../components/Home/Banner";
 import Chapters from "../components/Home/Chapters";
 import Newsletter from "../components/Home/Newsletter";
@@ -36,24 +37,37 @@ export const getStaticProps = async () => {
 export default function Home({ chapters }) {
   const dispatch = useDispatch();
   const settings = useSelector((state) => state.settings);
+  const [modalVisible, setModalVisible] = useState(false);
 
+  function handleSubscribe(e, formData) {
+    e.preventDefault();
+    if (formData.username && formData.email) {
+      // todo call newsletter subscribe API
+      setModalVisible(true);
+      return true;
+    } else return false;
+  }
   useEffect(() => {
     console.log(settings);
   });
 
   return (
-    <div className='font-inter min-h-screen py-2'>
+    <div className="font-inter min-h-screen py-2">
       <Head>
         <title>Bhagwat Gita App</title>
-        <link rel='icon' href='/favicon.ico' />
-        <link ref='style' rel='stylesheet' href='/globals.css' />
+        <link rel="icon" href="/favicon.ico" />
+        <link ref="style" rel="stylesheet" href="/globals.css" />
       </Head>
 
-      <main className=''>
+      <main className="">
         <HomeLayout>
+          <Modal
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+          />
           <Banner />
           <VerseOfDay />
-          <Newsletter />
+          <Newsletter handleSubscribe={handleSubscribe} />
           <Chapters chapters={chapters} />
         </HomeLayout>
       </main>
