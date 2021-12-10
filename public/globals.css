@@ -1,75 +1,71 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap');
-body{
-    font-family: 'Inter', sans-serif !important;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap");
+body {
+  font-family: "Inter", sans-serif !important;
 }
 
+.banner {
+  background: url("/banner2.png") no-repeat center center;
+  background-size: cover;
+  box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0px 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
 
-.banner{
-    background: url('/banner2.png') no-repeat center center;
-    background-size: cover;
-    box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-    
-  }
-
-  .about{
-    background: url('/about-gita.png') no-repeat center center;
-    background-size: cover;
-  }
-
-
-  .yellow-bg-banner{
-    background: url('/main.png') no-repeat center center;
-    background-size: cover;
-    z-index: -9999 !important;
-  
-  
-  }
-
-  .divider {
-    display: flex;
-  }
- .divider:after {
-    content: "";
-    flex: 1;
-  }
-
-  
-.line {
-    align-items: center;
-    justify-content: flex-end;
-    margin: 1em -1em;
-  }
-  .line:before, .line:after {
-    height: 2px;
-    margin: 0 1em;
-  }
-  
-  .one-line:before, .one-line:after {
-    background: #E5E7EB;
-  }
-  .newsletter{
-    background: url('/newsbg.png')  no-repeat bottom center; ;
-    background-size: cover;
-  
-    background-color: #FFE9D5;
-    width:100%;
-  
-  
-  }
-  .text-shadow {
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  }
-.chapters{
-  background: url('/bg-verses-fixed.png') no-repeat bottom;
+.about {
+  background: url("/about-gita.png") no-repeat center center;
   background-size: cover;
 }
-.chapter-intro{
-  background: url('/mandala.png') no-repeat center center;
-}
-.z-neg{
 
+.quote {
+  background: url("/quotes-bg.png") no-repeat center center;
+  background-size: cover;
+}
+
+.yellow-bg-banner {
+  background: url("/main.png") no-repeat center center;
+  background-size: cover;
+  z-index: -9999 !important;
+}
+
+.divider {
+  display: flex;
+}
+.divider:after {
+  content: "";
+  flex: 1;
+}
+
+.line {
+  align-items: center;
+  justify-content: flex-end;
+  margin: 1em -1em;
+}
+.line:before,
+.line:after {
+  height: 2px;
+  margin: 0 1em;
+}
+
+.one-line:before,
+.one-line:after {
+  background: #e5e7eb;
+}
+.newsletter {
+  background: url("/newsbg.png") no-repeat bottom center;
+  background-size: cover;
+
+  background-color: #ffe9d5;
+  width: 100%;
+}
+.text-shadow {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.chapters {
+  background: url("/bg-verses-fixed.png") no-repeat bottom;
+  background-size: cover;
+}
+.chapter-intro {
+  background: url("/mandala.png") no-repeat center center;
+}
+.z-neg {
 }
