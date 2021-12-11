@@ -1,17 +1,20 @@
 import * as t from "../Types";
 
-const main = (state = {
+const main = (
+  state = {
     name: "guest",
-}, action) => {
-  switch(action.type){
+  },
+  action
+) => {
+  switch (action.type) {
     case t.SET_NAME:
-      return { 
+      return {
         ...state,
-        name: action.payload
+        name: action.payload,
       };
     default:
-      return {...state};
-    }
-}
+      return { ...state };
+  }
+};
 
 export default main;

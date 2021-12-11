@@ -15,25 +15,24 @@ const PageHeader = () => {
   const router = useRouter();
   const [showMenuItems, setShowMenuItems] = useState(false);
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
-  const [playerIsOpen, setplayerIsOpen] = useState(false)
-  const [settingsIsOpen, setSettingsIsOpen] = useState(false)
+  const [playerIsOpen, setplayerIsOpen] = useState(false);
+  const [settingsIsOpen, setSettingsIsOpen] = useState(false);
 
   function closePlayerModal() {
-    setplayerIsOpen(false)
+    setplayerIsOpen(false);
   }
 
   function openPlayerModal() {
-    setplayerIsOpen(true)
+    setplayerIsOpen(true);
   }
 
-  function openSettingsModal(){
-    setSettingsIsOpen(true)
+  function openSettingsModal() {
+    setSettingsIsOpen(true);
   }
 
-  function closeSettingsModal(){
-    setSettingsIsOpen(false)
+  function closeSettingsModal() {
+    setSettingsIsOpen(false);
   }
-
 
   const toggleClass = () => {
     setAdvancedOptionsActive(!advancedOptionsActive);
@@ -120,15 +119,16 @@ const PageHeader = () => {
                     <Link href="">
                       <a
                         href="#"
-                        className={advancedOptionsActive ? 'bg-nav-hover': 'bg-nav-hover'} 
-                        onClick={toggleClass} 
-
+                        className={
+                          advancedOptionsActive
+                            ? "bg-nav-hover"
+                            : "bg-nav-hover"
+                        }
+                        onClick={toggleClass}
                         className={classNames(
                           advancedOptionsActive ? "bg-nav-hover" : null,
                           "border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
                         )}
-
-             
                       >
                         <img className="w-6 h-6" src="/Advanced.svg" />
                         Advanced View{" "}
@@ -391,9 +391,15 @@ const PageHeader = () => {
         )}
       </Disclosure>
 
-      {advancedOptionsActive?<AppearanceOptions />:null}
-      <AudioPlayer playerIsOpen={playerIsOpen} closePlayerModal={closePlayerModal}/>
-      <Settings settingsIsOpen={settingsIsOpen} closeSettingsModal={closeSettingsModal}/>
+      {advancedOptionsActive ? <AppearanceOptions /> : null}
+      <AudioPlayer
+        playerIsOpen={playerIsOpen}
+        closePlayerModal={closePlayerModal}
+      />
+      <Settings
+        settingsIsOpen={settingsIsOpen}
+        closeSettingsModal={closeSettingsModal}
+      />
     </>
   );
 };
