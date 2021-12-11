@@ -8,7 +8,6 @@ const PagesLayout = ({ children }) => {
       <PageHeader />
       {children}
       <Footer />
-      
     </>
   );
 };
