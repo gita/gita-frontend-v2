@@ -5,7 +5,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./layouts/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
@@ -21,6 +21,9 @@ module.exports = {
         "light-bg": "#F7F7FC",
         "yellow-bg": "#FFF4D8",
         "dark-bg": "#1a1a1a",
+        dark: {
+          100: "#252525",
+        },
       },
     },
   },
