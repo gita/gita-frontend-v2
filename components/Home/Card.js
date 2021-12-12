@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { SvgList, SvgBookmark, SvgShuffle } from "../Svgs";
+import { SvgList, SvgBookmark, SvgShuffle } from "../svgs";
 import truncate from "../../utils/truncate";
 
 const Card = ({ chapter }) => {
