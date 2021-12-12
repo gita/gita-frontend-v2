@@ -52,7 +52,7 @@ export default function Home({ chapters }) {
   });
 
   return (
-    <div className="font-inter min-h-screen">
+    <div className="font-inter min-h-screen dark:bg-dark-bg">
       <Head>
         <title>Bhagwat Gita App</title>
         <link rel="icon" href="/favicon.ico" />
