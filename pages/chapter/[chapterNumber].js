@@ -162,9 +162,14 @@ export default function Chapter({ chapterData }) {
       </div>
 
       <div className="max-w-5xl font-inter py-8 mb-16 mx-auto   px-4 sm:px-6">
-        {verses.map((verse) => (
-          <VerseList verseData={verse} key={verse.id} />
-        ))}
+        {verses
+          .filter((verse) => {
+            if (!verseId) return true;
+            return verse.id === verseId;
+          })
+          .map((verse) => (
+            <VerseList verseData={verse} key={verse.id} />
+          ))}
       </div>
     </div>
   );
