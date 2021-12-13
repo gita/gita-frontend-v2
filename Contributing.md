@@ -1,6 +1,6 @@
 # Contributing
 
-We would ❤️ for you to contribute to Gita and help make it better! We want contributing to be fun, enjoyable, and educational for anyone and everyone. 
+We would ❤️ for you to contribute to Gita and help make it better! We want contributing to be fun, enjoyable, and educational for anyone and everyone.
 All contributions are welcome.
 
 ## How to Start?
@@ -23,7 +23,7 @@ In order to setup follow the procedure given [here](https://github.com/gita/bg-f
 
 ## Sending Feedbacks & Reporting Bugs
 
-Sending feedback is a great way for us to understand your different use cases of Gita better. 
+Sending feedback is a great way for us to understand your different use cases of Gita better.
 If you had any issues, bugs, or want to share about your experience, feel free to do so on our GitHub issues page or at our [Discord channel](https://discord.gg/gX8dstApZX).
 
 ### Happy Coding 👩‍💻👩‍💻

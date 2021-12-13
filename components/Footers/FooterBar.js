@@ -1,4 +1,4 @@
-import React,{Fragment} from "react";
+import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 
@@ -7,7 +7,6 @@ function classNames(...classes) {
 }
 
 const FooterBar = () => {
-  
   return (
     <div>
       <>
@@ -15,7 +14,7 @@ const FooterBar = () => {
           <div className="">
             <div className="relative inline-flex align-middle w-full">
               <Menu as="div" className="relative inline-block text-left">
-              <Transition
+                <Transition
                   as={Fragment}
                   enter="transition ease-out duration-100"
                   enterFrom="transform opacity-0 scale-95"
@@ -37,7 +36,7 @@ const FooterBar = () => {
                               "block px-4 py-2 text-sm"
                             )}
                           >
-                           English
+                            English
                           </a>
                         )}
                       </Menu.Item>
@@ -100,8 +99,6 @@ const FooterBar = () => {
                     />
                   </Menu.Button>
                 </div>
-
-              
               </Menu>
             </div>
           </div>

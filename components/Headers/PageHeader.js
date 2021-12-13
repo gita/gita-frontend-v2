@@ -113,7 +113,8 @@ const PageHeader = () => {
 
                     <Link href=''>
                       <a
-                        href='#'
+
+                        href="#"
                         className={
                           advancedOptionsActive
                             ? "bg-nav-hover"
@@ -123,8 +124,10 @@ const PageHeader = () => {
                         className={classNames(
                           advancedOptionsActive ? "bg-nav-hover" : null,
                           "border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover"
-                        )}>
-                        <img className='w-6 h-6' src='/Advanced.svg' />
+
+                        )}
+                      >
+                        <img className="w-6 h-6" src="/Advanced.svg" />
                         Advanced View{" "}
                       </a>
                     </Link>

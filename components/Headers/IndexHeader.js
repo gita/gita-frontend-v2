@@ -18,74 +18,92 @@ const chapters = [
   {
     name: "Chapter 1",
     icon: DocumentReportIcon,
+    href: "/chapter/1",
   },
   {
     name: "Chapter 2",
     icon: DocumentReportIcon,
+    href: "/chapter/2",
   },
   {
     name: "Chapter 3",
     icon: DocumentReportIcon,
+    href: "/chapter/3",
   },
   {
     name: "Chapter 4",
     icon: DocumentReportIcon,
+    href: "/chapter/4",
   },
   {
     name: "Chapter 5",
     icon: DocumentReportIcon,
+    href: "/chapter/5",
   },
   {
     name: "Chapter 6",
     icon: DocumentReportIcon,
+    href: "/chapter/6",
   },
   {
     name: "Chapter 7",
     icon: DocumentReportIcon,
+    href: "/chapter/7",
   },
   {
     name: "Chapter 8",
     icon: DocumentReportIcon,
+    href: "/chapter/8",
   },
   {
-    name: "Chapter 8",
+    name: "Chapter 9",
     icon: DocumentReportIcon,
+    href: "/chapter/9",
   },
   {
     name: "Chapter 10",
     icon: DocumentReportIcon,
+    href: "/chapter/10",
   },
   {
     name: "Chapter 11",
     icon: DocumentReportIcon,
+    href: "/chapter/11",
   },
   {
     name: "Chapter 12",
     icon: DocumentReportIcon,
+    href: "/chapter/12",
   },
   {
     name: "Chapter 13",
     icon: DocumentReportIcon,
+    href: "/chapter/13",
   },
   {
     name: "Chapter 14",
     icon: DocumentReportIcon,
+    href: "/chapter/14",
   },
   {
     name: "Chapter 15",
     icon: DocumentReportIcon,
+    href: "/chapter/15",
   },
   {
     name: "Chapter 16",
     icon: DocumentReportIcon,
+    href: "/chapter/16",
   },
   {
     name: "Chapter 17",
     icon: DocumentReportIcon,
+    href: "/chapter/17",
   },
   {
-    name: "Chapter 8",
+    name: "Chapter 18",
     icon: DocumentReportIcon,
+    href: "/chapter/18",
   },
 ];
 
@@ -100,14 +118,15 @@ function classNames(...classes) {
 
 export default function IndexHeader() {
   return (
-    <div className='w-full fixed top-0'>
-      <Popover className='relative bg-white font-inter'>
-        <div className='max-w-full mx-auto  xl:px-24 px-4'>
-          <div className='flex justify-between items-center  py-6 md:space-x-10'>
-            <div className='flex justify-start lg:w-0 lg:flex-1'>
-              <Link href='/'>
-                <a href='#' className='font-bold text-3xl'>
-                  <span className='sr-only'>Workflow</span>
+
+    <div className="w-full fixed top-0 shadow">
+      <Popover className="relative bg-white font-inter">
+        <div className="max-w-full mx-auto  xl:px-24 px-4">
+          <div className="flex justify-between items-center  py-6 md:space-x-10">
+            <div className="flex justify-start lg:w-0 lg:flex-1">
+              <Link href="/">
+                <a href="#" className="font-bold text-3xl focus:outline-none">
+                  <span className="sr-only">Workflow</span>
                   Bhagavad Gita
                 </a>
               </Link>
@@ -139,30 +158,30 @@ export default function IndexHeader() {
 
                     <Transition
                       as={Fragment}
-                      enter='transition ease-out duration-200'
-                      enterFrom='opacity-0 translate-y-1'
-                      enterTo='opacity-100 translate-y-0'
-                      leave='transition ease-in duration-150'
-                      leaveFrom='opacity-100 translate-y-0'
-                      leaveTo='opacity-0 translate-y-1'>
-                      <Popover.Panel className='absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2'>
-                        <div className='rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden'>
-                          <div className='relative grid md:grid-cols-2 gap-6 bg-white  py-2 sm:gap-8 sm:p-8'>
-                            {chapters.map((item) => (
-                              <a
-                                key={item.name}
-                                href={item.href}
-                                className='-m-3 p-1 flex items-start rounded-lg hover:bg-gray-100 hover:cursor-pointer	'>
-                                <item.icon
-                                  className='flex-shrink-0 h-6 w-6 text-my-orange'
-                                  aria-hidden='true'
-                                />
-                                <div className='ml-4'>
-                                  <p className='text-base font-medium text-gray-900'>
-                                    {item.name}
-                                  </p>
-                                </div>
-                              </a>
+                      enter="transition ease-out duration-200"
+                      enterFrom="opacity-0 translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-150"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 translate-y-1"
+                    >
+                      <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+                        <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                          <div className="relative grid md:grid-cols-2 gap-6 bg-white  py-2 sm:gap-8 sm:p-8">
+                            {chapters.map((chapter) => (
+                              <Link href={chapter.href} key={chapter.name}>
+                                <a className="-m-3 p-1 flex items-start rounded-lg hover:bg-gray-100 hover:cursor-pointer	">
+                                  <chapter.icon
+                                    className="flex-shrink-0 h-6 w-6 text-my-orange"
+                                    aria-hidden="true"
+                                  />
+                                  <div className="ml-4">
+                                    <p className="text-base font-medium text-gray-900">
+                                      {chapter.name}
+                                    </p>
+                                  </div>
+                                </a>
+                              </Link>
                             ))}
                           </div>
                         </div>
@@ -173,13 +192,15 @@ export default function IndexHeader() {
               </Popover>
               <Link href='/quotes'>
                 <a
-                  href='#'
-                  className='text-base font-medium text-black hover:text-gray-500 '>
+
+                  href="#"
+                  className="text-base font-medium text-black hover:text-gray-500 focus:outline-none"
+                >
                   Quotes
                 </a>
               </Link>
-              <Link href='/about'>
-                <a className='text-base font-medium text-black hover:text-gray-500 '>
+              <Link href="/about">
+                <a className="text-base font-medium text-black hover:text-gray-500 focus:outline-none">
                   About Geeta
                 </a>
               </Link>

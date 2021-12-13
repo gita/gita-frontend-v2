@@ -1,19 +1,18 @@
 import React from "react";
-
-const VerseList = () => {
+import Link from "next/link";
+const VerseList = ({ verseData }) => {
+  const { id, verseNumber, transliteration } = verseData;
   return (
-    <div className="flex">
-      <dl className="">
-        <div className=" sm:py-5 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-6 hover:bg-box-bg rounded-lg">
-          <dt className="text-sm font-medium text-my-orange uppercase">Verse 1</dt>
-          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-4">
-          Dhṛtarāṣṭra said: O Sañjaya, after my sons and the sons of Pāṇḍu assembled in the place of pilgrimage at Kurukṣetra, desiring to fight, what did they do?
-          </dd>
+    <Link href={`/verse/${id}`}>
+      <div className="w-full flex flex-col lg:flex-row py-2 lg:py-5 justify-between px-6 hover:cursor-pointer hover:bg-box-bg rounded-lg">
+        <div className="text-sm lg:w-1/5 font-medium text-my-orange uppercase">
+          Verse {verseNumber}
         </div>
-
-       
-      </dl>
-    </div>
+        <div className="flex-1 text-sm text-gray-900 sm:mt-0 sm:col-span-4">
+          {transliteration}
+        </div>
+      </div>
+    </Link>
   );
 };
 

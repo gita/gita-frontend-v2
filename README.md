@@ -1,4 +1,3 @@
-
 <!-- markdownlint-disable -->
 
 <p align="center">
@@ -50,14 +49,13 @@ npm run dev
 
 The app should now be up and running at http://localhost:3000 🚀
 
-##  Projects
+## Projects
 
 This project uses the APIs from
 
 - [Bhagavad Gita API](https://github.com/gita/bhagavad-gita-api)
 
-
-##  Development
+## Development
 
 Feel free to use the [issue tracker](https://github.com/gita/bg-frontend/issues)
 
@@ -66,20 +64,22 @@ for bugs and feature requests.
 Looking to contribute code ? PRs are most welcome!
 
 To get started with developing this API, please read the [contributing guide](https://github.com/gita/bg-frontend/blob/main/Contributing.md).
-  
+
 ## How It Works
+
 This project uses:
+
 - [React](https://reactjs.org/)
 - [Next.js](https://nextjs.org/docs/)
 - [Tailwind CSS](https://tailwindcss.com/docs)
 
-##  Community
+## Community
 
 Join the [Discord chat server](https://discord.gg/gX8dstApZX) and hang out with others in the community.
 
 You can also use [GitHub Discussions](https://github.com/gita/bhagavad-gita-api/discussions) to ask questions or tell us about projects you have built using this API.
 
-##  Contributors ✨
+## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
