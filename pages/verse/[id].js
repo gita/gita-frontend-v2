@@ -5,6 +5,11 @@ import PagesLayout from "../../layouts/PagesLayout";
 import Translation from "../../components/Verse/Translation";
 import Commentary from "../../components/Verse/Commentary";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import {
+  SvgFloralDivider,
+  SvgChevronLeft,
+  SvgChevronRight,
+} from "../../components/svgs";
 
 export async function getStaticPaths() {
   const client = new ApolloClient({
@@ -83,29 +88,29 @@ const Verse = ({ verseData }) => {
       <div className="max-w-5xl font-inter py-12 mx-auto text-center  px-4 sm:px-6">
         {previousVerseId >= 1 && (
           <Link href={`/verse/${previousVerseId}`}>
-            <img
-              src="/arrow-left.png"
-              className="fixed z-neg top-1/2 md:top-1/3 left-3 hover:brightness-90 hover:cursor-pointer"
-            />
+            <div className="rounded-full h-10 w-10 fixed z-neg top-1/2 md:top-1/3 left-3 hover:brightness-90 hover:cursor-pointer flex justify-center items-center  bg-white dark:bg-dark-100 dark:hover:bg-dark-bg dark:border-gray-600 border">
+              <SvgChevronLeft className="dark:text-gray-50" />
+            </div>
           </Link>
         )}
         {nextVerseId <= 701 && (
           <Link href={`/verse/${nextVerseId}`}>
-            <img
-              src="/arrow-right.png"
-              className="fixed z-neg top-1/2 md:top-1/3 right-3 hover:brightness-90 hover:cursor-pointer"
-            />
+            <div className="rounded-full h-10 w-10 fixed z-neg top-1/2 md:top-1/3 right-3 hover:brightness-90 hover:cursor-pointer flex justify-center items-center  bg-white dark:bg-dark-100 dark:hover:bg-dark-bg dark:border-gray-600 border">
+              <SvgChevronRight className="dark:text-gray-50" />
+            </div>
           </Link>
         )}
-        <h1 className="font-extrabold text-3xl">
+        <h1 className="font-extrabold text-3xl dark:text-gray-50">
           BG {chapterNumber}.{verseNumber}
         </h1>
-        <p className="font-dev text-my-orange mt-4  text-2xl max-w-md mx-auto">
+        <p className="font-dev text-my-orange mt-4 text-2xl max-w-md mx-auto">
           {text}
         </p>
-        <p className="mt-4 text-xl max-w-md mx-auto">{transliteration}</p>
-        <p className="  mt-4  text-xl  mx-auto">{wordMeanings}</p>
-        <img src="/floral-divider.svg" className="my-16 w-full" />
+        <p className="mt-4 text-xl max-w-md mx-auto dark:text-gray-50">
+          {transliteration}
+        </p>
+        <p className="mt-4 text-xl mx-auto dark:text-gray-50">{wordMeanings}</p>
+        <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
         <Translation />
         <Commentary />
       </div>

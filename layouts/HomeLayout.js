@@ -12,7 +12,7 @@ const HomeLayout = ({ children }) => {
   });
 
   return (
-    <div className="">
+    <div className="dark:bg-dark-bg">
       <IndexHeader />
       <div className="pt-24 lg:pt-28">{children}</div>
       <Footer />
