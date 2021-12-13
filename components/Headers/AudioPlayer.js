@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import ReactDOM from "react-dom";
-import { useRef } from "react";
+import { useEffect } from "react";
 import ReactPlayer from "react-player";
 function play() {
   if (process.browser) {
@@ -30,6 +30,22 @@ function playback(speed) {
   }
 }
 export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
+  useEffect(() => {
+    const scriptTag = document.createElement("script");
+    const scrptTag = document.createElement("script");
+    scrptTag.src = "https://code.jquery.com/jquery-2.2.4.min.js";
+    scrptTag.crossOrigin = "anonymous";
+    scrptTag.integrity = "sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=";
+
+    scriptTag.src = "js/audioseeker.js";
+    scriptTag.async = true;
+
+    document.body.appendChild(scriptTag);
+    document.body.appendChild(scrptTag);
+    return () => {
+      document.body.removeChild(scriptTag);
+    };
+  }, []);
   return (
     <div>
       <audio id='a1' src='/data_verse_1.mp3'></audio>
@@ -81,6 +97,9 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
                   <img src='/rewind.svg' />
                   <img id='play' src='/play.svg' onClick={play} />
                   <img src='/forward.svg' />
+                </div>
+                <div className='hp_slide h-1 w-11/12 m-4 bg-light-orange'>
+                  <div className='hp_range h-1 w-2 bg-my-orange'></div>
                 </div>
 
                 <div className='mt-4'>

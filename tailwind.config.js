@@ -21,6 +21,7 @@ module.exports = {
         "light-bg": "#F7F7FC",
         "yellow-bg": "#FFF4D8",
         "dark-bg": "#1a1a1a",
+        "light-orange": "#FFE9D5",
       },
     },
   },
