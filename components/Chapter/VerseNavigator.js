@@ -13,6 +13,17 @@ function VerseNavigator({
         !viewNavigation && "hidden"
       }`}
     >
+      <div
+        onClick={() => {
+          setViewNavigation(false);
+          setVerseId("");
+        }}
+        className={`block h-10 w-10 p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+          !currentVerse && "bg-my-orange text-white"
+        }`}
+      >
+        {"All"}
+      </div>
       {Array(verseCount)
         .fill(verseCount)
         .map((_verse, index) => (
@@ -21,7 +32,7 @@ function VerseNavigator({
               setViewNavigation(false);
               setVerseId(index + 1);
             }}
-            className={`block h-10 w-10 p-2 rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+            className={`block h-10 w-10 p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
               index + 1 === currentVerse && "bg-my-orange text-white"
             }`}
           >

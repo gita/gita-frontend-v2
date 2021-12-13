@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PagesLayout from "../../layouts/PagesLayout";
 import Head from "next/head";
 import Link from "next/link";
@@ -9,7 +9,6 @@ import {
 } from "@heroicons/react/solid";
 import VerseList from "../../components/Chapter/VerseList";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { useState } from "react";
 import VerseNavigator from "../../components/Chapter/VerseNavigator";
 
 export async function getStaticPaths() {
@@ -87,6 +86,7 @@ export default function Chapter({ chapterData }) {
   const previousChapter = chapterNumber - 1;
   const [viewNavigation, setViewNavigation] = useState(false);
   const [verseId, setVerseId] = useState(null);
+
   return (
     <div>
       <Head>
@@ -165,7 +165,7 @@ export default function Chapter({ chapterData }) {
         {verses
           .filter((verse) => {
             if (!verseId) return true;
-            return verse.id === verseId;
+            return verse.verseNumber === verseId;
           })
           .map((verse) => (
             <VerseList verseData={verse} key={verse.id} />
