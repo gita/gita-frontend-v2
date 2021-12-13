@@ -144,7 +144,7 @@ export default function IndexHeader() {
                     <Popover.Button
                       className={classNames(
                         open ? "text-gray-900" : "text-black",
-                        "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-500 focus:outline-none "
+                        "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-500 "
                       )}>
                       <span>Chapters</span>
                       <ChevronDownIcon
