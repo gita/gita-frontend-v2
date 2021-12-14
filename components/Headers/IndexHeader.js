@@ -12,6 +12,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import DarkModeToggle from "./DarkModeToggle";
 import Link from "next/link";
 
 const chapters = [
@@ -134,6 +135,7 @@ export default function IndexHeader() {
               </Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
+              <DarkModeToggle />
               <Popover.Button className="bg-white dark:bg-dark-bg rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
                 <span className="sr-only">Open menu</span>
                 <MenuIcon className="h-6 w-6" aria-hidden="true" />
@@ -233,10 +235,10 @@ export default function IndexHeader() {
                   placeholder="Search"
                 />
               </div>
+              <DarkModeToggle />
             </div>
           </div>
         </div>
-
         <Transition
           as={Fragment}
           enter="duration-200 ease-out"
@@ -252,7 +254,7 @@ export default function IndexHeader() {
           >
             <div className=" shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-dark-100 divide-y-2 divide-gray-50 dark:divide-dark-100">
               <div className="pt-5">
-                <div className="flex items-center pl-2 pr-5 justify-between">
+                <div className="flex items-center pr-5 justify-between">
                   <a href="#" className="font-bold text-3xl">
                     <div className="px-3 py-2 border-l-4 border-white dark:border-dark-bg text-sm font-medium relative mx-auto text-gray-600">
                       <button
