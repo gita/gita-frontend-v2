@@ -4,9 +4,9 @@ import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
-  return getLayout(
+  return (
     <ThemeProvider attribute="class">
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </ThemeProvider>
   );
 }

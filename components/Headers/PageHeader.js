@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
+import DarkModeToggle from "./DarkModeToggle";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -176,6 +177,7 @@ const PageHeader = () => {
                       />
                     </div>
                   </div>
+                  <DarkModeToggle />
                 </div>
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}

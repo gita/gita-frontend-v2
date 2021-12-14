@@ -8,7 +8,10 @@ function DarkModeToggle() {
       aria-label="Toggle Dark Mode"
       type="button"
       className="group p-2 h-10 w-10  dark:hover:bg-dark-bg hover:bg-gray-900  mx-2 rounded"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => {
+        console.log(theme);
+        setTheme(theme === "dark" ? "light" : "dark");
+      }}
     >
       {theme === "dark" ? (
         <svg
