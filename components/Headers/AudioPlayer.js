@@ -16,6 +16,15 @@ function play() {
     }
   }
 }
+function endFunction() {
+  if (process.browser) {
+    var audio = document.getElementById("a1");
+    var image = document.getElementById("play");
+    audio.currentTime = 0;
+    audio.load();
+    image.src = "/play.svg";
+  }
+}
 function playback(speed) {
   if (process.browser) {
     var audio = document.getElementById("a1");
@@ -48,7 +57,11 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
   }, []);
   return (
     <div>
-      <audio id="a1" src="/data_verse_1.mp3"></audio>
+      <audio
+        id="a1"
+        src="/data_verse_1.mp3"
+        onEnded={() => endFunction()}
+      ></audio>
       <Transition appear show={playerIsOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -100,11 +113,24 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
 
                 <div className="flex justify-between mt-4 px-4">
                   <img src="/rewind.svg" />
-                  <img id="play" src="/play.svg" onClick={play} />
+                  <img
+                    id="play"
+                    className="cursor-pointer"
+                    src="/play.svg"
+                    onClick={play}
+                  />
                   <img src="/forward.svg" />
                 </div>
-                <div className="hp_slide h-1 w-11/12 m-4 bg-light-orange">
-                  <div className="hp_range h-1 w-2 bg-my-orange"></div>
+                <div
+                  className=" flex items-center w-full h-2 mx-auto my-3 cursor-pointer"
+                  onClick={(event) => sayLoc(event)}
+                >
+                  <div
+                    id="audiobar"
+                    className="hp_slide h-1 w-full bg-light-orange"
+                  >
+                    <div className="hp_range h-1 bg-my-orange"></div>
+                  </div>
                 </div>
 
                 <div className="mt-4">
