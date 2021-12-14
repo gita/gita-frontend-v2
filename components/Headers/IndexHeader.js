@@ -119,7 +119,7 @@ function classNames(...classes) {
 
 export default function IndexHeader() {
   return (
-    <div className="w-full fixed top-0">
+    <div className="w-full fixed top-0 shadow">
       <Popover className="relative bg-white font-inter dark:bg-dark-100">
         <div className="max-w-full mx-auto  xl:px-24 px-4">
           <div className="flex justify-between items-center  py-6 md:space-x-10">
