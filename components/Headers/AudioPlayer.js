@@ -1,44 +1,34 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import ReactDOM from "react-dom";
-import { useEffect } from "react";
-import ReactPlayer from "react-player";
-function play() {
-  if (process.browser) {
-    var audio = document.getElementById("a1");
-    var image = document.getElementById("play");
-    if (audio.paused) {
-      audio.play();
-      image.src = "/pause.svg";
-    } else {
-      audio.pause();
-      image.src = "/play.svg";
-    }
-  }
-}
-function endFunction() {
-  if (process.browser) {
-    var audio = document.getElementById("a1");
-    var image = document.getElementById("play");
-    audio.currentTime = 0;
-    audio.load();
-    image.src = "/play.svg";
-  }
-}
-function playback(speed) {
-  if (process.browser) {
-    var audio = document.getElementById("a1");
-    if (!audio.paused) {
-      audio.load();
-      audio.playbackRate = speed;
-      audio.play();
-    } else {
-      audio.load();
-      audio.playbackRate = speed;
-    }
-  }
-}
+
 export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
+  const refs = useRef([]);
+  const play = () => {
+    if (refs.current[1].paused) {
+      refs.current[1].play();
+      refs.current[0].src = "/pause.svg";
+    } else {
+      refs.current[1].pause();
+      refs.current[0].src = "/play.svg";
+    }
+  };
+
+  const endFunction = () => {
+    refs.current[1].currentTime = 0;
+    refs.current[1].load();
+    refs.current[0].src = "/play.svg";
+  };
+
+  const playback = (speed) => {
+    if (!refs.current[1].paused) {
+      refs.current[1].load();
+      refs.current[1].playbackRate = speed;
+      refs.current[1].play();
+    } else {
+      refs.current[1].load();
+      refs.current[1].playbackRate = speed;
+    }
+  };
   useEffect(() => {
     const scriptTag = document.createElement("script");
     const scrptTag = document.createElement("script");
@@ -59,6 +49,9 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
     <div>
       <audio
         id="a1"
+        ref={(element) => {
+          refs.current[1] = element;
+        }}
         src="/data_verse_1.mp3"
         onEnded={() => endFunction()}
       ></audio>
@@ -115,6 +108,9 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
                   <img src="/rewind.svg" />
                   <img
                     id="play"
+                    ref={(element) => {
+                      refs.current[0] = element;
+                    }}
                     className="cursor-pointer"
                     src="/play.svg"
                     onClick={play}
