@@ -55,6 +55,7 @@ export default function Home({ chapters }) {
     <div className="font-inter min-h-screen dark:bg-dark-bg">
       <Head>
         <title>Bhagwat Gita App</title>
+
         <link rel="icon" href="/favicon.ico" />
         <link ref="style" rel="stylesheet" href="/globals.css" />
       </Head>
@@ -68,7 +69,6 @@ export default function Home({ chapters }) {
           <Banner />
           <VerseOfDay />
           <Newsletter handleSubscribe={handleSubscribe} />
-          <Chapters chapters={chapters} />
         </HomeLayout>
       </main>
     </div>

@@ -3,6 +3,7 @@ const Newsletter = ({ handleSubscribe }) => {
   const [formData, setFormData] = React.useState({ username: "", email: "" });
 
   return (
+
     <div className="newsletter mt-14">
       <div className="max-w-5xl mx-auto z-50 px-4 sm:px-6">
         <div className="mt-10 p-14 text-black text-center	">

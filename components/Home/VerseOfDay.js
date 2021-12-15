@@ -3,7 +3,7 @@ import React from "react";
 const VerseOfDay = () => {
   return (
     <div className="max-w-7xl mx-auto z-50 px-4 sm:px-6">
-      <div className=" bg-white dark:bg-dark-100 shadow-lg rounded-xl  mt-10 p-8 text-gray-400	">
+      <div className="bg-white dark:bg-dark-100 shadow-lg rounded-xl  mt-10 p-8 text-gray-400">
         <h2 className="text-my-orange font-bold mb-4 divider line one-line px-4">
           Verse of the day - BG 1.1
         </h2>

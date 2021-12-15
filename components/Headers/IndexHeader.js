@@ -213,7 +213,7 @@ export default function IndexHeader() {
               <div className="pt-2 relative  text-gray-600">
                 <button
                   type="submit"
-                  className="absolute left-3 top-0 mt-5 mr-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange rounded-sm"
+                  className="absolute left-3 top-0 mt-5 mr-4"
                 >
                   <svg
                     className="text-gray-600 dark:text-gray-200 h-4 w-4 fill-current"
