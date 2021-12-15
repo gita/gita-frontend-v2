@@ -69,6 +69,7 @@ export default function Home({ chapters }) {
           <Banner />
           <VerseOfDay />
           <Newsletter handleSubscribe={handleSubscribe} />
+          <Chapters chapters={chapters} />
         </HomeLayout>
       </main>
     </div>
