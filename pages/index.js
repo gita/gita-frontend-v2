@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Modal from "../components/Home/Modal";
@@ -9,7 +8,6 @@ import VerseOfDay from "../components/Home/VerseOfDay";
 import HomeLayout from "../layouts/HomeLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-
 
 export const getStaticProps = async () => {
   const client = new ApolloClient({
@@ -41,7 +39,6 @@ export default function Home({ chapters }) {
   const settings = useSelector((state) => state.settings);
   const [modalVisible, setModalVisible] = useState(false);
 
-
   function handleSubscribe(e, formData) {
     e.preventDefault();
     if (formData.username && formData.email) {
@@ -55,7 +52,7 @@ export default function Home({ chapters }) {
   });
 
   return (
-    <div className='font-inter min-h-screen py-2'>
+    <div className="font-inter min-h-screen py-2">
       <Head>
         <title>Bhagwat Gita App</title>
 
@@ -72,7 +69,7 @@ export default function Home({ chapters }) {
           <Banner />
           <VerseOfDay />
           <Newsletter handleSubscribe={handleSubscribe} />
-
+          <Chapters chapters={chapters} />
         </HomeLayout>
       </main>
     </div>
