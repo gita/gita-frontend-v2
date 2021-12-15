@@ -9,7 +9,7 @@ function VerseNavigator({
 }) {
   return (
     <div
-      className={`flex absolute top-10 w-full lg:w-[120%] bg-white p-3 flex-wrap border border-gray-200 shadow rounded ${
+      className={`flex absolute top-10 w-full lg:w-[120%] bg-white dark:bg-dark-bg p-3 flex-wrap border border-gray-200 dark:border-dark-100 shadow rounded ${
         !viewNavigation && "hidden"
       }`}
     >

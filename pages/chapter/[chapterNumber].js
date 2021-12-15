@@ -130,7 +130,7 @@ export default function Chapter({ chapterData }) {
           <div className="font-extrabold dark:text-white">
             {versesCount} Verses
           </div>
-          <div className="mt-1 flex rounded-md shadow-sm">
+          <div className="mt-1 flex rounded-md shadow-sm relative">
             <div className="relative flex items-stretch flex-grow focus-within:z-10">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none "></div>
               <input
