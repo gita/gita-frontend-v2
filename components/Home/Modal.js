@@ -11,7 +11,7 @@ function Modal({ modalVisible, setModalVisible }) {
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <div
-            className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            className="fixed inset-0 bg-gray-500 dark:bg-dark-bg opacity-75 transition-opacity"
             aria-hidden="true"
           ></div>
 
@@ -21,9 +21,9 @@ function Modal({ modalVisible, setModalVisible }) {
             aria-hidden="true"
           ></span>
 
-          <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl duration-200 transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+          <div className="inline-block align-bottom bg-white dark:bg-dark-100 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl duration-200 transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
             <div>
-              <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100">
+              <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 dark:bg-dark-bg">
                 <svg
                   className="h-6 w-6 text-yellow-400"
                   x-description="Heroicon name: outline/check"
@@ -43,13 +43,13 @@ function Modal({ modalVisible, setModalVisible }) {
               </div>
               <div className="mt-3 text-center px-5 sm:mt-5">
                 <h3
-                  className="text-lg leading-6 font-medium text-gray-900"
+                  className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200"
                   id="modal-title"
                 >
                   Subcribe successful
                 </h3>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 dark:text-gray-300">
                     You have successfully subcribe to daily Shloka of the Day
                   </p>
                 </div>

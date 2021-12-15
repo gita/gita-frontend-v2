@@ -18,7 +18,7 @@ const Newsletter = ({ handleSubscribe }) => {
             }}
           >
             <input
-              className="appearance-none mt-4 md:mt-0 border rounded-md w-full py-3 mr-6  px-3 text-gray-700 leading-tight focus:outline-none  focus:border-my-orange"
+              className="appearance-none mt-4 md:mt-0 border rounded-md w-full py-3 mr-6 px-3 text-gray-700 leading-tight focus:outline-none focus:border-my-orange dark:bg-white"
               id="username"
               type="text"
               value={formData.username}
@@ -33,7 +33,7 @@ const Newsletter = ({ handleSubscribe }) => {
               placeholder="Enter Your Name"
             />
             <input
-              className="appearance-none mt-4 md:mt-0 border rounded-md w-full py-3 mr-6  px-3 text-gray-700 leading-tight focus:outline-none  focus:border-my-orange"
+              className="appearance-none mt-4 md:mt-0 border rounded-md w-full py-3 mr-6  px-3 text-gray-700 leading-tight focus:outline-none  focus:border-my-orange dark:bg-white"
               id="email"
               type="email"
               placeholder="Enter Your Email"

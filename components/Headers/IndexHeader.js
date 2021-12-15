@@ -213,7 +213,7 @@ export default function IndexHeader() {
               <div className="pt-2 relative  text-gray-600">
                 <button
                   type="submit"
-                  className="absolute left-3 top-0 mt-5 mr-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange rounded-sm"
+                  className="absolute left-3 top-0 mt-5 mr-4"
                 >
                   <svg
                     className="text-gray-600 dark:text-gray-200 h-4 w-4 fill-current"
@@ -293,7 +293,7 @@ export default function IndexHeader() {
                   <nav className="grid gap-y-8">
                     <nav className="space-y-1" aria-label="Sidebar">
                       <Disclosure>
-                        <Disclosure.Button className="w-full flex justify-between px-3 py-2 border-l-4 border-white dark:border-dark-bg text-left  font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900">
+                        <Disclosure.Button className="w-full flex justify-between px-3 py-2 border-l-4 border-white dark:border-dark-bg text-left dark:text-white font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900">
                           Chapters
                           <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                         </Disclosure.Button>
