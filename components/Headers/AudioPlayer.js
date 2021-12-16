@@ -1,9 +1,60 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
+  const refs = useRef([]);
+  const play = () => {
+    if (refs.current[1].paused) {
+      refs.current[1].play();
+      refs.current[0].src = "/pause.svg";
+    } else {
+      refs.current[1].pause();
+      refs.current[0].src = "/play.svg";
+    }
+  };
+
+  const endFunction = () => {
+    refs.current[1].currentTime = 0;
+    refs.current[1].load();
+    refs.current[0].src = "/play.svg";
+  };
+
+  const playback = (speed) => {
+    if (!refs.current[1].paused) {
+      refs.current[1].load();
+      refs.current[1].playbackRate = speed;
+      refs.current[1].play();
+    } else {
+      refs.current[1].load();
+      refs.current[1].playbackRate = speed;
+    }
+  };
+  useEffect(() => {
+    const scriptTag = document.createElement("script");
+    const scrptTag = document.createElement("script");
+    scrptTag.src = "https://code.jquery.com/jquery-2.2.4.min.js";
+    scrptTag.crossOrigin = "anonymous";
+    scrptTag.integrity = "sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=";
+
+    scriptTag.src = "../js/audioseeker.js";
+    scriptTag.async = true;
+
+    document.body.appendChild(scriptTag);
+    document.body.appendChild(scrptTag);
+    return () => {
+      document.body.removeChild(scriptTag);
+    };
+  }, []);
   return (
     <div>
+      <audio
+        id="a1"
+        ref={(element) => {
+          refs.current[1] = element;
+        }}
+        src="/data_verse_1.mp3"
+        onEnded={() => endFunction()}
+      ></audio>
       <Transition appear show={playerIsOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -55,8 +106,27 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
 
                 <div className="flex justify-between mt-4 px-4">
                   <img src="/rewind.svg" />
-                  <img src="/play.svg" />
+                  <img
+                    id="play"
+                    ref={(element) => {
+                      refs.current[0] = element;
+                    }}
+                    className="cursor-pointer"
+                    src="/play.svg"
+                    onClick={play}
+                  />
                   <img src="/forward.svg" />
+                </div>
+                <div
+                  className=" flex items-center w-full h-2 mx-auto my-3 cursor-pointer"
+                  onClick={(event) => sayLoc(event)}
+                >
+                  <div
+                    id="audiobar"
+                    className="hp_slide h-1 w-full bg-light-orange"
+                  >
+                    <div className="hp_range h-1 bg-my-orange"></div>
+                  </div>
                 </div>
 
                 <div className="mt-4">
@@ -64,12 +134,14 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
                     <button
                       type="button"
                       className="flex-grow items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      onClick={() => playback(0.75)}
                     >
                       0.75x
                     </button>
                     <button
                       type="button"
                       className="-ml-px flex-grow items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      onClick={() => playback(1.0)}
                     >
                       1x
                     </button>
@@ -77,12 +149,14 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
                     <button
                       type="button"
                       className="-ml-px flex-grow items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      onClick={() => playback(1.5)}
                     >
                       1.5x
                     </button>
                     <button
                       type="button"
                       className="-ml-px flex-grow items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      onClick={() => playback(2.0)}
                     >
                       2x
                     </button>

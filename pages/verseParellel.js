@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import PagesLayout from "../layouts/PagesLayout";
 import Head from "next/head";
-import Translation from '../components/Verse/Translation';
-import Commentary from '../components/Verse/Commentary';
+import Translation from "../components/Verse/Translation";
+import Commentary from "../components/Verse/Commentary";
 export default function Verseparellel() {
-    return (
-        <div className="font-inter mb-16">
+  return (
+    <div className="font-inter mb-16">
       <Head>
         <title>Bhagwat Gita App - Verse</title>
         <link rel="icon" href="/favicon.ico" />
@@ -37,25 +37,23 @@ export default function Verseparellel() {
           sañjaya—Sanjay
         </p>
         <img src="floral-divider.svg" className="my-16 w-full" />
-        
 
         <div className="grid grid-cols-2 gap-4">
-            <div>
-            <Translation/>
-        <Commentary/>
-            </div>
+          <div>
+            <Translation />
+            <Commentary />
+          </div>
 
-            <div>
-            <Translation/>
-        <Commentary/>
-            </div>
+          <div>
+            <Translation />
+            <Commentary />
+          </div>
         </div>
       </div>
     </div>
-    )
+  );
 }
 
 Verseparellel.getLayout = function getLayout(page) {
-    return <PagesLayout>{page}</PagesLayout>;
-  };
-  
+  return <PagesLayout>{page}</PagesLayout>;
+};

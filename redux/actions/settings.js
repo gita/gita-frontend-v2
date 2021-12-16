@@ -1,7 +1,7 @@
-import * as t from '../Types'
+import * as t from "../Types";
 
 export const loadSettings = () => async (dispatch) => {
-    dispatch({
-        type: 't.LOAD_SETTINGS'
-    })
-}
+  dispatch({
+    type: "t.LOAD_SETTINGS",
+  });
+};
