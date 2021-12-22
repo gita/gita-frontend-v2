@@ -57,13 +57,13 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                 <span className="relative mt-4 font-bold z-0 text-center w-full inline-flex shadow-sm rounded-md">
                   <button
                     type="button"
-                    className="relative  w-1/2 items-center align-center px-2 py-6 text-center rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-bold text-gray-500 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                    className="relative  w-1/2 items-center align-center px-2 py-6 text-center rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-bold text-gray-500 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                   >
                     <h2 className="text-center">-Aa</h2>
                   </button>
                   <button
                     type="button"
-                    className="-ml-px relative w-1/2  items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-bold text-gray-500 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                    className="-ml-px relative w-1/2  items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-bold text-gray-500 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                   >
                     <h2 className="text-center text-xl">+Aa</h2>
                   </button>

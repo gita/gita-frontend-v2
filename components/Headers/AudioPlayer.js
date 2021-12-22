@@ -90,15 +90,15 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-bg shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-bold leading-6 text-gray-900"
+                  className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50"
                 >
                   BG 1.1{" "}
                 </Dialog.Title>
                 <div className="mt-2 border-b pb-8">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 dark:text-gray-200">
                     dhṛitarāśhtra uvācha dharma-kṣhetre kuru-kṣhetre samavetā
                     yuyutsavaḥ māmakāḥ pāṇḍavāśhchaiva kimakurvata sañjaya
                   </p>
@@ -133,14 +133,14 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
                   <span className=" w-full z-0 mt-4 flex shadow-sm rounded-md">
                     <button
                       type="button"
-                      className="flex-grow items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      className="flex-grow items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-dark-100 dark:hover:bg-dark-bg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       onClick={() => playback(0.75)}
                     >
                       0.75x
                     </button>
                     <button
                       type="button"
-                      className="-ml-px flex-grow items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      className="-ml-px flex-grow items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-dark-100 dark:hover:bg-dark-bg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       onClick={() => playback(1.0)}
                     >
                       1x
@@ -148,14 +148,14 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
 
                     <button
                       type="button"
-                      className="-ml-px flex-grow items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      className="-ml-px flex-grow items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-dark-100 dark:hover:bg-dark-bg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       onClick={() => playback(1.5)}
                     >
                       1.5x
                     </button>
                     <button
                       type="button"
-                      className="-ml-px flex-grow items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      className="-ml-px flex-grow items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-dark-100 dark:hover:bg-dark-bg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       onClick={() => playback(2.0)}
                     >
                       2x
