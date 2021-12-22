@@ -171,14 +171,14 @@ const PageHeader = () => {
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <SearchIcon
-                          className="h-5 w-5 text-gray-400"
+                          className="h-5 w-5 text-gray-400 dark:text-gray-50"
                           aria-hidden="true"
                         />
                       </div>
                       <input
                         id="search"
                         name="search"
-                        className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-my-orange focus:border-my-orange sm:text-sm"
+                        className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white dark:bg-dark-100 placeholder-gray-500 dark:placeholder-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-my-orange focus:border-my-orange sm:text-sm"
                         placeholder="Search"
                         type="search"
                       />
@@ -236,7 +236,7 @@ const PageHeader = () => {
                 </a>
               </div>
               <Disclosure>
-                <Disclosure.Button className="w-full flex border-t justify-between order-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800  pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                <Disclosure.Button className="w-full flex border-t justify-between order-transparent text-gray-600  hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800  pl-3 pr-4 py-2 border-l-4 dark:border-dark-bg text-base font-medium">
                   Advaced View
                   <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                 </Disclosure.Button>
@@ -248,7 +248,7 @@ const PageHeader = () => {
                     <span className="flex-grow flex flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600"
+                        className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         Devnagari
@@ -258,7 +258,9 @@ const PageHeader = () => {
                       checked={enabled}
                       onChange={setEnabled}
                       className={classNames(
-                        enabled ? "bg-my-orange" : "bg-gray-200",
+                        enabled
+                          ? "bg-my-orange"
+                          : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
                       )}
                     >
@@ -279,7 +281,7 @@ const PageHeader = () => {
                     <span className="flex-grow flex flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600"
+                        className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         Verse Text
@@ -289,7 +291,9 @@ const PageHeader = () => {
                       checked={enabled}
                       onChange={setEnabled}
                       className={classNames(
-                        enabled ? "bg-my-orange" : "bg-gray-200",
+                        enabled
+                          ? "bg-my-orange"
+                          : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
                       )}
                     >
@@ -310,7 +314,7 @@ const PageHeader = () => {
                     <span className="flex-grow flex flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600"
+                        className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         Synonyms
@@ -320,7 +324,9 @@ const PageHeader = () => {
                       checked={enabled}
                       onChange={setEnabled}
                       className={classNames(
-                        enabled ? "bg-my-orange" : "bg-gray-200",
+                        enabled
+                          ? "bg-my-orange"
+                          : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
                       )}
                     >
@@ -340,7 +346,7 @@ const PageHeader = () => {
                     <span className="flex-grow flex flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600"
+                        className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         Transition
@@ -350,7 +356,9 @@ const PageHeader = () => {
                       checked={enabled}
                       onChange={setEnabled}
                       className={classNames(
-                        enabled ? "bg-my-orange" : "bg-gray-200",
+                        enabled
+                          ? "bg-my-orange"
+                          : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
                       )}
                     >
@@ -370,7 +378,7 @@ const PageHeader = () => {
                     <span className="flex-grow flex flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600"
+                        className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         Purport
@@ -380,7 +388,9 @@ const PageHeader = () => {
                       checked={enabled}
                       onChange={setEnabled}
                       className={classNames(
-                        enabled ? "bg-my-orange" : "bg-gray-200",
+                        enabled
+                          ? "bg-my-orange"
+                          : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
                       )}
                     >
@@ -400,7 +410,7 @@ const PageHeader = () => {
         )}
       </Disclosure>
 
-      {advancedOptionsActive ? <AppearanceOptions /> : null}
+      {advancedOptionsActive ? <AdvancedOptions /> : null}
       <AudioPlayer
         playerIsOpen={playerIsOpen}
         closePlayerModal={closePlayerModal}
@@ -415,7 +425,7 @@ const PageHeader = () => {
 
 export default PageHeader;
 
-const AppearanceOptions = () => {
+const AdvancedOptions = () => {
   const [enabledDevnagari, setEnabledDevnagari] = useState(false);
   const [enabledVerseText, setEnabledVerseText] = useState(false);
   const [enabledSynomyms, setEnabledSynomyms] = useState(false);
@@ -423,17 +433,19 @@ const AppearanceOptions = () => {
   const [enabledPurport, setEnabledPurport] = useState(false);
 
   return (
-    <div className="max-w-full mx-auto px-2 sm:hidden transition duration-500 ease-in-out lg:block mt-10 lg:px-8">
-      <span className="flex justify-center  z-0 flex rounded-md">
+    <div className="max-w-full mx-auto px-2 sm:hidden transition duration-500 ease-in-out lg:block mt-4 lg:px-8">
+      <span className="flex justify-center z-0 rounded-md">
         <button
           type="button"
-          className="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+          className="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
             checked={enabledDevnagari}
             onChange={setEnabledDevnagari}
             className={classNames(
-              enabledDevnagari ? "bg-my-orange" : "bg-gray-200",
+              enabledDevnagari
+                ? "bg-my-orange"
+                : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
@@ -441,7 +453,7 @@ const AppearanceOptions = () => {
             <span
               className={classNames(
                 enabledDevnagari ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white  shadow transform ring-0 transition ease-in-out duration-200"
               )}
             >
               <span
@@ -490,13 +502,15 @@ const AppearanceOptions = () => {
         </button>
         <button
           type="button"
-          className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+          className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
             checked={enabledVerseText}
             onChange={setEnabledVerseText}
             className={classNames(
-              enabledVerseText ? "bg-my-orange" : "bg-gray-200",
+              enabledVerseText
+                ? "bg-my-orange"
+                : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
@@ -553,13 +567,13 @@ const AppearanceOptions = () => {
         </button>
         <button
           type="button"
-          className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+          className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
             checked={enabledSynomyms}
             onChange={setEnabledSynomyms}
             className={classNames(
-              enabledSynomyms ? "bg-my-orange" : "bg-gray-200",
+              enabledSynomyms ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
@@ -617,13 +631,15 @@ const AppearanceOptions = () => {
 
         <button
           type="button"
-          className="-ml-px relative inline-flex items-center px-4 py-2  border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+          className="-ml-px relative inline-flex items-center px-4 py-2  border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
             checked={enabledTranslation}
             onChange={setEnabledTranslation}
             className={classNames(
-              enabledTranslation ? "bg-my-orange" : "bg-gray-200",
+              enabledTranslation
+                ? "bg-my-orange"
+                : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
@@ -681,13 +697,13 @@ const AppearanceOptions = () => {
 
         <button
           type="button"
-          className="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+          className="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
             checked={enabledPurport}
             onChange={setEnabledPurport}
             className={classNames(
-              enabledPurport ? "bg-my-orange" : "bg-gray-200",
+              enabledPurport ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
