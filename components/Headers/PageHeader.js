@@ -93,7 +93,7 @@ const PageHeader = () => {
                       <a
                         href='#'
                         className='border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover'>
-                        <img className='w-6 h-6' src='/Parallel.svg' />
+                        <img className='w-6 h-6' src='/Parellel.svg' />
                         Parallel Mode
                       </a>
                     </Link>
