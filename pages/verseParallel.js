@@ -3,7 +3,7 @@ import PagesLayout from "../layouts/PagesLayout";
 import Head from "next/head";
 import Translation from "../components/Verse/Translation";
 import Commentary from "../components/Verse/Commentary";
-export default function Verseparellel() {
+export default function VerseParallel() {
   return (
     <div className="font-inter mb-16">
       <Head>
@@ -54,6 +54,6 @@ export default function Verseparellel() {
   );
 }
 
-Verseparellel.getLayout = function getLayout(page) {
+VerseParallel.getLayout = function getLayout(page) {
   return <PagesLayout>{page}</PagesLayout>;
 };
