@@ -89,12 +89,12 @@ const PageHeader = () => {
                       </a>
                     </Link>
 
-                    <Link href='/verseParellel'>
+                    <Link href='/verseParallel'>
                       <a
                         href='#'
                         className='border-transparent text-gray-900  flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover'>
                         <img className='w-6 h-6' src='/Parellel.svg' />
-                        Parellel Mode
+                        Parallel Mode
                       </a>
                     </Link>
 
@@ -218,7 +218,7 @@ const PageHeader = () => {
               </div>
               <Disclosure>
                 <Disclosure.Button className='w-full flex border-t justify-between order-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800  pl-3 pr-4 py-2 border-l-4 text-base font-medium'>
-                  Advaced View
+                  Advanced View
                   <ChevronDownIcon className='ml-2 h-5 w-5 group-hover:text-black' />
                 </Disclosure.Button>
                 <Disclosure.Panel className='text-gray-500 z-50'>
