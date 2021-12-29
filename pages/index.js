@@ -54,7 +54,7 @@ export default function Home({ chapters }) {
   return (
     <div className="font-inter min-h-screen py-2">
       <Head>
-        <title>Bhagwat Gita App</title>
+        <title>Bhagavad Gita App</title>
       </Head>
 
       <main className="">

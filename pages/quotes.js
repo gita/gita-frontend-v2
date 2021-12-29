@@ -35,7 +35,7 @@ const Quotes = () => {
   return (
     <div className="mb-16">
       <Head>
-        <title>Bhagwat Gita App - Quotes</title>
+        <title>Bhagavad Gita App - Quotes</title>
       </Head>
       <QuotesBanner />
       <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">

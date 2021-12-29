@@ -90,7 +90,7 @@ export default function Chapter({ chapterData }) {
   return (
     <div>
       <Head>
-        <title>Bhagwat Gita App - Chapters</title>
+        <title>Bhagavad Gita App - Chapters</title>
       </Head>
 
       <div className="max-w-5xl font-inter py-24 chapter-intro mx-auto text-center  px-4 sm:px-6">

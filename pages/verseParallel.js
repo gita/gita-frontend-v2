@@ -7,7 +7,7 @@ export default function VerseParallel() {
   return (
     <div className="font-inter mb-16">
       <Head>
-        <title>Bhagwat Gita App - Verse</title>
+        <title>Bhagavad Gita App - Verse</title>
       </Head>
       <div className="max-w-5xl font-inter py-12 mx-auto text-center  px-4 sm:px-6">
         <img

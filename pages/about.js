@@ -7,7 +7,7 @@ export default function About() {
   return (
     <div>
       <Head>
-        <title>Bhagwat Gita App - About</title>
+        <title>Bhagavad Gita App - About</title>
       </Head>
       <AboutBanner />
       <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
