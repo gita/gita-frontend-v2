@@ -35,6 +35,7 @@ class MyDocument extends Document {
           />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
+          <link ref="style" rel="stylesheet" href="/globals.css" />
         </Head>
         <body>
           <Main />
