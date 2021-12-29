@@ -77,8 +77,6 @@ const Verse = ({ verseData }) => {
     <div className="font-inter mb-16">
       <Head>
         <title>Bhagwat Gita App - Verse {id}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link ref="style" rel="stylesheet" href="/globals.css" />
       </Head>
       <div className="max-w-5xl font-inter py-12 mx-auto text-center  px-4 sm:px-6">
         {previousVerseId >= 1 && (

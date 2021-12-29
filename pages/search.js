@@ -11,8 +11,6 @@ export default function Search() {
     <div>
       <Head>
         <title>Bhagwat Gita App - Search</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link ref="style" rel="stylesheet" href="/globals.css" />
       </Head>
       <div className="max-w-5xl font-inter py-4 mx-auto px-4 sm:px-6">
         <p className="text-2xl lg:text-3xl py-4">
