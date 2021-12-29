@@ -503,7 +503,7 @@ const Footer = () => {
         </div>
         <div className="flex-none block w-full lg:w-3/5">
           <p className="text-sm text-center text-gray-400">
-            &copy; 2021 BhagwatGita.io
+            &copy; 2021 BhagavadGita.io
           </p>
         </div>
         <div className="flex-none text-right absolute right-3 lg:relative lg:w-1/5">
