@@ -77,4 +77,10 @@ body {
   bottom: 0;
   right: 0;
   position: absolute;
+  z-index: 0;
+}
+@media screen and (max-width: 480px) {
+  .auth-bg {
+    display: none;
+  }
 }

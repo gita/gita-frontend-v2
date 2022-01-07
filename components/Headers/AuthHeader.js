@@ -8,7 +8,7 @@ export default function AuthHeader() {
         <div className="flex justify-center md:justify-start items-center py-8 px-8 lg:flex-1">
           <a
             href="#"
-            className="font-bold text-3xl flex  gap-3 items-center focus:outline-none"
+            className="font-bold text-3xl flex gap-3 items-center focus:outline-none"
           >
             <Image
               src="/bhagavad-gita.png"
