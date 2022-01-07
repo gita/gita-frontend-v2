@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthLayout from "../layouts/AuthLayout";
 
 const Login = () => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   return (
-    <div className="w-full md:w-2/5 p-12 bg-white rounded-xl shadow-lg z-10">
+    <div className="w-max p-12 bg-white rounded-xl shadow-lg z-10">
       <h3 className="text-my-orange font-bold text-center leading-7 text-xl mb-12">
         Welcome to Bhagavad Gita
       </h3>
@@ -22,7 +25,7 @@ const Login = () => {
         </svg>
         <div className="flex-1">
           <input
-            type={"text"}
+            type={"email"}
             placeholder="Email Address"
             className="text-center w-full focus:outline-none"
           />
@@ -58,33 +61,38 @@ const Login = () => {
         </svg>
         <div className="flex-1">
           <input
-            type={"text"}
+            type={isPasswordVisible ? "text" : "password"}
             placeholder="Password"
             className="text-center w-full focus:outline-none"
           />
         </div>
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <button
+          type="button"
+          onClick={() => setIsPasswordVisible(!isPasswordVisible)}
         >
-          <path
-            d="M12 5.24927C4.5 5.24927 1.5 12 1.5 12C1.5 12 4.5 18.7493 12 18.7493C19.5 18.7493 22.5 12 22.5 12C22.5 12 19.5 5.24927 12 5.24927Z"
-            stroke="#434343"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92893 14.0711 8.25 12 8.25C9.92893 8.25 8.25 9.92893 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75Z"
-            stroke="#434343"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 5.24927C4.5 5.24927 1.5 12 1.5 12C1.5 12 4.5 18.7493 12 18.7493C19.5 18.7493 22.5 12 22.5 12C22.5 12 19.5 5.24927 12 5.24927Z"
+              stroke="#434343"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92893 14.0711 8.25 12 8.25C9.92893 8.25 8.25 9.92893 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75Z"
+              stroke="#434343"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
       </div>
       <p className="text-right text-sm text-gray-500 mt-2 px-2 font-normal">
         Fogot Password?{" "}
