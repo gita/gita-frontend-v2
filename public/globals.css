@@ -69,3 +69,12 @@ body {
 }
 .z-neg {
 }
+.auth-bg {
+  background: url("/auth-bg.png") no-repeat center center;
+  background-size: contain;
+  width: 60%;
+  height: 59%;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
