@@ -11,10 +11,7 @@ const Login = () => {
     console.log("login using", emailAddress, password);
   }
   return (
-    <div className="w-max p-12 bg-white rounded-xl shadow-lg z-10">
-      <h3 className="text-my-orange font-bold text-center leading-7 text-xl mb-12">
-        Welcome to Bhagavad Gita
-      </h3>
+    <>
       <div className="flex items-center gap-2 border-2 border-gray-300 rounded-md p-3 focus-within:border-my-orange">
         <MailSvg />
         <div className="flex-1">
@@ -98,7 +95,7 @@ const Login = () => {
           Sign up
         </span>
       </p>
-    </div>
+    </>
   );
 };
 

@@ -12,10 +12,7 @@ const Signup = () => {
     console.log("Signup using", values);
   }
   return (
-    <div className="w-max -mt-12 p-12 bg-white rounded-xl shadow-lg z-10">
-      <h3 className="text-my-orange font-bold text-center leading-7 text-xl mb-12">
-        Welcome to Bhagavad Gita
-      </h3>
+    <>
       <form onSubmit={handleSubmit}>
         <div className="flex items-center gap-2 border-2 border-gray-300 rounded-md p-3 focus-within:border-my-orange">
           <UserSvg />
@@ -128,7 +125,7 @@ const Signup = () => {
           <a className="text-my-orange hover:cursor-pointer font-bold">Login</a>
         </Link>
       </p>
-    </div>
+    </>
   );
 };
 
