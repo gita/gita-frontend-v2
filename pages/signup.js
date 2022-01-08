@@ -4,12 +4,20 @@ import { EyeOpenSvg, KeySvg, MailSvg, UserSvg } from "../components/svg";
 import AuthLayout from "../layouts/AuthLayout";
 
 const Signup = () => {
+  const [error, setError] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
   function handleSubmit(e) {
     e.preventDefault();
     const data = new FormData(e.target);
     const values = Object.fromEntries(data.entries());
-    console.log("Signup using", values);
+    if (values.password !== values.confirmPassword) {
+      setError("Password and confirm password does not match");
+    } else {
+      console.log("Signup using", values, values.fullName);
+      e.target.reset();
+    }
   }
   return (
     <>
@@ -22,38 +30,45 @@ const Signup = () => {
             </label>
             <input
               type={"text"}
-              placeholder="Name"
-              name="username"
+              placeholder="Full Name"
+              name="fullName"
               className="text-center w-full focus:outline-none"
-              // required
+              required
             />
           </div>
         </div>
         <div className="flex items-center gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
           <MailSvg />
           <div className="flex-1">
+            <label htmlFor="name" hidden aria-hidden="true">
+              Email Address
+            </label>
             <input
               type={"email"}
+              name="emailAddress"
               placeholder="Email Address"
               className="text-center w-full focus:outline-none"
-              // required
+              required
             />
           </div>
         </div>
         <div className="flex items-center gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
           <KeySvg />
           <div className="flex-1">
+            <label htmlFor="name" hidden aria-hidden="true">
+              Password
+            </label>
             <input
               type={isPasswordVisible ? "text" : "password"}
               placeholder="Password"
-              // value={password}
-              // required
-              // onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              required
               className="text-center w-full focus:outline-none"
             />
           </div>
           <button
             type="button"
+            role="toggle password visibility"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
             <EyeOpenSvg />
@@ -62,26 +77,36 @@ const Signup = () => {
         <div className="flex items-center gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
           <KeySvg />
           <div className="flex-1">
+            <label htmlFor="name" hidden aria-hidden="true">
+              Confirm Password
+            </label>
             <input
-              type={isPasswordVisible ? "text" : "password"}
+              type={isConfirmPasswordVisible ? "text" : "password"}
               placeholder="Confirm Password"
-              // value={password}
-              // required
-              // onChange={(e) => setPassword(e.target.value)}
+              required
+              name="confirmPassword"
               className="text-center w-full focus:outline-none"
+              onChange={() => setError("")}
             />
           </div>
           <button
             type="button"
-            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+            onClick={() =>
+              setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
+            }
           >
             <EyeOpenSvg />
           </button>
         </div>
+        {error && (
+          <p className="text-red-500 text-xs mt-2 text-center w-full">
+            {error}
+          </p>
+        )}
 
         <button
           type="submit"
-          // onClick={handleSubmit}
+          role="submit form"
           className="w-full bg-my-orange text-white font-medium uppercase mt-6 py-2 px-4 rounded-md"
         >
           Signup
