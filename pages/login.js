@@ -1,62 +1,69 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { EyeOpenSvg, KeySvg, MailSvg } from "../components/svg";
 import AuthLayout from "../layouts/AuthLayout";
 
 const Login = () => {
-  const [emailAddress, setEmailAddress] = useState("");
-  const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("login using", emailAddress, password);
+    const data = new FormData(e.target);
+    const values = Object.fromEntries(data.entries());
+    console.log("login using", values);
   }
   return (
     <>
-      <div className="flex items-center gap-2 border-2 border-gray-300 rounded-md p-3 focus-within:border-my-orange">
-        <MailSvg />
-        <div className="flex-1">
-          <input
-            type={"email"}
-            placeholder="Email Address"
-            value={emailAddress}
-            onChange={(e) => setEmailAddress(e.target.value)}
-            className="text-center w-full focus:outline-none"
-            required
-          />
+      <form onSubmit={handleSubmit}>
+        <div className="flex items-center gap-2 border-2 border-gray-300 rounded-md p-3 focus-within:border-my-orange">
+          <MailSvg />
+          <div className="flex-1">
+            <label htmlFor="name" hidden aria-hidden="true">
+              Email Address
+            </label>
+            <input
+              type={"email"}
+              placeholder="Email Address"
+              name="emailAddress"
+              className="text-center w-full focus:outline-none"
+              required
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex items-center gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
-        <KeySvg />
-        <div className="flex-1">
-          <input
-            type={isPasswordVisible ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            className="text-center w-full focus:outline-none"
-          />
+        <div className="flex items-center gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
+          <KeySvg />
+          <div className="flex-1">
+            <label htmlFor="name" hidden aria-hidden="true">
+              Password
+            </label>
+            <input
+              type={isPasswordVisible ? "text" : "password"}
+              placeholder="Password"
+              required
+              name="password"
+              className="text-center w-full focus:outline-none"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          >
+            <EyeOpenSvg />
+          </button>
         </div>
+        <p className="text-right text-sm text-gray-500 mt-2 px-2 font-normal">
+          Fogot Password?{" "}
+          <span className="text-my-orange hover:cursor-pointer font-bold">
+            Click here
+          </span>
+        </p>
         <button
-          type="button"
-          onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          type="submit"
+          onClick={handleSubmit}
+          className="w-full bg-my-orange text-white font-medium uppercase mt-6 py-2 px-4 rounded-md"
         >
-          <EyeOpenSvg />
+          Login
         </button>
-      </div>
-      <p className="text-right text-sm text-gray-500 mt-2 px-2 font-normal">
-        Fogot Password?{" "}
-        <span className="text-my-orange hover:cursor-pointer font-bold">
-          Click here
-        </span>
-      </p>
-      <button
-        type="submit"
-        onClick={handleSubmit}
-        className="w-full bg-my-orange text-white font-medium uppercase mt-6 py-2 px-4 rounded-md"
-      >
-        Login
-      </button>
+      </form>
       <div className="px-20 py-10 mt-5 relative">
         <hr className="border-gray-400" />
         <div className="absolute h-12 w-12 font-medium top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-[#FFD3AB] rounded-full flex items-center justify-center">
@@ -91,9 +98,11 @@ const Login = () => {
       </div>
       <p className="text-center text-sm text-gray-500 mt-2 font-normal">
         Don’t have an account?{" "}
-        <span className="text-my-orange hover:cursor-pointer font-bold">
-          Sign up
-        </span>
+        <Link href="/signup">
+          <a className="text-my-orange hover:cursor-pointer font-bold">
+            Sign up
+          </a>
+        </Link>
       </p>
     </>
   );
