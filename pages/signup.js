@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import {
+  EyeCrossSvg,
   EyeOpenSvg,
   GithubSvg,
   KeySvg,
@@ -78,7 +79,7 @@ const Signup = () => {
             role="toggle password visibility"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
-            <EyeOpenSvg />
+            {isPasswordVisible ? <EyeOpenSvg /> : <EyeCrossSvg />}
           </button>
         </div>
         <div className="flex items-center gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
@@ -102,7 +103,7 @@ const Signup = () => {
               setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
             }
           >
-            <EyeOpenSvg />
+            {isConfirmPasswordVisible ? <EyeOpenSvg /> : <EyeCrossSvg />}
           </button>
         </div>
         {error && (

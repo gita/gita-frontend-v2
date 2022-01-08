@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { EyeOpenSvg, GithubSvg, KeySvg, MailSvg } from "../components/svg";
+import {
+  EyeCrossSvg,
+  EyeOpenSvg,
+  GithubSvg,
+  KeySvg,
+  MailSvg,
+} from "../components/svg";
 import AuthLayout from "../layouts/AuthLayout";
 
 const Login = () => {
@@ -48,7 +54,7 @@ const Login = () => {
             type="button"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
-            <EyeOpenSvg />
+            {isPasswordVisible ? <EyeOpenSvg /> : <EyeCrossSvg />}
           </button>
         </div>
         <p className="text-right text-sm text-gray-500 mt-2 px-2 font-normal">
