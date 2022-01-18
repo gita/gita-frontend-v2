@@ -69,6 +69,7 @@ body {
 }
 .z-neg {
 }
+
 .auth-bg {
   background: url("/auth-bg.png") no-repeat center center;
   background-size: contain;
@@ -83,4 +84,19 @@ body {
   .auth-bg {
     display: none;
   }
+/* scrollbar classes */
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+:not([data-scroll="0"])::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background: #f57903;
+  background-clip: padding-box;
+  border-radius: 9999px;
+
 }
