@@ -40,7 +40,7 @@ const Signup = () => {
               type={"text"}
               placeholder="Full Name"
               name="fullName"
-              className="text-center w-full focus:outline-none"
+              className="text-center bg-transparent w-full focus:outline-none"
               required
             />
           </div>
@@ -55,12 +55,12 @@ const Signup = () => {
               type={"email"}
               name="emailAddress"
               placeholder="Email Address"
-              className="text-center w-full focus:outline-none"
+              className="text-center bg-transparent w-full focus:outline-none"
               required
             />
           </div>
         </div>
-        <div className="flex items-center gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
+        <div className="flex items-center relative gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
           <KeySvg />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
@@ -71,18 +71,19 @@ const Signup = () => {
               placeholder="Password"
               name="password"
               required
-              className="text-center w-full focus:outline-none"
+              className="text-center bg-transparent w-full focus:outline-none"
             />
           </div>
           <button
             type="button"
+            className="absolute right-2"
             role="toggle password visibility"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
             {isPasswordVisible ? <EyeOpenSvg /> : <EyeCrossSvg />}
           </button>
         </div>
-        <div className="flex items-center gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
+        <div className="flex items-center relative gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
           <KeySvg />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
@@ -93,12 +94,13 @@ const Signup = () => {
               placeholder="Confirm Password"
               required
               name="confirmPassword"
-              className="text-center w-full focus:outline-none"
+              className="text-center bg-transparent w-full focus:outline-none"
               onChange={() => setError("")}
             />
           </div>
           <button
             type="button"
+            className="absolute right-2"
             onClick={() =>
               setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
             }
@@ -122,14 +124,14 @@ const Signup = () => {
       </form>
       <div className="px-20 py-10 mt-5 relative">
         <hr className="border-gray-400" />
-        <div className="absolute h-12 w-12 font-medium top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-[#FFD3AB] rounded-full flex items-center justify-center">
+        <div className="absolute h-12 w-12 font-medium top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-[#FFD3AB] dark:bg-my-orange rounded-full flex items-center justify-center">
           OR
         </div>
       </div>
       <div className="flex justify-center gap-8 mt-4 mb-10">
         {/* will use next/auth for authentication */}
-        <GithubSvg />
-        <div className="h-9 w-9 relative">
+        <GithubSvg className='hover:cursor-pointer'/>
+        <div className="h-9 w-9 relative hover:cursor-pointer">
           <Image src="/google-logo.png" layout="fill" />
         </div>
       </div>
