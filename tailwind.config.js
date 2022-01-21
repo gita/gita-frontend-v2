@@ -25,6 +25,7 @@ module.exports = {
         dark: {
           100: "#252525",
         },
+        "auth-bg": "#F5E4D4A1",
       },
     },
   },
