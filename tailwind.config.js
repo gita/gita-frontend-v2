@@ -22,10 +22,10 @@ module.exports = {
         "yellow-bg": "#FFF4D8",
         "dark-bg": "#1a1a1a",
         "light-orange": "#FFE9D5",
+        "auth-bg": "#F5E4D4A1",
         dark: {
           100: "#252525",
         },
-        "auth-bg": "#F5E4D4A1",
       },
     },
   },
