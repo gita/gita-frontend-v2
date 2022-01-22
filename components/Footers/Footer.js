@@ -73,7 +73,7 @@ const Footer = () => {
     console.log(open);
   });
   return (
-    <div className="w-full mt-24 bottom-0 px-4  bg-white font-inter border-gray-200 border-t border-b">
+    <div className="w-full mt-24 bottom-0 bg-white dark:bg-dark-100 font-inter border-gray-200 border-t border-b">
       <div className="py-4 lg:py-8">
         <div className="flex justify-between items-center">
           <div className="flex-none w-1/2 lg:w-1/5">
@@ -92,7 +92,7 @@ const Footer = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-dark-bg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
@@ -101,7 +101,7 @@ const Footer = () => {
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
+                                  : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
@@ -116,7 +116,7 @@ const Footer = () => {
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
+                                  : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
@@ -131,7 +131,7 @@ const Footer = () => {
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
+                                  : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
@@ -147,7 +147,7 @@ const Footer = () => {
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
+                                    : "text-gray-700 dark:text-gray-400",
                                   "block w-full text-left px-4 py-2 text-sm"
                                 )}
                               >
@@ -160,7 +160,7 @@ const Footer = () => {
                     </Menu.Items>
                   </Transition>
                   <div>
-                    <Menu.Button className="inline-flex justify-centerw-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white text-xs text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+                    <Menu.Button className="inline-flex justify-centerw-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white dark:bg-dark-100 text-xs text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-700 focus:ring-my-orange">
                       Language
                       {open ? (
                         <ChevronUpIcon
@@ -194,7 +194,7 @@ const Footer = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-dark-bg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
@@ -203,7 +203,7 @@ const Footer = () => {
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
+                                  : "text-gray-700  dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
@@ -218,7 +218,7 @@ const Footer = () => {
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
+                                  : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
@@ -233,7 +233,7 @@ const Footer = () => {
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
+                                  : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
@@ -248,7 +248,7 @@ const Footer = () => {
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
+                                  : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
@@ -263,7 +263,7 @@ const Footer = () => {
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
+                                  : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
@@ -279,7 +279,7 @@ const Footer = () => {
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
+                                    : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm"
                                 )}
                               >
@@ -294,7 +294,7 @@ const Footer = () => {
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
+                                    : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm"
                                 )}
                               >
@@ -310,7 +310,7 @@ const Footer = () => {
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
+                                    : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm"
                                 )}
                               >
@@ -325,7 +325,7 @@ const Footer = () => {
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
+                                    : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm"
                                 )}
                               >
@@ -338,7 +338,7 @@ const Footer = () => {
                     </Menu.Items>
                   </Transition>
                   <div>
-                    <Menu.Button className="inline-flex text-xs  justify-center w-full rounded-lg border  border-gray-300 ml-1 shadow-sm px-2 py-2 bg-white  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+                    <Menu.Button className="inline-flex justify-centerw-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white dark:bg-dark-100 text-xs text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-700 focus:ring-my-orange ml-3">
                       More
                       {open ? (
                         <ChevronUpIcon
@@ -358,8 +358,8 @@ const Footer = () => {
             </Menu>
           </div>
           <div className="flex-none hidden lg:block lg:w-3/5">
-            <footer className="bg-white">
-              <div className="max-w-7xl mx-auto  overflow-hidden sm:px-6 lg:px-8">
+            <footer className="bg-white dark:bg-dark-100">
+              <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
                 <nav
                   className="-mx-5 -my-2 flex flex-wrap justify-center"
                   aria-label="Footer"
@@ -368,7 +368,7 @@ const Footer = () => {
                     <div key={item.name} className="px-5 py-2">
                       <a
                         href={item.href}
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
                       >
                         {item.name}
                       </a>
@@ -381,12 +381,12 @@ const Footer = () => {
           <div className="flex-none text-right w-1/3 lg:w-1/5"></div>
         </div>
         <div className="flex-none text-right w-1/3 lg:w-full">
-          <div className="mt-5 justify-center  hidden lg:flex  items-center  space-x-6">
+          <div className="mt-5 justify-center hidden lg:flex items-center space-x-6">
             {navigation.social.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-400 hover:text-gray-500"
+                className="text-gray-400 hover:text-gray-500 dark:hover:text-white"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />
@@ -400,7 +400,7 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div className="flex justify-between items-center py-2 ">
+      <div className="flex px-4 justify-between items-center py-2 ">
         <div className="flex-none w-1/2 lg:w-1/5 hidden lg:inline-block">
           <Menu as="div" className="relative text-left ">
             {({ open }) => (
@@ -414,7 +414,7 @@ const Footer = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-dark-100 ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
                       <Menu.Item>
                         {({ active }) => (
@@ -422,8 +422,8 @@ const Footer = () => {
                             href="#"
                             className={classNames(
                               active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
+                                ? "bg-gray-100 dark:bg-dark-bg text-gray-900 dark:text-gray-200"
+                                : "text-gray-700 dark:text-gray-400",
                               "block px-4 py-2 text-sm"
                             )}
                           >
@@ -437,8 +437,8 @@ const Footer = () => {
                             href="#"
                             className={classNames(
                               active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
+                                ? "bg-gray-100 dark:bg-dark-bg text-gray-900 dark:text-gray-200"
+                                : "text-gray-700 dark:text-gray-400",
                               "block px-4 py-2 text-sm"
                             )}
                           >
@@ -452,8 +452,8 @@ const Footer = () => {
                             href="#"
                             className={classNames(
                               active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
+                                ? "bg-gray-100 dark:bg-dark-bg text-gray-900 dark:text-gray-200"
+                                : "text-gray-700 dark:text-gray-400",
                               "block px-4 py-2 text-sm"
                             )}
                           >
@@ -468,8 +468,8 @@ const Footer = () => {
                               type="submit"
                               className={classNames(
                                 active
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
+                                  ? "bg-gray-100 dark:bg-dark-bg text-gray-900 dark:text-gray-200"
+                                  : "text-gray-700 dark:text-gray-400",
                                 "block w-full text-left px-4 py-2 text-sm"
                               )}
                             >
@@ -482,7 +482,7 @@ const Footer = () => {
                   </Menu.Items>
                 </Transition>
                 <div>
-                  <Menu.Button className="inline-flex justify-centerw-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white text-xs text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+                  <Menu.Button className="inline-flex justify-centerw-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white dark:bg-dark-100 text-xs text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-700 focus:ring-my-orange">
                     Language
                     {open ? (
                       <ChevronUpIcon
@@ -506,10 +506,10 @@ const Footer = () => {
             &copy; 2021 BhagavadGita.io
           </p>
         </div>
-        <div className="flex-none text-right absolute right-3 lg:relative lg:w-1/5">
+        <div className="flex-none text-right absolute right-3 lg:right-0 lg:relative lg:w-1/5">
           <input
             type="color"
-            className="h-7 w-7 appearance-none border-none lg:h-10 lg:w-10"
+            className="h-7 w-7 appearance-none border-none bg-dark-bg lg:h-10 lg:w-10"
             onChange={(e) => console.log(e.target.value)}
             value="#F57903"
           />

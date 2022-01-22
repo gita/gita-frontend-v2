@@ -12,6 +12,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import DarkModeToggle from "./DarkModeToggle";
 import Link from "next/link";
 import { useRouter } from "next/router";
 const chapters = [
@@ -126,19 +127,23 @@ export default function IndexHeader() {
   }
   return (
     <div className="w-full fixed top-0 shadow">
-      <Popover className="relative bg-white font-inter">
+      <Popover className="relative bg-white font-inter dark:bg-dark-100">
         <div className="max-w-full mx-auto  xl:px-24 px-4">
           <div className="flex justify-between items-center  py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <Link href="/">
-                <a href="#" className="font-bold text-3xl focus:outline-none">
+                <a
+                  href="#"
+                  className="font-bold text-3xl dark:text-white focus:outline-none"
+                >
                   <span className="sr-only">Workflow</span>
                   Bhagavad Gita
                 </a>
               </Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
-              <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
+              <DarkModeToggle />
+              <Popover.Button className="bg-white dark:bg-dark-bg rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
                 <span className="sr-only">Open menu</span>
                 <MenuIcon className="h-6 w-6" aria-hidden="true" />
               </Popover.Button>
@@ -150,14 +155,14 @@ export default function IndexHeader() {
                     <Popover.Button
                       className={classNames(
                         open ? "text-gray-900" : "text-black",
-                        "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-500 "
+                        "group dark:text-white bg-white dark:bg-dark-100 rounded-md inline-flex items-center text-base font-medium hover:text-gray-500 focus:outline-none "
                       )}
                     >
                       <span>Chapters</span>
                       <ChevronDownIcon
                         className={classNames(
                           open ? "text-gray-600" : "text-gray-500",
-                          "ml-2 h-5 w-5 group-hover:text-gray-500"
+                          "ml-2 h-5 dark:text-white w-5 group-hover:text-gray-500"
                         )}
                         aria-hidden="true"
                       />
@@ -174,16 +179,16 @@ export default function IndexHeader() {
                     >
                       <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                         <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                          <div className="relative grid md:grid-cols-2 gap-6 bg-white  py-2 sm:gap-8 sm:p-8">
+                          <div className="relative grid md:grid-cols-2 gap-6 bg-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
                             {chapters.map((chapter) => (
                               <Link href={chapter.href} key={chapter.name}>
-                                <a className="-m-3 p-1 flex items-start rounded-lg hover:bg-gray-100 hover:cursor-pointer	">
+                                <a className="-m-3 p-1 flex items-start rounded-lg hover:bg-gray-100 dark:hover:bg-dark-bg hover:cursor-pointer	">
                                   <chapter.icon
                                     className="flex-shrink-0 h-6 w-6 text-my-orange"
                                     aria-hidden="true"
                                   />
                                   <div className="ml-4">
-                                    <p className="text-base font-medium text-gray-900">
+                                    <p className="text-base font-medium text-gray-900 dark:text-white">
                                       {chapter.name}
                                     </p>
                                   </div>
@@ -200,13 +205,13 @@ export default function IndexHeader() {
               <Link href="/quotes">
                 <a
                   href="#"
-                  className="text-base font-medium text-black hover:text-gray-500"
+                  className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
                 >
                   Quotes
                 </a>
               </Link>
               <Link href="/about">
-                <a className="text-base font-medium text-black hover:text-gray-500">
+                <a className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none">
                   About Geeta
                 </a>
               </Link>
@@ -221,7 +226,7 @@ export default function IndexHeader() {
                   className="absolute left-3 top-0 mt-5 mr-4"
                 >
                   <svg
-                    className="text-gray-600 h-4 w-4 fill-current"
+                    className="text-gray-600 dark:text-gray-200 h-4 w-4 fill-current"
                     version="1.1"
                     id="Capa_1"
                     x="0px"
@@ -234,7 +239,7 @@ export default function IndexHeader() {
                   </svg>
                 </button>
                 <input
-                  className="border-2 border-gray-300 w-full bg-white h-10 pl-8 pr-3 rounded-lg text-sm focus:outline-none outline-none  focus:border-my-orange"
+                  className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-100 h-10 px-8 w-auto rounded-lg text-sm focus:outline-none outline-none dark:text-white dark:placeholder-white focus:border-my-orange"
                   type="search"
                   name="search"
                   placeholder="Search"
@@ -244,10 +249,10 @@ export default function IndexHeader() {
                   }}
                 />
               </form>
+              <DarkModeToggle />
             </div>
           </div>
         </div>
-
         <Transition
           as={Fragment}
           enter="duration-200 ease-out"
@@ -261,9 +266,9 @@ export default function IndexHeader() {
             focus
             className="absolute top-0 inset-x-0 pb-2 transition transform origin-top-right md:hidden"
           >
-            <div className=" shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+            <div className=" shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-dark-100 divide-y-2 divide-gray-50 dark:divide-dark-100">
               <div className="pt-5">
-                <div className="flex items-center pl-2 pr-5 justify-between">
+                <div className="flex items-center pr-5 justify-between">
                   <a href="#" className="font-bold text-3xl">
                     <form
                       onSubmit={handleSearch}
@@ -274,7 +279,7 @@ export default function IndexHeader() {
                         className="absolute left-6 top-0 mt-5 mr-4"
                       >
                         <svg
-                          className="text-gray-600 h-4 w-4 fill-current"
+                          className="text-gray-600 dark:text-white h-4 w-4 fill-current"
                           version="1.1"
                           id="Capa_1"
                           x="0px"
@@ -287,7 +292,7 @@ export default function IndexHeader() {
                         </svg>
                       </button>
                       <input
-                        className="border-2 border-gray-300 w-max bg-white h-10 pl-8 pr-3 rounded-lg text-sm focus:outline-none"
+                        className="border border-gray-300 w-max bg-white dark:placeholder-white dark:bg-dark-100 h-10 px-8 pr-16 rounded-lg text-sm focus:outline-none"
                         type="search"
                         name="search"
                         placeholder="Search"
@@ -299,7 +304,7 @@ export default function IndexHeader() {
                     </form>
                   </a>
                   <div className="-mr-2">
-                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
+                    <Popover.Button className="bg-white dark:bg-dark-bg rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
                       <span className="sr-only px-5">Close menu</span>
                       <XIcon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
@@ -309,24 +314,24 @@ export default function IndexHeader() {
                   <nav className="grid gap-y-8">
                     <nav className="space-y-1" aria-label="Sidebar">
                       <Disclosure>
-                        <Disclosure.Button className="w-full flex justify-between px-3 py-2 border-l-4 border-white text-left  font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900">
+                        <Disclosure.Button className="w-full flex justify-between px-3 py-2 border-l-4 border-white dark:border-dark-bg text-left dark:text-white font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900">
                           Chapters
                           <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                         </Disclosure.Button>
-                        <Disclosure.Panel className="text-gray-500 py-4">
-                          <div className="relative grid grid-cols-2 gap-6 bg-white px-8  py-2 sm:gap-8 sm:p-8">
+                        <Disclosure.Panel className="text-gray-500 dark:text-white dark:bg-dark-100 py-4">
+                          <div className="relative grid grid-cols-2 gap-6 bg-white px-8 dark:text-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
                             {chapters.map((item) => (
                               <a
                                 key={item.name}
                                 href={item.href}
-                                className="-m-3 p-1 flex items-start hover:bg-gray-100 hover:cursor-pointer	"
+                                className="-m-3 p-1 flex items-start hover:bg-gray-100 hover:cursor-pointer"
                               >
                                 <item.icon
                                   className="flex-shrink-0 h-6 w-6 text-my-orange"
                                   aria-hidden="true"
                                 />
                                 <div className="ml-4">
-                                  <p className="text-base font-medium text-gray-900">
+                                  <p className="text-base font-medium text-gray-900 dark:text-white">
                                     {item.name}
                                   </p>
                                 </div>
@@ -341,9 +346,9 @@ export default function IndexHeader() {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? "bg-yellow-100 border-l-4 border-my-orange text-gray-900"
-                              : "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900",
-                            "flex items-center mb-2 px-3 py-2 border-l-4 border-white  font-medium"
+                              ? "bg-yellow-100 dark:bg-dark-100 border-l-4 border-my-orange text-gray-900 dark:text-white"
+                              : "hover:bg-yellow-100 dark:bg-dark-100 hover:border-l-4 hover:border-my-orange dark:text-white hover:text-gray-900",
+                            "flex items-center mb-2 px-3 py-2 border-l-4 border-white dark:border-dark-bg font-medium"
                           )}
                           aria-current={item.current ? "page" : undefined}
                         >
