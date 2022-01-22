@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import {
-  EyeCrossSvg,
-  EyeOpenSvg,
-  GithubSvg,
-  KeySvg,
-  MailSvg,
-  UserSvg,
-} from "../components/svg";
+  SvgEyeCross,
+  SvgEyeOpen,
+  SvgGithub,
+  SvgKey,
+  SvgMail,
+  SvgUser,
+} from "../components/svgs";
+
 import AuthLayout from "../layouts/AuthLayout";
 
 const Signup = () => {
@@ -31,7 +32,7 @@ const Signup = () => {
     <>
       <form onSubmit={handleSubmit}>
         <div className="flex items-center gap-2 border-2 border-gray-300 rounded-md p-3 focus-within:border-my-orange">
-          <UserSvg />
+          <SvgUser />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
               Name
@@ -46,7 +47,7 @@ const Signup = () => {
           </div>
         </div>
         <div className="flex items-center gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
-          <MailSvg />
+          <SvgMail />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
               Email Address
@@ -61,7 +62,7 @@ const Signup = () => {
           </div>
         </div>
         <div className="flex items-center relative gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
-          <KeySvg />
+          <SvgKey />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
               Password
@@ -80,11 +81,11 @@ const Signup = () => {
             role="toggle password visibility"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
-            {isPasswordVisible ? <EyeOpenSvg /> : <EyeCrossSvg />}
+            {isPasswordVisible ? <SvgEyeOpen /> : <SvgEyeCross />}
           </button>
         </div>
         <div className="flex items-center relative gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
-          <KeySvg />
+          <SvgKey />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
               Confirm Password
@@ -105,7 +106,7 @@ const Signup = () => {
               setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
             }
           >
-            {isConfirmPasswordVisible ? <EyeOpenSvg /> : <EyeCrossSvg />}
+            {isConfirmPasswordVisible ? <SvgEyeOpen /> : <SvgEyeCross />}
           </button>
         </div>
         {error && (
@@ -130,7 +131,7 @@ const Signup = () => {
       </div>
       <div className="flex justify-center gap-8 mt-4 mb-10">
         {/* will use next/auth for authentication */}
-        <GithubSvg className='hover:cursor-pointer'/>
+        <SvgGithub className="hover:cursor-pointer" />
         <div className="h-9 w-9 relative hover:cursor-pointer">
           <Image src="/google-logo.png" layout="fill" />
         </div>

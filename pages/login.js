@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import {
-  EyeCrossSvg,
-  EyeOpenSvg,
-  GithubSvg,
-  KeySvg,
-  MailSvg,
-} from "../components/svg";
+  SvgEyeCross,
+  SvgEyeOpen,
+  SvgGithub,
+  SvgKey,
+  SvgMail,
+} from "../components/svgs";
 import AuthLayout from "../layouts/AuthLayout";
 
 const Login = () => {
@@ -22,7 +22,7 @@ const Login = () => {
     <>
       <form onSubmit={handleSubmit}>
         <div className="flex items-center gap-2 border-2 border-gray-300 rounded-md p-3 focus-within:border-my-orange">
-          <MailSvg />
+          <SvgMail />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
               Email Address
@@ -37,7 +37,7 @@ const Login = () => {
           </div>
         </div>
         <div className="flex items-center relative gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
-          <KeySvg />
+          <SvgKey />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
               Password
@@ -55,7 +55,7 @@ const Login = () => {
             className="absolute right-2"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
-            {isPasswordVisible ? <EyeOpenSvg /> : <EyeCrossSvg />}
+            {isPasswordVisible ? <SvgEyeOpen /> : <SvgEyeCross />}
           </button>
         </div>
         <p className="text-right text-sm text-gray-500 mt-2 px-2 font-normal">
@@ -80,7 +80,7 @@ const Login = () => {
       </div>
       <div className="flex justify-center gap-8 mt-4 mb-10">
         {/* will use next/auth for authentication */}
-        <GithubSvg  className='hover:cursor-pointer'/>
+        <SvgGithub className="hover:cursor-pointer" />
         <div className="h-9 w-9 relative cursor-pointer">
           <Image src="/google-logo.png" layout="fill" />
         </div>
