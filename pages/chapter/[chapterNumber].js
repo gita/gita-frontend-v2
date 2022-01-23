@@ -91,6 +91,7 @@ export default function Chapter({ chapterData }) {
   const previousChapter = chapterNumber - 1;
   const [viewNavigation, setViewNavigation] = useState(false);
   const [verseId, setVerseId] = useState(null);
+  const [sortVerses, setSortVerses] = useState(true);
 
   return (
     <div>
@@ -151,6 +152,7 @@ export default function Chapter({ chapterData }) {
             <button
               type="button"
               className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium dark:bg-dark-100 rounded-r-md text-gray-700 dark:text-gray-50 bg-gray-50 hover:bg-gray-100 dark:hover:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+              onClick={() => setSortVerses(!sortVerses)}
             >
               <SortAscendingIcon
                 className="h-5 w-5 text-gray-400 dark:text-gray-50"
@@ -168,14 +170,21 @@ export default function Chapter({ chapterData }) {
       </div>
 
       <div className="max-w-5xl font-inter py-8 mb-16 mx-auto px-4 sm:px-6">
-        {verses
-          .filter((verse) => {
-            if (!verseId) return true;
-            return verse.verseNumber === verseId;
-          })
-          .map((verse) => (
-            <VerseList verseData={verse} key={verse.id} />
-          ))}
+        {sortVerses
+          ? verses
+              .filter((verse) => {
+                if (!verseId) return true;
+                return verse.verseNumber === verseId;
+              })
+              .map((verse) => <VerseList verseData={verse} key={verse.id} />)
+          : verses
+              .filter((verse) => {
+                if (!verseId) return true;
+                return verse.verseNumber === verseId;
+              })
+              .slice(0)
+              .reverse()
+              .map((verse) => <VerseList verseData={verse} key={verse.id} />)}
       </div>
     </div>
   );
