@@ -4,6 +4,7 @@ import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ContentModal from "./ContentModal";
 import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
 import DarkModeToggle from "./DarkModeToggle";
@@ -17,8 +18,16 @@ const PageHeader = () => {
   const [showMenuItems, setShowMenuItems] = useState(false);
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
   const [playerIsOpen, setplayerIsOpen] = useState(false);
+  const [contentIsOpen, setContentIsOpen] = useState(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState(false);
 
+  function closeContentModal() {
+    setContentIsOpen(false);
+  }
+
+  function openContentModal() {
+    setContentIsOpen(true);
+  }
   function closePlayerModal() {
     setplayerIsOpen(false);
   }
@@ -73,15 +82,13 @@ const PageHeader = () => {
                         </a>
                       </Link>
                     </div>
-                    <Link href="/">
-                      <a
-                        href="#"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img className="w-6 h-6" src="/content.svg" />
-                        Content
-                      </a>
-                    </Link>
+                    <button
+                      onClick={openContentModal}
+                      className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                    >
+                      <img className="w-6 h-6" src="/content.svg" />
+                      Content
+                    </button>
                     <Link href="#">
                       <a
                         href="#"
@@ -415,6 +422,8 @@ const PageHeader = () => {
         playerIsOpen={playerIsOpen}
         closePlayerModal={closePlayerModal}
       />
+      <ContentModal isOpen={contentIsOpen} close={closeContentModal} />
+
       <Settings
         settingsIsOpen={settingsIsOpen}
         closeSettingsModal={closeSettingsModal}
