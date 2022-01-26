@@ -98,13 +98,13 @@ const PageHeader = () => {
                       </a>
                     </Link>
 
-                    <Link href="/verseParellel">
+                    <Link href="/verseParallel">
                       <a
                         href="#"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
                         <img className="w-6 h-6" src="/Parellel.svg" />
-                        Parellel Mode
+                        Parallel Mode
                       </a>
                     </Link>
 

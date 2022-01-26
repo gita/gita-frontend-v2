@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PagesLayout from "../../layouts/PagesLayout";
+import ChapterLayout from "../../layouts/ChapterLayout";
 import Head from "next/head";
 import Link from "next/link";
 import {
@@ -199,5 +199,5 @@ export default function Chapter({ chapterData }) {
 }
 
 Chapter.getLayout = function getLayout(page) {
-  return <PagesLayout>{page}</PagesLayout>;
+  return <ChapterLayout>{page}</ChapterLayout>;
 };
