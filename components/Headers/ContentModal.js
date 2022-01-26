@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { useQuery, gql } from "@apollo/client";
-
-export default function ContentModal({ chapters, isOpen, close }) {
-  console.log("Akshit", chapters);
+import data from "../../constant/contentModal.json";
+export default function ContentModal({ isOpen, close }) {
+  console.log("Akshit", data);
   return (
     <div>
       <Transition appear show={isOpen} as={Fragment}>
