@@ -98,7 +98,7 @@ const PageHeader = () => {
                       </a>
                     </Link>
 
-                    <Link href="/verseParallel">
+                    <Link href="/verse-parallel">
                       <a
                         href="#"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
