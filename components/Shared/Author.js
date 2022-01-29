@@ -29,7 +29,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
   );
 
   return (
-    <div className="bg-gray-300">
+    <div className="bg-gray-300 dark:bg-dark-bg">
       <Transition appear show={authorSettingsIsOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -119,7 +119,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                 </div>
 
                 <div
-                  class="mb-6"
+                  className="mb-6"
                   hidden={!isVerseTransliterationLanguageEnabled}
                 >
                   <Listbox
@@ -128,7 +128,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                   >
                     <div className="relative">
                       <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg border-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
-                        <span className="block truncate">
+                        <span className="block truncate text-black dark:text-black">
                           {languageSelected.name}
                         </span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -144,7 +144,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-40 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10">
+                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-lg max-h-40 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
                           {languages.map((language, languageIdx) => (
                             <Listbox.Option
                               key={languageIdx}
@@ -152,7 +152,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                                 `${
                                   active
                                     ? "text-white bg-my-orange"
-                                    : "text-black"
+                                    : "text-black dark:text-white"
                                 }
                                 cursor-pointer select-none relative py-2 px-4`
                               }
@@ -200,7 +200,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                   >
                     <div className="relative">
                       <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg border-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
-                        <span className="block truncate">
+                        <span className="block truncate text-black dark:text-black">
                           {authorTranslationSelected.name}
                         </span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -216,7 +216,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-24 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10">
+                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-lg max-h-24 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
                           {authorTranslations.map(
                             (authorTranslation, authorTranslationIdx) => (
                               <Listbox.Option
@@ -225,7 +225,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                                   `${
                                     active
                                       ? "text-white bg-my-orange"
-                                      : "text-black"
+                                      : "text-black dark:text-white"
                                   }
                                 cursor-pointer select-none relative py-2 px-4`
                                 }

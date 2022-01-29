@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
-import { MenuIcon, XIcon, TranslateIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
-import AuthorSettings from "../Shared/Author";
 import DarkModeToggle from "./DarkModeToggle";
 
 function classNames(...classes) {
@@ -17,7 +16,6 @@ const ChapterHeader = () => {
   const [showMenuItems, setShowMenuItems] = useState(false);
   const [playerIsOpen, setplayerIsOpen] = useState(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState(false);
-  const [authorSettingsIsOpen, setAuthorSettingsIsOpen] = useState(false);
 
   function closePlayerModal() {
     setplayerIsOpen(false);
@@ -29,14 +27,6 @@ const ChapterHeader = () => {
 
   function closeSettingsModal() {
     setSettingsIsOpen(false);
-  }
-
-  function openAuthorSettingsModal() {
-    setAuthorSettingsIsOpen(true);
-  }
-
-  function closeAuthorSettingsModal() {
-    setAuthorSettingsIsOpen(false);
   }
 
   useEffect(() => {
@@ -61,8 +51,6 @@ const ChapterHeader = () => {
               <div className="flex justify-between h-16">
                 <div className="flex px-2 lg:px-0">
                   <div className="hidden items-center py-2 lg:flex lg:space-x-4">
-                    {/* Current: "border-my-orange text-gray-900", Default: "border-transparent text-gray-500 " */}
-
                     <div className="text-gray-900 dark:text-gray-50">
                       <Link href="/">
                         <a
@@ -96,39 +84,6 @@ const ChapterHeader = () => {
                       >
                         <img className="w-6 h-6" src="/appearance.svg" />
                         Appearance
-                      </a>
-                    </Link>
-                    <Link href="#">
-                      <a
-                        href="#"
-                        onClick={openAuthorSettingsModal}
-                        className={classNames(
-                          authorSettingsIsOpen
-                            ? "bg-nav-hover dark:bg-dark-bg"
-                            : null,
-                          "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        )}
-                      >
-                        <TranslateIcon className="w-6 h-6 text-my-orange" />
-                        Language
-                      </a>
-                    </Link>
-                    <Link href="/notes">
-                      <a
-                        href="#"
-                        className="border-transparent   text-current flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img className="w-6 h-6" src="/notes.svg" />
-                        Notes
-                      </a>
-                    </Link>
-                    <Link href="/bookmark">
-                      <a
-                        href="#"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img className="w-6 h-6" src="/bookmark-header.svg" />
-                        Bookmark
                       </a>
                     </Link>
                   </div>
@@ -191,25 +146,6 @@ const ChapterHeader = () => {
                 >
                   Appearance
                 </a>
-                <a
-                  href="#"
-                  className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                >
-                  Language
-                </a>
-                <a
-                  href="#"
-                  className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                >
-                  Notes
-                </a>
-
-                <a
-                  href="#"
-                  className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                >
-                  Bookmark
-                </a>
               </div>
             </Disclosure.Panel>
           </>
@@ -222,10 +158,6 @@ const ChapterHeader = () => {
       <Settings
         settingsIsOpen={settingsIsOpen}
         closeSettingsModal={closeSettingsModal}
-      />
-      <AuthorSettings
-        authorSettingsIsOpen={authorSettingsIsOpen}
-        closeAuthorSettingsModal={closeAuthorSettingsModal}
       />
     </>
   );
