@@ -45,54 +45,41 @@ export default function ContentModal({ isOpen, close }) {
             >
               <div className="inline-block w-5/6 max-w-4xl overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-100 shadow-xl rounded-2xl">
                 <div className="flex items-center">
-                  <div className="grid p-4 grid-cols-2">
-                    <div className="">
-                      {" "}
-                      {Array(9)
-                        .fill()
-                        .map((_, index) => (
-                          <div
-                            key={index}
-                            onClick={() => setSelectedChapter(index + 1)}
-                          >
-                            <a className="group p-1 flex items-start rounded-lg hover:bg-my-orange/5 dark:hover:bg-dark-bg hover:cursor-pointer">
-                              <div className=" flex justify-between items-center ml-4">
-                                <p className="text-base font-medium text-gray-500 dark:text-white group-hover:text-my-orange">
-                                  Chapter {index + 1}
-                                </p>
-                                <ArrowNarrowRightIcon
-                                  className="h-5 w-5 ml-4 text-my-orange -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-transform duration-500"
-                                  aria-hidden="true"
-                                />
-                              </div>
-                            </a>
-                          </div>
-                        ))}
+                  <div className="flex justify-center h-full flex-1 p-6">
+                    <div className="flex flex-col">
+                      {data.slice(0, 9).map((chapter) => (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedChapter(chapter.chapterNumber);
+                          }}
+                          className="p-2 w-40 group flex items-center justify-between rounded-lg hover:bg-light-orange dark:hover:bg-dark-bg hover:cursor-pointer"
+                        >
+                          <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
+                            Chapter {chapter.chapterNumber}
+                          </p>
+                          <ArrowNarrowRightIcon className="w-8 h-5 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                        </button>
+                      ))}
                     </div>
                     <div className="">
-                      {Array(9)
-                        .fill()
-                        .map((_, index) => (
-                          <div
-                            key={index}
-                            onClick={() => setSelectedChapter(index + 10)}
-                          >
-                            <a className="group p-1 flex items-start rounded-lg hover:bg-my-orange/5 dark:hover:bg-dark-bg hover:cursor-pointer">
-                              <div className=" flex justify-between items-center ml-4">
-                                <p className="text-base font-medium text-gray-500 dark:text-white group-hover:text-my-orange">
-                                  Chapter {index + 10}
-                                </p>
-                                <ArrowNarrowRightIcon
-                                  className="h-5 w-5 ml-4 text-my-orange -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-transform duration-500"
-                                  aria-hidden="true"
-                                />
-                              </div>
-                            </a>
-                          </div>
-                        ))}
+                      {data.slice(9, 18).map((chapter) => (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedChapter(chapter.chapterNumber);
+                          }}
+                          className="p-2 w-40 group flex items-center justify-between rounded-lg hover:bg-light-orange dark:hover:bg-dark-bg hover:cursor-pointer"
+                        >
+                          <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
+                            Chapter {chapter.chapterNumber}
+                          </p>
+                          <ArrowNarrowRightIcon className="w-8 h-5 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                        </button>
+                      ))}
                     </div>
                   </div>
-                  <div className="flex justify-center h-full flex-1 flex-col bg-light-orange  p-6">
+                  <div className="flex justify-center h-full flex-1 flex-col bg-light-orange p-6">
                     <p className="text-my-orange py-2 font-semibold">
                       Chapter {selectedChapter}
                     </p>
@@ -107,10 +94,7 @@ export default function ContentModal({ isOpen, close }) {
                         .map((_verse, index) => (
                           <div
                             onClick={() => {}}
-                            className={`flex justify-center items-center h-10 w-10 p-1.5 m-px text-gray-500 rounded hover:cursor-pointer hover:bg-my-orange hover:text-white 
-                             
-                           
-          `}
+                            className="flex justify-center items-center h-10 w-10 p-1.5 m-px text-gray-500 rounded hover:cursor-pointer hover:bg-my-orange hover:text-white"
                           >
                             {index + 1}
                           </div>
