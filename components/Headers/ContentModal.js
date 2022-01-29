@@ -62,7 +62,7 @@ export default function ContentModal({ isOpen, close }) {
               leaveTo="opacity-0 scale-95"
             >
               <div className="inline-block w-5/6 max-w-4xl overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-100 shadow-xl rounded-2xl">
-                <div className="flex flex-col p-4 md:hidden">
+                <div className="flex flex-col p-8 md:hidden">
                   <p className="text-my-orange py-2 font-semibold">Chapters</p>
                   <Listbox
                     value={selectedChapter}
@@ -130,10 +130,12 @@ export default function ContentModal({ isOpen, close }) {
                       </Transition>
                     </div>
                   </Listbox>
-                  <p className="text-my-orange py-2 font-semibold">Verses</p>
+                  <p className="text-my-orange mt-2 py-2 font-semibold">
+                    Verses
+                  </p>
                   <Listbox value={selectedVerse} onChange={setSelectedVerse}>
                     <div className="relative mt-1">
-                      <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
+                      <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
                         <span className="block">
                           Verses {selectedVerse.verseNumber}
                         </span>
