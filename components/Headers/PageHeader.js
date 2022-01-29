@@ -1,11 +1,12 @@
 import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Switch } from "@headlessui/react";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon, TranslateIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
+import AuthorSettings from "../Shared/Author";
 import DarkModeToggle from "./DarkModeToggle";
 
 function classNames(...classes) {
@@ -18,6 +19,7 @@ const PageHeader = () => {
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
   const [playerIsOpen, setplayerIsOpen] = useState(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState(false);
+  const [authorSettingsIsOpen, setAuthorSettingsIsOpen] = useState(false);
 
   function closePlayerModal() {
     setplayerIsOpen(false);
@@ -33,6 +35,14 @@ const PageHeader = () => {
 
   function closeSettingsModal() {
     setSettingsIsOpen(false);
+  }
+
+  function openAuthorSettingsModal() {
+    setAuthorSettingsIsOpen(true);
+  }
+
+  function closeAuthorSettingsModal() {
+    setAuthorSettingsIsOpen(false);
   }
 
   const toggleClass = () => {
@@ -97,14 +107,28 @@ const PageHeader = () => {
                         Appearance
                       </a>
                     </Link>
-
-                    <Link href="/verseParellel">
+                    <Link href="#">
+                      <a
+                        href="#"
+                        onClick={openAuthorSettingsModal}
+                        className={classNames(
+                          authorSettingsIsOpen
+                            ? "bg-nav-hover dark:bg-dark-bg"
+                            : null,
+                          "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        )}
+                      >
+                        <TranslateIcon className="w-6 h-6 text-my-orange" />
+                        Language
+                      </a>
+                    </Link>
+                    <Link href="/verse-parallel">
                       <a
                         href="#"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
                         <img className="w-6 h-6" src="/Parellel.svg" />
-                        Parellel Mode
+                        Parallel Mode
                       </a>
                     </Link>
 
@@ -220,6 +244,12 @@ const PageHeader = () => {
                   className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                 >
                   Appearance
+                </a>
+                <a
+                  href="#"
+                  className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                >
+                  Language
                 </a>
                 <a
                   href="#"
@@ -418,6 +448,10 @@ const PageHeader = () => {
       <Settings
         settingsIsOpen={settingsIsOpen}
         closeSettingsModal={closeSettingsModal}
+      />
+      <AuthorSettings
+        authorSettingsIsOpen={authorSettingsIsOpen}
+        closeAuthorSettingsModal={closeAuthorSettingsModal}
       />
     </>
   );
