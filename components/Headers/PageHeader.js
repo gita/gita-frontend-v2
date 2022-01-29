@@ -18,7 +18,7 @@ const PageHeader = () => {
   const [showMenuItems, setShowMenuItems] = useState(false);
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
   const [playerIsOpen, setplayerIsOpen] = useState(false);
-  const [contentIsOpen, setContentIsOpen] = useState(true);
+  const [contentIsOpen, setContentIsOpen] = useState(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState(false);
 
   function closeContentModal() {
