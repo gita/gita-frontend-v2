@@ -29,7 +29,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
   );
 
   return (
-    <div className="bg-gray-300 dark:bg-dark-bg">
+    <div>
       <Transition appear show={authorSettingsIsOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -65,9 +65,9 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-bg shadow-xl rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-100 shadow-xl rounded-2xl">
                 <div className="flex py-2 justify-between my-2 items-center">
-                  <p className="text-base text-black-500 dark:text-white-500">
+                  <p className="text-base text-black dark:text-white">
                     Verse Commentary Source
                   </p>
                   <Switch
@@ -76,7 +76,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                     className={`${
                       isVerseCommentarySourceEnabled
                         ? "bg-my-orange"
-                        : "bg-gray-300"
+                        : "bg-gray-200 dark:bg-dark-bg"
                     }
                     relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
@@ -93,7 +93,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                 </div>
 
                 <div className="flex py-2 justify-between items-center mb-2">
-                  <p className="text-base text-black-500 dark:text-white-500">
+                  <p className="text-base text-black dark:text-white">
                     Verse Transliteration Language
                   </p>
                   <Switch
@@ -102,7 +102,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                     className={`${
                       isVerseTransliterationLanguageEnabled
                         ? "bg-my-orange"
-                        : "bg-gray-300"
+                        : "bg-gray-200 dark:bg-dark-bg"
                     }
                     relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
@@ -127,8 +127,8 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                     onChange={setLanguageSelected}
                   >
                     <div className="relative">
-                      <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg border-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
-                        <span className="block truncate text-black dark:text-black">
+                      <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
+                        <span className="block truncate text-black dark:text-white">
                           {languageSelected.name}
                         </span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -144,7 +144,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-lg max-h-40 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
+                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md max-h-40 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
                           {languages.map((language, languageIdx) => (
                             <Listbox.Option
                               key={languageIdx}
@@ -168,7 +168,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                 </div>
 
                 <div className="flex py-2 justify-between items-center mb-2">
-                  <p className="text-base text-black-500 dark:text-white-500">
+                  <p className="text-base text-black dark:text-white">
                     Verse Translation Source
                   </p>
                   <Switch
@@ -177,7 +177,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                     className={`${
                       isVerseTranslationSourceEnabled
                         ? "bg-my-orange"
-                        : "bg-gray-300"
+                        : "bg-gray-200 dark:bg-dark-bg"
                     }
                     relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
@@ -199,8 +199,8 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                     onChange={setAuthorTranslationSelected}
                   >
                     <div className="relative">
-                      <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg border-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
-                        <span className="block truncate text-black dark:text-black">
+                      <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
+                        <span className="block truncate text-black dark:text-white">
                           {authorTranslationSelected.name}
                         </span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -216,7 +216,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-lg max-h-24 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
+                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md max-h-24 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
                           {authorTranslations.map(
                             (authorTranslation, authorTranslationIdx) => (
                               <Listbox.Option
