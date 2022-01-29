@@ -2,14 +2,14 @@ import React from "react";
 import { useTheme } from "next-themes";
 
 function DarkModeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, themes } = useTheme();
+  console.log(theme, themes);
   return (
     <button
       aria-label="Toggle Dark Mode"
       type="button"
       className="group p-2 h-10 w-10  dark:hover:bg-dark-bg hover:bg-gray-900  mx-2 rounded"
       onClick={() => {
-        console.log(theme);
         setTheme(theme === "dark" ? "light" : "dark");
       }}
     >
