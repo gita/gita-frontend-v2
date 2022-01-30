@@ -32,6 +32,7 @@ function VerseNavigator({
               setViewNavigation(false);
               setVerseId(index + 1);
             }}
+            key={index}
             className={`block h-10 w-10 p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
               index + 1 === currentVerse && "bg-my-orange text-white"
             }`}
