@@ -7,38 +7,16 @@ import { useRouter } from "next/router";
 import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
 import DarkModeToggle from "./DarkModeToggle";
+import ContentModal from "./ContentModal";
+import useToggle from "../../hooks/useToggle";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const ChapterHeader = () => {
-  const router = useRouter();
-  const [showMenuItems, setShowMenuItems] = useState(false);
-  const [playerIsOpen, setplayerIsOpen] = useState(false);
-  const [settingsIsOpen, setSettingsIsOpen] = useState(false);
+  const [settingsIsOpen, closeSettingsModal, openSettingsModal] = useToggle();
+  const [contentModalIsOpen, closeContentModal, openContentModal] = useToggle();
 
-  function closePlayerModal() {
-    setplayerIsOpen(false);
-  }
-
-  function openSettingsModal() {
-    setSettingsIsOpen(true);
-  }
-
-  function closeSettingsModal() {
-    setSettingsIsOpen(false);
-  }
-
-  useEffect(() => {
-    console.log(router.route);
-    if (router.route == "/chapter") {
-      setShowMenuItems(true);
-      console.log(showMenuItems);
-    } else {
-      setShowMenuItems(false);
-      console.log(showMenuItems);
-    }
-  });
   return (
     <>
       <Disclosure
@@ -53,39 +31,36 @@ const ChapterHeader = () => {
                   <div className="hidden items-center py-2 lg:flex lg:space-x-4">
                     <div className="text-gray-900 dark:text-gray-50">
                       <Link href="/">
-                        <a
-                          href="#"
-                          className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        >
+                        <a className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg">
                           <img className="w-6 h-6" src="/Home.svg" />
                           Home
                         </a>
                       </Link>
                     </div>
-                    <Link href="/">
-                      <a
-                        href="#"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img className="w-6 h-6" src="/content.svg" />
-                        Content
-                      </a>
-                    </Link>
-                    <Link href="#">
-                      <a
-                        href="#"
-                        onClick={openSettingsModal}
-                        className={classNames(
-                          settingsIsOpen
-                            ? "bg-nav-hover dark:bg-dark-bg"
-                            : null,
-                          "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        )}
-                      >
-                        <img className="w-6 h-6" src="/appearance.svg" />
-                        Appearance
-                      </a>
-                    </Link>
+                    <button
+                      type="button"
+                      onClick={openContentModal}
+                      className={classNames(
+                        contentModalIsOpen
+                          ? "bg-nav-hover dark:bg-dark-bg"
+                          : null,
+                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      )}
+                    >
+                      <img className="w-6 h-6" src="/content.svg" />
+                      Content
+                    </button>
+                    <button
+                      type="button"
+                      onClick={openSettingsModal}
+                      className={classNames(
+                        settingsIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      )}
+                    >
+                      <img className="w-6 h-6" src="/appearance.svg" />
+                      Appearance
+                    </button>
                   </div>
                 </div>
                 <div className="flex-1 flex items-center justify-start pr-2  lg:ml-6 lg:justify-end">
@@ -136,12 +111,14 @@ const ChapterHeader = () => {
                 </a>
                 <a
                   href="#"
+                  onClick={openContentModal}
                   className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                 >
                   Content
                 </a>
                 <a
                   href="#"
+                  onClick={openSettingsModal}
                   className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                 >
                   Appearance
@@ -151,10 +128,7 @@ const ChapterHeader = () => {
           </>
         )}
       </Disclosure>
-      <AudioPlayer
-        playerIsOpen={playerIsOpen}
-        closePlayerModal={closePlayerModal}
-      />
+      <ContentModal isOpen={contentModalIsOpen} close={closeContentModal} />
       <Settings
         settingsIsOpen={settingsIsOpen}
         closeSettingsModal={closeSettingsModal}
