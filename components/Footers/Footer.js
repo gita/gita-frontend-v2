@@ -74,7 +74,7 @@ const Footer = () => {
   });
   return (
     <div className="w-full mt-24 bottom-0 bg-white dark:bg-dark-100 font-inter border-gray-200 border-t border-b">
-      <div className="py-4 lg:py-8">
+      <div className="py-1 lg:py-8">
         <div className="flex justify-between items-center">
           <div className="flex-none w-1/2 lg:w-1/5">
             <Menu
@@ -378,7 +378,15 @@ const Footer = () => {
               </div>
             </footer>
           </div>
-          <div className="flex-none text-right w-1/3 lg:w-1/5"></div>
+          <div className="flex justify-end lg:w-1/5">
+            <a href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita" target="_blank">
+              <img
+                src="/google_play_download.svg"
+                alt="Bhagavad Gita"
+                className="object-contain w-auto h-8 lg:hidden"
+              />
+            </a>
+          </div>
         </div>
         <div className="flex-none text-right w-1/3 lg:w-full">
           <div className="mt-5 justify-center hidden lg:flex items-center space-x-6">
@@ -400,7 +408,7 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div className="flex px-4 justify-between items-center py-2 ">
+      <div className="flex px-4 py-1 justify-between items-center">
         <div className="flex-none w-1/2 lg:w-1/5 hidden lg:inline-block">
           <Menu as="div" className="relative text-left ">
             {({ open }) => (
@@ -506,13 +514,14 @@ const Footer = () => {
             &copy; 2021 BhagavadGita.io
           </p>
         </div>
-        <div className="flex-none text-right absolute right-3 lg:right-0 lg:relative lg:w-1/5">
-          <input
-            type="color"
-            className="h-7 w-7 appearance-none border-none bg-dark-bg lg:h-10 lg:w-10"
-            onChange={(e) => console.log(e.target.value)}
-            value="#F57903"
-          />
+        <div className="flex lg:w-1/5 justify-end">
+          <a href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita" target="_blank">
+            <img
+              src="/google_play_download.svg"
+              alt="Bhagavad Gita"
+              className="object-contain w-auto h-10"
+            />
+          </a>
         </div>
       </div>
     </div>

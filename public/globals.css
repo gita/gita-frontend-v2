@@ -80,6 +80,22 @@ body {
   position: absolute;
   z-index: 0;
 }
+
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+:not([data-scroll="0"])::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background: #f57903;
+  background-clip: padding-box;
+  border-radius: 9999px;
+}
+
 @media screen and (max-width: 480px) {
   .auth-bg {
     display: none;
