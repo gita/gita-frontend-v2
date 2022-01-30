@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Switch } from "@headlessui/react";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
-import { MenuIcon, XIcon, TranslateIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ContentModal from "./ContentModal";
@@ -38,7 +38,7 @@ const PageHeader = () => {
       >
         {({ open }) => (
           <>
-            <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-8">
+            <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-8 md:py-1">
               <div className="flex justify-between h-16">
                 <div className="flex px-2 lg:px-0">
                   <div className="hidden items-center py-2 lg:flex lg:space-x-4">
@@ -50,7 +50,7 @@ const PageHeader = () => {
                           href="#"
                           className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                         >
-                          <img className="w-6 h-6" src="/Home.svg" />
+                          <img className="w-6 h-6 mb-1" src="/Home.svg" />
                           Home
                         </a>
                       </Link>
@@ -65,7 +65,7 @@ const PageHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <img className="w-6 h-6" src="/content.svg" />
+                      <img className="w-6 h-6 mb-1" src="/content.svg" />
                       Content
                     </button>
                     <button
@@ -76,7 +76,7 @@ const PageHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <img className="w-6 h-6" src="/appearance.svg" />
+                      <img className="w-6 h-6 mb-1" src="/appearance.svg" />
                       Appearance
                     </button>
                     <button
@@ -89,7 +89,7 @@ const PageHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <TranslateIcon className="w-6 h-6 text-my-orange" />
+                      <img className="w-6 h-6 mb-1" src="/language.svg" />
                       Language
                     </button>
                     <Link href="/verse-parallel">
@@ -97,7 +97,7 @@ const PageHeader = () => {
                         href="#"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
-                        <img className="w-6 h-6" src="/Parellel.svg" />
+                        <img className="w-6 h-6 mb-1" src="/Parellel.svg" />
                         Parallel Mode
                       </a>
                     </Link>
@@ -110,7 +110,7 @@ const PageHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <img className="w-6 h-6" src="/Audio.svg" />
+                      <img className="w-6 h-6 mb-1" src="/Audio.svg" />
                       Play Audio
                     </button>
 
@@ -124,7 +124,7 @@ const PageHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <img className="w-6 h-6" src="/Advanced.svg" />
+                      <img className="w-6 h-6 mb-1" src="/Advanced.svg" />
                       Advanced View
                     </button>
 
@@ -133,7 +133,7 @@ const PageHeader = () => {
                         href="#"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
-                        <img className="w-6 h-6" src="/notes.svg" />
+                        <img className="w-6 h-6 mb-1" src="/notes.svg" />
                         Notes
                       </a>
                     </Link>
@@ -142,7 +142,7 @@ const PageHeader = () => {
                         href="#"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
-                        <img className="w-6 h-6" src="/bookmark-header.svg" />
+                        <img className="w-6 h-6 mb-1" src="/bookmark-header.svg" />
                         Bookmark
                       </a>
                     </Link>
