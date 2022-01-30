@@ -16,7 +16,6 @@ function classNames(...classes) {
 const PageHeader = () => {
   const [enabled, setEnabled] = useState(false);
   const router = useRouter();
-  const [showMenuItems, setShowMenuItems] = useState(false);
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
   const [playerIsOpen, setplayerIsOpen] = useState(false);
   const [contentIsOpen, setContentIsOpen] = useState(false);
@@ -57,16 +56,7 @@ const PageHeader = () => {
   const toggleClass = () => {
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
-  useEffect(() => {
-    console.log(router.route);
-    if (router.route == "/chapter") {
-      setShowMenuItems(true);
-      console.log(showMenuItems);
-    } else {
-      setShowMenuItems(false);
-      console.log(showMenuItems);
-    }
-  });
+
   return (
     <>
       <Disclosure
@@ -93,42 +83,40 @@ const PageHeader = () => {
                       </Link>
                     </div>
                     <button
+                      type="button"
                       onClick={openContentModal}
-                      className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      className={classNames(
+                        contentIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      )}
                     >
                       <img className="w-6 h-6" src="/content.svg" />
                       Content
                     </button>
-                    <Link href="#">
-                      <a
-                        href="#"
-                        onClick={openSettingsModal}
-                        className={classNames(
-                          settingsIsOpen
-                            ? "bg-nav-hover dark:bg-dark-bg"
-                            : null,
-                          "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        )}
-                      >
-                        <img className="w-6 h-6" src="/appearance.svg" />
-                        Appearance
-                      </a>
-                    </Link>
-                    <Link href="#">
-                      <a
-                        href="#"
-                        onClick={openAuthorSettingsModal}
-                        className={classNames(
-                          authorSettingsIsOpen
-                            ? "bg-nav-hover dark:bg-dark-bg"
-                            : null,
-                          "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        )}
-                      >
-                        <TranslateIcon className="w-6 h-6 text-my-orange" />
-                        Language
-                      </a>
-                    </Link>
+                    <button
+                      type="button"
+                      onClick={openSettingsModal}
+                      className={classNames(
+                        settingsIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      )}
+                    >
+                      <img className="w-6 h-6" src="/appearance.svg" />
+                      Appearance
+                    </button>
+                    <button
+                      type="button"
+                      onClick={openAuthorSettingsModal}
+                      className={classNames(
+                        authorSettingsIsOpen
+                          ? "bg-nav-hover dark:bg-dark-bg"
+                          : null,
+                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      )}
+                    >
+                      <TranslateIcon className="w-6 h-6 text-my-orange" />
+                      Language
+                    </button>
                     <Link href="/verse-parallel">
                       <a
                         href="#"
@@ -139,40 +127,31 @@ const PageHeader = () => {
                       </a>
                     </Link>
 
-                    <Link href="#">
-                      <a
-                        href="#"
-                        onClick={openPlayerModal}
-                        className={classNames(
-                          playerIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
-                          "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        )}
-                      >
-                        <img className="w-6 h-6" src="/Audio.svg" />
-                        Play Audio
-                      </a>
-                    </Link>
+                    <button
+                      type="button"
+                      onClick={setplayerIsOpen}
+                      className={classNames(
+                        playerIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      )}
+                    >
+                      <img className="w-6 h-6" src="/Audio.svg" />
+                      Play Audio
+                    </button>
 
-                    <Link href="">
-                      <a
-                        href="#"
-                        className={
-                          advancedOptionsActive
-                            ? "bg-nav-hover dark:bg-dark-bg"
-                            : "bg-nav-hover"
-                        }
-                        onClick={toggleClass}
-                        className={classNames(
-                          advancedOptionsActive
-                            ? "bg-nav-hover dark:bg-dark-bg"
-                            : null,
-                          "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        )}
-                      >
-                        <img className="w-6 h-6" src="/Advanced.svg" />
-                        Advanced View
-                      </a>
-                    </Link>
+                    <button
+                      type="button"
+                      onClick={toggleClass}
+                      className={classNames(
+                        advancedOptionsActive
+                          ? "bg-nav-hover dark:bg-dark-bg"
+                          : null,
+                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      )}
+                    >
+                      <img className="w-6 h-6" src="/Advanced.svg" />
+                      Advanced View
+                    </button>
 
                     <Link href="/notes">
                       <a
@@ -242,18 +221,21 @@ const PageHeader = () => {
                 </a>
                 <a
                   href="#"
+                  onClick={openContentModal}
                   className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                 >
                   Content
                 </a>
                 <a
                   href="#"
+                  onClick={openSettingsModal}
                   className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                 >
                   Appearance
                 </a>
                 <a
                   href="#"
+                  onClick={openAuthorSettingsModal}
                   className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                 >
                   Language
@@ -264,7 +246,6 @@ const PageHeader = () => {
                 >
                   Notes
                 </a>
-
                 <a
                   href="#"
                   className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
