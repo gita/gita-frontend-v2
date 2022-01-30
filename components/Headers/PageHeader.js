@@ -170,14 +170,14 @@ const PageHeader = () => {
                         )}
                       >
                         <img className="w-6 h-6" src="/Advanced.svg" />
-                        Advanced View{" "}
+                        Advanced View
                       </a>
                     </Link>
 
                     <Link href="/notes">
                       <a
                         href="#"
-                        className="border-transparent   text-current flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        className="border-transparent text-current flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
                         <img className="w-6 h-6" src="/notes.svg" />
                         Notes

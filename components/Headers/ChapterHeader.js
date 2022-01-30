@@ -7,19 +7,14 @@ import { useRouter } from "next/router";
 import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
 import DarkModeToggle from "./DarkModeToggle";
+import ContentModal from "./ContentModal";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const ChapterHeader = () => {
-  const router = useRouter();
-  const [showMenuItems, setShowMenuItems] = useState(false);
-  const [playerIsOpen, setplayerIsOpen] = useState(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState(false);
-
-  function closePlayerModal() {
-    setplayerIsOpen(false);
-  }
+  const [contentIsOpen, setContentIsOpen] = useState(false);
 
   function openSettingsModal() {
     setSettingsIsOpen(true);
@@ -29,16 +24,14 @@ const ChapterHeader = () => {
     setSettingsIsOpen(false);
   }
 
-  useEffect(() => {
-    console.log(router.route);
-    if (router.route == "/chapter") {
-      setShowMenuItems(true);
-      console.log(showMenuItems);
-    } else {
-      setShowMenuItems(false);
-      console.log(showMenuItems);
-    }
-  });
+  function closeContentModal() {
+    setContentIsOpen(false);
+  }
+
+  function openContentModal() {
+    setContentIsOpen(true);
+  }
+
   return (
     <>
       <Disclosure
@@ -62,15 +55,13 @@ const ChapterHeader = () => {
                         </a>
                       </Link>
                     </div>
-                    <Link href="/">
-                      <a
-                        href="#"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img className="w-6 h-6" src="/content.svg" />
-                        Content
-                      </a>
-                    </Link>
+                    <button
+                      onClick={openContentModal}
+                      className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                    >
+                      <img className="w-6 h-6" src="/content.svg" />
+                      Content
+                    </button>
                     <Link href="#">
                       <a
                         href="#"
@@ -151,10 +142,7 @@ const ChapterHeader = () => {
           </>
         )}
       </Disclosure>
-      <AudioPlayer
-        playerIsOpen={playerIsOpen}
-        closePlayerModal={closePlayerModal}
-      />
+      <ContentModal isOpen={contentIsOpen} close={closeContentModal} />
       <Settings
         settingsIsOpen={settingsIsOpen}
         closeSettingsModal={closeSettingsModal}
