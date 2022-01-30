@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
 import DarkModeToggle from "./DarkModeToggle";
 import ContentModal from "./ContentModal";
@@ -25,14 +22,14 @@ const ChapterHeader = () => {
       >
         {({ open }) => (
           <>
-            <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-8">
+            <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-8 md:py-1">
               <div className="flex justify-between h-16">
                 <div className="flex px-2 lg:px-0">
                   <div className="hidden items-center py-2 lg:flex lg:space-x-4">
                     <div className="text-gray-900 dark:text-gray-50">
                       <Link href="/">
                         <a className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg">
-                          <img className="w-6 h-6" src="/Home.svg" />
+                          <img className="w-6 h-6 mb-1" src="/Home.svg" />
                           Home
                         </a>
                       </Link>
@@ -47,7 +44,7 @@ const ChapterHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <img className="w-6 h-6" src="/content.svg" />
+                      <img className="w-6 h-6 mb-1" src="/content.svg" />
                       Content
                     </button>
                     <button
@@ -58,7 +55,7 @@ const ChapterHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <img className="w-6 h-6" src="/appearance.svg" />
+                      <img className="w-6 h-6 mb-1" src="/appearance.svg" />
                       Appearance
                     </button>
                   </div>
