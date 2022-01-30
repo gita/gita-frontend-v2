@@ -9,49 +9,22 @@ import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
 import AuthorSettings from "../Shared/Author";
 import DarkModeToggle from "./DarkModeToggle";
+import useToggle from "../../hooks/useToggle";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const PageHeader = () => {
   const [enabled, setEnabled] = useState(false);
-  const router = useRouter();
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
-  const [playerIsOpen, setplayerIsOpen] = useState(false);
-  const [contentIsOpen, setContentIsOpen] = useState(false);
-  const [settingsIsOpen, setSettingsIsOpen] = useState(false);
-  const [authorSettingsIsOpen, setAuthorSettingsIsOpen] = useState(false);
-
-  function closeContentModal() {
-    setContentIsOpen(false);
-  }
-
-  function openContentModal() {
-    setContentIsOpen(true);
-  }
-  function closePlayerModal() {
-    setplayerIsOpen(false);
-  }
-
-  function openPlayerModal() {
-    setplayerIsOpen(true);
-  }
-
-  function openSettingsModal() {
-    setSettingsIsOpen(true);
-  }
-
-  function closeSettingsModal() {
-    setSettingsIsOpen(false);
-  }
-
-  function openAuthorSettingsModal() {
-    setAuthorSettingsIsOpen(true);
-  }
-
-  function closeAuthorSettingsModal() {
-    setAuthorSettingsIsOpen(false);
-  }
+  const [settingsIsOpen, closeSettingsModal, openSettingsModal] = useToggle();
+  const [contentModalIsOpen, closeContentModal, openContentModal] = useToggle();
+  const [playerIsOpen, closePlayerModal, openPlayerModal] = useToggle();
+  const [
+    authorSettingsIsOpen,
+    closeAuthorSettingsModal,
+    openAuthorSettingsModal,
+  ] = useToggle();
 
   const toggleClass = () => {
     setAdvancedOptionsActive(!advancedOptionsActive);
@@ -86,7 +59,7 @@ const PageHeader = () => {
                       type="button"
                       onClick={openContentModal}
                       className={classNames(
-                        contentIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        settingsIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
@@ -129,7 +102,7 @@ const PageHeader = () => {
 
                     <button
                       type="button"
-                      onClick={setplayerIsOpen}
+                      onClick={openPlayerModal}
                       className={classNames(
                         playerIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
@@ -433,7 +406,7 @@ const PageHeader = () => {
         playerIsOpen={playerIsOpen}
         closePlayerModal={closePlayerModal}
       />
-      <ContentModal isOpen={contentIsOpen} close={closeContentModal} />
+      <ContentModal isOpen={contentModalIsOpen} close={closeContentModal} />
 
       <Settings
         settingsIsOpen={settingsIsOpen}

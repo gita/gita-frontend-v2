@@ -8,29 +8,14 @@ import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
 import DarkModeToggle from "./DarkModeToggle";
 import ContentModal from "./ContentModal";
+import useToggle from "../../hooks/useToggle";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const ChapterHeader = () => {
-  const [settingsIsOpen, setSettingsIsOpen] = useState(false);
-  const [contentIsOpen, setContentIsOpen] = useState(false);
-
-  function openSettingsModal() {
-    setSettingsIsOpen(true);
-  }
-
-  function closeSettingsModal() {
-    setSettingsIsOpen(false);
-  }
-
-  function closeContentModal() {
-    setContentIsOpen(false);
-  }
-
-  function openContentModal() {
-    setContentIsOpen(true);
-  }
+  const [settingsIsOpen, closeSettingsModal, openSettingsModal] = useToggle();
+  const [contentModalIsOpen, closeContentModal, openContentModal] = useToggle();
 
   return (
     <>
@@ -56,7 +41,9 @@ const ChapterHeader = () => {
                       type="button"
                       onClick={openContentModal}
                       className={classNames(
-                        contentIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        contentModalIsOpen
+                          ? "bg-nav-hover dark:bg-dark-bg"
+                          : null,
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
@@ -141,7 +128,7 @@ const ChapterHeader = () => {
           </>
         )}
       </Disclosure>
-      <ContentModal isOpen={contentIsOpen} close={closeContentModal} />
+      <ContentModal isOpen={contentModalIsOpen} close={closeContentModal} />
       <Settings
         settingsIsOpen={settingsIsOpen}
         closeSettingsModal={closeSettingsModal}
