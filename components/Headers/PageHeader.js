@@ -59,7 +59,9 @@ const PageHeader = () => {
                       type="button"
                       onClick={openContentModal}
                       className={classNames(
-                        settingsIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        contentModalIsOpen
+                          ? "bg-nav-hover dark:bg-dark-bg"
+                          : null,
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
