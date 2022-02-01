@@ -67,7 +67,7 @@ export async function getStaticProps({ params }) {
     },
   };
 }
-const Verse = ({ verseData }) => {
+const Verse = ({ verseData, advanceSettings }) => {
   const {
     id,
     text,
@@ -76,10 +76,14 @@ const Verse = ({ verseData }) => {
     wordMeanings,
     chapterNumber,
   } = verseData;
+  const { devnagari, verseText, synonyms, translation, purport } =
+    advanceSettings;
+  console.log(advanceSettings);
   const previousVerseId = id - 1;
   const nextVerseId = id + 1;
+
   return (
-    <div className="font-inter mb-16">
+    <div className="font-inter">
       <Head>
         <title>Bhagavad Gita App - Verse {id}</title>
       </Head>
@@ -101,16 +105,26 @@ const Verse = ({ verseData }) => {
         <h1 className="font-extrabold text-3xl dark:text-gray-50">
           BG {chapterNumber}.{verseNumber}
         </h1>
-        <p className="font-dev text-my-orange mt-4 text-2xl max-w-md mx-auto">
-          {text}
-        </p>
-        <p className="mt-4 text-xl max-w-md mx-auto dark:text-gray-50">
-          {transliteration}
-        </p>
-        <p className="mt-4 text-xl mx-auto dark:text-gray-50">{wordMeanings}</p>
-        <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
-        <Translation />
-        <Commentary />
+        {devnagari && (
+          <p className="font-dev text-my-orange mt-4 text-2xl max-w-md mx-auto">
+            {text}
+          </p>
+        )}
+        {verseText && (
+          <p className="mt-4 text-xl max-w-md mx-auto dark:text-gray-50">
+            {transliteration}
+          </p>
+        )}
+        {synonyms && (
+          <p className="mt-4 text-xl mx-auto dark:text-gray-50">
+            {wordMeanings}
+          </p>
+        )}
+        {(translation || purport) && (
+          <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
+        )}
+        {translation && <Translation />}
+        {purport && <Commentary />}
       </div>
     </div>
   );
