@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "../components/Footers/Footer";
 import ChapterHeader from "../components/Headers/ChapterHeader";
 
-const PagesLayout = ({ children }) => {
+const ChapterLayout = ({ children }) => {
   return (
     <div className="dark:bg-dark-bg">
       <ChapterHeader />
@@ -12,4 +12,4 @@ const PagesLayout = ({ children }) => {
   );
 };
 
-export default PagesLayout;
+export default ChapterLayout;
