@@ -3,7 +3,6 @@ import { Disclosure, Switch } from "@headlessui/react";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import ContentModal from "./ContentModal";
 import AudioPlayer from "./AudioPlayer";
 import Settings from "../Shared/Settings";
@@ -14,7 +13,7 @@ import useToggle from "../../hooks/useToggle";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-const PageHeader = () => {
+const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
   const [enabled, setEnabled] = useState(false);
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
   const [settingsIsOpen, closeSettingsModal, openSettingsModal] = useToggle();
@@ -142,7 +141,10 @@ const PageHeader = () => {
                         href="#"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
-                        <img className="w-6 h-6 mb-1" src="/bookmark-header.svg" />
+                        <img
+                          className="w-6 h-6 mb-1"
+                          src="/bookmark-header.svg"
+                        />
                         Bookmark
                       </a>
                     </Link>
@@ -403,7 +405,12 @@ const PageHeader = () => {
         )}
       </Disclosure>
 
-      {advancedOptionsActive ? <AdvancedOptions /> : null}
+      {advancedOptionsActive ? (
+        <AdvancedOptions
+          advanceSettings={advanceSettings}
+          setAdvanceSettings={setAdvanceSettings}
+        />
+      ) : null}
       <AudioPlayer
         playerIsOpen={playerIsOpen}
         closePlayerModal={closePlayerModal}
@@ -424,13 +431,9 @@ const PageHeader = () => {
 
 export default PageHeader;
 
-const AdvancedOptions = () => {
-  const [enabledDevnagari, setEnabledDevnagari] = useState(false);
-  const [enabledVerseText, setEnabledVerseText] = useState(false);
-  const [enabledSynomyms, setEnabledSynomyms] = useState(false);
-  const [enabledTranslation, setEnabledTranslation] = useState(false);
-  const [enabledPurport, setEnabledPurport] = useState(false);
-
+const AdvancedOptions = ({ advanceSettings, setAdvanceSettings }) => {
+  const { devnagari, verseText, synonyms, translation, purport } =
+    advanceSettings;
   return (
     <div className="max-w-full mx-auto px-2 sm:hidden transition duration-500 ease-in-out lg:block mt-4 lg:px-8">
       <span className="flex justify-center z-0 rounded-md">
@@ -439,25 +442,30 @@ const AdvancedOptions = () => {
           className="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
-            checked={enabledDevnagari}
-            onChange={setEnabledDevnagari}
+            checked={devnagari}
+            onChange={() =>
+              setAdvanceSettings((prevState) => {
+                return {
+                  ...prevState,
+                  devnagari: !devnagari,
+                };
+              })
+            }
             className={classNames(
-              enabledDevnagari
-                ? "bg-my-orange"
-                : "bg-gray-200 dark:bg-dark-100",
+              devnagari ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
-                enabledDevnagari ? "translate-x-5" : "translate-x-0",
+                devnagari ? "translate-x-5" : "translate-x-0",
                 "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white  shadow transform ring-0 transition ease-in-out duration-200"
               )}
             >
               <span
                 className={classNames(
-                  enabledDevnagari
+                  devnagari
                     ? "opacity-0 ease-out duration-100"
                     : "opacity-100 ease-in duration-200",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -480,7 +488,7 @@ const AdvancedOptions = () => {
               </span>
               <span
                 className={classNames(
-                  enabledDevnagari
+                  devnagari
                     ? "opacity-100 ease-in duration-200"
                     : "opacity-0 ease-out duration-100",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -504,25 +512,30 @@ const AdvancedOptions = () => {
           className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
-            checked={enabledVerseText}
-            onChange={setEnabledVerseText}
+            checked={verseText}
+            onChange={() =>
+              setAdvanceSettings((prevState) => {
+                return {
+                  ...prevState,
+                  verseText: !verseText,
+                };
+              })
+            }
             className={classNames(
-              enabledVerseText
-                ? "bg-my-orange"
-                : "bg-gray-200 dark:bg-dark-100",
+              verseText ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
-                enabledVerseText ? "translate-x-5" : "translate-x-0",
+                verseText ? "translate-x-5" : "translate-x-0",
                 "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
               )}
             >
               <span
                 className={classNames(
-                  enabledVerseText
+                  verseText
                     ? "opacity-0 ease-out duration-100"
                     : "opacity-100 ease-in duration-200",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -545,7 +558,7 @@ const AdvancedOptions = () => {
               </span>
               <span
                 className={classNames(
-                  enabledVerseText
+                  verseText
                     ? "opacity-100 ease-in duration-200"
                     : "opacity-0 ease-out duration-100",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -569,23 +582,30 @@ const AdvancedOptions = () => {
           className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
-            checked={enabledSynomyms}
-            onChange={setEnabledSynomyms}
+            checked={synonyms}
+            onChange={() =>
+              setAdvanceSettings((prevState) => {
+                return {
+                  ...prevState,
+                  synonyms: !synonyms,
+                };
+              })
+            }
             className={classNames(
-              enabledSynomyms ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
+              synonyms ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
-                enabledSynomyms ? "translate-x-5" : "translate-x-0",
+                synonyms ? "translate-x-5" : "translate-x-0",
                 "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
               )}
             >
               <span
                 className={classNames(
-                  enabledSynomyms
+                  synonyms
                     ? "opacity-0 ease-out duration-100"
                     : "opacity-100 ease-in duration-200",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -608,7 +628,7 @@ const AdvancedOptions = () => {
               </span>
               <span
                 className={classNames(
-                  enabledSynomyms
+                  synonyms
                     ? "opacity-100 ease-in duration-200"
                     : "opacity-0 ease-out duration-100",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -627,31 +647,35 @@ const AdvancedOptions = () => {
           </Switch>
           Synonyms
         </button>
-
         <button
           type="button"
           className="-ml-px relative inline-flex items-center px-4 py-2  border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
-            checked={enabledTranslation}
-            onChange={setEnabledTranslation}
+            checked={translation}
+            onChange={() =>
+              setAdvanceSettings((prevState) => {
+                return {
+                  ...prevState,
+                  translation: !translation,
+                };
+              })
+            }
             className={classNames(
-              enabledTranslation
-                ? "bg-my-orange"
-                : "bg-gray-200 dark:bg-dark-100",
+              translation ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
-                enabledTranslation ? "translate-x-5" : "translate-x-0",
+                translation ? "translate-x-5" : "translate-x-0",
                 "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
               )}
             >
               <span
                 className={classNames(
-                  enabledTranslation
+                  translation
                     ? "opacity-0 ease-out duration-100"
                     : "opacity-100 ease-in duration-200",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -674,7 +698,7 @@ const AdvancedOptions = () => {
               </span>
               <span
                 className={classNames(
-                  enabledTranslation
+                  translation
                     ? "opacity-100 ease-in duration-200"
                     : "opacity-0 ease-out duration-100",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -699,23 +723,30 @@ const AdvancedOptions = () => {
           className="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
         >
           <Switch
-            checked={enabledPurport}
-            onChange={setEnabledPurport}
+            checked={purport}
+            onChange={() =>
+              setAdvanceSettings((prevState) => {
+                return {
+                  ...prevState,
+                  purport: !purport,
+                };
+              })
+            }
             className={classNames(
-              enabledPurport ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
+              purport ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
-                enabledPurport ? "translate-x-5" : "translate-x-0",
+                purport ? "translate-x-5" : "translate-x-0",
                 "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
               )}
             >
               <span
                 className={classNames(
-                  enabledPurport
+                  purport
                     ? "opacity-0 ease-out duration-100"
                     : "opacity-100 ease-in duration-200",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -738,7 +769,7 @@ const AdvancedOptions = () => {
               </span>
               <span
                 className={classNames(
-                  enabledPurport
+                  purport
                     ? "opacity-100 ease-in duration-200"
                     : "opacity-0 ease-out duration-100",
                   "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
