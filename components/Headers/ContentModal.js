@@ -60,8 +60,8 @@ export default function ContentModal({ isOpen, close }) {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block w-5/6 max-w-4xl overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-100 shadow-xl rounded-2xl">
-              <div className="flex flex-col p-8 md:hidden">
+            <div className="inline-flex w-5/6 max-w-4xl overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-100 shadow-xl rounded-2xl">
+              <div className="flex flex-col p-8 w-full md:hidden">
                 <p className="text-my-orange py-2 font-semibold">Chapters</p>
                 <Listbox value={selectedChapter} onChange={setSelectedChapter}>
                   <div className="relative mt-1">
@@ -204,9 +204,9 @@ export default function ContentModal({ isOpen, close }) {
                   Lets Go
                 </button>
               </div>
-              <div className="items-center hidden md:flex">
-                <div className="flex justify-center h-full flex-1 p-6">
-                  <div className="flex flex-col">
+              <div className="items-center justify-center hidden md:flex">
+                <div className="flex justify-center h-full flex-1 p-6 gap-2">
+                  <div className="flex flex-col gap-1 my-auto">
                     {data.slice(0, 9).map((chapter) =>
                       selectedChapter === chapter.chapterNumber ? (
                         <button
@@ -239,7 +239,7 @@ export default function ContentModal({ isOpen, close }) {
                       )
                     )}
                   </div>
-                  <div className="">
+                  <div className="flex flex-col gap-1 my-auto">
                     {data.slice(9, 18).map((chapter) =>
                       selectedChapter === chapter.chapterNumber ? (
                         <button
@@ -273,7 +273,7 @@ export default function ContentModal({ isOpen, close }) {
                     )}
                   </div>
                 </div>
-                <div className="flex justify-center h-full flex-1 flex-col bg-light-orange p-6">
+                <div className="flex justify-start h-full flex-1 flex-col bg-light-orange p-6">
                   <p className="text-my-orange py-2 font-semibold">
                     Chapter {selectedChapter}
                   </p>
