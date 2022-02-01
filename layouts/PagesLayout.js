@@ -18,6 +18,7 @@ const PagesLayout = ({ children }) => {
         setAdvanceSettings={setAdvanceSettings}
       />
       <div className="flex-1">
+        {/* to fix footer when no data */}
         {cloneElement(children, { advanceSettings })}
       </div>
       <Footer />
