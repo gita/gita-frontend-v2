@@ -6,7 +6,7 @@ import truncate from "../../utils/truncate";
 const Card = ({ chapter }) => {
   return (
     <Link href={`/chapter/${chapter.id}`}>
-      <div className="flex flex-col bg-white dark:bg-dark-100 shadow-xl  border-2 border-white dark:border-dark-bg mt-6 rounded-md p-6 hover:bg-box-bg dark:hover:bg-dark-bg hover:shadow-none hover:border-box-stroke dark:hover:border-dark-100 hover:border-2 hover:cursor-pointer dark:text-gray-200">
+      <div className="flex flex-col bg-white dark:bg-dark-100 z-30 shadow-xl  border-2 border-white dark:border-dark-bg mt-6 rounded-md p-6 hover:bg-box-bg dark:hover:bg-dark-bg hover:shadow-none hover:border-box-stroke dark:hover:border-dark-100 hover:border-2 hover:cursor-pointer dark:text-gray-200">
         <h3 className="text-my-orange font-bold">
           Chapter {chapter.chapterNumber}
         </h3>

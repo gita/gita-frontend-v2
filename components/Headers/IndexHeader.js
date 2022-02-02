@@ -116,7 +116,7 @@ export default function IndexHeader() {
     router.push(`/search?query=${input}`, undefined, { shallow: true });
   }
   return (
-    <div className="w-full fixed top-0 shadow">
+    <div className="w-full fixed top-0 shadow z-50">
       <Popover className="relative bg-white font-inter dark:bg-dark-100">
         <div className="max-w-full mx-auto  xl:px-24 px-4">
           <div className="flex justify-between items-center  py-6 md:space-x-10">
