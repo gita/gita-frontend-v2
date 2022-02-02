@@ -14,7 +14,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
-  const [enabled, setEnabled] = useState(false);
+  const { devnagari, verseText, synonyms, translation, purport } = advanceSettings;
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
   const [settingsIsOpen, closeSettingsModal, openSettingsModal] = useToggle();
   const [contentModalIsOpen, closeContentModal, openContentModal] = useToggle();
@@ -188,51 +188,51 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
             </div>
 
             <Disclosure.Panel className="lg:hidden">
-              <div className="pt-2 pb-3 space-y-1">
+              <div className="pt-2 pb-1 space-y-1">
                 {/* Current: "bg-indigo-50 border-my-orange text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
                 <a
-                  href="#"
-                  className=" border-my-orange text-black bg-box-bg block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                  href="/"
+                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Home
                 </a>
                 <a
                   href="#"
                   onClick={openContentModal}
-                  className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Content
                 </a>
                 <a
                   href="#"
                   onClick={openSettingsModal}
-                  className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Appearance
                 </a>
                 <a
                   href="#"
                   onClick={openAuthorSettingsModal}
-                  className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Language
                 </a>
                 <a
                   href="#"
-                  className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Notes
                 </a>
                 <a
                   href="#"
-                  className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Bookmark
                 </a>
               </div>
               <Disclosure>
-                <Disclosure.Button className="w-full flex border-t justify-between order-transparent text-gray-600  hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800  pl-3 pr-4 py-2 border-l-4 dark:border-dark-bg text-base font-medium">
-                  Advaced View
+                <Disclosure.Button className="w-full flex border-t-2 border-gray-300 justify-between text-black dark:text-gray-400 pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900">
+                  Advanced View
                   <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                 </Disclosure.Button>
                 <Disclosure.Panel className="text-gray-500 z-50">
@@ -250,10 +250,17 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                       </Switch.Label>
                     </span>
                     <Switch
-                      checked={enabled}
-                      onChange={setEnabled}
+                      checked={devnagari}
+                      onChange={() =>
+                        setAdvanceSettings((prevState) => {
+                          return {
+                            ...prevState,
+                            devnagari: !devnagari,
+                          };
+                        })
+                      }
                       className={classNames(
-                        enabled
+                        devnagari
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
@@ -262,7 +269,7 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                       <span
                         aria-hidden="true"
                         className={classNames(
-                          enabled ? "translate-x-5" : "translate-x-0",
+                          devnagari ? "translate-x-5" : "translate-x-0",
                           "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
                         )}
                       />
@@ -283,10 +290,17 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                       </Switch.Label>
                     </span>
                     <Switch
-                      checked={enabled}
-                      onChange={setEnabled}
+                      checked={verseText}
+                      onChange={() =>
+                        setAdvanceSettings((prevState) => {
+                          return {
+                            ...prevState,
+                            verseText: !verseText,
+                          };
+                        })
+                      }
                       className={classNames(
-                        enabled
+                        verseText
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
@@ -295,7 +309,7 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                       <span
                         aria-hidden="true"
                         className={classNames(
-                          enabled ? "translate-x-5" : "translate-x-0",
+                          verseText ? "translate-x-5" : "translate-x-0",
                           "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
                         )}
                       />
@@ -316,10 +330,17 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                       </Switch.Label>
                     </span>
                     <Switch
-                      checked={enabled}
-                      onChange={setEnabled}
+                      checked={synonyms}
+                      onChange={() =>
+                        setAdvanceSettings((prevState) => {
+                          return {
+                            ...prevState,
+                            synonyms: !synonyms,
+                          };
+                        })
+                      }
                       className={classNames(
-                        enabled
+                        synonyms
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
@@ -328,7 +349,7 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                       <span
                         aria-hidden="true"
                         className={classNames(
-                          enabled ? "translate-x-5" : "translate-x-0",
+                          synonyms ? "translate-x-5" : "translate-x-0",
                           "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
                         )}
                       />
@@ -344,14 +365,21 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                         className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
-                        Transition
+                        Translation
                       </Switch.Label>
                     </span>
                     <Switch
-                      checked={enabled}
-                      onChange={setEnabled}
+                      checked={translation}
+                      onChange={() =>
+                        setAdvanceSettings((prevState) => {
+                          return {
+                            ...prevState,
+                            translation: !translation,
+                          };
+                        })
+                      }
                       className={classNames(
-                        enabled
+                        translation
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
@@ -360,7 +388,7 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                       <span
                         aria-hidden="true"
                         className={classNames(
-                          enabled ? "translate-x-5" : "translate-x-0",
+                          translation ? "translate-x-5" : "translate-x-0",
                           "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
                         )}
                       />
@@ -380,10 +408,17 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                       </Switch.Label>
                     </span>
                     <Switch
-                      checked={enabled}
-                      onChange={setEnabled}
+                      checked={purport}
+                      onChange={() =>
+                        setAdvanceSettings((prevState) => {
+                          return {
+                            ...prevState,
+                            purport: !purport,
+                          };
+                        })
+                      }
                       className={classNames(
-                        enabled
+                        purport
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
@@ -392,7 +427,7 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
                       <span
                         aria-hidden="true"
                         className={classNames(
-                          enabled ? "translate-x-5" : "translate-x-0",
+                          purport ? "translate-x-5" : "translate-x-0",
                           "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
                         )}
                       />
