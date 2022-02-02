@@ -5,3 +5,10 @@ export const loadSettings = () => async (dispatch) => {
     type: "t.LOAD_SETTINGS",
   });
 };
+
+export const editSettings = (value) => async (dispatch) => {
+  dispatch({
+    type: t.EDIT_SETTINGS,
+    payLoad: value,
+  });
+};

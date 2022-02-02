@@ -2,10 +2,6 @@ import React, { Fragment, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 /* This example requires Tailwind CSS v2.0+ */
 const navigation = {
   main: [
@@ -379,7 +375,10 @@ const Footer = () => {
             </footer>
           </div>
           <div className="flex justify-end lg:w-1/5">
-            <a href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita" target="_blank">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
+              target="_blank"
+            >
               <img
                 src="/google_play_download.svg"
                 alt="Bhagavad Gita"
@@ -515,7 +514,10 @@ const Footer = () => {
           </p>
         </div>
         <div className="flex lg:w-1/5 justify-end">
-          <a href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita" target="_blank">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
+            target="_blank"
+          >
             <img
               src="/google_play_download.svg"
               alt="Bhagavad Gita"

@@ -1,10 +1,8 @@
 import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { DotsVerticalIcon } from "@heroicons/react/solid";
+import classNames from "../../utils/classNames";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 const Bookmarkcard = () => {
   return (
     <div className="flex items-baseline mt-4 gap-2 font-inter border-b border-gray-300 pb-4">
