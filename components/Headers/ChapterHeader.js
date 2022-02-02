@@ -6,10 +6,8 @@ import Settings from "../Shared/Settings";
 import DarkModeToggle from "./DarkModeToggle";
 import ContentModal from "./ContentModal";
 import useToggle from "../../hooks/useToggle";
+import classNames from "../../utils/classNames";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 const ChapterHeader = () => {
   const [settingsIsOpen, closeSettingsModal, openSettingsModal] = useToggle();
   const [contentModalIsOpen, closeContentModal, openContentModal] = useToggle();

@@ -1,20 +1,14 @@
 /* This IndexHeader requires Tailwind CSS v2.0+ */
 import { Fragment, useState } from "react";
 import { Popover, Transition, Menu, Disclosure } from "@headlessui/react";
-import {
-  ChartBarIcon,
-  CursorClickIcon,
-  DocumentReportIcon,
-  MenuIcon,
-  RefreshIcon,
-  ShieldCheckIcon,
-  ViewGridIcon,
-  XIcon,
-} from "@heroicons/react/outline";
+import { DocumentReportIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import DarkModeToggle from "./DarkModeToggle";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
+import classNames from "../../utils/classNames";
+
 const chapters = [
   {
     name: "Chapter 1",
@@ -112,10 +106,6 @@ const mobileNav = [
   { name: "Quote", href: "#", current: false },
   { name: "About Geeta", href: "#", current: false },
 ];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function IndexHeader() {
   const [input, setInput] = useState("");

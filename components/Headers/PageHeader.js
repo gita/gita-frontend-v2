@@ -9,10 +9,8 @@ import Settings from "../Shared/Settings";
 import AuthorSettings from "../Shared/Author";
 import DarkModeToggle from "./DarkModeToggle";
 import useToggle from "../../hooks/useToggle";
+import classNames from "../../utils/classNames";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
   const [enabled, setEnabled] = useState(false);
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
