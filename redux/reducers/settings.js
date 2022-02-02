@@ -9,6 +9,7 @@ const intialState = {
 };
 
 const settings = (prevState = intialState, action) => {
+  console.log(action.type);
   switch (action.type) {
     case t.LOAD_SETTINGS:
       return {
