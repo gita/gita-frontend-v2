@@ -2,9 +2,9 @@ import * as t from "../Types";
 
 const intialState = {
   loading: false,
-  fontSize: "small", //small, large
+  fontSize: "small", //small, large todo: change to exact values
   fontFamily: "proxima", //Tisa Pro, Georgia, Avenir, Proxima Nova
-  spacing: "small", //small, medium, large
+  spacing: "small", //small, medium, large todo: change to exact values
   bg: "gray", //bg-light-bg, bg-yellow-bg, bg-dark-bg
 };
 
