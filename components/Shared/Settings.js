@@ -12,7 +12,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
   useEffect(() => {
     setAppearnceSettings(state);
   }, []);
-  console.log(state);
+  
   return (
     <div className="bg-gray-300">
       <Transition appear show={settingsIsOpen} as={Fragment}>
