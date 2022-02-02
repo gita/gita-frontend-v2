@@ -109,8 +109,8 @@ const chapters = [
 ];
 
 const mobileNav = [
-  { name: "Quote", href: "#", current: false },
-  { name: "About Geeta", href: "#", current: false },
+  { name: "Quotes", href: "/quotes", current: false },
+  { name: "About Geeta", href: "/about", current: false },
 ];
 
 function classNames(...classes) {
@@ -272,7 +272,7 @@ export default function IndexHeader() {
                   <a href="#" className="font-bold text-3xl">
                     <form
                       onSubmit={handleSearch}
-                      className="px-3 py-2 border-l-4 border-white text-sm font-medium relative mx-auto text-gray-600"
+                      className="px-3 py-2 text-sm font-medium relative mx-auto text-gray-600"
                     >
                       <button
                         type="submit"
@@ -314,7 +314,7 @@ export default function IndexHeader() {
                   <nav className="grid gap-y-8">
                     <nav className="space-y-1" aria-label="Sidebar">
                       <Disclosure>
-                        <Disclosure.Button className="w-full flex justify-between px-3 py-2 border-l-4 border-white dark:border-dark-bg text-left dark:text-white font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900">
+                        <Disclosure.Button className="w-full flex justify-between px-3 py-2 text-left dark:text-white font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900">
                           Chapters
                           <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                         </Disclosure.Button>
@@ -324,14 +324,14 @@ export default function IndexHeader() {
                               <a
                                 key={item.name}
                                 href={item.href}
-                                className="-m-3 p-1 flex items-start hover:bg-gray-100 hover:cursor-pointer"
+                                className="-m-3 p-1 flex items-start hover:bg-yellow-100 hover:cursor-pointer dark:hover:bg-yellow-100 dark:focus:bg-yellow-100 hover:rounded-md"
                               >
                                 <item.icon
                                   className="flex-shrink-0 h-6 w-6 text-my-orange"
                                   aria-hidden="true"
                                 />
                                 <div className="ml-4">
-                                  <p className="text-base font-medium text-gray-900 dark:text-white">
+                                  <p className="text-base font-medium text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
                                     {item.name}
                                   </p>
                                 </div>
@@ -346,9 +346,9 @@ export default function IndexHeader() {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? "bg-yellow-100 dark:bg-dark-100 border-l-4 border-my-orange text-gray-900 dark:text-white"
-                              : "hover:bg-yellow-100 dark:bg-dark-100 hover:border-l-4 hover:border-my-orange dark:text-white hover:text-gray-900",
-                            "flex items-center mb-2 px-3 py-2 border-l-4 border-white dark:border-dark-bg font-medium"
+                              ? "bg-yellow-100 border-l-4 border-my-orange text-gray-900 dark:text-white"
+                              : "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
+                            "flex items-center mb-2 px-3 py-2 font-medium"
                           )}
                           aria-current={item.current ? "page" : undefined}
                         >
