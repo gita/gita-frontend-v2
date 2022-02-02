@@ -2,13 +2,14 @@ import * as t from "../Types";
 
 const intialState = {
   loading: false,
-  fontSize: "14",
-  fontFamily: "proxima",
-  spacing: "2",
-  bg: "white",
+  fontSize: "small", //small, large
+  fontFamily: "proxima", //Tisa Pro, Georgia, Avenir, Proxima Nova
+  spacing: "small", //small, medium, large
+  bg: "gray", //bg-light-bg, bg-yellow-bg, bg-dark-bg
 };
 
 const settings = (prevState = intialState, action) => {
+  console.log(action);
   switch (action.type) {
     case t.LOAD_SETTINGS:
       return {
@@ -18,8 +19,7 @@ const settings = (prevState = intialState, action) => {
     case t.EDIT_SETTINGS:
       return {
         ...prevState,
-        fontsize: action.payload.fontsize,
-        fontFamily: action.payload.fontFamily,
+        ...action.payLoad,
       };
     default: {
       return { ...prevState };
