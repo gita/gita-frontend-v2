@@ -1,7 +1,17 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
+import { editSettings } from "../../redux/actions/settings";
 
 const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
+  const state = useSelector((state) => state.settings);
+  const dispatch = useDispatch();
+  const [appearenceSettings, setAppearnceSettings] = useState();
+
+  useEffect(() => {
+    setAppearnceSettings(state);
+  }, []);
+  console.log(state);
   return (
     <div className="bg-gray-300">
       <Transition appear show={settingsIsOpen} as={Fragment}>
@@ -57,12 +67,22 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                 <span className="relative mt-4 font-bold z-0 text-center w-full inline-flex shadow-sm rounded-md">
                   <button
                     type="button"
-                    className="relative  w-1/2 items-center align-center px-2 py-6 text-center rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-bold text-gray-500 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                    onClick={() =>
+                      setAppearnceSettings((prevState) => {
+                        return { ...prevState, fontSize: "small" };
+                      })
+                    }
+                    className="relative w-1/2 items-center align-center px-2 py-6 text-center rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-bold text-gray-500 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                   >
                     <h2 className="text-center">-Aa</h2>
                   </button>
                   <button
                     type="button"
+                    onClick={() =>
+                      setAppearnceSettings((prevState) => {
+                        return { ...prevState, fontSize: "large" };
+                      })
+                    }
                     className="-ml-px relative w-1/2  items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-bold text-gray-500 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                   >
                     <h2 className="text-center text-xl">+Aa</h2>
@@ -95,12 +115,22 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                   <span className="relative z-0 w-full inline-flex shadow-sm rounded-md">
                     <button
                       type="button"
+                      onClick={() =>
+                        setAppearnceSettings((prevState) => {
+                          return { ...prevState, spacing: "large" };
+                        })
+                      }
                       className="relative text-center w-1/3 items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                     >
                       <img src="/text-narrow.svg" className="w-4 mx-auto" />
                     </button>
                     <button
                       type="button"
+                      onClick={() =>
+                        setAppearnceSettings((prevState) => {
+                          return { ...prevState, spacing: "medium" };
+                        })
+                      }
                       className="-ml-px relative text-center w-1/3 items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                     >
                       <img src="/text-medium.png" className="w-4 mx-auto" />
@@ -108,6 +138,11 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
 
                     <button
                       type="button"
+                      onClick={() =>
+                        setAppearnceSettings((prevState) => {
+                          return { ...prevState, spacing: "small" };
+                        })
+                      }
                       className="-ml-px relative text-center w-1/3 items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                     >
                       <img src="/text-wide.svg" className="w-4 mx-auto" />
@@ -118,16 +153,31 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                 <div className="mt-4 gap-6 flex">
                   <button
                     type="button"
+                    onClick={() =>
+                      setAppearnceSettings((prevState) => {
+                        return { ...prevState, bg: "bg-light-bg" };
+                      })
+                    }
                     className="inline-flex items-center p-5 border border-transparent rounded-full shadow-sm text-white bg-light-bg  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:border-gray-700"
                   ></button>
 
                   <button
                     type="button"
+                    onClick={() =>
+                      setAppearnceSettings((prevState) => {
+                        return { ...prevState, bg: "bg-yellow-bg" };
+                      })
+                    }
                     className="inline-flex items-center p-5 border border-transparent rounded-full shadow-sm text-white bg-yellow-bg  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:border-gray-700"
                   ></button>
 
                   <button
                     type="button"
+                    onClick={() =>
+                      setAppearnceSettings((prevState) => {
+                        return { ...prevState, bg: "bg-dark-bg" };
+                      })
+                    }
                     className="inline-flex items-center p-5 border border-transparent rounded-full shadow-sm text-white bg-dark-bg  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:border-gray-700"
                   ></button>
                 </div>
@@ -143,6 +193,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
 
                   <button
                     type="button"
+                    onClick={() => dispatch(editSettings(appearenceSettings))}
                     className="text-center w-1/2 items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-my-orange hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
                   >
                     Apply Settings
