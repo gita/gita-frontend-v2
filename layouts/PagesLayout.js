@@ -16,7 +16,7 @@ const PagesLayout = ({ children }) => {
       id: 1,
       language: "english",
     },
-    authorId: {
+    author: {
       id: 1,
       name: "Swami Ramsukhdas",
     },
