@@ -11,8 +11,14 @@ import DarkModeToggle from "./DarkModeToggle";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 
-const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
-  const { devnagari, verseText, synonyms, translation, purport } = advanceSettings;
+const PageHeader = ({
+  advanceSettings,
+  setAdvanceSettings,
+  languageSettings,
+  setLanguageSettings,
+}) => {
+  const { devnagari, verseText, synonyms, translation, purport } =
+    advanceSettings;
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
   const [settingsIsOpen, closeSettingsModal, openSettingsModal] = useToggle();
   const [contentModalIsOpen, closeContentModal, openContentModal] = useToggle();
@@ -455,6 +461,8 @@ const PageHeader = ({ advanceSettings, setAdvanceSettings }) => {
         closeSettingsModal={closeSettingsModal}
       />
       <AuthorSettings
+        languageSettings={languageSettings}
+        setLanguageSettings={setLanguageSettings}
         authorSettingsIsOpen={authorSettingsIsOpen}
         closeAuthorSettingsModal={closeAuthorSettingsModal}
       />

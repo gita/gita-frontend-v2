@@ -10,16 +10,29 @@ const PagesLayout = ({ children }) => {
     translation: true,
     purport: true,
   });
+  const [languageSettings, setLanguageSettings] = useState({
+    isCommentarySourceEnabled: false,
+    language: {
+      id: 1,
+      language: "english",
+    },
+    author: {
+      id: 1,
+      name: "Swami Ramsukhdas",
+    },
+  });
 
   return (
     <div className="dark:bg-dark-bg min-h-screen flex flex-col justify-between">
       <PageHeader
         advanceSettings={advanceSettings}
         setAdvanceSettings={setAdvanceSettings}
+        languageSettings={languageSettings}
+        setLanguageSettings={setLanguageSettings}
       />
       <div className="flex-1">
         {/* to fix footer when no data */}
-        {cloneElement(children, { advanceSettings })}
+        {cloneElement(children, { advanceSettings, languageSettings })}
       </div>
       <Footer />
     </div>
