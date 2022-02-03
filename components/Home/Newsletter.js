@@ -7,6 +7,7 @@ const Newsletter = ({ handleSubscribe }) => {
     <div className="mt-14 relative z-0">
       <Image
         src="/newsbg.png"
+        alt="BG Newsletter Image"
         layout="fill"
         objectFit="cover"
         objectPosition="center"

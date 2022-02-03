@@ -8,6 +8,7 @@ const Banner = () => {
       <div className="max-w-full mx-auto xl:mx-24 z-10 relative">
         <Image
           src="/banner2.png"
+          alt="BG Home Banner Image"
           layout="fill"
           objectFit="cover"
           objectPosition="center"

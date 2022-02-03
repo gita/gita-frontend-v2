@@ -6,6 +6,7 @@ export default function QuotesBanner() {
     <div className="max-w-full mx-auto xl:mx-24 z-10 relative">
       <Image
         src="/quotes-bg.png"
+        alt="BG Quotes Banner Image"
         layout="fill"
         objectFit="cover"
         objectPosition="center"

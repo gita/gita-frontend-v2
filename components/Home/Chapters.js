@@ -7,6 +7,7 @@ const Chapters = ({ chapters }) => {
     <div className="my-14 relative">
       <Image
         src="/bg-verses-fixed.png"
+        alt="BG Chapters Image"
         layout="fill"
         objectFit="cover"
         objectPosition="center"

@@ -7,6 +7,7 @@ export default function AboutBanner() {
       <div className="max-w-full mx-auto xl:mx-24 z-10 relative">
         <Image
           src="/about-gita.png"
+          alt="BG About Banner Image"
           layout="fill"
           objectFit="cover"
           objectPosition="center"
