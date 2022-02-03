@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
 import PagesLayout from "../../layouts/PagesLayout";
@@ -10,6 +11,7 @@ import {
   SvgChevronLeft,
   SvgChevronRight,
 } from "../../components/svgs";
+import classNames from "../../utils/classNames";
 
 export async function getStaticPaths() {
   const client = new ApolloClient({
@@ -68,6 +70,8 @@ export async function getStaticProps({ params }) {
   };
 }
 const Verse = ({ verseData, advanceSettings, languageSettings }) => {
+  const state = useSelector((state) => state.settings);
+  const { fontSize, fontFamily, spacing, bg } = state;
   const {
     id,
     text,
@@ -105,29 +109,49 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
             </div>
           </Link>
         )}
-        <h1 className="font-extrabold text-3xl dark:text-gray-50">
+        <h1
+          className={classNames(
+            fontSize === "large" ? "text-4xl" : "text-3xl",
+            "font-extrabold dark:text-gray-50"
+          )}
+        >
           BG {chapterNumber}.{verseNumber}
         </h1>
         {devnagari && (
-          <p className="font-dev text-my-orange mt-4 text-2xl max-w-md mx-auto">
+          <p
+            className={classNames(
+              fontSize === "large" ? "text-3xl" : "text-2xl",
+              "font-dev text-my-orange mt-4 max-w-md mx-auto"
+            )}
+          >
             {text}
           </p>
         )}
         {verseText && (
-          <p className="mt-4 text-xl max-w-md mx-auto dark:text-gray-50">
+          <p
+            className={classNames(
+              fontSize === "large" ? "text-2xl" : "text-xl",
+              "mt-4 max-w-md mx-auto dark:text-gray-50"
+            )}
+          >
             {transliteration}
           </p>
         )}
         {synonyms && (
-          <p className="mt-4 text-xl mx-auto dark:text-gray-50">
+          <p
+            className={classNames(
+              fontSize === "large" ? "text-2xl max-w-lg" : "text-xl max-w-md",
+              "mt-4 mx-auto dark:text-gray-50"
+            )}
+          >
             {wordMeanings}
           </p>
         )}
         {(translation || purport) && (
           <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
         )}
-        {translation && <Translation />}
-        {purport && <Commentary />}
+        {translation && <Translation fontSize={fontSize}/>}
+        {purport && <Commentary fontSize={fontSize}/>}
       </div>
     </div>
   );
