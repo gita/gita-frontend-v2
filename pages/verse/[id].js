@@ -67,7 +67,7 @@ export async function getStaticProps({ params }) {
     },
   };
 }
-const Verse = ({ verseData, advanceSettings }) => {
+const Verse = ({ verseData, advanceSettings, languageSettings }) => {
   const {
     id,
     text,
@@ -78,7 +78,10 @@ const Verse = ({ verseData, advanceSettings }) => {
   } = verseData;
   const { devnagari, verseText, synonyms, translation, purport } =
     advanceSettings;
-  console.log(advanceSettings);
+
+  console.log("advanceSettings: ", advanceSettings);
+  console.log("LanguageSettings: ", languageSettings);
+
   const previousVerseId = id - 1;
   const nextVerseId = id + 1;
 

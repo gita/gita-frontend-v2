@@ -27,7 +27,7 @@ const Author = ({
     setLanguage(languageSettings.language);
     setAuthor(languageSettings.author);
   }, []);
-  console.log("LanguageSettings: ", languageSettings);
+
   function handleSubmit() {
     setLanguageSettings({
       isCommentarySourceEnabled: isVerseCommentarySourceEnabled,
