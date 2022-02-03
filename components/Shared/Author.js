@@ -1,8 +1,14 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition, Switch, Listbox } from "@headlessui/react";
 import { SelectorIcon } from "@heroicons/react/solid";
-
-const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
+import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
+import authorTranslations from "../../constant/authorTranslations.json"; //todo: use graphql api to fetch
+const Author = ({
+  authorSettingsIsOpen,
+  closeAuthorSettingsModal,
+  languageSettings,
+  setLanguageSettings,
+}) => {
   const [isVerseCommentarySourceEnabled, setIsVerseCommentarySourceEnabled] =
     useState(false);
   const [
@@ -11,22 +17,25 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
   ] = useState(false);
   const [isVerseTranslationSourceEnabled, setIsVerseTranslationSourceEnabled] =
     useState(false);
-  const languages = [
-    { name: "Sanskrit" },
-    { name: "English" },
-    { name: "Hindi" },
-    { name: "Marathi" },
-  ];
-  const [languageSelected, setLanguageSelected] = useState(languages[0]);
-  const authorTranslations = [
-    { name: "Swami Chinmayananda (Hindi)" },
-    { name: "Loren Ipsum Verzeo (English)" },
-    { name: "Loren Ipsum Verzeo (Sanskrit)" },
-    { name: "Loren Ipsum Verzeo (Marathi)" },
-  ];
-  const [authorTranslationSelected, setAuthorTranslationSelected] = useState(
-    authorTranslations[0]
-  );
+  const [language, setLanguage] = useState();
+  const [author, setAuthor] = useState({ id: 0, name: "" });
+
+  useEffect(() => {
+    setIsVerseCommentarySourceEnabled(
+      languageSettings.isCommentarySourceEnabled
+    );
+    setLanguage(languageSettings.language);
+    setAuthor(languageSettings.author);
+  }, []);
+  console.log("LanguageSettings: ", languageSettings);
+  function handleSubmit() {
+    setLanguageSettings({
+      isCommentarySourceEnabled: isVerseCommentarySourceEnabled,
+      language: language,
+      author: author,
+    });
+    closeAuthorSettingsModal();
+  }
 
   return (
     <div>
@@ -122,14 +131,11 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                   className="mb-6"
                   hidden={!isVerseTransliterationLanguageEnabled}
                 >
-                  <Listbox
-                    value={languageSelected}
-                    onChange={setLanguageSelected}
-                  >
+                  <Listbox value={language} onChange={setLanguage}>
                     <div className="relative">
                       <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
-                        <span className="block truncate text-black dark:text-white">
-                          {languageSelected.name}
+                        <span className="block truncate text-black capitalize dark:text-white">
+                          {language?.language}
                         </span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                           <SelectorIcon
@@ -144,21 +150,21 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md max-h-40 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
-                          {languages.map((language, languageIdx) => (
+                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md max-h-40 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-50 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
+                          {languages.map((language) => (
                             <Listbox.Option
-                              key={languageIdx}
+                              key={language.id}
                               className={({ active }) =>
                                 `${
                                   active
                                     ? "text-white bg-my-orange"
                                     : "text-black dark:text-white"
                                 }
-                                cursor-pointer select-none relative py-2 px-4`
+                                cursor-pointer select-none relative py-2 px-4 capitalize`
                               }
                               value={language}
                             >
-                              {language.name}
+                              {language.language}
                             </Listbox.Option>
                           ))}
                         </Listbox.Options>
@@ -194,14 +200,11 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                 </div>
 
                 <div hidden={!isVerseTranslationSourceEnabled}>
-                  <Listbox
-                    value={authorTranslationSelected}
-                    onChange={setAuthorTranslationSelected}
-                  >
+                  <Listbox value={author} onChange={setAuthor}>
                     <div className="relative">
                       <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
                         <span className="block truncate text-black dark:text-white">
-                          {authorTranslationSelected.name}
+                          {author?.name}
                         </span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                           <SelectorIcon
@@ -217,24 +220,22 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
                         leaveTo="opacity-0"
                       >
                         <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md max-h-24 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
-                          {authorTranslations.map(
-                            (authorTranslation, authorTranslationIdx) => (
-                              <Listbox.Option
-                                key={authorTranslationIdx}
-                                className={({ active }) =>
-                                  `${
-                                    active
-                                      ? "text-white bg-my-orange"
-                                      : "text-black dark:text-white"
-                                  }
-                                cursor-pointer select-none relative py-2 px-4`
+                          {authorTranslations.map((author) => (
+                            <Listbox.Option
+                              key={author.id}
+                              className={({ active }) =>
+                                `${
+                                  active
+                                    ? "text-white bg-my-orange"
+                                    : "text-black dark:text-white"
                                 }
-                                value={authorTranslation}
-                              >
-                                {authorTranslation.name}
-                              </Listbox.Option>
-                            )
-                          )}
+                                cursor-pointer select-none relative py-2 px-4`
+                              }
+                              value={author}
+                            >
+                              {author.name}
+                            </Listbox.Option>
+                          ))}
                         </Listbox.Options>
                       </Transition>
                     </div>
@@ -252,6 +253,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }) => {
 
                   <button
                     type="button"
+                    onClick={() => handleSubmit()}
                     className="text-center w-1/2 items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-my-orange hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
                   >
                     Apply Settings
