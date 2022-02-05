@@ -81,7 +81,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
   const { devnagari, verseText, synonyms, translation, purport } =
     advanceSettings;
 
-  const [styles] = useMyStyles();
+  const styles = useMyStyles();
   console.log(styles);
   console.log("advanceSettings: ", advanceSettings);
   console.log("LanguageSettings: ", languageSettings);

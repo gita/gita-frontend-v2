@@ -28,6 +28,6 @@ function useMyStyles() {
     }
   }, [fontSize]);
 
-  return [styles];
+  return styles;
 }
 export default useMyStyles;
