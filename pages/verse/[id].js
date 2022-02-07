@@ -101,12 +101,12 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
   console.log(styles);
   console.log("advanceSettings: ", advanceSettings);
   console.log("LanguageSettings: ", languageSettings);
-  const currentTranslation = gitaTranslationsByVerseId.node.filter(
+  const currentTranslation = gitaTranslationsByVerseId.nodes.filter(
     (translation) =>
       translation.authorId === languageSettings.translationAuthor.id &&
       translation.languageId === languageSettings.language.id
   );
-  const currentCommentary = gitaCommentariesByVerseId.node.filter(
+  const currentCommentary = gitaCommentariesByVerseId.nodes.filter(
     (translation) =>
       translation.authorId === languageSettings.commentaryAuthor.id &&
       translation.languageId === languageSettings.language.id
