@@ -58,6 +58,20 @@ export async function getStaticProps({ params }) {
           verseNumber
           wordMeanings
           chapterNumber
+          gitaTranslationsByVerseId {
+            nodes {
+              description
+              authorId
+              languageId
+            }
+          }
+          gitaCommentariesByVerseId {
+            nodes {
+              description
+              authorId
+              languageId
+            }
+          }
         }
       }
     `,
@@ -77,6 +91,8 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
     verseNumber,
     wordMeanings,
     chapterNumber,
+    gitaTranslationsByVerseId,
+    gitaCommentariesByVerseId,
   } = verseData;
   const { devnagari, verseText, synonyms, translation, purport } =
     advanceSettings;
@@ -85,7 +101,16 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
   console.log(styles);
   console.log("advanceSettings: ", advanceSettings);
   console.log("LanguageSettings: ", languageSettings);
-
+  const currentTranslation = gitaTranslationsByVerseId.node.filter(
+    (translation) =>
+      translation.authorId === languageSettings.translationAuthor.id &&
+      translation.languageId === languageSettings.language.id
+  );
+  const currentCommentary = gitaCommentariesByVerseId.node.filter(
+    (translation) =>
+      translation.authorId === languageSettings.commentaryAuthor.id &&
+      translation.languageId === languageSettings.language.id
+  );
   const previousVerseId = id - 1;
   const nextVerseId = id + 1;
 
@@ -150,8 +175,8 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
         {(translation || purport) && (
           <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
         )}
-        {translation && <Translation />}
-        {purport && <Commentary />}
+        {translation && <Translation translationData={currentTranslation} />}
+        {purport && <Commentary commentaryData={currentCommentary} />}
       </div>
     </div>
   );
