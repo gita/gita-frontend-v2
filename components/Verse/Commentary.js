@@ -7,7 +7,7 @@ export default function Commentary({ commentaryData }) {
         Commentary
       </h1>
       <p className="mt-4 mx-auto text-left dark:text-gray-50">
-        {commentaryData.description}
+        {commentaryData?.description}
       </p>
     </div>
   );
