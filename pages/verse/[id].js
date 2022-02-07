@@ -111,6 +111,9 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
       translation.authorId === languageSettings.commentaryAuthor.id &&
       translation.languageId === languageSettings.language.id
   );
+  console.log(gitaCommentariesByVerseId);
+  console.log(currentCommentary);
+
   const previousVerseId = id - 1;
   const nextVerseId = id + 1;
 
