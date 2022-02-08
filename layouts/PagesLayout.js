@@ -16,12 +16,12 @@ const PagesLayout = ({ children }) => {
       language: "english",
     },
     translationAuthor: {
-      id: 1,
-      name: "Swami Ramsukhdas",
+      id: 16,
+      name: "Swami Sivananda",
     },
     commentaryAuthor: {
-      id: 1,
-      name: "Swami Ramsukhdas",
+      id: 16,
+      name: "Swami Sivananda",
     },
   });
 
