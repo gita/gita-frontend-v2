@@ -101,18 +101,30 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
   console.log(styles);
   console.log("advanceSettings: ", advanceSettings);
   console.log("LanguageSettings: ", languageSettings);
-  const currentTranslation = gitaTranslationsByVerseId.nodes.filter(
-    (translation) =>
-      translation.authorId === languageSettings.translationAuthor.id &&
-      translation.languageId === languageSettings.language.id
+  const currentTranslation = gitaTranslationsByVerseId.nodes.reduce(
+    (acc, translation) => {
+      if (
+        translation.authorId === languageSettings.translationAuthor.id &&
+        translation.languageId === languageSettings.language.id
+      ) {
+        return translation;
+      }
+      return acc;
+    },
+    {}
   );
-  const currentCommentary = gitaCommentariesByVerseId.nodes.filter(
-    (translation) =>
-      translation.authorId === languageSettings.commentaryAuthor.id &&
-      translation.languageId === languageSettings.language.id
+  const currentCommentary = gitaCommentariesByVerseId.nodes.reduce(
+    (acc, commentary) => {
+      if (
+        commentary.authorId === languageSettings.commentaryAuthor.id &&
+        commentary.languageId === languageSettings.language.id
+      ) {
+        return commentary;
+      }
+      return acc;
+    },
+    {}
   );
-  console.log(gitaCommentariesByVerseId);
-  console.log(currentCommentary);
 
   const previousVerseId = id - 1;
   const nextVerseId = id + 1;
