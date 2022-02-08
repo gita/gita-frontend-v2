@@ -10,13 +10,13 @@ const Author = ({
   setLanguageSettings,
 }) => {
   const [isVerseCommentarySourceEnabled, setIsVerseCommentarySourceEnabled] =
-    useState(false);
+    useState(true);
   const [
     isVerseTransliterationLanguageEnabled,
     setIsVerseTransliterationLanguageEnabled,
-  ] = useState(false);
+  ] = useState(true);
   const [isVerseTranslationSourceEnabled, setIsVerseTranslationSourceEnabled] =
-    useState(false);
+    useState(true);
   const [language, setLanguage] = useState();
   const [translationAuthor, setTranslationAuthor] = useState({
     id: 0,
@@ -26,15 +26,15 @@ const Author = ({
 
   useEffect(() => {
     setLanguage(languageSettings.language);
-    setTranslationAuthor(languageSettings.author);
+    setTranslationAuthor(languageSettings.translationAuthor);
     setCommentaryAuthor(languageSettings.commentaryAuthor);
   }, []);
 
   function handleSubmit() {
     setLanguageSettings({
-      commentaryAuthor: commentaryAuthor,
       language: language,
       translationAuthor: translationAuthor,
+      commentaryAuthor: commentaryAuthor,
     });
     closeAuthorSettingsModal();
   }
@@ -102,7 +102,7 @@ const Author = ({
                     />
                   </Switch>
                 </div>
-                <div hidden={!isVerseCommentarySourceEnabled}>
+                <div className="mb-4" hidden={!isVerseCommentarySourceEnabled}>
                   <Listbox
                     value={commentaryAuthor}
                     onChange={setCommentaryAuthor}
@@ -174,7 +174,7 @@ const Author = ({
                   </Switch>
                 </div>
                 <div
-                  className="mb-6"
+                  className="mb-4"
                   hidden={!isVerseTransliterationLanguageEnabled}
                 >
                   <Listbox value={language} onChange={setLanguage}>
