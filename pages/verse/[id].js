@@ -96,9 +96,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
   } = verseData;
   const { devnagari, verseText, synonyms, translation, purport } =
     advanceSettings;
-
   const styles = useMyStyles();
-  console.log(styles);
   console.log("advanceSettings: ", advanceSettings);
   console.log("LanguageSettings: ", languageSettings);
   const currentTranslation = gitaTranslationsByVerseId.nodes.reduce(
@@ -152,7 +150,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
         <h1
           className={classNames(
             "font-extrabold dark:text-gray-50",
-            styles.heading
+            styles.fontSize.heading
           )}
         >
           BG {chapterNumber}.{verseNumber}
@@ -161,7 +159,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
           <p
             className={classNames(
               "font-dev text-my-orange mt-4 max-w-md mx-auto",
-              styles.subHeading1
+              styles.fontSize.subHeading1
             )}
           >
             {text}
@@ -171,7 +169,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
           <p
             className={classNames(
               "mt-4 max-w-md mx-auto dark:text-gray-50",
-              styles.subHeading2
+              styles.fontSize.subHeading2
             )}
           >
             {transliteration}
@@ -181,7 +179,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
           <p
             className={classNames(
               "mt-4 mx-auto dark:text-gray-50",
-              styles.subHeading2
+              styles.fontSize.subHeading2
             )}
           >
             {wordMeanings}

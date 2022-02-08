@@ -93,7 +93,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                       appearenceSettings?.fontSize === "large"
                         ? "text-my-orange"
                         : "text-gray-500 dark:text-gray-200",
-                      "relative w-1/2 items-center align-center px-2 py-6 text-center rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-bold hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      "relative w-1/2 items-center align-center px-2 py-6 text-center rounded-r-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-bold hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                     )}
                   >
                     <h2 className="text-center text-xl">+Aa</h2>
@@ -151,7 +151,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                         appearenceSettings?.spacing === "medium"
                           ? "text-my-orange"
                           : "text-gray-700 dark:text-gray-200",
-                        "-ml-px relative text-center w-1/3 items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium  hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                        "-ml-px relative text-center w-1/3 items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium  hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       )}
                     >
                       <img src="/text-medium.png" className="w-4 mx-auto" />
@@ -168,7 +168,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                         appearenceSettings?.spacing === "small"
                           ? "text-my-orange"
                           : "text-gray-700 dark:text-gray-200",
-                        "-ml-px relative text-center w-1/3 items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium  hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                        "-ml-px relative text-center w-1/3 items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium  hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       )}
                     >
                       <img src="/text-wide.svg" className="w-4 mx-auto" />

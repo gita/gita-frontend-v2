@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 
 function DarkModeToggle() {
   const { theme, setTheme, themes } = useTheme();
-  console.log(theme, themes);
+
   return (
     <button
       aria-label="Toggle Dark Mode"

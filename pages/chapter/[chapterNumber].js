@@ -5,9 +5,10 @@ import Link from "next/link";
 import {
   SortAscendingIcon,
   SortDescendingIcon,
-  UsersIcon,
   ChevronDownIcon,
 } from "@heroicons/react/solid";
+import useMyStyles from "../../hooks/useMyStyles";
+import classNames from "../../utils/classNames";
 import VerseList from "../../components/Chapter/VerseList";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import {
@@ -93,6 +94,7 @@ export default function Chapter({ chapterData }) {
   const [viewNavigation, setViewNavigation] = useState(false);
   const [verseId, setVerseId] = useState(null);
   const [isAscSorted, setisAscSorted] = useState(true);
+  const styles = useMyStyles();
 
   return (
     <div>
@@ -116,18 +118,37 @@ export default function Chapter({ chapterData }) {
             </div>
           </Link>
         )}
-        <h3 className="text-my-orange font-medium uppercase">
+        <h3
+          className={classNames(
+            "text-my-orange font-medium uppercase",
+            styles.fontSize.subHeading2
+          )}
+        >
           Chapter {chapterNumber}
         </h3>
-        <h1 className="font-extrabold text-3xl dark:text-white my-8">
+        <h1
+          className={classNames(
+            "font-extrabold dark:text-white my-8",
+            styles.fontSize.heading
+          )}
+        >
           {nameTranslated}
         </h1>
-        <p className="text-left dark:text-white mt-3">{chapterSummary}</p>
+        <p
+          className={classNames("text-left dark:text-white mt-3", styles.fontSize.para)}
+        >
+          {chapterSummary}
+        </p>
       </div>
 
       <div className="max-w-5xl font-inter mx-auto text-center  px-4 sm:px-6">
         <div className="flex items-center justify-between border-t py-6 border-b border-gray-200">
-          <div className="font-extrabold dark:text-white">
+          <div
+            className={classNames(
+              "font-extrabold dark:text-white",
+              styles.fontSize.para
+            )}
+          >
             {versesCount} Verses
           </div>
           <div className="mt-1 flex rounded-md shadow-sm relative">
@@ -138,7 +159,10 @@ export default function Chapter({ chapterData }) {
                 name="verse-id"
                 id="verse-id"
                 value={verseId}
-                className="focus:ring-my-orange border focus:border-my-orange block w-full rounded-none rounded-l-md pl-2 sm:text-sm border-gray-300"
+                className={classNames(
+                  "focus:ring-my-orange border focus:border-my-orange block w-full rounded-none rounded-l-md pl-2 border-gray-300",
+                  styles.fontSize.para
+                )}
                 placeholder="Go To Verse"
                 onClick={() => setViewNavigation(!viewNavigation)}
               />
@@ -166,7 +190,7 @@ export default function Chapter({ chapterData }) {
                   aria-hidden="true"
                 />
               )}
-              <span>Sort</span>
+              <span className={styles.fontSize.para}>Sort</span>
 
               <ChevronDownIcon
                 className="h-5 w-5 text-gray-400 dark:text-gray-50"
