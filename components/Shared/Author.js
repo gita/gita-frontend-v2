@@ -2,7 +2,7 @@ import React, { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition, Switch, Listbox } from "@headlessui/react";
 import { SelectorIcon } from "@heroicons/react/solid";
 import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
-import authorTranslations from "../../constant/authorTranslations.json"; //todo: use graphql api to fetch
+import authors from "../../constant/authors.json"; //todo: use graphql api to fetch
 const Author = ({
   authorSettingsIsOpen,
   closeAuthorSettingsModal,
@@ -10,29 +10,31 @@ const Author = ({
   setLanguageSettings,
 }) => {
   const [isVerseCommentarySourceEnabled, setIsVerseCommentarySourceEnabled] =
-    useState(false);
+    useState(true);
   const [
     isVerseTransliterationLanguageEnabled,
     setIsVerseTransliterationLanguageEnabled,
-  ] = useState(false);
+  ] = useState(true);
   const [isVerseTranslationSourceEnabled, setIsVerseTranslationSourceEnabled] =
-    useState(false);
+    useState(true);
   const [language, setLanguage] = useState();
-  const [author, setAuthor] = useState({ id: 0, name: "" });
+  const [translationAuthor, setTranslationAuthor] = useState({
+    id: 0,
+    name: "",
+  });
+  const [commentaryAuthor, setCommentaryAuthor] = useState({ id: 0, name: "" });
 
   useEffect(() => {
-    setIsVerseCommentarySourceEnabled(
-      languageSettings.isCommentarySourceEnabled
-    );
     setLanguage(languageSettings.language);
-    setAuthor(languageSettings.author);
+    setTranslationAuthor(languageSettings.translationAuthor);
+    setCommentaryAuthor(languageSettings.commentaryAuthor);
   }, []);
 
   function handleSubmit() {
     setLanguageSettings({
-      isCommentarySourceEnabled: isVerseCommentarySourceEnabled,
       language: language,
-      author: author,
+      translationAuthor: translationAuthor,
+      commentaryAuthor: commentaryAuthor,
     });
     closeAuthorSettingsModal();
   }
@@ -100,6 +102,51 @@ const Author = ({
                     />
                   </Switch>
                 </div>
+                <div className="mb-4" hidden={!isVerseCommentarySourceEnabled}>
+                  <Listbox
+                    value={commentaryAuthor}
+                    onChange={setCommentaryAuthor}
+                  >
+                    <div className="relative">
+                      <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
+                        <span className="block truncate text-black dark:text-white">
+                          {commentaryAuthor?.name}
+                        </span>
+                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                          <SelectorIcon
+                            className="w-5 h-5 text-gray-400"
+                            aria-hidden="true"
+                          />
+                        </span>
+                      </Listbox.Button>
+                      <Transition
+                        as={Fragment}
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md max-h-24 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
+                          {authors.map((author) => (
+                            <Listbox.Option
+                              key={author.id}
+                              className={({ active }) =>
+                                `${
+                                  active
+                                    ? "text-white bg-my-orange"
+                                    : "text-black dark:text-white"
+                                }
+                                cursor-pointer select-none relative py-2 px-4`
+                              }
+                              value={author}
+                            >
+                              {author.name}
+                            </Listbox.Option>
+                          ))}
+                        </Listbox.Options>
+                      </Transition>
+                    </div>
+                  </Listbox>
+                </div>
 
                 <div className="flex py-2 justify-between items-center mb-2">
                   <p className="text-base text-black dark:text-white">
@@ -126,9 +173,8 @@ const Author = ({
                     />
                   </Switch>
                 </div>
-
                 <div
-                  className="mb-6"
+                  className="mb-4"
                   hidden={!isVerseTransliterationLanguageEnabled}
                 >
                   <Listbox value={language} onChange={setLanguage}>
@@ -200,11 +246,14 @@ const Author = ({
                 </div>
 
                 <div hidden={!isVerseTranslationSourceEnabled}>
-                  <Listbox value={author} onChange={setAuthor}>
+                  <Listbox
+                    value={translationAuthor}
+                    onChange={setTranslationAuthor}
+                  >
                     <div className="relative">
                       <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
                         <span className="block truncate text-black dark:text-white">
-                          {author?.name}
+                          {translationAuthor?.name}
                         </span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                           <SelectorIcon
@@ -220,7 +269,7 @@ const Author = ({
                         leaveTo="opacity-0"
                       >
                         <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md max-h-24 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
-                          {authorTranslations.map((author) => (
+                          {authors.map((author) => (
                             <Listbox.Option
                               key={author.id}
                               className={({ active }) =>

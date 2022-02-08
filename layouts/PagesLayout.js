@@ -11,14 +11,17 @@ const PagesLayout = ({ children }) => {
     purport: true,
   });
   const [languageSettings, setLanguageSettings] = useState({
-    isCommentarySourceEnabled: false,
     language: {
       id: 1,
       language: "english",
     },
-    author: {
-      id: 1,
-      name: "Swami Ramsukhdas",
+    translationAuthor: {
+      id: 16,
+      name: "Swami Sivananda",
+    },
+    commentaryAuthor: {
+      id: 16,
+      name: "Swami Sivananda",
     },
   });
 
