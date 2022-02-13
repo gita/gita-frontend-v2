@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 function useMyStyles() {
   const [styles, setStyles] = useState({
     fontSize: {
-      heading: "text-3xl",
-      subHeading1: "text-2xl",
-      subHeading2: "text-xl",
-      para: "text-md",
+      heading: "text-4xl",
+      subHeading1: "text-3xl",
+      subHeading2: "text-2xl",
+      para: "text-xl",
     },
     lineHeight: "leading-none",
     backgroundColor: "bg-light-bg",
@@ -19,10 +19,10 @@ function useMyStyles() {
         return {
           ...prevStyles,
           fontSize: {
-            heading: "text-3xl",
-            subHeading1: "text-2xl",
-            subHeading2: "text-xl",
-            para: "text-md",
+            heading: "text-4xl",
+            subHeading1: "text-3xl",
+            subHeading2: "text-2xl",
+            para: "text-xl",
           },
         };
       });
@@ -32,10 +32,10 @@ function useMyStyles() {
         return {
           ...prevStyles,
           fontSize: {
-            heading: "text-2xl",
-            subHeading1: "text-xl",
-            subHeading2: "text-md",
-            para: "text-sm",
+            heading: "text-3xl",
+            subHeading1: "text-2xl",
+            subHeading2: "text-xl",
+            para: "text-md",
           },
         };
       });
