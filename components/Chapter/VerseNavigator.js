@@ -1,4 +1,7 @@
 import React from "react";
+import useMyStyles from "../../hooks/useMyStyles";
+import classNames from "../../utils/classNames";
+import { useSelector } from "react-redux";
 
 function VerseNavigator({
   verseCount,
@@ -7,20 +10,29 @@ function VerseNavigator({
   setViewNavigation,
   setVerseId,
 }) {
+  const styles = useMyStyles();
+  const { fontSize } = useSelector((state) => state.settings);
+
   return (
     <div
-      className={`flex absolute top-10 w-full lg:w-[120%] bg-white dark:bg-dark-bg p-3 flex-wrap border border-gray-200 dark:border-dark-100 shadow rounded ${
-        !viewNavigation && "hidden"
-      }`}
+      className={classNames(
+        fontSize === "large" ? "top-12" : "top-10",
+        `flex absolute w-full bg-white dark:bg-dark-bg p-3 flex-wrap border border-gray-200 dark:border-dark-100 shadow rounded ${
+          !viewNavigation && "hidden"
+        }`
+      )}
     >
       <div
         onClick={() => {
           setViewNavigation(false);
           setVerseId("");
         }}
-        className={`block h-10 w-10 p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
-          !currentVerse && "bg-my-orange text-white"
-        }`}
+        className={classNames(
+          `flex items-center justify-center min-w-[2.5rem] p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+            !currentVerse && "bg-my-orange text-white"
+          }`,
+          styles.fontSize.para
+        )}
       >
         {"All"}
       </div>
@@ -33,9 +45,12 @@ function VerseNavigator({
               setVerseId(index + 1);
             }}
             key={index}
-            className={`block h-10 w-10 p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
-              index + 1 === currentVerse && "bg-my-orange text-white"
-            }`}
+            className={classNames(
+              `flex items-center justify-center min-w-[2.5rem] p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+                index + 1 === currentVerse && "bg-my-orange text-white"
+              }`,
+              styles.fontSize.para
+            )}
           >
             {index + 1}
           </div>

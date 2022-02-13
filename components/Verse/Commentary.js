@@ -1,12 +1,16 @@
 import React from "react";
+import useMyStyles from "../../hooks/useMyStyles";
+import classNames from "../../utils/classNames";
 
 export default function Commentary({ commentaryData }) {
+  const styles = useMyStyles();
+
   return (
     <div>
-      <h1 className="font-extrabold text-3xl mt-4 dark:text-gray-50">
+      <h1 className={classNames("font-extrabold mt-4 dark:text-gray-50", styles.fontSize.heading)}>
         Commentary
       </h1>
-      <p className="mt-4 mx-auto text-justify dark:text-gray-50">
+      <p className={classNames("mt-4 mx-auto text-justify dark:text-gray-50", styles.fontSize.para)}>
         {commentaryData?.description}
       </p>
     </div>

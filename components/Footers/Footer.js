@@ -65,9 +65,6 @@ const navigation = {
 };
 
 const Footer = () => {
-  useEffect(() => {
-    console.log(open);
-  });
   return (
     <div className="w-full mt-24 bottom-0 bg-white dark:bg-dark-100 font-inter border-gray-200 border-t border-b">
       <div className="py-1 lg:py-8">
