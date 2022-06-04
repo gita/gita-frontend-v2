@@ -453,6 +453,8 @@ const PageHeader = ({
       <AudioPlayer
         playerIsOpen={playerIsOpen}
         closePlayerModal={closePlayerModal}
+        chapterNumber = {2}
+        verseNumber = {3}
       />
       <ContentModal isOpen={contentModalIsOpen} close={closeContentModal} />
 

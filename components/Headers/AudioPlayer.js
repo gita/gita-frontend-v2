@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
+export default function AudioPlayer({ playerIsOpen, closePlayerModal, chapterNumber,
+  verseNumber }) {
   const refs = useRef([]);
   const play = () => {
     if (refs.current[1].paused) {
@@ -52,7 +53,7 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
         ref={(element) => {
           refs.current[1] = element;
         }}
-        src="/data_verse_1.mp3"
+        src={`https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${verseNumber}.mp3`}
         onEnded={() => endFunction()}
       ></audio>
       <Transition appear show={playerIsOpen} as={Fragment}>
