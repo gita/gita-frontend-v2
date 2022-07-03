@@ -113,6 +113,10 @@ export default function IndexHeader() {
 
   function handleSearch(e) {
     e.preventDefault();
+   
+    if(input?.trim().length <= 0) {
+      return;
+    }
     router.push(`/search?query=${input}`, undefined, { shallow: true });
   }
   return (
