@@ -210,7 +210,7 @@ export default function IndexHeader() {
                 </a>
               </Link>
             </Popover.Group>
-            <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
+         <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
               <form
                 onSubmit={handleSearch}
                 className="pt-2 relative flex text-gray-600"
@@ -245,6 +245,7 @@ export default function IndexHeader() {
               </form>
               <DarkModeToggle />
             </div>
+          
           </div>
         </div>
         <Transition
