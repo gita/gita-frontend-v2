@@ -7,9 +7,9 @@ const HomeLayout = ({ children }) => {
   const dispatch = useDispatch();
   const settings = useSelector((state) => state.settings);
 
-  useEffect(() => {
-    console.log(settings);
-  });
+  // useEffect(() => {
+  //   console.log(settings);
+  // });
 
   return (
     <div className="dark:bg-dark-bg">
