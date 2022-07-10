@@ -35,6 +35,7 @@ export async function getStaticPaths() {
       }
     `,
   });
+  
   const chapters = data.allGitaChapters.nodes;
   const paths = chapters.map(({ chapterNumber }) => {
     return {
