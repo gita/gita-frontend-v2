@@ -154,7 +154,7 @@ const PageHeader = ({
                     </Link>
                   </div>
                 </div>
-          {/*      <div className="flex-1 flex items-center justify-start pr-2  lg:ml-6 lg:justify-end">
+                <div className="flex-1 flex items-center justify-start pr-2  lg:ml-6 lg:justify-end">
                   <div className="max-w-lg w-full lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
                       Search
@@ -177,7 +177,7 @@ const PageHeader = ({
                   </div>
                   <DarkModeToggle />
                 </div>
-                */}
+                
 {/* Start- */}
 
                 <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
