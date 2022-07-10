@@ -64,12 +64,12 @@ export default function Search() {
           </div>
         ) : (
           <div className={`py-7 ${isSearchLoading ? "animate-pulse" : ""}`}>
-            <p className="text-my-orange font-extrabold text-4xl">{isSearchLoading ? "Loading":"No Results"}</p>
+            <p className="text-my-orange font-extrabold text-4xl">{isSearchLoading ? "Loading" : "No Results"}</p>
             <p className="text-gray-500 font-normal text-sm">
-            {!isSearchLoading &&(
-              "Sorry, we couldn’t find the page you’re looking for."
-            )}
-              
+              {!isSearchLoading && (
+                "Sorry, we couldn’t find the page you’re looking for."
+              )}
+
             </p>
           </div>
         )}
