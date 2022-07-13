@@ -11,6 +11,16 @@ import DarkModeToggle from "./DarkModeToggle";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 
+const [input, setInput] = useState("");
+
+function handleSearch(e) {
+  e.preventDefault();
+ 
+  if(input?.trim().length <= 0) {
+    return;
+  }
+  router.push(`/search?query=${input}`, undefined, { shallow: true });
+}
 const PageHeader = ({
   advanceSettings,
   setAdvanceSettings,
@@ -33,7 +43,11 @@ const PageHeader = ({
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
 
+  
+  
   return (
+   
+  
     <>
       <Disclosure
         as="nav"
@@ -179,7 +193,7 @@ const PageHeader = ({
                 </div>
                 
 {/* Start- */}
-
+ 
                 <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
               <form
                 onSubmit={handleSearch}
@@ -210,7 +224,9 @@ const PageHeader = ({
                   value={input}
                   onChange={(e) => {
                     setInput(e.target.value);
+                    console.log(e);
                   }}
+                   
                 />
               </form>
               <DarkModeToggle />
@@ -509,7 +525,7 @@ const PageHeader = ({
   );
 };
 
-export default PageHeader;
+export default  PageHeader;
 
 const AdvancedOptions = ({ advanceSettings, setAdvanceSettings }) => {
   const { devnagari, verseText, synonyms, translation, purport } =
