@@ -10,7 +10,7 @@ const navigation = {
     { name: "Donate", href: "https://opencollective.com/the-gita-initiative" },
     { name: "Press", href: "" },
     { name: "API", href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3" },
-    { name: "Contact Us", href: " https://bhagavadgita.io/contact/" },
+    { name: "Contact Us", href: "mailto:admin@bhagavadgita.io" },
   ],
   social: [
     {
