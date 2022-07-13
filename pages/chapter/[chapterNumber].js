@@ -12,7 +12,7 @@ import VerseList from "../../components/Chapter/VerseList";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { SvgChapterBackground } from "../../components/svgs";
 import VerseNavigator from "../../components/Chapter/VerseNavigator";
-import ChapterNavigator from "../../components/Chapter/ChapterNavigator";
+import PageNavigator from "../../components/Chapter/PageNavigator";
 
 export async function getStaticPaths() {
   const client = new ApolloClient({
@@ -102,7 +102,11 @@ export default function Chapter({ chapterData }) {
         <SvgChapterBackground className="relative text-gray-300 w-full lg:w-min dark:text-black text-opacity-25 dark:text-opacity-25 rounded-full m-auto left-0 right-0 bottom-0 lg:top-12" />
       </div>
 
-      <ChapterNavigator chapterData={chapterData} />
+      <PageNavigator
+        pageNumber={chapterNumber}
+        pageCount={18}
+        route="chapter"
+      />
 
       <section className="max-w-5xl font-inter py-24 mx-auto text-center px-4 sm:px-6 relative">
         <h3
