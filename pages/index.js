@@ -48,7 +48,6 @@ export default function Home({ chapters }) {
     } else return false;
   }
 
-
   return (
     <div className="font-inter min-h-screen dark:bg-dark-bg">
       <Head>
