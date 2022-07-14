@@ -35,3 +35,7 @@ yarn-error.log*
 
 # NPM
 package-lock.json
+
+#env
+.env
+X_API_KEY:"gita-api-key!"

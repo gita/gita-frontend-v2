@@ -12,7 +12,7 @@
 
 <p align="center">
 
-Code for the Bhagavad gita website, which is an website built for Gita readers by Gita readers.
+Code for the Bhagavad gita website, which is a website built for Gita readers by Gita readers.
 
 <br />
 
@@ -35,7 +35,7 @@ git clone https://github.com/gita/bg-frontend
 
 ... or [downloading source code](https://github.com/gita/bg-frontend/archive/refs/heads/main.zip) code as a zip archive.
 
-Once downloaded, open the terminal in the project directory, and install dependencies with [Yarn](https://classic.yarnpkg.com/en/docs/install) package manager::
+Once downloaded, open the terminal in the project directory, and install dependencies with [Yarn](https://classic.yarnpkg.com/en/docs/install) package manager:
 
 ```
 yarn install
