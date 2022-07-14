@@ -12,16 +12,7 @@ import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 import { useRouter } from "next/router";
 
-const [input, setInput] = useState("");
 
-function handleSearch(e) {
-  e.preventDefault();
- 
-  if(input?.trim().length <= 0) {
-    return;
-  }
-  router.push(`/search?query=${input}`, undefined, { shallow: true });
-}
 const PageHeader = ({
   advanceSettings,
   setAdvanceSettings,
