@@ -11,6 +11,16 @@ import DarkModeToggle from "./DarkModeToggle";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 
+const [input, setInput] = useState("");
+
+function handleSearch(e) {
+  e.preventDefault();
+ 
+  if(input?.trim().length <= 0) {
+    return;
+  }
+  router.push(`/search?query=${input}`, undefined, { shallow: true });
+}
 const PageHeader = ({
   advanceSettings,
   setAdvanceSettings,
@@ -33,7 +43,11 @@ const PageHeader = ({
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
 
+  
+  
   return (
+   
+  
     <>
       <Disclosure
         as="nav"
@@ -177,6 +191,47 @@ const PageHeader = ({
                   </div>
                   <DarkModeToggle />
                 </div>
+                
+{/* Start- */}
+ 
+                <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
+              <form
+                onSubmit={handleSearch}
+                className="pt-2 relative flex text-gray-600"
+              >
+                <button
+                  type="submit"
+                  className="absolute left-3 top-0 mt-5 mr-4"
+                >
+                  <svg
+                    className="text-gray-600 dark:text-gray-200 h-4 w-4 fill-current"
+                    version="1.1"
+                    id="Capa_1"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 56.966 56.966"
+                    width="512px"
+                    height="512px"
+                  >
+                    <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                  </svg>
+                </button>
+                <input
+                  className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-100 h-10 px-8 w-auto rounded-lg text-sm focus:outline-none outline-none dark:text-white dark:placeholder-white focus:border-my-orange"
+                  type="search"
+                  name="search"
+                  placeholder="Search"
+                  value={input}
+                  onChange={(e) => {
+                    setInput(e.target.value);
+                    console.log(e);
+                  }}
+                   
+                />
+              </form>
+              <DarkModeToggle />
+            </div>
+{/* End */}
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}
                   <Disclosure.Button className="inline-flex items-center justify-start p-2 rounded-md text-gray-400 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
@@ -470,7 +525,7 @@ const PageHeader = ({
   );
 };
 
-export default PageHeader;
+export default  PageHeader;
 
 const AdvancedOptions = ({ advanceSettings, setAdvanceSettings }) => {
   const { devnagari, verseText, synonyms, translation, purport } =
