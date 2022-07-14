@@ -12,6 +12,16 @@ import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 import { useRouter } from "next/router";
 
+const [input, setInput] = useState("");
+
+function handleSearch(e) {
+  e.preventDefault();
+ 
+  if(input?.trim().length <= 0) {
+    return;
+  }
+  router.push(`/search?query=${input}`, undefined, { shallow: true });
+}
 const PageHeader = ({
   advanceSettings,
   setAdvanceSettings,
@@ -43,7 +53,11 @@ const PageHeader = ({
     router.push(`/search?query=${input}`, undefined, { shallow: true });
   }
 
+  
+  
   return (
+   
+  
     <>
       <Disclosure
         as="nav"
@@ -203,8 +217,6 @@ const PageHeader = ({
                   </div>
                   <DarkModeToggle />
                 </div>
-
-
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}
                   <Disclosure.Button className="inline-flex items-center justify-start p-2 rounded-md text-gray-400 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
@@ -498,7 +510,7 @@ const PageHeader = ({
   );
 };
 
-export default PageHeader;
+export default  PageHeader;
 
 const AdvancedOptions = ({ advanceSettings, setAdvanceSettings }) => {
   const { devnagari, verseText, synonyms, translation, purport } =
