@@ -10,6 +10,8 @@ import AuthorSettings from "../Shared/Author";
 import DarkModeToggle from "./DarkModeToggle";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
+import { useRouter } from "next/router";
+
 
 const PageHeader = ({
   advanceSettings,
@@ -28,12 +30,25 @@ const PageHeader = ({
     closeAuthorSettingsModal,
     openAuthorSettingsModal,
   ] = useToggle();
-
+  const [input, setInput] = useState("");
+  const router = useRouter();
   const toggleClass = () => {
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
+  function handleSearch(e) {
+    e.preventDefault();
 
+    if (input?.trim().length <= 0) {
+      return;
+    }
+    router.push(`/search?query=${input}`, undefined, { shallow: true });
+  }
+
+  
+  
   return (
+   
+  
     <>
       <Disclosure
         as="nav"
@@ -161,18 +176,34 @@ const PageHeader = ({
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <SearchIcon
-                          className="h-5 w-5 text-gray-400 dark:text-gray-50"
-                          aria-hidden="true"
-                        />
+
                       </div>
-                      <input
-                        id="search"
-                        name="search"
-                        className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white dark:bg-dark-100 placeholder-gray-500 dark:placeholder-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-my-orange focus:border-my-orange sm:text-sm"
-                        placeholder="Search"
-                        type="search"
-                      />
+                      <form
+                        onSubmit={handleSearch}
+                        className="pt-2 relative flex text-gray-600"
+                      >
+                        <button
+                          type="submit"
+                          className="absolute left-3 top-0 mt-4 mr-4"
+                        >
+                          <SearchIcon
+                            className="h-5 w-5 text-gray-400 dark:text-gray-50"
+                            aria-hidden="true"
+                          />
+                        </button>
+
+                        <input
+                          id="search"
+                          name="search"
+                          className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white dark:bg-dark-100 placeholder-gray-500 dark:placeholder-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-my-orange focus:border-my-orange sm:text-sm"
+                          placeholder="Search"
+                          type="search"
+                          value={input}
+                          onChange={(e) => {
+                            setInput(e.target.value);
+                          }}
+                        />
+                      </form>
                     </div>
                   </div>
                   <DarkModeToggle />
@@ -470,7 +501,7 @@ const PageHeader = ({
   );
 };
 
-export default PageHeader;
+export default  PageHeader;
 
 const AdvancedOptions = ({ advanceSettings, setAdvanceSettings }) => {
   const { devnagari, verseText, synonyms, translation, purport } =

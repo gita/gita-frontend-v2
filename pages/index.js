@@ -47,9 +47,6 @@ export default function Home({ chapters }) {
       return true;
     } else return false;
   }
-  // useEffect(() => {
-  //   console.log(settings);
-  // });
 
   return (
     <div className="font-inter min-h-screen dark:bg-dark-bg">
