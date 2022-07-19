@@ -1,7 +1,9 @@
 import React, { Fragment, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { connect } from "react-redux";
 
-export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
+
+ function AudioPlayer({ playerIsOpen, closePlayerModal,currentVerse }) {
   const refs = useRef([]);
   const play = () => {
     if (refs.current[1].paused) {
@@ -52,7 +54,7 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
         ref={(element) => {
           refs.current[1] = element;
         }}
-        src="/data_verse_1.mp3"
+        src={`https://gita.github.io/gita/data/verse_recitation/${currentVerse?.chapterNumber}/${currentVerse?.verseNumber}.mp3`}
         onEnded={() => endFunction()}
       ></audio>
       <Transition appear show={playerIsOpen} as={Fragment}>
@@ -95,7 +97,7 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
                   as="h3"
                   className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50"
                 >
-                  BG 1.1{" "}
+                  BG {currentVerse?.chapterNumber}.{currentVerse?.verseNumber}{" "}
                 </Dialog.Title>
                 <div className="mt-2 border-b pb-8">
                   <p className="text-sm text-gray-500 dark:text-gray-200">
@@ -170,3 +172,12 @@ export default function AudioPlayer({ playerIsOpen, closePlayerModal }) {
     </div>
   );
 }
+
+
+const mapStateToProps = (state)=> { 
+  return{
+    currentVerse : state?.settings?.currentVerse
+  }
+}
+
+export default connect(mapStateToProps)(AudioPlayer)

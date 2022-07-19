@@ -13,6 +13,10 @@ import Translation from "../../components/Verse/Translation";
 import Commentary from "../../components/Verse/Commentary";
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
+import { useDispatch } from "react-redux";
+import { setCurrentverse } from "../../redux/actions/settings";
+import {useEffect} from "react"
+
 export async function getStaticPaths() {
   const client = new ApolloClient({
     uri: "https://gql.bhagavadgita.io/graphql",
@@ -94,11 +98,21 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
     gitaTranslationsByVerseId,
     gitaCommentariesByVerseId,
   } = verseData;
+
+  const dispatch = useDispatch();
+  
   const { devnagari, verseText, synonyms, translation, purport } =
     advanceSettings;
   const styles = useMyStyles();
-  console.log("advanceSettings: ", advanceSettings);
-  console.log("LanguageSettings: ", languageSettings);
+
+  useEffect(() => {
+    dispatch(setCurrentverse({
+      transliteration:transliteration,
+      verseNumber: verseNumber,
+      chapterNumber: chapterNumber,
+    }))
+  },[transliteration,verseNumber,chapterNumber])
+
   const currentTranslation = gitaTranslationsByVerseId.nodes.reduce(
     (acc, translation) => {
       if (
