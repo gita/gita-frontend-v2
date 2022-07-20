@@ -55,10 +55,21 @@ import Link from "next/link";
       refs.current[0].src = "/pause.svg";
 
       refs.current[1].play();
+     
     
   
     }
   },[currentVerse?.id] )
+
+  //below use effect is not working 
+  useEffect( ()=>{
+    if(playerIsOpen && !(refs.current[1].paused))
+    {
+      refs.current[0].src = "/pause.svg";
+
+
+    }
+  } ,[])
   const prevId = currentVerse?.id-1;
   const nextId = currentVerse?.id+1;
 
