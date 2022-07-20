@@ -10,7 +10,6 @@ const intialState = {
 };
 
 const settings = (prevState = intialState, action) => {
-  console.log(action.payLoad);
   switch (action.type) {
     case t.LOAD_SETTINGS:
       return {

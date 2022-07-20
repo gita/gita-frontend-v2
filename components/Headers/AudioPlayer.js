@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { connect } from "react-redux";
+import Link from "next/link";
 
 
  function AudioPlayer({ playerIsOpen, closePlayerModal,currentVerse }) {
@@ -47,6 +48,20 @@ import { connect } from "react-redux";
       document.body.removeChild(scriptTag);
     };
   }, []);
+  useEffect( ()=>{
+    if(playerIsOpen){
+  
+
+      refs.current[0].src = "/pause.svg";
+
+      refs.current[1].play();
+    
+  
+    }
+  },[currentVerse?.id] )
+  const prevId = currentVerse?.id-1;
+  const nextId = currentVerse?.id+1;
+
   return (
     <div>
       <audio
@@ -95,19 +110,26 @@ import { connect } from "react-redux";
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-bg shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50"
+                  className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50 "
                 >
                   BG {currentVerse?.chapterNumber}.{currentVerse?.verseNumber}{" "}
                 </Dialog.Title>
                 <div className="mt-2 border-b pb-8">
                   <p className="text-sm text-gray-500 dark:text-gray-200">
-                    dhṛitarāśhtra uvācha dharma-kṣhetre kuru-kṣhetre samavetā
-                    yuyutsavaḥ māmakāḥ pāṇḍavāśhchaiva kimakurvata sañjaya
+                  {currentVerse?.transliteration}
                   </p>
                 </div>
 
                 <div className="flex justify-between mt-4 px-4">
+                  <Link href={`/verse/${prevId}`}>
+                  <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50  " >
                   <img src="/rewind.svg" />
+
+
+                  </div>
+
+
+                  </Link>
                   <img
                     id="play"
                     ref={(element) => {
@@ -117,7 +139,16 @@ import { connect } from "react-redux";
                     src="/play.svg"
                     onClick={play}
                   />
+                  <Link href={`/verse/${nextId}`}>
+                  <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50">
                   <img src="/forward.svg" />
+                  
+
+
+                  </div>
+
+
+                  </Link>
                 </div>
                 <div
                   className=" flex items-center w-full h-2 mx-auto my-3 cursor-pointer"
