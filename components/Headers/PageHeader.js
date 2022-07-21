@@ -110,7 +110,7 @@ const PageHeader = ({
                       <img className="w-6 h-6 mb-1" src="/language.svg" />
                       Language
                     </button>
-                    <Link href="/verse-parallel">
+                    {/*<Link href="/verse-parallel">
                       <a
                         href="#"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
@@ -118,7 +118,7 @@ const PageHeader = ({
                         <img className="w-6 h-6 mb-1" src="/Parellel.svg" />
                         Parallel Mode
                       </a>
-                    </Link>
+                    </Link> */}
 
                     <button
                       type="button"
