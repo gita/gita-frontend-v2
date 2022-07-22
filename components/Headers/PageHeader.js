@@ -12,7 +12,6 @@ import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 import { useRouter } from "next/router";
 
-
 const PageHeader = ({
   advanceSettings,
   setAdvanceSettings,
@@ -44,11 +43,7 @@ const PageHeader = ({
     router.push(`/search?query=${input}`, undefined, { shallow: true });
   }
 
-  
-  
   return (
-   
-  
     <>
       <Disclosure
         as="nav"
@@ -145,28 +140,31 @@ const PageHeader = ({
                       <img className="w-6 h-6 mb-1" src="/Advanced.svg" />
                       Advanced View
                     </button>
-
-                    <Link href="/notes">
-                      <a
-                        href="#"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img className="w-6 h-6 mb-1" src="/notes.svg" />
-                        Notes
-                      </a>
-                    </Link>
-                    <Link href="/bookmark">
-                      <a
-                        href="#"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img
-                          className="w-6 h-6 mb-1"
-                          src="/bookmark-header.svg"
-                        />
-                        Bookmark
-                      </a>
-                    </Link>
+                    {process.env.NODE_ENV !== "development" ? null : (
+                      <Link href="/notes">
+                        <a
+                          href="#"
+                          className="border-transparent text-current flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        >
+                          <img className="w-6 h-6 mb-1" src="/notes.svg" />
+                          Notes
+                        </a>
+                      </Link>
+                    )}
+                    {process.env.NODE_ENV !== "development" ? null : (
+                      <Link href="/bookmark">
+                        <a
+                          href="#"
+                          className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        >
+                          <img
+                            className="w-6 h-6 mb-1"
+                            src="/bookmark-header.svg"
+                          />
+                          Bookmark
+                        </a>
+                      </Link>
+                    )}
                   </div>
                 </div>
                 <div className="flex-1 flex items-center justify-start pr-2  lg:ml-6 lg:justify-end">
@@ -175,9 +173,7 @@ const PageHeader = ({
                       Search
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-
-                      </div>
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
                       <form
                         onSubmit={handleSearch}
                         className="pt-2 relative flex text-gray-600"
@@ -501,7 +497,7 @@ const PageHeader = ({
   );
 };
 
-export default  PageHeader;
+export default PageHeader;
 
 const AdvancedOptions = ({ advanceSettings, setAdvanceSettings }) => {
   const { devnagari, verseText, synonyms, translation, purport } =
