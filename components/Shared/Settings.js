@@ -100,13 +100,13 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                   </button>
                 </span>
 
-                <div className="mt-4">
+                {/* <div className="mt-4">
                   <span className="relative z-0 w-full inline-flex shadow-sm rounded-md">
                     <button
                       type="button"
                       className="relative text-center w-1/3 items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                     >
-                      Years
+   `                   Years
                     </button>
                     <button
                       type="button"
@@ -122,6 +122,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                     </button>
                   </span>
                 </div>
+                */}
                 <div className="mt-4">
                   <span className="relative z-0 w-full inline-flex shadow-sm rounded-md">
                     <button
@@ -138,7 +139,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                         "relative text-center w-1/3 items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium  hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       )}
                     >
-                      <img src="/text-narrow.svg" className="w-4 mx-auto" />
+                      <img src="/text-wide.svg" className="w-4 mx-auto" />
                     </button>
                     <button
                       type="button"
@@ -154,7 +155,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                         "-ml-px relative text-center w-1/3 items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium  hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       )}
                     >
-                      <img src="/text-medium.png" className="w-4 mx-auto" />
+                      <img src="/text-medium.png" className="w-4  mx-auto dark:fill-current dark:text-my-orange" />
                     </button>
 
                     <button
@@ -171,7 +172,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                         "-ml-px relative text-center w-1/3 items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium  hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       )}
                     >
-                      <img src="/text-wide.svg" className="w-4 mx-auto" />
+                      <img src="/text-narrow.svg" className="w-4 mx-auto " />
                     </button>
                   </span>
                 </div>
