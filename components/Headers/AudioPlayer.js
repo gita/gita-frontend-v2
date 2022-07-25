@@ -1,17 +1,22 @@
-import React, { Fragment, useEffect, useRef } from "react";
+import React, { Fragment, useEffect, useRef,useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { connect } from "react-redux";
 
 
- function AudioPlayer({ playerIsOpen, closePlayerModal,currentVerse }) {
+function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }) {
   const refs = useRef([]);
+
+  const [isAudioPlaying,setIsAudioPlaying] = useState(false)
+  
   const play = () => {
     if (refs.current[1].paused) {
       refs.current[1].play();
       refs.current[0].src = "/pause.svg";
+      setIsAudioPlaying(true)
     } else {
       refs.current[1].pause();
       refs.current[0].src = "/play.svg";
+      setIsAudioPlaying(false)
     }
   };
 
@@ -19,6 +24,7 @@ import { connect } from "react-redux";
     refs.current[1].currentTime = 0;
     refs.current[1].load();
     refs.current[0].src = "/play.svg";
+    setIsAudioPlaying(false)
   };
 
   const playback = (speed) => {
@@ -114,7 +120,7 @@ import { connect } from "react-redux";
                       refs.current[0] = element;
                     }}
                     className="cursor-pointer"
-                    src="/play.svg"
+                    src= {isAudioPlaying? "/pause.svg":"/play.svg"}
                     onClick={play}
                   />
                   <img src="/forward.svg" />
@@ -174,9 +180,9 @@ import { connect } from "react-redux";
 }
 
 
-const mapStateToProps = (state)=> { 
-  return{
-    currentVerse : state?.settings?.currentVerse
+const mapStateToProps = (state) => {
+  return {
+    currentVerse: state?.settings?.currentVerse
   }
 }
 
