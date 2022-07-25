@@ -11,6 +11,7 @@ import DarkModeToggle from "./DarkModeToggle";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 import { useRouter } from "next/router";
+import useEnvironment from "../../hooks/useEnvironment";
 
 const PageHeader = ({
   advanceSettings,
@@ -31,6 +32,7 @@ const PageHeader = ({
   ] = useToggle();
   const [input, setInput] = useState("");
   const router = useRouter();
+  const [isProduction,isDevelopment] = useEnvironment()
   const toggleClass = () => {
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
@@ -140,7 +142,7 @@ const PageHeader = ({
                       <img className="w-6 h-6 mb-1" src="/Advanced.svg" />
                       Advanced View
                     </button>
-                    {process.env.NODE_ENV !== "development" ? null : (
+                    {isProduction ? null : (
                       <Link href="/notes">
                         <a
                           href="#"
@@ -151,7 +153,7 @@ const PageHeader = ({
                         </a>
                       </Link>
                     )}
-                    {process.env.NODE_ENV !== "development" ? null : (
+                    {isProduction ? null : (
                       <Link href="/bookmark">
                         <a
                           href="#"
