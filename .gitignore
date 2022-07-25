@@ -38,4 +38,5 @@ yarn-error.log*
 
 #env
 .env
+NODE_ENV:"development"
 X_API_KEY:"gita-api-key!"
