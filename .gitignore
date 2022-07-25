@@ -32,7 +32,10 @@ yarn-error.log*
 
 # vercel
 .vercel
- 
+
+# IDE
+.idea
+
 #env
 .env
 NODE_ENV:"development"
