@@ -110,8 +110,9 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
       transliteration:transliteration,
       verseNumber: verseNumber,
       chapterNumber: chapterNumber,
+      id:id,
     }))
-  },[transliteration,verseNumber,chapterNumber])
+  },[transliteration,verseNumber,chapterNumber,id])
 
   const currentTranslation = gitaTranslationsByVerseId.nodes.reduce(
     (acc, translation) => {

@@ -5,7 +5,7 @@ import classNames from "../../utils/classNames";
 /* This example requires Tailwind CSS v2.0+ */
 const navigation = {
   main: [
-    { name: "About Us", href: " https://bhagavadgita.io/about/ " },
+    { name: "About Us", href: " /about " },
     { name: "Blog", href: "https://radhakrishna.net/" },
     { name: "Donate", href: "https://opencollective.com/the-gita-initiative" },
     { name: "Press", href: "" },
@@ -192,7 +192,7 @@ const Footer = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="https://bhagavadgita.io/about/"
+                              href="/about"
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
