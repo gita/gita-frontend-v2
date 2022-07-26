@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ChapterLayout from "../../layouts/ChapterLayout";
 import Head from "next/head";
-import Link from "next/link";
 import {
   SortAscendingIcon,
   SortDescendingIcon,
@@ -11,12 +10,9 @@ import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 import VerseList from "../../components/Chapter/VerseList";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import {
-  SvgChapterBackground,
-  SvgChevronLeft,
-  SvgChevronRight,
-} from "../../components/svgs";
+import { SvgChapterBackground } from "../../components/svgs";
 import VerseNavigator from "../../components/Chapter/VerseNavigator";
+import PageNavigator from "../../components/Chapter/PageNavigator";
 
 export async function getStaticPaths() {
   const client = new ApolloClient({
@@ -35,7 +31,7 @@ export async function getStaticPaths() {
       }
     `,
   });
-  
+
   const chapters = data.allGitaChapters.nodes;
   const paths = chapters.map(({ chapterNumber }) => {
     return {
@@ -90,8 +86,7 @@ export default function Chapter({ chapterData }) {
     gitaVersesByChapterId,
   } = chapterData;
   const verses = gitaVersesByChapterId.nodes;
-  const nextChapter = chapterNumber + 1;
-  const previousChapter = chapterNumber - 1;
+
   const [viewNavigation, setViewNavigation] = useState(false);
   const [verseId, setVerseId] = useState(null);
   const [isAscSorted, setisAscSorted] = useState(true);
@@ -103,22 +98,17 @@ export default function Chapter({ chapterData }) {
         <title>Bhagavad Gita App - Chapters</title>
       </Head>
 
-      <div className="max-w-5xl font-inter py-24 mx-auto text-center px-4 sm:px-6 relative">
-        <SvgChapterBackground className="absolute text-gray-300 w-full lg:w-min dark:text-black text-opacity-25 dark:text-opacity-25 rounded-full m-auto left-0 right-0 bottom-0 -top-20 lg:top-20" />
-        {previousChapter >= 1 && (
-          <Link href={`/chapter/${previousChapter}`}>
-            <div className="rounded-full h-10 w-10 fixed z-neg top-1/2 md:top-1/3 left-3 hover:brightness-90 hover:cursor-pointer flex justify-center items-center  bg-white dark:bg-dark-100 dark:hover:bg-dark-bg dark:border-gray-600 border">
-              <SvgChevronLeft className="dark:text-gray-50" />
-            </div>
-          </Link>
-        )}
-        {nextChapter <= 18 && (
-          <Link href={`/chapter/${nextChapter}`}>
-            <div className="rounded-full h-10 w-10 fixed z-neg top-1/2 md:top-1/3 right-3 hover:brightness-90 hover:cursor-pointer flex justify-center items-center  bg-white dark:bg-dark-100 dark:hover:bg-dark-bg dark:border-gray-600 border">
-              <SvgChevronRight className="dark:text-gray-50" />
-            </div>
-          </Link>
-        )}
+      <div className="absolute max-w-5xl font-inter left-0 right-0 mx-auto text-center">
+        <SvgChapterBackground className="relative text-gray-300 w-full lg:w-min dark:text-black text-opacity-25 dark:text-opacity-25 rounded-full m-auto left-0 right-0 bottom-0 lg:top-12" />
+      </div>
+
+      <PageNavigator
+        pageNumber={chapterNumber}
+        pageCount={18}
+        route="chapter"
+      />
+
+      <section className="max-w-5xl font-inter py-24 mx-auto text-center px-4 sm:px-6 relative">
         <h3
           className={classNames(
             "text-my-orange font-medium uppercase",
@@ -136,11 +126,14 @@ export default function Chapter({ chapterData }) {
           {nameTranslated}
         </h1>
         <p
-          className={classNames("text-left dark:text-white mt-3", styles.fontSize.para)}
+          className={classNames(
+            "text-left dark:text-white mt-3",
+            styles.fontSize.para
+          )}
         >
           {chapterSummary}
         </p>
-      </div>
+      </section>
 
       <div className="max-w-5xl font-inter mx-auto text-center  px-4 sm:px-6">
         <div className="flex items-center justify-between border-t py-6 border-b border-gray-200">

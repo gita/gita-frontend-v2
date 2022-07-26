@@ -1,18 +1,21 @@
 import React from "react";
 import Head from "next/head";
-import Link from "next/link";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import {
-  SvgFloralDivider,
-  SvgChevronLeft,
-  SvgChevronRight,
-} from "../../components/svgs";
+import { SvgFloralDivider } from "../../components/svgs";
 
 import PagesLayout from "../../layouts/PagesLayout";
 import Translation from "../../components/Verse/Translation";
 import Commentary from "../../components/Verse/Commentary";
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
+
+import PageNavigator from "../../components/Chapter/PageNavigator";
+
+import { useDispatch } from "react-redux";
+import { setCurrentverse } from "../../redux/actions/settings";
+import {useEffect} from "react"
+
+
 export async function getStaticPaths() {
   const client = new ApolloClient({
     uri: "https://gql.bhagavadgita.io/graphql",
@@ -94,11 +97,22 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
     gitaTranslationsByVerseId,
     gitaCommentariesByVerseId,
   } = verseData;
+
+  const dispatch = useDispatch();
+  
   const { devnagari, verseText, synonyms, translation, purport } =
     advanceSettings;
   const styles = useMyStyles();
-  console.log("advanceSettings: ", advanceSettings);
-  console.log("LanguageSettings: ", languageSettings);
+
+  useEffect(() => {
+    dispatch(setCurrentverse({
+      transliteration:transliteration,
+      verseNumber: verseNumber,
+      chapterNumber: chapterNumber,
+      id:id,
+    }))
+  },[transliteration,verseNumber,chapterNumber,id])
+
   const currentTranslation = gitaTranslationsByVerseId.nodes.reduce(
     (acc, translation) => {
       if (
@@ -124,29 +138,15 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
     {}
   );
 
-  const previousVerseId = id - 1;
-  const nextVerseId = id + 1;
-
   return (
     <div className="font-inter">
       <Head>
         <title>Bhagavad Gita App - Verse {id}</title>
       </Head>
-      <div className="max-w-5xl font-inter py-12 mx-auto text-center px-4 sm:px-6">
-        {previousVerseId >= 1 && (
-          <Link href={`/verse/${previousVerseId}`}>
-            <div className="rounded-full h-10 w-10 fixed z-neg top-1/2 md:top-1/3 left-3 hover:brightness-90 hover:cursor-pointer flex justify-center items-center  bg-white dark:bg-dark-100 dark:hover:bg-dark-bg dark:border-gray-600 border">
-              <SvgChevronLeft className="dark:text-gray-50" />
-            </div>
-          </Link>
-        )}
-        {nextVerseId <= 701 && (
-          <Link href={`/verse/${nextVerseId}`}>
-            <div className="rounded-full h-10 w-10 fixed z-neg top-1/2 md:top-1/3 right-3 hover:brightness-90 hover:cursor-pointer flex justify-center items-center  bg-white dark:bg-dark-100 dark:hover:bg-dark-bg dark:border-gray-600 border">
-              <SvgChevronRight className="dark:text-gray-50" />
-            </div>
-          </Link>
-        )}
+
+      <PageNavigator pageNumber={id} pageCount={701} route="verse" />
+
+      <section className="max-w-5xl font-inter py-12 mx-auto text-center px-4 sm:px-6">
         <h1
           className={classNames(
             "font-extrabold dark:text-gray-50",
@@ -190,7 +190,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
         )}
         {translation && <Translation translationData={currentTranslation} />}
         {purport && <Commentary commentaryData={currentCommentary} />}
-      </div>
+      </section>
     </div>
   );
 };

@@ -39,3 +39,11 @@ package-lock.json
 #env
 .env
 X_API_KEY:"gita-api-key!"
+
+# IDE
+.idea
+
+#env
+.env
+NODE_ENV:"development"
+X_API_KEY:"gita-api-key!"

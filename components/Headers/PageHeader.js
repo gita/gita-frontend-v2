@@ -11,7 +11,7 @@ import DarkModeToggle from "./DarkModeToggle";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 import { useRouter } from "next/router";
-
+import useEnvironment from "../../hooks/useEnvironment";
 
 const PageHeader = ({
   advanceSettings,
@@ -32,6 +32,7 @@ const PageHeader = ({
   ] = useToggle();
   const [input, setInput] = useState("");
   const router = useRouter();
+  const [isProduction,isDevelopment] = useEnvironment()
   const toggleClass = () => {
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
@@ -44,11 +45,7 @@ const PageHeader = ({
     router.push(`/search?query=${input}`, undefined, { shallow: true });
   }
 
-  
-  
   return (
-   
-  
     <>
       <Disclosure
         as="nav"
@@ -110,7 +107,7 @@ const PageHeader = ({
                       <img className="w-6 h-6 mb-1" src="/language.svg" />
                       Language
                     </button>
-                    <Link href="/verse-parallel">
+                    {/*<Link href="/verse-parallel">
                       <a
                         href="#"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
@@ -118,7 +115,7 @@ const PageHeader = ({
                         <img className="w-6 h-6 mb-1" src="/Parellel.svg" />
                         Parallel Mode
                       </a>
-                    </Link>
+                    </Link> */}
 
                     <button
                       type="button"
@@ -145,28 +142,31 @@ const PageHeader = ({
                       <img className="w-6 h-6 mb-1" src="/Advanced.svg" />
                       Advanced View
                     </button>
-
-                    <Link href="/notes">
-                      <a
-                        href="#"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img className="w-6 h-6 mb-1" src="/notes.svg" />
-                        Notes
-                      </a>
-                    </Link>
-                    <Link href="/bookmark">
-                      <a
-                        href="#"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img
-                          className="w-6 h-6 mb-1"
-                          src="/bookmark-header.svg"
-                        />
-                        Bookmark
-                      </a>
-                    </Link>
+                    {isProduction ? null : (
+                      <Link href="/notes">
+                        <a
+                          href="#"
+                          className="border-transparent text-current flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        >
+                          <img className="w-6 h-6 mb-1" src="/notes.svg" />
+                          Notes
+                        </a>
+                      </Link>
+                    )}
+                    {isProduction ? null : (
+                      <Link href="/bookmark">
+                        <a
+                          href="#"
+                          className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        >
+                          <img
+                            className="w-6 h-6 mb-1"
+                            src="/bookmark-header.svg"
+                          />
+                          Bookmark
+                        </a>
+                      </Link>
+                    )}
                   </div>
                 </div>
                 <div className="flex-1 flex items-center justify-start pr-2  lg:ml-6 lg:justify-end">
@@ -175,9 +175,7 @@ const PageHeader = ({
                       Search
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-
-                      </div>
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
                       <form
                         onSubmit={handleSearch}
                         className="pt-2 relative flex text-gray-600"
@@ -251,6 +249,13 @@ const PageHeader = ({
                   className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Language
+                </a>
+                <a
+                  href="#"
+                  onClick={openPlayerModal}
+                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
+                >
+                  Play Audio
                 </a>
                 <a
                   href="#"
@@ -501,7 +506,7 @@ const PageHeader = ({
   );
 };
 
-export default  PageHeader;
+export default PageHeader;
 
 const AdvancedOptions = ({ advanceSettings, setAdvanceSettings }) => {
   const { devnagari, verseText, synonyms, translation, purport } =
