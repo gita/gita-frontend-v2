@@ -9,7 +9,10 @@ const navigation = {
     { name: "Blog", href: "https://radhakrishna.net/" },
     { name: "Donate", href: "https://opencollective.com/the-gita-initiative" },
     { name: "Press", href: "" },
-    { name: "API", href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3" },
+    {
+      name: "API",
+      href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3",
+    },
     { name: "Contact Us", href: "mailto:admin@bhagavadgita.io" },
   ],
   social: [
@@ -507,7 +510,7 @@ const Footer = () => {
         </div>
         <div className="flex-none block w-full lg:w-3/5">
           <p className="text-sm text-center text-gray-400">
-            &copy; 2021 BhagavadGita.io
+            {`© ${new Date().getFullYear()} BhagavadGita.io`}
           </p>
         </div>
         <div className="flex lg:w-1/5 justify-end">
