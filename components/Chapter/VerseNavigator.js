@@ -31,7 +31,7 @@ function VerseNavigator({
           `flex items-center justify-center min-w-[2.5rem] p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
             !currentVerse && "bg-my-orange text-white"
           }`,
-          styles.fontSize.para
+          styles.fontSize.para,styles.lineHeight
         )}
       >
         {"All"}

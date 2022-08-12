@@ -120,7 +120,7 @@ export default function Chapter({ chapterData }) {
         <h1
           className={classNames(
             "font-extrabold dark:text-white my-8",
-            styles.fontSize.heading
+            styles.fontSize.heading,
           )}
         >
           {nameTranslated}
@@ -128,7 +128,7 @@ export default function Chapter({ chapterData }) {
         <p
           className={classNames(
             "text-left dark:text-white mt-3",
-            styles.fontSize.para
+            styles.fontSize.para,styles.lineHeight
           )}
         >
           {chapterSummary}

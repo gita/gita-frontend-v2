@@ -13,8 +13,8 @@ const VerseList = ({ verseData }) => {
         <div className={classNames("lg:w-1/5 font-medium text-my-orange uppercase", styles.fontSize && styles.fontSize.para)}>
           Verse {verseNumber}
         </div>
-        <div className={classNames("flex-1 text-gray-900 dark:text-gray-50 sm:mt-0 sm:col-span-4", styles.fontSize && styles.fontSize.para)}>
-          {transliteration}
+        <div className={classNames("flex-1 text-gray-900 dark:text-gray-50 sm:mt-0 sm:col-span-4", styles.fontSize && styles.fontSize.para,styles.lineHeight)}>
+          {transliteration }
         </div>
       </div>
     </Link>

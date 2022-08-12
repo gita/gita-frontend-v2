@@ -110,8 +110,10 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
       verseNumber: verseNumber,
       chapterNumber: chapterNumber,
       id:id,
+      translation:currentTranslation?.description,
+
     }))
-  },[transliteration,verseNumber,chapterNumber,id])
+  },[transliteration,verseNumber,chapterNumber,id,translation])
 
   const currentTranslation = gitaTranslationsByVerseId.nodes.reduce(
     (acc, translation) => {
@@ -159,7 +161,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
           <p
             className={classNames(
               "font-dev text-my-orange mt-4 max-w-md mx-auto",
-              styles.fontSize.subHeading1
+              styles.fontSize.subHeading1,styles.lineHeight
             )}
           >
             {text}
@@ -169,7 +171,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
           <p
             className={classNames(
               "mt-4 max-w-md mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2
+              styles.fontSize.subHeading2,styles.lineHeight
             )}
           >
             {transliteration}
@@ -179,7 +181,7 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
           <p
             className={classNames(
               "mt-4 mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2
+              styles.fontSize.subHeading2,styles.lineHeight
             )}
           >
             {wordMeanings}
