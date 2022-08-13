@@ -128,7 +128,7 @@ export default function Chapter({ chapterData }) {
         <p
           className={classNames(
             "text-left dark:text-white mt-3",
-            styles.fontSize.para
+            styles.fontSize.para , styles.lineHeight
           )}
         >
           {chapterSummary}

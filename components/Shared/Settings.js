@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import { editSettings } from "../../redux/actions/settings";
 import classNames from "../../utils/classNames";
+import { connect } from "react-redux";
 
-const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
+
+const Settings = ({ settingsIsOpen, closeSettingsModal ,currentVerse }) => {
   const state = useSelector((state) => state.settings);
   const dispatch = useDispatch();
   const [appearenceSettings, setAppearnceSettings] = useState();
@@ -57,10 +59,10 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
                   Setting
                 </Dialog.Title>
                 <div className="mt-2 border-t py-2 border-b">
-                  <p className="text-base text-gray-500 dark:text-gray-200">
-                    O Kṛṣṇa, maintainer of the people, I have heard by disciplic
-                    succession that those whose family traditions are destroyed
-                    dwell always in hell.
+                  <p className={classNames(" text-gray-500 dark:text-gray-200", appearenceSettings?.fontSize === "small" ?"text-md" : "text-xl" ,appearenceSettings?.spacing === "large"?"leading-loose":"",appearenceSettings?.spacing === "medium" ? "leading-normal" :"",appearenceSettings?.spacing === "small" ?"leading-tight" :"" )}>
+                  Dhritarashtra said What did my people and the sons of Pandu do when they had assembled together eager for battle on the holy plain of Kurukshetra, O Sanjaya.
+
+
                   </p>
                 </div>
 
@@ -228,5 +230,10 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    currentVerse: state?.settings?.currentVerse
+  }
+}
 
-export default Settings;
+export default connect(mapStateToProps)(Settings)

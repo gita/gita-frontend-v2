@@ -8,7 +8,7 @@ export default function Translation({ translationData }) {
   return (
     <div>
       <h1 className={classNames("font-extrabold dark:text-gray-50", styles.fontSize.heading)}>Translation</h1>
-      <p className={classNames("mt-4 mx-auto text-justify dark:text-gray-50 ", styles.fontSize.para)}>
+      <p className={classNames("mt-4 mx-auto text-justify dark:text-gray-50 ", styles.fontSize.para,styles.lineHeight)}>
         {translationData?.description}
       </p>
     </div>
