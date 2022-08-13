@@ -105,7 +105,7 @@ const PageHeader = ({
                       )}
                     >
                       <img className="w-6 h-6 mb-1" src="/language.svg" />
-                      Language
+                      Source
                     </button>
                     {/*<Link href="/verse-parallel">
                       <a
