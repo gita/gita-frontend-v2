@@ -5,7 +5,7 @@ import { editSettings } from "../../redux/actions/settings";
 import classNames from "../../utils/classNames";
 
 
-const Settings = ({ settingsIsOpen, closeSettingsModal ,currentVerse }) => {
+const Settings = ({ settingsIsOpen, closeSettingsModal  }) => {
   const state = useSelector((state) => state.settings);
   const dispatch = useDispatch();
   const [appearenceSettings, setAppearnceSettings] = useState();
