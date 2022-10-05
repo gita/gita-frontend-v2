@@ -26,6 +26,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.0.0-rc.2",
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.5",
     "prettier": "^2.5.1",
