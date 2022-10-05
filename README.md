@@ -12,7 +12,7 @@
 
 <p align="center">
 
-Code for the Bhagavad gita website, which is a website built for Gita readers by Gita readers.
+Code for the Bhagavad Gita website, a website built for Gita readers by Gita readers.
 
 <br />
 
@@ -35,13 +35,18 @@ git clone https://github.com/gita/bg-frontend
 
 ... or [downloading source code](https://github.com/gita/bg-frontend/archive/refs/heads/main.zip) code as a zip archive.
 
-Once downloaded, open the terminal in the project directory, and install dependencies with [Yarn](https://classic.yarnpkg.com/en/docs/install) package manager:
+Once downloaded 
+
+```
+cd bg-frontend
+```
+Install dependencies with [Yarn](https://classic.yarnpkg.com/en/docs/install) package manager:
 
 ```
 yarn install
 ```
 
-Then start the app with:
+Now, you can start a local web server by running:
 
 ```
 yarn dev
@@ -57,9 +62,7 @@ This project uses the APIs from
 
 ## Development
 
-Feel free to use the [issue tracker](https://github.com/gita/bg-frontend/issues)
-
-for bugs and feature requests.
+Feel free to use the [issue tracker](https://github.com/gita/bg-frontend/issues) for bugs and feature requests.
 
 Looking to contribute code ? PRs are most welcome!
 
@@ -89,7 +92,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-disable -->
 
-<a href="https://github.com/git/bg-frontend/graphs/contributors">
+<a href="https://github.com/gita/bg-frontend/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=gita/bg-frontend" />
 </a>
 <!-- markdownlint-restore -->
@@ -98,4 +101,4 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
