@@ -7,11 +7,24 @@ import DarkModeToggle from "./DarkModeToggle";
 import ContentModal from "./ContentModal";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 const ChapterHeader = () => {
+  const [input, setInput] = useState("");
   const [settingsIsOpen, closeSettingsModal, openSettingsModal] = useToggle();
   const [contentModalIsOpen, closeContentModal, openContentModal] = useToggle();
 
+  const router = useRouter();
+
+  function handleSearch(e) {
+    e.preventDefault();
+
+    if (input?.trim().length <= 0) {
+      return;
+    }
+    router.push(`/search?query=${input}`, undefined, { shallow: true });
+  }
   return (
     <>
       <Disclosure
@@ -63,21 +76,31 @@ const ChapterHeader = () => {
                     <label htmlFor="search" className="sr-only">
                       Search
                     </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <form
+                      onSubmit={handleSearch}
+                      className="relative flex text-gray-600"
+                    >
+                      <button
+                        type="submit"
+                        className="absolute left-3 top-0 mt-2 mr-4"
+                      >
                         <SearchIcon
                           className="h-5 w-5 text-gray-400 dark:text-gray-50"
                           aria-hidden="true"
                         />
-                      </div>
+                      </button>
                       <input
                         id="search"
                         name="search"
                         className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white dark:bg-dark-100 placeholder-gray-500 dark:placeholder-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-my-orange focus:border-my-orange sm:text-sm"
                         placeholder="Search"
                         type="search"
+                        value={input}
+                        onChange={(e) => {
+                          setInput(e.target.value);
+                        }}
                       />
-                    </div>
+                    </form>
                   </div>
                   <DarkModeToggle />
                 </div>
