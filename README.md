@@ -60,6 +60,8 @@ This project uses the APIs from
 
 - [Bhagavad Gita API](https://github.com/gita/bhagavad-gita-api)
 
+The project redesign is based on [this Figma design.](https://www.figma.com/file/jssDxh7avC7hkq7Wl9CZEY/Gita-Web-App?node-id=0%3A1)
+
 ## Development
 
 Feel free to use the [issue tracker](https://github.com/gita/bg-frontend/issues) for bugs and feature requests.
