@@ -7,11 +7,10 @@ const HomeLayout = ({ children }) => {
   const dispatch = useDispatch();
   const settings = useSelector((state) => state.settings);
 
-
   return (
-    <div className="dark:bg-dark-bg">
+    <div className="dark:bg-dark-bg min-h-screen flex flex-col">
       <IndexHeader />
-      <div className="pt-24 lg:pt-28">{children}</div>
+      <div className="pt-24 lg:pt-28 flex-1">{children}</div>
       <Footer />
       {/* <FooterBar/> */}
     </div>

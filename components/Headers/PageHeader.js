@@ -32,7 +32,7 @@ const PageHeader = ({
   ] = useToggle();
   const [input, setInput] = useState("");
   const router = useRouter();
-  const [isProduction,isDevelopment] = useEnvironment()
+  const [isProduction, isDevelopment] = useEnvironment();
   const toggleClass = () => {
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
@@ -178,11 +178,11 @@ const PageHeader = ({
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
                       <form
                         onSubmit={handleSearch}
-                        className="pt-2 relative flex text-gray-600"
+                        className="relative flex text-gray-600"
                       >
                         <button
                           type="submit"
-                          className="absolute left-3 top-0 mt-4 mr-4"
+                          className="absolute left-3 top-0 mt-2 mr-4"
                         >
                           <SearchIcon
                             className="h-5 w-5 text-gray-400 dark:text-gray-50"
