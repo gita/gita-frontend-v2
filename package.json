@@ -9,21 +9,25 @@
   "dependencies": {
     "@apollo/client": "^3.5.5",
     "@headlessui/react": "^1.4.1",
-    "@heroicons/react": "^1.0.4",
+    "@heroicons/react": "v1",
     "@popperjs/core": "2.9.1",
+    "@supabase/supabase-js": "^2.0.4",
     "@svgr/cli": "^6.1.1",
     "graphql": "^16.0.1",
     "next": "latest",
     "next-redux-wrapper": "^7.0.5",
     "next-themes": "^0.0.15",
     "react": "^17.0.2",
+    "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-h5-audio-player": "^3.8.1",
     "react-player": "^2.9.0",
     "react-redux": "^7.2.5",
+    "react-toastify": "^9.0.8",
     "redux": "^4.1.1",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "rooks": "^7.4.0"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.24.0",

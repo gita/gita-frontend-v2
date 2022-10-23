@@ -12,6 +12,11 @@ const main = (
         ...state,
         name: action.payload,
       };
+    case t.SET_NOTIFICATION:
+      return {
+        ...state,
+        notification: action.payload,
+      }
     default:
       return { ...state };
   }

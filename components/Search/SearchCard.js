@@ -16,7 +16,7 @@ const SearchCard = ({
           Chapter {chapterNumber} - verse {verseNumber}
         </div>
         <div className="flex-1 text-sm text-gray-900 sm:mt-0 sm:col-span-4">
-          {wordMeanings}
+          {transliteration}
         </div>
       </div>
     </Link>

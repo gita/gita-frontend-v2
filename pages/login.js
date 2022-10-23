@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   SvgEyeCross,
   SvgEyeOpen,
@@ -9,14 +10,46 @@ import {
   SvgMail,
 } from "../components/svgs";
 import AuthLayout from "../layouts/AuthLayout";
+import { setNotification } from "../redux/actions/main";
+import { supabase } from "../utils/supabase";
+import { useCookies } from 'react-cookie';
+import { useRouter } from "next/router";
+
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  function handleSubmit(e) {
+  const dispatch = useDispatch()
+  const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
+  const router = useRouter()
+  async function handleSubmit(e) {
     e.preventDefault();
-    const data = new FormData(e.target);
-    const values = Object.fromEntries(data.entries());
-    console.log("login using", values);
+    const formData = new FormData(e.target);
+    const values = Object.fromEntries(formData.entries());
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: values.emailAddress,
+      password: values.password,
+    })
+    
+    if (error) {
+      dispatch(
+        setNotification({
+          status: "failed",
+          message: ("error singing in please contact admin@bhagavadgita.io"),
+        })
+      );
+    }
+    else if(data) {
+        setCookie("access_token", data.session.access_token)
+      
+      dispatch(
+        setNotification({
+          status: "success",
+          message: ("Hare Krishna Dear Devotee, you're signed in now"),
+        })
+      );
+      router.push("/")
+    }
   }
   return (
     <>
@@ -66,7 +99,6 @@ const Login = () => {
         </p>
         <button
           type="submit"
-          onClick={handleSubmit}
           className="w-full bg-my-orange text-white font-medium uppercase mt-6 py-2 px-4 rounded-md"
         >
           Login

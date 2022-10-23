@@ -3,17 +3,23 @@ import "tailwindcss/tailwind.css";
 import { Provider } from "react-redux";
 import { useStore } from "../redux/store";
 import { ThemeProvider } from "next-themes";
+import Main from "./main";
+import { CookiesProvider } from 'react-cookie';
 
-function MyApp({ Component, pageProps }) {
-  const getLayout = Component.getLayout || ((page) => page);
+
+function MyApp({Component, pageProps }) {
+  
   const store = useStore(pageProps.initialReduxState);
 
   return (
+    <CookiesProvider>
     <Provider store={store}>
       <ThemeProvider attribute="class" enableSystem={false}>
-        {getLayout(<Component {...pageProps} />)}
+      
+        <Main Component ={Component} pageProps = {pageProps }></Main>
       </ThemeProvider>
     </Provider>
+    </CookiesProvider>
   );
 }
 
