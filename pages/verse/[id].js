@@ -116,8 +116,8 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
   const currentTranslation = gitaTranslationsByVerseId.nodes.reduce(
     (acc, translation) => {
       if (
-        translation.authorId === languageSettings.translationAuthor.id &&
-        translation.languageId === languageSettings.language.id
+        translation.authorId === languageSettings.translationAuthor.id
+        //  && translation.languageId === languageSettings.language.id
       ) {
         return translation;
       }
@@ -125,11 +125,12 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
     },
     {}
   );
+  console.log( languageSettings.commentaryAuthor.id)
   const currentCommentary = gitaCommentariesByVerseId.nodes.reduce(
     (acc, commentary) => {
       if (
-        commentary.authorId === languageSettings.commentaryAuthor.id &&
-        commentary.languageId === languageSettings.language.id
+        commentary.authorId === languageSettings.commentaryAuthor.id
+        //  && commentary.languageId === languageSettings.language.id
       ) {
         return commentary;
       }

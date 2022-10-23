@@ -8,6 +8,8 @@ import VerseOfDay from "../components/Home/VerseOfDay";
 import HomeLayout from "../layouts/HomeLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { useRouter } from "next/router";
+import { useCookies } from 'react-cookie';
 
 export const getStaticProps = async () => {
   const client = new ApolloClient({
@@ -39,6 +41,18 @@ export default function Home({ chapters }) {
   const settings = useSelector((state) => state.settings);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const router = useRouter();
+  const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
+
+  useEffect(() => {
+    const pathName = router.asPath;
+    const access_token = pathName.match(/\#(?:access_token)\=([\S\s]*?)\&/);
+    
+    if (access_token && access_token.length>1) {
+      setCookie("access_token", access_token[1])
+    }
+
+  }, [router.query])
   function handleSubscribe(e, formData) {
     e.preventDefault();
     if (formData.username && formData.email) {

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   SvgEyeCross,
   SvgEyeOpen,
@@ -11,20 +12,68 @@ import {
 } from "../components/svgs";
 
 import AuthLayout from "../layouts/AuthLayout";
+import { setNotification } from "../redux/actions/main";
+import { supabase } from "../utils/supabase";
 
 const Signup = () => {
   const [error, setError] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
-  function handleSubmit(e) {
+  const dispatch = useDispatch();
+  async function signUpGoogle(){
+
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${process.env.NEXT_PUBLIC_NODE_ENV == "production" ?"https://bhagavadgita.io" :'http://localhost:3000'}`
+      }
+    })
+    if (error) {
+      dispatch(
+        setNotification({
+          status: "failed",
+          message: (error),
+        })
+      );
+    }
+  }
+  
+  async function handleSubmit(e) {
     e.preventDefault();
-    const data = new FormData(e.target);
-    const values = Object.fromEntries(data.entries());
+    const formData = new FormData(e.target);
+    const values = Object.fromEntries(formData.entries());
     if (values.password !== values.confirmPassword) {
       setError("Password and confirm password does not match");
     } else {
-      console.log("Signup using", values, values.fullName);
+        const {data, error}=await supabase.auth.signUp({
+        email: values.emailAddress,
+        password: values.password,
+        options: {
+          data: {
+            full_name:values.fullName ,
+          },
+          emailRedirectTo: `${process.env.NEXT_PUBLIC_NODE_ENV == "production" ?"https://bhagavadgita.io" :'http://localhost:3000'}`
+        }
+      })
+      if (error) {
+        dispatch(
+          setNotification({
+            status: "failed",
+            message: ("error singing in please contact admin@bhagavadgita.io"),
+          })
+        );
+      }
+      else{
+       
+          dispatch(
+            setNotification({
+              status: "success",
+              message: ("Please check email for confirmation"),
+            })
+          );
+      }
+      // console.log(data,error)
       e.target.reset();
     }
   }
@@ -132,7 +181,7 @@ const Signup = () => {
       <div className="flex justify-center gap-8 mt-4 mb-10">
         {/* will use next/auth for authentication */}
         <SvgGithub className="hover:cursor-pointer" />
-        <div className="h-9 w-9 relative hover:cursor-pointer">
+        <div className="h-9 w-9 relative hover:cursor-pointer" onClick={signUpGoogle}>
           <Image src="/google-logo.png" layout="fill" />
         </div>
       </div>
