@@ -14,7 +14,6 @@ export const editSettings = (value) => async (dispatch) => {
 };
 
 export const setCurrentverse = (value) => async (dispatch) => {
-  console.log("inside action ",value)
   dispatch({ 
     type : t.SET_CURRENT_VERSE,
     payLoad: value

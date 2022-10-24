@@ -53,6 +53,7 @@ export default function Search() {
             {data.map((verse) => {
               return (
                 <SearchCard
+                  key = {verse.id}
                   id={verse.id}
                   chapterNumber={verse.chapter_number}
                   transliteration={verse.transliteration}
