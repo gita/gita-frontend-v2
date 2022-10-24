@@ -2,7 +2,8 @@ import React, { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition, Switch, Listbox } from "@headlessui/react";
 import { SelectorIcon } from "@heroicons/react/solid";
 import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
-import authors from "../../constant/authors.json"; //todo: use graphql api to fetch
+import commentary_authors from "../../constant/commentary_authors.json";
+import translation_authors from "../../constant/translation_authors.json";
 const Author = ({
   authorSettingsIsOpen,
   closeAuthorSettingsModal,
@@ -84,20 +85,18 @@ const Author = ({
                   <Switch
                     checked={isVerseCommentarySourceEnabled}
                     onChange={setIsVerseCommentarySourceEnabled}
-                    className={`${
-                      isVerseCommentarySourceEnabled
-                        ? "bg-my-orange"
-                        : "bg-gray-200 dark:bg-dark-bg"
-                    }
+                    className={`${isVerseCommentarySourceEnabled
+                      ? "bg-my-orange"
+                      : "bg-gray-200 dark:bg-dark-bg"
+                      }
                     relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
                     <span
                       aria-hidden="true"
-                      className={`${
-                        isVerseCommentarySourceEnabled
-                          ? "translate-x-5"
-                          : "translate-x-0"
-                      }
+                      className={`${isVerseCommentarySourceEnabled
+                        ? "translate-x-5"
+                        : "translate-x-0"
+                        }
                       pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
                     />
                   </Switch>
@@ -126,14 +125,13 @@ const Author = ({
                         leaveTo="opacity-0"
                       >
                         <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md max-h-48 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
-                          {authors.map((author) => (
+                          {commentary_authors.map((author) => (
                             <Listbox.Option
                               key={author.id}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? "text-white bg-my-orange"
-                                    : "text-black dark:text-white"
+                                `${active
+                                  ? "text-white bg-my-orange"
+                                  : "text-black dark:text-white"
                                 }
                                 cursor-pointer select-none relative py-2 px-4`
                               }
@@ -155,20 +153,18 @@ const Author = ({
                   <Switch
                     checked={isVerseTransliterationLanguageEnabled}
                     onChange={setIsVerseTransliterationLanguageEnabled}
-                    className={`${
-                      isVerseTransliterationLanguageEnabled
-                        ? "bg-my-orange"
-                        : "bg-gray-200 dark:bg-dark-bg"
-                    }
+                    className={`${isVerseTransliterationLanguageEnabled
+                      ? "bg-my-orange"
+                      : "bg-gray-200 dark:bg-dark-bg"
+                      }
                     relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
                     <span
                       aria-hidden="true"
-                      className={`${
-                        isVerseTransliterationLanguageEnabled
-                          ? "translate-x-5"
-                          : "translate-x-0"
-                      }
+                      className={`${isVerseTransliterationLanguageEnabled
+                        ? "translate-x-5"
+                        : "translate-x-0"
+                        }
                       pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
                     />
                   </Switch>
@@ -201,10 +197,9 @@ const Author = ({
                             <Listbox.Option
                               key={language.id}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? "text-white bg-my-orange"
-                                    : "text-black dark:text-white"
+                                `${active
+                                  ? "text-white bg-my-orange"
+                                  : "text-black dark:text-white"
                                 }
                                 cursor-pointer select-none relative py-2 px-4 capitalize`
                               }
@@ -226,20 +221,18 @@ const Author = ({
                   <Switch
                     checked={isVerseTranslationSourceEnabled}
                     onChange={setIsVerseTranslationSourceEnabled}
-                    className={`${
-                      isVerseTranslationSourceEnabled
-                        ? "bg-my-orange"
-                        : "bg-gray-200 dark:bg-dark-bg"
-                    }
+                    className={`${isVerseTranslationSourceEnabled
+                      ? "bg-my-orange"
+                      : "bg-gray-200 dark:bg-dark-bg"
+                      }
                     relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
                     <span
                       aria-hidden="true"
-                      className={`${
-                        isVerseTranslationSourceEnabled
-                          ? "translate-x-5"
-                          : "translate-x-0"
-                      }
+                      className={`${isVerseTranslationSourceEnabled
+                        ? "translate-x-5"
+                        : "translate-x-0"
+                        }
                       pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
                     />
                   </Switch>
@@ -269,14 +262,13 @@ const Author = ({
                         leaveTo="opacity-0"
                       >
                         <Listbox.Options className="relative w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md   max-h-44` ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-20 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
-                          {authors.map((author) => (
+                          {translation_authors.map((author) => (
                             <Listbox.Option
                               key={author.id}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? "text-white bg-my-orange"
-                                    : "text-black dark:text-white"
+                                `${active
+                                  ? "text-white bg-my-orange"
+                                  : "text-black dark:text-white"
                                 }
                                 cursor-pointer select-none relative py-2 px-4`
                               }
