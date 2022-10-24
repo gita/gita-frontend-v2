@@ -49,7 +49,7 @@ export default function Home({ chapters }) {
     const access_token = pathName.match(/\#(?:access_token)\=([\S\s]*?)\&/);
     
     if (access_token && access_token.length>1) {
-      setCookie("access_token", access_token[1])
+      setCookie("Token", access_token[1])
     }
 
   }, [router.query])

@@ -12,6 +12,7 @@ import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 import { useRouter } from "next/router";
 import useEnvironment from "../../hooks/useEnvironment";
+import NotesModal from "../Shared/NotesModal";
 
 const PageHeader = ({
   advanceSettings,
@@ -502,6 +503,7 @@ const PageHeader = ({
         authorSettingsIsOpen={authorSettingsIsOpen}
         closeAuthorSettingsModal={closeAuthorSettingsModal}
       />
+      <NotesModal></NotesModal>
     </>
   );
 };
