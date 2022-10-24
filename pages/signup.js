@@ -180,7 +180,7 @@ const Signup = () => {
       </div>
       <div className="flex justify-center gap-8 mt-4 mb-10">
         {/* will use next/auth for authentication */}
-        <SvgGithub className="hover:cursor-pointer" />
+        {/* <SvgGithub className="hover:cursor-pointer" /> */}
         <div className="h-9 w-9 relative hover:cursor-pointer" onClick={signUpGoogle}>
           <Image src="/google-logo.png" layout="fill" />
         </div>
