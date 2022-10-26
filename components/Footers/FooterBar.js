@@ -8,6 +8,7 @@ const FooterBar = () => {
     <div>
       <>
         <div className="flex flex-col max-w-7xl mx-auto md:flex-row mb-4 justify-between align-baseline flex-wrap font-inter">
+          {/* commented out for now  until next release 
           <div className="">
             <div className="relative inline-flex align-middle w-full">
               <Menu as="div" className="relative inline-block text-left">
@@ -99,7 +100,7 @@ const FooterBar = () => {
               </Menu>
             </div>
           </div>
-
+          */}
           <div className="mt-4 md:mt-0 text-gray-400">
             © 2021 BhagavadGita.io.
           </div>
