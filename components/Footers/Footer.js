@@ -155,6 +155,7 @@ const Footer = () => {
                       </div>
                     </Menu.Items>
                   </Transition>
+                  {/* commented out for now  until next release
                   <div>
                     <Menu.Button className="inline-flex justify-centerw-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white dark:bg-dark-100 text-xs text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-700 focus:ring-my-orange">
                       Language
@@ -171,6 +172,7 @@ const Footer = () => {
                       )}
                     </Menu.Button>
                   </div>
+                */}
                 </>
               )}
             </Menu>
@@ -408,6 +410,7 @@ const Footer = () => {
       </div>
       <hr />
       <div className="flex px-4 py-1 justify-between items-center">
+        {/* commented out for now  until next release
         <div className="flex-none w-1/2 lg:w-1/5 hidden lg:inline-block">
           <Menu as="div" className="relative text-left ">
             {({ open }) => (
@@ -508,6 +511,7 @@ const Footer = () => {
             )}
           </Menu>
         </div>
+        */}
         <div className="flex-none block w-full lg:w-3/5">
           <p className="text-sm text-center text-gray-400">
             {`© ${new Date().getFullYear()} BhagavadGita.io`}
@@ -531,4 +535,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
