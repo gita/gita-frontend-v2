@@ -12,6 +12,7 @@ import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 import { useRouter } from "next/router";
 import useEnvironment from "../../hooks/useEnvironment";
+import NotesModal from "../Shared/NotesModal";
 
 const PageHeader = ({
   advanceSettings,
@@ -29,6 +30,11 @@ const PageHeader = ({
     authorSettingsIsOpen,
     closeAuthorSettingsModal,
     openAuthorSettingsModal,
+  ] = useToggle();
+  const [
+    notesSettingsIsOpen,
+    closeNotesSettingsModal,
+    openNotesSettingsModal,
   ] = useToggle();
   const [input, setInput] = useState("");
   const router = useRouter();
@@ -143,15 +149,19 @@ const PageHeader = ({
                       Advanced View
                     </button>
                     {isProduction ? null : (
-                      <Link href="/notes">
-                        <a
-                          href="#"
-                          className="border-transparent text-current flex flex-col items-center p-2 rounded  text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        >
-                          <img className="w-6 h-6 mb-1" src="/notes.svg" />
-                          Notes
-                        </a>
-                      </Link>
+                      <button
+                        type="button"
+                        onClick={openNotesSettingsModal}
+                        className={classNames(
+                          notesSettingsIsOpen
+                            ? "bg-nav-hover dark:bg-dark-bg"
+                            : null,
+                          "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        )}
+                      >
+                        <img className="w-6 h-6 mb-1" src="/notes.svg" />
+                        Notes
+                      </button>
                     )}
                     {isProduction ? null : (
                       <Link href="/bookmark">
@@ -501,6 +511,10 @@ const PageHeader = ({
         setLanguageSettings={setLanguageSettings}
         authorSettingsIsOpen={authorSettingsIsOpen}
         closeAuthorSettingsModal={closeAuthorSettingsModal}
+      />
+      <NotesModal
+        notesSettingsIsOpen={notesSettingsIsOpen}
+        closeNotesSettingsModal={closeNotesSettingsModal}
       />
     </>
   );
