@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from 'react';
 import Image from "next/image";
 const Newsletter = ({ handleSubscribe }) => {
   const [formData, setFormData] = React.useState({ username: "", email: "" });
+  const [isValid, setIsValid] = useState(true);
+
 
   return (
     <div className="mt-14 relative z-0">
@@ -21,8 +23,12 @@ const Newsletter = ({ handleSubscribe }) => {
           <form
             className="flex flex-col md:flex-row"
             onSubmit={(e) => {
-              if (handleSubscribe(e, formData)) {
+              if ( handleSubscribe(e, formData)) {
                 setFormData({ username: "", email: "" });
+                setIsValid(true);
+              }
+              else{
+                setIsValid(false);
               }
             }}
           >
@@ -63,6 +69,9 @@ const Newsletter = ({ handleSubscribe }) => {
               Subscribe
             </button>
           </form>
+          {!isValid && (
+            <div className="text-lg text-black-900 mt-4"><p className='font-bold mr-20 mt-12'>ERROR: Name or Email Cannot be Empty</p></div>
+          )}
         </div>
       </div>
     </div>
