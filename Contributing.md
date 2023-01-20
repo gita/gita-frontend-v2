@@ -24,6 +24,6 @@ In order to setup follow the setup instructions [here](https://github.com/gita/b
 ## Sending Feedbacks & Reporting Bugs
 
 Sending feedback is a great way for us to understand your different use cases of Gita better.
-If you had any issues, bugs, or want to share about your experience, feel free to do so on our GitHub issues page or at our [Discord channel](https://discord.gg/gX8dstApZX).
+If you had any issues, bugs, or want to share about your experience, feel free to do so on our [GitHub issues page](https://github.com/gita/bg-frontend/issues/new/choose) or at our [Discord channel](https://discord.gg/gX8dstApZX).
 
 ### Happy Coding 👩‍💻👩‍💻
