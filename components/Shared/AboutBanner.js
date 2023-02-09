@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
-
+import AboutGitaBanner from "../../public/quotes-bg.png"
 export default function AboutBanner() {
   return (
     <>
       <div className="max-w-full mx-auto xl:mx-24 z-10 relative">
         <Image
-          src="/about-gita.png"
+          src={AboutGitaBanner}
+          placeholder="blur"
           alt="BG About Banner Image"
           layout="fill"
           objectFit="cover"
