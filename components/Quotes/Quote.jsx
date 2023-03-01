@@ -3,10 +3,10 @@ import { SvgChapterBackground } from "../../components/svgs";
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 
-export default function Quote({quoteNumber,quote}) {
-    const styles = useMyStyles();
+export default function Quote({ quoteNumber, quote }) {
+  const styles = useMyStyles();
   return (
-    <section className="relative p-10">
+    <>
       <div className="absolute max-w-5xl font-inter left-0 right-0 top-[5%] mx-auto text-center">
         <SvgChapterBackground className="relative text-gray-300 w-full lg:w-min dark:text-black text-opacity-25 dark:text-opacity-25 rounded-full m-auto left-0 right-0 bottom-0 lg:top-12" />
       </div>
@@ -29,6 +29,6 @@ export default function Quote({quoteNumber,quote}) {
           {quote}
         </p>
       </div>
-    </section>
+    </>
   );
 }
