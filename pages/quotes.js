@@ -2,7 +2,10 @@ import React from "react";
 import Head from "next/head";
 import QuotesBanner from "../components/Shared/QuotesBanner";
 import HomeLayout from "../layouts/HomeLayout";
-
+import { useState } from "react";
+import { SvgChapterBackground } from "../components/svgs";
+import useMyStyles from "../hooks/useMyStyles";
+import classNames from "../utils/classNames";
 const quotes = [
   "Whenever dharma declines and the purpose of life is forgotten, I manifest myself on earth. I am born in every age to protect the good, to destroy evil, and to reestablish dharma.",
   "As they approach me, so I receive them. All paths, Arjuna, lead to me.",
@@ -32,19 +35,39 @@ const quotes = [
 ];
 
 const Quotes = () => {
+  const [quoteIndex, setQuoteIndex] = useState(0);
+  const styles = useMyStyles();
   return (
     <div className="mb-16">
       <Head>
         <title>Bhagavad Gita App - Quotes</title>
       </Head>
       <QuotesBanner />
-      <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
-        {quotes.map((quote, index) => (
-          <p className="mt-3 text-xl" key={index}>
-            {index + 1}. {quote}
+
+      <section className="relative p-10">
+        <div className="absolute max-w-5xl font-inter left-0 right-0 top-[5%] mx-auto text-center">
+          <SvgChapterBackground className="relative text-gray-300 w-full lg:w-min dark:text-black text-opacity-25 dark:text-opacity-25 rounded-full m-auto left-0 right-0 bottom-0 lg:top-12" />
+        </div>
+
+        <div className="max-w-5xl font-inter xs:py-24 sm:py-28 mx-auto text-center px-4 sm:px-6 relative">
+          <h3
+            className={classNames(
+              "text-my-orange font-medium uppercase",
+              styles.fontSize.subHeading2
+            )}
+          >
+            Quote {quoteIndex + 1}
+          </h3>
+          <p
+            className={classNames(
+              "text-center dark:text-white mt-3 mx-auto max-w-2xl text-2xl",
+              styles.lineHeight
+            )}
+          >
+            {quotes[quoteIndex]}
           </p>
-        ))}
-      </div>
+        </div>
+      </section>
     </div>
   );
 };
