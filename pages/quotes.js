@@ -36,6 +36,7 @@ const quotes = [
 
 const Quotes = () => {
   const [quoteIndex, setQuoteIndex] = useState(0);
+
   return (
     <div className="mb-16">
       <Head>
@@ -45,7 +46,8 @@ const Quotes = () => {
       <div className="relative p-10 z-10">
         <QuotesNavigator
           quoteCount={quotes.length}
-          quoteNumber={quoteIndex + 1}
+          quoteIndex={quoteIndex}
+          setQuote = {setQuoteIndex}
         />
         <Quote quoteNumber={quoteIndex + 1} quote={quotes[quoteIndex]} />
       </div>
