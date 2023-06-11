@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import Image from "next/image";
+import BGVersesBanner from "../../public/bg-verses-fixed.png"
 
 const Chapters = ({ chapters }) => {
   return (
