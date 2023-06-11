@@ -8,6 +8,5 @@ export const setInfo = (name) => (dispatch) => {
 };
 
 export const setNotification = (notification) => {
-  console.log("ethe ",notification)
   return { type: t.SET_NOTIFICATION, payload: notification };
 };

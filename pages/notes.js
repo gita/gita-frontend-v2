@@ -29,12 +29,11 @@ const Notes = () => {
         });
     }
   }, [supabase]);
-  console.log(notes);
   return (
     <div className="bg-gray-400">
       <div className="w-full md:w-1/2 p-12 bg-white">
-        {notes.map((note) => (
-          <Notescard note={note} ></Notescard>
+        {notes.map((note,index) => (
+          <Notescard note={note} key={index} ></Notescard>
         ))}
       </div>
     </div>

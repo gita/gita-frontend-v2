@@ -3,7 +3,7 @@ import "tailwindcss/tailwind.css";
 import { Provider } from "react-redux";
 import { useStore } from "../redux/store";
 import { ThemeProvider } from "next-themes";
-import Main from "./main";
+import Main from "../components/main";
 import { CookiesProvider } from 'react-cookie';
 
 

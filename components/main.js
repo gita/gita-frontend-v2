@@ -1,8 +1,6 @@
 
-import { useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
-import NotificationBanner from "../components/Shared/NotificationBanner";
-import useTimeout from "rooks"
+import { connect } from "react-redux";
+import NotificationBanner from "./Shared/NotificationBanner";
 
 const Main = ({ Component, pageProps, notification }) => {
     const getLayout = Component.getLayout || ((page) => page);
@@ -28,7 +26,6 @@ const Main = ({ Component, pageProps, notification }) => {
 
 
 const mapStateToPros = (state) => {
-    console.log(state)
     return {
         notification: state.main?.notification,
     };

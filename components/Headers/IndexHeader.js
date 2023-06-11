@@ -190,8 +190,8 @@ export default function IndexHeader() {
                       <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                         <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                           <div className="relative grid md:grid-cols-2 gap-6 bg-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
-                            {chapters.map((chapter) => (
-                              <Link href={chapter.href} key={chapter.name}>
+                            {chapters.map((chapter,index) => (
+                              <Link href={chapter.href} key={index}>
                                 <a className="-m-3 p-1 flex items-start rounded-lg hover:bg-gray-100 dark:hover:bg-dark-bg hover:cursor-pointer	">
                                   <chapter.icon
                                     className="flex-shrink-0 h-6 w-6 text-my-orange"

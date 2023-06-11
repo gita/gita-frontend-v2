@@ -43,7 +43,7 @@ const Quotes = () => {
         <title>Bhagavad Gita App - Quotes</title>
       </Head>
       <QuotesBanner />
-      <div className="relative p-10 z-10">
+      <div className="relative p-10 z-10 h-96">
         <QuotesNavigator
           quoteCount={quotes.length}
           quoteIndex={quoteIndex}

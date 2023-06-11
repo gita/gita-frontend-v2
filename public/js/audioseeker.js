@@ -23,10 +23,8 @@ function sayLoc(e) {
   var width = tgt.offsetWidth;
   var percent = clickX / width;
   if (percent <= 1 && percent >= 0) {
-    console.log(percent * player.duration);
     player.currentTime = percent * player.duration;
   }
-  console.log("Co-ords within div (x, y): " + clickX + ", " + width);
 }
 
 function findPosX(obj) {

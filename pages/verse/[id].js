@@ -41,7 +41,7 @@ export async function getStaticPaths() {
   });
   return {
     paths,
-    fallback: false,
+    fallback: false
   };
 }
 export async function getStaticProps({ params }) {
@@ -125,7 +125,6 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
     },
     {}
   );
-  console.log( languageSettings.commentaryAuthor.id)
   const currentCommentary = gitaCommentariesByVerseId.nodes.reduce(
     (acc, commentary) => {
       if (
