@@ -2,6 +2,9 @@ import React from "react";
 import Head from "next/head";
 import QuotesBanner from "../components/Shared/QuotesBanner";
 import HomeLayout from "../layouts/HomeLayout";
+import { useState } from "react";
+import Quote from "../components/Quotes/Quote";
+import QuotesNavigator from "../components/Quotes/QuotesNavigator";
 
 const quotes = [
   "Whenever dharma declines and the purpose of life is forgotten, I manifest myself on earth. I am born in every age to protect the good, to destroy evil, and to reestablish dharma.",
@@ -32,18 +35,21 @@ const quotes = [
 ];
 
 const Quotes = () => {
+  const [quoteIndex, setQuoteIndex] = useState(0);
+
   return (
     <div className="mb-16">
       <Head>
         <title>Bhagavad Gita App - Quotes</title>
       </Head>
       <QuotesBanner />
-      <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
-        {quotes.map((quote, index) => (
-          <p className="mt-3 text-xl" key={index}>
-            {index + 1}. {quote}
-          </p>
-        ))}
+      <div className="relative p-10 z-10 h-96">
+        <QuotesNavigator
+          quoteCount={quotes.length}
+          quoteIndex={quoteIndex}
+          setQuote = {setQuoteIndex}
+        />
+        <Quote quoteNumber={quoteIndex + 1} quote={quotes[quoteIndex]} />
       </div>
     </div>
   );

@@ -73,7 +73,6 @@ const Signup = () => {
             })
           );
       }
-      // console.log(data,error)
       e.target.reset();
     }
   }

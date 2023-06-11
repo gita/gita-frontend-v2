@@ -6,4 +6,7 @@ module.exports = {
     });
     return config;
   },
+  experimental: {
+    largePageDataBytes: 128 * 100000,
+  },
 };

@@ -11,7 +11,7 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useCookies } from 'react-cookie';
 
-export const getStaticProps = async () => {
+export const getStaticProps = async (props) => {
   const client = new ApolloClient({
     uri: "https://gql.bhagavadgita.io/graphql",
     cache: new InMemoryCache(),
