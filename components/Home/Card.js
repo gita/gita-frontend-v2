@@ -23,7 +23,7 @@ const Card = ({ chapter }) => {
             {chapter.versesCount} Verses
           </div>
 
-          <div className="none flex mt-4">
+          <div className="hidden flex mt-4">
             <div className="flex text-sm items-center align-middle mr-3">
               <SvgBookmark className="h-5 w-5 mr-1" />2
             </div>
