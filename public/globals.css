@@ -47,7 +47,7 @@ body {
   z-index: 0;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 18px;
 }
 
@@ -60,13 +60,14 @@ body {
   background: #f57903;
   background-clip: padding-box;
   border-radius: 9999px;
-}
+} */
 
 @media screen and (max-width: 480px) {
   .auth-bg {
     display: none;
   }
-  /* scrollbar classes */
+}
+  /* scrollbar classes
   ::-webkit-scrollbar {
     width: 18px;
   }
@@ -81,4 +82,4 @@ body {
     background-clip: padding-box;
     border-radius: 9999px;
   }
-}
+} */
