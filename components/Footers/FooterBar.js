@@ -102,7 +102,9 @@ const FooterBar = () => {
           </div>
           */}
           <div className="mt-4 md:mt-0 text-gray-400">
-            © 2021 BhagavadGita.io.
+          <p className="text-sm text-center text-gray-400">
+            {`© ${new Date().getFullYear()} Copyright: Ved Vyas Foundation. All rights reserved.`} 
+          </p>
           </div>
 
           <div className="mt-4 md:mt-0">App Icon</div>

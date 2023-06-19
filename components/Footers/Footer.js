@@ -526,7 +526,7 @@ const Footer = () => {
         */}
         <div className="flex-none block w-full lg:w-3/5">
           <p className="text-sm text-center text-gray-400">
-            {`© ${new Date().getFullYear()} BhagavadGita.io`}
+            {`© ${new Date().getFullYear()} Copyright: Ved Vyas Foundation. All rights reserved.`} 
           </p>
         </div>
         <div className="flex lg:w-1/5 justify-end">
