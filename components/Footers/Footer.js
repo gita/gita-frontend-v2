@@ -8,7 +8,7 @@ const navigation = {
     { name: "About Us", href: " /about " },
     { name: "Blog", href: "https://radhakrishna.net/" },
     { name: "Donate", href: "https://opencollective.com/the-gita-initiative" },
-    { name: "Press", href: "" },
+   {/*  { name: "Press", href: "" }, */}
     {
       name: "API",
       href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3",
@@ -219,6 +219,7 @@ const Footer = () => {
                                   : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
+                              target="_blank"
                             >
                               Blog
                             </a>
@@ -234,11 +235,13 @@ const Footer = () => {
                                   : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
+                              target="_blank"
                             >
                               Donate
                             </a>
                           )}
                         </Menu.Item>
+                        {/* 
                         <Menu.Item>
                           {({ active }) => (
                             <a
@@ -249,11 +252,13 @@ const Footer = () => {
                                   : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
+                              target="_blank"
                             >
                               Press
                             </a>
                           )}
                         </Menu.Item>
+                        */}
                         <Menu.Item>
                           {({ active }) => (
                             <a
@@ -264,6 +269,7 @@ const Footer = () => {
                                   : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
+                              target="_blank"
                             >
                               API
                             </a>
@@ -280,6 +286,7 @@ const Footer = () => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm"
                                 )}
+                                target="_blank"
                               >
                                 Facebook
                               </a>
@@ -295,6 +302,7 @@ const Footer = () => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm"
                                 )}
+                                target="_blank"
                               >
                                 Instagram
                               </a>
@@ -311,6 +319,7 @@ const Footer = () => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm"
                                 )}
+                                target="_blank"
                               >
                                 Twitter
                               </a>
@@ -326,6 +335,7 @@ const Footer = () => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm"
                                 )}
+                                target="_blank"
                               >
                                 Github
                               </a>
@@ -367,6 +377,7 @@ const Footer = () => {
                       <a
                         href={item.href}
                         className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                        target="_blank"
                       >
                         {item.name}
                       </a>
@@ -396,6 +407,7 @@ const Footer = () => {
                 key={item.name}
                 href={item.href}
                 className="text-gray-400 hover:text-gray-500 dark:hover:text-white"
+                target="_blank"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />
