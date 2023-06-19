@@ -529,13 +529,23 @@ const Footer = () => {
             {`© ${new Date().getFullYear()} Copyright: Ved Vyas Foundation. All rights reserved.`} 
           </p>
         </div>
-        <div className="flex lg:w-1/5 justify-end">
+        <div className="flex lg:w-1/5 justify-end gap-2">
           <a
             href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
             target="_blank"
           >
             <img
               src="/google_play_download.svg"
+              alt="Bhagavad Gita"
+              className="object-contain w-auto h-10"
+            />
+          </a>
+          <a
+            href="https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635"
+            target="_blank"
+          >
+            <img
+              src="/app-store-logo.svg"
               alt="Bhagavad Gita"
               className="object-contain w-auto h-10"
             />
