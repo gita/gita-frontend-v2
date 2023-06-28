@@ -8,7 +8,7 @@ const navigation = {
     { name: "About Us", href: " /about " },
     { name: "Blog", href: "https://radhakrishna.net/" },
     { name: "Donate", href: "https://opencollective.com/the-gita-initiative" },
-   {/*  { name: "Press", href: "" }, */}
+   {/*  { name: "Press", href: "" }, */},
     {
       name: "API",
       href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3",
@@ -526,7 +526,7 @@ const Footer = () => {
         */}
         <div className="flex-none block w-full lg:w-3/5">
           <p className="text-sm text-center text-gray-400">
-            {`© ${new Date().getFullYear()} Copyright: Ved Vyas Foundation. All rights reserved.`} 
+            {`© ${new Date().getFullYear()} Copyright: <a href='https://vedvyas.org/'>Ved Vyas Foundation.</a> All rights reserved.`} 
           </p>
         </div>
         <div className="flex lg:w-1/5 justify-end gap-2">
