@@ -5,15 +5,15 @@ import classNames from "../../utils/classNames";
 /* This example requires Tailwind CSS v2.0+ */
 const navigation = {
   main: [
-    { name: "About Us", href: " /about " },
-    { name: "Blog", href: "https://radhakrishna.net/" },
-    { name: "Donate", href: "https://opencollective.com/the-gita-initiative" },
-   {/*  { name: "Press", href: "" }, */}
+    { name: "About Us", href: " /about " , target: "_blank"},
+    { name: "Blog", href: "https://radhakrishna.net/", target: "_blank" },
+    { name: "Donate", href: "https://opencollective.com/the-gita-initiative", target: "_blank" },
+    { name: "Press", href: "" }, 
     {
       name: "API",
-      href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3",
+      href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3", target: "_blank"
     },
-    { name: "Contact Us", href: "mailto:admin@bhagavadgita.io" },
+    { name: "Contact Us", href: "mailto:admin@bhagavadgita.io", target: "_blank" },
   ],
   social: [
     {
