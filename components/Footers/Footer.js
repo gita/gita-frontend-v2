@@ -8,7 +8,7 @@ const navigation = {
     { name: "About Us", href: " /about " , target: "_blank"},
     { name: "Blog", href: "https://radhakrishna.net/", target: "_blank" },
     { name: "Donate", href: "https://opencollective.com/the-gita-initiative", target: "_blank" },
-    { name: "Press", href: "" }, 
+    { name: "Press", href: "",target:"_blank" }, 
     {
       name: "API",
       href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3", target: "_blank"
