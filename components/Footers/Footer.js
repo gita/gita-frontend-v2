@@ -5,15 +5,24 @@ import classNames from "../../utils/classNames";
 /* This example requires Tailwind CSS v2.0+ */
 const navigation = {
   main: [
-    { name: "About Us", href: " /about " , target: "_blank"},
+    { name: "About Us", href: " /about ", target: "_blank" },
     { name: "Blog", href: "https://radhakrishna.net/", target: "_blank" },
-    { name: "Donate", href: "https://opencollective.com/the-gita-initiative", target: "_blank" },
-    { name: "Press", href: "",target:"_blank" }, 
+    {
+      name: "Donate",
+      href: "https://opencollective.com/the-gita-initiative",
+      target: "_blank",
+    },
+    { name: "Press", href: "", target: "_blank" },
     {
       name: "API",
-      href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3", target: "_blank"
+      href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3",
+      target: "_blank",
     },
-    { name: "Contact Us", href: "mailto:admin@bhagavadgita.io", target: "_blank" },
+    {
+      name: "Contact Us",
+      href: "mailto:admin@bhagavadgita.io",
+      target: "_blank",
+    },
   ],
   social: [
     {
@@ -395,7 +404,18 @@ const Footer = () => {
               <img
                 src="/google_play_download.svg"
                 alt="Bhagavad Gita"
-                className="object-contain w-auto h-8 lg:hidden"
+                className="object-contain w-fill h-10 lg:hidden"
+              />
+            </a>
+            <a
+              href="https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635"
+              target="_blank"
+              className="flex-grow pl-2"
+            >
+              <img
+                src="/ios.webp"
+                alt="Bhagavad Gita"
+                className="object-contain w-fill h-10 lg:hidden"
               />
             </a>
           </div>
@@ -422,8 +442,8 @@ const Footer = () => {
       </div>
       <hr />
       <div className="flex px-4 py-1 justify-between items-center">
-        {/* commented out for now  until next release
         <div className="flex-none w-1/2 lg:w-1/5 hidden lg:inline-block">
+          {/* commented out for now  until next release
           <Menu as="div" className="relative text-left ">
             {({ open }) => (
               <>
@@ -522,22 +542,44 @@ const Footer = () => {
               </>
             )}
           </Menu>
+          */}
         </div>
-        */}
+
         <div className="flex-none block w-full lg:w-3/5">
           <p className="text-sm text-center text-gray-400">
-            {`© ${new Date().getFullYear()} BhagavadGita.io`}
+            {`© ${new Date().getFullYear()} Copyright: `}
+            <a
+              href="https://vedvyas.org/"
+              className="text-blue-500 hover:underline"
+            >
+              Ved Vyas Foundation.
+            </a>
+            <br className="sm:hidden" />
+            <span className="sm:inline"> All rights reserved.</span>
           </p>
         </div>
+
         <div className="flex lg:w-1/5 justify-end">
           <a
             href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
             target="_blank"
+            className="flex-grow pr-2 "
           >
             <img
               src="/google_play_download.svg"
               alt="Bhagavad Gita"
-              className="object-contain w-auto h-10"
+              className="object-contain w-10 h-10 sm:w-full sm:h-10"
+            />
+          </a>
+          <a
+            href="https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635"
+            target="_blank"
+            className="flex-grow pl-2"
+          >
+            <img
+              src="/ios.webp"
+              alt="Bhagavad Gita"
+              className="object-contain w-fill h-10"
             />
           </a>
         </div>
