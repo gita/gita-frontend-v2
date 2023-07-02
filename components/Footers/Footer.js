@@ -387,9 +387,9 @@ const Footer = () => {
               target="_blank"
             >
               <img
-                src="/google_play_download.svg"
+                src="/playstore.jpg"
                 alt="Bhagavad Gita"
-                className="object-contain w-fill h-10 lg:hidden"
+                className="object-contain w-fill h-10 lg:hidden rounded"
               />
             </a>
             <a
@@ -535,7 +535,8 @@ const Footer = () => {
             {`© ${new Date().getFullYear()} Copyright: `}
             <a
               href="https://vedvyas.org/"
-              className="text-blue-500 hover:underline"
+              target="_blank"
+              className="text-my-orange hover:underline"
             >
               Ved Vyas Foundation.
             </a>
@@ -543,28 +544,27 @@ const Footer = () => {
             <span className="sm:inline"> All rights reserved.</span>
           </p>
         </div>
-
-        <div className="flex lg:w-1/5 justify-end">
+        <div className="flex lg:w-1/5 justify-end items-center">
           <a
             href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
             target="_blank"
-            className="flex-grow pr-2 "
+            className="flex-grow h-10 pr-2"
           >
             <img
-              src="/google_play_download.svg"
+              src="/playstore.jpg"
               alt="Bhagavad Gita"
-              className="object-contain w-10 h-10 sm:w-full sm:h-10"
+              className="object-contain h-full  rounded"
             />
           </a>
           <a
             href="https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635"
             target="_blank"
-            className="flex-grow pl-2"
+            className="flex-grow h-10"
           >
             <img
-              src="/ios.webp"
+              src="/ios.jpg"
               alt="Bhagavad Gita"
-              className="object-contain w-fill h-10"
+              className="object-contain h-full  "
             />
           </a>
         </div>
