@@ -55,7 +55,7 @@ export default function Home({ chapters }) {
   }, [router.query])
   function handleSubscribe(e, formData) {
     e.preventDefault();
-    if (formData.username && formData.email) {
+    if (formData.name && formData.email) {
       // todo call newsletter subscribe API
       setModalVisible(true);
       return true;
