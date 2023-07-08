@@ -5,7 +5,7 @@ import classNames from "../../utils/classNames";
 /* This example requires Tailwind CSS v2.0+ */
 const navigation = {
   main: [
-    { name: "About Us", href: " /about " },
+    { name: "About Us", href: "/about" },
     { name: "Blog", href: "https://radhakrishna.net/" },
     {
       name: "Donate",
@@ -384,6 +384,7 @@ const Footer = () => {
               href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
               target="_blank"
               className="flex-grow pr-1"
+              rel="noopener noreferrer"
 
             >
               <img
@@ -396,6 +397,7 @@ const Footer = () => {
               href="https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635"
               target="_blank"
               className="flex-grow"
+              rel="noopener noreferrer"
             >
               <img
                 src="/app_store.svg"
@@ -536,6 +538,7 @@ const Footer = () => {
             <a
               href="https://vedvyas.org/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-my-orange hover:underline"
             >
               Ved Vyas Foundation.
@@ -548,6 +551,7 @@ const Footer = () => {
           <a
             href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
             target="_blank"
+            rel="noopener noreferrer"
             className="flex-grow h-10 pr-1"
           >
             <img
@@ -559,6 +563,7 @@ const Footer = () => {
           <a
             href="https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635"
             target="_blank"
+            rel="noopener noreferrer"
             className="flex-grow h-10"
           >
             <img
