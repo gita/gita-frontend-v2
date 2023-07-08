@@ -8,8 +8,7 @@
     "prettier": "prettier --write .",
     "lint": "next lint",
     "lint:fix": "eslint . --fix",
-    "type-check": "tsc",
-    "postbuild": "yarn lambda-oversize-hack"
+    "type-check": "tsc"
   },
   "pre-commit": [
     "lint",
