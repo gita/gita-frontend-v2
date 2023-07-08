@@ -385,7 +385,6 @@ const Footer = () => {
               target="_blank"
               className="flex-grow pr-1"
               rel="noopener noreferrer"
-
             >
               <img
                 src="/play_store.svg"
@@ -547,29 +546,29 @@ const Footer = () => {
             <span className="sm:inline"> All rights reserved.</span>
           </p>
         </div>
-        <div className="flex lg:w-1/5 justify-end items-center">
+        <div className="flex lg:w-1/5 justify-end items-center lg:space-x-1  lg:flex">
           <a
             href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-grow h-10 pr-1"
+            className="h-10"
           >
             <img
               src="/play_store.svg"
               alt="Bhagavad Gita"
-              className="object-contain h-full  rounded"
+              className="object-contain h-full rounded"
             />
           </a>
           <a
             href="https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-grow h-10"
+            className="h-10"
           >
             <img
               src="/app_store.svg"
               alt="Bhagavad Gita"
-              className="object-contain h-full  "
+              className="object-contain h-full"
             />
           </a>
         </div>
