@@ -1,23 +1,27 @@
 import React, { Fragment, useEffect } from "react";
+import Link from "next/link";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import classNames from "../../utils/classNames";
 /* This example requires Tailwind CSS v2.0+ */
 const navigation = {
   main: [
-    { name: "About Us", href: "/about" },
-    { name: "Blog", href: "https://radhakrishna.net/" },
+    { name: "About Us", href: "/about", newTab: false },
+    { name: "Blog", href: "https://radhakrishna.net/", newTab: true },
     {
       name: "Donate",
       href: "https://opencollective.com/the-gita-initiative",
+      newTab: true
     },
     {
       name: "API",
       href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3",
+      newTab: true
     },
     {
       name: "Contact Us",
       href: "mailto:admin@bhagavadgita.io",
+      newTab: false
     },
   ],
   social: [
@@ -188,17 +192,14 @@ const Footer = () => {
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="/about"
-                              className={classNames(
-                                active
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700 dark:text-gray-400",
+                            <Link href="/about">
+                              <a className={classNames(
+                                active ? "bg-gray-100 text-gray-900" : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
-                              )}
-                            >
-                              About Us
-                            </a>
+                              )}>
+                                About Us
+                              </a>
+                            </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
@@ -369,7 +370,7 @@ const Footer = () => {
                       <a
                         href={item.href}
                         className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                        target="_blank"
+                        target={item.newTab ? "_blank" : ""}
                       >
                         {item.name}
                       </a>

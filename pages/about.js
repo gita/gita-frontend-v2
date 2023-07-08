@@ -12,8 +12,8 @@ export default function About() {
       <AboutBanner />
       <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
         <p className="mt-8 text-xl ">
-          Bhagavad Gita, also known as the Gita - "The Song of The Lord" is a
-          practical guide to one's life that guides one to re-organise their
+          Bhagavad Gita, also known as the Gita - &quot;The Song of The Lord&quot; is a
+          practical guide to one&apos;s life that guides one to re-organise their
           life, achieve inner peace and approach the Supreme Lord (the Ultimate
           Reality). It is a 700-verse text in Sanskrit which comprises chapters
           23 through 40 in the Bhishma-Parva section of the Mahabharata.
