@@ -6,16 +6,14 @@ import classNames from "../../utils/classNames";
 const navigation = {
   main: [
     { name: "About Us", href: " /about " },
-    { name: "Blog", href: "https://radhakrishna.net/", target: "_blank" },
+    { name: "Blog", href: "https://radhakrishna.net/" },
     {
       name: "Donate",
       href: "https://opencollective.com/the-gita-initiative",
-      target: "_blank",
     },
     {
       name: "API",
       href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3",
-      target: "_blank",
     },
     {
       name: "Contact Us",
@@ -195,7 +193,7 @@ const Footer = () => {
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700  dark:text-gray-400",
+                                  : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
@@ -385,9 +383,11 @@ const Footer = () => {
             <a
               href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
               target="_blank"
+              className="flex-grow pr-1"
+
             >
               <img
-                src="/playstore.jpg"
+                src="/play_store.svg"
                 alt="Bhagavad Gita"
                 className="object-contain w-fill h-10 lg:hidden rounded"
               />
@@ -395,10 +395,10 @@ const Footer = () => {
             <a
               href="https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635"
               target="_blank"
-              className="flex-grow pl-2"
+              className="flex-grow"
             >
               <img
-                src="/ios.webp"
+                src="/app_store.svg"
                 alt="Bhagavad Gita"
                 className="object-contain w-fill h-10 lg:hidden"
               />
@@ -548,10 +548,10 @@ const Footer = () => {
           <a
             href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
             target="_blank"
-            className="flex-grow h-10 pr-2"
+            className="flex-grow h-10 pr-1"
           >
             <img
-              src="/playstore.jpg"
+              src="/play_store.svg"
               alt="Bhagavad Gita"
               className="object-contain h-full  rounded"
             />
@@ -562,7 +562,7 @@ const Footer = () => {
             className="flex-grow h-10"
           >
             <img
-              src="/ios.jpg"
+              src="/app_store.svg"
               alt="Bhagavad Gita"
               className="object-contain h-full  "
             />
