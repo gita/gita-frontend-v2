@@ -406,9 +406,8 @@ export default function IndexHeader() {
                         </Disclosure.Panel>
                       </Disclosure>
                       {mobileNav.map((item) => (
-                        <Link href={item.href}>
+                        <Link key={item.name} href={item.href}>
                           <a
-                            key={item.name}
                             className={classNames(
                               item.current
                                 ? "bg-yellow-100 border-l-4 border-my-orange text-gray-900 dark:text-white"

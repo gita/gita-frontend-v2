@@ -2,6 +2,7 @@ import { Disclosure } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
+import Image from "next/image";
 import Settings from "../Shared/Settings";
 import DarkModeToggle from "./DarkModeToggle";
 import ContentModal from "./ContentModal";
@@ -40,7 +41,7 @@ const ChapterHeader = () => {
                     <div className="text-gray-900 dark:text-gray-50">
                       <Link href="/">
                         <a className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg">
-                          <img className="w-6 h-6 mb-1" src="/Home.svg" />
+                          <Image className="w-6 h-6 mb-1" src="/Home.svg" alt="Home" width={24} height={24} />
                           Home
                         </a>
                       </Link>
@@ -55,7 +56,7 @@ const ChapterHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <img className="w-6 h-6 mb-1" src="/content.svg" />
+                      <Image className="w-6 h-6 mb-1" src="/content.svg" alt="Home" width={24} height={24} />
                       Content
                     </button>
                     <button
@@ -66,7 +67,7 @@ const ChapterHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <img className="w-7 h-6 mb-1" src="/appearance.svg" />
+                      <Image className="w-7 h-6 mb-1" src="/appearance.svg" alt="Home" width={24} height={24} />
                       Appearance
                     </button>
                   </div>
@@ -121,12 +122,11 @@ const ChapterHeader = () => {
             <Disclosure.Panel className="lg:hidden">
               <div className="pt-2 pb-3 space-y-1">
                 {/* Current: "bg-indigo-50 border-my-orange text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
-                <a
-                  href="/"
-                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:focus:text-gray-900"
-                >
-                  Home
-                </a>
+                <Link href="/">
+                  <a className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:focus:text-gray-900">
+                    Home
+                  </a>
+                </Link>
                 <a
                   href="#"
                   onClick={openContentModal}
