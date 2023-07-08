@@ -97,7 +97,7 @@ const PageHeader = ({
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <img className="w-6 h-6 mb-1" src="/appearance.svg" />
+                      <img className="w-7 h-6 mb-1" src="/appearance.svg" />
                       Appearance
                     </button>
                     <button
@@ -877,7 +877,7 @@ const AdvancedOptions = ({ advanceSettings, setAdvanceSettings }) => {
               </span>
             </span>
           </Switch>
-          Purport
+          Commentary
         </button>
       </span>
     </div>
