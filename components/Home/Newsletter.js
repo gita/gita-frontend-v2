@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from "next/image";
 const Newsletter = ({ handleSubscribe }) => {
-  const [formData, setFormData] = React.useState({ username: "", email: "" });
+  const [formData, setFormData] = React.useState({ name: "", email: "" });
   const [isValid, setIsValid] = useState(true);
 
 
@@ -24,7 +24,7 @@ const Newsletter = ({ handleSubscribe }) => {
             className="flex flex-col md:flex-row"
             onSubmit={(e) => {
               if ( handleSubscribe(e, formData)) {
-                setFormData({ username: "", email: "" });
+                setFormData({ name: "", email: "" });
                 setIsValid(true);
               }
               else{
@@ -34,14 +34,14 @@ const Newsletter = ({ handleSubscribe }) => {
           >
             <input
               className="appearance-none z-50 mt-4 md:mt-0 border rounded-md w-full py-3 mr-6 px-3 text-gray-700 leading-tight focus:outline-none focus:border-my-orange dark:bg-white"
-              id="username"
+              id="name"
               type="text"
-              value={formData.username}
+              value={formData.name}
               onChange={(e) =>
                 setFormData((prevData) => {
                   return {
                     ...prevData,
-                    username: e.target.value,
+                    name: e.target.value,
                   };
                 })
               }
