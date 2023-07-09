@@ -7,33 +7,47 @@ import Newsletter from "../components/Home/Newsletter";
 import VerseOfDay from "../components/Home/VerseOfDay";
 import HomeLayout from "../layouts/HomeLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
+// Define your Hasura GraphQL endpoint
+const HASURA_GRAPHQL_ENDPOINT = process.env.NEXT_GRAPHQL_ENDPOINT;
+const HASURA_ADMIN_SECRET = process.env.NEXT_HASURA_ADMIN_SECRET;
+
+
 export const getStaticProps = async (props) => {
+  // Create an HttpLink that connects to your GraphQL endpoint
+  const httpLink = new HttpLink({
+    uri: HASURA_GRAPHQL_ENDPOINT,
+    headers: {
+      'x-hasura-admin-secret': HASURA_ADMIN_SECRET,
+      'content-type': 'application/json',
+      'hasura-client-name': 'bhagavad-gita-web',
+    },
+  });
+
+  // Create an instance of Apollo Client
   const client = new ApolloClient({
-    uri: "https://gql.bhagavadgita.io/graphql",
+    link: httpLink,
     cache: new InMemoryCache(),
   });
 
   const { data } = await client.query({
     query: gql`
-      query MyQuery {
-        allGitaChapters {
-          nodes {
-            id
-            chapterNumber
-            chapterSummary
-            nameTranslated
-            versesCount
-          }
+      query GetAllGitaChapters {
+        gita_chapters {
+          id
+          chapter_number
+          chapter_summary
+          name_translated
+          verses_count
         }
       }
     `,
   });
   return {
-    props: { chapters: data?.allGitaChapters.nodes },
+    props: { chapters: data?.gita_chapters },
   };
 };
 export default function Home({ chapters }) {

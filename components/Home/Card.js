@@ -8,19 +8,19 @@ const Card = ({ chapter }) => {
     <Link href={`/chapter/${chapter.id}`}>
       <div className="flex flex-col bg-white dark:bg-dark-100 shadow-xl  border-2 border-white dark:border-dark-bg mt-6 rounded-md p-6 hover:bg-box-bg dark:hover:bg-dark-bg hover:shadow-none hover:border-box-stroke dark:hover:border-dark-100 hover:border-2 hover:cursor-pointer dark:text-gray-200 z-10">
         <h3 className="text-my-orange font-bold">
-          Chapter {chapter.chapterNumber}
+          Chapter {chapter.chapter_number}
         </h3>
         <h2 className="text-xl font-bold dark:text-white">
-          {chapter.nameTranslated}
+          {chapter.name_translated}
         </h2>
         <p className="flex-1 text-gray-500 dark:text-gray-100 mt-2 overflow-ellipsis">
-          {truncate(chapter.chapterSummary, 280)}
+          {truncate(chapter.chapter_summary, 280)}
         </p>
 
         <div className="flex justify-between">
           <div className="flex text-sm items-center mt-4 ">
             <SvgList className="mr-4" />
-            {chapter.versesCount} Verses
+            {chapter.verses_count} Verses
           </div>
 
           <div className="hidden flex mt-4">
