@@ -12,8 +12,12 @@ import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
 // Define your Hasura GraphQL endpoint
-const HASURA_GRAPHQL_ENDPOINT = process.env.NEXT_GRAPHQL_ENDPOINT;
-const HASURA_ADMIN_SECRET = process.env.NEXT_HASURA_ADMIN_SECRET;
+const HASURA_GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
+const HASURA_ADMIN_SECRET = process.env.NEXT_PUBLIC_HASURA_ADMIN_SECRET;
+
+if (!HASURA_GRAPHQL_ENDPOINT || !HASURA_ADMIN_SECRET) {
+  throw new Error('Environment variables NEXT_PUBLIC_GRAPHQL_ENDPOINT or NEXT_PUBLIC_HASURA_ADMIN_SECRET are not set');
+}
 
 
 export const getStaticProps = async (props) => {
