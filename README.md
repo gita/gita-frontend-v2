@@ -16,12 +16,12 @@ Code for the Bhagavad Gita website, a website built for Gita readers by Gita rea
 
 <br />
 
-<img alt="GitHub issues" src="https://img.shields.io/github/issues/gita/bg-frontend">
-<a href="https://github.com/gita/bg-frontend/blob/master/LICENSE">
+<img alt="GitHub issues" src="https://img.shields.io/github/issues/gita/gita-frontend-v2">
+<a href="https://github.com/gita//blob/master/LICENSE">
 <img alt="LICENSE" src="https://img.shields.io/badge/License-MIT-yellow.svg?maxAge=43200">
 </a>
 <a href="https://api.bhagavadgita.io/docs"><img src="https://img.shields.io/badge/docs-passing-green" alt="Docs"></a>
-<a href="https://starcharts.herokuapp.com/gita/bg-frontend"><img alt="Stars" src="https://img.shields.io/github/stars/gita/bg-frontend.svg?style=social"></a>
+<a href="https://starcharts.herokuapp.com/gita/gita-frontend-v2"><img alt="Stars" src="https://img.shields.io/github/stars/gita/gita-frontend-v2.svg?style=social"></a>
 
 </p>
 
@@ -30,15 +30,15 @@ Code for the Bhagavad Gita website, a website built for Gita readers by Gita rea
 Get the code by either cloning this repository using git
 
 ```
-git clone https://github.com/gita/bg-frontend
+git clone https://github.com/gita/gita-frontend-v2
 ```
 
-... or [downloading source code](https://github.com/gita/bg-frontend/archive/refs/heads/main.zip) code as a zip archive.
+... or [downloading source code](https://github.com/gita/gita-frontend-v2/archive/refs/heads/main.zip) code as a zip archive.
 
 Once downloaded
 
 ```
-cd bg-frontend
+cd gita-frontend-v2
 ```
 
 Install dependencies with [Yarn](https://classic.yarnpkg.com/en/docs/install) package manager:
@@ -65,11 +65,9 @@ The project redesign is based on [this Figma design.](https://www.figma.com/file
 
 ## Development
 
-Feel free to use the [issue tracker](https://github.com/gita/bg-frontend/issues) for bugs and feature requests.
+Feel free to use the [issue tracker](https://github.com/gita/gita-frontend-v2/issues) for bugs and feature requests.
 
-Looking to contribute code ? PRs are most welcome!
-
-To get started with developing this API, please read the [contributing guide](https://github.com/gita/bg-frontend/blob/main/Contributing.md).
+Looking to contribute code? PRs are most welcome!
 
 ## How It Works
 
@@ -81,9 +79,9 @@ This project uses:
 
 ## Community
 
-Join the [Discord chat server](https://discord.gg/gX8dstApZX) and hang out with others in the community.
+Join our [Slack](https://join.slack.com/t/vedvyas/shared_invite/zt-1o5himgxu-1e905aI7FM_8QsxbtiyVNA) and hang out with others in the community.
 
-You can also use [GitHub Discussions](https://github.com/gita/bhagavad-gita-api/discussions) to ask questions or tell us about projects you have built using this API.
+You can also use [GitHub Discussions](https://github.com/gita/gita-frontend-v2/discussions) to ask questions or tell us about projects you have built using this API.
 
 ## Contributors ✨
 
@@ -95,8 +93,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-disable -->
 
-<a href="https://github.com/gita/bg-frontend/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=gita/bg-frontend" />
+<a href="https://github.com/gita/gita-frontend-v2/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=gita/gita-frontend-v2" />
 </a>
 <!-- markdownlint-restore -->
 
