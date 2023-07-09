@@ -51,19 +51,8 @@ export const getStaticProps = async (props) => {
     `,
   });
   return {
-try {
-  const { data } = await client.query({
-    query: GET_ALL_GITA_CHAPTERS_QUERY,
-  });
-  return {
-    props: { chapters: data?.gita_chapters },
-  };
-} catch (error) {
-  console.error("Failed to fetch chapters:", error);
-  return {
-    props: { chapters: [] }, // Return empty array or some default value
-  };
-}
+      props: { chapters: data?.gita_chapters },
+  }
 };
 export default function Home({ chapters }) {
   const dispatch = useDispatch();
