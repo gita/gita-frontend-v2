@@ -123,7 +123,7 @@ const Quotes = () => {
         <QuotesNavigator
           quoteCount={quotes.length}
           quoteIndex={quoteIndex}
-          setQuote = {setQuoteIndex}
+          setQuote={setQuoteIndex}
         />
         <Quote quoteNumber={quoteIndex + 1} quote={quotes[quoteIndex]} />
       </div>

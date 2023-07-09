@@ -6,10 +6,10 @@ import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import DarkModeToggle from "./DarkModeToggle";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { supabase } from "../../utils/supabase"
+import { supabase } from "../../utils/supabase";
 import classNames from "../../utils/classNames";
 import { useAsyncEffect } from "rooks";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
 const chapters = [
   {
@@ -112,21 +112,21 @@ const mobileNav = [
 export default function IndexHeader() {
   const [input, setInput] = useState("");
   const router = useRouter();
-  const [cookies, setCookie, removeCookie] = useCookies(['Token']);
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [cookies, setCookie, removeCookie] = useCookies(["Token"]);
+  const [loggedIn, setLoggedIn] = useState(false);
   useAsyncEffect(async () => {
     const { data, error } = await supabase.auth.getSession();
     if (error) {
-      setLoggedIn(false)
+      setLoggedIn(false);
     }
     if (data.session) {
-      setLoggedIn(true)
+      setLoggedIn(true);
     }
-  }, [])
+  }, []);
   const signout = async () => {
-    const { error } = await supabase.auth.signOut()
+    const { error } = await supabase.auth.signOut();
     setLoggedIn(false);
-  }
+  };
   function handleSearch(e) {
     e.preventDefault();
 
@@ -190,7 +190,7 @@ export default function IndexHeader() {
                       <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                         <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                           <div className="relative grid md:grid-cols-2 gap-6 bg-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
-                            {chapters.map((chapter,index) => (
+                            {chapters.map((chapter, index) => (
                               <Link href={chapter.href} key={index}>
                                 <a className="-m-3 p-1 flex items-start rounded-lg hover:bg-gray-100 dark:hover:bg-dark-bg hover:cursor-pointer	">
                                   <chapter.icon
@@ -225,8 +225,7 @@ export default function IndexHeader() {
                   About Geeta
                 </a>
               </Link>
-              {!loggedIn ?
-               (
+              {!loggedIn ? (
                 <Popover className="relative">
                   {({ open }) => (
                     <>
@@ -258,7 +257,6 @@ export default function IndexHeader() {
                         <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-32 max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                           <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid md:grid-cols-1  bg-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
-
                               <Link href="/signup">
                                 <a className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none">
                                   Signup
@@ -276,16 +274,17 @@ export default function IndexHeader() {
                     </>
                   )}
                 </Popover>
-              ):<a
-              onClick={signout}
-              className={classNames(
-                "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                "flex items-center mb-2 px-3  font-medium"
+              ) : (
+                <a
+                  onClick={signout}
+                  className={classNames(
+                    "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
+                    "flex items-center mb-2 px-3  font-medium"
+                  )}
+                >
+                  <span className="truncate">Signout</span>
+                </a>
               )}
-            >
-              <span className="truncate">Signout</span>
-            </a>}
-
             </Popover.Group>
             <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
               <form
@@ -420,42 +419,40 @@ export default function IndexHeader() {
                           </a>
                         </Link>
                       ))}
-                      {!loggedIn ?
-                        (
+                      {!loggedIn ? (
+                        <Disclosure>
+                          <Disclosure.Button className="w-full flex justify-between px-3 py-2 text-left dark:text-white font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900">
+                            Account
+                            <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
+                          </Disclosure.Button>
+                          <Disclosure.Panel className="text-gray-500 dark:text-white dark:bg-dark-100 py-4">
+                            <div className="relative grid grid-cols-2 gap-6 bg-white px-8 dark:text-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
+                              <Link href="signup">
+                                <a
+                                  className={classNames(
+                                    "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
+                                    "flex items-center mb-2 px-3 py-2 font-medium"
+                                  )}
+                                >
+                                  <span className="truncate">Signup</span>
+                                </a>
+                              </Link>
 
-                          <Disclosure>
-                            <Disclosure.Button className="w-full flex justify-between px-3 py-2 text-left dark:text-white font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900">
-                              Account
-                              <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
-                            </Disclosure.Button>
-                            <Disclosure.Panel className="text-gray-500 dark:text-white dark:bg-dark-100 py-4">
-                              <div className="relative grid grid-cols-2 gap-6 bg-white px-8 dark:text-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
-                                <Link href="signup">
-                                  <a
-                                    className={classNames(
-                                      "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                                      "flex items-center mb-2 px-3 py-2 font-medium"
-                                    )}
-                                  >
-                                    <span className="truncate">Signup</span>
-                                  </a>
-                                </Link>
-
-                                <Link href="login">
-                                  <a
-                                    className={classNames(
-                                      "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                                      "flex items-center mb-2 px-3 py-2 font-medium"
-                                    )}
-
-                                  >
-                                    <span className="truncate">login</span>
-                                  </a>
-                                </Link>
-                              </div>
-                            </Disclosure.Panel>
-                          </Disclosure>
-                        ) : <a
+                              <Link href="login">
+                                <a
+                                  className={classNames(
+                                    "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
+                                    "flex items-center mb-2 px-3 py-2 font-medium"
+                                  )}
+                                >
+                                  <span className="truncate">login</span>
+                                </a>
+                              </Link>
+                            </div>
+                          </Disclosure.Panel>
+                        </Disclosure>
+                      ) : (
+                        <a
                           onClick={signout}
                           className={classNames(
                             "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
@@ -463,8 +460,8 @@ export default function IndexHeader() {
                           )}
                         >
                           <span className="truncate">Signout</span>
-                        </a>}
-
+                        </a>
+                      )}
                     </nav>
                   </nav>
                 </div>

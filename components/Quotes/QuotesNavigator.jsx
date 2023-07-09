@@ -7,11 +7,11 @@ export default function QuotesNavigator({ quoteIndex, quoteCount, setQuote }) {
   const previousQuote = quoteNumber - 1;
 
   const next = () => {
-    quoteIndex<quoteCount-1 && setQuote(quoteIndex+1);
+    quoteIndex < quoteCount - 1 && setQuote(quoteIndex + 1);
   };
 
   const previous = () => {
-    quoteIndex>0 && setQuote(quoteIndex-1);
+    quoteIndex > 0 && setQuote(quoteIndex - 1);
   };
 
   return (

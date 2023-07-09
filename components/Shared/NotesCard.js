@@ -4,7 +4,6 @@ import { DotsVerticalIcon } from "@heroicons/react/solid";
 import classNames from "../../utils/classNames";
 
 const Notescard = (note) => {
-
   return (
     <div className="flex items-baseline mt-4 gap-2 font-inter border-b border-gray-300 pb-4">
       <div>
@@ -12,9 +11,7 @@ const Notescard = (note) => {
       </div>
       <div>
         <h3 className="text-black font-bold"> Verse {note.note.verse_id}</h3>
-        <p className="text-gray-400 mt-3">
-          {note.note.description}
-        </p>
+        <p className="text-gray-400 mt-3">{note.note.description}</p>
         <p className="pl-4 border-l-2 border-my-orange mt-3">
           Dhṛtarāṣṭra said: O Sañjaya, after my sons and the sons of Pāṇḍu
           assembled in the place of pilgrimage at Kurukṣetra, desiring to fight,

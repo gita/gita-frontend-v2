@@ -41,7 +41,13 @@ const ChapterHeader = () => {
                     <div className="text-gray-900 dark:text-gray-50">
                       <Link href="/">
                         <a className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg">
-                          <Image className="w-6 h-6 mb-1" src="/Home.svg" alt="Home" width={24} height={24} />
+                          <Image
+                            className="w-6 h-6 mb-1"
+                            src="/Home.svg"
+                            alt="Home"
+                            width={24}
+                            height={24}
+                          />
                           Home
                         </a>
                       </Link>
@@ -56,7 +62,13 @@ const ChapterHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <Image className="w-6 h-6 mb-1" src="/content.svg" alt="Home" width={24} height={24} />
+                      <Image
+                        className="w-6 h-6 mb-1"
+                        src="/content.svg"
+                        alt="Home"
+                        width={24}
+                        height={24}
+                      />
                       Content
                     </button>
                     <button
@@ -67,7 +79,13 @@ const ChapterHeader = () => {
                         "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
                       )}
                     >
-                      <Image className="w-7 h-6 mb-1" src="/appearance.svg" alt="Home" width={24} height={24} />
+                      <Image
+                        className="w-7 h-6 mb-1"
+                        src="/appearance.svg"
+                        alt="Home"
+                        width={24}
+                        height={24}
+                      />
                       Appearance
                     </button>
                   </div>
