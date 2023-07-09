@@ -4,8 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { editSettings } from "../../redux/actions/settings";
 import classNames from "../../utils/classNames";
 
-
-const Settings = ({ settingsIsOpen, closeSettingsModal  }) => {
+const Settings = ({ settingsIsOpen, closeSettingsModal }) => {
   const state = useSelector((state) => state.settings);
   const dispatch = useDispatch();
   const [appearenceSettings, setAppearnceSettings] = useState();
@@ -58,11 +57,26 @@ const Settings = ({ settingsIsOpen, closeSettingsModal  }) => {
                   Setting
                 </Dialog.Title>
                 <div className="mt-2 border-t py-2 border-b">
-                  <p className={classNames(" text-gray-500 dark:text-gray-200", appearenceSettings?.fontSize === "small" ?"text-md" : "text-xl" ,appearenceSettings?.spacing === "large"?"leading-loose":"",appearenceSettings?.spacing === "medium" ? "leading-normal" :"",appearenceSettings?.spacing === "small" ?"leading-tight" :"" )}>
-                  O Kṛṣṇa, maintainer of the people, I have heard by disciplic
+                  <p
+                    className={classNames(
+                      " text-gray-500 dark:text-gray-200",
+                      appearenceSettings?.fontSize === "small"
+                        ? "text-md"
+                        : "text-xl",
+                      appearenceSettings?.spacing === "large"
+                        ? "leading-loose"
+                        : "",
+                      appearenceSettings?.spacing === "medium"
+                        ? "leading-normal"
+                        : "",
+                      appearenceSettings?.spacing === "small"
+                        ? "leading-tight"
+                        : ""
+                    )}
+                  >
+                    O Kṛṣṇa, maintainer of the people, I have heard by disciplic
                     succession that those whose family traditions are destroyed
                     dwell always in hell.
-
                   </p>
                 </div>
 
@@ -133,7 +147,10 @@ const Settings = ({ settingsIsOpen, closeSettingsModal  }) => {
                         "-ml-px relative text-center w-1/3 items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-100 text-sm font-medium  hover:bg-gray-50 dark:hover:bg-dark-bg focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
                       )}
                     >
-                      <img src="/text-medium.png" className="w-4  mx-auto dark:fill-current dark:text-my-orange" />
+                      <img
+                        src="/text-medium.png"
+                        className="w-4  mx-auto dark:fill-current dark:text-my-orange"
+                      />
                     </button>
 
                     <button

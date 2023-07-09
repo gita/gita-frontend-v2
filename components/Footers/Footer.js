@@ -11,17 +11,17 @@ const navigation = {
     {
       name: "Donate",
       href: "https://opencollective.com/the-gita-initiative",
-      newTab: true
+      newTab: true,
     },
     {
       name: "API",
       href: "https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3",
-      newTab: true
+      newTab: true,
     },
     {
       name: "Contact Us",
       href: "mailto:admin@bhagavadgita.io",
-      newTab: false
+      newTab: false,
     },
   ],
   social: [
@@ -193,10 +193,14 @@ const Footer = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <Link href="/about">
-                              <a className={classNames(
-                                active ? "bg-gray-100 text-gray-900" : "text-gray-700 dark:text-gray-400",
-                                "block px-4 py-2 text-sm"
-                              )}>
+                              <a
+                                className={classNames(
+                                  active
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700 dark:text-gray-400",
+                                  "block px-4 py-2 text-sm"
+                                )}
+                              >
                                 About Us
                               </a>
                             </Link>

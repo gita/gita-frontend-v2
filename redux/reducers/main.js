@@ -16,7 +16,7 @@ const main = (
       return {
         ...state,
         notification: action.payload,
-      }
+      };
     default:
       return { ...state };
   }

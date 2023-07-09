@@ -31,11 +31,8 @@ const PageHeader = ({
     closeAuthorSettingsModal,
     openAuthorSettingsModal,
   ] = useToggle();
-  const [
-    notesSettingsIsOpen,
-    closeNotesSettingsModal,
-    openNotesSettingsModal,
-  ] = useToggle();
+  const [notesSettingsIsOpen, closeNotesSettingsModal, openNotesSettingsModal] =
+    useToggle();
   const [input, setInput] = useState("");
   const router = useRouter();
   const [isProduction, isDevelopment] = useEnvironment();

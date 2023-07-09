@@ -13,8 +13,7 @@ import PageNavigator from "../../components/Chapter/PageNavigator";
 
 import { useDispatch } from "react-redux";
 import { setCurrentverse } from "../../redux/actions/settings";
-import {useEffect} from "react"
-
+import { useEffect } from "react";
 
 export async function getStaticPaths() {
   const client = new ApolloClient({
@@ -41,7 +40,7 @@ export async function getStaticPaths() {
   });
   return {
     paths,
-    fallback: false
+    fallback: false,
   };
 }
 export async function getStaticProps({ params }) {
@@ -99,19 +98,21 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
   } = verseData;
 
   const dispatch = useDispatch();
-  
+
   const { devnagari, verseText, synonyms, translation, purport } =
     advanceSettings;
   const styles = useMyStyles();
 
   useEffect(() => {
-    dispatch(setCurrentverse({
-      transliteration:transliteration,
-      verseNumber: verseNumber,
-      chapterNumber: chapterNumber,
-      id:id,
-    }))
-  },[transliteration,verseNumber,chapterNumber,id])
+    dispatch(
+      setCurrentverse({
+        transliteration: transliteration,
+        verseNumber: verseNumber,
+        chapterNumber: chapterNumber,
+        id: id,
+      })
+    );
+  }, [transliteration, verseNumber, chapterNumber, id]);
 
   const currentTranslation = gitaTranslationsByVerseId.nodes.reduce(
     (acc, translation) => {
@@ -159,7 +160,8 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
           <p
             className={classNames(
               "font-dev text-my-orange mt-4 max-w-md mx-auto",
-              styles.fontSize.subHeading1,styles.lineHeight
+              styles.fontSize.subHeading1,
+              styles.lineHeight
             )}
           >
             {text}
@@ -169,7 +171,8 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
           <p
             className={classNames(
               "mt-4 max-w-md mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2,styles.lineHeight
+              styles.fontSize.subHeading2,
+              styles.lineHeight
             )}
           >
             {transliteration}
@@ -179,7 +182,8 @@ const Verse = ({ verseData, advanceSettings, languageSettings }) => {
           <p
             className={classNames(
               "mt-4 mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2,styles.lineHeight
+              styles.fontSize.subHeading2,
+              styles.lineHeight
             )}
           >
             {wordMeanings}

@@ -6,7 +6,7 @@ const intialState = {
   fontFamily: "proxima", //Tisa Pro, Georgia, Avenir, Proxima Nova
   spacing: "small", //small, medium, large todo: change to exact values
   bg: "bg-light-bg", //bg-light-bg, bg-yellow-bg, bg-dark-bg
-  currentVerse:null
+  currentVerse: null,
 };
 
 const settings = (prevState = intialState, action) => {
@@ -22,10 +22,10 @@ const settings = (prevState = intialState, action) => {
         ...action.payLoad,
       };
     case t.SET_CURRENT_VERSE:
-      return{
+      return {
         ...prevState,
-        currentVerse:action.payLoad,
-      }
+        currentVerse: action.payLoad,
+      };
     default: {
       return { ...prevState };
     }

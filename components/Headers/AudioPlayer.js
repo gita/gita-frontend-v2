@@ -1,23 +1,22 @@
-import React, { Fragment, useEffect, useRef,useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { connect } from "react-redux";
 import Link from "next/link";
 
-
 function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }) {
   const refs = useRef([]);
 
-  const [isAudioPlaying,setIsAudioPlaying] = useState(false)
-  
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+
   const play = () => {
     if (refs.current[1].paused) {
       refs.current[1].play();
       refs.current[0].src = "/pause.svg";
-      setIsAudioPlaying(true)
+      setIsAudioPlaying(true);
     } else {
       refs.current[1].pause();
       refs.current[0].src = "/play.svg";
-      setIsAudioPlaying(false)
+      setIsAudioPlaying(false);
     }
   };
 
@@ -25,7 +24,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }) {
     refs.current[1].currentTime = 0;
     refs.current[1].load();
     refs.current[0].src = "/play.svg";
-    setIsAudioPlaying(false)
+    setIsAudioPlaying(false);
   };
 
   const playback = (speed) => {
@@ -54,30 +53,22 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }) {
       document.body.removeChild(scriptTag);
     };
   }, []);
-  useEffect( ()=>{
-    if(playerIsOpen){
-  
-
+  useEffect(() => {
+    if (playerIsOpen) {
       refs.current[0].src = "/pause.svg";
 
       refs.current[1].play();
-     
-    
-  
     }
-  },[currentVerse?.id] )
+  }, [currentVerse?.id]);
 
-  //below use effect is not working 
-  useEffect( ()=>{
-    if(playerIsOpen && !(refs.current[1].paused))
-    {
+  //below use effect is not working
+  useEffect(() => {
+    if (playerIsOpen && !refs.current[1].paused) {
       refs.current[0].src = "/pause.svg";
-
-
     }
-  } ,[])
-  const prevId = currentVerse?.id-1;
-  const nextId = currentVerse?.id+1;
+  }, []);
+  const prevId = currentVerse?.id - 1;
+  const nextId = currentVerse?.id + 1;
 
   return (
     <div>
@@ -133,19 +124,15 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }) {
                 </Dialog.Title>
                 <div className="mt-2 border-b pb-8">
                   <p className="text-sm text-gray-500 dark:text-gray-200">
-                  {currentVerse?.transliteration}
+                    {currentVerse?.transliteration}
                   </p>
                 </div>
 
                 <div className="flex justify-between mt-4 px-4">
                   <Link href={`/verse/${prevId}`}>
-                  <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50  " >
-                  <img src="/rewind.svg" />
-
-
-                  </div>
-
-
+                    <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50  ">
+                      <img src="/rewind.svg" />
+                    </div>
                   </Link>
                   <img
                     id="play"
@@ -153,18 +140,13 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }) {
                       refs.current[0] = element;
                     }}
                     className="cursor-pointer"
-                    src= {isAudioPlaying? "/pause.svg":"/play.svg"}
+                    src={isAudioPlaying ? "/pause.svg" : "/play.svg"}
                     onClick={play}
                   />
                   <Link href={`/verse/${nextId}`}>
-                  <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50">
-                  <img src="/forward.svg" />
-                  
-
-
-                  </div>
-
-
+                    <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50">
+                      <img src="/forward.svg" />
+                    </div>
                   </Link>
                 </div>
                 <div
@@ -221,11 +203,10 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }) {
   );
 }
 
-
 const mapStateToProps = (state) => {
   return {
-    currentVerse: state?.settings?.currentVerse
-  }
-}
+    currentVerse: state?.settings?.currentVerse,
+  };
+};
 
-export default connect(mapStateToProps)(AudioPlayer)
+export default connect(mapStateToProps)(AudioPlayer);

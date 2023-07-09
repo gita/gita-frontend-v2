@@ -1,30 +1,30 @@
 [
-    {
-        "id": 1,
-        "name": "Swami Ramsukhdas"
-    },
-    {
-        "id": 17,
-        "name": "Swami Tejomayananda"
-    },
-    {
-        "id": 18,
-        "name": "Swami Adidevananda"
-    },
-    {
-        "id": 19,
-        "name": "Swami Gambirananda"
-    },
-    {
-        "id": 16,
-        "name": "Swami Sivananda"
-    },
-    {
-        "id": 20,
-        "name": "Dr. S. Sankaranarayan"
-    },
-    {
-        "id": 21,
-        "name": "Shri Purohit Swami"
-    }
+  {
+    "id": 1,
+    "name": "Swami Ramsukhdas"
+  },
+  {
+    "id": 17,
+    "name": "Swami Tejomayananda"
+  },
+  {
+    "id": 18,
+    "name": "Swami Adidevananda"
+  },
+  {
+    "id": 19,
+    "name": "Swami Gambirananda"
+  },
+  {
+    "id": 16,
+    "name": "Swami Sivananda"
+  },
+  {
+    "id": 20,
+    "name": "Dr. S. Sankaranarayan"
+  },
+  {
+    "id": 21,
+    "name": "Shri Purohit Swami"
+  }
 ]

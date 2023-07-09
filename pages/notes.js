@@ -13,11 +13,10 @@ const Notes = () => {
       dispatch(
         setNotification({
           status: "failed",
-          message: ("Please Login to Save Notes"),
+          message: "Please Login to Save Notes",
         })
       );
-    }
-    else {
+    } else {
       supabase
         .from("Notes")
         .select("*")
@@ -32,8 +31,8 @@ const Notes = () => {
   return (
     <div className="bg-gray-400">
       <div className="w-full md:w-1/2 p-12 bg-white">
-        {notes.map((note,index) => (
-          <Notescard note={note} key={index} ></Notescard>
+        {notes.map((note, index) => (
+          <Notescard note={note} key={index}></Notescard>
         ))}
       </div>
     </div>

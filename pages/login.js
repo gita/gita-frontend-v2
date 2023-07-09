@@ -12,15 +12,14 @@ import {
 import AuthLayout from "../layouts/AuthLayout";
 import { setNotification } from "../redux/actions/main";
 import { supabase } from "../utils/supabase";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
-
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const dispatch = useDispatch()
-  const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
-  const router = useRouter()
+  const dispatch = useDispatch();
+  const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
+  const router = useRouter();
   async function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -29,26 +28,25 @@ const Login = () => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email: values.emailAddress,
       password: values.password,
-    })
-    
+    });
+
     if (error) {
       dispatch(
         setNotification({
           status: "failed",
-          message: ("error singing in please contact admin@bhagavadgita.io"),
+          message: "error singing in please contact admin@bhagavadgita.io",
         })
       );
-    }
-    else if(data) {
-        setCookie("access_token", data.session.access_token)
-      
+    } else if (data) {
+      setCookie("access_token", data.session.access_token);
+
       dispatch(
         setNotification({
           status: "success",
-          message: ("Hare Krishna Dear Devotee, you're signed in now"),
+          message: "Hare Krishna Dear Devotee, you're signed in now",
         })
       );
-      router.push("/")
+      router.push("/");
     }
   }
   return (

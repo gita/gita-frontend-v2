@@ -35,11 +35,12 @@ git clone https://github.com/gita/bg-frontend
 
 ... or [downloading source code](https://github.com/gita/bg-frontend/archive/refs/heads/main.zip) code as a zip archive.
 
-Once downloaded 
+Once downloaded
 
 ```
 cd bg-frontend
 ```
+
 Install dependencies with [Yarn](https://classic.yarnpkg.com/en/docs/install) package manager:
 
 ```

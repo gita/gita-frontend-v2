@@ -85,18 +85,20 @@ const Author = ({
                   <Switch
                     checked={isVerseCommentarySourceEnabled}
                     onChange={setIsVerseCommentarySourceEnabled}
-                    className={`${isVerseCommentarySourceEnabled
-                      ? "bg-my-orange"
-                      : "bg-gray-200 dark:bg-dark-bg"
-                      }
+                    className={`${
+                      isVerseCommentarySourceEnabled
+                        ? "bg-my-orange"
+                        : "bg-gray-200 dark:bg-dark-bg"
+                    }
                     relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
                     <span
                       aria-hidden="true"
-                      className={`${isVerseCommentarySourceEnabled
-                        ? "translate-x-5"
-                        : "translate-x-0"
-                        }
+                      className={`${
+                        isVerseCommentarySourceEnabled
+                          ? "translate-x-5"
+                          : "translate-x-0"
+                      }
                       pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
                     />
                   </Switch>
@@ -129,9 +131,10 @@ const Author = ({
                             <Listbox.Option
                               key={author.id}
                               className={({ active }) =>
-                                `${active
-                                  ? "text-white bg-my-orange"
-                                  : "text-black dark:text-white"
+                                `${
+                                  active
+                                    ? "text-white bg-my-orange"
+                                    : "text-black dark:text-white"
                                 }
                                 cursor-pointer select-none relative py-2 px-4`
                               }
@@ -153,18 +156,20 @@ const Author = ({
                   <Switch
                     checked={isVerseTransliterationLanguageEnabled}
                     onChange={setIsVerseTransliterationLanguageEnabled}
-                    className={`${isVerseTransliterationLanguageEnabled
-                      ? "bg-my-orange"
-                      : "bg-gray-200 dark:bg-dark-bg"
-                      }
+                    className={`${
+                      isVerseTransliterationLanguageEnabled
+                        ? "bg-my-orange"
+                        : "bg-gray-200 dark:bg-dark-bg"
+                    }
                     relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
                     <span
                       aria-hidden="true"
-                      className={`${isVerseTransliterationLanguageEnabled
-                        ? "translate-x-5"
-                        : "translate-x-0"
-                        }
+                      className={`${
+                        isVerseTransliterationLanguageEnabled
+                          ? "translate-x-5"
+                          : "translate-x-0"
+                      }
                       pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
                     />
                   </Switch>
@@ -197,9 +202,10 @@ const Author = ({
                             <Listbox.Option
                               key={language.id}
                               className={({ active }) =>
-                                `${active
-                                  ? "text-white bg-my-orange"
-                                  : "text-black dark:text-white"
+                                `${
+                                  active
+                                    ? "text-white bg-my-orange"
+                                    : "text-black dark:text-white"
                                 }
                                 cursor-pointer select-none relative py-2 px-4 capitalize`
                               }
@@ -221,18 +227,20 @@ const Author = ({
                   <Switch
                     checked={isVerseTranslationSourceEnabled}
                     onChange={setIsVerseTranslationSourceEnabled}
-                    className={`${isVerseTranslationSourceEnabled
-                      ? "bg-my-orange"
-                      : "bg-gray-200 dark:bg-dark-bg"
-                      }
+                    className={`${
+                      isVerseTranslationSourceEnabled
+                        ? "bg-my-orange"
+                        : "bg-gray-200 dark:bg-dark-bg"
+                    }
                     relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
                     <span
                       aria-hidden="true"
-                      className={`${isVerseTranslationSourceEnabled
-                        ? "translate-x-5"
-                        : "translate-x-0"
-                        }
+                      className={`${
+                        isVerseTranslationSourceEnabled
+                          ? "translate-x-5"
+                          : "translate-x-0"
+                      }
                       pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
                     />
                   </Switch>
@@ -266,9 +274,10 @@ const Author = ({
                             <Listbox.Option
                               key={author.id}
                               className={({ active }) =>
-                                `${active
-                                  ? "text-white bg-my-orange"
-                                  : "text-black dark:text-white"
+                                `${
+                                  active
+                                    ? "text-white bg-my-orange"
+                                    : "text-black dark:text-white"
                                 }
                                 cursor-pointer select-none relative py-2 px-4`
                               }
