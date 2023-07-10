@@ -290,14 +290,14 @@ export default function ContentModal({ isOpen, close }) {
                               onClick={modalClose}
                               className="flex justify-center items-center h-10 w-10 p-1.5 m-px rounded hover:cursor-pointer bg-my-orange text-white"
                             >
-                              <a>{verse.verseNumber}</a>
+                              {verse.verseNumber}
                             </div>
                           ) : (
                             <div
                               onClick={modalClose}
                               className="flex justify-center items-center h-10 w-10 p-1.5 m-px text-gray-500 rounded hover:cursor-pointer hover:bg-my-orange hover:text-white"
                             >
-                              <a>{verse.verseNumber}</a>
+                              {verse.verseNumber}
                             </div>
                           )}
                         </Link>

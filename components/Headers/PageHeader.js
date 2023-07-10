@@ -63,14 +63,12 @@ const PageHeader = ({
                     {/* Current: "border-my-orange text-gray-900", Default: "border-transparent text-gray-500 " */}
 
                     <div className="text-gray-900 dark:text-gray-50">
-                      <Link href="/">
-                        <a
-                          href="#"
-                          className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        >
-                          <img className="w-6 h-6 mb-1" src="/Home.svg" />
-                          Home
-                        </a>
+                      <Link
+                        href="/"
+                        className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      >
+                        <img className="w-6 h-6 mb-1" src="/Home.svg" />
+                        Home
                       </Link>
                     </div>
                     <button
