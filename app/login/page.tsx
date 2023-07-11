@@ -1,19 +1,20 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
+
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useCookies } from "react-cookie/index";
+import { useRouter } from "next/router";
+import { supabase } from "../../utils/supabase";
+import { setNotification } from "../../redux/actions/main";
 import {
   SvgEyeCross,
   SvgEyeOpen,
   SvgGithub,
   SvgKey,
   SvgMail,
-} from "../components/svgs";
-import AuthLayout from "../layouts/AuthLayout";
-import { setNotification } from "../redux/actions/main";
-import { supabase } from "../utils/supabase";
-import { useCookies } from "react-cookie";
-import { useRouter } from "next/router";
+} from "../../components/svgs";
+import Image from "next/image";
+import Link from "next/link";
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -26,8 +27,8 @@ const Login = () => {
     const values = Object.fromEntries(formData.entries());
 
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: values.emailAddress,
-      password: values.password,
+      email: values.emailAddress as string,
+      password: values.password as string,
     });
 
     if (error) {
@@ -112,15 +113,16 @@ const Login = () => {
         {/* will use next/auth for authentication */}
         <SvgGithub className="hover:cursor-pointer" />
         <div className="h-9 w-9 relative cursor-pointer">
-          <Image src="/google-logo.png" layout="fill" />
+          <Image src="/google-logo.png" layout="fill" alt="google logo" />
         </div>
       </div>
       <p className="text-center text-sm text-gray-500 mt-2 font-normal">
         Don’t have an account?{" "}
-        <Link href="/signup">
-          <a className="text-my-orange hover:cursor-pointer font-bold">
-            Sign up
-          </a>
+        <Link
+          href="/oldPages/signup"
+          className="text-my-orange hover:cursor-pointer font-bold"
+        >
+          Sign up
         </Link>
       </p>
     </>
@@ -128,7 +130,3 @@ const Login = () => {
 };
 
 export default Login;
-
-Login.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
-};

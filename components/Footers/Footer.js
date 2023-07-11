@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from "react";
+"use client";
+import React, { Fragment } from "react";
 import Link from "next/link";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";

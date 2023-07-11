@@ -1,11 +1,13 @@
 /* This IndexHeader requires Tailwind CSS v2.0+ */
+"use client";
+
 import { Fragment, useState } from "react";
 import { Popover, Transition, Menu, Disclosure } from "@headlessui/react";
 import { DocumentReportIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import DarkModeToggle from "./DarkModeToggle";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabase";
 import classNames from "../../utils/classNames";
 import { useAsyncEffect } from "rooks";

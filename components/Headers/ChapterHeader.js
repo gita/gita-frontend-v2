@@ -1,3 +1,5 @@
+"use client";
+
 import { Disclosure } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -9,7 +11,7 @@ import ContentModal from "./ContentModal";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const ChapterHeader = () => {
   const [input, setInput] = useState("");
@@ -24,7 +26,7 @@ const ChapterHeader = () => {
     if (input?.trim().length <= 0) {
       return;
     }
-    router.push(`/search?query=${input}`, undefined, { shallow: true });
+    router.push(`/search?query=${input}`);
   }
   return (
     <>

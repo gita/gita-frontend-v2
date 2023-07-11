@@ -7,7 +7,7 @@ import {
   CheckIcon,
   SelectorIcon,
 } from "@heroicons/react/solid";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 export default function ContentModal({ isOpen, close }) {
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [selectedVerse, setSelectedVerse] = useState({ verseNumber: 1, id: 1 });
