@@ -5,7 +5,6 @@ import { SvgChevronLeft, SvgChevronRight } from "../svgs";
 function PageNavigator({ pageNumber, pageCount, route }) {
   const nextPage = pageNumber + 1;
   const previousPage = pageNumber - 1;
-  console.log(previousPage);
 
   return (
     <div className="relative z-10">
