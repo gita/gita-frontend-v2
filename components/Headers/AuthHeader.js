@@ -15,7 +15,7 @@ export default function AuthHeader() {
           alt="gita logo"
         />
         <span className="sr-only">Workflow</span>
-        Bhagavad Gita
+        <p className="pl-3">Bhagavad Gita</p>
       </div>
     </Link>
   );

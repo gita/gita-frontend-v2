@@ -91,6 +91,7 @@ export default function ChapterPage({ chapterData }) {
                 )}
                 placeholder="Go To Verse"
                 onClick={() => setViewNavigation(!viewNavigation)}
+                onChange={() => {}}
               />
             </div>
             <VerseNavigator

@@ -31,6 +31,10 @@ export const metadata: Metadata = {
         rel: "apple-touch-icon-precomposed",
         url: "/apple-touch-icon-precomposed.png",
       },
+      {
+        rel: "mask-icon",
+        url: "/favicon/safari-pinned-tab.svg",
+      },
     ],
   },
 };

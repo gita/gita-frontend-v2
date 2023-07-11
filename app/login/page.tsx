@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useCookies } from "react-cookie/index";
-import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabase";
 import { setNotification } from "../../redux/actions/main";
 import {

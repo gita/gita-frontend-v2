@@ -1,5 +1,6 @@
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 import { Metadata } from "next";
+import { getVerseData } from "../../../lib/getVerseData";
 import VersePage from "./verse-page";
 
 type Props = {
@@ -12,7 +13,7 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
   const client = new ApolloClient({
     uri: "https://gql.bhagavadgita.io/graphql",
     cache: new InMemoryCache(),
@@ -30,58 +31,13 @@ export async function getStaticPaths() {
     `,
   });
   const verses = data.allGitaVerses.nodes;
-  const paths = verses.map(({ id }) => {
+  return verses.map(({ id }) => {
     return {
       params: { id: id.toString() },
     };
   });
-  return {
-    paths,
-    fallback: false,
-  };
 }
-export async function getVerseData(params) {
-  const { id } = params;
-  const client = new ApolloClient({
-    uri: "https://gql.bhagavadgita.io/graphql",
-    cache: new InMemoryCache(),
-  });
-  // todo: add translation to the query and pass transation data to Translation and Commentary component
-  const { data } = await client.query({
-    query: gql`
-      query MyQuery {
-        gitaVerseById(id: ${id}) {
-          id
-          text
-          transliteration
-          verseNumber
-          wordMeanings
-          chapterNumber
-          gitaTranslationsByVerseId {
-            nodes {
-              description
-              authorId
-              languageId
-            }
-          }
-          gitaCommentariesByVerseId {
-            nodes {
-              description
-              authorId
-              languageId
-            }
-          }
-        }
-      }
-    `,
-  });
-  const verseData = data?.gitaVerseById;
-  return {
-    props: {
-      verseData,
-    },
-  };
-}
+
 const Verse = async ({ params }) => {
   const verseData = await getVerseData(params);
 
