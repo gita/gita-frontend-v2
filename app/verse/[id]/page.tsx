@@ -1,10 +1,10 @@
-import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 import { Metadata } from "next";
 import { getVerseData } from "../../../lib/getVerseData";
+import { getVerseId } from "../../../lib/getVerseId";
 import VersePage from "./verse-page";
 
 type Props = {
-  params: { [key: string]: string | string[] | undefined };
+  params: { id: string };
 };
 
 export function generateMetadata({ params }: Props): Metadata {
@@ -14,22 +14,7 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export async function generateStaticParams() {
-  const client = new ApolloClient({
-    uri: "https://gql.bhagavadgita.io/graphql",
-    cache: new InMemoryCache(),
-  });
-
-  const { data } = await client.query({
-    query: gql`
-      query MyQuery {
-        allGitaVerses {
-          nodes {
-            id
-          }
-        }
-      }
-    `,
-  });
+  const data = await getVerseId();
   const verses = data.allGitaVerses.nodes;
   return verses.map(({ id }) => {
     return {

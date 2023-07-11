@@ -28,10 +28,5 @@ export async function getChapterData(params) {
     `,
   });
 
-  const chapterData = data?.gitaChapterById;
-  return {
-    props: {
-      chapterData,
-    },
-  };
+  return data?.gitaChapterById;
 }

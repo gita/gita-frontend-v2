@@ -42,7 +42,7 @@ export default function VersePage({ verseData }) {
     chapterNumber,
     gitaTranslationsByVerseId,
     gitaCommentariesByVerseId,
-  } = verseData.props.verseData;
+  } = verseData;
 
   const dispatch = useDispatch();
 

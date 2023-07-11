@@ -35,10 +35,5 @@ export async function getVerseData(params) {
       }
     `,
   });
-  const verseData = data?.gitaVerseById;
-  return {
-    props: {
-      verseData,
-    },
-  };
+  return data?.gitaVerseById;
 }

@@ -12,15 +12,17 @@ import {
 import VerseList from "../../../components/Chapter/VerseList";
 import React, { useState } from "react";
 import useMyStyles from "../../../hooks/useMyStyles";
-import { Metadata } from "next";
 
 export default function ChapterPage({ chapterData }) {
-  const chapterNumber = chapterData.props.chapterData?.chapterNumber;
-  const chapterSummary = chapterData.props.chapterData?.chapterSummary;
-  const nameTranslated = chapterData.props.chapterData?.nameTranslated;
-  const versesCount = chapterData.props.chapterData?.versesCount;
+  const {
+    chapterNumber,
+    chapterSummary,
+    nameTranslated,
+    versesCount,
+    gitaVersesByChapterId,
+  } = chapterData;
 
-  const verses = chapterData.props.chapterData?.gitaVersesByChapterId?.nodes;
+  const verses = gitaVersesByChapterId?.nodes;
 
   const [viewNavigation, setViewNavigation] = useState(false);
   const [verseId, setVerseId] = useState(null);
