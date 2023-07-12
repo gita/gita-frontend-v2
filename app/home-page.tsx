@@ -19,8 +19,7 @@ export default function HomePage({ chapters }: any) {
     const access_token = pathName?.match(/\#(?:access_token)\=([\S\s]*?)\&/);
 
     if (access_token && access_token.length > 1) {
-      // @ts-ignore
-      setCookie("Token", access_token[1]);
+      setCookie("access_token", access_token[1]);
     }
   }, [pathName, setCookie]);
   function handleSubscribe(e, formData) {

@@ -22,6 +22,7 @@
     "@popperjs/core": "2.9.1",
     "@supabase/supabase-js": "^2.0.4",
     "@svgr/cli": "^6.1.1",
+    "encoding": "^0.1.13",
     "graphql": "^16.0.1",
     "next": "^13.4.9",
     "next-redux-wrapper": "^7.0.5",

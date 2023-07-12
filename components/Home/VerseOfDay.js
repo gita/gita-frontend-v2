@@ -64,7 +64,6 @@ const VerseOfDay = () => {
           {dailyVerse?.verseNumber}
         </h2>
         <p className="text-lg">
-          {" "}
           {dailyVerse?.gitaTranslationsByVerseId?.nodes[0]?.description}{" "}
         </p>
         <button className="uppercase text-black dark:text-white mt-4 font-bold text-sm hover:text-gray-700 dark:hover:text-gray-400 focus:outline-none">

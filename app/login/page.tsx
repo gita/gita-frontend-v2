@@ -119,7 +119,7 @@ const Login = () => {
       <p className="text-center text-sm text-gray-500 mt-2 font-normal">
         Don’t have an account?{" "}
         <Link
-          href="/oldPages/signup"
+          href="/signup"
           className="text-my-orange hover:cursor-pointer font-bold"
         >
           Sign up
