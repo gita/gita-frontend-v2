@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from "react";
+"use client";
+import React, { Fragment } from "react";
 import Link from "next/link";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
@@ -192,17 +193,16 @@ const Footer = () => {
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
-                            <Link href="/about">
-                              <a
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700 dark:text-gray-400",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                About Us
-                              </a>
+                            <Link
+                              href="/about"
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700 dark:text-gray-400",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              About Us
                             </Link>
                           )}
                         </Menu.Item>

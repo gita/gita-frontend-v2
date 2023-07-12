@@ -1,6 +1,5 @@
+import Bookmarkcard from "../../components/Shared/BookmarkCard";
 import React from "react";
-import Bookmarkcard from "../components/Shared/BookmarkCard";
-import PagesLayout from "../layouts/PagesLayout";
 
 const Bookmark = () => {
   return (
@@ -18,6 +17,3 @@ const Bookmark = () => {
 };
 
 export default Bookmark;
-Bookmark.getLayout = function getLayout(page) {
-  return <PagesLayout>{page}</PagesLayout>;
-};

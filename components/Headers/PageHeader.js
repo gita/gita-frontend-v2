@@ -1,4 +1,6 @@
-import { Fragment, useState, useEffect } from "react";
+"use client";
+
+import { useState } from "react";
 import { Disclosure, Switch } from "@headlessui/react";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -10,7 +12,7 @@ import AuthorSettings from "../Shared/Author";
 import DarkModeToggle from "./DarkModeToggle";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import useEnvironment from "../../hooks/useEnvironment";
 import NotesModal from "../Shared/NotesModal";
 
@@ -45,7 +47,7 @@ const PageHeader = ({
     if (input?.trim().length <= 0) {
       return;
     }
-    router.push(`/search?query=${input}`, undefined, { shallow: true });
+    router.push(`/search?query=${input}`);
   }
 
   return (
@@ -63,14 +65,12 @@ const PageHeader = ({
                     {/* Current: "border-my-orange text-gray-900", Default: "border-transparent text-gray-500 " */}
 
                     <div className="text-gray-900 dark:text-gray-50">
-                      <Link href="/">
-                        <a
-                          href="#"
-                          className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        >
-                          <img className="w-6 h-6 mb-1" src="/Home.svg" />
-                          Home
-                        </a>
+                      <Link
+                        href="/"
+                        className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      >
+                        <img className="w-6 h-6 mb-1" src="/Home.svg" />
+                        Home
                       </Link>
                     </div>
                     <button
@@ -161,17 +161,15 @@ const PageHeader = ({
                       </button>
                     )}
                     {isProduction ? null : (
-                      <Link href="/bookmark">
-                        <a
-                          href="#"
-                          className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                        >
-                          <img
-                            className="w-6 h-6 mb-1"
-                            src="/bookmark-header.svg"
-                          />
-                          Bookmark
-                        </a>
+                      <Link
+                        href="/bookmark"
+                        className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      >
+                        <img
+                          className="w-6 h-6 mb-1"
+                          src="/bookmark-header.svg"
+                        />
+                        Bookmark
                       </Link>
                     )}
                   </div>
@@ -229,51 +227,52 @@ const PageHeader = ({
 
             <Disclosure.Panel className="lg:hidden">
               <div className="pt-2 pb-1 space-y-1">
-                <Link href="/">
-                  <a className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900">
-                    Home
-                  </a>
+                <Link
+                  href="/"
+                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
+                >
+                  Home
                 </Link>
-                <a
-                  href="#"
+                <button
+                  type="button"
                   onClick={openContentModal}
                   className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Content
-                </a>
-                <a
-                  href="#"
+                </button>
+                <button
+                  type="button"
                   onClick={openSettingsModal}
                   className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Appearance
-                </a>
-                <a
-                  href="#"
+                </button>
+                <button
+                  type="button"
                   onClick={openAuthorSettingsModal}
                   className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Language
-                </a>
-                <a
-                  href="#"
+                </button>
+                <button
+                  type="button"
                   onClick={openPlayerModal}
                   className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Play Audio
-                </a>
-                <a
-                  href="#"
+                </button>
+                <button
+                  type="button"
                   className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Notes
-                </a>
-                <a
-                  href="#"
+                </button>
+                <button
+                  type="button"
                   className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Bookmark
-                </a>
+                </button>
               </div>
               <Disclosure>
                 <Disclosure.Button className="w-full flex border-t-2 border-gray-300 justify-between text-black dark:text-gray-400 pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900">

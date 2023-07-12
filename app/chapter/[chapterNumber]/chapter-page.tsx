@@ -1,106 +1,36 @@
-import React, { useState } from "react";
-import ChapterLayout from "../../layouts/ChapterLayout";
-import Head from "next/head";
+"use client";
+
+import { SvgChapterBackground } from "../../../components/svgs";
+import PageNavigator from "../../../components/Chapter/PageNavigator";
+import classNames from "../../../utils/classNames";
+import VerseNavigator from "../../../components/Chapter/VerseNavigator";
 import {
+  ChevronDownIcon,
   SortAscendingIcon,
   SortDescendingIcon,
-  ChevronDownIcon,
 } from "@heroicons/react/solid";
-import useMyStyles from "../../hooks/useMyStyles";
-import classNames from "../../utils/classNames";
-import VerseList from "../../components/Chapter/VerseList";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { SvgChapterBackground } from "../../components/svgs";
-import VerseNavigator from "../../components/Chapter/VerseNavigator";
-import PageNavigator from "../../components/Chapter/PageNavigator";
-import { useRouter } from "next/router";
-export async function getStaticPaths() {
-  const client = new ApolloClient({
-    uri: "https://gql.bhagavadgita.io/graphql",
-    cache: new InMemoryCache(),
-  });
+import VerseList from "../../../components/Chapter/VerseList";
+import React, { useState } from "react";
+import useMyStyles from "../../../hooks/useMyStyles";
 
-  const { data } = await client.query({
-    query: gql`
-      query MyQuery {
-        allGitaChapters {
-          nodes {
-            chapterNumber
-          }
-        }
-      }
-    `,
-  });
+export default function ChapterPage({ chapterData }) {
+  const {
+    chapterNumber,
+    chapterSummary,
+    nameTranslated,
+    versesCount,
+    gitaVersesByChapterId,
+  } = chapterData;
 
-  const chapters = data.allGitaChapters?.nodes;
-  const paths = chapters.map(({ chapterNumber }) => {
-    return {
-      params: { chapterNumber: chapterNumber.toString() },
-    };
-  });
-  return {
-    paths,
-    fallback: true,
-  };
-}
-export async function getStaticProps({ params }) {
-  const { chapterNumber } = params;
-  const client = new ApolloClient({
-    uri: "https://gql.bhagavadgita.io/graphql",
-    cache: new InMemoryCache(),
-  });
-
-  const { data } = await client.query({
-    query: gql`
-      query MyQuery {
-        gitaChapterById(id: ${chapterNumber ?? 1}) {
-          chapterSummary
-          chapterNumber
-          nameTranslated
-          versesCount
-          gitaVersesByChapterId {
-            nodes {
-              id
-              verseNumber
-              wordMeanings
-              transliteration
-            }
-          }
-        }
-      }
-    `,
-  });
-
-  const chapterData = data?.gitaChapterById;
-  return {
-    props: {
-      chapterData,
-    },
-  };
-}
-export default function Chapter({ chapterData }) {
-  const chapterNumber = chapterData?.chapterNumber;
-  const chapterSummary = chapterData?.chapterSummary;
-  const nameTranslated = chapterData?.nameTranslated;
-  const versesCount = chapterData?.versesCount;
-
-  const verses = chapterData?.gitaVersesByChapterId?.nodes;
+  const verses = gitaVersesByChapterId?.nodes;
 
   const [viewNavigation, setViewNavigation] = useState(false);
   const [verseId, setVerseId] = useState(null);
   const [isAscSorted, setisAscSorted] = useState(true);
   const styles = useMyStyles();
 
-  const { isFallback } = useRouter();
-  if (isFallback) {
-    return <h1>Fallback</h1>;
-  }
   return (
     <div>
-      <Head>
-        <title>Bhagavad Gita App - Chapters</title>
-      </Head>
-
       <div className="absolute max-w-5xl font-inter left-0 right-0 mx-auto text-center">
         <SvgChapterBackground className="relative text-gray-300 w-full lg:w-min dark:text-black text-opacity-25 dark:text-opacity-25 rounded-full m-auto left-0 right-0 bottom-0 lg:top-12" />
       </div>
@@ -156,13 +86,14 @@ export default function Chapter({ chapterData }) {
                 type="text"
                 name="verse-id"
                 id="verse-id"
-                value={verseId}
+                value={verseId ? verseId : ""}
                 className={classNames(
                   "focus:ring-my-orange border focus:border-my-orange block w-full rounded-none rounded-l-md pl-2 border-gray-300",
                   styles.fontSize.para
                 )}
                 placeholder="Go To Verse"
                 onClick={() => setViewNavigation(!viewNavigation)}
+                onChange={() => {}}
               />
             </div>
             <VerseNavigator
@@ -219,7 +150,3 @@ export default function Chapter({ chapterData }) {
     </div>
   );
 }
-
-Chapter.getLayout = function getLayout(page) {
-  return <ChapterLayout>{page}</ChapterLayout>;
-};

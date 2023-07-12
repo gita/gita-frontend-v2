@@ -1,3 +1,5 @@
+"use client";
+
 import { Disclosure } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -9,7 +11,7 @@ import ContentModal from "./ContentModal";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const ChapterHeader = () => {
   const [input, setInput] = useState("");
@@ -24,7 +26,7 @@ const ChapterHeader = () => {
     if (input?.trim().length <= 0) {
       return;
     }
-    router.push(`/search?query=${input}`, undefined, { shallow: true });
+    router.push(`/search?query=${input}`);
   }
   return (
     <>
@@ -39,17 +41,18 @@ const ChapterHeader = () => {
                 <div className="flex px-2 lg:px-0">
                   <div className="hidden items-center py-2 lg:flex lg:space-x-4">
                     <div className="text-gray-900 dark:text-gray-50">
-                      <Link href="/">
-                        <a className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg">
-                          <Image
-                            className="w-6 h-6 mb-1"
-                            src="/Home.svg"
-                            alt="Home"
-                            width={24}
-                            height={24}
-                          />
-                          Home
-                        </a>
+                      <Link
+                        href="/"
+                        className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                      >
+                        <Image
+                          className="w-6 h-6 mb-1"
+                          src="/Home.svg"
+                          alt="Home"
+                          width={24}
+                          height={24}
+                        />
+                        Home
                       </Link>
                     </div>
                     <button
@@ -140,25 +143,24 @@ const ChapterHeader = () => {
             <Disclosure.Panel className="lg:hidden">
               <div className="pt-2 pb-3 space-y-1">
                 {/* Current: "bg-indigo-50 border-my-orange text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
-                <Link href="/">
-                  <a className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:focus:text-gray-900">
-                    Home
-                  </a>
+                <Link
+                  href="/"
+                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:focus:text-gray-900"
+                >
+                  Home
                 </Link>
-                <a
-                  href="#"
+                <button
                   onClick={openContentModal}
                   className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:focus:text-gray-900"
                 >
                   Content
-                </a>
-                <a
-                  href="#"
+                </button>
+                <button
                   onClick={openSettingsModal}
                   className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:focus:text-gray-900"
                 >
                   Appearance
-                </a>
+                </button>
               </div>
             </Disclosure.Panel>
           </>

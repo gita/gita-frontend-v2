@@ -1,21 +1,20 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
+
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { supabase } from "../../utils/supabase";
+import { setNotification } from "../../redux/actions/main";
 import {
   SvgEyeCross,
   SvgEyeOpen,
-  SvgGithub,
   SvgKey,
   SvgMail,
   SvgUser,
-} from "../components/svgs";
+} from "../../components/svgs";
+import Image from "next/image";
+import Link from "next/link";
 
-import AuthLayout from "../layouts/AuthLayout";
-import { setNotification } from "../redux/actions/main";
-import { supabase } from "../utils/supabase";
-
-const Signup = () => {
+function Signup() {
   const [error, setError] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
@@ -50,8 +49,8 @@ const Signup = () => {
       setError("Password and confirm password does not match");
     } else {
       const { data, error } = await supabase.auth.signUp({
-        email: values.emailAddress,
-        password: values.password,
+        email: values.emailAddress as string,
+        password: values.password as string,
         options: {
           data: {
             full_name: values.fullName,
@@ -81,6 +80,7 @@ const Signup = () => {
       e.target.reset();
     }
   }
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -189,21 +189,20 @@ const Signup = () => {
           className="h-9 w-9 relative hover:cursor-pointer"
           onClick={signUpGoogle}
         >
-          <Image src="/google-logo.png" layout="fill" />
+          <Image src="/google-logo.png" layout="fill" alt="google logo" />
         </div>
       </div>
       <p className="text-center text-sm text-gray-500 mt-2 font-normal">
         Already have an account?{" "}
-        <Link href="/login">
-          <a className="text-my-orange hover:cursor-pointer font-bold">Login</a>
+        <Link
+          href="/login"
+          className="text-my-orange hover:cursor-pointer font-bold"
+        >
+          Login
         </Link>
       </p>
     </>
   );
-};
+}
 
 export default Signup;
-
-Signup.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
-};

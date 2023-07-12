@@ -1,13 +1,13 @@
-import React from "react";
-import HomeLayout from "../layouts/HomeLayout";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import SearchCard from "../components/Search/SearchCard";
-import { useState, useEffect } from "react";
-export default function Search() {
-  const router = useRouter();
-  const { query } = router.query;
-  const [data, setData] = useState();
+"use client";
+
+import SearchCard from "../../components/Search/SearchCard";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+
+export default function SearchPage() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query");
+  const [data, setData] = useState<any>();
   const [isSearchLoading, setIsSearchLoading] = useState(false);
   useEffect(() => {
     setIsSearchLoading(true);
@@ -16,7 +16,7 @@ export default function Search() {
         method: "GET",
         headers: {
           accept: "application/json",
-          "X-API-KEY": process.env.NEXT_PUBLIC_BG_API_KEY,
+          "X-API-KEY": process.env.NEXT_PUBLIC_BG_API_KEY as string,
         },
       })
         .then((resp) => {
@@ -32,19 +32,16 @@ export default function Search() {
     };
     fetchData();
   }, [query]);
+
   return (
     <div>
-      <Head>
-        <title>Bhagavad Gita App - Search</title>
-      </Head>
       <div className="max-w-5xl font-inter py-4 mx-auto px-4 sm:px-6">
         <p
           className={`text-2xl lg:text-3xl py-4 ${
             isSearchLoading ? "animate-pulse" : ""
           }`}
         >
-          Seaching results for:{" "}
-          <span className="font-extrabold">{router.query.query}</span>
+          Seaching results for: <span className="font-extrabold">{query}</span>
         </p>
         <hr />
 
@@ -79,7 +76,3 @@ export default function Search() {
     </div>
   );
 }
-
-Search.getLayout = function getLayout(page) {
-  return <HomeLayout>{page}</HomeLayout>;
-};

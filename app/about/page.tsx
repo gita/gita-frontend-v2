@@ -1,14 +1,13 @@
-import React from "react";
-import HomeLayout from "../layouts/HomeLayout";
-import Head from "next/head";
-import AboutBanner from "../components/Shared/AboutBanner";
+import AboutBanner from "../../components/Shared/AboutBanner";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Bhagavad Gita App - About",
+};
 
 export default function About() {
   return (
-    <div>
-      <Head>
-        <title>Bhagavad Gita App - About</title>
-      </Head>
+    <>
       <AboutBanner />
       <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
         <p className="mt-8 text-xl ">
@@ -34,10 +33,6 @@ export default function About() {
           body as well as the revelation of the Ultimate Purpose of Life.
         </p>
       </div>
-    </div>
+    </>
   );
 }
-
-About.getLayout = function getLayout(page) {
-  return <HomeLayout>{page}</HomeLayout>;
-};

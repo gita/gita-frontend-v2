@@ -1,11 +1,13 @@
 /* This IndexHeader requires Tailwind CSS v2.0+ */
+"use client";
+
 import { Fragment, useState } from "react";
 import { Popover, Transition, Menu, Disclosure } from "@headlessui/react";
 import { DocumentReportIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import DarkModeToggle from "./DarkModeToggle";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabase";
 import classNames from "../../utils/classNames";
 import { useAsyncEffect } from "rooks";
@@ -141,14 +143,12 @@ export default function IndexHeader() {
         <div className="max-w-full mx-auto  xl:px-24 px-4">
           <div className="flex justify-between items-center  py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <Link href="/">
-                <a
-                  href="#"
-                  className="font-bold text-3xl dark:text-white focus:outline-none"
-                >
-                  <span className="sr-only">Workflow</span>
-                  Bhagavad Gita
-                </a>
+              <Link
+                href="/"
+                className="font-bold text-3xl dark:text-white focus:outline-none"
+              >
+                <span className="sr-only">Workflow</span>
+                Bhagavad Gita
               </Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
@@ -191,18 +191,20 @@ export default function IndexHeader() {
                         <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                           <div className="relative grid md:grid-cols-2 gap-6 bg-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
                             {chapters.map((chapter, index) => (
-                              <Link href={chapter.href} key={index}>
-                                <a className="-m-3 p-1 flex items-start rounded-lg hover:bg-gray-100 dark:hover:bg-dark-bg hover:cursor-pointer	">
-                                  <chapter.icon
-                                    className="flex-shrink-0 h-6 w-6 text-my-orange"
-                                    aria-hidden="true"
-                                  />
-                                  <div className="ml-4">
-                                    <p className="text-base font-medium text-gray-900 dark:text-white">
-                                      {chapter.name}
-                                    </p>
-                                  </div>
-                                </a>
+                              <Link
+                                href={chapter.href}
+                                key={index}
+                                className="-m-3 p-1 flex items-start rounded-lg hover:bg-gray-100 dark:hover:bg-dark-bg hover:cursor-pointer	"
+                              >
+                                <chapter.icon
+                                  className="flex-shrink-0 h-6 w-6 text-my-orange"
+                                  aria-hidden="true"
+                                />
+                                <div className="ml-4">
+                                  <p className="text-base font-medium text-gray-900 dark:text-white">
+                                    {chapter.name}
+                                  </p>
+                                </div>
                               </Link>
                             ))}
                           </div>
@@ -212,18 +214,17 @@ export default function IndexHeader() {
                   </>
                 )}
               </Popover>
-              <Link href="/quotes">
-                <a
-                  href="#"
-                  className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
-                >
-                  Quotes
-                </a>
+              <Link
+                href="/quotes"
+                className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
+              >
+                Quotes
               </Link>
-              <Link href="/about">
-                <a className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none">
-                  About Geeta
-                </a>
+              <Link
+                href="/about"
+                className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
+              >
+                About Geeta
               </Link>
               {!loggedIn ? (
                 <Popover className="relative">
@@ -257,15 +258,17 @@ export default function IndexHeader() {
                         <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-32 max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                           <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid md:grid-cols-1  bg-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
-                              <Link href="/signup">
-                                <a className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none">
-                                  Signup
-                                </a>
+                              <Link
+                                href="/signup"
+                                className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
+                              >
+                                Signup
                               </Link>
-                              <Link href="/login">
-                                <a className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none">
-                                  Login
-                                </a>
+                              <Link
+                                href="/login"
+                                className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
+                              >
+                                Login
                               </Link>
                             </div>
                           </div>
@@ -275,7 +278,8 @@ export default function IndexHeader() {
                   )}
                 </Popover>
               ) : (
-                <a
+                <button
+                  type="button"
                   onClick={signout}
                   className={classNames(
                     "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
@@ -283,7 +287,7 @@ export default function IndexHeader() {
                   )}
                 >
                   <span className="truncate">Signout</span>
-                </a>
+                </button>
               )}
             </Popover.Group>
             <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
@@ -333,7 +337,7 @@ export default function IndexHeader() {
             <div className=" shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-dark-100 divide-y-2 divide-gray-50 dark:divide-dark-100">
               <div className="pt-5">
                 <div className="flex items-center pr-5 justify-between">
-                  <a href="#" className="font-bold text-3xl">
+                  <button className="font-bold text-3xl" type="button">
                     <form
                       onSubmit={handleSearch}
                       className="px-3 py-2 text-sm font-medium relative mx-auto text-gray-600"
@@ -366,7 +370,7 @@ export default function IndexHeader() {
                         }}
                       />
                     </form>
-                  </a>
+                  </button>
                   <div className="-mr-2">
                     <Popover.Button className="bg-white dark:bg-dark-bg rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
                       <span className="sr-only px-5">Close menu</span>
@@ -405,18 +409,18 @@ export default function IndexHeader() {
                         </Disclosure.Panel>
                       </Disclosure>
                       {mobileNav.map((item) => (
-                        <Link key={item.name} href={item.href}>
-                          <a
-                            className={classNames(
-                              item.current
-                                ? "bg-yellow-100 border-l-4 border-my-orange text-gray-900 dark:text-white"
-                                : "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                              "flex items-center mb-2 px-3 py-2 font-medium"
-                            )}
-                            aria-current={item.current ? "page" : undefined}
-                          >
-                            <span className="truncate">{item.name}</span>
-                          </a>
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
+                            item.current
+                              ? "bg-yellow-100 border-l-4 border-my-orange text-gray-900 dark:text-white"
+                              : "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
+                            "flex items-center mb-2 px-3 py-2 font-medium"
+                          )}
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          <span className="truncate">{item.name}</span>
                         </Link>
                       ))}
                       {!loggedIn ? (
@@ -427,32 +431,31 @@ export default function IndexHeader() {
                           </Disclosure.Button>
                           <Disclosure.Panel className="text-gray-500 dark:text-white dark:bg-dark-100 py-4">
                             <div className="relative grid grid-cols-2 gap-6 bg-white px-8 dark:text-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
-                              <Link href="signup">
-                                <a
-                                  className={classNames(
-                                    "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                                    "flex items-center mb-2 px-3 py-2 font-medium"
-                                  )}
-                                >
-                                  <span className="truncate">Signup</span>
-                                </a>
+                              <Link
+                                href="/signup"
+                                className={classNames(
+                                  "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
+                                  "flex items-center mb-2 px-3 py-2 font-medium"
+                                )}
+                              >
+                                <span className="truncate">Signup</span>
                               </Link>
 
-                              <Link href="login">
-                                <a
-                                  className={classNames(
-                                    "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                                    "flex items-center mb-2 px-3 py-2 font-medium"
-                                  )}
-                                >
-                                  <span className="truncate">login</span>
-                                </a>
+                              <Link
+                                href="/login"
+                                className={classNames(
+                                  "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
+                                  "flex items-center mb-2 px-3 py-2 font-medium"
+                                )}
+                              >
+                                <span className="truncate">login</span>
                               </Link>
                             </div>
                           </Disclosure.Panel>
                         </Disclosure>
                       ) : (
-                        <a
+                        <button
+                          type="button"
                           onClick={signout}
                           className={classNames(
                             "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
@@ -460,7 +463,7 @@ export default function IndexHeader() {
                           )}
                         >
                           <span className="truncate">Signout</span>
-                        </a>
+                        </button>
                       )}
                     </nav>
                   </nav>

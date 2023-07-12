@@ -1,10 +1,9 @@
-import React from "react";
-import Head from "next/head";
-import QuotesBanner from "../components/Shared/QuotesBanner";
-import HomeLayout from "../layouts/HomeLayout";
-import { useState } from "react";
-import Quote from "../components/Quotes/Quote";
-import QuotesNavigator from "../components/Quotes/QuotesNavigator";
+"use client";
+
+import React, { useState } from "react";
+import QuotesBanner from "../../components/Shared/QuotesBanner";
+import QuotesNavigator from "../../components/Quotes/QuotesNavigator";
+import Quote from "../../components/Quotes/Quote";
 
 const quotes = [
   "Whenever dharma declines and the purpose of life is forgotten, I manifest myself on earth. I am born in every age to protect the good, to destroy evil, and to reestablish dharma.",
@@ -110,14 +109,11 @@ const quotes = [
   "I give you these precious words of wisdom; reflect on them and then do as you choose.",
 ];
 
-const Quotes = () => {
+export default function QuotesPage() {
   const [quoteIndex, setQuoteIndex] = useState(0);
 
   return (
     <div className="mb-16">
-      <Head>
-        <title>Bhagavad Gita App - Quotes</title>
-      </Head>
       <QuotesBanner />
       <div className="relative p-0 md:w-[90%] lg:w-[73%] xl:w-[66%] m-auto z-10 h-96">
         <QuotesNavigator
@@ -129,10 +125,4 @@ const Quotes = () => {
       </div>
     </div>
   );
-};
-
-export default Quotes;
-
-Quotes.getLayout = function getLayout(page) {
-  return <HomeLayout>{page}</HomeLayout>;
-};
+}

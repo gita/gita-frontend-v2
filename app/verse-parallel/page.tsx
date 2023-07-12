@@ -1,14 +1,14 @@
-import React from "react";
-import PagesLayout from "../layouts/PagesLayout";
-import Head from "next/head";
-import Translation from "../components/Verse/Translation";
-import Commentary from "../components/Verse/Commentary";
+import Translation from "../../components/Verse/Translation";
+import Commentary from "../../components/Verse/Commentary";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Bhagavad Gita App - Verse",
+};
+
 export default function VerseParallel() {
   return (
     <div className="font-inter mb-16">
-      <Head>
-        <title>Bhagavad Gita App - Verse</title>
-      </Head>
       <div className="max-w-5xl font-inter py-12 mx-auto text-center  px-4 sm:px-6">
         <img
           src="arrow-left.png"
@@ -38,20 +38,16 @@ export default function VerseParallel() {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Translation />
-            <Commentary />
+            {/*<Translation />*/}
+            {/*<Commentary />*/}
           </div>
 
           <div>
-            <Translation />
-            <Commentary />
+            {/*<Translation />*/}
+            {/*<Commentary />*/}
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-VerseParallel.getLayout = function getLayout(page) {
-  return <PagesLayout>{page}</PagesLayout>;
-};

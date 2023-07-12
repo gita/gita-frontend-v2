@@ -23,23 +23,13 @@ const Banner = () => {
             Anywhere, Anytime
           </h1>
 
-          <Link href={"/chapter/1"}>
-            <button
-              type="button"
-              className="inline-flex items-center px-6 py-3 border  mx-auto mt-4 max-w-max border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange z-30"
-            >
-              Read Now
-            </button>
+          <Link
+            href={"/chapter/1"}
+            className="inline-flex items-center px-6 py-3 border  mx-auto mt-4 max-w-max border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange z-30"
+          >
+            Read Now
           </Link>
         </div>
-      </div>
-      <div className="absolute z-[-1] h-96 -mt-60 w-full">
-        <Image
-          src="/main.png"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-        />
       </div>
     </>
   );
