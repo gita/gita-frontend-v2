@@ -1,11 +1,9 @@
 import { gql } from "@apollo/client";
-import makeClient from "./makeClient";
+import apolloClient from "./apolloClient";
 
 export async function getVerseData(id: string): Promise<Verse> {
-  const client = makeClient();
-
   // todo: add translation to the query and pass transation data to Translation and Commentary component
-  const { data } = await client.query({
+  const { data } = await apolloClient.query({
     query: gql`
       query MyQuery {
         gitaVerseById(id: ${id}) {

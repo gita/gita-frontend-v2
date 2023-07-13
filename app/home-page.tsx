@@ -1,4 +1,4 @@
-"use client";
+"use apolloClient";
 
 import { FormEvent, useEffect, useState } from "react";
 import { connect } from "react-redux";

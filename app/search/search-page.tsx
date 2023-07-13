@@ -1,4 +1,4 @@
-"use client";
+"use apolloClient";
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";

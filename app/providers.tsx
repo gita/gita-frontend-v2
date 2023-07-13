@@ -1,4 +1,4 @@
-"use client";
+"use apolloClient";
 
 import "tailwindcss/tailwind.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
@@ -8,12 +8,13 @@ import { ReactNode } from "react";
 import { Provider } from "react-redux";
 import { useStore } from "../redux/store";
 
+const client = new ApolloClient({
+  uri: "https://gql.bhagavadgita.io/graphql",
+  cache: new InMemoryCache(),
+});
+
 export default function Providers({ children }: { children: ReactNode }) {
   const store = useStore(undefined);
-  const client = new ApolloClient({
-    uri: "https://gql.bhagavadgita.io/graphql",
-    cache: new InMemoryCache(),
-  });
 
   return (
     <ApolloProvider client={client}>

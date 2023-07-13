@@ -1,4 +1,4 @@
-"use client";
+"use apolloClient";
 
 import { Dispatch, SetStateAction, useState } from "react";
 import { Disclosure, Switch } from "@headlessui/react";

@@ -1,4 +1,4 @@
-"use client";
+"use apolloClient";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";

@@ -1,12 +1,10 @@
 import { gql } from "@apollo/client";
-import makeClient from "./makeClient";
+import apolloClient from "./apolloClient";
 
 export async function getChapterData(
   chapterNumber: string
 ): Promise<GitaChapter> {
-  const client = makeClient();
-
-  const { data } = await client.query({
+  const { data } = await apolloClient.query({
     query: gql`
       query MyQuery {
         gitaChapterById(id: ${chapterNumber ?? 1}) {
