@@ -1,11 +1,8 @@
-import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
+import { gql } from "@apollo/client";
+import makeClient from "./makeClient";
 
 export async function getVerseId() {
-  const client = new ApolloClient({
-    uri: "https://gql.bhagavadgita.io/graphql",
-    cache: new InMemoryCache(),
-  });
-
+  const client = makeClient();
   const { data } = await client.query({
     query: gql`
       query MyQuery {
