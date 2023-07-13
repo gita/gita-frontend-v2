@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import { Menu, Transition } from "@headlessui/react";
 import { DotsVerticalIcon } from "@heroicons/react/solid";
 import classNames from "../../utils/classNames";
@@ -7,7 +8,7 @@ const Notescard = (note: any) => {
   return (
     <div className="flex items-baseline mt-4 gap-2 font-inter border-b border-gray-300 pb-4">
       <div>
-        <img src="star.svg" />
+        <Image src="star.svg" alt="star icon" width={24} height={24} />
       </div>
       <div>
         <h3 className="text-black font-bold"> Verse {note.note.verse_id}</h3>

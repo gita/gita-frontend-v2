@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment } from "react";
+import Image from "next/image";
 import { Menu, Transition } from "@headlessui/react";
 import { DotsVerticalIcon } from "@heroicons/react/solid";
 import classNames from "../../utils/classNames";
@@ -9,7 +10,12 @@ const Bookmarkcard = () => {
   return (
     <div className="flex items-baseline mt-4 gap-2 font-inter border-b border-gray-300 pb-4">
       <div>
-        <img src="bookmark-header.svg" />
+        <Image
+          src="bookmark-header.svg"
+          alt="bookmark icon"
+          width={24}
+          height={24}
+        />
       </div>
       <div>
         <h3 className="text-black font-bold"> Verse 10.18</h3>
