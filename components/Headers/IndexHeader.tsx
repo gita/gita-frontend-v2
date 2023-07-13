@@ -1,5 +1,5 @@
 /* This IndexHeader requires Tailwind CSS v2.0+ */
-"use apolloClient";
+"use client";
 
 import { Fragment, useState } from "react";
 import { Popover, Transition, Disclosure } from "@headlessui/react";

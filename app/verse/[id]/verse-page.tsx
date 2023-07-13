@@ -1,4 +1,4 @@
-"use apolloClient";
+"use client";
 
 import { useDispatch } from "react-redux";
 import useMyStyles from "../../../hooks/useMyStyles";

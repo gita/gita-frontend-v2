@@ -1,4 +1,4 @@
-"use apolloClient";
+"use client";
 
 import React, { useState } from "react";
 import QuotesBanner from "../../components/Shared/QuotesBanner";

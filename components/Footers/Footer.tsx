@@ -1,4 +1,5 @@
-"use apolloClient";
+"use client";
+
 import { Fragment } from "react";
 import Link from "next/link";
 import { Menu, Transition } from "@headlessui/react";

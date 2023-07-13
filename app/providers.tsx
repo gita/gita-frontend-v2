@@ -1,4 +1,4 @@
-"use apolloClient";
+"use client";
 
 import "tailwindcss/tailwind.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
