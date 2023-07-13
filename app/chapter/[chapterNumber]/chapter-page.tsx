@@ -33,6 +33,15 @@ export default function ChapterPage({
   const [isAscSorted, setisAscSorted] = useState(true);
   const styles = useMyStyles();
 
+  const filteredVerses = verses?.filter((verse) => {
+    if (!verseId) return true;
+    return verse.verseNumber === verseId;
+  });
+
+  const sortedVerses = isAscSorted
+    ? filteredVerses
+    : filteredVerses?.slice(0).reverse();
+
   return (
     <div>
       <div className="absolute max-w-5xl font-inter left-0 right-0 mx-auto text-center">
@@ -135,21 +144,9 @@ export default function ChapterPage({
       </div>
 
       <div className="max-w-5xl font-inter py-8 mb-16 mx-auto px-4 sm:px-6">
-        {isAscSorted
-          ? verses
-              ?.filter((verse) => {
-                if (!verseId) return true;
-                return verse.verseNumber === verseId;
-              })
-              .map((verse) => <VerseList verseData={verse} key={verse.id} />)
-          : verses
-              ?.filter((verse) => {
-                if (!verseId) return true;
-                return verse.verseNumber === verseId;
-              })
-              .slice(0)
-              .reverse()
-              .map((verse) => <VerseList verseData={verse} key={verse.id} />)}
+        {sortedVerses?.map((verse) => (
+          <VerseList verseData={verse} key={verse.id} />
+        ))}
       </div>
     </div>
   );

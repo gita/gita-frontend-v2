@@ -65,30 +65,17 @@ export default function VersePage({ verseData }: Props) {
     );
   }, [transliteration, verseNumber, chapterNumber, id]);
 
-  const currentTranslation = gitaTranslationsByVerseId.nodes.reduce(
-    (acc, translation) => {
-      if (
+  const currentTranslation =
+    gitaTranslationsByVerseId.nodes.find(
+      (translation) =>
         translation.authorId === languageSettings.translationAuthor.id
-        //  && translation.languageId === languageSettings.language.id
-      ) {
-        return translation;
-      }
-      return acc;
-    },
-    {}
-  );
-  const currentCommentary = gitaCommentariesByVerseId.nodes.reduce(
-    (acc, commentary) => {
-      if (
+    ) || null;
+
+  const currentCommentary =
+    gitaCommentariesByVerseId.nodes.find(
+      (commentary) =>
         commentary.authorId === languageSettings.commentaryAuthor.id
-        //  && commentary.languageId === languageSettings.language.id
-      ) {
-        return commentary;
-      }
-      return acc;
-    },
-    {}
-  );
+    ) || null;
 
   return (
     <div className="font-inter">

@@ -2,7 +2,7 @@ import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 
 interface Props {
-  translationData: Node | object;
+  translationData: Node | null;
 }
 
 export default function Translation({ translationData }: Props) {
@@ -25,7 +25,7 @@ export default function Translation({ translationData }: Props) {
           styles.lineHeight
         )}
       >
-        {"description" in translationData ? translationData?.description : null}
+        {translationData?.description}
       </p>
     </div>
   );

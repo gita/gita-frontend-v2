@@ -47,21 +47,19 @@ const ChapterHeader = () => {
               <div className="flex justify-between h-16">
                 <div className="flex px-2 lg:px-0">
                   <div className="hidden items-center py-2 lg:flex lg:space-x-4">
-                    <div className="text-gray-900 dark:text-gray-50">
-                      <Link
-                        href="/"
-                        className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <Image
-                          className="w-6 h-6 mb-1"
-                          src="/Home.svg"
-                          alt="Home"
-                          width={24}
-                          height={24}
-                        />
-                        Home
-                      </Link>
-                    </div>
+                    <Link
+                      href="/"
+                      className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg text-gray-900 dark:text-gray-50"
+                    >
+                      <Image
+                        className="w-6 h-6 mb-1"
+                        src="/Home.svg"
+                        alt="Home"
+                        width={24}
+                        height={24}
+                      />
+                      Home
+                    </Link>
                     <button
                       type="button"
                       onClick={openContentModal}

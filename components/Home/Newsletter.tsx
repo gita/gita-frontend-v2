@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import Image from "next/image";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Newsletter = ({ handleSubscribe }: Props) => {
-  const [formData, setFormData] = React.useState<NewsletterFormData>({
+  const [formData, setFormData] = useState<NewsletterFormData>({
     name: "",
     email: "",
   });

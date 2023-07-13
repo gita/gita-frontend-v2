@@ -114,6 +114,7 @@ export default function IndexHeader() {
   const [input, setInput] = useState("");
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
+
   useAsyncEffect(async () => {
     const { data, error } = await supabase.auth.getSession();
     if (error) {
@@ -123,10 +124,12 @@ export default function IndexHeader() {
       setLoggedIn(true);
     }
   }, []);
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     setLoggedIn(false);
   };
+
   function handleSearch(e) {
     e.preventDefault();
 
@@ -135,6 +138,7 @@ export default function IndexHeader() {
     }
     router.push(`/search?query=${input}`);
   }
+
   return (
     <div className="w-full fixed top-0 shadow z-50">
       <Popover className="relative bg-white font-inter dark:bg-dark-100">

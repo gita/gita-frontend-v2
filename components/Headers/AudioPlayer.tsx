@@ -10,7 +10,7 @@ interface Props {
 }
 
 function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
-  const refs = useRef<any[]>([]);
+  const refs = useRef<HTMLAudioElement[] | HTMLImageElement>([]);
 
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
@@ -33,7 +33,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
     setIsAudioPlaying(false);
   };
 
-  const playback = (speed) => {
+  const playback = (speed: number) => {
     if (!refs.current[1].paused) {
       refs.current[1].load();
       refs.current[1].playbackRate = speed;
@@ -81,7 +81,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
       <audio
         id="a1"
         ref={(element) => {
-          refs.current[1] = element;
+          element ? (refs.current[1] = element) : null;
         }}
         src={`https://gita.github.io/gita/data/verse_recitation/${currentVerse?.chapterNumber}/${currentVerse?.verseNumber}.mp3`}
         onEnded={() => endFunction()}
@@ -143,7 +143,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                   <img
                     id="play"
                     ref={(element) => {
-                      refs.current[0] = element;
+                      element ? (refs.current[0] = element) : null;
                     }}
                     className="cursor-pointer"
                     src={isAudioPlaying ? "/pause.svg" : "/play.svg"}

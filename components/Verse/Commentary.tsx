@@ -2,7 +2,7 @@ import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 
 interface Props {
-  commentaryData: Node | object;
+  commentaryData: Node | null;
 }
 
 export default function Commentary({ commentaryData }: Props) {
@@ -25,7 +25,7 @@ export default function Commentary({ commentaryData }: Props) {
           styles.lineHeight
         )}
       >
-        {"description" in commentaryData ? commentaryData?.description : null}
+        {commentaryData?.description}
       </p>
     </div>
   );
