@@ -7,9 +7,11 @@ const Chapters = ({ chapters }: ChaptersProps) => {
       <Image
         src="/bg-verses-fixed.png"
         alt="BG Chapters Image"
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
+        fill
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
         className="z-[-1]"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 z-50">

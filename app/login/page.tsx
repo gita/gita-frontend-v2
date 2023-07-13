@@ -113,7 +113,7 @@ const Login = () => {
         {/* will use next/auth for authentication */}
         <SvgGithub className="hover:cursor-pointer" />
         <div className="h-9 w-9 relative cursor-pointer">
-          <Image src="/google-logo.png" layout="fill" alt="google logo" />
+          <Image src="/google-logo.png" fill alt="google logo" />
         </div>
       </div>
       <p className="text-center text-sm text-gray-500 mt-2 font-normal">

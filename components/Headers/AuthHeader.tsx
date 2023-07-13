@@ -10,8 +10,8 @@ export default function AuthHeader() {
       <div className="flex justify-center md:justify-start items-center py-8 px-8 lg:flex-1">
         <Image
           src="/bhagavad-gita.png"
-          height="44"
-          width="36"
+          height={44}
+          width={36}
           alt="gita logo"
         />
         <span className="sr-only">Workflow</span>

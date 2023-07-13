@@ -20,9 +20,11 @@ const Newsletter = ({ handleSubscribe }: Props) => {
       <Image
         src="/newsbg.png"
         alt="BG Newsletter Image"
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
+        fill
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
         className="newsletter"
       />
       <div className="max-w-5xl mx-auto px-4 sm:px-6">

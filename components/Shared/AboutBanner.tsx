@@ -8,9 +8,11 @@ export default function AboutBanner() {
           src={AboutGitaBanner}
           placeholder="blur"
           alt="BG About Banner Image"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
           className="xl:rounded-lg"
         />
         <div className="flex flex-col h-4/5 px-8 py-36">

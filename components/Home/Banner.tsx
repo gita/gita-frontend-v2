@@ -8,9 +8,11 @@ const Banner = () => {
         <Image
           src="/banner2.png"
           alt="BG Home Banner Image"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
           className="xl:rounded-lg"
           priority
         />
