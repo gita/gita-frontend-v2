@@ -1,7 +1,6 @@
+import { Metadata } from "next";
 import { getChapterData } from "../../../lib/getChapterData";
 import { getChapterNumber } from "../../../lib/getChapterNumber";
-
-import { Metadata } from "next";
 import ChapterPage from "./chapter-page";
 
 export const metadata: Metadata = {
@@ -18,8 +17,14 @@ export async function generateStaticParams() {
   });
 }
 
-export default async function Chapter({ params }) {
-  const chapterData = await getChapterData(params);
+type Props = {
+  params: {
+    chapterNumber: string;
+  };
+};
+
+export default async function Chapter({ params: { chapterNumber } }: Props) {
+  const chapterData = await getChapterData(chapterNumber);
 
   return <ChapterPage chapterData={chapterData} />;
 }

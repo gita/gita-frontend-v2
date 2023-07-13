@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import Image from "next/image";
+import Link from "next/link";
 import { supabase } from "../../utils/supabase";
 import { setNotification } from "../../redux/actions/main";
 import {
@@ -11,8 +13,6 @@ import {
   SvgMail,
   SvgUser,
 } from "../../components/svgs";
-import Image from "next/image";
-import Link from "next/link";
 
 function Signup() {
   const [error, setError] = useState("");

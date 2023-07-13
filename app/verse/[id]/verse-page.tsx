@@ -2,7 +2,7 @@
 
 import { useDispatch } from "react-redux";
 import useMyStyles from "../../../hooks/useMyStyles";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { setCurrentverse } from "../../../redux/actions/settings";
 import PageNavigator from "../../../components/Chapter/PageNavigator";
 import classNames from "../../../utils/classNames";
@@ -11,7 +11,11 @@ import Translation from "../../../components/Verse/Translation";
 import Commentary from "../../../components/Verse/Commentary";
 import PageHeader from "../../../components/Headers/PageHeader";
 
-export default function VersePage({ verseData }) {
+type Props = {
+  verseData: Verse;
+};
+
+export default function VersePage({ verseData }: Props) {
   const [advanceSettings, setAdvanceSettings] = useState({
     devnagari: true,
     verseText: true,

@@ -1,7 +1,8 @@
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 
-export async function getChapterData(params) {
-  const { chapterNumber } = params;
+export async function getChapterData(
+  chapterNumber: string
+): Promise<GitaChapter> {
   const client = new ApolloClient({
     uri: "https://gql.bhagavadgita.io/graphql",
     cache: new InMemoryCache(),

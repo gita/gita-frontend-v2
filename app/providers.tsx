@@ -1,12 +1,13 @@
 "use client";
 
 import "tailwindcss/tailwind.css";
-import { Provider } from "react-redux";
-import { useStore } from "../redux/store";
 import { ThemeProvider } from "next-themes";
 import { CookiesProvider } from "react-cookie";
+import { ReactNode } from "react";
+import { Provider } from "react-redux";
+import { useStore } from "../redux/store";
 
-function Providers({ children }) {
+export default function Providers({ children }: { children: ReactNode }) {
   const store = useStore(undefined);
 
   return (
@@ -19,5 +20,3 @@ function Providers({ children }) {
     </CookiesProvider>
   );
 }
-
-export default Providers;

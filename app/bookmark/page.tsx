@@ -1,5 +1,4 @@
 import Bookmarkcard from "../../components/Shared/BookmarkCard";
-import React from "react";
 
 const Bookmark = () => {
   return (

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { usePathname } from "next/navigation";
 import { useCookies } from "react-cookie";
 import HomeLayout from "../layouts/HomeLayout";
@@ -9,8 +10,14 @@ import Banner from "../components/Home/Banner";
 import VerseOfDay from "../components/Home/VerseOfDay";
 import Newsletter from "../components/Home/Newsletter";
 import Chapters from "../components/Home/Chapters";
-export default function HomePage({ chapters }: any) {
-  const [modalVisible, setModalVisible] = useState(false);
+import NotificationBanner from "../components/Shared/NotificationBanner";
+
+interface Props extends ChaptersProps {
+  notification: { name: string; message: string; status: string };
+}
+
+function HomePage({ chapters, notification }: Props) {
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const pathName = usePathname();
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
@@ -22,7 +29,10 @@ export default function HomePage({ chapters }: any) {
       setCookie("access_token", access_token[1]);
     }
   }, [pathName, setCookie]);
-  function handleSubscribe(e, formData) {
+  function handleSubscribe(
+    e: FormEvent<HTMLFormElement>,
+    formData: NewsletterFormData
+  ): boolean {
     e.preventDefault();
     if (formData.name && formData.email) {
       // todo call newsletter subscribe API
@@ -44,7 +54,21 @@ export default function HomePage({ chapters }: any) {
           <Newsletter handleSubscribe={handleSubscribe} />
           <Chapters chapters={chapters} />
         </HomeLayout>
+        {notification && (
+          <NotificationBanner
+            message={notification.message}
+            status={notification.status}
+          />
+        )}
       </main>
     </div>
   );
 }
+
+const mapStateToPros = (state) => {
+  return {
+    notification: state.main?.notification,
+  };
+};
+
+export default connect(mapStateToPros)(HomePage);

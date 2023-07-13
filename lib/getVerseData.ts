@@ -1,7 +1,6 @@
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 
-export async function getVerseData(params) {
-  const { id } = params;
+export async function getVerseData(id: string): Promise<Verse> {
   const client = new ApolloClient({
     uri: "https://gql.bhagavadgita.io/graphql",
     cache: new InMemoryCache(),

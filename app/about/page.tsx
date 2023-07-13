@@ -1,5 +1,5 @@
-import AboutBanner from "../../components/Shared/AboutBanner";
 import { Metadata } from "next";
+import AboutBanner from "../../components/Shared/AboutBanner";
 
 export const metadata: Metadata = {
   title: "Bhagavad Gita App - About",
