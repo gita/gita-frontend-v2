@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react";
-import {
-  ApolloClient,
-  InMemoryCache,
-  gql,
-  ApolloQueryResult,
-} from "@apollo/client";
+import { gql, ApolloQueryResult, useApolloClient } from "@apollo/client";
 import Link from "next/link";
 
 const VerseOfDay = () => {
   const [dailyVerse, setDailyVerse] = useState<Verse | null>(null);
+  const client = useApolloClient();
 
   useEffect(() => {
-    const client = new ApolloClient({
-      uri: "https://gql.bhagavadgita.io/graphql",
-      cache: new InMemoryCache(),
-    });
-
     const getDailyVerse = async (): Promise<Verse | null> => {
       const { data }: ApolloQueryResult<any> = await client.query({
         query: gql`
