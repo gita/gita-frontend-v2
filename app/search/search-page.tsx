@@ -1,24 +1,37 @@
 "use client";
 
-import SearchCard from "../../components/Search/SearchCard";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import SearchCard from "../../components/Search/SearchCard";
 
+interface SearchQueryVerse {
+  id: number;
+  chapter_number: number;
+  name_translated: string;
+  transliteration: string;
+  word_meanings: string;
+  verse_number: number;
+  text: string;
+}
 export default function SearchPage() {
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<SearchQueryVerse[]>();
   const [isSearchLoading, setIsSearchLoading] = useState(false);
+
   useEffect(() => {
     setIsSearchLoading(true);
     const fetchData = async () => {
-      fetch(`https://api.bhagavadgita.io/v2/search?query=${query}`, {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          "X-API-KEY": process.env.NEXT_PUBLIC_BG_API_KEY as string,
-        },
-      })
+      fetch(
+        `https://api.bhagavadgita.io/v2/search?query=${query ? query : ""}`,
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "X-API-KEY": process.env.NEXT_PUBLIC_BG_API_KEY as string,
+          },
+        }
+      )
         .then((resp) => {
           return resp.json();
         })
@@ -45,7 +58,7 @@ export default function SearchPage() {
         </p>
         <hr />
 
-        {data?.length > 0 ? (
+        {data && data?.length > 0 ? (
           <div>
             {data.map((verse) => {
               return (
@@ -55,8 +68,6 @@ export default function SearchPage() {
                   chapterNumber={verse.chapter_number}
                   transliteration={verse.transliteration}
                   verseNumber={verse.verse_number}
-                  text={verse.text}
-                  wordMeanings={verse.word_meanings}
                 />
               );
             })}

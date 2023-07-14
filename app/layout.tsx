@@ -1,10 +1,10 @@
 import "tailwindcss/tailwind.css";
 import "../public/globals.css";
 
-import Providers from "./providers";
-import Head from "next/head";
+import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Providers from "./providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,23 +39,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html className={inter.className}>
-      <Head>
-        <link
-          rel="mask-icon"
-          href="/favicon/safari-pinned-tab.svg"
-          color="#5bbad5"
-        />
-        <meta name="msapplication-TileColor" content="#da532c" />
-      </Head>
-
-      <body>
+      <body suppressHydrationWarning={true}>
         <Providers>{children}</Providers>
       </body>
     </html>

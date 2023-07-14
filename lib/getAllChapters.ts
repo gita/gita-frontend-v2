@@ -9,7 +9,7 @@ if (!HASURA_GRAPHQL_ENDPOINT || !HASURA_ADMIN_SECRET) {
   );
 }
 
-export async function getAllChapters() {
+export async function getAllChapters(): Promise<TChapter[]> {
   const httpLink = new HttpLink({
     uri: HASURA_GRAPHQL_ENDPOINT,
     headers: {

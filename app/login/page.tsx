@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { supabase } from "../../utils/supabase";
 import { setNotification } from "../../redux/actions/main";
 import {
@@ -13,8 +15,6 @@ import {
   SvgKey,
   SvgMail,
 } from "../../components/svgs";
-import Image from "next/image";
-import Link from "next/link";
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -113,7 +113,7 @@ const Login = () => {
         {/* will use next/auth for authentication */}
         <SvgGithub className="hover:cursor-pointer" />
         <div className="h-9 w-9 relative cursor-pointer">
-          <Image src="/google-logo.png" layout="fill" alt="google logo" />
+          <Image src="/google-logo.png" fill alt="google logo" />
         </div>
       </div>
       <p className="text-center text-sm text-gray-500 mt-2 font-normal">

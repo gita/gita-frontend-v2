@@ -1,33 +1,46 @@
 "use client";
 
-import { SvgChapterBackground } from "../../../components/svgs";
-import PageNavigator from "../../../components/Chapter/PageNavigator";
-import classNames from "../../../utils/classNames";
-import VerseNavigator from "../../../components/Chapter/VerseNavigator";
+import { useState } from "react";
 import {
   ChevronDownIcon,
   SortAscendingIcon,
   SortDescendingIcon,
 } from "@heroicons/react/solid";
+import { SvgChapterBackground } from "../../../components/svgs";
+import PageNavigator from "../../../components/Chapter/PageNavigator";
+import classNames from "../../../utils/classNames";
+import VerseNavigator from "../../../components/Chapter/VerseNavigator";
 import VerseList from "../../../components/Chapter/VerseList";
-import React, { useState } from "react";
 import useMyStyles from "../../../hooks/useMyStyles";
 
-export default function ChapterPage({ chapterData }) {
-  const {
+interface Props {
+  chapterData: GitaChapter;
+}
+
+export default function ChapterPage({
+  chapterData: {
     chapterNumber,
     chapterSummary,
     nameTranslated,
     versesCount,
     gitaVersesByChapterId,
-  } = chapterData;
-
+  },
+}: Props) {
   const verses = gitaVersesByChapterId?.nodes;
 
   const [viewNavigation, setViewNavigation] = useState(false);
-  const [verseId, setVerseId] = useState(null);
+  const [verseId, setVerseId] = useState(0);
   const [isAscSorted, setisAscSorted] = useState(true);
   const styles = useMyStyles();
+
+  const filteredVerses = verses?.filter((verse) => {
+    if (!verseId) return true;
+    return verse.verseNumber === verseId;
+  });
+
+  const sortedVerses = isAscSorted
+    ? filteredVerses
+    : filteredVerses?.slice(0).reverse();
 
   return (
     <div>
@@ -131,21 +144,9 @@ export default function ChapterPage({ chapterData }) {
       </div>
 
       <div className="max-w-5xl font-inter py-8 mb-16 mx-auto px-4 sm:px-6">
-        {isAscSorted
-          ? verses
-              ?.filter((verse) => {
-                if (!verseId) return true;
-                return verse.verseNumber === verseId;
-              })
-              .map((verse) => <VerseList verseData={verse} key={verse.id} />)
-          : verses
-              ?.filter((verse) => {
-                if (!verseId) return true;
-                return verse.verseNumber === verseId;
-              })
-              .slice(0)
-              .reverse()
-              .map((verse) => <VerseList verseData={verse} key={verse.id} />)}
+        {sortedVerses?.map((verse) => (
+          <VerseList verseData={verse} key={verse.id} />
+        ))}
       </div>
     </div>
   );

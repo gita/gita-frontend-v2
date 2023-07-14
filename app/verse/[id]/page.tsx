@@ -7,9 +7,9 @@ type Props = {
   params: { id: string };
 };
 
-export function generateMetadata({ params }: Props): Metadata {
+export function generateMetadata({ params: { id } }: Props): Metadata {
   return {
-    title: `Bhagavad Gita App - Verse ${params.id}`,
+    title: `Bhagavad Gita App - Verse ${id}`,
   };
 }
 
@@ -23,8 +23,8 @@ export async function generateStaticParams() {
   });
 }
 
-const Verse = async ({ params }) => {
-  const verseData = await getVerseData(params);
+const Verse = async ({ params: { id } }: Props) => {
+  const verseData = await getVerseData(id);
 
   return <VersePage verseData={verseData} />;
 };

@@ -1,13 +1,9 @@
-import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
+import { gql } from "@apollo/client";
+import apolloClient from "./apolloClient";
 
-export async function getVerseData(params) {
-  const { id } = params;
-  const client = new ApolloClient({
-    uri: "https://gql.bhagavadgita.io/graphql",
-    cache: new InMemoryCache(),
-  });
+export async function getVerseData(id: string): Promise<Verse> {
   // todo: add translation to the query and pass transation data to Translation and Commentary component
-  const { data } = await client.query({
+  const { data } = await apolloClient.query({
     query: gql`
       query MyQuery {
         gitaVerseById(id: ${id}) {
