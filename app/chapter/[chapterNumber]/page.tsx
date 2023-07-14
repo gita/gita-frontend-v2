@@ -1,20 +1,16 @@
 import { Metadata } from "next";
-import { getChapterData } from "../../../lib/getChapterData";
-import { getChapterNumber } from "../../../lib/getChapterNumber";
+import { getChapterData, getChapterNumbers } from "../../../lib/getChapterData";
 import ChapterPage from "./chapter-page";
 
 export const metadata: Metadata = {
   title: "Bhagavad Gita App - Chapters",
 };
 export async function generateStaticParams() {
-  const data = await getChapterNumber();
+  const data = await getChapterNumbers();
 
-  const chapters = data.allGitaChapters?.nodes;
-  return chapters.map(({ chapterNumber }) => {
-    return {
-      params: { chapterNumber: chapterNumber.toString() },
-    };
-  });
+  return data.gita_chapters.map(({ chapter_number }) => ({
+    params: { chapterNumber: chapter_number.toString() },
+  }));
 }
 
 type Props = {
@@ -26,5 +22,10 @@ type Props = {
 export default async function Chapter({ params: { chapterNumber } }: Props) {
   const chapterData = await getChapterData(chapterNumber);
 
-  return <ChapterPage chapterData={chapterData} />;
+  return (
+    <ChapterPage
+      chapterData={chapterData.gita_chapters_by_pk}
+      versesData={chapterData.gita_verses}
+    />
+  );
 }

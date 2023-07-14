@@ -2,12 +2,24 @@ import { useEffect, useState } from "react";
 import { gql, ApolloQueryResult, useApolloClient } from "@apollo/client";
 import Link from "next/link";
 
+interface DailyVerse {
+  verseNumber: number;
+  chapterNumber: number;
+  id: number;
+  text: string;
+  transliteration: string;
+  wordMeanings: string;
+  gitaTranslationsByVerseId: {
+    nodes: { description: string }[];
+  };
+}
+
 const VerseOfDay = () => {
-  const [dailyVerse, setDailyVerse] = useState<Verse | null>(null);
+  const [dailyVerse, setDailyVerse] = useState<DailyVerse | null>(null);
   const client = useApolloClient();
 
   useEffect(() => {
-    const getDailyVerse = async (): Promise<Verse | null> => {
+    const getDailyVerse = async (): Promise<DailyVerse | null> => {
       const { data }: ApolloQueryResult<any> = await client.query({
         query: gql`
           query MyQuery {

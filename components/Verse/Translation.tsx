@@ -2,7 +2,7 @@ import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 
 interface Props {
-  translationData: Node | null;
+  translationData: GitaLanguage;
 }
 
 export default function Translation({ translationData }: Props) {

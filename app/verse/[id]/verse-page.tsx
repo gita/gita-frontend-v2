@@ -37,15 +37,11 @@ export default function VersePage({ verseData }: Props) {
       name: "Swami Sivananda",
     },
   });
+
   const {
-    id,
-    text,
-    transliteration,
-    verseNumber,
-    wordMeanings,
-    chapterNumber,
-    gitaTranslationsByVerseId,
-    gitaCommentariesByVerseId,
+    gita_verses_by_pk,
+    gita_commentaries_by_pk,
+    gita_translations_by_pk,
   } = verseData;
 
   const dispatch = useDispatch();
@@ -57,25 +53,19 @@ export default function VersePage({ verseData }: Props) {
   useEffect(() => {
     dispatch(
       setCurrentverse({
-        transliteration: transliteration,
-        verseNumber: verseNumber,
-        chapterNumber: chapterNumber,
-        id: id,
+        transliteration: gita_verses_by_pk.transliteration,
+        verse_number: gita_verses_by_pk.verse_number,
+        chapter_number: gita_verses_by_pk.chapter_number,
+        id: gita_verses_by_pk.id,
       })
     );
-  }, [transliteration, verseNumber, chapterNumber, id, dispatch]);
-
-  const currentTranslation =
-    gitaTranslationsByVerseId.nodes.find(
-      (translation) =>
-        translation.authorId === languageSettings.translationAuthor.id
-    ) || null;
-
-  const currentCommentary =
-    gitaCommentariesByVerseId.nodes.find(
-      (commentary) =>
-        commentary.authorId === languageSettings.commentaryAuthor.id
-    ) || null;
+  }, [
+    dispatch,
+    gita_verses_by_pk.transliteration,
+    gita_verses_by_pk.verse_number,
+    gita_verses_by_pk.chapter_number,
+    gita_verses_by_pk.id,
+  ]);
 
   return (
     <div className="font-inter">
@@ -85,7 +75,11 @@ export default function VersePage({ verseData }: Props) {
         languageSettings={languageSettings}
         setLanguageSettings={setLanguageSettings}
       />
-      <PageNavigator pageNumber={id} pageCount={701} route="verse" />
+      <PageNavigator
+        pageNumber={gita_verses_by_pk.id}
+        pageCount={701}
+        route="verse"
+      />
 
       <section className="max-w-5xl font-inter py-12 mx-auto text-center px-4 sm:px-6">
         <h1
@@ -94,7 +88,7 @@ export default function VersePage({ verseData }: Props) {
             styles.fontSize.heading
           )}
         >
-          BG {chapterNumber}.{verseNumber}
+          BG {gita_verses_by_pk.chapter_number}.{gita_verses_by_pk.verse_number}
         </h1>
         {devnagari && (
           <p
@@ -104,7 +98,7 @@ export default function VersePage({ verseData }: Props) {
               styles.lineHeight
             )}
           >
-            {text}
+            {gita_verses_by_pk.text}
           </p>
         )}
         {verseText && (
@@ -115,7 +109,7 @@ export default function VersePage({ verseData }: Props) {
               styles.lineHeight
             )}
           >
-            {transliteration}
+            {gita_verses_by_pk.transliteration}
           </p>
         )}
         {synonyms && (
@@ -126,14 +120,16 @@ export default function VersePage({ verseData }: Props) {
               styles.lineHeight
             )}
           >
-            {wordMeanings}
+            {gita_verses_by_pk.word_meanings}
           </p>
         )}
         {(translation || purport) && (
           <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
         )}
-        {translation && <Translation translationData={currentTranslation} />}
-        {purport && <Commentary commentaryData={currentCommentary} />}
+        {translation && (
+          <Translation translationData={gita_translations_by_pk} />
+        )}
+        {purport && <Commentary commentaryData={gita_commentaries_by_pk} />}
       </section>
     </div>
   );
