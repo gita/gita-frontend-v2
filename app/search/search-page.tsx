@@ -18,16 +18,20 @@ export default function SearchPage() {
   const query = searchParams.get("query");
   const [data, setData] = useState<SearchQueryVerse[]>();
   const [isSearchLoading, setIsSearchLoading] = useState(false);
+
   useEffect(() => {
     setIsSearchLoading(true);
     const fetchData = async () => {
-      fetch(`https://api.bhagavadgita.io/v2/search?query=${query}`, {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          "X-API-KEY": process.env.NEXT_PUBLIC_BG_API_KEY as string,
-        },
-      })
+      fetch(
+        `https://api.bhagavadgita.io/v2/search?query=${query ? query : ""}`,
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "X-API-KEY": process.env.NEXT_PUBLIC_BG_API_KEY as string,
+          },
+        }
+      )
         .then((resp) => {
           return resp.json();
         })
