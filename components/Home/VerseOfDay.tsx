@@ -51,7 +51,7 @@ const VerseOfDay = () => {
     if (!dailyVerse) {
       getDailyVerse();
     }
-  }, [dailyVerse]);
+  }, [client, dailyVerse]);
 
   return (
     <div className="max-w-7xl mx-auto z-50 px-4 sm:px-6">

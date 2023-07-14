@@ -37,7 +37,11 @@ const Author = ({
     setLanguage(languageSettings.language);
     setTranslationAuthor(languageSettings.translationAuthor);
     setCommentaryAuthor(languageSettings.commentaryAuthor);
-  }, []);
+  }, [
+    languageSettings.commentaryAuthor,
+    languageSettings.language,
+    languageSettings.translationAuthor,
+  ]);
 
   function handleSubmit() {
     setLanguageSettings({

@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { connect } from "react-redux";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
   currentVerse: CurrentVerse;
@@ -59,20 +60,22 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
       document.body.removeChild(scriptTag);
     };
   }, []);
+
   useEffect(() => {
     if (playerIsOpen) {
-      refs.current[0].src = "/pause.svg";
+      refs.current[0]?.src ? (refs.current[0].src = "/pause.svg") : null;
 
       refs.current[1].play();
     }
-  }, [currentVerse?.id]);
+  }, [currentVerse?.id, playerIsOpen]);
 
   //below use effect is not working
   useEffect(() => {
     if (playerIsOpen && !refs.current[1].paused) {
-      refs.current[0].src = "/pause.svg";
+      refs.current[0]?.src ? (refs.current[0].src = "/pause.svg") : null;
     }
-  }, []);
+  }, [playerIsOpen]);
+
   const prevId = currentVerse?.id - 1;
   const nextId = currentVerse?.id + 1;
 
@@ -81,11 +84,11 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
       <audio
         id="a1"
         ref={(element) => {
-          element ? (refs.current[1] = element) : null;
+          refs.current[1] = element;
         }}
         src={`https://gita.github.io/gita/data/verse_recitation/${currentVerse?.chapterNumber}/${currentVerse?.verseNumber}.mp3`}
         onEnded={() => endFunction()}
-      ></audio>
+      />
       <Transition appear show={playerIsOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -137,21 +140,34 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                 <div className="flex justify-between mt-4 px-4">
                   <Link href={`/verse/${prevId}`}>
                     <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50  ">
-                      <img src="/rewind.svg" />
+                      <Image
+                        src="/rewind.svg"
+                        alt="rewind icon"
+                        width={50}
+                        height={50}
+                      />
                     </div>
                   </Link>
-                  <img
+                  <Image
                     id="play"
                     ref={(element) => {
-                      element ? (refs.current[0] = element) : null;
+                      refs.current[0] = element;
                     }}
                     className="cursor-pointer"
                     src={isAudioPlaying ? "/pause.svg" : "/play.svg"}
                     onClick={play}
+                    width={54}
+                    height={54}
+                    alt="play or pause icon"
                   />
                   <Link href={`/verse/${nextId}`}>
                     <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50">
-                      <img src="/forward.svg" />
+                      <Image
+                        src="/forward.svg"
+                        alt="forward icon"
+                        width={50}
+                        height={50}
+                      />
                     </div>
                   </Link>
                 </div>

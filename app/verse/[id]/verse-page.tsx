@@ -63,7 +63,7 @@ export default function VersePage({ verseData }: Props) {
         id: id,
       })
     );
-  }, [transliteration, verseNumber, chapterNumber, id]);
+  }, [transliteration, verseNumber, chapterNumber, id, dispatch]);
 
   const currentTranslation =
     gitaTranslationsByVerseId.nodes.find(

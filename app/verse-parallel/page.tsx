@@ -1,6 +1,8 @@
 import Translation from "../../components/Verse/Translation";
 import Commentary from "../../components/Verse/Commentary";
 import { Metadata } from "next";
+import Image from "next/image";
+import { SvgFloralDivider } from "../../components/svgs";
 
 export const metadata: Metadata = {
   title: "Bhagavad Gita App - Verse",
@@ -10,13 +12,19 @@ export default function VerseParallel() {
   return (
     <div className="font-inter mb-16">
       <div className="max-w-5xl font-inter py-12 mx-auto text-center  px-4 sm:px-6">
-        <img
-          src="arrow-left.png"
+        <Image
+          src="/arrow-left.png"
           className="fixed z-neg top-1/2 md:top-1/3 left-3"
+          width={40}
+          height={40}
+          alt="arrow left icon"
         />
-        <img
-          src="arrow-right.png"
+        <Image
+          src="/arrow-right.png"
           className="fixed z-neg top-1/2 md:top-1/3 right-3"
+          width={40}
+          height={40}
+          alt="arrow right icon"
         />
         <h1 className="font-extrabold text-3xl">BG 1.1</h1>
         <p className="font-dev text-my-orange mt-4  text-2xl max-w-md mx-auto">
@@ -34,7 +42,7 @@ export default function VerseParallel() {
           Pandu; cha—and; eva—certainly; kim—what; akurvata—did they do;
           sañjaya—Sanjay
         </p>
-        <img src="floral-divider.svg" className="my-16 w-full" />
+        <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
 
         <div className="grid grid-cols-2 gap-4">
           <div>

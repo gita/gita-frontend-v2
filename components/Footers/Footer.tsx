@@ -2,6 +2,7 @@
 
 import { Fragment } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import classNames from "../../utils/classNames";
@@ -90,8 +91,8 @@ const Footer = () => {
   return (
     <div className="w-full mt-24 bottom-0 bg-white dark:bg-dark-100 font-inter border-gray-200 border-t border-b">
       <div className="py-1 lg:py-8">
-        <div className="flex justify-between items-center">
-          <div className="flex-none w-1/2 lg:w-1/5">
+        <div className="flex justify-between lg:justify-center items-center">
+          <div className="flex-none w-1/2 lg:w-1/5 lg:hidden">
             <Menu
               as="div"
               className="relative inline-block text-left lg:hidden"
@@ -384,7 +385,7 @@ const Footer = () => {
               )}
             </Menu>
           </div>
-          <div className="flex-none hidden lg:block lg:w-3/5">
+          <div className="flex-none hidden lg:block">
             <footer className="bg-white dark:bg-dark-100">
               <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
                 <nav
@@ -406,29 +407,31 @@ const Footer = () => {
               </div>
             </footer>
           </div>
-          <div className="flex justify-end lg:w-1/5">
+          <div className="flex flex-1 justify-end lg:w-1/5 lg:hidden max-h-10 mr-3">
             <a
               href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
               target="_blank"
-              className="flex-grow pr-1"
               rel="noopener noreferrer"
             >
-              <img
+              <Image
                 src="/play_store.svg"
                 alt="Bhagavad Gita"
-                className="object-contain w-fill h-10 lg:hidden rounded"
+                height={40}
+                width={140}
+                className="rounded pr-1"
               />
             </a>
             <a
               href="https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635"
               target="_blank"
-              className="flex-grow"
               rel="noopener noreferrer"
             >
-              <img
+              <Image
                 src="/app_store.svg"
                 alt="Bhagavad Gita"
-                className="object-contain w-fill h-10 lg:hidden"
+                height={40}
+                width={140}
+                className="rounded"
               />
             </a>
           </div>
@@ -580,10 +583,12 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="h-10"
           >
-            <img
+            <Image
               src="/play_store.svg"
               alt="Bhagavad Gita"
               className="object-contain h-full rounded"
+              height={40}
+              width={140}
             />
           </a>
           <a
@@ -592,10 +597,12 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="h-10"
           >
-            <img
+            <Image
               src="/app_store.svg"
               alt="Bhagavad Gita"
               className="object-contain h-full"
+              height={40}
+              width={140}
             />
           </a>
         </div>

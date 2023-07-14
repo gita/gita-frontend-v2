@@ -37,7 +37,7 @@ const Notes = () => {
     };
 
     fetchData();
-  }, [supabase]);
+  }, [dispatch, router]);
 
   return (
     <div className="bg-gray-400">
