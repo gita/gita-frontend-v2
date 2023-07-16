@@ -159,11 +159,11 @@ export default function PrivacyPolicy() {
             Usage Data is collected automatically when using the Service.
           </p>
           <p className="mb-4">
-            Usage Data may include information such as Your Device&apos;s Internet
-            Protocol address (e.g. IP address), browser type, browser version,
-            the pages of our Service that You visit, the time and date of Your
-            visit, the time spent on those pages, unique device identifiers and
-            other diagnostic data.
+            Usage Data may include information such as Your Device&apos;s
+            Internet Protocol address (e.g. IP address), browser type, browser
+            version, the pages of our Service that You visit, the time and date
+            of Your visit, the time spent on those pages, unique device
+            identifiers and other diagnostic data.
           </p>
           <p className="mb-4">
             When You access the Service by or through a mobile device, We may
@@ -297,11 +297,11 @@ export default function PrivacyPolicy() {
               <p>
                 <strong>To contact You:</strong> To contact You by email,
                 telephone calls, SMS, or other equivalent forms of electronic
-                communication, such as a mobile application&apos;s push notifications
-                regarding updates or informative communications related to the
-                functionalities, products or contracted services, including the
-                security updates, when necessary or reasonable for their
-                implementation.
+                communication, such as a mobile application&apos;s push
+                notifications regarding updates or informative communications
+                related to the functionalities, products or contracted services,
+                including the security updates, when necessary or reasonable for
+                their implementation.
               </p>
             </li>
             <li>
