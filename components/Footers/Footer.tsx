@@ -395,20 +395,23 @@ const Footer = () => {
                 >
                   {navigation.main.map((item) => (
                     <div key={item.name} className="px-5 py-2">
-                      {
-                        item.newTab ?
-                          <a
-                            href={item.href}
-                            className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                            target="_blank"
-                          >
-                            {item.name}
-                          </a>
-                          :
-                          <Link className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white" href={item.href} passHref>
-                            {item.name}
-                          </Link>
-                      }
+                      {item.newTab ? (
+                        <a
+                          href={item.href}
+                          className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                          target="_blank"
+                        >
+                          {item.name}
+                        </a>
+                      ) : (
+                        <Link
+                          className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                          href={item.href}
+                          passHref
+                        >
+                          {item.name}
+                        </Link>
+                      )}
                     </div>
                   ))}
                 </nav>
