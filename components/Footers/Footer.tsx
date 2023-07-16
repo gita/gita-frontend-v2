@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import classNames from "../../utils/classNames";
-/* This example requires Tailwind CSS v2.0+ */
 
 interface IconProps {
   className: string;
@@ -16,6 +15,8 @@ interface IconProps {
 const navigation = {
   main: [
     { name: "About Us", href: "/about", newTab: false },
+    { name: "Privacy Policy", href: "/privacy-policy", newTab: false },
+    { name: "Terms", href: "/terms-of-service", newTab: false },
     { name: "Blog", href: "https://radhakrishna.net/", newTab: true },
     {
       name: "Donate",
@@ -394,13 +395,20 @@ const Footer = () => {
                 >
                   {navigation.main.map((item) => (
                     <div key={item.name} className="px-5 py-2">
-                      <a
-                        href={item.href}
-                        className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                        target={item.newTab ? "_blank" : ""}
-                      >
-                        {item.name}
-                      </a>
+                      {
+                        item.newTab ?
+                          <a
+                            href={item.href}
+                            className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                            target="_blank"
+                          >
+                            {item.name}
+                          </a>
+                          :
+                          <Link className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white" href={item.href} passHref>
+                            {item.name}
+                          </Link>
+                      }
                     </div>
                   ))}
                 </nav>
