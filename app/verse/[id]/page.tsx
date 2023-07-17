@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getVerseData, getVerseId } from "../../../lib/getVerseData";
+import { getVerseId } from "../../../lib/getVerseData";
 import VersePage from "./verse-page";
 
 type Props = {
@@ -21,9 +21,7 @@ export async function generateStaticParams() {
 }
 
 const Verse = async ({ params: { id } }: Props) => {
-  const verseData = await getVerseData(id);
-
-  return <VersePage verseData={verseData} />;
+  return <VersePage verseId={id} />;
 };
 
 export default Verse;

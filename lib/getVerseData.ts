@@ -19,7 +19,12 @@ export async function getVerseId(): Promise<GitaVerseIds> {
   return data;
 }
 
-export async function getVerseData(id: string): Promise<Verse> {
+export async function getVerseData(
+  id: string,
+  language = "english",
+  commentariesAuthor = "Swami Sivananda",
+  translationsAuthor = "Swami Sivananda"
+): Promise<Verse> {
   // todo: add translation to the query and pass transation data to Translation and Commentary component
   const { data }: ApolloQueryResult<Verse> = await apolloClient.query({
     query: gql`
@@ -32,10 +37,10 @@ export async function getVerseData(id: string): Promise<Verse> {
             verse_number
             word_meanings
           }
-        gita_commentaries_by_pk(id: ${id}) {
+        gita_commentaries(where: {author_name: {_eq: "${commentariesAuthor}"}, verse_id: {_eq: ${id}}}) {
             description
           }
-        gita_translations_by_pk(id: ${id}) {
+        gita_translations(where: {language: {_eq: "${language}"}, author_name: {_eq: "${translationsAuthor}"}, verse_id: {_eq: ${id}}}) {
             description
           }
       }

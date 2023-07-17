@@ -2,7 +2,7 @@ import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 
 interface Props {
-  commentaryData: GitaLanguage;
+  commentaryData: GitaLanguage[];
 }
 
 export default function Commentary({ commentaryData }: Props) {
@@ -25,7 +25,7 @@ export default function Commentary({ commentaryData }: Props) {
           styles.lineHeight
         )}
       >
-        {commentaryData?.description}
+        {commentaryData[0]?.description}
       </p>
     </div>
   );

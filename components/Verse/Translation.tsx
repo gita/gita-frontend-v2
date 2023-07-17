@@ -2,7 +2,7 @@ import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 
 interface Props {
-  translationData: GitaLanguage;
+  translationData: GitaLanguage[];
 }
 
 export default function Translation({ translationData }: Props) {
@@ -25,7 +25,7 @@ export default function Translation({ translationData }: Props) {
           styles.lineHeight
         )}
       >
-        {translationData?.description}
+        {translationData[0]?.description}
       </p>
     </div>
   );

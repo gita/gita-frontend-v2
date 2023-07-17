@@ -30,8 +30,8 @@ interface GitaVerse {
 
 interface Verse {
   gita_verses_by_pk: GitaVerse;
-  gita_commentaries_by_pk: GitaLanguage;
-  gita_translations_by_pk: GitaLanguage;
+  gita_commentaries: GitaLanguage[];
+  gita_translations: GitaLanguage[];
 }
 
 interface GitaChapterData {

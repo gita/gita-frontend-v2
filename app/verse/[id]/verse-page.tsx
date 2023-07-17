@@ -1,6 +1,7 @@
 "use client";
 
 import { useDispatch } from "react-redux";
+import { getVerseData } from "../../../lib/getVerseData";
 import useMyStyles from "../../../hooks/useMyStyles";
 import { useEffect, useState } from "react";
 import { setCurrentverse } from "../../../redux/actions/settings";
@@ -12,10 +13,22 @@ import Commentary from "../../../components/Verse/Commentary";
 import PageHeader from "../../../components/Headers/PageHeader";
 
 type Props = {
-  verseData: Verse;
+  verseId: string;
 };
 
-export default function VersePage({ verseData }: Props) {
+export default function VersePage({ verseId }: Props) {
+  const [currentVerse, setCurrentVerse] = useState<Verse>({
+    gita_commentaries: [{ description: "" }],
+    gita_translations: [{ description: "" }],
+    gita_verses_by_pk: {
+      verse_number: 0,
+      chapter_number: 0,
+      id: 0,
+      text: "",
+      transliteration: "",
+      word_meanings: "",
+    },
+  });
   const [advanceSettings, setAdvanceSettings] = useState({
     devnagari: true,
     verseText: true,
@@ -38,11 +51,8 @@ export default function VersePage({ verseData }: Props) {
     },
   });
 
-  const {
-    gita_verses_by_pk,
-    gita_commentaries_by_pk,
-    gita_translations_by_pk,
-  } = verseData;
+  // const { gita_verses_by_pk, gita_commentaries, gita_translations_by_pk } =
+  //   verseData;
 
   const dispatch = useDispatch();
 
@@ -53,19 +63,32 @@ export default function VersePage({ verseData }: Props) {
   useEffect(() => {
     dispatch(
       setCurrentverse({
-        transliteration: gita_verses_by_pk.transliteration,
-        verse_number: gita_verses_by_pk.verse_number,
-        chapter_number: gita_verses_by_pk.chapter_number,
-        id: gita_verses_by_pk.id,
+        transliteration: currentVerse?.gita_verses_by_pk.transliteration,
+        verse_number: currentVerse?.gita_verses_by_pk.verse_number,
+        chapter_number: currentVerse?.gita_verses_by_pk.chapter_number,
+        id: currentVerse?.gita_verses_by_pk.id,
       })
     );
   }, [
     dispatch,
-    gita_verses_by_pk.transliteration,
-    gita_verses_by_pk.verse_number,
-    gita_verses_by_pk.chapter_number,
-    gita_verses_by_pk.id,
+    currentVerse?.gita_verses_by_pk.transliteration,
+    currentVerse?.gita_verses_by_pk.verse_number,
+    currentVerse?.gita_verses_by_pk.chapter_number,
+    currentVerse?.gita_verses_by_pk.id,
   ]);
+
+  useEffect(() => {
+    const getCurrentVerseData = async () => {
+      const data = await getVerseData(
+        verseId,
+        languageSettings.language.language,
+        languageSettings.commentaryAuthor.name,
+        languageSettings.translationAuthor.name
+      );
+      setCurrentVerse(data);
+    };
+    getCurrentVerseData();
+  }, [languageSettings, verseId]);
 
   return (
     <div className="font-inter">
@@ -76,7 +99,7 @@ export default function VersePage({ verseData }: Props) {
         setLanguageSettings={setLanguageSettings}
       />
       <PageNavigator
-        pageNumber={gita_verses_by_pk.id}
+        pageNumber={currentVerse?.gita_verses_by_pk.id}
         pageCount={701}
         route="verse"
       />
@@ -88,7 +111,8 @@ export default function VersePage({ verseData }: Props) {
             styles.fontSize.heading
           )}
         >
-          BG {gita_verses_by_pk.chapter_number}.{gita_verses_by_pk.verse_number}
+          BG {currentVerse?.gita_verses_by_pk.chapter_number}.
+          {currentVerse?.gita_verses_by_pk.verse_number}
         </h1>
         {devnagari && (
           <p
@@ -98,7 +122,7 @@ export default function VersePage({ verseData }: Props) {
               styles.lineHeight
             )}
           >
-            {gita_verses_by_pk.text}
+            {currentVerse?.gita_verses_by_pk.text}
           </p>
         )}
         {verseText && (
@@ -109,7 +133,7 @@ export default function VersePage({ verseData }: Props) {
               styles.lineHeight
             )}
           >
-            {gita_verses_by_pk.transliteration}
+            {currentVerse?.gita_verses_by_pk.transliteration}
           </p>
         )}
         {synonyms && (
@@ -120,16 +144,18 @@ export default function VersePage({ verseData }: Props) {
               styles.lineHeight
             )}
           >
-            {gita_verses_by_pk.word_meanings}
+            {currentVerse?.gita_verses_by_pk.word_meanings}
           </p>
         )}
         {(translation || purport) && (
           <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
         )}
         {translation && (
-          <Translation translationData={gita_translations_by_pk} />
+          <Translation translationData={currentVerse?.gita_translations} />
         )}
-        {purport && <Commentary commentaryData={gita_commentaries_by_pk} />}
+        {purport && (
+          <Commentary commentaryData={currentVerse?.gita_commentaries} />
+        )}
       </section>
     </div>
   );
