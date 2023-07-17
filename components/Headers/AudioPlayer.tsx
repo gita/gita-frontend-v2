@@ -30,7 +30,8 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
   const endFunction = () => {
     refs.current[1].currentTime = 0;
     refs.current[1].load();
-    refs.current[0].src = "/play.svg";
+    refs.current[0]?.src ? (refs.current[0].src = "/play.svg") : null;
+
     setIsAudioPlaying(false);
   };
 
@@ -86,7 +87,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
         ref={(element) => {
           refs.current[1] = element;
         }}
-        src={`https://gita.github.io/gita/data/verse_recitation/${currentVerse?.chapterNumber}/${currentVerse?.verseNumber}.mp3`}
+        src={`https://gita.github.io/gita/data/verse_recitation/${currentVerse?.chapter_number}/${currentVerse?.verse_number}.mp3`}
         onEnded={() => endFunction()}
       />
       <Transition appear show={playerIsOpen} as={Fragment}>
@@ -129,7 +130,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                   as="h3"
                   className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50 "
                 >
-                  BG {currentVerse?.chapterNumber}.{currentVerse?.verseNumber}{" "}
+                  BG {currentVerse?.chapter_number}.{currentVerse?.verse_number}{" "}
                 </Dialog.Title>
                 <div className="mt-2 border-b pb-8">
                   <p className="text-sm text-gray-500 dark:text-gray-200">

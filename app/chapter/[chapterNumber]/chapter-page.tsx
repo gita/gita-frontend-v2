@@ -14,28 +14,27 @@ import VerseList from "../../../components/Chapter/VerseList";
 import useMyStyles from "../../../hooks/useMyStyles";
 
 interface Props {
-  chapterData: GitaChapter;
+  chapterData: GitaChapterData;
+  versesData: GitaVerse[];
 }
 
 export default function ChapterPage({
   chapterData: {
-    chapterNumber,
-    chapterSummary,
-    nameTranslated,
-    versesCount,
-    gitaVersesByChapterId,
+    chapter_number,
+    chapter_summary,
+    name_translated,
+    verses_count,
   },
+  versesData,
 }: Props) {
-  const verses = gitaVersesByChapterId?.nodes;
-
   const [viewNavigation, setViewNavigation] = useState(false);
   const [verseId, setVerseId] = useState(0);
   const [isAscSorted, setisAscSorted] = useState(true);
   const styles = useMyStyles();
 
-  const filteredVerses = verses?.filter((verse) => {
+  const filteredVerses = versesData?.filter((verse) => {
     if (!verseId) return true;
-    return verse.verseNumber === verseId;
+    return verse.verse_number === verseId;
   });
 
   const sortedVerses = isAscSorted
@@ -49,7 +48,7 @@ export default function ChapterPage({
       </div>
 
       <PageNavigator
-        pageNumber={chapterNumber}
+        pageNumber={chapter_number}
         pageCount={18}
         route="chapter"
       />
@@ -61,7 +60,7 @@ export default function ChapterPage({
             styles.fontSize.subHeading2
           )}
         >
-          Chapter {chapterNumber}
+          Chapter {chapter_number}
         </h3>
         <h1
           className={classNames(
@@ -69,7 +68,7 @@ export default function ChapterPage({
             styles.fontSize.heading
           )}
         >
-          {nameTranslated}
+          {name_translated}
         </h1>
         <p
           className={classNames(
@@ -78,7 +77,7 @@ export default function ChapterPage({
             styles.lineHeight
           )}
         >
-          {chapterSummary}
+          {chapter_summary}
         </p>
       </section>
 
@@ -90,7 +89,7 @@ export default function ChapterPage({
               styles.fontSize.para
             )}
           >
-            {versesCount} Verses
+            {verses_count} Verses
           </div>
           <div className="mt-1 flex rounded-md shadow-sm relative">
             <div className="relative flex items-stretch flex-grow focus-within:z-10">
@@ -110,7 +109,7 @@ export default function ChapterPage({
               />
             </div>
             <VerseNavigator
-              verseCount={versesCount}
+              verseCount={verses_count}
               currentVerse={verseId}
               viewNavigation={viewNavigation}
               setViewNavigation={setViewNavigation}

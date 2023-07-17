@@ -15,38 +15,35 @@ interface NewsletterFormData {
   email: string;
 }
 
-interface Node {
-  authorId: number;
+interface GitaLanguage {
   description: string;
-  languageId: number;
-}
-
-interface Verse {
-  verseNumber: number;
-  chapterNumber: number;
-  id: number;
-  text: string;
-  transliteration: string;
-  wordMeanings: string;
-  gitaTranslationsByVerseId: { nodes: Node[] };
-  gitaCommentariesByVerseId: { nodes: Node[] };
 }
 
 interface GitaVerse {
-  id: string;
-  verseNumber: number;
-  wordMeanings: string;
+  verse_number: number;
+  chapter_number: number;
+  id: number;
+  text: string;
   transliteration: string;
+  word_meanings: string;
+}
+
+interface Verse {
+  gita_verses_by_pk: GitaVerse;
+  gita_commentaries: GitaLanguage[];
+  gita_translations: GitaLanguage[];
+}
+
+interface GitaChapterData {
+  chapter_summary: string;
+  chapter_number: number;
+  name_translated: string;
+  verses_count: number;
 }
 
 interface GitaChapter {
-  chapterSummary: string;
-  chapterNumber: number;
-  nameTranslated: string;
-  versesCount: number;
-  gitaVersesByChapterId: {
-    nodes: GitaVerse[];
-  };
+  gita_chapters_by_pk: GitaChapterData;
+  gita_verses: GitaVerse[];
 }
 
 interface AdvanceSettings {
@@ -72,13 +69,7 @@ interface LanguageSettings {
   };
 }
 
-type CurrentVerse = Omit<
-  Verse,
-  | "wordMeanings"
-  | "text"
-  | "gitaTranslationsByVerseId"
-  | "gitaCommentariesByVerseId"
->;
+type CurrentVerse = Omit<GitaVerse, "word_meanings" | "text">;
 
 interface SvgProps {
   className: string;

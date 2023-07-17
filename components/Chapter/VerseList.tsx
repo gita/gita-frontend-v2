@@ -2,18 +2,18 @@ import Link from "next/link";
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 
-type VerseData = Omit<GitaVerse, "wordMeanings">;
+type VerseData = Omit<GitaVerse, "word_meanings">;
 
 interface Props {
   verseData: VerseData;
 }
 
 const VerseList = ({ verseData }: Props) => {
-  const { id, verseNumber, transliteration } = verseData;
+  const { id, verse_number, transliteration } = verseData;
   const styles = useMyStyles();
 
   return (
-    <Link href={`/verse/${id}`}>
+    <Link href={`/verse/${id}`} prefetch={false}>
       <div className="w-full flex flex-col lg:flex-row py-2 lg:py-5 justify-between px-6 hover:cursor-pointer hover:bg-box-bg dark:hover:bg-dark-100 rounded-lg">
         <div
           className={classNames(
@@ -21,7 +21,7 @@ const VerseList = ({ verseData }: Props) => {
             styles.fontSize && styles.fontSize.para && styles.lineHeight
           )}
         >
-          Verse {verseNumber}
+          Verse {verse_number}
         </div>
         <div
           className={classNames(
