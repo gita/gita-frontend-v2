@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface Props {
-  currentVerse: CurrentVerse;
+  currentVerse: GitaVerse;
   playerIsOpen: boolean;
   closePlayerModal: () => void;
 }
@@ -52,7 +52,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
     scrptTag.crossOrigin = "anonymous";
     scrptTag.integrity = "sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=";
 
-    scriptTag.src = "../js/audioseeker.js";
+    scriptTag.src = "/js/audioseeker.js";
     scriptTag.async = true;
 
     document.body.appendChild(scriptTag);
@@ -63,8 +63,8 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
   }, []);
 
   useEffect(() => {
-    if (playerIsOpen) {
-      refs.current[0]?.src ? (refs.current[0].src = "/pause.svg") : null;
+    if (playerIsOpen && refs.current[0]?.src) {
+      refs.current[0].src = "/pause.svg";
 
       refs.current[1].play();
     }
@@ -130,7 +130,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                   as="h3"
                   className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50 "
                 >
-                  BG {currentVerse?.chapter_number}.{currentVerse?.verse_number}{" "}
+                  BG {currentVerse?.chapter_number}.{currentVerse?.verse_number}
                 </Dialog.Title>
                 <div className="mt-2 border-b pb-8">
                   <p className="text-sm text-gray-500 dark:text-gray-200">
@@ -139,15 +139,18 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                 </div>
 
                 <div className="flex justify-between mt-4 px-4">
-                  <Link href={`/verse/${prevId}`}>
-                    <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50  ">
-                      <Image
-                        src="/rewind.svg"
-                        alt="rewind icon"
-                        width={50}
-                        height={50}
-                      />
-                    </div>
+                  <Link
+                    href={`/chapter/${currentVerse?.chapter_number}/verse/${prevId}`}
+                    className={`hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50 ${
+                      prevId <= 0 ? "pointer-events-none" : ""
+                    }`}
+                  >
+                    <Image
+                      src="/rewind.svg"
+                      alt="rewind icon"
+                      width={50}
+                      height={50}
+                    />
                   </Link>
                   <Image
                     id="play"
@@ -161,15 +164,18 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                     height={54}
                     alt="play or pause icon"
                   />
-                  <Link href={`/verse/${nextId}`}>
-                    <div className="hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50">
-                      <Image
-                        src="/forward.svg"
-                        alt="forward icon"
-                        width={50}
-                        height={50}
-                      />
-                    </div>
+                  <Link
+                    href={`/chapter/${currentVerse?.chapter_number}/verse/${nextId}`}
+                    className={`hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50 ${
+                      nextId > 701 ? "pointer-events-none" : ""
+                    }`}
+                  >
+                    <Image
+                      src="/forward.svg"
+                      alt="forward icon"
+                      width={50}
+                      height={50}
+                    />
                   </Link>
                 </div>
                 <div

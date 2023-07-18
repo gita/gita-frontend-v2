@@ -26,12 +26,15 @@ interface GitaVerse {
   text: string;
   transliteration: string;
   word_meanings: string;
+  gita_chapter: {
+    verses_count: number;
+  };
+  gita_commentaries: GitaLanguage[];
+  gita_translations: GitaLanguage[];
 }
 
 interface Verse {
-  gita_verses_by_pk: GitaVerse;
-  gita_commentaries: GitaLanguage[];
-  gita_translations: GitaLanguage[];
+  gita_verses: GitaVerse[];
 }
 
 interface GitaChapterData {

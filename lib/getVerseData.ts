@@ -2,7 +2,7 @@ import { ApolloQueryResult, gql } from "@apollo/client";
 import apolloClient from "./apolloClient";
 
 interface GitaVerseIds {
-  gita_verses: { id: number }[];
+  gita_verses: { chapter_number: number; verse_number: number }[];
 }
 
 export async function getVerseId(): Promise<GitaVerseIds> {
@@ -10,7 +10,8 @@ export async function getVerseId(): Promise<GitaVerseIds> {
     query: gql`
       query MyQuery {
         gita_verses {
-          id
+          chapter_number
+          verse_number
         }
       }
     `,
@@ -20,32 +21,36 @@ export async function getVerseId(): Promise<GitaVerseIds> {
 }
 
 export async function getVerseData(
-  id: string,
+  chapterNumber,
+  verseNumber,
   language = "english",
   commentariesAuthor = "Swami Sivananda",
   translationsAuthor = "Swami Sivananda"
-): Promise<Verse> {
+): Promise<GitaVerse> {
   // todo: add translation to the query and pass transation data to Translation and Commentary component
   const { data }: ApolloQueryResult<Verse> = await apolloClient.query({
     query: gql`
       query MyQuery {
-        gita_verses_by_pk(id: ${id}) {
+        gita_verses(where: {chapter_number: {_eq: ${chapterNumber}}, verse_number: {_eq: ${verseNumber}}}) {
             chapter_number
             id
             text
             transliteration
             verse_number
             word_meanings
-          }
-        gita_commentaries(where: {author_name: {_eq: "${commentariesAuthor}"}, verse_id: {_eq: ${id}}}) {
+            gita_chapter {
+              verses_count
+            }
+            gita_commentaries(where: {author_name: {_eq: "${commentariesAuthor}"}}) {
             description
           }
-        gita_translations(where: {language: {_eq: "${language}"}, author_name: {_eq: "${translationsAuthor}"}, verse_id: {_eq: ${id}}}) {
+        gita_translations(where: {language: {_eq: "${language}"}, author_name: {_eq: "${translationsAuthor}"}}) {
             description
+          }
           }
       }
     `,
   });
 
-  return data;
+  return data.gita_verses[0];
 }

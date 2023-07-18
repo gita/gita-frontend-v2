@@ -39,6 +39,7 @@ export async function getChapterData(
           verse_number
           word_meanings
           transliteration
+          chapter_number
         }
       }
     `,
