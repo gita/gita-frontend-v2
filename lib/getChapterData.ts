@@ -38,8 +38,10 @@ export async function getChapterData(
           id
           verse_number
           word_meanings
-          transliteration
           chapter_number
+          gita_translations(where: {language: {_eq: "english"}, author_name: {_eq: "Swami Gambirananda"}}) {
+            description
+            }
         }
       }
     `,
