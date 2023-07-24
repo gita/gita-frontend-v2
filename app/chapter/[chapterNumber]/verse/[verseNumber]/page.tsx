@@ -1,6 +1,11 @@
+import { Suspense } from "react";
 import { Metadata } from "next";
 import { getVerseId } from "../../../../../lib/getVerseData";
 import VersePage from "./verse-page";
+
+function VerseFallback() {
+  return <>Loading...</>;
+}
 
 type Props = {
   params: { chapterNumber: string; verseNumber: string };
@@ -24,7 +29,11 @@ export function generateMetadata({ params: { verseNumber } }: Props): Metadata {
 }
 
 const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
-  return <VersePage chapterNumber={chapterNumber} verseNumber={verseNumber} />;
+  return (
+    <Suspense fallback={<VerseFallback />}>
+      <VersePage chapterNumber={chapterNumber} verseNumber={verseNumber} />;
+    </Suspense>
+  );
 };
 
 export default Verse;
