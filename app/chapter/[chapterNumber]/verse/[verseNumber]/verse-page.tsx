@@ -1,33 +1,36 @@
 "use client";
 
 import { useDispatch } from "react-redux";
-import { getVerseData } from "../../../lib/getVerseData";
-import useMyStyles from "../../../hooks/useMyStyles";
+import { getVerseData } from "../../../../../lib/getVerseData";
+import useMyStyles from "../../../../../hooks/useMyStyles";
 import { useEffect, useState } from "react";
-import { setCurrentverse } from "../../../redux/actions/settings";
-import PageNavigator from "../../../components/Chapter/PageNavigator";
-import classNames from "../../../utils/classNames";
-import { SvgFloralDivider } from "../../../components/svgs";
-import Translation from "../../../components/Verse/Translation";
-import Commentary from "../../../components/Verse/Commentary";
-import PageHeader from "../../../components/Headers/PageHeader";
+import { setCurrentverse } from "../../../../../redux/actions/settings";
+import PageNavigator from "../../../../../components/Chapter/PageNavigator";
+import classNames from "../../../../../utils/classNames";
+import { SvgFloralDivider } from "../../../../../components/svgs";
+import Translation from "../../../../../components/Verse/Translation";
+import Commentary from "../../../../../components/Verse/Commentary";
+import PageHeader from "../../../../../components/Headers/PageHeader";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
-  verseId: string;
+  chapterNumber: string;
+  verseNumber: string;
 };
 
-export default function VersePage({ verseId }: Props) {
-  const [currentVerse, setCurrentVerse] = useState<Verse>({
+export default function VersePage({ chapterNumber, verseNumber }: Props) {
+  const [currentVerse, setCurrentVerse] = useState<GitaVerse>({
+    verse_number: 1,
+    chapter_number: 1,
+    id: 1,
+    text: "",
+    transliteration: "",
+    word_meanings: "",
+    gita_chapter: {
+      verses_count: 1,
+    },
     gita_commentaries: [{ description: "" }],
     gita_translations: [{ description: "" }],
-    gita_verses_by_pk: {
-      verse_number: 0,
-      chapter_number: 0,
-      id: 0,
-      text: "",
-      transliteration: "",
-      word_meanings: "",
-    },
   });
   const [advanceSettings, setAdvanceSettings] = useState({
     devnagari: true,
@@ -51,8 +54,8 @@ export default function VersePage({ verseId }: Props) {
     },
   });
 
-  // const { gita_verses_by_pk, gita_commentaries, gita_translations_by_pk } =
-  //   verseData;
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const dispatch = useDispatch();
 
@@ -61,26 +64,14 @@ export default function VersePage({ verseId }: Props) {
   const styles = useMyStyles();
 
   useEffect(() => {
-    dispatch(
-      setCurrentverse({
-        transliteration: currentVerse?.gita_verses_by_pk.transliteration,
-        verse_number: currentVerse?.gita_verses_by_pk.verse_number,
-        chapter_number: currentVerse?.gita_verses_by_pk.chapter_number,
-        id: currentVerse?.gita_verses_by_pk.id,
-      })
-    );
-  }, [
-    dispatch,
-    currentVerse?.gita_verses_by_pk.transliteration,
-    currentVerse?.gita_verses_by_pk.verse_number,
-    currentVerse?.gita_verses_by_pk.chapter_number,
-    currentVerse?.gita_verses_by_pk.id,
-  ]);
+    dispatch(setCurrentverse(currentVerse));
+  }, [currentVerse, dispatch]);
 
   useEffect(() => {
     const getCurrentVerseData = async () => {
       const data = await getVerseData(
-        verseId,
+        chapterNumber,
+        verseNumber,
         languageSettings.language.language,
         languageSettings.commentaryAuthor.name,
         languageSettings.translationAuthor.name
@@ -88,7 +79,7 @@ export default function VersePage({ verseId }: Props) {
       setCurrentVerse(data);
     };
     getCurrentVerseData();
-  }, [languageSettings, verseId]);
+  }, [chapterNumber, currentVerse, languageSettings, verseNumber]);
 
   return (
     <div className="font-inter">
@@ -99,9 +90,11 @@ export default function VersePage({ verseId }: Props) {
         setLanguageSettings={setLanguageSettings}
       />
       <PageNavigator
-        pageNumber={currentVerse?.gita_verses_by_pk.id}
-        pageCount={701}
+        pageCount={18}
         route="verse"
+        maxVerseCount={currentVerse.gita_chapter.verses_count}
+        verseNumber={currentVerse.verse_number}
+        pageNumber={currentVerse.chapter_number}
       />
 
       <section className="max-w-5xl font-inter py-12 mx-auto text-center px-4 sm:px-6">
@@ -111,8 +104,7 @@ export default function VersePage({ verseId }: Props) {
             styles.fontSize.heading
           )}
         >
-          BG {currentVerse?.gita_verses_by_pk.chapter_number}.
-          {currentVerse?.gita_verses_by_pk.verse_number}
+          BG {currentVerse?.chapter_number}.{currentVerse?.verse_number}
         </h1>
         {devnagari && (
           <p
@@ -122,7 +114,7 @@ export default function VersePage({ verseId }: Props) {
               styles.lineHeight
             )}
           >
-            {currentVerse?.gita_verses_by_pk.text}
+            {currentVerse?.text}
           </p>
         )}
         {verseText && (
@@ -133,7 +125,7 @@ export default function VersePage({ verseId }: Props) {
               styles.lineHeight
             )}
           >
-            {currentVerse?.gita_verses_by_pk.transliteration}
+            {currentVerse?.transliteration}
           </p>
         )}
         {synonyms && (
@@ -144,17 +136,17 @@ export default function VersePage({ verseId }: Props) {
               styles.lineHeight
             )}
           >
-            {currentVerse?.gita_verses_by_pk.word_meanings}
+            {currentVerse?.word_meanings}
           </p>
         )}
         {(translation || purport) && (
           <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
         )}
         {translation && (
-          <Translation translationData={currentVerse?.gita_translations} />
+          <Translation translationData={currentVerse.gita_translations} />
         )}
         {purport && (
-          <Commentary commentaryData={currentVerse?.gita_commentaries} />
+          <Commentary commentaryData={currentVerse.gita_commentaries} />
         )}
       </section>
     </div>

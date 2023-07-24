@@ -76,7 +76,10 @@ const VerseOfDay = () => {
           {dailyVerse?.gitaTranslationsByVerseId?.nodes[0]?.description}{" "}
         </p>
         <button className="uppercase text-black dark:text-white mt-4 font-bold text-sm hover:text-gray-700 dark:hover:text-gray-400 focus:outline-none">
-          <Link href={`verse/${dailyVerse?.id}`} shallow>
+          <Link
+            href={`chapter/${dailyVerse?.chapterNumber}/verse/${dailyVerse?.verseNumber}`}
+            shallow
+          >
             See more
           </Link>
         </button>

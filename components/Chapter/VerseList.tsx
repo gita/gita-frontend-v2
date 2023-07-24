@@ -9,11 +9,14 @@ interface Props {
 }
 
 const VerseList = ({ verseData }: Props) => {
-  const { id, verse_number, transliteration } = verseData;
+  const { verse_number, transliteration, chapter_number } = verseData;
   const styles = useMyStyles();
 
   return (
-    <Link href={`/verse/${id}`} prefetch={false}>
+    <Link
+      href={`/chapter/${chapter_number}/verse/${verse_number}`}
+      prefetch={false}
+    >
       <div className="w-full flex flex-col lg:flex-row py-2 lg:py-5 justify-between px-6 hover:cursor-pointer hover:bg-box-bg dark:hover:bg-dark-100 rounded-lg">
         <div
           className={classNames(

@@ -1,12 +1,26 @@
 import * as t from "../Types";
 
+const initialVerse = {
+  verse_number: 1,
+  chapter_number: 1,
+  id: 1,
+  text: "",
+  transliteration: "",
+  word_meanings: "",
+  gita_chapter: {
+    verses_count: 1,
+  },
+  gita_commentaries: [{ description: "" }],
+  gita_translations: [{ description: "" }],
+};
+
 interface Settings {
   loading: boolean;
   fontSize: string;
   fontFamily: string;
   spacing: string;
   bg: string;
-  currentVerse: any;
+  currentVerse: GitaVerse;
 }
 
 const initialState = {
@@ -15,7 +29,7 @@ const initialState = {
   fontFamily: "proxima", //Tisa Pro, Georgia, Avenir, Proxima Nova
   spacing: "small", //small, medium, large todo: change to exact values
   bg: "bg-light-bg", //bg-light-bg, bg-yellow-bg, bg-dark-bg
-  currentVerse: null,
+  currentVerse: initialVerse,
 };
 
 const settings = (prevState = initialState, action): Settings => {

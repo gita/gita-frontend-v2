@@ -24,7 +24,9 @@ export default function ContentModal({ isOpen, close }: Props) {
     setSelectedChapter(1);
   }
   function handleSubmit() {
-    router.push(`/verse/${selectedVerse.id}`);
+    router.push(
+      `chapter/${selectedChapter}/verse/${selectedVerse.verseNumber}`
+    );
     setSelectedChapter(1);
     setSelectedVerse({ verseNumber: 1, id: 1 });
     close();
@@ -289,7 +291,11 @@ export default function ContentModal({ isOpen, close }: Props) {
                         (chapter) => chapter.chapterNumber === selectedChapter
                       )[0]
                       .gitaVersesByChapterId.nodes.map((verse) => (
-                        <Link href={`/verse/${verse.id}`} key={verse.id}>
+                        <Link
+                          href={`/chapter/${selectedChapter}/verse/${verse.verseNumber}`}
+                          key={verse.id}
+                          prefetch={false}
+                        >
                           {selectedVerse.id === verse.id ? (
                             <div
                               onClick={modalClose}
