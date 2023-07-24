@@ -1,20 +1,17 @@
 import Link from "next/link";
 
 interface Props {
-  id: number;
   chapterNumber: number;
   verseNumber: number;
   transliteration: string;
 }
 
-const SearchCard = ({
-  id,
-  chapterNumber,
-  verseNumber,
-  transliteration,
-}: Props) => {
+const SearchCard = ({ chapterNumber, verseNumber, transliteration }: Props) => {
   return (
-    <Link href={`/verse/${id}`}>
+    <Link
+      href={`chapter/${chapterNumber}/verse/${verseNumber}`}
+      prefetch={false}
+    >
       <div className="w-full flex flex-col border mt-4 py-2 lg:py-5 justify-between px-6 hover:cursor-pointer hover:bg-box-bg rounded-lg">
         <div className="text-md lg:w-2/5 pb-2 font-semibold text-my-orange uppercase">
           Chapter {chapterNumber} - verse {verseNumber}

@@ -62,7 +62,6 @@ export default function SearchPage() {
               return (
                 <SearchCard
                   key={verse.id}
-                  id={verse.id}
                   chapterNumber={verse.chapter_number}
                   transliteration={verse.transliteration}
                   verseNumber={verse.verse_number}
