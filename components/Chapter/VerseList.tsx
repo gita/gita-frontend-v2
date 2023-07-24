@@ -9,7 +9,7 @@ interface Props {
 }
 
 const VerseList = ({ verseData }: Props) => {
-  const { verse_number, transliteration, chapter_number } = verseData;
+  const { verse_number, gita_translations, chapter_number } = verseData;
   const styles = useMyStyles();
 
   return (
@@ -32,7 +32,7 @@ const VerseList = ({ verseData }: Props) => {
             styles.fontSize && styles.fontSize.para && styles.lineHeight
           )}
         >
-          {transliteration}
+          {gita_translations[0].description}
         </div>
       </div>
     </Link>
