@@ -23,9 +23,9 @@ function useMyStyles() {
           ...prevStyles,
           fontSize: {
             heading: "text-4xl",
-            subHeading1: "text-3xl",
-            subHeading2: "text-2xl",
-            para: "text-xl",
+            subHeading1: "text-intro",
+            subHeading2: "text-paragraph",
+            para: "text-paragraph",
           },
         };
       });

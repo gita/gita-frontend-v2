@@ -5,6 +5,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./layouts/**/*.{js,ts,jsx,tsx}",
+    "./hooks/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class", // or 'media' or 'class'
   theme: {
@@ -12,6 +13,10 @@ module.exports = {
       fontFamily: {
         inter: ['"Inter"', "sans-serif"],
         dev: ["Noto Sans Devanagari", "sans-serif"],
+      },
+      fontSize: {
+        intro: ["30px", "45px"],
+        paragraph: ["18px", "32px"],
       },
       colors: {
         "my-orange": "#F57903",

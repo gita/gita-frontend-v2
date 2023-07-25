@@ -54,9 +54,6 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
     },
   });
 
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
   const dispatch = useDispatch();
 
   const { devnagari, verseText, synonyms, translation, purport } =
@@ -97,7 +94,7 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         pageNumber={currentVerse.chapter_number}
       />
 
-      <section className="max-w-5xl font-inter py-12 mx-auto text-center px-4 sm:px-6">
+      <section className="max-w-5xl font-inter py-16 mx-auto text-center px-4 sm:px-6">
         <h1
           className={classNames(
             "font-extrabold dark:text-gray-50",
@@ -109,9 +106,8 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         {devnagari && (
           <p
             className={classNames(
-              "font-dev text-my-orange mt-4 max-w-md mx-auto",
-              styles.fontSize.subHeading1,
-              styles.lineHeight
+              "font-dev text-my-orange mt-8 max-w-md mx-auto",
+              styles.fontSize.subHeading1
             )}
           >
             {currentVerse?.text}
@@ -120,9 +116,8 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         {verseText && (
           <p
             className={classNames(
-              "mt-4 max-w-md mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2,
-              styles.lineHeight
+              "mt-6 max-w-md mx-auto dark:text-gray-50",
+              styles.fontSize.subHeading2
             )}
           >
             {currentVerse?.transliteration}
@@ -131,16 +126,15 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         {synonyms && (
           <p
             className={classNames(
-              "mt-4 mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2,
-              styles.lineHeight
+              "mt-6 mx-auto dark:text-gray-50",
+              styles.fontSize.subHeading2
             )}
           >
             {currentVerse?.word_meanings}
           </p>
         )}
         {(translation || purport) && (
-          <SvgFloralDivider className="my-16 w-full text-yellow-bg dark:text-dark-bg" />
+          <SvgFloralDivider className="my-20 w-full text-yellow-bg dark:text-dark-bg" />
         )}
         {translation && (
           <Translation translationData={currentVerse.gita_translations} />

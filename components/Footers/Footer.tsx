@@ -409,14 +409,14 @@ const Footer = () => {
                       {item.newTab ? (
                         <a
                           href={item.href}
-                          className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                          className="text-base text-gray-500 hover:text-gray-900 dark:hover:text-white"
                           target="_blank"
                         >
                           {item.name}
                         </a>
                       ) : (
                         <Link
-                          className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                          className="text-base text-gray-500 hover:text-gray-900 dark:hover:text-white"
                           href={item.href}
                           passHref
                         >
@@ -459,7 +459,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex-none text-right w-1/3 lg:w-full">
-          <div className="mt-5 justify-center hidden lg:flex items-center space-x-6">
+          <div className="mt-8 justify-center hidden lg:flex items-center space-x-6">
             {navigation.social.map((item) => (
               <a
                 key={item.name}
