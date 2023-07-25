@@ -26,8 +26,48 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
+  const jsonLdFirst = {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "@id": "#organization",
+    name: "Bhagavad Gita",
+    url: "https://bhagavadgita.io",
+    logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
+  };
+
+  const jsonLdTwo = {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@id": "https://bhagavadgita.io",
+          name: "Home",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@id": "https://bhagavadgita.io/about/",
+          name: "What is The Bhagavad Gita -  BhagavadGita.io",
+        },
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFirst) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
+      />
       <AboutBanner />
       <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
         <p className="mt-8 text-xl ">
