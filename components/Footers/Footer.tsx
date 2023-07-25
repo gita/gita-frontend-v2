@@ -3,6 +3,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import classNames from "../../utils/classNames";
@@ -89,9 +90,15 @@ const navigation = {
 };
 
 const Footer = () => {
+  const pathname = usePathname();
+
   return (
-    <div className="w-full mt-24 bottom-0 bg-white dark:bg-dark-100 font-inter border-gray-200 border-t border-b">
-      <div className="py-1 lg:py-8">
+    <div className="w-full bottom-0 bg-white dark:bg-dark-100 font-inter border-gray-200 border-t border-b">
+      <div
+        className={`py-1 lg:pb-8 lg:pt-24 dark:bg-dark-bg ${
+          pathname.includes("verse") && "bg-yellow-bg"
+        }`}
+      >
         <div className="flex justify-between lg:justify-center items-center">
           <div className="flex-none w-1/2 lg:w-1/5 lg:hidden">
             <Menu
@@ -388,7 +395,11 @@ const Footer = () => {
           </div>
           <div className="flex-none hidden lg:block">
             <footer className="bg-white dark:bg-dark-100">
-              <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
+              <div
+                className={`max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 dark:bg-dark-bg ${
+                  pathname.includes("verse") && "bg-yellow-bg"
+                }`}
+              >
                 <nav
                   className="-mx-5 -my-2 flex flex-wrap justify-center"
                   aria-label="Footer"
@@ -468,7 +479,7 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div className="flex px-4 py-1 justify-between items-center">
+      <div className="flex px-4 py-1 justify-between items-center dark:bg-copyright-bg">
         <div className="flex-none w-1/2 lg:w-1/5 hidden lg:inline-block">
           {/* commented out for now  until next release
           <Menu as="div" className="relative text-left ">
