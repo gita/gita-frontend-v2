@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import QuotesBanner from "../../components/Shared/QuotesBanner";
 import QuotesNavigator from "../../components/Quotes/QuotesNavigator";
 import Quote from "../../components/Quotes/Quote";
