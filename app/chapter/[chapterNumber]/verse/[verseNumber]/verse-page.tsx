@@ -11,7 +11,6 @@ import { SvgFloralDivider } from "../../../../../components/svgs";
 import Translation from "../../../../../components/Verse/Translation";
 import Commentary from "../../../../../components/Verse/Commentary";
 import PageHeader from "../../../../../components/Headers/PageHeader";
-import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   chapterNumber: string;
@@ -140,7 +139,11 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         )}
         {(translation || purport) && (
           <SvgFloralDivider
-            className={`my-20 w-full text-${styles.backgroundColor} dark:text-dark-bg`}
+            className={`my-20 w-full ${
+              styles.backgroundColor === "light-bg"
+                ? "text-light-bg"
+                : "text-yellow-bg"
+            } dark:text-dark-bg`}
           />
         )}
         {translation && (

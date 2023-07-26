@@ -10,7 +10,7 @@ function useMyStyles() {
       para: "text-xl",
     },
     lineHeight: "leading-none",
-    backgroundColor: "bg-light-bg",
+    backgroundColor: "light-bg",
   });
   const { fontSize, spacing, bg } = useSelector(
     (state: RootState) => state.settings
