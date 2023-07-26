@@ -140,8 +140,8 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         {(translation || purport) && (
           <SvgFloralDivider
             className={`my-20 w-full ${
-              styles.backgroundColor === "light-bg"
-                ? "text-light-bg"
+              styles.backgroundColor === "white"
+                ? "text-white"
                 : "text-yellow-bg"
             } dark:text-dark-bg`}
           />

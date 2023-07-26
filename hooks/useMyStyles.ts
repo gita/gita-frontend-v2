@@ -65,7 +65,7 @@ function useMyStyles() {
     }
     if (bg === "bg-light-bg") {
       setStyles((prevStyles) => {
-        return { ...prevStyles, backgroundColor: "light-bg" };
+        return { ...prevStyles, backgroundColor: "white" };
       });
     }
     if (bg === "bg-yellow-bg") {
