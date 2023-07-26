@@ -31,7 +31,7 @@ export function generateMetadata({ params: { verseNumber } }: Props): Metadata {
 const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
   return (
     <Suspense fallback={<VerseFallback />}>
-      <VersePage chapterNumber={chapterNumber} verseNumber={verseNumber} />;
+      <VersePage chapterNumber={chapterNumber} verseNumber={verseNumber} />
     </Suspense>
   );
 };

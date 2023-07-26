@@ -11,7 +11,6 @@ import { SvgFloralDivider } from "../../../../../components/svgs";
 import Translation from "../../../../../components/Verse/Translation";
 import Commentary from "../../../../../components/Verse/Commentary";
 import PageHeader from "../../../../../components/Headers/PageHeader";
-import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   chapterNumber: string;
@@ -54,9 +53,6 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
     },
   });
 
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
   const dispatch = useDispatch();
 
   const { devnagari, verseText, synonyms, translation, purport } =
@@ -82,7 +78,12 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
   }, [chapterNumber, currentVerse, languageSettings, verseNumber]);
 
   return (
-    <div className="font-inter">
+    <div
+      className={classNames(
+        "font-inter dark:bg-dark-bg",
+        `bg-${styles.backgroundColor}`
+      )}
+    >
       <PageHeader
         advanceSettings={advanceSettings}
         setAdvanceSettings={setAdvanceSettings}
@@ -97,7 +98,7 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         pageNumber={currentVerse.chapter_number}
       />
 
-      <section className="max-w-5xl font-inter py-12 mx-auto text-center px-4 sm:px-6">
+      <section className="max-w-5xl font-inter py-16 mx-auto text-center px-4 sm:px-6">
         <h1
           className={classNames(
             "font-extrabold dark:text-gray-50",
@@ -109,9 +110,8 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         {devnagari && (
           <p
             className={classNames(
-              "font-dev text-my-orange mt-4 max-w-md mx-auto",
-              styles.fontSize.subHeading1,
-              styles.lineHeight
+              "font-dev text-my-orange mt-8 max-w-md mx-auto",
+              styles.fontSize.subHeading1
             )}
           >
             {currentVerse?.text}
@@ -120,9 +120,8 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         {verseText && (
           <p
             className={classNames(
-              "mt-4 max-w-md mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2,
-              styles.lineHeight
+              "mt-6 max-w-md mx-auto dark:text-gray-50",
+              styles.fontSize.subHeading2
             )}
           >
             {currentVerse?.transliteration}
@@ -131,16 +130,21 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         {synonyms && (
           <p
             className={classNames(
-              "mt-4 mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2,
-              styles.lineHeight
+              "mt-6 mx-auto dark:text-gray-50",
+              styles.fontSize.subHeading2
             )}
           >
             {currentVerse?.word_meanings}
           </p>
         )}
         {(translation || purport) && (
-          <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
+          <SvgFloralDivider
+            className={`my-20 w-full ${
+              styles.backgroundColor === "white"
+                ? "text-white"
+                : "text-yellow-bg"
+            } dark:text-dark-bg`}
+          />
         )}
         {translation && (
           <Translation translationData={currentVerse.gita_translations} />

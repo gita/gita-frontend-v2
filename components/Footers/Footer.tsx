@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import classNames from "../../utils/classNames";
+import useMyStyles from "../../hooks/useMyStyles";
 
 interface IconProps {
   className: string;
@@ -89,9 +90,13 @@ const navigation = {
 };
 
 const Footer = () => {
+  const styles = useMyStyles();
+
   return (
-    <div className="w-full mt-24 bottom-0 bg-white dark:bg-dark-100 font-inter border-gray-200 border-t border-b">
-      <div className="py-1 lg:py-8">
+    <div className="w-full bottom-0 bg-white dark:bg-dark-100 font-inter border-gray-200 border-t border-b">
+      <div
+        className={`py-1 lg:pb-8 lg:pt-24 dark:bg-dark-bg bg-${styles.backgroundColor}`}
+      >
         <div className="flex justify-between lg:justify-center items-center">
           <div className="flex-none w-1/2 lg:w-1/5 lg:hidden">
             <Menu
@@ -388,7 +393,9 @@ const Footer = () => {
           </div>
           <div className="flex-none hidden lg:block">
             <footer className="bg-white dark:bg-dark-100">
-              <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
+              <div
+                className={`max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 dark:bg-dark-bg bg-${styles.backgroundColor}`}
+              >
                 <nav
                   className="-mx-5 -my-2 flex flex-wrap justify-center"
                   aria-label="Footer"
@@ -398,14 +405,14 @@ const Footer = () => {
                       {item.newTab ? (
                         <a
                           href={item.href}
-                          className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                          className="text-base text-gray-500 hover:text-gray-900 dark:hover:text-white"
                           target="_blank"
                         >
                           {item.name}
                         </a>
                       ) : (
                         <Link
-                          className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                          className="text-base text-gray-500 hover:text-gray-900 dark:hover:text-white"
                           href={item.href}
                           passHref
                         >
@@ -448,7 +455,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex-none text-right w-1/3 lg:w-full">
-          <div className="mt-5 justify-center hidden lg:flex items-center space-x-6">
+          <div className="mt-8 justify-center hidden lg:flex items-center space-x-6">
             {navigation.social.map((item) => (
               <a
                 key={item.name}
@@ -468,7 +475,7 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div className="flex px-4 py-1 justify-between items-center">
+      <div className="flex px-4 py-1 justify-between items-center dark:bg-copyright-bg">
         <div className="flex-none w-1/2 lg:w-1/5 hidden lg:inline-block">
           {/* commented out for now  until next release
           <Menu as="div" className="relative text-left ">
