@@ -10,7 +10,7 @@ function useMyStyles() {
       para: "text-xl",
     },
     lineHeight: "leading-none",
-    backgroundColor: "bg-light-bg",
+    backgroundColor: "light-bg",
   });
   const { fontSize, spacing, bg } = useSelector(
     (state: RootState) => state.settings
@@ -23,9 +23,9 @@ function useMyStyles() {
           ...prevStyles,
           fontSize: {
             heading: "text-4xl",
-            subHeading1: "text-3xl",
-            subHeading2: "text-2xl",
-            para: "text-xl",
+            subHeading1: "text-intro",
+            subHeading2: "text-paragraph",
+            para: "text-paragraph",
           },
         };
       });
@@ -60,17 +60,17 @@ function useMyStyles() {
     }
     if (bg === "bg-dark-bg") {
       setStyles((prevStyles) => {
-        return { ...prevStyles, backgroundColor: "bg-dark-bg" };
+        return { ...prevStyles, backgroundColor: "dark-bg" };
       });
     }
     if (bg === "bg-light-bg") {
       setStyles((prevStyles) => {
-        return { ...prevStyles, backgroundColor: "bg-light-bg" };
+        return { ...prevStyles, backgroundColor: "white" };
       });
     }
     if (bg === "bg-yellow-bg") {
       setStyles((prevStyles) => {
-        return { ...prevStyles, backgroundColor: "bg-yellow-bg" };
+        return { ...prevStyles, backgroundColor: "yellow-bg" };
       });
     }
   }, [fontSize, spacing, bg]);

@@ -25,9 +25,9 @@ interface Settings {
 
 const initialState = {
   loading: false,
-  fontSize: "small", //small, large todo: change to exact values
+  fontSize: "large", //small, large todo: change to exact values
   fontFamily: "proxima", //Tisa Pro, Georgia, Avenir, Proxima Nova
-  spacing: "small", //small, medium, large todo: change to exact values
+  spacing: "large", //small, medium, large todo: change to exact values
   bg: "bg-light-bg", //bg-light-bg, bg-yellow-bg, bg-dark-bg
   currentVerse: initialVerse,
 };
