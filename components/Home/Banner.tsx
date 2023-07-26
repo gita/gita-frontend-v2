@@ -32,6 +32,15 @@ const Banner = () => {
           </Link>
         </div>
       </div>
+      <div className="absolute z-[-1] h-96 -mt-60 w-full">
+        <Image
+          src="/main.png"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+          alt={"main background"}
+        />
+      </div>
     </>
   );
 };
