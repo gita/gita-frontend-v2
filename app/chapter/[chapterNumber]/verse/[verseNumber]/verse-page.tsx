@@ -79,7 +79,12 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
   }, [chapterNumber, currentVerse, languageSettings, verseNumber]);
 
   return (
-    <div className="font-inter bg-yellow-bg dark:bg-dark-bg">
+    <div
+      className={classNames(
+        "font-inter dark:bg-dark-bg",
+        `bg-${styles.backgroundColor}`
+      )}
+    >
       <PageHeader
         advanceSettings={advanceSettings}
         setAdvanceSettings={setAdvanceSettings}
@@ -134,7 +139,9 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
           </p>
         )}
         {(translation || purport) && (
-          <SvgFloralDivider className="my-20 w-full text-yellow-bg dark:text-dark-bg" />
+          <SvgFloralDivider
+            className={`my-20 w-full text-${styles.backgroundColor} dark:text-dark-bg`}
+          />
         )}
         {translation && (
           <Translation translationData={currentVerse.gita_translations} />

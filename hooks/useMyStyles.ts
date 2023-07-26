@@ -60,17 +60,17 @@ function useMyStyles() {
     }
     if (bg === "bg-dark-bg") {
       setStyles((prevStyles) => {
-        return { ...prevStyles, backgroundColor: "bg-dark-bg" };
+        return { ...prevStyles, backgroundColor: "dark-bg" };
       });
     }
     if (bg === "bg-light-bg") {
       setStyles((prevStyles) => {
-        return { ...prevStyles, backgroundColor: "bg-light-bg" };
+        return { ...prevStyles, backgroundColor: "light-bg" };
       });
     }
     if (bg === "bg-yellow-bg") {
       setStyles((prevStyles) => {
-        return { ...prevStyles, backgroundColor: "bg-yellow-bg" };
+        return { ...prevStyles, backgroundColor: "yellow-bg" };
       });
     }
   }, [fontSize, spacing, bg]);

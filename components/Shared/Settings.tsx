@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import { editSettings } from "../../redux/actions/settings";
 import classNames from "../../utils/classNames";
 import { RootState } from "../../redux/reducers/rootReducer";
@@ -15,6 +16,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
   const state = useSelector((state: RootState) => state.settings);
   const dispatch = useDispatch();
   const [appearenceSettings, setAppearnceSettings] = useState(state);
+  const { theme, setTheme, themes } = useTheme();
 
   useEffect(() => {
     setAppearnceSettings(state);
@@ -254,6 +256,14 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                   <button
                     type="button"
                     onClick={() => {
+                      switch (appearenceSettings?.bg) {
+                        case "bg-dark-bg":
+                          setTheme("dark");
+                          break;
+                        default:
+                          setTheme("light");
+                      }
+
                       dispatch(editSettings(appearenceSettings));
                       closeSettingsModal();
                     }}
