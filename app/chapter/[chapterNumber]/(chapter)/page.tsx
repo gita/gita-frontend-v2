@@ -29,7 +29,7 @@ export async function generateMetadata({
     .replace(regex, "");
 
   return {
-    title: `Bhagavad Gita Chapter ${chapterNumber} - Arjuna Visada Yoga - BhagavadGita.io`,
+    title: `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`,
     description: `${chapterDescription}...`,
     openGraph: {
       url: "https://bhagavadgita.io/",
@@ -39,7 +39,7 @@ export async function generateMetadata({
       authors: "https://www.facebook.com/radhakrishnablog/",
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
-      title: `Bhagavad Gita Chapter ${chapterNumber} - Arjuna Visada Yoga - BhagavadGita.io`,
+      title: `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`,
       description: `${chapterDescription}...`,
       images: [
         {
@@ -53,7 +53,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `Bhagavad Gita Chapter ${chapterNumber} - Arjuna Visada Yoga - BhagavadGita.io`,
+      title: `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`,
       description: `${chapterDescription}...`,
       images: ["https://bhagavadgita.io/static/images/sribhagavadgita.jpg"],
       site: "@ShriKrishna",
@@ -90,7 +90,7 @@ export default async function Chapter({ params: { chapterNumber } }: Props) {
         position: 2,
         item: {
           "@id": `https://bhagavadgita.io/chapter/${chapterNumber}/`,
-          name: `Bhagavad Gita Chapter ${chapterNumber} - Sankhya Yoga`,
+          name: `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated}`,
           image: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
         },
       },
