@@ -2,12 +2,72 @@ import { Metadata } from "next";
 import AboutBanner from "../../components/Shared/AboutBanner";
 
 export const metadata: Metadata = {
-  title: "Bhagavad Gita App - About",
+  title: "What is The Bhagavad Gita -  BhagavadGita.io",
+  description:
+    "Bhagavad Gita, also known as the Gita - the song of lord is a practical guide to one's life that guides one re-organise their life, achieve inner peace and approach supreme lord (the ultimate reality).",
+  openGraph: {
+    title: "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
+    description:
+      "Bhagavad Gita, also known as the Gita - the song of lord is a practical guide to one's life that guides one re-organise their life, achieve inner peace and approach supreme lord (the ultimate reality).",
+    url: "https://bhagavadgita.io/about/",
+    siteName: "Bhagavad Gita",
+    images: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "What is The Bhagavad Gita -  BhagavadGita.io",
+    description:
+      "Bhagavad Gita, also known as the Gita - the song of lord is a practical guide to one's life that guides one re-organise their life, achieve inner peace and approach supreme lord (the ultimate reality).",
+    images: ["https://bhagavadgita.io/static/images/sribhagavadgita.jpg"],
+    site: "@ShriKrishna",
+  },
 };
 
 export default function About() {
+  const jsonLdFirst = {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "@id": "#organization",
+    name: "Bhagavad Gita",
+    url: "https://bhagavadgita.io",
+    logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
+  };
+
+  const jsonLdTwo = {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@id": "https://bhagavadgita.io",
+          name: "Home",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@id": "https://bhagavadgita.io/about/",
+          name: "What is The Bhagavad Gita -  BhagavadGita.io",
+        },
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFirst) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
+      />
       <AboutBanner />
       <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
         <p className="mt-8 text-xl ">

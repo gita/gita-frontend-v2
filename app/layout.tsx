@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Providers from "./providers";
+import { PreloadResources } from "./preload-resources";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,6 +14,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   themeColor: "#ffffff",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
   manifest: "/favicon/site.webmanifest",
   icons: {
     icon: [
@@ -43,7 +50,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html className={inter.className}>
       <body suppressHydrationWarning={true}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <PreloadResources />
+          {children}
+        </Providers>
       </body>
     </html>
   );
