@@ -53,8 +53,15 @@ function HomePage({ chapters, notification }: Props) {
           <div className="relative">
             <Banner />
             <div className="absolute top-[204px] z-0 w-full h-[460px]">
-              <Image src="/main-background.webp" alt="background omage" fill />
+              <Image src="/main-background.png" alt="background image" fill />
             </div>
+            <Image
+              src="/flower.svg"
+              alt="flower"
+              width={365}
+              height={150}
+              className="absolute top-[54%] left-[50%] -translate-x-2/4"
+            />
             <VerseOfDay />
           </div>
 

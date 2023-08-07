@@ -4,7 +4,7 @@ import Image from "next/image";
 const Banner = () => {
   return (
     <>
-      <div className="max-w-full mx-auto xl:mx-24 z-10 relative h-[451px]">
+      <div className="max-w-7xl mx-auto z-10 relative h-[451px]">
         <Image
           src="/banner2.png"
           alt="BG Home Banner Image"
@@ -13,7 +13,7 @@ const Banner = () => {
             objectFit: "cover",
             objectPosition: "center",
           }}
-          className="xl:rounded-lg"
+          className="shadow-xl xl:rounded-lg"
           priority
         />
         <div className="xl:rounded-lg flex flex-col h-4/5 px-8 py-36">
