@@ -34,6 +34,9 @@ module.exports = {
           100: "#252525",
         },
       },
+      dropShadow: {
+        card: "0px 8px 16px rgba(22, 34, 51, 0.08)",
+      },
     },
   },
   variants: {

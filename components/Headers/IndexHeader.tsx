@@ -140,7 +140,7 @@ export default function IndexHeader() {
   }
 
   return (
-    <div className="w-full fixed top-0 shadow z-50">
+    <div className="w-full fixed top-0 z-50">
       <Popover className="relative bg-white font-inter dark:bg-dark-100">
         <div className="max-w-full mx-auto  xl:px-24 px-4">
           <div className="flex justify-between items-center  py-6 md:space-x-10">
@@ -292,7 +292,7 @@ export default function IndexHeader() {
                 </button>
               )}
             </Popover.Group>
-            <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0">
+            <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0 py-px">
               <form
                 onSubmit={handleSearch}
                 className="relative flex text-gray-600"

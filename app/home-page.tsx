@@ -11,6 +11,7 @@ import VerseOfDay from "../components/Home/VerseOfDay";
 import Newsletter from "../components/Home/Newsletter";
 import Chapters from "../components/Home/Chapters";
 import NotificationBanner from "../components/Shared/NotificationBanner";
+import Image from "next/image";
 
 interface Props extends ChaptersProps {
   notification: { name: string; message: string; status: string };
@@ -49,8 +50,14 @@ function HomePage({ chapters, notification }: Props) {
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
           />
-          <Banner />
-          <VerseOfDay />
+          <div className="relative">
+            <Banner />
+            <div className="absolute top-[204px] z-0 w-full h-[460px]">
+              <Image src="/main-background.webp" alt="background omage" fill />
+            </div>
+            <VerseOfDay />
+          </div>
+
           <Newsletter handleSubscribe={handleSubscribe} />
           <Chapters chapters={chapters} />
         </HomeLayout>

@@ -6,7 +6,7 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="dark:bg-dark-bg min-h-screen flex flex-col">
       <IndexHeader />
-      <div className="pt-24 lg:pt-28 flex-1">{children}</div>
+      <div className="pt-24 lg:pt-[90px] flex-1">{children}</div>
       <Footer />
     </div>
   );
