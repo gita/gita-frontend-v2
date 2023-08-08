@@ -66,8 +66,8 @@ const VerseOfDay = () => {
   }, [client, dailyVerse]);
 
   return (
-    <div className="max-w-7xl mx-auto z-50 px-4 sm:px-6">
-      <div className="bg-white dark:bg-dark-100 shadow-lg rounded-xl  mt-10 p-8 text-gray-400">
+    <div className="relative max-w-7xl mx-auto z-10 px-4 sm:px-6 mt-24">
+      <div className="bg-white dark:bg-dark-100 shadow-lg rounded-xl px-12 pb-8 pt-5 text-gray-400">
         <h2 className="text-my-orange font-bold mb-4 divider line one-line px-4">
           Verse of the day - BG {dailyVerse?.chapterNumber}.
           {dailyVerse?.verseNumber}
