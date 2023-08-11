@@ -11,6 +11,7 @@ import { SvgFloralDivider } from "../../../../../components/svgs";
 import Translation from "../../../../../components/Verse/Translation";
 import Commentary from "../../../../../components/Verse/Commentary";
 import PageHeader from "../../../../../components/Headers/PageHeader";
+import { Skeleton } from "../../../../../components/Shared/Skeleton";
 
 type Props = {
   chapterNumber: string;
@@ -107,15 +108,21 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         >
           BG {currentVerse?.chapter_number}.{currentVerse?.verse_number}
         </h1>
-        {devnagari && (
+        {devnagari && currentVerse.text ? (
           <p
             className={classNames(
               "font-dev text-my-orange mt-8 max-w-md mx-auto",
               styles.fontSize.subHeading1
             )}
           >
-            {currentVerse?.text}
+            {currentVerse.text}
           </p>
+        ) : (
+          <div className="flex flex-col items-center w-full max-w-md mx-auto pt-10">
+            <Skeleton height="h-8" width="w-full" margin="mb-2" />
+            <Skeleton height="h-8" width="w-5/6" margin="mb-2" />
+            <Skeleton height="h-8" width="w-4/5" margin="mb-2" />
+          </div>
         )}
         {verseText && (
           <p
@@ -127,15 +134,27 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
             {currentVerse?.transliteration}
           </p>
         )}
-        {synonyms && (
+        {synonyms && currentVerse?.word_meanings ? (
           <p
             className={classNames(
               "mt-6 mx-auto dark:text-gray-50",
               styles.fontSize.subHeading2
             )}
           >
-            {currentVerse?.word_meanings}
+            {currentVerse.word_meanings}
           </p>
+        ) : (
+          <>
+            <div className="flex flex-col items-center w-full max-w-md mx-auto pt-3">
+              <Skeleton height="h-5" width="w-full" margin="mb-3" />
+              <Skeleton height="h-5" width="w-5/6" margin="mb-3" />
+            </div>
+            <div className="flex flex-col items-center w-full pt-3">
+              <Skeleton height="h-5" width="w-full" margin="mb-3" />
+              <Skeleton height="h-5" width="w-5/6" margin="mb-3" />
+              <Skeleton height="h-5" width="w-4/5" margin="mb-3" />
+            </div>
+          </>
         )}
         {(translation || purport) && (
           <SvgFloralDivider
