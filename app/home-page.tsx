@@ -68,7 +68,7 @@ function HomePage({ chapters, notification }: Props) {
       <main>
         <HomeLayout>
           <Modal
-            modalVisible={modalVisible}
+            modalVisible={!modalVisible}
             setModalVisible={setModalVisible}
           />
           <div className="relative">
