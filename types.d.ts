@@ -77,8 +77,3 @@ type CurrentVerse = Omit<GitaVerse, "word_meanings" | "text">;
 interface SvgProps {
   className: string;
 }
-
-type SubscriptionCredentials = {
-  user_name: string;
-  user_email: string;
-};
