@@ -7,7 +7,7 @@ interface Props {
 
 function Modal({ modalVisible, setModalVisible }: Props) {
   return (
-    <div className={` ${!modalVisible && "hidden"}`}>
+    <div className={`relative z-50 ${!modalVisible && "hidden"}`}>
       <div
         className="fixed z-10 inset-0 overflow-y-auto"
         aria-labelledby="modal-title"

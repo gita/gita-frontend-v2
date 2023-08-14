@@ -12,6 +12,10 @@ import Newsletter from "../components/Home/Newsletter";
 import Chapters from "../components/Home/Chapters";
 import NotificationBanner from "../components/Shared/NotificationBanner";
 import Image from "next/image";
+import { useTheme } from "next-themes";
+import { subscribeUser } from "../lib/subscribeUser";
+
+export type SubscribeMessage = { isSuccess: boolean; message: string };
 
 interface Props extends ChaptersProps {
   notification: { name: string; message: string; status: string };
@@ -19,6 +23,7 @@ interface Props extends ChaptersProps {
 
 function HomePage({ chapters, notification }: Props) {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const { theme } = useTheme();
 
   const pathName = usePathname();
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
@@ -30,16 +35,32 @@ function HomePage({ chapters, notification }: Props) {
       setCookie("access_token", access_token[1]);
     }
   }, [pathName, setCookie]);
-  function handleSubscribe(
+
+  async function handleSubscribe(
     e: FormEvent<HTMLFormElement>,
-    formData: NewsletterFormData
-  ): boolean {
+    { name, email }: NewsletterFormData
+  ): Promise<SubscribeMessage> {
     e.preventDefault();
-    if (formData.name && formData.email) {
-      // todo call newsletter subscribe API
-      setModalVisible(true);
-      return true;
-    } else return false;
+    if (name && email) {
+      try {
+        await subscribeUser(name, email);
+
+        setModalVisible(true);
+        return {
+          isSuccess: true,
+          message: "",
+        };
+      } catch (error) {
+        return {
+          isSuccess: false,
+          message: "ERROR: Email already exists",
+        };
+      }
+    } else
+      return {
+        isSuccess: false,
+        message: "ERROR: Name or Email Cannot be Empty",
+      };
   }
 
   return (
@@ -52,16 +73,24 @@ function HomePage({ chapters, notification }: Props) {
           />
           <div className="relative">
             <Banner />
-            <div className="absolute top-[204px] z-0 w-full h-[460px]">
-              <Image src="/main-background.png" alt="background image" fill />
-            </div>
-            <Image
-              src="/flower.svg"
-              alt="flower"
-              width={365}
-              height={150}
-              className="absolute top-[54%] left-[50%] -translate-x-2/4"
-            />
+            {theme === "light" && (
+              <>
+                <div className="absolute top-[204px] z-0 w-full h-[460px]">
+                  <Image
+                    src="/main-background.png"
+                    alt="background image"
+                    fill
+                  />
+                </div>
+                <Image
+                  src="/flower.svg"
+                  alt="flower"
+                  width={365}
+                  height={150}
+                  className="absolute top-[54%] left-[50%] -translate-x-2/4"
+                />
+              </>
+            )}
             <VerseOfDay />
           </div>
 
