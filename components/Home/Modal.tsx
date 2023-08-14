@@ -7,14 +7,14 @@ interface Props {
 
 function Modal({ modalVisible, setModalVisible }: Props) {
   return (
-    <div className={` ${!modalVisible && "hidden"}`}>
+    <div className={`relative z-50 ${!modalVisible && "hidden"}`}>
       <div
         className="fixed z-10 inset-0 overflow-y-auto"
         aria-labelledby="modal-title"
         x-ref="dialog"
         aria-modal="true"
       >
-        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <div
             className="fixed inset-0 bg-gray-500 dark:bg-dark-bg opacity-75 transition-opacity"
             aria-hidden="true"
@@ -51,11 +51,12 @@ function Modal({ modalVisible, setModalVisible }: Props) {
                   className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200"
                   id="modal-title"
                 >
-                  Subcribe successful
+                  Subscription Successful!
                 </h3>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500 dark:text-gray-300">
-                    You have successfully subcribe to daily Shloka of the Day
+                    Congratulations! You have now subscribed to the daily
+                    &quot;Shloka of the Day&quot; newsletter.
                   </p>
                 </div>
               </div>

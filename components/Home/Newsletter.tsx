@@ -1,11 +1,12 @@
 import { FormEvent, useState } from "react";
 import Image from "next/image";
+import { SubscribeMessage } from "../../app/home-page";
 
 interface Props {
   handleSubscribe: (
     e: FormEvent<HTMLFormElement>,
     formData: NewsletterFormData
-  ) => boolean;
+  ) => Promise<SubscribeMessage>;
 }
 
 const Newsletter = ({ handleSubscribe }: Props) => {
@@ -14,6 +15,19 @@ const Newsletter = ({ handleSubscribe }: Props) => {
     email: "",
   });
   const [isValid, setIsValid] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const onSubmit = async (e) => {
+    const { isSuccess, message } = await handleSubscribe(e, formData);
+    if (isSuccess) {
+      setFormData({ name: "", email: "" });
+      setIsValid(true);
+      setErrorMessage("");
+    } else {
+      setIsValid(false);
+      setErrorMessage(message);
+    }
+  };
 
   return (
     <div className="mt-14 relative z-0">
@@ -32,17 +46,7 @@ const Newsletter = ({ handleSubscribe }: Props) => {
           <h1 className="text-4xl text-black font-bold mb-8 z-50">
             Have the Shloka of the Day delivered to your inbox each morning.
           </h1>
-          <form
-            className="flex flex-col md:flex-row"
-            onSubmit={(e) => {
-              if (handleSubscribe(e, formData)) {
-                setFormData({ name: "", email: "" });
-                setIsValid(true);
-              } else {
-                setIsValid(false);
-              }
-            }}
-          >
+          <form className="flex flex-col md:flex-row" onSubmit={onSubmit}>
             <input
               className="appearance-none z-50 mt-4 md:mt-0 border rounded-md w-full py-3 mr-6 px-3 text-gray-700 leading-tight focus:outline-none focus:border-my-orange dark:bg-white"
               id="name"
@@ -81,10 +85,8 @@ const Newsletter = ({ handleSubscribe }: Props) => {
             </button>
           </form>
           {!isValid && (
-            <div className="text-lg text-black-900 mt-4">
-              <p className="font-bold mr-20 mt-12">
-                ERROR: Name or Email Cannot be Empty
-              </p>
+            <div className="text-lg text-red-400 mt-4">
+              <p className="font-bold mr-20 mt-12">{errorMessage}</p>
             </div>
           )}
         </div>
