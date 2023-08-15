@@ -1,70 +1,21 @@
 import { useEffect, useState } from "react";
-import { gql, ApolloQueryResult, useApolloClient } from "@apollo/client";
 import Link from "next/link";
 import { Skeleton } from "../Shared/Skeleton";
-
-interface DailyVerse {
-  verseNumber: number;
-  chapterNumber: number;
-  id: number;
-  text: string;
-  transliteration: string;
-  wordMeanings: string;
-  gitaTranslationsByVerseId: {
-    nodes: { description: string }[];
-  };
-}
+import { getDailyVerse } from "../../lib/getDailyVerse";
 
 const VerseOfDay = () => {
-  const [dailyVerse, setDailyVerse] = useState<DailyVerse | null>(null);
-  const client = useApolloClient();
+  const [dailyVerse, setDailyVerse] = useState<GitaVerse | null>(null);
 
   useEffect(() => {
-    const getDailyVerse = async (): Promise<DailyVerse | null> => {
-      const { data }: ApolloQueryResult<any> = await client.query({
-        query: gql`
-          query MyQuery {
-            allVerseOfTheDays(last: 1) {
-              nodes {
-                verseOrder
-                date
-              }
-            }
-          }
-        `,
-      });
-      const verseData: ApolloQueryResult<any> = await client.query({
-        query: gql`
-        query MyQuery {
-          allGitaVerses(condition: {id: ${data.allVerseOfTheDays.nodes[0].verseOrder} }) {
-            nodes {
-              verseNumber
-              chapterNumber
-              id
-              text
-              transliteration
-              wordMeanings
-              gitaTranslationsByVerseId(condition: {authorName: "Swami Sivananda"}) {
-                nodes {
-                  description
-                }
-              }
-            }
-           
-          }
-        }
-        `,
-      });
-
-      const finalData = verseData?.data.allGitaVerses?.nodes[0];
-      setDailyVerse(finalData);
-      return finalData;
+    const getVerseOfTheDay = async () => {
+      const dailyVerse = await getDailyVerse();
+      setDailyVerse(dailyVerse);
     };
 
     if (!dailyVerse) {
-      getDailyVerse();
+      getVerseOfTheDay();
     }
-  }, [client, dailyVerse]);
+  }, [dailyVerse]);
 
   return (
     <div className="relative max-w-7xl mx-auto z-10 px-4 sm:px-6 mt-24">
@@ -72,17 +23,14 @@ const VerseOfDay = () => {
         {dailyVerse ? (
           <>
             <h2 className="text-my-orange font-bold mb-4 divider line one-line px-4">
-              Verse of the day - BG {dailyVerse?.chapterNumber}.
-              {dailyVerse?.verseNumber}
+              Verse of the day - BG {dailyVerse?.chapter_number}.
+              {dailyVerse.verse_number}
             </h2>
             <p className="text-lg">
-              {dailyVerse?.gitaTranslationsByVerseId?.nodes[0]?.description}{" "}
+              {dailyVerse?.gita_translations[0].description}{" "}
             </p>
             <button className="uppercase text-black dark:text-white mt-4 font-bold text-sm hover:text-gray-700 dark:hover:text-gray-400 focus:outline-none">
-              <Link
-                href={`chapter/${dailyVerse?.chapterNumber}/verse/${dailyVerse?.verseNumber}`}
-                shallow
-              >
+              <Link href="/verse-of-the-day" shallow>
                 See more
               </Link>
             </button>

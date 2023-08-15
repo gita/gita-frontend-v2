@@ -5,13 +5,9 @@ import { getVerseData } from "../../../../../lib/getVerseData";
 import useMyStyles from "../../../../../hooks/useMyStyles";
 import { useEffect, useState } from "react";
 import { setCurrentverse } from "../../../../../redux/actions/settings";
-import PageNavigator from "../../../../../components/Chapter/PageNavigator";
 import classNames from "../../../../../utils/classNames";
-import { SvgFloralDivider } from "../../../../../components/svgs";
-import Translation from "../../../../../components/Verse/Translation";
-import Commentary from "../../../../../components/Verse/Commentary";
 import PageHeader from "../../../../../components/Headers/PageHeader";
-import { Skeleton } from "../../../../../components/Shared/Skeleton";
+import { Verse } from "../../../../../components/Verse/Verse";
 
 type Props = {
   chapterNumber: string;
@@ -19,6 +15,7 @@ type Props = {
 };
 
 export default function VersePage({ chapterNumber, verseNumber }: Props) {
+  const styles = useMyStyles();
   const [currentVerse, setCurrentVerse] = useState<GitaVerse>({
     verse_number: 1,
     chapter_number: 1,
@@ -32,6 +29,7 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
     gita_commentaries: [{ description: "" }],
     gita_translations: [{ description: "" }],
   });
+
   const [advanceSettings, setAdvanceSettings] = useState({
     devnagari: true,
     verseText: true,
@@ -39,6 +37,7 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
     translation: true,
     purport: true,
   });
+
   const [languageSettings, setLanguageSettings] = useState({
     language: {
       id: 1,
@@ -55,10 +54,6 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
   });
 
   const dispatch = useDispatch();
-
-  const { devnagari, verseText, synonyms, translation, purport } =
-    advanceSettings;
-  const styles = useMyStyles();
 
   useEffect(() => {
     dispatch(setCurrentverse(currentVerse));
@@ -91,87 +86,7 @@ export default function VersePage({ chapterNumber, verseNumber }: Props) {
         languageSettings={languageSettings}
         setLanguageSettings={setLanguageSettings}
       />
-      <PageNavigator
-        pageCount={18}
-        route="verse"
-        maxVerseCount={currentVerse.gita_chapter.verses_count}
-        verseNumber={currentVerse.verse_number}
-        pageNumber={currentVerse.chapter_number}
-      />
-
-      <section className="max-w-5xl font-inter py-16 mx-auto text-center px-4 sm:px-6">
-        <h1
-          className={classNames(
-            "font-extrabold dark:text-gray-50",
-            styles.fontSize.heading
-          )}
-        >
-          BG {currentVerse?.chapter_number}.{currentVerse?.verse_number}
-        </h1>
-        {devnagari && currentVerse.text ? (
-          <p
-            className={classNames(
-              "font-dev text-my-orange mt-8 max-w-md mx-auto",
-              styles.fontSize.subHeading1
-            )}
-          >
-            {currentVerse.text}
-          </p>
-        ) : (
-          <div className="flex flex-col items-center w-full max-w-md mx-auto pt-10">
-            <Skeleton height="h-8" width="w-full" margin="mb-2" />
-            <Skeleton height="h-8" width="w-5/6" margin="mb-2" />
-            <Skeleton height="h-8" width="w-4/5" margin="mb-2" />
-          </div>
-        )}
-        {verseText && (
-          <p
-            className={classNames(
-              "mt-6 max-w-md mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2
-            )}
-          >
-            {currentVerse?.transliteration}
-          </p>
-        )}
-        {synonyms && currentVerse?.word_meanings ? (
-          <p
-            className={classNames(
-              "mt-6 mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2
-            )}
-          >
-            {currentVerse.word_meanings}
-          </p>
-        ) : (
-          <>
-            <div className="flex flex-col items-center w-full max-w-md mx-auto pt-3">
-              <Skeleton height="h-5" width="w-full" margin="mb-3" />
-              <Skeleton height="h-5" width="w-5/6" margin="mb-3" />
-            </div>
-            <div className="flex flex-col items-center w-full pt-3">
-              <Skeleton height="h-5" width="w-full" margin="mb-3" />
-              <Skeleton height="h-5" width="w-5/6" margin="mb-3" />
-              <Skeleton height="h-5" width="w-4/5" margin="mb-3" />
-            </div>
-          </>
-        )}
-        {(translation || purport) && (
-          <SvgFloralDivider
-            className={`my-20 w-full ${
-              styles.backgroundColor === "white"
-                ? "text-white"
-                : "text-yellow-bg"
-            } dark:text-dark-bg`}
-          />
-        )}
-        {translation && (
-          <Translation translationData={currentVerse.gita_translations} />
-        )}
-        {purport && (
-          <Commentary commentaryData={currentVerse.gita_commentaries} />
-        )}
-      </section>
+      <Verse verse={currentVerse} advancedSettings={advanceSettings} />
     </div>
   );
 }
