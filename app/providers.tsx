@@ -9,25 +9,18 @@ import { ReactNode } from "react";
 import { Provider } from "react-redux";
 import { useStore } from "../redux/store";
 
-const client = new ApolloClient({
-  uri: "https://gql.bhagavadgita.io/graphql",
-  cache: new InMemoryCache(),
-});
-
 export default function Providers({ children }: { children: ReactNode }) {
   const store = useStore(undefined);
 
   return (
     <PlausibleProvider domain="bhagavadgita.io" trackOutboundLinks>
-      <ApolloProvider client={client}>
-        <CookiesProvider>
-          <Provider store={store}>
-            <ThemeProvider attribute="class" enableSystem={false}>
-              {children}
-            </ThemeProvider>
-          </Provider>
-        </CookiesProvider>
-      </ApolloProvider>
+      <CookiesProvider>
+        <Provider store={store}>
+          <ThemeProvider attribute="class" enableSystem={false}>
+            {children}
+          </ThemeProvider>
+        </Provider>
+      </CookiesProvider>
     </PlausibleProvider>
   );
 }

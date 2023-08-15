@@ -37,6 +37,16 @@ interface Verse {
   gita_verses: GitaVerse[];
 }
 
+interface VerseOfTheDay {
+  date: string;
+  id: number;
+  verse_order: number;
+}
+
+interface VersesOfTheDay {
+  verse_of_the_day: VerseOfTheDay[];
+}
+
 interface GitaChapterData {
   chapter_summary: string;
   chapter_number: number;
