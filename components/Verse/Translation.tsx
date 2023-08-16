@@ -14,7 +14,8 @@ export default function Translation({ translationData }: Props) {
       <h1
         className={classNames(
           "font-extrabold dark:text-gray-50",
-          styles.fontSize.heading
+          styles.fontSize.heading,
+          styles.lineHeight
         )}
       >
         Translation
@@ -23,7 +24,8 @@ export default function Translation({ translationData }: Props) {
         <p
           className={classNames(
             "mt-6 mx-auto text-justify dark:text-gray-50 ",
-            styles.fontSize.para
+            styles.fontSize.para,
+            styles.lineHeight
           )}
         >
           {translationData[0].description}

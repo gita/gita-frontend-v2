@@ -24,7 +24,7 @@ function useMyStyles() {
           fontSize: {
             heading: "text-4xl",
             subHeading1: "text-intro",
-            subHeading2: "text-paragraph",
+            subHeading2: "text-xl",
             para: "text-paragraph",
           },
         };
@@ -37,8 +37,8 @@ function useMyStyles() {
           fontSize: {
             heading: "text-3xl",
             subHeading1: "text-2xl",
-            subHeading2: "text-xl",
-            para: "text-md",
+            subHeading2: "text-paragraph",
+            para: "text-base",
           },
         };
       });

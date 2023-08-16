@@ -42,7 +42,12 @@ export default function ChapterPage({
     : filteredVerses?.slice(0).reverse();
 
   return (
-    <div>
+    <div
+      className={classNames(
+        "font-inter dark:bg-dark-bg",
+        `bg-${styles.backgroundColor}`
+      )}
+    >
       <div className="absolute max-w-5xl font-inter left-0 right-0 mx-auto text-center">
         <SvgChapterBackground className="relative text-gray-300 w-full lg:w-min dark:text-black text-opacity-25 dark:text-opacity-25 rounded-full m-auto left-0 right-0 bottom-0 lg:top-12" />
       </div>

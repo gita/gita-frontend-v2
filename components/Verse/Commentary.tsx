@@ -17,7 +17,8 @@ export default function Commentary({ commentaryData }: Props) {
       <h1
         className={classNames(
           "font-extrabold dark:text-gray-50",
-          styles.fontSize.heading
+          styles.fontSize.heading,
+          styles.lineHeight
         )}
       >
         Commentary
@@ -28,7 +29,8 @@ export default function Commentary({ commentaryData }: Props) {
             key={paragraph}
             className={classNames(
               "mt-6 mx-auto text-justify dark:text-gray-50 whitespace-pre-wrap",
-              styles.fontSize.para
+              styles.fontSize.para,
+              styles.lineHeight
             )}
           >
             {paragraph}

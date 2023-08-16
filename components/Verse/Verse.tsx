@@ -49,7 +49,8 @@ export const Verse: FC<VerseProps> = ({
         <h1
           className={classNames(
             "font-extrabold dark:text-gray-50",
-            styles.fontSize.heading
+            styles.fontSize.heading,
+            styles.lineHeight
           )}
         >
           BG {chapter_number}.{verse_number}
@@ -59,7 +60,8 @@ export const Verse: FC<VerseProps> = ({
             <p
               className={classNames(
                 "font-dev text-my-orange mt-8 max-w-md mx-auto",
-                styles.fontSize.subHeading1
+                styles.fontSize.subHeading1,
+                styles.lineHeight
               )}
             >
               {text}
@@ -75,7 +77,8 @@ export const Verse: FC<VerseProps> = ({
           <p
             className={classNames(
               "mt-6 max-w-md mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2
+              styles.fontSize.subHeading2,
+              styles.lineHeight
             )}
           >
             {transliteration}
@@ -86,7 +89,8 @@ export const Verse: FC<VerseProps> = ({
             <p
               className={classNames(
                 "mt-6 mx-auto dark:text-gray-50",
-                styles.fontSize.subHeading2
+                styles.fontSize.subHeading2,
+                styles.lineHeight
               )}
             >
               {word_meanings}
