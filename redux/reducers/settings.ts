@@ -27,7 +27,7 @@ const initialState = {
   loading: false,
   fontSize: "large", //small, large todo: change to exact values
   fontFamily: "proxima", //Tisa Pro, Georgia, Avenir, Proxima Nova
-  spacing: "large", //small, medium, large todo: change to exact values
+  spacing: "medium", //small, medium, large todo: change to exact values
   bg: "bg-light-bg", //bg-light-bg, bg-yellow-bg, bg-dark-bg
   currentVerse: initialVerse,
 };

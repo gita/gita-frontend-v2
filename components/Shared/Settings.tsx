@@ -71,7 +71,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                     className={classNames(
                       " text-gray-500 dark:text-gray-200",
                       appearenceSettings?.fontSize === "small"
-                        ? "text-md"
+                        ? "text-base"
                         : "text-xl",
                       appearenceSettings?.spacing === "large"
                         ? "leading-loose"
