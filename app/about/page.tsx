@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://bhagavadgita.io/about/",
-  }
+  },
 };
 
 export default function About() {
