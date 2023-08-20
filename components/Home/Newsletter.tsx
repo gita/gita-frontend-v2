@@ -43,9 +43,9 @@ const Newsletter = ({ handleSubscribe }: Props) => {
       />
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="mt-10 p-14 text-center">
-          <h1 className="text-4xl text-black font-bold mb-8 z-50">
+          <h3 className="text-4xl text-black font-bold mb-8 z-50">
             Have the Shloka of the Day delivered to your inbox each morning.
-          </h1>
+          </h3>
           <form className="flex flex-col md:flex-row" onSubmit={onSubmit}>
             <input
               className="appearance-none z-50 mt-4 md:mt-0 border rounded-md w-full py-3 mr-6 px-3 text-gray-700 leading-tight focus:outline-none focus:border-my-orange dark:bg-white"

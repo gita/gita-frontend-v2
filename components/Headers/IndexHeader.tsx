@@ -228,7 +228,7 @@ export default function IndexHeader() {
               >
                 About Geeta
               </Link>
-              {!loggedIn ? (
+              {/* {!loggedIn ? (
                 <Popover className="relative">
                   {({ open }) => (
                     <>
@@ -290,7 +290,7 @@ export default function IndexHeader() {
                 >
                   <span className="truncate">Signout</span>
                 </button>
-              )}
+              )} */}
             </Popover.Group>
             <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0 py-px">
               <form

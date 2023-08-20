@@ -204,7 +204,7 @@ const PageHeader = ({
                       />
                       Advanced View
                     </button>
-                    {isProduction ? null : (
+                    {/* {isProduction ? null : (
                       <button
                         type="button"
                         onClick={openNotesSettingsModal}
@@ -224,8 +224,8 @@ const PageHeader = ({
                         />
                         Notes
                       </button>
-                    )}
-                    {isProduction ? null : (
+                    )} */}
+                    {/* {isProduction ? null : (
                       <Link
                         href="/bookmark"
                         className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
@@ -239,7 +239,7 @@ const PageHeader = ({
                         />
                         Bookmark
                       </Link>
-                    )}
+                    )} */}
                   </div>
                 </div>
                 <div className="flex-1 flex items-center justify-start pr-2  lg:ml-6 lg:justify-end">

@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     images: ["https://bhagavadgita.io/static/images/sribhagavadgita.jpg"],
     site: "@ShriKrishna",
   },
+  alternates: {
+    canonical: "https://bhagavadgita.io/about/",
+  }
 };
 
 export default function About() {

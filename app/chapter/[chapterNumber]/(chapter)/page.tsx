@@ -66,6 +66,7 @@ export async function generateMetadata({
         "en-IN": `https://bhagavadgita.io/chapter/${chapterNumber}/`,
         hi: `https://bhagavadgita.io/chapter/${chapterNumber}/hi`,
       },
+      canonical: `https://bhagavadgita.io/chapter/${chapterNumber}/`,
     },
   };
 }

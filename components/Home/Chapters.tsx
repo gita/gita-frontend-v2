@@ -16,7 +16,7 @@ const Chapters = ({ chapters }: ChaptersProps) => {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 z-50">
         <div>
-          <h1 className="text-5xl dark:text-white font-bold mb-10">Chapters</h1>
+          <h2 className="text-4xl dark:text-white font-bold mb-10">Chapters</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {chapters.map((chapter) => (
               <Card key={chapter.id} chapter={chapter} />
