@@ -39,6 +39,7 @@ export const metadata: Metadata = {
       "en-IN": "https://bhagavadgita.io/",
       hi: "https://bhagavadgita.io/hi/",
     },
+    canonical: "https://bhagavadgita.io/",
   },
 };
 

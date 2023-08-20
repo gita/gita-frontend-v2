@@ -18,10 +18,8 @@ const Banner = () => {
         />
         <div className="xl:rounded-lg flex flex-col h-4/5 px-8 py-36">
           <h1 className="text-3xl md:text-6xl text-center font-extrabold text-shadow text-white t-shadow z-30">
-            Experience the Gita
-          </h1>
-          <h1 className="text-3xl md:text-6xl text-center font-extrabold text-shadow text-lead-text t-shadow z-30">
-            Anywhere, Anytime
+            Experience the Gita <br />
+            <span className="text-lead-text">Anywhere, Anytime</span>
           </h1>
 
           <Link
