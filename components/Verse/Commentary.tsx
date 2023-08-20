@@ -14,14 +14,14 @@ export default function Commentary({ commentaryData }: Props) {
 
   return (
     <div className="mt-16">
-      <h1
+      <h2
         className={classNames(
           "font-extrabold dark:text-gray-50",
           styles.fontSize.heading
         )}
       >
         Commentary
-      </h1>
+      </h2>
       {paragraphs?.[0] ? (
         paragraphs.map((paragraph) => (
           <p

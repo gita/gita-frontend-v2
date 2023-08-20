@@ -11,14 +11,14 @@ export default function Translation({ translationData }: Props) {
 
   return (
     <div>
-      <h1
+      <h2
         className={classNames(
           "font-extrabold dark:text-gray-50",
           styles.fontSize.heading
         )}
       >
         Translation
-      </h1>
+      </h2>
       {translationData && translationData[0]?.description ? (
         <p
           className={classNames(

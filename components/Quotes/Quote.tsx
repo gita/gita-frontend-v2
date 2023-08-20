@@ -16,14 +16,14 @@ export default function Quote({ quoteNumber, quote }: Props) {
       </div>
 
       <div className="max-w-5xl font-inter xs:py-24 sm:py-28 mx-auto text-center px-4 sm:px-6 relative">
-        <h3
+        <h2
           className={classNames(
             "text-my-orange font-medium uppercase",
             styles.fontSize.subHeading2
           )}
         >
           Quote {quoteNumber}
-        </h3>
+        </h2>
         <p
           className={classNames(
             "text-center dark:text-white mt-3 mx-auto max-w-2xl text-2xl",
