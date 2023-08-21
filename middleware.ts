@@ -2,8 +2,7 @@ import { getLanguageSettings } from "app/shared/functions";
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const { href, search } = new URL(request.url);
-  const searchParams = new URLSearchParams(search);
+  const { origin, pathname, searchParams } = new URL(request.url);
 
   const { language, translationAuthor, commentaryAuthor } = getLanguageSettings(
     {
@@ -27,7 +26,7 @@ export function middleware(request: NextRequest) {
       t: String(translationAuthor.id),
       c: String(commentaryAuthor.id),
     });
-    const updatedUrl = `${href}?${urlSearchParams.toString()}`;
+    const updatedUrl = `${origin}${pathname}?${urlSearchParams.toString()}`;
     return NextResponse.redirect(updatedUrl);
   }
 }

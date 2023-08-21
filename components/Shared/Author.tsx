@@ -1,23 +1,21 @@
+import { getCookie, setCookie } from "cookies-next";
+
 import { useState, Fragment, useEffect, Dispatch, SetStateAction } from "react";
 import { Dialog, Transition, Switch, Listbox } from "@headlessui/react";
 import { SelectorIcon } from "@heroicons/react/solid";
 import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
 import commentary_authors from "../../constant/commentary_authors.json";
 import translation_authors from "../../constant/translation_authors.json";
+import { getLanguageSettings } from "app/shared/functions";
 
 interface Props {
   authorSettingsIsOpen: boolean;
   closeAuthorSettingsModal: () => void;
-  languageSettings: LanguageSettings;
-  setLanguageSettings: Dispatch<SetStateAction<LanguageSettings>>;
 }
 
-const Author = ({
-  authorSettingsIsOpen,
-  closeAuthorSettingsModal,
-  languageSettings,
-  setLanguageSettings,
-}: Props) => {
+const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
+  const languageSettings = getLanguageSettings();
+
   const [isVerseCommentarySourceEnabled, setIsVerseCommentarySourceEnabled] =
     useState(true);
   const [
@@ -26,6 +24,7 @@ const Author = ({
   ] = useState(true);
   const [isVerseTranslationSourceEnabled, setIsVerseTranslationSourceEnabled] =
     useState(true);
+
   const [language, setLanguage] = useState(languageSettings.language);
   const [translationAuthor, setTranslationAuthor] = useState({
     id: 0,
@@ -34,21 +33,21 @@ const Author = ({
   const [commentaryAuthor, setCommentaryAuthor] = useState({ id: 0, name: "" });
 
   useEffect(() => {
-    setLanguage(languageSettings.language);
-    setTranslationAuthor(languageSettings.translationAuthor);
-    setCommentaryAuthor(languageSettings.commentaryAuthor);
-  }, [
-    languageSettings.commentaryAuthor,
-    languageSettings.language,
-    languageSettings.translationAuthor,
-  ]);
+    const myLanguageSettings = getLanguageSettings({
+      languageId: parseInt(String(getCookie("languageId"))),
+      translationAuthorId: parseInt(String(getCookie("translationAuthorId"))),
+      commentaryAuthorId: parseInt(String(getCookie("commentaryAuthorId"))),
+    });
+
+    setLanguage(myLanguageSettings.language);
+    setTranslationAuthor(myLanguageSettings.translationAuthor);
+    setCommentaryAuthor(myLanguageSettings.commentaryAuthor);
+  }, []);
 
   function handleSubmit() {
-    setLanguageSettings({
-      language: language,
-      translationAuthor: translationAuthor,
-      commentaryAuthor: commentaryAuthor,
-    });
+    setCookie("languageId", language.id);
+    setCookie("translationAuthorId", translationAuthor.id);
+    setCookie("commentaryAuthorId", commentaryAuthor.id);
     closeAuthorSettingsModal();
   }
 

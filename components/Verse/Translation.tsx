@@ -29,10 +29,7 @@ export default function Translation({ translationData }: Props) {
           {translationData[0].description}
         </p>
       ) : (
-        <>
-          <Skeleton height="h-5" width="w-full" margin="my-3" />
-          <Skeleton height="h-5" width="w-4/5" margin="my-3" />
-        </>
+        <p>Selected translation option is not available for this verse</p>
       )}
     </div>
   );

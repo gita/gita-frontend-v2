@@ -573,8 +573,6 @@ const PageHeader = ({
         closeSettingsModal={closeSettingsModal}
       />
       <AuthorSettings
-        languageSettings={languageSettings}
-        setLanguageSettings={setLanguageSettings}
         authorSettingsIsOpen={authorSettingsIsOpen}
         closeAuthorSettingsModal={closeAuthorSettingsModal}
       />

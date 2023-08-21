@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { getVerseData, getVerseId } from "lib/getVerseData";
 import VersePage from "./verse-page";
 import {
+  getLanguageSettings,
   getMyCommentaryAuthor,
   getMyLanguage,
   getMyTranslationAuthor,
@@ -67,7 +68,10 @@ export async function generateMetadata({
   };
 }
 
-const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
+const Verse = async ({
+  params: { chapterNumber, verseNumber },
+  searchParams,
+}: Props) => {
   const jsonLd = {
     "@context": "http://schema.org",
     "@type": "BreadcrumbList",
@@ -101,12 +105,20 @@ const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
     ],
   };
 
+  const safeSearchParams = Object.assign({}, searchParams);
+
+  const languageSettings = getLanguageSettings({
+    languageId: parseInt(safeSearchParams.l || ""),
+    translationAuthorId: parseInt(safeSearchParams.t || ""),
+    commentaryAuthorId: parseInt(safeSearchParams.c || ""),
+  });
+
   const verseData = await getVerseData(
     chapterNumber,
     verseNumber,
-    getMyLanguage().language,
-    getMyCommentaryAuthor().name,
-    getMyTranslationAuthor().name
+    languageSettings.language.language,
+    languageSettings.commentaryAuthor.name,
+    languageSettings.translationAuthor.name
   );
 
   return (
