@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Providers from "./providers";
 import { PreloadResources } from "./preload-resources";
+import classNames from "utils/classNames";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,7 +49,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html className={inter.className}>
+    <html
+      className={classNames(inter.className, "light")}
+      style={{ colorScheme: "light" }}
+    >
       <body suppressHydrationWarning={true}>
         <Providers>
           <PreloadResources />

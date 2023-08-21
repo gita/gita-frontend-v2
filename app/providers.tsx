@@ -1,7 +1,6 @@
 "use client";
 
 import "tailwindcss/tailwind.css";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { ThemeProvider } from "next-themes";
 import { CookiesProvider } from "react-cookie";
 import PlausibleProvider from "next-plausible";

@@ -10,5 +10,6 @@ module.exports = withPlausibleProxy()({
   },
   experimental: {
     largePageDataBytes: 128 * 100000,
+    serverActions: true,
   },
 });

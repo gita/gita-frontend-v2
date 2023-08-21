@@ -38,6 +38,7 @@ package-lock.json
 
 # IDE
 .idea
+.vscode
 
 #env
 .env
