@@ -6,18 +6,11 @@ import { Skeleton } from "../Shared/Skeleton";
 import { SvgFloralDivider } from "../svgs";
 import Translation from "./Translation";
 import Commentary from "./Commentary";
+import { defaultAdvancedSettings } from "app/shared/constants";
 
 interface VerseProps {
   verse: GitaVerse;
-  advancedSettings: AdvancedSettings;
-}
-
-interface AdvancedSettings {
-  devnagari: boolean;
-  verseText: boolean;
-  synonyms: boolean;
-  translation: boolean;
-  purport: boolean;
+  advancedSettings?: AdvancedSettings;
 }
 
 export const Verse: FC<VerseProps> = ({
@@ -31,7 +24,13 @@ export const Verse: FC<VerseProps> = ({
     gita_translations,
     gita_commentaries,
   },
-  advancedSettings: { devnagari, verseText, synonyms, translation, purport },
+  advancedSettings: {
+    devnagari,
+    verseText,
+    synonyms,
+    translation,
+    purport,
+  } = defaultAdvancedSettings,
 }) => {
   const styles = useMyStyles();
 

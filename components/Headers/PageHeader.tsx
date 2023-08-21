@@ -16,22 +16,26 @@ import classNames from "../../utils/classNames";
 import { useRouter } from "next/navigation";
 import useEnvironment from "../../hooks/useEnvironment";
 import NotesModal from "../Shared/NotesModal";
+import { defaultAdvancedSettings } from "app/shared/constants";
+import { getLanguageSettings } from "app/shared/functions";
+
+const noop = () => {};
 
 interface Props {
-  advanceSettings: AdvanceSettings;
-  setAdvanceSettings: Dispatch<SetStateAction<AdvanceSettings>>;
-  languageSettings: LanguageSettings;
-  setLanguageSettings: Dispatch<SetStateAction<LanguageSettings>>;
+  advancedSettings?: AdvancedSettings;
+  setAdvancedSettings?: Dispatch<SetStateAction<AdvancedSettings>>;
+  languageSettings?: LanguageSettings;
+  setLanguageSettings?: Dispatch<SetStateAction<LanguageSettings>>;
 }
 
 const PageHeader = ({
-  advanceSettings,
-  setAdvanceSettings,
-  languageSettings,
-  setLanguageSettings,
+  advancedSettings = defaultAdvancedSettings,
+  setAdvancedSettings = noop,
+  languageSettings = getLanguageSettings(),
+  setLanguageSettings = noop,
 }: Props) => {
   const { devnagari, verseText, synonyms, translation, purport } =
-    advanceSettings;
+    advancedSettings;
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
   const {
     data: settingsIsOpen,
@@ -364,7 +368,7 @@ const PageHeader = ({
                     <Switch
                       checked={devnagari}
                       onChange={() =>
-                        setAdvanceSettings((prevState) => {
+                        setAdvancedSettings((prevState) => {
                           return {
                             ...prevState,
                             devnagari: !devnagari,
@@ -404,7 +408,7 @@ const PageHeader = ({
                     <Switch
                       checked={verseText}
                       onChange={() =>
-                        setAdvanceSettings((prevState) => {
+                        setAdvancedSettings((prevState) => {
                           return {
                             ...prevState,
                             verseText: !verseText,
@@ -444,7 +448,7 @@ const PageHeader = ({
                     <Switch
                       checked={synonyms}
                       onChange={() =>
-                        setAdvanceSettings((prevState) => {
+                        setAdvancedSettings((prevState) => {
                           return {
                             ...prevState,
                             synonyms: !synonyms,
@@ -483,7 +487,7 @@ const PageHeader = ({
                     <Switch
                       checked={translation}
                       onChange={() =>
-                        setAdvanceSettings((prevState) => {
+                        setAdvancedSettings((prevState) => {
                           return {
                             ...prevState,
                             translation: !translation,
@@ -522,7 +526,7 @@ const PageHeader = ({
                     <Switch
                       checked={purport}
                       onChange={() =>
-                        setAdvanceSettings((prevState) => {
+                        setAdvancedSettings((prevState) => {
                           return {
                             ...prevState,
                             purport: !purport,
@@ -554,8 +558,8 @@ const PageHeader = ({
 
       {advancedOptionsActive ? (
         <AdvancedOptions
-          advanceSettings={advanceSettings}
-          setAdvanceSettings={setAdvanceSettings}
+          advancedSettings={advancedSettings}
+          setAdvancedSettings={setAdvancedSettings}
         />
       ) : null}
       <AudioPlayer
@@ -584,14 +588,16 @@ const PageHeader = ({
 
 export default PageHeader;
 
-type TAdvancedOptions = Omit<Props, "languageSettings" | "setLanguageSettings">;
+type TAdvancedOptions = Partial<
+  Omit<Props, "languageSettings" | "setLanguageSettings">
+>;
 
 const AdvancedOptions = ({
-  advanceSettings,
-  setAdvanceSettings,
+  advancedSettings = defaultAdvancedSettings,
+  setAdvancedSettings = noop,
 }: TAdvancedOptions) => {
   const { devnagari, verseText, synonyms, translation, purport } =
-    advanceSettings;
+    advancedSettings;
   return (
     <div className="max-w-full mx-auto px-2 sm:hidden transition duration-500 ease-in-out lg:block mt-4 lg:px-8">
       <span className="flex justify-center z-0 rounded-md">
@@ -599,7 +605,7 @@ const AdvancedOptions = ({
           <Switch
             checked={devnagari}
             onChange={() =>
-              setAdvanceSettings((prevState) => {
+              setAdvancedSettings((prevState) => {
                 return {
                   ...prevState,
                   devnagari: !devnagari,
@@ -666,7 +672,7 @@ const AdvancedOptions = ({
           <Switch
             checked={verseText}
             onChange={() =>
-              setAdvanceSettings((prevState) => {
+              setAdvancedSettings((prevState) => {
                 return {
                   ...prevState,
                   verseText: !verseText,
@@ -733,7 +739,7 @@ const AdvancedOptions = ({
           <Switch
             checked={synonyms}
             onChange={() =>
-              setAdvanceSettings((prevState) => {
+              setAdvancedSettings((prevState) => {
                 return {
                   ...prevState,
                   synonyms: !synonyms,
@@ -800,7 +806,7 @@ const AdvancedOptions = ({
           <Switch
             checked={translation}
             onChange={() =>
-              setAdvanceSettings((prevState) => {
+              setAdvancedSettings((prevState) => {
                 return {
                   ...prevState,
                   translation: !translation,
@@ -868,7 +874,7 @@ const AdvancedOptions = ({
           <Switch
             checked={purport}
             onChange={() =>
-              setAdvanceSettings((prevState) => {
+              setAdvancedSettings((prevState) => {
                 return {
                   ...prevState,
                   purport: !purport,

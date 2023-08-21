@@ -49,11 +49,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      className={classNames(inter.className, "light")}
-      style={{ colorScheme: "light" }}
-    >
-      <body suppressHydrationWarning={true}>
+    <html className={inter.className} suppressHydrationWarning>
+      <body>
         <Providers>
           <PreloadResources />
           {children}

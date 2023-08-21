@@ -13,7 +13,7 @@ interface VerseOfTheDayProps {
 export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({ dailyVerse }) => {
   const styles = useMyStyles();
 
-  const [advanceSettings, setAdvanceSettings] = useState({
+  const [advancedSettings, setAdvancedSettings] = useState({
     devnagari: true,
     verseText: true,
     synonyms: true,
@@ -44,13 +44,13 @@ export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({ dailyVerse }) => {
       )}
     >
       <PageHeader
-        advanceSettings={advanceSettings}
-        setAdvanceSettings={setAdvanceSettings}
+        advancedSettings={advancedSettings}
+        setAdvancedSettings={setAdvancedSettings}
         languageSettings={languageSettings}
         setLanguageSettings={setLanguageSettings}
       />
       {dailyVerse && (
-        <Verse verse={dailyVerse} advancedSettings={advanceSettings} />
+        <Verse verse={dailyVerse} advancedSettings={advancedSettings} />
       )}
     </div>
   );

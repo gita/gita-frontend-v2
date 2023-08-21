@@ -59,7 +59,7 @@ interface GitaChapter {
   gita_verses: GitaVerse[];
 }
 
-interface AdvanceSettings {
+interface AdvancedSettings {
   devnagari: boolean;
   verseText: boolean;
   synonyms: boolean;

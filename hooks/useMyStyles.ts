@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/reducers/rootReducer";
+
 function useMyStyles() {
   const [styles, setStyles] = useState({
     fontSize: {

@@ -1,14 +1,17 @@
-import { Suspense } from "react";
-import { Metadata } from "next";
-import { getVerseId } from "../../../../../lib/getVerseData";
-import VersePage from "./verse-page";
+"use server";
 
-function VerseFallback() {
-  return <>Loading...</>;
-}
+import { Metadata } from "next";
+import { getVerseData, getVerseId } from "lib/getVerseData";
+import VersePage from "./verse-page";
+import {
+  getMyCommentaryAuthor,
+  getMyLanguage,
+  getMyTranslationAuthor,
+} from "app/shared/functions";
 
 type Props = {
   params: { chapterNumber: string; verseNumber: string };
+  searchParams: { t?: string; c?: string; l?: string };
 };
 
 export async function generateStaticParams() {
@@ -98,14 +101,26 @@ const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
     ],
   };
 
+  const verseData = await getVerseData(
+    chapterNumber,
+    verseNumber,
+    getMyLanguage().language,
+    getMyCommentaryAuthor().name,
+    getMyTranslationAuthor().name
+  );
+
   return (
-    <Suspense fallback={<VerseFallback />}>
+    <article>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <VersePage chapterNumber={chapterNumber} verseNumber={verseNumber} />;
-    </Suspense>
+      <VersePage
+        verseData={verseData}
+        chapterNumber={chapterNumber}
+        verseNumber={verseNumber}
+      />
+    </article>
   );
 };
 

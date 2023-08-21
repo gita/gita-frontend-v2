@@ -6,12 +6,12 @@ import {
   SortAscendingIcon,
   SortDescendingIcon,
 } from "@heroicons/react/solid";
-import { SvgChapterBackground } from "../../../../components/svgs";
-import PageNavigator from "../../../../components/Chapter/PageNavigator";
-import classNames from "../../../../utils/classNames";
-import VerseNavigator from "../../../../components/Chapter/VerseNavigator";
-import VerseList from "../../../../components/Chapter/VerseList";
-import useMyStyles from "../../../../hooks/useMyStyles";
+import { SvgChapterBackground } from "components/svgs";
+import PageNavigator from "components/Chapter/PageNavigator";
+import classNames from "utils/classNames";
+import VerseNavigator from "components/Chapter/VerseNavigator";
+import VerseList from "components/Chapter/VerseList";
+import useMyStyles from "hooks/useMyStyles";
 
 interface Props {
   chapterData: GitaChapterData;
@@ -29,7 +29,7 @@ export default function ChapterPage({
 }: Props) {
   const [viewNavigation, setViewNavigation] = useState(false);
   const [verseId, setVerseId] = useState(0);
-  const [isAscSorted, setisAscSorted] = useState(true);
+  const [isAscSorted, setIsAscSorted] = useState(true);
   const styles = useMyStyles();
 
   const filteredVerses = versesData?.filter((verse) => {
@@ -118,7 +118,7 @@ export default function ChapterPage({
             <button
               type="button"
               className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium dark:bg-dark-100 rounded-r-md text-gray-700 dark:text-gray-50 bg-gray-50 hover:bg-gray-100 dark:hover:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
-              onClick={() => setisAscSorted(!isAscSorted)}
+              onClick={() => setIsAscSorted(!isAscSorted)}
             >
               {isAscSorted ? (
                 <SortDescendingIcon

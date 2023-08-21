@@ -1,23 +1,11 @@
-"use client";
+"use server";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Skeleton } from "../Shared/Skeleton";
 import { getDailyVerse } from "../../lib/getDailyVerse";
 
-const VerseOfDay = () => {
-  const [dailyVerse, setDailyVerse] = useState<GitaVerse | null>(null);
-
-  useEffect(() => {
-    const getVerseOfTheDay = async () => {
-      const dailyVerse = await getDailyVerse();
-      setDailyVerse(dailyVerse);
-    };
-
-    if (!dailyVerse) {
-      getVerseOfTheDay();
-    }
-  }, [dailyVerse]);
+const VerseOfDay = async () => {
+  const dailyVerse = await getDailyVerse();
 
   return (
     <div className="relative max-w-7xl mx-auto z-10 px-4 sm:px-6 mt-24">

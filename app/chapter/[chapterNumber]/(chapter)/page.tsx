@@ -1,8 +1,5 @@
 import { Metadata } from "next";
-import {
-  getChapterData,
-  getChapterNumbers,
-} from "../../../../lib/getChapterData";
+import { getChapterData, getChapterNumbers } from "lib/getChapterData";
 import ChapterPage from "./chapter-page";
 
 export async function generateStaticParams() {
