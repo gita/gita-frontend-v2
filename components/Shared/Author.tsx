@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from "cookies-next";
+import { useCookies } from "react-cookie";
 
 import { useState, Fragment, useEffect, Dispatch, SetStateAction } from "react";
 import { Dialog, Transition, Switch, Listbox } from "@headlessui/react";
@@ -7,6 +7,8 @@ import languages from "../../constant/languages.json"; //todo: use graphql api t
 import commentary_authors from "../../constant/commentary_authors.json";
 import translation_authors from "../../constant/translation_authors.json";
 import { getLanguageSettings } from "app/shared/functions";
+
+const cookieOptions = { path: "/", maxAge: 365 * 24 * 60 * 60 };
 
 interface Props {
   authorSettingsIsOpen: boolean;
@@ -25,6 +27,12 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
   const [isVerseTranslationSourceEnabled, setIsVerseTranslationSourceEnabled] =
     useState(true);
 
+  const [cookies, setCookie] = useCookies([
+    "languageId",
+    "translationAuthorId",
+    "commentaryAuthorId",
+  ]);
+
   const [language, setLanguage] = useState(languageSettings.language);
   const [translationAuthor, setTranslationAuthor] = useState({
     id: 0,
@@ -34,9 +42,9 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
 
   useEffect(() => {
     const myLanguageSettings = getLanguageSettings({
-      languageId: parseInt(String(getCookie("languageId"))),
-      translationAuthorId: parseInt(String(getCookie("translationAuthorId"))),
-      commentaryAuthorId: parseInt(String(getCookie("commentaryAuthorId"))),
+      languageId: parseInt(String(cookies.languageId)),
+      translationAuthorId: parseInt(String(cookies.translationAuthorId)),
+      commentaryAuthorId: parseInt(String(cookies.commentaryAuthorId)),
     });
 
     setLanguage(myLanguageSettings.language);
@@ -45,9 +53,9 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
   }, []);
 
   function handleSubmit() {
-    setCookie("languageId", language.id);
-    setCookie("translationAuthorId", translationAuthor.id);
-    setCookie("commentaryAuthorId", commentaryAuthor.id);
+    setCookie("languageId", language.id, cookieOptions);
+    setCookie("translationAuthorId", translationAuthor.id, cookieOptions);
+    setCookie("commentaryAuthorId", commentaryAuthor.id, cookieOptions);
     closeAuthorSettingsModal();
   }
 

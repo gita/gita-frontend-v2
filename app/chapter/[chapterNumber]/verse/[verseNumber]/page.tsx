@@ -1,18 +1,13 @@
 "use server";
+import { headers } from "next/headers";
 
 import { Metadata } from "next";
 import { getVerseData, getVerseId } from "lib/getVerseData";
 import VersePage from "./verse-page";
-import {
-  getLanguageSettings,
-  getMyCommentaryAuthor,
-  getMyLanguage,
-  getMyTranslationAuthor,
-} from "app/shared/functions";
+import { getLanguageSettings } from "app/shared/functions";
 
 type Props = {
   params: { chapterNumber: string; verseNumber: string };
-  searchParams: { t?: string; c?: string; l?: string };
 };
 
 export async function generateStaticParams() {
@@ -68,10 +63,7 @@ export async function generateMetadata({
   };
 }
 
-const Verse = async ({
-  params: { chapterNumber, verseNumber },
-  searchParams,
-}: Props) => {
+const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
   const jsonLd = {
     "@context": "http://schema.org",
     "@type": "BreadcrumbList",
@@ -105,12 +97,11 @@ const Verse = async ({
     ],
   };
 
-  const safeSearchParams = Object.assign({}, searchParams);
-
+  const headersList = headers();
   const languageSettings = getLanguageSettings({
-    languageId: parseInt(safeSearchParams.l || ""),
-    translationAuthorId: parseInt(safeSearchParams.t || ""),
-    commentaryAuthorId: parseInt(safeSearchParams.c || ""),
+    languageId: parseInt(headersList.get("x-settings-l") || ""),
+    translationAuthorId: parseInt(headersList.get("x-settings-t") || ""),
+    commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),
   });
 
   const verseData = await getVerseData(

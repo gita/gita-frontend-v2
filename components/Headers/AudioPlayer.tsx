@@ -45,6 +45,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
       refs.current[1].playbackRate = speed;
     }
   };
+
   useEffect(() => {
     const scriptTag = document.createElement("script");
     const scrptTag = document.createElement("script");
