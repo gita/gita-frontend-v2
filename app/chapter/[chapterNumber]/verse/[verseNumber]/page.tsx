@@ -1,25 +1,26 @@
-"use server";
 import { headers } from "next/headers";
 
 import { Metadata } from "next";
-import { getVerseData, getVerseId } from "lib/getVerseData";
+import { getVerseData } from "lib/getVerseData";
 import VersePage from "./verse-page";
 import { getLanguageSettings } from "app/shared/functions";
+
+export const dynamic = "force-dynamic";
 
 type Props = {
   params: { chapterNumber: string; verseNumber: string };
 };
 
-export async function generateStaticParams() {
-  const data = await getVerseId();
+// export async function generateStaticParams() {
+//   const data = await getVerseId();
 
-  return data.gita_verses.map(({ chapter_number, verse_number }) => ({
-    params: {
-      chapterNumber: chapter_number.toString(),
-      verseNumber: verse_number.toString(),
-    },
-  }));
-}
+//   return data.gita_verses.map(({ chapter_number, verse_number }) => ({
+//     params: {
+//       chapterNumber: chapter_number.toString(),
+//       verseNumber: verse_number.toString(),
+//     },
+//   }));
+// }
 
 export async function generateMetadata({
   params: { verseNumber, chapterNumber },
@@ -118,11 +119,7 @@ const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <VersePage
-        verseData={verseData}
-        chapterNumber={chapterNumber}
-        verseNumber={verseNumber}
-      />
+      <VersePage verseData={verseData} />
     </article>
   );
 };

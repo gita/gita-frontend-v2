@@ -7,6 +7,7 @@ import languages from "../../constant/languages.json"; //todo: use graphql api t
 import commentary_authors from "../../constant/commentary_authors.json";
 import translation_authors from "../../constant/translation_authors.json";
 import { getLanguageSettings } from "app/shared/functions";
+import classNames from "utils/classNames";
 
 const cookieOptions = { path: "/", maxAge: 365 * 24 * 60 * 60 };
 
@@ -26,6 +27,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
   ] = useState(true);
   const [isVerseTranslationSourceEnabled, setIsVerseTranslationSourceEnabled] =
     useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [cookies, setCookie] = useCookies([
     "languageId",
@@ -50,13 +52,18 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
     setLanguage(myLanguageSettings.language);
     setTranslationAuthor(myLanguageSettings.translationAuthor);
     setCommentaryAuthor(myLanguageSettings.commentaryAuthor);
-  }, []);
+  }, [
+    cookies.commentaryAuthorId,
+    cookies.languageId,
+    cookies.translationAuthorId,
+  ]);
 
   function handleSubmit() {
+    setIsSubmitting(true);
     setCookie("languageId", language.id, cookieOptions);
     setCookie("translationAuthorId", translationAuthor.id, cookieOptions);
     setCookie("commentaryAuthorId", commentaryAuthor.id, cookieOptions);
-    closeAuthorSettingsModal();
+    window.location.reload();
   }
 
   return (
@@ -323,8 +330,22 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                   <button
                     type="button"
                     onClick={() => handleSubmit()}
-                    className="text-center w-1/2 items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-my-orange hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+                    className={classNames(
+                      "text-center w-1/2 items-center px-6 py-3 border border-transparent",
+                      "text-base font-medium rounded-md shadow-sm text-white bg-my-orange",
+                      "hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange",
+                      isSubmitting && "bg-opacity-30"
+                    )}
+                    disabled={isSubmitting}
                   >
+                    {isSubmitting && (
+                      <div
+                        className="mr-2 inline-block h-4 w-4 animate-spin rounded-3xl border-2 border-solid border-r-transparent align-text-bottom"
+                        role="status"
+                      >
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    )}
                     Apply Settings
                   </button>
                 </div>

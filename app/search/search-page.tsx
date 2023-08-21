@@ -52,7 +52,7 @@ export default function SearchPage() {
             isSearchLoading ? "animate-pulse" : ""
           }`}
         >
-          Seaching results for: <span className="font-extrabold">{query}</span>
+          Searching results for: <span className="font-extrabold">{query}</span>
         </p>
         <hr />
 

@@ -2,13 +2,13 @@ import { Metadata } from "next";
 import { getChapterData, getChapterNumbers } from "lib/getChapterData";
 import ChapterPage from "./chapter-page";
 
-export async function generateStaticParams() {
-  const data = await getChapterNumbers();
+// export async function generateStaticParams() {
+//   const data = await getChapterNumbers();
 
-  return data.gita_chapters.map(({ chapter_number }) => ({
-    params: { chapterNumber: chapter_number.toString() },
-  }));
-}
+//   return data.gita_chapters.map(({ chapter_number }) => ({
+//     params: { chapterNumber: chapter_number.toString() },
+//   }));
+// }
 
 type Props = {
   params: {
