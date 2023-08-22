@@ -4,6 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "gqty:generate-schema": "gqty generate",
     "find:unused": "npx next-unused",
     "prettier": "prettier --write .",
     "lint": "next lint",
@@ -42,8 +43,11 @@
     "rooks": "^7.4.0"
   },
   "devDependencies": {
+    "@gqty/cli": "3.3.0",
+    "@gqty/react": "2.1.1",
     "@netlify/plugin-nextjs": "^4.24.0",
     "autoprefixer": "^10.2.6",
+    "dotenv": "^16.3.1",
     "eslint": "8.44.0",
     "eslint-config-next": "^13.4.9",
     "postcss": "^8.3.5",
