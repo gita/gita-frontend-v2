@@ -1,10 +1,15 @@
 import { getDailyVerse } from "../../lib/getDailyVerse";
-import { getVerseId } from "../../lib/getVerseData";
 import { VerseOfTheDay } from "./verse-of-the-day";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { chapter_number, verse_number } = await getDailyVerse();
+  const gitaVerse = await getDailyVerse();
+
+  if (!gitaVerse) {
+    return {};
+  }
+
+  const { chapter_number, verse_number } = gitaVerse;
 
   return {
     title: `Bhagavad Gita Chapter ${chapter_number} Verse ${verse_number} - BhagavadGita.io`,
@@ -47,6 +52,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const Page = async () => {
   const dailyVerse = await getDailyVerse();
+
+  if (!dailyVerse) {
+    return <h1>Not found</h1>;
+  }
 
   return <VerseOfTheDay dailyVerse={dailyVerse} />;
 };

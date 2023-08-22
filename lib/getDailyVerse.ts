@@ -39,7 +39,7 @@ export const getDailyVerse = () =>
       })?.[0];
 
     if (!gitaVerse) {
-      throw new Error("Gita verse of the day not found");
+      return null;
     }
 
     return {

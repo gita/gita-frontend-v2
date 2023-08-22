@@ -112,6 +112,10 @@ const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
     languageSettings.translationAuthor.name
   );
 
+  if (!verseData) {
+    return <h1>Not found</h1>;
+  }
+
   return (
     <article>
       <script
