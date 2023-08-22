@@ -75,10 +75,12 @@ interface LanguageSettings {
   translationAuthor: {
     id: number;
     name: string;
+    language: string;
   };
   commentaryAuthor: {
     id: number;
     name: string;
+    language: string;
   };
 }
 

@@ -5,6 +5,16 @@ import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 import PageHeader from "../../components/Headers/PageHeader";
 import { Verse } from "../../components/Verse/Verse";
+import {
+  getCommentaryAuthorById,
+  getLanguageById,
+  getTranslationAuthorById,
+} from "app/shared/functions";
+import {
+  defaultCommentaryAuthorId,
+  defaultLanguageId,
+  defaultTranslationAuthorId,
+} from "app/shared/constants";
 
 interface VerseOfTheDayProps {
   dailyVerse: GitaVerse;
@@ -22,18 +32,9 @@ export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({ dailyVerse }) => {
   });
 
   const [languageSettings, setLanguageSettings] = useState({
-    language: {
-      id: 1,
-      language: "english",
-    },
-    translationAuthor: {
-      id: 16,
-      name: "Swami Sivananda",
-    },
-    commentaryAuthor: {
-      id: 16,
-      name: "Swami Sivananda",
-    },
+    language: getLanguageById(defaultLanguageId)!,
+    translationAuthor: getTranslationAuthorById(defaultTranslationAuthorId)!,
+    commentaryAuthor: getCommentaryAuthorById(defaultCommentaryAuthorId)!,
   });
 
   return (

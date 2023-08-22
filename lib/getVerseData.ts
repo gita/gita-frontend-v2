@@ -23,7 +23,6 @@ export async function getVerseId(): Promise<GitaVerseIds> {
 export async function getVerseData(
   chapterNumber,
   verseNumber,
-  language = "english",
   commentariesAuthor = "Swami Sivananda",
   translationsAuthor = "Swami Sivananda"
 ): Promise<GitaVerse> {
@@ -32,22 +31,22 @@ export async function getVerseData(
     query: gql`
       query MyQuery {
         gita_verses(where: {chapter_number: {_eq: ${chapterNumber}}, verse_number: {_eq: ${verseNumber}}}) {
-            chapter_number
-            id
-            text
-            transliteration
-            verse_number
-            word_meanings
-            gita_chapter {
-              verses_count
-            }
-            gita_commentaries(where: {author_name: {_eq: "${commentariesAuthor}"}}) {
+          chapter_number
+          id
+          text
+          transliteration
+          verse_number
+          word_meanings
+          gita_chapter {
+            verses_count
+          }
+          gita_commentaries(where: {author_name: {_eq: "${commentariesAuthor}"}}) {
             description
           }
-        gita_translations(where: {language: {_eq: "${language}"}, author_name: {_eq: "${translationsAuthor}"}}) {
+          gita_translations(where: {author_name: {_eq: "${translationsAuthor}"}}) {
             description
           }
-          }
+        }
       }
     `,
   });
