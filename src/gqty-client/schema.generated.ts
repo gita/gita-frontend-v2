@@ -78,7 +78,7 @@ export const cursor_ordering = {
 } as const;
 
 export type cursor_ordering =
-  typeof cursor_ordering[keyof typeof cursor_ordering];
+  (typeof cursor_ordering)[keyof typeof cursor_ordering];
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
 export interface date_comparison_exp {
   _eq?: InputMaybe<Scalars["date"]>;
@@ -112,7 +112,7 @@ export const gita_authors_constraint = {
 } as const;
 
 export type gita_authors_constraint =
-  typeof gita_authors_constraint[keyof typeof gita_authors_constraint];
+  (typeof gita_authors_constraint)[keyof typeof gita_authors_constraint];
 /** input type for incrementing numeric columns in table "gita_authors" */
 export interface gita_authors_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -162,7 +162,7 @@ export const gita_authors_select_column = {
 } as const;
 
 export type gita_authors_select_column =
-  typeof gita_authors_select_column[keyof typeof gita_authors_select_column];
+  (typeof gita_authors_select_column)[keyof typeof gita_authors_select_column];
 /** input type for updating data in table "gita_authors" */
 export interface gita_authors_set_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -192,7 +192,7 @@ export const gita_authors_update_column = {
 } as const;
 
 export type gita_authors_update_column =
-  typeof gita_authors_update_column[keyof typeof gita_authors_update_column];
+  (typeof gita_authors_update_column)[keyof typeof gita_authors_update_column];
 export interface gita_authors_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_authors_inc_input>;
@@ -228,7 +228,7 @@ export const gita_chapters_constraint = {
 } as const;
 
 export type gita_chapters_constraint =
-  typeof gita_chapters_constraint[keyof typeof gita_chapters_constraint];
+  (typeof gita_chapters_constraint)[keyof typeof gita_chapters_constraint];
 /** input type for incrementing numeric columns in table "gita_chapters" */
 export interface gita_chapters_inc_input {
   chapter_number?: InputMaybe<Scalars["Int"]>;
@@ -310,7 +310,7 @@ export const gita_chapters_select_column = {
 } as const;
 
 export type gita_chapters_select_column =
-  typeof gita_chapters_select_column[keyof typeof gita_chapters_select_column];
+  (typeof gita_chapters_select_column)[keyof typeof gita_chapters_select_column];
 /** input type for updating data in table "gita_chapters" */
 export interface gita_chapters_set_input {
   chapter_number?: InputMaybe<Scalars["Int"]>;
@@ -372,7 +372,7 @@ export const gita_chapters_update_column = {
 } as const;
 
 export type gita_chapters_update_column =
-  typeof gita_chapters_update_column[keyof typeof gita_chapters_update_column];
+  (typeof gita_chapters_update_column)[keyof typeof gita_chapters_update_column];
 export interface gita_chapters_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_chapters_inc_input>;
@@ -447,7 +447,7 @@ export const gita_commentaries_constraint = {
 } as const;
 
 export type gita_commentaries_constraint =
-  typeof gita_commentaries_constraint[keyof typeof gita_commentaries_constraint];
+  (typeof gita_commentaries_constraint)[keyof typeof gita_commentaries_constraint];
 /** input type for incrementing numeric columns in table "gita_commentaries" */
 export interface gita_commentaries_inc_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -537,7 +537,7 @@ export const gita_commentaries_select_column = {
 } as const;
 
 export type gita_commentaries_select_column =
-  typeof gita_commentaries_select_column[keyof typeof gita_commentaries_select_column];
+  (typeof gita_commentaries_select_column)[keyof typeof gita_commentaries_select_column];
 /** input type for updating data in table "gita_commentaries" */
 export interface gita_commentaries_set_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -619,7 +619,7 @@ export const gita_commentaries_update_column = {
 } as const;
 
 export type gita_commentaries_update_column =
-  typeof gita_commentaries_update_column[keyof typeof gita_commentaries_update_column];
+  (typeof gita_commentaries_update_column)[keyof typeof gita_commentaries_update_column];
 export interface gita_commentaries_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_commentaries_inc_input>;
@@ -673,7 +673,7 @@ export const gita_languages_constraint = {
 } as const;
 
 export type gita_languages_constraint =
-  typeof gita_languages_constraint[keyof typeof gita_languages_constraint];
+  (typeof gita_languages_constraint)[keyof typeof gita_languages_constraint];
 /** input type for incrementing numeric columns in table "gita_languages" */
 export interface gita_languages_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -723,7 +723,7 @@ export const gita_languages_select_column = {
 } as const;
 
 export type gita_languages_select_column =
-  typeof gita_languages_select_column[keyof typeof gita_languages_select_column];
+  (typeof gita_languages_select_column)[keyof typeof gita_languages_select_column];
 /** input type for updating data in table "gita_languages" */
 export interface gita_languages_set_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -753,7 +753,7 @@ export const gita_languages_update_column = {
 } as const;
 
 export type gita_languages_update_column =
-  typeof gita_languages_update_column[keyof typeof gita_languages_update_column];
+  (typeof gita_languages_update_column)[keyof typeof gita_languages_update_column];
 export interface gita_languages_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_languages_inc_input>;
@@ -828,7 +828,7 @@ export const gita_translations_constraint = {
 } as const;
 
 export type gita_translations_constraint =
-  typeof gita_translations_constraint[keyof typeof gita_translations_constraint];
+  (typeof gita_translations_constraint)[keyof typeof gita_translations_constraint];
 /** input type for incrementing numeric columns in table "gita_translations" */
 export interface gita_translations_inc_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -918,7 +918,7 @@ export const gita_translations_select_column = {
 } as const;
 
 export type gita_translations_select_column =
-  typeof gita_translations_select_column[keyof typeof gita_translations_select_column];
+  (typeof gita_translations_select_column)[keyof typeof gita_translations_select_column];
 /** input type for updating data in table "gita_translations" */
 export interface gita_translations_set_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -1000,7 +1000,7 @@ export const gita_translations_update_column = {
 } as const;
 
 export type gita_translations_update_column =
-  typeof gita_translations_update_column[keyof typeof gita_translations_update_column];
+  (typeof gita_translations_update_column)[keyof typeof gita_translations_update_column];
 export interface gita_translations_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_translations_inc_input>;
@@ -1102,7 +1102,7 @@ export const gita_verses_constraint = {
 } as const;
 
 export type gita_verses_constraint =
-  typeof gita_verses_constraint[keyof typeof gita_verses_constraint];
+  (typeof gita_verses_constraint)[keyof typeof gita_verses_constraint];
 /** input type for incrementing numeric columns in table "gita_verses" */
 export interface gita_verses_inc_input {
   chapter_id?: InputMaybe<Scalars["Int"]>;
@@ -1205,7 +1205,7 @@ export const gita_verses_select_column = {
 } as const;
 
 export type gita_verses_select_column =
-  typeof gita_verses_select_column[keyof typeof gita_verses_select_column];
+  (typeof gita_verses_select_column)[keyof typeof gita_verses_select_column];
 /** input type for updating data in table "gita_verses" */
 export interface gita_verses_set_input {
   chapter_id?: InputMaybe<Scalars["Int"]>;
@@ -1291,7 +1291,7 @@ export const gita_verses_update_column = {
 } as const;
 
 export type gita_verses_update_column =
-  typeof gita_verses_update_column[keyof typeof gita_verses_update_column];
+  (typeof gita_verses_update_column)[keyof typeof gita_verses_update_column];
 export interface gita_verses_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_verses_inc_input>;
@@ -1345,7 +1345,7 @@ export const newsletter_subscriptions_constraint = {
 } as const;
 
 export type newsletter_subscriptions_constraint =
-  typeof newsletter_subscriptions_constraint[keyof typeof newsletter_subscriptions_constraint];
+  (typeof newsletter_subscriptions_constraint)[keyof typeof newsletter_subscriptions_constraint];
 /** input type for incrementing numeric columns in table "newsletter_subscriptions" */
 export interface newsletter_subscriptions_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -1388,7 +1388,7 @@ export const newsletter_subscriptions_select_column = {
 } as const;
 
 export type newsletter_subscriptions_select_column =
-  typeof newsletter_subscriptions_select_column[keyof typeof newsletter_subscriptions_select_column];
+  (typeof newsletter_subscriptions_select_column)[keyof typeof newsletter_subscriptions_select_column];
 /** input type for updating data in table "newsletter_subscriptions" */
 export interface newsletter_subscriptions_set_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -1422,7 +1422,7 @@ export const newsletter_subscriptions_update_column = {
 } as const;
 
 export type newsletter_subscriptions_update_column =
-  typeof newsletter_subscriptions_update_column[keyof typeof newsletter_subscriptions_update_column];
+  (typeof newsletter_subscriptions_update_column)[keyof typeof newsletter_subscriptions_update_column];
 export interface newsletter_subscriptions_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<newsletter_subscriptions_inc_input>;
@@ -1448,7 +1448,7 @@ export const order_by = {
   desc_nulls_last: "desc_nulls_last",
 } as const;
 
-export type order_by = typeof order_by[keyof typeof order_by];
+export type order_by = (typeof order_by)[keyof typeof order_by];
 /** Boolean expression to filter rows from the table "verse_of_the_day". All fields are combined with a logical 'AND'. */
 export interface verse_of_the_day_bool_exp {
   _and?: InputMaybe<Array<verse_of_the_day_bool_exp>>;
@@ -1466,7 +1466,7 @@ export const verse_of_the_day_constraint = {
 } as const;
 
 export type verse_of_the_day_constraint =
-  typeof verse_of_the_day_constraint[keyof typeof verse_of_the_day_constraint];
+  (typeof verse_of_the_day_constraint)[keyof typeof verse_of_the_day_constraint];
 /** input type for incrementing numeric columns in table "verse_of_the_day" */
 export interface verse_of_the_day_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -1510,7 +1510,7 @@ export const verse_of_the_day_select_column = {
 } as const;
 
 export type verse_of_the_day_select_column =
-  typeof verse_of_the_day_select_column[keyof typeof verse_of_the_day_select_column];
+  (typeof verse_of_the_day_select_column)[keyof typeof verse_of_the_day_select_column];
 /** input type for updating data in table "verse_of_the_day" */
 export interface verse_of_the_day_set_input {
   date?: InputMaybe<Scalars["date"]>;
@@ -1544,7 +1544,7 @@ export const verse_of_the_day_update_column = {
 } as const;
 
 export type verse_of_the_day_update_column =
-  typeof verse_of_the_day_update_column[keyof typeof verse_of_the_day_update_column];
+  (typeof verse_of_the_day_update_column)[keyof typeof verse_of_the_day_update_column];
 export interface verse_of_the_day_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<verse_of_the_day_inc_input>;

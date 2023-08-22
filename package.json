@@ -44,7 +44,6 @@
   },
   "devDependencies": {
     "@gqty/cli": "3.3.0",
-    "@gqty/react": "2.1.1",
     "@netlify/plugin-nextjs": "^4.24.0",
     "autoprefixer": "^10.2.6",
     "dotenv": "^16.3.1",

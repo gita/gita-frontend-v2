@@ -267,13 +267,6 @@
     gqty "^2.2.0"
     undici "^5.2.0"
 
-"@gqty/react@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@gqty/react/-/react-2.1.1.tgz#01fdd85218462ef105df724d9c08645b5c7b4a7c"
-  integrity sha512-WV1dsvPMCCgZZAy2ykfErazNu6D/IjJBjGcncd+34dijDR0nQWOzGzu0f7JxBJuMxhIIOJlZnfmjds6pddA4Sw==
-  dependencies:
-    react-ssr-prepass "^1.5.0"
-
 "@gqty/utils@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@gqty/utils/-/utils-1.0.0.tgz#5f954c95721244aa1e59534695a1c1e8d3877225"
@@ -3836,11 +3829,6 @@ react-redux@^7.2.5:
     loose-envify "^1.4.0"
     prop-types "^15.7.2"
     react-is "^17.0.2"
-
-react-ssr-prepass@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/react-ssr-prepass/-/react-ssr-prepass-1.5.0.tgz#bc4ca7fcb52365e6aea11cc254a3d1bdcbd030c5"
-  integrity sha512-yFNHrlVEReVYKsLI5lF05tZoHveA5pGzjFbFJY/3pOqqjGOmMmqx83N4hIjN2n6E1AOa+eQEUxs3CgRnPmT0RQ==
 
 react-toastify@^9.0.8:
   version "9.1.3"

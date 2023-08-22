@@ -2,8 +2,6 @@
  * GQTY: You can safely modify this file and Query Fetcher based on your needs
  */
 
-import { createReactClient } from "@gqty/react";
-
 import type { QueryFetcher } from "gqty";
 import { createClient } from "gqty";
 import type {
@@ -18,11 +16,11 @@ const queryFetcher: QueryFetcher = async function (
   variables,
   fetchOptions
 ) {
-  // Modify "/api/graphql" if needed
-  const response = await fetch("/api/graphql", {
+  const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT!, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-hasura-admin-secret": process.env.NEXT_PUBLIC_HASURA_ADMIN_SECRET!,
     },
     body: JSON.stringify({
       query,
@@ -51,42 +49,5 @@ const { query, mutation, mutate, subscription, resolved, refetch, track } =
   client;
 
 export { query, mutation, mutate, subscription, resolved, refetch, track };
-
-const {
-  graphql,
-  useQuery,
-  usePaginatedQuery,
-  useTransactionQuery,
-  useLazyQuery,
-  useRefetch,
-  useMutation,
-  useMetaState,
-  prepareReactRender,
-  useHydrateCache,
-  prepareQuery,
-} = createReactClient<GeneratedSchema>(client, {
-  defaults: {
-    // Set this flag as "true" if your usage involves React Suspense
-    // Keep in mind that you can overwrite it in a per-hook basis
-    suspense: false,
-
-    // Set this flag based on your needs
-    staleWhileRevalidate: false,
-  },
-});
-
-export {
-  graphql,
-  useQuery,
-  usePaginatedQuery,
-  useTransactionQuery,
-  useLazyQuery,
-  useRefetch,
-  useMutation,
-  useMetaState,
-  prepareReactRender,
-  useHydrateCache,
-  prepareQuery,
-};
 
 export * from "./schema.generated";
