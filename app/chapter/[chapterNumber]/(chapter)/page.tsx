@@ -1,14 +1,6 @@
 import { Metadata } from "next";
-import { getChapterData, getChapterNumbers } from "lib/getChapterData";
+import { getChapterData } from "lib/getChapterData";
 import ChapterPage from "./chapter-page";
-
-// export async function generateStaticParams() {
-//   const data = await getChapterNumbers();
-
-//   return data.gita_chapters.map(({ chapter_number }) => ({
-//     params: { chapterNumber: chapter_number.toString() },
-//   }));
-// }
 
 type Props = {
   params: {
@@ -19,7 +11,10 @@ type Props = {
 export async function generateMetadata({
   params: { chapterNumber },
 }: Props): Promise<Metadata> {
-  const chapterData = await getChapterData(chapterNumber);
+  const chapterData = await getChapterData(parseInt(chapterNumber));
+  if (!chapterData) {
+    return {};
+  }
   const regex = /"/g;
   const chapterDescription = chapterData.gita_chapters_by_pk.chapter_summary
     .slice(0, 200)
@@ -68,7 +63,7 @@ export async function generateMetadata({
 }
 
 export default async function Chapter({ params: { chapterNumber } }: Props) {
-  const chapterData = await getChapterData(chapterNumber);
+  const chapterData = await getChapterData(parseInt(chapterNumber));
 
   const jsonLd = {
     "@context": "http://schema.org",
@@ -87,12 +82,16 @@ export default async function Chapter({ params: { chapterNumber } }: Props) {
         position: 2,
         item: {
           "@id": `https://bhagavadgita.io/chapter/${chapterNumber}/`,
-          name: `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated}`,
+          name: `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData?.gita_chapters_by_pk.name_translated}`,
           image: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
         },
       },
     ],
   };
+
+  if (!chapterData) {
+    return <h1 className="text-center p-10">Not found</h1>;
+  }
 
   return (
     <>

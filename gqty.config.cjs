@@ -21,6 +21,7 @@ const config = {
     },
   },
   destination: "./src/gqty-client/index.ts",
+  enumsAsConst: true,
   subscriptions: false,
   javascriptOutput: false,
 };

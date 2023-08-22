@@ -2,7 +2,10 @@ import Link from "next/link";
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 
-type VerseData = Omit<GitaVerse, "word_meanings">;
+type VerseData = Pick<
+  GitaVerse,
+  "verse_number" | "gita_translations" | "chapter_number"
+>;
 
 interface Props {
   verseData: VerseData;

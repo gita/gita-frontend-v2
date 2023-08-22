@@ -70,13 +70,15 @@ export interface String_comparison_exp {
 }
 
 /** ordering argument of a cursor */
-export enum cursor_ordering {
+export const cursor_ordering = {
   /** ascending ordering of the cursor */
-  ASC = "ASC",
+  ASC: "ASC",
   /** descending ordering of the cursor */
-  DESC = "DESC",
-}
+  DESC: "DESC",
+} as const;
 
+export type cursor_ordering =
+  typeof cursor_ordering[keyof typeof cursor_ordering];
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
 export interface date_comparison_exp {
   _eq?: InputMaybe<Scalars["date"]>;
@@ -104,11 +106,13 @@ export interface gita_authors_bool_exp {
 }
 
 /** unique or primary key constraints on table "gita_authors" */
-export enum gita_authors_constraint {
+export const gita_authors_constraint = {
   /** unique or primary key constraint on columns "id" */
-  gita_authors_pkey = "gita_authors_pkey",
-}
+  gita_authors_pkey: "gita_authors_pkey",
+} as const;
 
+export type gita_authors_constraint =
+  typeof gita_authors_constraint[keyof typeof gita_authors_constraint];
 /** input type for incrementing numeric columns in table "gita_authors" */
 export interface gita_authors_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -150,13 +154,15 @@ export interface gita_authors_pk_columns_input {
 }
 
 /** select columns of table "gita_authors" */
-export enum gita_authors_select_column {
+export const gita_authors_select_column = {
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  name = "name",
-}
+  name: "name",
+} as const;
 
+export type gita_authors_select_column =
+  typeof gita_authors_select_column[keyof typeof gita_authors_select_column];
 /** input type for updating data in table "gita_authors" */
 export interface gita_authors_set_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -178,13 +184,15 @@ export interface gita_authors_stream_cursor_value_input {
 }
 
 /** update columns of table "gita_authors" */
-export enum gita_authors_update_column {
+export const gita_authors_update_column = {
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  name = "name",
-}
+  name: "name",
+} as const;
 
+export type gita_authors_update_column =
+  typeof gita_authors_update_column[keyof typeof gita_authors_update_column];
 export interface gita_authors_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_authors_inc_input>;
@@ -214,11 +222,13 @@ export interface gita_chapters_bool_exp {
 }
 
 /** unique or primary key constraints on table "gita_chapters" */
-export enum gita_chapters_constraint {
+export const gita_chapters_constraint = {
   /** unique or primary key constraint on columns "id" */
-  gita_chapters_pkey = "gita_chapters_pkey",
-}
+  gita_chapters_pkey: "gita_chapters_pkey",
+} as const;
 
+export type gita_chapters_constraint =
+  typeof gita_chapters_constraint[keyof typeof gita_chapters_constraint];
 /** input type for incrementing numeric columns in table "gita_chapters" */
 export interface gita_chapters_inc_input {
   chapter_number?: InputMaybe<Scalars["Int"]>;
@@ -276,29 +286,31 @@ export interface gita_chapters_pk_columns_input {
 }
 
 /** select columns of table "gita_chapters" */
-export enum gita_chapters_select_column {
+export const gita_chapters_select_column = {
   /** column name */
-  chapter_number = "chapter_number",
+  chapter_number: "chapter_number",
   /** column name */
-  chapter_summary = "chapter_summary",
+  chapter_summary: "chapter_summary",
   /** column name */
-  chapter_summary_hindi = "chapter_summary_hindi",
+  chapter_summary_hindi: "chapter_summary_hindi",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  name = "name",
+  name: "name",
   /** column name */
-  name_meaning = "name_meaning",
+  name_meaning: "name_meaning",
   /** column name */
-  name_translated = "name_translated",
+  name_translated: "name_translated",
   /** column name */
-  name_transliterated = "name_transliterated",
+  name_transliterated: "name_transliterated",
   /** column name */
-  slug = "slug",
+  slug: "slug",
   /** column name */
-  verses_count = "verses_count",
-}
+  verses_count: "verses_count",
+} as const;
 
+export type gita_chapters_select_column =
+  typeof gita_chapters_select_column[keyof typeof gita_chapters_select_column];
 /** input type for updating data in table "gita_chapters" */
 export interface gita_chapters_set_input {
   chapter_number?: InputMaybe<Scalars["Int"]>;
@@ -336,29 +348,31 @@ export interface gita_chapters_stream_cursor_value_input {
 }
 
 /** update columns of table "gita_chapters" */
-export enum gita_chapters_update_column {
+export const gita_chapters_update_column = {
   /** column name */
-  chapter_number = "chapter_number",
+  chapter_number: "chapter_number",
   /** column name */
-  chapter_summary = "chapter_summary",
+  chapter_summary: "chapter_summary",
   /** column name */
-  chapter_summary_hindi = "chapter_summary_hindi",
+  chapter_summary_hindi: "chapter_summary_hindi",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  name = "name",
+  name: "name",
   /** column name */
-  name_meaning = "name_meaning",
+  name_meaning: "name_meaning",
   /** column name */
-  name_translated = "name_translated",
+  name_translated: "name_translated",
   /** column name */
-  name_transliterated = "name_transliterated",
+  name_transliterated: "name_transliterated",
   /** column name */
-  slug = "slug",
+  slug: "slug",
   /** column name */
-  verses_count = "verses_count",
-}
+  verses_count: "verses_count",
+} as const;
 
+export type gita_chapters_update_column =
+  typeof gita_chapters_update_column[keyof typeof gita_chapters_update_column];
 export interface gita_chapters_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_chapters_inc_input>;
@@ -427,11 +441,13 @@ export interface gita_commentaries_bool_exp {
 }
 
 /** unique or primary key constraints on table "gita_commentaries" */
-export enum gita_commentaries_constraint {
+export const gita_commentaries_constraint = {
   /** unique or primary key constraint on columns "id" */
-  gita_commentaries_pkey = "gita_commentaries_pkey",
-}
+  gita_commentaries_pkey: "gita_commentaries_pkey",
+} as const;
 
+export type gita_commentaries_constraint =
+  typeof gita_commentaries_constraint[keyof typeof gita_commentaries_constraint];
 /** input type for incrementing numeric columns in table "gita_commentaries" */
 export interface gita_commentaries_inc_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -503,23 +519,25 @@ export interface gita_commentaries_pk_columns_input {
 }
 
 /** select columns of table "gita_commentaries" */
-export enum gita_commentaries_select_column {
+export const gita_commentaries_select_column = {
   /** column name */
-  author_id = "author_id",
+  author_id: "author_id",
   /** column name */
-  author_name = "author_name",
+  author_name: "author_name",
   /** column name */
-  description = "description",
+  description: "description",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  language = "language",
+  language: "language",
   /** column name */
-  language_id = "language_id",
+  language_id: "language_id",
   /** column name */
-  verse_id = "verse_id",
-}
+  verse_id: "verse_id",
+} as const;
 
+export type gita_commentaries_select_column =
+  typeof gita_commentaries_select_column[keyof typeof gita_commentaries_select_column];
 /** input type for updating data in table "gita_commentaries" */
 export interface gita_commentaries_set_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -583,23 +601,25 @@ export interface gita_commentaries_sum_order_by {
 }
 
 /** update columns of table "gita_commentaries" */
-export enum gita_commentaries_update_column {
+export const gita_commentaries_update_column = {
   /** column name */
-  author_id = "author_id",
+  author_id: "author_id",
   /** column name */
-  author_name = "author_name",
+  author_name: "author_name",
   /** column name */
-  description = "description",
+  description: "description",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  language = "language",
+  language: "language",
   /** column name */
-  language_id = "language_id",
+  language_id: "language_id",
   /** column name */
-  verse_id = "verse_id",
-}
+  verse_id: "verse_id",
+} as const;
 
+export type gita_commentaries_update_column =
+  typeof gita_commentaries_update_column[keyof typeof gita_commentaries_update_column];
 export interface gita_commentaries_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_commentaries_inc_input>;
@@ -647,11 +667,13 @@ export interface gita_languages_bool_exp {
 }
 
 /** unique or primary key constraints on table "gita_languages" */
-export enum gita_languages_constraint {
+export const gita_languages_constraint = {
   /** unique or primary key constraint on columns "id" */
-  gita_languages_pkey = "gita_languages_pkey",
-}
+  gita_languages_pkey: "gita_languages_pkey",
+} as const;
 
+export type gita_languages_constraint =
+  typeof gita_languages_constraint[keyof typeof gita_languages_constraint];
 /** input type for incrementing numeric columns in table "gita_languages" */
 export interface gita_languages_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -693,13 +715,15 @@ export interface gita_languages_pk_columns_input {
 }
 
 /** select columns of table "gita_languages" */
-export enum gita_languages_select_column {
+export const gita_languages_select_column = {
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  language = "language",
-}
+  language: "language",
+} as const;
 
+export type gita_languages_select_column =
+  typeof gita_languages_select_column[keyof typeof gita_languages_select_column];
 /** input type for updating data in table "gita_languages" */
 export interface gita_languages_set_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -721,13 +745,15 @@ export interface gita_languages_stream_cursor_value_input {
 }
 
 /** update columns of table "gita_languages" */
-export enum gita_languages_update_column {
+export const gita_languages_update_column = {
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  language = "language",
-}
+  language: "language",
+} as const;
 
+export type gita_languages_update_column =
+  typeof gita_languages_update_column[keyof typeof gita_languages_update_column];
 export interface gita_languages_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_languages_inc_input>;
@@ -796,11 +822,13 @@ export interface gita_translations_bool_exp {
 }
 
 /** unique or primary key constraints on table "gita_translations" */
-export enum gita_translations_constraint {
+export const gita_translations_constraint = {
   /** unique or primary key constraint on columns "id" */
-  gita_translations_pkey = "gita_translations_pkey",
-}
+  gita_translations_pkey: "gita_translations_pkey",
+} as const;
 
+export type gita_translations_constraint =
+  typeof gita_translations_constraint[keyof typeof gita_translations_constraint];
 /** input type for incrementing numeric columns in table "gita_translations" */
 export interface gita_translations_inc_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -872,23 +900,25 @@ export interface gita_translations_pk_columns_input {
 }
 
 /** select columns of table "gita_translations" */
-export enum gita_translations_select_column {
+export const gita_translations_select_column = {
   /** column name */
-  author_id = "author_id",
+  author_id: "author_id",
   /** column name */
-  author_name = "author_name",
+  author_name: "author_name",
   /** column name */
-  description = "description",
+  description: "description",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  language = "language",
+  language: "language",
   /** column name */
-  language_id = "language_id",
+  language_id: "language_id",
   /** column name */
-  verse_id = "verse_id",
-}
+  verse_id: "verse_id",
+} as const;
 
+export type gita_translations_select_column =
+  typeof gita_translations_select_column[keyof typeof gita_translations_select_column];
 /** input type for updating data in table "gita_translations" */
 export interface gita_translations_set_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -952,23 +982,25 @@ export interface gita_translations_sum_order_by {
 }
 
 /** update columns of table "gita_translations" */
-export enum gita_translations_update_column {
+export const gita_translations_update_column = {
   /** column name */
-  author_id = "author_id",
+  author_id: "author_id",
   /** column name */
-  author_name = "author_name",
+  author_name: "author_name",
   /** column name */
-  description = "description",
+  description: "description",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  language = "language",
+  language: "language",
   /** column name */
-  language_id = "language_id",
+  language_id: "language_id",
   /** column name */
-  verse_id = "verse_id",
-}
+  verse_id: "verse_id",
+} as const;
 
+export type gita_translations_update_column =
+  typeof gita_translations_update_column[keyof typeof gita_translations_update_column];
 export interface gita_translations_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_translations_inc_input>;
@@ -1064,11 +1096,13 @@ export interface gita_verses_bool_exp {
 }
 
 /** unique or primary key constraints on table "gita_verses" */
-export enum gita_verses_constraint {
+export const gita_verses_constraint = {
   /** unique or primary key constraint on columns "id" */
-  gita_verses_pkey = "gita_verses_pkey",
-}
+  gita_verses_pkey: "gita_verses_pkey",
+} as const;
 
+export type gita_verses_constraint =
+  typeof gita_verses_constraint[keyof typeof gita_verses_constraint];
 /** input type for incrementing numeric columns in table "gita_verses" */
 export interface gita_verses_inc_input {
   chapter_id?: InputMaybe<Scalars["Int"]>;
@@ -1151,25 +1185,27 @@ export interface gita_verses_pk_columns_input {
 }
 
 /** select columns of table "gita_verses" */
-export enum gita_verses_select_column {
+export const gita_verses_select_column = {
   /** column name */
-  chapter_id = "chapter_id",
+  chapter_id: "chapter_id",
   /** column name */
-  chapter_number = "chapter_number",
+  chapter_number: "chapter_number",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  slug = "slug",
+  slug: "slug",
   /** column name */
-  text = "text",
+  text: "text",
   /** column name */
-  transliteration = "transliteration",
+  transliteration: "transliteration",
   /** column name */
-  verse_number = "verse_number",
+  verse_number: "verse_number",
   /** column name */
-  word_meanings = "word_meanings",
-}
+  word_meanings: "word_meanings",
+} as const;
 
+export type gita_verses_select_column =
+  typeof gita_verses_select_column[keyof typeof gita_verses_select_column];
 /** input type for updating data in table "gita_verses" */
 export interface gita_verses_set_input {
   chapter_id?: InputMaybe<Scalars["Int"]>;
@@ -1235,25 +1271,27 @@ export interface gita_verses_sum_order_by {
 }
 
 /** update columns of table "gita_verses" */
-export enum gita_verses_update_column {
+export const gita_verses_update_column = {
   /** column name */
-  chapter_id = "chapter_id",
+  chapter_id: "chapter_id",
   /** column name */
-  chapter_number = "chapter_number",
+  chapter_number: "chapter_number",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  slug = "slug",
+  slug: "slug",
   /** column name */
-  text = "text",
+  text: "text",
   /** column name */
-  transliteration = "transliteration",
+  transliteration: "transliteration",
   /** column name */
-  verse_number = "verse_number",
+  verse_number: "verse_number",
   /** column name */
-  word_meanings = "word_meanings",
-}
+  word_meanings: "word_meanings",
+} as const;
 
+export type gita_verses_update_column =
+  typeof gita_verses_update_column[keyof typeof gita_verses_update_column];
 export interface gita_verses_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_verses_inc_input>;
@@ -1298,13 +1336,16 @@ export interface newsletter_subscriptions_bool_exp {
 }
 
 /** unique or primary key constraints on table "newsletter_subscriptions" */
-export enum newsletter_subscriptions_constraint {
+export const newsletter_subscriptions_constraint = {
   /** unique or primary key constraint on columns "id" */
-  newsletter_subscriptions_pkey = "newsletter_subscriptions_pkey",
+  newsletter_subscriptions_pkey: "newsletter_subscriptions_pkey",
   /** unique or primary key constraint on columns "user_email" */
-  newsletter_subscriptions_user_email_key = "newsletter_subscriptions_user_email_key",
-}
+  newsletter_subscriptions_user_email_key:
+    "newsletter_subscriptions_user_email_key",
+} as const;
 
+export type newsletter_subscriptions_constraint =
+  typeof newsletter_subscriptions_constraint[keyof typeof newsletter_subscriptions_constraint];
 /** input type for incrementing numeric columns in table "newsletter_subscriptions" */
 export interface newsletter_subscriptions_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -1337,15 +1378,17 @@ export interface newsletter_subscriptions_pk_columns_input {
 }
 
 /** select columns of table "newsletter_subscriptions" */
-export enum newsletter_subscriptions_select_column {
+export const newsletter_subscriptions_select_column = {
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  user_email = "user_email",
+  user_email: "user_email",
   /** column name */
-  user_name = "user_name",
-}
+  user_name: "user_name",
+} as const;
 
+export type newsletter_subscriptions_select_column =
+  typeof newsletter_subscriptions_select_column[keyof typeof newsletter_subscriptions_select_column];
 /** input type for updating data in table "newsletter_subscriptions" */
 export interface newsletter_subscriptions_set_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -1369,15 +1412,17 @@ export interface newsletter_subscriptions_stream_cursor_value_input {
 }
 
 /** update columns of table "newsletter_subscriptions" */
-export enum newsletter_subscriptions_update_column {
+export const newsletter_subscriptions_update_column = {
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  user_email = "user_email",
+  user_email: "user_email",
   /** column name */
-  user_name = "user_name",
-}
+  user_name: "user_name",
+} as const;
 
+export type newsletter_subscriptions_update_column =
+  typeof newsletter_subscriptions_update_column[keyof typeof newsletter_subscriptions_update_column];
 export interface newsletter_subscriptions_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<newsletter_subscriptions_inc_input>;
@@ -1388,21 +1433,22 @@ export interface newsletter_subscriptions_updates {
 }
 
 /** column ordering options */
-export enum order_by {
+export const order_by = {
   /** in ascending order, nulls last */
-  asc = "asc",
+  asc: "asc",
   /** in ascending order, nulls first */
-  asc_nulls_first = "asc_nulls_first",
+  asc_nulls_first: "asc_nulls_first",
   /** in ascending order, nulls last */
-  asc_nulls_last = "asc_nulls_last",
+  asc_nulls_last: "asc_nulls_last",
   /** in descending order, nulls first */
-  desc = "desc",
+  desc: "desc",
   /** in descending order, nulls first */
-  desc_nulls_first = "desc_nulls_first",
+  desc_nulls_first: "desc_nulls_first",
   /** in descending order, nulls last */
-  desc_nulls_last = "desc_nulls_last",
-}
+  desc_nulls_last: "desc_nulls_last",
+} as const;
 
+export type order_by = typeof order_by[keyof typeof order_by];
 /** Boolean expression to filter rows from the table "verse_of_the_day". All fields are combined with a logical 'AND'. */
 export interface verse_of_the_day_bool_exp {
   _and?: InputMaybe<Array<verse_of_the_day_bool_exp>>;
@@ -1414,11 +1460,13 @@ export interface verse_of_the_day_bool_exp {
 }
 
 /** unique or primary key constraints on table "verse_of_the_day" */
-export enum verse_of_the_day_constraint {
+export const verse_of_the_day_constraint = {
   /** unique or primary key constraint on columns "id" */
-  verse_of_the_day_pkey = "verse_of_the_day_pkey",
-}
+  verse_of_the_day_pkey: "verse_of_the_day_pkey",
+} as const;
 
+export type verse_of_the_day_constraint =
+  typeof verse_of_the_day_constraint[keyof typeof verse_of_the_day_constraint];
 /** input type for incrementing numeric columns in table "verse_of_the_day" */
 export interface verse_of_the_day_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -1452,15 +1500,17 @@ export interface verse_of_the_day_pk_columns_input {
 }
 
 /** select columns of table "verse_of_the_day" */
-export enum verse_of_the_day_select_column {
+export const verse_of_the_day_select_column = {
   /** column name */
-  date = "date",
+  date: "date",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  verse_order = "verse_order",
-}
+  verse_order: "verse_order",
+} as const;
 
+export type verse_of_the_day_select_column =
+  typeof verse_of_the_day_select_column[keyof typeof verse_of_the_day_select_column];
 /** input type for updating data in table "verse_of_the_day" */
 export interface verse_of_the_day_set_input {
   date?: InputMaybe<Scalars["date"]>;
@@ -1484,15 +1534,17 @@ export interface verse_of_the_day_stream_cursor_value_input {
 }
 
 /** update columns of table "verse_of_the_day" */
-export enum verse_of_the_day_update_column {
+export const verse_of_the_day_update_column = {
   /** column name */
-  date = "date",
+  date: "date",
   /** column name */
-  id = "id",
+  id: "id",
   /** column name */
-  verse_order = "verse_order",
-}
+  verse_order: "verse_order",
+} as const;
 
+export type verse_of_the_day_update_column =
+  typeof verse_of_the_day_update_column[keyof typeof verse_of_the_day_update_column];
 export interface verse_of_the_day_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<verse_of_the_day_inc_input>;

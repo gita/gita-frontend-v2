@@ -15,7 +15,10 @@ import useMyStyles from "hooks/useMyStyles";
 
 interface Props {
   chapterData: GitaChapterData;
-  versesData: GitaVerse[];
+  versesData: Pick<
+    GitaVerse,
+    "id" | "verse_number" | "gita_translations" | "chapter_number"
+  >[];
 }
 
 export default function ChapterPage({
