@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AboutGitaBanner from "../../public/quotes-bg.png";
+import AboutGitaBanner from "../../../public/quotes-bg.png";
 export default function AboutBanner() {
   return (
     <>

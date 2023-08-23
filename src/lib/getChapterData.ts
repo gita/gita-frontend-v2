@@ -1,4 +1,4 @@
-import { order_by, query, resolved } from "src/gqty-client";
+import { order_by, query, resolved } from "gqty-client";
 
 export const getChapterNumbers = () =>
   resolved(() => ({

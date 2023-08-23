@@ -1,4 +1,4 @@
-import { query, resolved } from "src/gqty-client";
+import { query, resolved } from "gqty-client";
 
 const msInDay = 24 * 60 * 60 * 1000;
 const dayOfYear = (date: Date) =>

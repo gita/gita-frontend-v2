@@ -1,12 +1,11 @@
 import "tailwindcss/tailwind.css";
-import "../public/globals.css";
+import "./global.css";
 
 import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Providers from "./providers";
 import { PreloadResources } from "./preload-resources";
-import classNames from "utils/classNames";
 
 const inter = Inter({
   subsets: ["latin"],

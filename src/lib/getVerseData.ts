@@ -1,4 +1,4 @@
-import { query, resolved } from "src/gqty-client";
+import { query, resolved } from "gqty-client";
 
 interface GitaVerseIds {
   gita_verses: { chapter_number: number; verse_number: number }[];

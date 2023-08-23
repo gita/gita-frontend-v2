@@ -1,4 +1,4 @@
-import { mutation, resolved } from "src/gqty-client";
+import { mutation, resolved } from "gqty-client";
 
 export const subscribeUser = async (name: string, email: string) => {
   return resolved(() =>

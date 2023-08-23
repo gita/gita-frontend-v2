@@ -12,4 +12,8 @@ module.exports = withPlausibleProxy()({
     largePageDataBytes: 128 * 100000,
     serverActions: true,
   },
+  i18n: {
+    locales: ["en", "ru"],
+    defaultLocale: "en",
+  },
 });

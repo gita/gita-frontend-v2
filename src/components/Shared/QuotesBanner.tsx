@@ -1,5 +1,5 @@
 import Image from "next/image";
-import QuotesBannerBG from "../../public/quotes-bg.png";
+import QuotesBannerBG from "../../../public/quotes-bg.png";
 export default function QuotesBanner() {
   return (
     <div className="max-w-full mx-auto xl:mx-24 z-10 relative">
