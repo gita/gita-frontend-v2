@@ -3,7 +3,7 @@
 import classNames from "utils/classNames";
 import PageHeader from "components/Headers/PageHeader";
 import { Verse } from "components/Verse/Verse";
-import { getMyStyles } from "app/shared/functions";
+import { getMyStyles } from "shared/functions";
 
 type Props = {
   verseData: GitaVerse;

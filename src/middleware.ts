@@ -1,4 +1,4 @@
-import { getLanguageSettings } from "app/shared/functions";
+import { getLanguageSettings } from "shared/functions";
 import { type NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {

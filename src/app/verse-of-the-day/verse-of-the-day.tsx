@@ -9,12 +9,12 @@ import {
   getCommentaryAuthorById,
   getLanguageById,
   getTranslationAuthorById,
-} from "app/shared/functions";
+} from "shared/functions";
 import {
   defaultCommentaryAuthorId,
   defaultLanguageId,
   defaultTranslationAuthorId,
-} from "app/shared/constants";
+} from "shared/constants";
 
 interface VerseOfTheDayProps {
   dailyVerse: GitaVerse;

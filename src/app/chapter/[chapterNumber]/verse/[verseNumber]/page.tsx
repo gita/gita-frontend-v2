@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { Metadata } from "next";
 import { getVerseData } from "lib/getVerseData";
 import VersePage from "./verse-page";
-import { getLanguageSettings } from "app/shared/functions";
+import { getLanguageSettings } from "shared/functions";
 
 export const dynamic = "force-dynamic";
 

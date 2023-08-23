@@ -16,8 +16,8 @@ import classNames from "../../utils/classNames";
 import { useRouter } from "next/navigation";
 import useEnvironment from "../../hooks/useEnvironment";
 import NotesModal from "../Shared/NotesModal";
-import { defaultAdvancedSettings } from "app/shared/constants";
-import { getLanguageSettings } from "app/shared/functions";
+import { defaultAdvancedSettings } from "shared/constants";
+import { getLanguageSettings } from "shared/functions";
 
 const noop = () => {};
 

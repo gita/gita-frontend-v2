@@ -6,7 +6,7 @@ import { Skeleton } from "../Shared/Skeleton";
 import { SvgFloralDivider } from "../svgs";
 import Translation from "./Translation";
 import Commentary from "./Commentary";
-import { defaultAdvancedSettings } from "app/shared/constants";
+import { defaultAdvancedSettings } from "shared/constants";
 
 interface VerseProps {
   verse: GitaVerse;

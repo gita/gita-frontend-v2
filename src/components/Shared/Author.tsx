@@ -6,7 +6,7 @@ import { SelectorIcon } from "@heroicons/react/solid";
 import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
 import commentary_authors from "../../constant/commentary_authors.json";
 import translation_authors from "../../constant/translation_authors.json";
-import { getLanguageSettings } from "app/shared/functions";
+import { getLanguageSettings } from "shared/functions";
 import classNames from "utils/classNames";
 
 const cookieOptions = { path: "/", maxAge: 365 * 24 * 60 * 60 };
