@@ -72,7 +72,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
       <Transition appear show={authorSettingsIsOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 top-0 z-10"
+          className="fixed inset-0 z-10"
           onClose={closeAuthorSettingsModal}
         >
           <div className="min-h-screen px-4 text-center">
@@ -104,8 +104,8 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-100 shadow-xl rounded-2xl">
-                <div className="flex py-2 justify-between my-2 items-center">
+              <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+                <div className="my-2 flex items-center justify-between py-2">
                   <p className="text-base text-black dark:text-white">
                     Verse Commentary Source
                   </p>
@@ -117,7 +117,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                         ? "bg-my-orange"
                         : "bg-gray-200 dark:bg-dark-bg"
                     }
-                    relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
                     <span
                       aria-hidden="true"
@@ -126,7 +126,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                           ? "translate-x-5"
                           : "translate-x-0"
                       }
-                      pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
+                      pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                     />
                   </Switch>
                 </div>
@@ -136,13 +136,13 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                     onChange={setCommentaryAuthor}
                   >
                     <div className="relative">
-                      <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
+                      <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-black focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                         <span className="block truncate text-black dark:text-white">
                           {commentaryAuthor?.name}({commentaryAuthor?.language})
                         </span>
-                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                           <SelectorIcon
-                            className="w-5 h-5 text-gray-400"
+                            className="h-5 w-5 text-gray-400"
                             aria-hidden="true"
                           />
                         </span>
@@ -153,17 +153,17 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md max-h-48 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-10 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
+                        <Listbox.Options className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                           {commentary_authors.map((author) => (
                             <Listbox.Option
                               key={author.id}
                               className={({ active }) =>
                                 `${
                                   active
-                                    ? "text-white bg-my-orange"
+                                    ? "bg-my-orange text-white"
                                     : "text-black dark:text-white"
                                 }
-                                cursor-pointer select-none relative py-2 px-4 flex justify-between`
+                                relative flex cursor-pointer select-none justify-between px-4 py-2`
                               }
                               value={author}
                             >
@@ -177,7 +177,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                   </Listbox>
                 </div>
 
-                <div className="flex py-2 justify-between items-center mb-2">
+                <div className="mb-2 flex items-center justify-between py-2">
                   <p className="text-base text-black dark:text-white">
                     Verse Translation Source
                   </p>
@@ -189,7 +189,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                         ? "bg-my-orange"
                         : "bg-gray-200 dark:bg-dark-bg"
                     }
-                    relative inline-flex flex-shrink-0 h-[29px] w-[49px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
                     <span
                       aria-hidden="true"
@@ -198,7 +198,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                           ? "translate-x-5"
                           : "translate-x-0"
                       }
-                      pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
+                      pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                     />
                   </Switch>
                 </div>
@@ -209,14 +209,14 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                     onChange={setTranslationAuthor}
                   >
                     <div className="relative">
-                      <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-black sm:text-sm">
+                      <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-black focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                         <span className="flex justify-between text-black dark:text-white">
                           {translationAuthor?.name}(
                           {translationAuthor?.language})
                         </span>
-                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                           <SelectorIcon
-                            className="w-5 h-5 text-gray-400"
+                            className="h-5 w-5 text-gray-400"
                             aria-hidden="true"
                           />
                         </span>
@@ -227,17 +227,17 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="relative w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-md   max-h-44` ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-20 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2">
+                        <Listbox.Options className="max-h-44` relative z-20 mt-1 w-full overflow-auto rounded-md bg-white py-1 text-base   shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                           {translation_authors.map((author) => (
                             <Listbox.Option
                               key={author.id}
                               className={({ active }) =>
                                 `${
                                   active
-                                    ? "text-white bg-my-orange"
+                                    ? "bg-my-orange text-white"
                                     : "text-black dark:text-white"
                                 }
-                                cursor-pointer select-none relative py-2 px-4 flex justify-between`
+                                relative flex cursor-pointer select-none justify-between px-4 py-2`
                               }
                               value={author}
                             >
@@ -251,10 +251,10 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                   </Listbox>
                 </div>
 
-                <div className="mt-8 w-full flex gap-5">
+                <div className="mt-8 flex w-full gap-5">
                   <button
                     type="button"
-                    className="text-center w-1/2 items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-dark-100 hover:bg-gray-50 dark:hover:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+                    className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
                     onClick={closeAuthorSettingsModal}
                   >
                     Cancel
@@ -264,10 +264,10 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                     type="button"
                     onClick={() => handleSubmit()}
                     className={classNames(
-                      "text-center w-1/2 items-center px-6 py-3 border border-transparent",
-                      "text-base font-medium rounded-md shadow-sm text-white bg-my-orange",
-                      "hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange",
-                      isSubmitting && "bg-opacity-30 hover:bg-opacity-30"
+                      "w-1/2 items-center border border-transparent px-6 py-3 text-center",
+                      "rounded-md bg-my-orange text-base font-medium text-white shadow-sm",
+                      "hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+                      isSubmitting && "bg-opacity-30 hover:bg-opacity-30",
                     )}
                     disabled={isSubmitting}
                   >

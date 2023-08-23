@@ -49,7 +49,7 @@ const Newsletter = ({ notification }: Props) => {
 
   async function handleSubscribe(
     e: FormEvent<HTMLFormElement>,
-    { name, email }: NewsletterFormData
+    { name, email }: NewsletterFormData,
   ): Promise<SubscribeMessage> {
     e.preventDefault();
     if (name && email) {
@@ -75,7 +75,7 @@ const Newsletter = ({ notification }: Props) => {
   }
 
   return (
-    <div className="mt-14 relative z-0">
+    <div className="relative z-0 mt-14">
       <Modal modalVisible={modalVisible} setModalVisible={setModalVisible} />
       <Image
         src="/newsbg.png"
@@ -87,14 +87,14 @@ const Newsletter = ({ notification }: Props) => {
         }}
         className="newsletter"
       />
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="mt-10 p-14 text-center">
-          <h1 className="text-4xl text-black font-bold mb-8 z-50">
+          <h1 className="z-50 mb-8 text-4xl font-bold text-black">
             Have the Shloka of the Day delivered to your inbox each morning.
           </h1>
           <form className="flex flex-col md:flex-row" onSubmit={onSubmit}>
             <input
-              className="appearance-none z-50 mt-4 md:mt-0 border rounded-md w-full py-3 mr-6 px-3 text-gray-700 leading-tight focus:outline-none focus:border-my-orange dark:bg-white"
+              className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight text-gray-700 focus:border-my-orange focus:outline-none dark:bg-white md:mt-0"
               id="name"
               type="text"
               value={formData.name}
@@ -109,7 +109,7 @@ const Newsletter = ({ notification }: Props) => {
               placeholder="Enter Your Name"
             />
             <input
-              className="appearance-none z-50 mt-4 md:mt-0 border rounded-md w-full py-3 mr-6  px-3 text-gray-700 leading-tight focus:outline-none  focus:border-my-orange dark:bg-white"
+              className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight  text-gray-700 focus:border-my-orange focus:outline-none dark:bg-white  md:mt-0"
               id="email"
               type="email"
               placeholder="Enter Your Email"
@@ -125,14 +125,14 @@ const Newsletter = ({ notification }: Props) => {
             />
             <button
               type="submit"
-              className="bg-my-orange z-50 mt-4 md:mt-0 shadow text-white px-8 py-3 rounded-md hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+              className="z-50 mt-4 rounded-md bg-my-orange px-8 py-3 text-white shadow hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 md:mt-0"
             >
               Subscribe
             </button>
           </form>
           {!isValid && (
-            <div className="text-lg text-red-400 mt-4">
-              <p className="font-bold mr-20 mt-12">{errorMessage}</p>
+            <div className="mt-4 text-lg text-red-400">
+              <p className="mr-20 mt-12 font-bold">{errorMessage}</p>
             </div>
           )}
         </div>

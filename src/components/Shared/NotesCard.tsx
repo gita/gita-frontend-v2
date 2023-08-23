@@ -6,14 +6,14 @@ import classNames from "../../utils/classNames";
 
 const Notescard = (note: any) => {
   return (
-    <div className="flex items-baseline mt-4 gap-2 font-inter border-b border-gray-300 pb-4">
+    <div className="mt-4 flex items-baseline gap-2 border-b border-gray-300 pb-4 font-inter">
       <div>
         <Image src="star.svg" alt="star icon" width={24} height={24} />
       </div>
       <div>
-        <h3 className="text-black font-bold"> Verse {note.note.verse_id}</h3>
-        <p className="text-gray-400 mt-3">{note.note.description}</p>
-        <p className="pl-4 border-l-2 border-my-orange mt-3">
+        <h3 className="font-bold text-black"> Verse {note.note.verse_id}</h3>
+        <p className="mt-3 text-gray-400">{note.note.description}</p>
+        <p className="mt-3 border-l-2 border-my-orange pl-4">
           Dhṛtarāṣṭra said: O Sañjaya, after my sons and the sons of Pāṇḍu
           assembled in the place of pilgrimage at Kurukṣetra, desiring to fight,
           what did they do?
@@ -22,7 +22,7 @@ const Notescard = (note: any) => {
       <div>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="bg-gray-100 rounded-full flex items-center text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+            <Menu.Button className="flex items-center rounded-full bg-gray-100 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 focus:ring-offset-gray-100">
               <span className="sr-only">Open options</span>
               <DotsVerticalIcon className="h-5 w-5" aria-hidden="true" />
             </Menu.Button>
@@ -37,7 +37,7 @@ const Notescard = (note: any) => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (
@@ -45,7 +45,7 @@ const Notescard = (note: any) => {
                       href="#"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        " px-4 py-2 text-sm flex items-center gap-3"
+                        " flex items-center gap-3 px-4 py-2 text-sm",
                       )}
                     >
                       <svg
@@ -72,7 +72,7 @@ const Notescard = (note: any) => {
                       href="#"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "flex items-center gap-3 px-4 py-2 text-sm"
+                        "flex items-center gap-3 px-4 py-2 text-sm",
                       )}
                     >
                       <svg
@@ -99,7 +99,7 @@ const Notescard = (note: any) => {
                       href="#"
                       className={classNames(
                         active ? "bg-gray-100 text-red-900" : "text-red-700",
-                        "flex items-center gap-3  px-4 py-2 text-sm"
+                        "flex items-center gap-3  px-4 py-2 text-sm",
                       )}
                     >
                       <svg

@@ -16,7 +16,7 @@ export default function VersePage({ verseData }: Props) {
     <div
       className={classNames(
         "font-inter dark:bg-dark-bg",
-        `bg-${styles.backgroundColor}`
+        `bg-${styles.backgroundColor}`,
       )}
     >
       <PageHeader />

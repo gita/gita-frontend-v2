@@ -9,7 +9,7 @@ import BackgroundImage from "components/Home/BackgroundImage";
 
 function HomePage({ chapters }: ChaptersProps) {
   return (
-    <div className="font-inter min-h-screen dark:bg-dark-bg">
+    <div className="min-h-screen font-inter dark:bg-dark-bg">
       <main>
         <HomeLayout>
           <div className="relative">

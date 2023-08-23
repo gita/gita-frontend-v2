@@ -12,7 +12,7 @@ export default function TermsOfService() {
         title={metadata.title as string}
         lastUpdated="2023-07-17"
       />
-      <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 py-12  font-inter sm:px-6">
         <p className="mb-4">
           Please read these Terms of Service (&quot;Terms&quot;, &quot;Terms of
           Service&quot;) carefully before using the BhagavadGita.io website (the
@@ -29,8 +29,8 @@ export default function TermsOfService() {
           Terms. If you disagree with any part of the terms, then you may not
           access the Service.
         </p>
-        <h2 className="font-bold text-xl mb-4">Account Terms</h2>
-        <ul className="list-disc ml-8 mb-4">
+        <h2 className="mb-4 text-xl font-bold">Account Terms</h2>
+        <ul className="mb-4 ml-8 list-disc">
           <li>
             <p>
               <strong>Required Information</strong>
@@ -50,7 +50,7 @@ export default function TermsOfService() {
               We have a few simple rules for accounts on BhagavadGita.io&apos;s
               Service.
             </p>
-            <ul className="list-disc ml-8 mb-4">
+            <ul className="mb-4 ml-8 list-disc">
               <li>
                 You must be a human to create an account. Accounts registered by
                 &quot;bots&quot; or other automated methods are not permitted.
@@ -75,7 +75,7 @@ export default function TermsOfService() {
             </p>
           </li>
         </ul>
-        <h2 className="font-bold text-xl mb-4">Copyright Statement</h2>
+        <h2 className="mb-4 text-xl font-bold">Copyright Statement</h2>
         <p className="mb-4">
           From this site, you may download the information and use it on your
           computer for personal study or other non-commercial purposes. You must
@@ -89,8 +89,8 @@ export default function TermsOfService() {
           All the translations on this site have been taken with permission from
           their respective authors.
         </p>
-        <h2 className="font-bold text-xl mb-4">Acceptable Use</h2>
-        <ul className="list-disc ml-8 mb-4">
+        <h2 className="mb-4 text-xl font-bold">Acceptable Use</h2>
+        <ul className="mb-4 ml-8 list-disc">
           <li>
             <p>
               <strong>Compliance with Laws and Regulations</strong>
@@ -111,7 +111,7 @@ export default function TermsOfService() {
               While using BhagavadGita.io, you agree that you will not under any
               circumstances:
             </p>
-            <ul className="list-disc ml-8 mb-4">
+            <ul className="mb-4 ml-8 list-disc">
               <li>
                 use our servers for any form of excessive automated bulk
                 activity (for example, spamming), or relay any other form of
@@ -137,7 +137,7 @@ export default function TermsOfService() {
               to the collection of information through Bhagavad Gita API. You
               may scrape the website for the following reasons:
             </p>
-            <ul className="list-disc ml-8 mb-4">
+            <ul className="mb-4 ml-8 list-disc">
               <li>
                 Researchers may scrape public, non-personal information from
                 BhagavadGita.io for research purposes, only if any publications
@@ -162,8 +162,8 @@ export default function TermsOfService() {
             </p>
           </li>
         </ul>
-        <h2 className="font-bold text-xl mb-4">API Terms</h2>
-        <ul className="list-disc ml-8 mb-4">
+        <h2 className="mb-4 text-xl font-bold">API Terms</h2>
+        <ul className="mb-4 ml-8 list-disc">
           <li>
             <p>
               <strong>No Abuse or Overuse of the API</strong>
@@ -199,7 +199,7 @@ export default function TermsOfService() {
             </p>
           </li>
         </ul>
-        <h2 className="font-bold text-xl mb-4">Termination</h2>
+        <h2 className="mb-4 text-xl font-bold">Termination</h2>
         <p className="mb-4">
           We may terminate or suspend your account immediately, without prior
           notice or liability, for any reason whatsoever, including without
@@ -210,7 +210,7 @@ export default function TermsOfService() {
           cease. If you wish to terminate your account, you may simply
           discontinue using the Service.
         </p>
-        <h2 className="font-bold text-xl mb-4">Governing Law</h2>
+        <h2 className="mb-4 text-xl font-bold">Governing Law</h2>
         <p className="mb-4">
           These Terms shall be governed and construed in accordance with the
           laws of Haryana, India, without regard to its conflict of law
@@ -225,7 +225,7 @@ export default function TermsOfService() {
           supersede and replace any prior agreements we might have had between
           us regarding the Service.
         </p>
-        <h2 className="font-bold text-xl mb-4">Changes</h2>
+        <h2 className="mb-4 text-xl font-bold">Changes</h2>
         <p className="mb-4">
           We reserve the right, at our sole discretion, to modify or replace
           these Terms at any time. If a revision is material, we will try to
@@ -238,11 +238,11 @@ export default function TermsOfService() {
           become effective, you agree to be bound by the revised terms. If you
           do not agree to the new terms, please stop using the Service.
         </p>
-        <h2 className="font-bold text-xl mb-4">Contact Us</h2>
+        <h2 className="mb-4 text-xl font-bold">Contact Us</h2>
         <p className="mb-4">
           If you have any questions about these Terms, please contact us:
         </p>
-        <ul className="list-disc ml-8 mb-4">
+        <ul className="mb-4 ml-8 list-disc">
           <li>By email: contact@bhagavadgita.io</li>
         </ul>
       </div>

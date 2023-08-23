@@ -9,14 +9,14 @@ export const getVerseId = () =>
     query.gita_verses().map((gitaVerse) => ({
       chapter_number: gitaVerse.chapter_number!,
       verse_number: gitaVerse.verse_number!,
-    }))
+    })),
   );
 
 export const getVerseData = (
   chapterNumber,
   verseNumber,
   commentariesAuthor = "Swami Sivananda",
-  translationsAuthor = "Swami Sivananda"
+  translationsAuthor = "Swami Sivananda",
 ) =>
   resolved(() => {
     const [gitaVerse] = query.gita_verses({

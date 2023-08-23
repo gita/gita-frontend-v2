@@ -11,23 +11,23 @@ export default function Quote({ quoteNumber, quote }: Props) {
   const styles = useMyStyles();
   return (
     <>
-      <div className="absolute max-w-5xl font-inter left-0 right-0 top-[5%] mx-auto text-center ">
-        <SvgChapterBackground className="relative text-gray-300 w-full lg:w-min dark:text-black text-opacity-25 dark:text-opacity-25 rounded-full m-auto left-0 right-0 bottom-0 lg:top-12" />
+      <div className="absolute inset-x-0 top-[5%] mx-auto max-w-5xl text-center font-inter">
+        <SvgChapterBackground className="relative inset-x-0 bottom-0 m-auto w-full rounded-full text-gray-300 text-opacity-25 dark:text-black dark:text-opacity-25 lg:top-12 lg:w-min" />
       </div>
 
-      <div className="max-w-5xl font-inter xs:py-24 sm:py-28 mx-auto text-center px-4 sm:px-6 relative">
+      <div className="xs:py-24 relative mx-auto max-w-5xl px-4 text-center font-inter sm:px-6 sm:py-28">
         <h3
           className={classNames(
-            "text-my-orange font-medium uppercase",
-            styles.fontSize.subHeading2
+            "font-medium uppercase text-my-orange",
+            styles.fontSize.subHeading2,
           )}
         >
           Quote {quoteNumber}
         </h3>
         <p
           className={classNames(
-            "text-center dark:text-white mt-3 mx-auto max-w-2xl text-2xl",
-            styles.lineHeight
+            "mx-auto mt-3 max-w-2xl text-center text-2xl dark:text-white",
+            styles.lineHeight,
           )}
         >
           {quote}

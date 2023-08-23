@@ -3,7 +3,7 @@ import Card from "./Card";
 
 const Chapters = ({ chapters }: ChaptersProps) => {
   return (
-    <div className="my-14 relative">
+    <div className="relative my-14">
       <Image
         src="/bg-verses-fixed.png"
         alt="BG Chapters Image"
@@ -14,10 +14,10 @@ const Chapters = ({ chapters }: ChaptersProps) => {
         }}
         className="z-[-1]"
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 z-50">
+      <div className="z-50 mx-auto max-w-7xl px-4 sm:px-6">
         <div>
-          <h1 className="text-5xl dark:text-white font-bold mb-10">Chapters</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <h1 className="mb-10 text-5xl font-bold dark:text-white">Chapters</h1>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {chapters.map((chapter) => (
               <Card key={chapter.id} chapter={chapter} />
             ))}

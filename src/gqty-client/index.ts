@@ -14,7 +14,7 @@ import { generatedSchema, scalarsEnumsHash } from "./schema.generated";
 const queryFetcher: QueryFetcher = async function (
   query,
   variables,
-  fetchOptions
+  fetchOptions,
 ) {
   const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT!, {
     method: "POST",

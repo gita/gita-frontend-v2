@@ -5,9 +5,9 @@ export default function AuthHeader() {
   return (
     <Link
       href="/"
-      className="font-bold text-3xl flex gap-3 items-center focus:outline-none"
+      className="flex items-center gap-3 text-3xl font-bold focus:outline-none"
     >
-      <div className="flex justify-center md:justify-start items-center py-8 px-8 lg:flex-1">
+      <div className="flex items-center justify-center p-8 md:justify-start lg:flex-1">
         <Image
           src="/bhagavad-gita.png"
           height={44}

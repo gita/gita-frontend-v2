@@ -9,7 +9,7 @@ type SkeletonProps = {
 export const Skeleton: FC<SkeletonProps> = ({ height, width, margin }) => {
   return (
     <div
-      className={`${height} ${width} ${margin} rounded-md bg-gray-300 animate-pulse`}
+      className={`${height} ${width} ${margin} animate-pulse rounded-md bg-gray-300`}
     />
   );
 };

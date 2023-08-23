@@ -4,9 +4,9 @@ import IndexHeader from "../components/Headers/IndexHeader";
 
 const HomeLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="dark:bg-dark-bg min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col dark:bg-dark-bg">
       <IndexHeader />
-      <div className="pt-[84px] lg:pt-[90px] flex-1">{children}</div>
+      <div className="flex-1 pt-[84px] lg:pt-[90px]">{children}</div>
       <Footer />
     </div>
   );

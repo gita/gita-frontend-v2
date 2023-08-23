@@ -3,7 +3,7 @@ import Footer from "../components/Footers/Footer";
 
 const PagesLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="dark:bg-dark-bg min-h-screen flex flex-col justify-between">
+    <div className="flex min-h-screen flex-col justify-between dark:bg-dark-bg">
       <div className="flex-1">
         {/* to fix footer when no data */}
         {children}

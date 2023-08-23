@@ -126,7 +126,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-bg shadow-xl rounded-2xl">
+              <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-bg">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50 "
@@ -139,7 +139,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                   </p>
                 </div>
 
-                <div className="flex justify-between mt-4 px-4">
+                <div className="mt-4 flex justify-between px-4">
                   <Link
                     href={`/chapter/${currentVerse?.chapter_number}/verse/${prevId}`}
                     className={`hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50 ${
@@ -180,7 +180,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                   </Link>
                 </div>
                 <div
-                  className=" flex items-center w-full h-2 mx-auto my-3 cursor-pointer"
+                  className=" mx-auto my-3 flex h-2 w-full cursor-pointer items-center"
                   onClick={(event) => sayLoc(event)}
                 >
                   <div
@@ -192,17 +192,17 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                 </div>
 
                 <div className="mt-4">
-                  <span className=" w-full z-0 mt-4 flex shadow-sm rounded-md">
+                  <span className=" z-0 mt-4 flex w-full rounded-md shadow-sm">
                     <button
                       type="button"
-                      className="flex-grow items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-dark-100 dark:hover:bg-dark-bg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      className="grow items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
                       onClick={() => playback(0.75)}
                     >
                       0.75x
                     </button>
                     <button
                       type="button"
-                      className="-ml-px flex-grow items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-dark-100 dark:hover:bg-dark-bg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      className="-ml-px grow items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
                       onClick={() => playback(1.0)}
                     >
                       1x
@@ -210,14 +210,14 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
 
                     <button
                       type="button"
-                      className="-ml-px flex-grow items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-dark-100 dark:hover:bg-dark-bg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      className="-ml-px grow items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
                       onClick={() => playback(1.5)}
                     >
                       1.5x
                     </button>
                     <button
                       type="button"
-                      className="-ml-px flex-grow items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-dark-100 dark:hover:bg-dark-bg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+                      className="-ml-px grow items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
                       onClick={() => playback(2.0)}
                     >
                       2x

@@ -81,12 +81,12 @@ const PageHeader = ({
     <>
       <Disclosure
         as="nav"
-        className="bg-white dark:bg-dark-100 shadow font-inter"
+        className="bg-white font-inter shadow dark:bg-dark-100"
       >
         {({ open }) => (
           <>
-            <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-8 md:py-1">
-              <div className="flex justify-between h-16">
+            <div className="mx-auto max-w-full px-2 sm:px-4 md:py-1 lg:px-8">
+              <div className="flex h-16 justify-between">
                 <div className="flex px-2 lg:px-0">
                   <div className="hidden items-center py-2 lg:flex lg:space-x-4">
                     {/* Current: "border-my-orange text-gray-900", Default: "border-transparent text-gray-500 " */}
@@ -94,10 +94,10 @@ const PageHeader = ({
                     <div className="text-gray-900 dark:text-gray-50">
                       <Link
                         href="/"
-                        className="border-transparent flex flex-col text-current items-center rounded p-2 border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
                         <Image
-                          className="w-6 h-6 mb-1"
+                          className="mb-1 h-6 w-6"
                           src="/Home.svg"
                           alt="home icon"
                           width={24}
@@ -113,11 +113,11 @@ const PageHeader = ({
                         contentModalIsOpen
                           ? "bg-nav-hover dark:bg-dark-bg"
                           : null,
-                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
                       <Image
-                        className="w-6 h-6 mb-1"
+                        className="mb-1 h-6 w-6"
                         src="/content.svg"
                         alt="content icon"
                         width={24}
@@ -130,11 +130,11 @@ const PageHeader = ({
                       onClick={openSettingsModal}
                       className={classNames(
                         settingsIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
-                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
                       <Image
-                        className="w-7 h-6 mb-1"
+                        className="mb-1 h-6 w-7"
                         src="/appearance.svg"
                         alt="appearance icon"
                         width={28}
@@ -149,11 +149,11 @@ const PageHeader = ({
                         authorSettingsIsOpen
                           ? "bg-nav-hover dark:bg-dark-bg"
                           : null,
-                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
                       <Image
-                        className="w-6 h-6 mb-1"
+                        className="mb-1 h-6 w-6"
                         src="/language.svg"
                         alt="source icon"
                         width={24}
@@ -176,11 +176,11 @@ const PageHeader = ({
                       onClick={openPlayerModal}
                       className={classNames(
                         playerIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
-                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
                       <Image
-                        className="w-6 h-6 mb-1"
+                        className="mb-1 h-6 w-6"
                         src="/Audio.svg"
                         alt="audio icon"
                         width={24}
@@ -196,11 +196,11 @@ const PageHeader = ({
                         advancedOptionsActive
                           ? "bg-nav-hover dark:bg-dark-bg"
                           : null,
-                        "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
                       <Image
-                        className="w-6 h-6 mb-1"
+                        className="mb-1 h-6 w-6"
                         src="/Advanced.svg"
                         alt="advanced icon"
                         width={24}
@@ -216,11 +216,11 @@ const PageHeader = ({
                           notesSettingsIsOpen
                             ? "bg-nav-hover dark:bg-dark-bg"
                             : null,
-                          "border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                          "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                         )}
                       >
                         <Image
-                          className="w-6 h-6 mb-1"
+                          className="mb-1 h-6 w-6"
                           src="/notes.svg"
                           alt="notes icon"
                           width={24}
@@ -232,10 +232,10 @@ const PageHeader = ({
                     {isProduction ? null : (
                       <Link
                         href="/bookmark"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
                         <Image
-                          className="w-6 h-6 mb-1"
+                          className="mb-1 h-6 w-6"
                           src="/bookmark-header.svg"
                           alt="bookmark icon"
                           width={24}
@@ -246,20 +246,20 @@ const PageHeader = ({
                     )}
                   </div>
                 </div>
-                <div className="flex-1 flex items-center justify-start pr-2  lg:ml-6 lg:justify-end">
-                  <div className="max-w-lg w-full lg:max-w-xs">
+                <div className="flex flex-1 items-center justify-start pr-2  lg:ml-6 lg:justify-end">
+                  <div className="w-full max-w-lg lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
                       Search
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
+                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
                       <form
                         onSubmit={handleSearch}
                         className="relative flex text-gray-600"
                       >
                         <button
                           type="submit"
-                          className="absolute left-3 top-0 mt-2 mr-4"
+                          className="absolute left-3 top-0 mr-4 mt-2"
                         >
                           <SearchIcon
                             className="h-5 w-5 text-gray-400 dark:text-gray-50"
@@ -270,7 +270,7 @@ const PageHeader = ({
                         <input
                           id="search"
                           name="search"
-                          className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white dark:bg-dark-100 placeholder-gray-500 dark:placeholder-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-my-orange focus:border-my-orange sm:text-sm"
+                          className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:placeholder:text-gray-50 sm:text-sm"
                           placeholder="Search"
                           type="search"
                           value={input}
@@ -285,7 +285,7 @@ const PageHeader = ({
                 </div>
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="inline-flex items-center justify-start p-2 rounded-md text-gray-400 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
+                  <Disclosure.Button className="inline-flex items-center justify-start rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -298,65 +298,65 @@ const PageHeader = ({
             </div>
 
             <Disclosure.Panel className="lg:hidden">
-              <div className="pt-2 pb-1 space-y-1">
+              <div className="space-y-1 pb-1 pt-2">
                 <Link
                   href="/"
-                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Home
                 </Link>
                 <button
                   type="button"
                   onClick={openContentModal}
-                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Content
                 </button>
                 <button
                   type="button"
                   onClick={openSettingsModal}
-                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Appearance
                 </button>
                 <button
                   type="button"
                   onClick={openAuthorSettingsModal}
-                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Language
                 </button>
                 <button
                   type="button"
                   onClick={openPlayerModal}
-                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Play Audio
                 </button>
                 <button
                   type="button"
-                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Notes
                 </button>
                 <button
                   type="button"
-                  className="border-transparent text-gray-500 dark:text-white block pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   Bookmark
                 </button>
               </div>
               <Disclosure>
-                <Disclosure.Button className="w-full flex border-t-2 border-gray-300 justify-between text-black dark:text-gray-400 pl-3 pr-4 py-2 text-base font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900">
+                <Disclosure.Button className="flex w-full justify-between border-t-2 border-gray-300 py-2 pl-3 pr-4 text-base font-medium text-black hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-900 dark:focus:text-gray-900">
                   Advanced View
                   <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                 </Disclosure.Button>
-                <Disclosure.Panel className="text-gray-500 z-50">
+                <Disclosure.Panel className="z-50 text-gray-500">
                   <Switch.Group
                     as="div"
-                    className="flex items-center px-4 py-2 justify-between"
+                    className="flex items-center justify-between px-4 py-2"
                   >
-                    <span className="flex-grow flex flex-col">
+                    <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
                         className=" font-medium text-gray-600 dark:text-gray-50"
@@ -379,14 +379,14 @@ const PageHeader = ({
                         devnagari
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           devnagari ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
@@ -394,9 +394,9 @@ const PageHeader = ({
 
                   <Switch.Group
                     as="div"
-                    className="flex items-center px-4 py-2 justify-between"
+                    className="flex items-center justify-between px-4 py-2"
                   >
-                    <span className="flex-grow flex flex-col">
+                    <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
                         className=" font-medium text-gray-600 dark:text-gray-50"
@@ -419,14 +419,14 @@ const PageHeader = ({
                         verseText
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           verseText ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
@@ -434,9 +434,9 @@ const PageHeader = ({
 
                   <Switch.Group
                     as="div"
-                    className="flex items-center px-4 py-2 justify-between"
+                    className="flex items-center justify-between px-4 py-2"
                   >
-                    <span className="flex-grow flex flex-col">
+                    <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
                         className=" font-medium text-gray-600 dark:text-gray-50"
@@ -459,23 +459,23 @@ const PageHeader = ({
                         synonyms
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           synonyms ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
                   </Switch.Group>
                   <Switch.Group
                     as="div"
-                    className="flex items-center px-4 py-2 justify-between"
+                    className="flex items-center justify-between px-4 py-2"
                   >
-                    <span className="flex-grow flex flex-col">
+                    <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
                         className=" font-medium text-gray-600 dark:text-gray-50"
@@ -498,23 +498,23 @@ const PageHeader = ({
                         translation
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           translation ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
                   </Switch.Group>
                   <Switch.Group
                     as="div"
-                    className="flex items-center px-4 py-2 justify-between"
+                    className="flex items-center justify-between px-4 py-2"
                   >
-                    <span className="flex-grow flex flex-col">
+                    <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
                         className=" font-medium text-gray-600 dark:text-gray-50"
@@ -537,14 +537,14 @@ const PageHeader = ({
                         purport
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           purport ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
@@ -597,9 +597,9 @@ const AdvancedOptions = ({
   const { devnagari, verseText, synonyms, translation, purport } =
     advancedSettings;
   return (
-    <div className="max-w-full mx-auto px-2 sm:hidden transition duration-500 ease-in-out lg:block mt-4 lg:px-8">
-      <span className="flex justify-center z-0 rounded-md">
-        <div className="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange">
+    <div className="mx-auto mt-4 max-w-full px-2 transition duration-500 ease-in-out sm:hidden lg:block lg:px-8">
+      <span className="z-0 flex justify-center rounded-md">
+        <div className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={devnagari}
             onChange={() =>
@@ -612,22 +612,22 @@ const AdvancedOptions = ({
             }
             className={classNames(
               devnagari ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
                 devnagari ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white  shadow transform ring-0 transition ease-in-out duration-200"
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full  bg-white shadow ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
                 className={classNames(
                   devnagari
-                    ? "opacity-0 ease-out duration-100"
-                    : "opacity-100 ease-in duration-200",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-0 duration-100 ease-out"
+                    : "opacity-100 duration-200 ease-in",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >
@@ -648,9 +648,9 @@ const AdvancedOptions = ({
               <span
                 className={classNames(
                   devnagari
-                    ? "opacity-100 ease-in duration-200"
-                    : "opacity-0 ease-out duration-100",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-100 duration-200 ease-in"
+                    : "opacity-0 duration-100 ease-out",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >
@@ -666,7 +666,7 @@ const AdvancedOptions = ({
           </Switch>
           Devnagari
         </div>
-        <div className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange">
+        <div className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={verseText}
             onChange={() =>
@@ -679,22 +679,22 @@ const AdvancedOptions = ({
             }
             className={classNames(
               verseText ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
                 verseText ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
                 className={classNames(
                   verseText
-                    ? "opacity-0 ease-out duration-100"
-                    : "opacity-100 ease-in duration-200",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-0 duration-100 ease-out"
+                    : "opacity-100 duration-200 ease-in",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >
@@ -715,9 +715,9 @@ const AdvancedOptions = ({
               <span
                 className={classNames(
                   verseText
-                    ? "opacity-100 ease-in duration-200"
-                    : "opacity-0 ease-out duration-100",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-100 duration-200 ease-in"
+                    : "opacity-0 duration-100 ease-out",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >
@@ -733,7 +733,7 @@ const AdvancedOptions = ({
           </Switch>
           Verse Text
         </div>
-        <div className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange">
+        <div className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={synonyms}
             onChange={() =>
@@ -746,22 +746,22 @@ const AdvancedOptions = ({
             }
             className={classNames(
               synonyms ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
                 synonyms ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
                 className={classNames(
                   synonyms
-                    ? "opacity-0 ease-out duration-100"
-                    : "opacity-100 ease-in duration-200",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-0 duration-100 ease-out"
+                    : "opacity-100 duration-200 ease-in",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >
@@ -782,9 +782,9 @@ const AdvancedOptions = ({
               <span
                 className={classNames(
                   synonyms
-                    ? "opacity-100 ease-in duration-200"
-                    : "opacity-0 ease-out duration-100",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-100 duration-200 ease-in"
+                    : "opacity-0 duration-100 ease-out",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >
@@ -800,7 +800,7 @@ const AdvancedOptions = ({
           </Switch>
           Synonyms
         </div>
-        <div className="-ml-px relative inline-flex items-center px-4 py-2  border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange">
+        <div className="relative -ml-px inline-flex items-center border border-gray-300  bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={translation}
             onChange={() =>
@@ -813,22 +813,22 @@ const AdvancedOptions = ({
             }
             className={classNames(
               translation ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
                 translation ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
                 className={classNames(
                   translation
-                    ? "opacity-0 ease-out duration-100"
-                    : "opacity-100 ease-in duration-200",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-0 duration-100 ease-out"
+                    : "opacity-100 duration-200 ease-in",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >
@@ -849,9 +849,9 @@ const AdvancedOptions = ({
               <span
                 className={classNames(
                   translation
-                    ? "opacity-100 ease-in duration-200"
-                    : "opacity-0 ease-out duration-100",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-100 duration-200 ease-in"
+                    : "opacity-0 duration-100 ease-out",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >
@@ -868,7 +868,7 @@ const AdvancedOptions = ({
           Translation
         </div>
 
-        <div className="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark-bg dark:border-dark-100 dark:text-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange">
+        <div className="relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={purport}
             onChange={() =>
@@ -881,22 +881,22 @@ const AdvancedOptions = ({
             }
             className={classNames(
               purport ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative inline-flex flex-shrink-0 mr-2 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
             <span className="sr-only">Use setting</span>
             <span
               className={classNames(
                 purport ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
                 className={classNames(
                   purport
-                    ? "opacity-0 ease-out duration-100"
-                    : "opacity-100 ease-in duration-200",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-0 duration-100 ease-out"
+                    : "opacity-100 duration-200 ease-in",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >
@@ -917,9 +917,9 @@ const AdvancedOptions = ({
               <span
                 className={classNames(
                   purport
-                    ? "opacity-100 ease-in duration-200"
-                    : "opacity-0 ease-out duration-100",
-                  "absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+                    ? "opacity-100 duration-200 ease-in"
+                    : "opacity-0 duration-100 ease-out",
+                  "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
                 )}
                 aria-hidden="true"
               >

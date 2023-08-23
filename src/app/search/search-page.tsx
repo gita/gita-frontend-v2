@@ -46,9 +46,9 @@ export default function SearchPage() {
 
   return (
     <div>
-      <div className="max-w-5xl font-inter py-4 mx-auto px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl p-4 font-inter sm:px-6">
         <p
-          className={`text-2xl lg:text-3xl py-4 ${
+          className={`py-4 text-2xl lg:text-3xl ${
             isSearchLoading ? "animate-pulse" : ""
           }`}
         >
@@ -71,10 +71,10 @@ export default function SearchPage() {
           </div>
         ) : (
           <div className={`py-7 ${isSearchLoading ? "animate-pulse" : ""}`}>
-            <p className="text-my-orange font-extrabold text-4xl">
+            <p className="text-4xl font-extrabold text-my-orange">
               {isSearchLoading ? "Loading" : "No Results"}
             </p>
-            <p className="text-gray-500 font-normal text-sm">
+            <p className="text-sm font-normal text-gray-500">
               {!isSearchLoading &&
                 "Sorry, we couldn’t find the page you’re looking for."}
             </p>

@@ -29,7 +29,7 @@ export default function QuotesNavigator({
       {previousQuote >= 1 && (
         <button
           onClick={previous}
-          className="rounded-full h-10 w-10 absolute z-[60] top-1/2 md:top-1/2 left-1 hover:brightness-90 hover:cursor-pointer flex justify-center items-center  bg-white dark:bg-dark-100 dark:hover:bg-dark-bg dark:border-gray-600 border"
+          className="absolute left-1 top-1/2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border bg-white hover:cursor-pointer  hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg md:top-1/2"
         >
           <SvgChevronLeft className="dark:text-gray-50" />
         </button>
@@ -37,7 +37,7 @@ export default function QuotesNavigator({
       {nextQuote <= quoteCount && (
         <button
           onClick={next}
-          className="rounded-full h-10 w-10 absolute z-[60] top-1/2 md:top-1/2 right-1 hover:brightness-90 hover:cursor-pointer flex justify-center items-center  bg-white dark:bg-dark-100 dark:hover:bg-dark-bg dark:border-gray-600 border"
+          className="absolute right-1 top-1/2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border bg-white hover:cursor-pointer  hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg md:top-1/2"
         >
           <SvgChevronRight className="dark:text-gray-50" />
         </button>

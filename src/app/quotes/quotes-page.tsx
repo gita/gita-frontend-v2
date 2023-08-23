@@ -115,7 +115,7 @@ export default function QuotesPage() {
   return (
     <div className="mb-16">
       <QuotesBanner />
-      <div className="relative p-0 md:w-[90%] lg:w-[73%] xl:w-[66%] m-auto z-10 h-96">
+      <div className="relative z-10 m-auto h-96 p-0 md:w-[90%] lg:w-[73%] xl:w-[66%]">
         <QuotesNavigator
           quoteCount={quotes.length}
           quoteIndex={quoteIndex}

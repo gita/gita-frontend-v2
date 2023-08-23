@@ -14,7 +14,7 @@ function useMyStyles() {
     backgroundColor: "light-bg",
   });
   const { fontSize, spacing, bg } = useSelector(
-    (state: RootState) => state.settings
+    (state: RootState) => state.settings,
   );
 
   useEffect(() => {

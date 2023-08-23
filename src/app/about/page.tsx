@@ -69,7 +69,7 @@ export default function About() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
       />
       <AboutBanner />
-      <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 py-12  font-inter sm:px-6">
         <p className="mt-8 text-xl ">
           Bhagavad Gita, also known as the Gita - &quot;The Song of The
           Lord&quot; is a practical guide to one&apos;s life that guides one to

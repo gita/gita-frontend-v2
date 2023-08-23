@@ -46,8 +46,8 @@ export default function ChapterPage({
 
   return (
     <div>
-      <div className="absolute max-w-5xl font-inter left-0 right-0 mx-auto text-center">
-        <SvgChapterBackground className="relative text-gray-300 w-full lg:w-min dark:text-black text-opacity-25 dark:text-opacity-25 rounded-full m-auto left-0 right-0 bottom-0 lg:top-12" />
+      <div className="absolute inset-x-0 mx-auto max-w-5xl text-center font-inter">
+        <SvgChapterBackground className="relative inset-x-0 bottom-0 m-auto w-full rounded-full text-gray-300 text-opacity-25 dark:text-black dark:text-opacity-25 lg:top-12 lg:w-min" />
       </div>
 
       <PageNavigator
@@ -56,55 +56,55 @@ export default function ChapterPage({
         route="chapter"
       />
 
-      <section className="max-w-5xl font-inter py-24 mx-auto text-center px-4 sm:px-6 relative">
+      <section className="relative mx-auto max-w-5xl px-4 py-24 text-center font-inter sm:px-6">
         <h3
           className={classNames(
-            "text-my-orange font-medium uppercase",
-            styles.fontSize.subHeading2
+            "font-medium uppercase text-my-orange",
+            styles.fontSize.subHeading2,
           )}
         >
           Chapter {chapter_number}
         </h3>
         <h1
           className={classNames(
-            "font-extrabold dark:text-white my-8",
-            styles.fontSize.heading
+            "my-8 font-extrabold dark:text-white",
+            styles.fontSize.heading,
           )}
         >
           {name_translated}
         </h1>
         <p
           className={classNames(
-            "text-left dark:text-white mt-3",
+            "mt-3 text-left dark:text-white",
             styles.fontSize.para,
-            styles.lineHeight
+            styles.lineHeight,
           )}
         >
           {chapter_summary}
         </p>
       </section>
 
-      <div className="max-w-5xl font-inter mx-auto text-center  px-4 sm:px-6">
-        <div className="flex items-center justify-between border-t py-6 border-b border-gray-200">
+      <div className="mx-auto max-w-5xl px-4 text-center  font-inter sm:px-6">
+        <div className="flex items-center justify-between border-y border-gray-200 py-6">
           <div
             className={classNames(
               "font-extrabold dark:text-white",
-              styles.fontSize.para
+              styles.fontSize.para,
             )}
           >
             {verses_count} Verses
           </div>
-          <div className="mt-1 flex rounded-md shadow-sm relative">
-            <div className="relative flex items-stretch flex-grow focus-within:z-10">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none "></div>
+          <div className="relative mt-1 flex rounded-md shadow-sm">
+            <div className="relative flex grow items-stretch focus-within:z-10">
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 "></div>
               <input
                 type="text"
                 name="verse-id"
                 id="verse-id"
                 value={verseId ? verseId : ""}
                 className={classNames(
-                  "focus:ring-my-orange border focus:border-my-orange block w-full rounded-none rounded-l-md pl-2 border-gray-300",
-                  styles.fontSize.para
+                  "block w-full rounded-none rounded-l-md border border-gray-300 pl-2 focus:border-my-orange focus:ring-my-orange",
+                  styles.fontSize.para,
                 )}
                 placeholder="Go To Verse"
                 onClick={() => setViewNavigation(!viewNavigation)}
@@ -120,7 +120,7 @@ export default function ChapterPage({
             />
             <button
               type="button"
-              className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium dark:bg-dark-100 rounded-r-md text-gray-700 dark:text-gray-50 bg-gray-50 hover:bg-gray-100 dark:hover:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-my-orange focus:border-my-orange"
+              className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-50 dark:hover:bg-dark-bg"
               onClick={() => setIsAscSorted(!isAscSorted)}
             >
               {isAscSorted ? (
@@ -145,7 +145,7 @@ export default function ChapterPage({
         </div>
       </div>
 
-      <div className="max-w-5xl font-inter py-8 mb-16 mx-auto px-4 sm:px-6">
+      <div className="mx-auto mb-16 max-w-5xl px-4 py-8 font-inter sm:px-6">
         {sortedVerses?.map((verse) => (
           <VerseList verseData={verse} key={verse.id} />
         ))}

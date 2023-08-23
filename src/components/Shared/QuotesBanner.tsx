@@ -2,7 +2,7 @@ import Image from "next/image";
 import QuotesBannerBG from "../../../public/quotes-bg.png";
 export default function QuotesBanner() {
   return (
-    <div className="max-w-full mx-auto xl:mx-24 z-10 relative">
+    <div className="relative z-10 mx-auto max-w-full xl:mx-24">
       <Image
         src={QuotesBannerBG}
         alt="BG Quotes Banner Image"
@@ -12,8 +12,8 @@ export default function QuotesBanner() {
         objectPosition="center"
         className="xl:rounded-lg"
       />
-      <div className="flex flex-col h-4/5 px-8 py-36">
-        <h1 className="text-3xl md:text-5xl text-center font-extrabold text-shadow text-white t-shadow z-20">
+      <div className="flex h-4/5 flex-col px-8 py-36">
+        <h1 className="text-shadow t-shadow z-20 text-center text-3xl font-extrabold text-white md:text-5xl">
           Bhagavad Gita Quotes By <br /> Lord Krishna
         </h1>
       </div>

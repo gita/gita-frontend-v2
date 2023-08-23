@@ -21,7 +21,7 @@ const Notes = () => {
           setNotification({
             status: "failed",
             message: "Please Login to Save Notes",
-          })
+          }),
         );
       } else {
         supabase
@@ -41,7 +41,7 @@ const Notes = () => {
 
   return (
     <div className="bg-gray-400">
-      <div className="w-full md:w-1/2 p-12 bg-white">
+      <div className="w-full bg-white p-12 md:w-1/2">
         {notes.map((note, index) => (
           <Notescard note={note} key={index}></Notescard>
         ))}

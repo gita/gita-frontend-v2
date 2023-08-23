@@ -44,11 +44,11 @@ export const Verse: FC<VerseProps> = ({
         pageNumber={chapter_number}
       />
 
-      <section className="max-w-5xl font-inter py-16 mx-auto text-center px-4 sm:px-6">
+      <section className="mx-auto max-w-5xl px-4 py-16 text-center font-inter sm:px-6">
         <h1
           className={classNames(
             "font-extrabold dark:text-gray-50",
-            styles.fontSize.heading
+            styles.fontSize.heading,
           )}
         >
           BG {chapter_number}.{verse_number}
@@ -57,14 +57,14 @@ export const Verse: FC<VerseProps> = ({
           (text ? (
             <p
               className={classNames(
-                "font-dev text-my-orange mt-8 max-w-md mx-auto",
-                styles.fontSize.subHeading1
+                "mx-auto mt-8 max-w-md font-dev text-my-orange",
+                styles.fontSize.subHeading1,
               )}
             >
               {text}
             </p>
           ) : (
-            <div className="flex flex-col items-center w-full max-w-md mx-auto pt-10">
+            <div className="mx-auto flex w-full max-w-md flex-col items-center pt-10">
               <Skeleton height="h-8" width="w-full" margin="mb-2" />
               <Skeleton height="h-8" width="w-5/6" margin="mb-2" />
               <Skeleton height="h-8" width="w-4/5" margin="mb-2" />
@@ -73,8 +73,8 @@ export const Verse: FC<VerseProps> = ({
         {verseText && (
           <p
             className={classNames(
-              "mt-6 max-w-md mx-auto dark:text-gray-50",
-              styles.fontSize.subHeading2
+              "mx-auto mt-6 max-w-md dark:text-gray-50",
+              styles.fontSize.subHeading2,
             )}
           >
             {transliteration}
@@ -84,19 +84,19 @@ export const Verse: FC<VerseProps> = ({
           (text ? (
             <p
               className={classNames(
-                "mt-6 mx-auto dark:text-gray-50",
-                styles.fontSize.subHeading2
+                "mx-auto mt-6 dark:text-gray-50",
+                styles.fontSize.subHeading2,
               )}
             >
               {word_meanings}
             </p>
           ) : (
             <>
-              <div className="flex flex-col items-center w-full max-w-md mx-auto pt-3">
+              <div className="mx-auto flex w-full max-w-md flex-col items-center pt-3">
                 <Skeleton height="h-5" width="w-full" margin="mb-3" />
                 <Skeleton height="h-5" width="w-5/6" margin="mb-3" />
               </div>
-              <div className="flex flex-col items-center w-full pt-3">
+              <div className="flex w-full flex-col items-center pt-3">
                 <Skeleton height="h-5" width="w-full" margin="mb-3" />
                 <Skeleton height="h-5" width="w-5/6" margin="mb-3" />
                 <Skeleton height="h-5" width="w-4/5" margin="mb-3" />

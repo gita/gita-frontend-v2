@@ -74,7 +74,7 @@ export const getMyCommentaryAuthor = () => {
   const commentaryAuthorId = getCookie("commentaryAuthorId") || 16;
   return (
     commentaryAuthors.find(
-      ({ id }) => String(id) === String(commentaryAuthorId)
+      ({ id }) => String(id) === String(commentaryAuthorId),
     ) || commentaryAuthors[0]
   );
 };
@@ -83,7 +83,7 @@ export const getMyTranslationAuthor = () => {
   const translationAuthorId = getCookie("translationAuthorId") || 16;
   return (
     translationAuthors.find(
-      ({ id }) => String(id) === String(translationAuthorId)
+      ({ id }) => String(id) === String(translationAuthorId),
     ) || translationAuthors[0]
   );
 };
@@ -102,7 +102,7 @@ export const getLanguageSettings = (
     languageId: defaultLanguageId,
     translationAuthorId: defaultTranslationAuthorId,
     commentaryAuthorId: defaultCommentaryAuthorId,
-  }
+  },
 ): LanguageSettings => ({
   language: getLanguageById(languageId) || getLanguageById(defaultLanguageId)!,
   translationAuthor:

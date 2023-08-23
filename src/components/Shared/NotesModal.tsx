@@ -27,7 +27,7 @@ const NotesModal = ({
         setNotification({
           status: "failed",
           message: "Please Login to Save Notes",
-        })
+        }),
       );
     } else {
       const { error } = await supabase.from("Notes").insert([
@@ -42,14 +42,14 @@ const NotesModal = ({
           setNotification({
             status: "failed",
             message: "Error in Saving Note: " + error.message,
-          })
+          }),
         );
       } else {
         dispatch(
           setNotification({
             status: "success",
             message: "Note saved successfully",
-          })
+          }),
         );
       }
     }
@@ -61,7 +61,7 @@ const NotesModal = ({
       <Transition appear show={notesSettingsIsOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 top-0 z-10"
+          className="fixed inset-0 z-10"
           onClose={closeNotesSettingsModal}
         >
           <div className="min-h-screen px-4 text-center">
@@ -93,9 +93,9 @@ const NotesModal = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-100 shadow-xl rounded-2xl">
+              <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
                 <Link href="/notes">View Notes</Link>
-                <div className="flex py-2 justify-between my-2 items-center">
+                <div className="my-2 flex items-center justify-between py-2">
                   <p className="text-base text-black dark:text-white">
                     Add/Edit Notes
                   </p>
@@ -117,10 +117,10 @@ const NotesModal = ({
                   </div>
                 </div>
 
-                <div className="mt-8 w-full flex gap-5">
+                <div className="mt-8 flex w-full gap-5">
                   <button
                     type="button"
-                    className="text-center w-1/2 items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-dark-100 hover:bg-gray-50 dark:hover:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+                    className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
                     onClick={closeNotesSettingsModal}
                   >
                     Cancel
@@ -129,7 +129,7 @@ const NotesModal = ({
                   <button
                     type="button"
                     onClick={() => handleSubmit()}
-                    className="text-center w-1/2 items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-my-orange hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-my-orange"
+                    className="w-1/2 items-center rounded-md border border-transparent bg-my-orange px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2"
                   >
                     Submit
                   </button>

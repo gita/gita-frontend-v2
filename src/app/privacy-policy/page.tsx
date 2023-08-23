@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
         title={metadata.title as string}
         lastUpdated="2023-07-17"
       />
-      <div className="max-w-5xl font-inter py-12 mx-auto  px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 py-12  font-inter sm:px-6">
         <div className="prose prose-lg mx-auto p-4">
           <p className="mb-4">
             This Privacy Policy describes Our policies and procedures on the
@@ -25,19 +25,19 @@ export default function PrivacyPolicy() {
             using the Service, You agree to the collection and use of
             information in accordance with this Privacy Policy.
           </p>
-          <h1 className="font-bold text-2xl mb-4">
+          <h1 className="mb-4 text-2xl font-bold">
             Interpretation and Definitions
           </h1>
-          <h2 className="font-bold text-xl mb-4">Interpretation</h2>
+          <h2 className="mb-4 text-xl font-bold">Interpretation</h2>
           <p className="mb-4">
             The words of which the initial letter is capitalized have meanings
             defined under the following conditions. The following definitions
             shall have the same meaning regardless of whether they appear in
             singular or in plural.
           </p>
-          <h2 className="font-bold text-xl mb-4">Definitions</h2>
+          <h2 className="mb-4 text-xl font-bold">Definitions</h2>
           <p className="mb-4">For the purposes of this Privacy Policy:</p>
-          <ul className="list-disc ml-8 mb-4">
+          <ul className="mb-4 ml-8 list-disc">
             <li>
               <p>
                 <strong>Account</strong> means a unique account created for You
@@ -132,18 +132,18 @@ export default function PrivacyPolicy() {
               </p>
             </li>
           </ul>
-          <h1 className="font-bold text-2xl mb-4">
+          <h1 className="mb-4 text-2xl font-bold">
             Collecting and Using Your Personal Data
           </h1>
-          <h2 className="font-bold text-xl mb-4">Types of Data Collected</h2>
-          <h3 className="font-bold text-lg mb-4">Personal Data</h3>
+          <h2 className="mb-4 text-xl font-bold">Types of Data Collected</h2>
+          <h3 className="mb-4 text-lg font-bold">Personal Data</h3>
           <p className="mb-4">
             While using Our Service, We may ask You to provide Us with certain
             personally identifiable information that can be used to contact or
             identify You. Personally identifiable information may include, but
             is not limited to:
           </p>
-          <ul className="list-disc ml-8 mb-4">
+          <ul className="mb-4 ml-8 list-disc">
             <li>
               <p>Email address</p>
             </li>
@@ -154,7 +154,7 @@ export default function PrivacyPolicy() {
               <p>Usage Data</p>
             </li>
           </ul>
-          <h3 className="font-bold text-lg mb-4">Usage Data</h3>
+          <h3 className="mb-4 text-lg font-bold">Usage Data</h3>
           <p className="mb-4">
             Usage Data is collected automatically when using the Service.
           </p>
@@ -178,7 +178,7 @@ export default function PrivacyPolicy() {
             visit our Service or when You access the Service by or through a
             mobile device.
           </p>
-          <h3 className="font-bold text-lg mb-4">
+          <h3 className="mb-4 text-lg font-bold">
             Tracking Technologies and Cookies
           </h3>
           <p className="mb-4">
@@ -188,7 +188,7 @@ export default function PrivacyPolicy() {
             track information and to improve and analyze Our Service. The
             technologies We use may include:
           </p>
-          <ul className="list-disc ml-8 mb-4">
+          <ul className="mb-4 ml-8 list-disc">
             <li>
               <strong>Cookies or Browser Cookies.</strong> A cookie is a small
               file placed on Your Device. You can instruct Your browser to
@@ -218,7 +218,7 @@ export default function PrivacyPolicy() {
             We use both Session and Persistent Cookies for the purposes set out
             below:
           </p>
-          <ul className="list-disc ml-8 mb-4">
+          <ul className="mb-4 ml-8 list-disc">
             <li>
               <p>
                 <strong>Necessary / Essential Cookies</strong>
@@ -266,11 +266,11 @@ export default function PrivacyPolicy() {
             regarding cookies, please visit our Cookies Policy or the Cookies
             section of our Privacy Policy.
           </p>
-          <h2 className="font-bold text-xl mb-4">Use of Your Personal Data</h2>
+          <h2 className="mb-4 text-xl font-bold">Use of Your Personal Data</h2>
           <p className="mb-4">
             The Company may use Personal Data for the following purposes:
           </p>
-          <ul className="list-disc ml-8 mb-4">
+          <ul className="mb-4 ml-8 list-disc">
             <li>
               <p>
                 <strong>To provide and maintain our Service</strong>, including
@@ -343,7 +343,7 @@ export default function PrivacyPolicy() {
           <p className="mb-4">
             We may share Your personal information in the following situations:
           </p>
-          <ul className="list-disc ml-8 mb-4">
+          <ul className="mb-4 ml-8 list-disc">
             <li>
               <strong>With Service Providers:</strong> We may share Your
               personal information with Service Providers to monitor and analyze
@@ -380,7 +380,7 @@ export default function PrivacyPolicy() {
               information for any other purpose with Your consent.
             </li>
           </ul>
-          <h2 className="font-bold text-xl mb-4">
+          <h2 className="mb-4 text-xl font-bold">
             Retention of Your Personal Data
           </h2>
           <p className="mb-4">
@@ -398,7 +398,7 @@ export default function PrivacyPolicy() {
             improve the functionality of Our Service, or We are legally
             obligated to retain this data for longer time periods.
           </p>
-          <h2 className="font-bold text-xl mb-4">
+          <h2 className="mb-4 text-xl font-bold">
             Transfer of Your Personal Data
           </h2>
           <p className="mb-4">
@@ -422,7 +422,7 @@ export default function PrivacyPolicy() {
             place including the security of Your data and other personal
             information.
           </p>
-          <h2 className="font-bold text-xl mb-4">Delete Your Personal Data</h2>
+          <h2 className="mb-4 text-xl font-bold">Delete Your Personal Data</h2>
           <p className="mb-4">
             You have the right to delete or request that We assist in deleting
             the Personal Data that We have collected about You.
@@ -442,29 +442,29 @@ export default function PrivacyPolicy() {
             Please note, however, that We may need to retain certain information
             when we have a legal obligation or lawful basis to do so.
           </p>
-          <h2 className="font-bold text-xl mb-4">
+          <h2 className="mb-4 text-xl font-bold">
             Disclosure of Your Personal Data
           </h2>
-          <h3 className="font-bold text-lg mb-4">Business Transactions</h3>
+          <h3 className="mb-4 text-lg font-bold">Business Transactions</h3>
           <p className="mb-4">
             If the Company is involved in a merger, acquisition or asset sale,
             Your Personal Data may be transferred. We will provide notice before
             Your Personal Data is transferred and becomes subject to a different
             Privacy Policy.
           </p>
-          <h3 className="font-bold text-lg mb-4">Law enforcement</h3>
+          <h3 className="mb-4 text-lg font-bold">Law enforcement</h3>
           <p className="mb-4">
             Under certain circumstances, the Company may be required to disclose
             Your Personal Data if required to do so by law or in response to
             valid requests by public authorities (e.g. a court or a government
             agency).
           </p>
-          <h3 className="font-bold text-lg mb-4">Other legal requirements</h3>
+          <h3 className="mb-4 text-lg font-bold">Other legal requirements</h3>
           <p className="mb-4">
             The Company may disclose Your Personal Data in the good faith belief
             that such action is necessary to:
           </p>
-          <ul className="list-disc ml-8 mb-4">
+          <ul className="mb-4 ml-8 list-disc">
             <li>Comply with a legal obligation</li>
             <li>Protect and defend the rights or property of the Company</li>
             <li>
@@ -476,7 +476,7 @@ export default function PrivacyPolicy() {
             </li>
             <li>Protect against legal liability</li>
           </ul>
-          <h2 className="font-bold text-xl mb-4">
+          <h2 className="mb-4 text-xl font-bold">
             Security of Your Personal Data
           </h2>
           <p className="mb-4">
@@ -486,7 +486,7 @@ export default function PrivacyPolicy() {
             commercially acceptable means to protect Your Personal Data, We
             cannot guarantee its absolute security.
           </p>
-          <h1 className="font-bold text-2xl mb-4">Children&apos;s Privacy</h1>
+          <h1 className="mb-4 text-2xl font-bold">Children&apos;s Privacy</h1>
           <p className="mb-4">
             Our Service does not address anyone under the age of 13. We do not
             knowingly collect personally identifiable information from anyone
@@ -502,7 +502,7 @@ export default function PrivacyPolicy() {
             require Your parent&apos;s consent before We collect and use that
             information.
           </p>
-          <h1 className="font-bold text-2xl mb-4">Links to Other Websites</h1>
+          <h1 className="mb-4 text-2xl font-bold">Links to Other Websites</h1>
           <p className="mb-4">
             Our Service may contain links to other websites that are not
             operated by Us. If You click on a third party link, You will be
@@ -514,7 +514,7 @@ export default function PrivacyPolicy() {
             content, privacy policies or practices of any third party sites or
             services.
           </p>
-          <h1 className="font-bold text-2xl mb-4">
+          <h1 className="mb-4 text-2xl font-bold">
             Changes to this Privacy Policy
           </h1>
           <p className="mb-4">
@@ -531,12 +531,12 @@ export default function PrivacyPolicy() {
             changes. Changes to this Privacy Policy are effective when they are
             posted on this page.
           </p>
-          <h1 className="font-bold text-2xl mb-4">Contact Us</h1>
+          <h1 className="mb-4 text-2xl font-bold">Contact Us</h1>
           <p className="mb-4">
             If you have any questions about this Privacy Policy, You can contact
             us:
           </p>
-          <ul className="list-disc ml-8 mb-4">
+          <ul className="mb-4 ml-8 list-disc">
             <li>By email: contact@bhagavadgita.io</li>
           </ul>
         </div>

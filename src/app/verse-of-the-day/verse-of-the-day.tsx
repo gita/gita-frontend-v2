@@ -41,7 +41,7 @@ export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({ dailyVerse }) => {
     <div
       className={classNames(
         "font-inter dark:bg-dark-bg",
-        `bg-${styles.backgroundColor}`
+        `bg-${styles.backgroundColor}`,
       )}
     >
       <PageHeader

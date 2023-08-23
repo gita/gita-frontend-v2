@@ -36,7 +36,7 @@ const Login = () => {
         setNotification({
           status: "failed",
           message: "error singing in please contact admin@bhagavadgita.io",
-        })
+        }),
       );
     } else if (data) {
       setCookie("access_token", data.session.access_token);
@@ -45,7 +45,7 @@ const Login = () => {
         setNotification({
           status: "success",
           message: "Hare Krishna Dear Devotee, you're signed in now",
-        })
+        }),
       );
       router.push("/");
     }
@@ -53,7 +53,7 @@ const Login = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="flex items-center gap-2 border-2 border-gray-300 rounded-md p-3 focus-within:border-my-orange">
+        <div className="flex items-center gap-2 rounded-md border-2 border-gray-300 p-3 focus-within:border-my-orange">
           <SvgMail />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
@@ -63,12 +63,12 @@ const Login = () => {
               type={"email"}
               placeholder="Email Address"
               name="emailAddress"
-              className="text-center bg-transparent w-full focus:outline-none"
+              className="w-full bg-transparent text-center focus:outline-none"
               required
             />
           </div>
         </div>
-        <div className="flex items-center relative gap-2 border-2 border-gray-300 mt-2 rounded-md p-3 focus-within:border-my-orange">
+        <div className="relative mt-2 flex items-center gap-2 rounded-md border-2 border-gray-300 p-3 focus-within:border-my-orange">
           <SvgKey />
           <div className="flex-1">
             <label htmlFor="name" hidden aria-hidden="true">
@@ -79,7 +79,7 @@ const Login = () => {
               placeholder="Password"
               required
               name="password"
-              className="text-center bg-transparent w-full focus:outline-none"
+              className="w-full bg-transparent text-center focus:outline-none"
             />
           </div>
           <button
@@ -90,37 +90,37 @@ const Login = () => {
             {isPasswordVisible ? <SvgEyeOpen /> : <SvgEyeCross />}
           </button>
         </div>
-        <p className="text-right text-sm text-gray-500 mt-2 px-2 font-normal">
+        <p className="mt-2 px-2 text-right text-sm font-normal text-gray-500">
           Fogot Password?{" "}
-          <span className="text-my-orange hover:cursor-pointer font-bold">
+          <span className="font-bold text-my-orange hover:cursor-pointer">
             Click here
           </span>
         </p>
         <button
           type="submit"
-          className="w-full bg-my-orange text-white font-medium uppercase mt-6 py-2 px-4 rounded-md"
+          className="mt-6 w-full rounded-md bg-my-orange px-4 py-2 font-medium uppercase text-white"
         >
           Login
         </button>
       </form>
-      <div className="px-20 py-10 mt-5 relative">
+      <div className="relative mt-5 px-20 py-10">
         <hr className="border-gray-400" />
-        <div className="absolute h-12 w-12 font-medium top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-[#FFD3AB] dark:bg-my-orange rounded-full flex items-center justify-center">
+        <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#FFD3AB] font-medium dark:bg-my-orange">
           OR
         </div>
       </div>
-      <div className="flex justify-center gap-8 mt-4 mb-10">
+      <div className="mb-10 mt-4 flex justify-center gap-8">
         {/* will use next/auth for authentication */}
         <SvgGithub className="hover:cursor-pointer" />
-        <div className="h-9 w-9 relative cursor-pointer">
+        <div className="relative h-9 w-9 cursor-pointer">
           <Image src="/google-logo.png" fill alt="google logo" />
         </div>
       </div>
-      <p className="text-center text-sm text-gray-500 mt-2 font-normal">
+      <p className="mt-2 text-center text-sm font-normal text-gray-500">
         Don’t have an account?{" "}
         <Link
           href="/signup"
-          className="text-my-orange hover:cursor-pointer font-bold"
+          className="font-bold text-my-orange hover:cursor-pointer"
         >
           Sign up
         </Link>

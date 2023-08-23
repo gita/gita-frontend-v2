@@ -4,7 +4,7 @@ const main = (
   state = {
     name: "guest",
   },
-  action
+  action,
 ) => {
   switch (action.type) {
     case t.SET_NAME:

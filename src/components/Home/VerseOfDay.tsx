@@ -8,18 +8,18 @@ const VerseOfDay = async () => {
   const dailyVerse = await getDailyVerse();
 
   return (
-    <div className="relative max-w-7xl mx-auto z-10 px-4 sm:px-6 mt-24">
-      <div className="bg-white dark:bg-dark-100 shadow-lg rounded-xl px-12 pb-8 pt-5 text-gray-400">
+    <div className="relative z-10 mx-auto mt-24 max-w-7xl px-4 sm:px-6">
+      <div className="rounded-xl bg-white px-12 pb-8 pt-5 text-gray-400 shadow-lg dark:bg-dark-100">
         {dailyVerse ? (
           <>
-            <h2 className="text-my-orange font-bold mb-4 divider line one-line px-4">
+            <h2 className="divider line one-line mb-4 px-4 font-bold text-my-orange">
               Verse of the day - BG {dailyVerse?.chapter_number}.
               {dailyVerse.verse_number}
             </h2>
             <p className="text-lg">
               {dailyVerse?.gita_translations[0].description}{" "}
             </p>
-            <button className="uppercase text-black dark:text-white mt-4 font-bold text-sm hover:text-gray-700 dark:hover:text-gray-400 focus:outline-none">
+            <button className="mt-4 text-sm font-bold uppercase text-black hover:text-gray-700 focus:outline-none dark:text-white dark:hover:text-gray-400">
               <Link href="/verse-of-the-day" shallow>
                 See more
               </Link>

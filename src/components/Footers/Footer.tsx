@@ -93,12 +93,15 @@ const Footer = () => {
   const styles = useMyStyles();
 
   return (
-    <div className="w-full bottom-0 bg-white dark:bg-dark-100 font-inter border-gray-200 border-t border-b">
+    <div className="bottom-0 w-full border-y border-gray-200 bg-white font-inter dark:bg-dark-100">
       <div
-        className={`py-1 lg:pb-8 lg:pt-24 dark:bg-dark-bg bg-${styles.backgroundColor}`}
+        className={classNames(
+          "py-1 dark:bg-dark-bg lg:pb-8 lg:pt-24",
+          `bg-${styles.backgroundColor}`,
+        )}
       >
-        <div className="flex justify-between lg:justify-center items-center">
-          <div className="flex-none w-1/2 lg:w-1/5 lg:hidden">
+        <div className="flex items-center justify-between lg:justify-center">
+          <div className="w-1/2 flex-none lg:hidden lg:w-1/5">
             <Menu
               as="div"
               className="relative inline-block text-left lg:hidden"
@@ -114,7 +117,7 @@ const Footer = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-dark-bg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute bottom-10 left-0 mt-2 w-56 origin-bottom-left rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark-bg">
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
@@ -124,7 +127,7 @@ const Footer = () => {
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700 dark:text-gray-400",
-                                "block px-4 py-2 text-sm"
+                                "block px-4 py-2 text-sm",
                               )}
                             >
                               English
@@ -139,7 +142,7 @@ const Footer = () => {
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700 dark:text-gray-400",
-                                "block px-4 py-2 text-sm"
+                                "block px-4 py-2 text-sm",
                               )}
                             >
                               French
@@ -154,7 +157,7 @@ const Footer = () => {
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700 dark:text-gray-400",
-                                "block px-4 py-2 text-sm"
+                                "block px-4 py-2 text-sm",
                               )}
                             >
                               Spanish
@@ -170,7 +173,7 @@ const Footer = () => {
                                   active
                                     ? "bg-gray-100 text-gray-900"
                                     : "text-gray-700 dark:text-gray-400",
-                                  "block w-full text-left px-4 py-2 text-sm"
+                                  "block w-full px-4 py-2 text-left text-sm",
                                 )}
                               >
                                 Hindi
@@ -218,7 +221,7 @@ const Footer = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-dark-bg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                    <Menu.Items className="absolute bottom-10 left-0 z-50 mt-2 w-56 origin-bottom-left rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark-bg">
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
@@ -228,7 +231,7 @@ const Footer = () => {
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700 dark:text-gray-400",
-                                "block px-4 py-2 text-sm"
+                                "block px-4 py-2 text-sm",
                               )}
                             >
                               About Us
@@ -243,7 +246,7 @@ const Footer = () => {
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700 dark:text-gray-400",
-                                "block px-4 py-2 text-sm"
+                                "block px-4 py-2 text-sm",
                               )}
                               target="_blank"
                             >
@@ -259,7 +262,7 @@ const Footer = () => {
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700 dark:text-gray-400",
-                                "block px-4 py-2 text-sm"
+                                "block px-4 py-2 text-sm",
                               )}
                               target="_blank"
                             >
@@ -293,7 +296,7 @@ const Footer = () => {
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700 dark:text-gray-400",
-                                "block px-4 py-2 text-sm"
+                                "block px-4 py-2 text-sm",
                               )}
                               target="_blank"
                             >
@@ -301,7 +304,7 @@ const Footer = () => {
                             </a>
                           )}
                         </Menu.Item>
-                        <div className="py-1  border-t border-gray-200">
+                        <div className="border-t  border-gray-200 py-1">
                           <Menu.Item>
                             {({ active }) => (
                               <a
@@ -310,7 +313,7 @@ const Footer = () => {
                                   active
                                     ? "bg-gray-100 text-gray-900"
                                     : "text-gray-700 dark:text-gray-400",
-                                  "block px-4 py-2 text-sm"
+                                  "block px-4 py-2 text-sm",
                                 )}
                                 target="_blank"
                               >
@@ -326,7 +329,7 @@ const Footer = () => {
                                   active
                                     ? "bg-gray-100 text-gray-900"
                                     : "text-gray-700 dark:text-gray-400",
-                                  "block px-4 py-2 text-sm"
+                                  "block px-4 py-2 text-sm",
                                 )}
                                 target="_blank"
                               >
@@ -343,7 +346,7 @@ const Footer = () => {
                                   active
                                     ? "bg-gray-100 text-gray-900"
                                     : "text-gray-700 dark:text-gray-400",
-                                  "block px-4 py-2 text-sm"
+                                  "block px-4 py-2 text-sm",
                                 )}
                                 target="_blank"
                               >
@@ -359,7 +362,7 @@ const Footer = () => {
                                   active
                                     ? "bg-gray-100 text-gray-900"
                                     : "text-gray-700 dark:text-gray-400",
-                                  "block px-4 py-2 text-sm"
+                                  "block px-4 py-2 text-sm",
                                 )}
                                 target="_blank"
                               >
@@ -372,7 +375,7 @@ const Footer = () => {
                     </Menu.Items>
                   </Transition>
                   <div>
-                    <Menu.Button className="inline-flex justify-centerw-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white dark:bg-dark-100 text-xs text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-700 focus:ring-my-orange ml-3">
+                    <Menu.Button className="justify-centerw-full ml-3 inline-flex rounded-lg border border-gray-300 bg-white p-2 text-xs text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 focus:ring-offset-gray-100 dark:bg-dark-100 dark:text-gray-400 dark:hover:bg-dark-bg dark:focus:ring-offset-gray-700">
                       More
                       {open ? (
                         <ChevronUpIcon
@@ -391,10 +394,13 @@ const Footer = () => {
               )}
             </Menu>
           </div>
-          <div className="flex-none hidden lg:block">
+          <div className="hidden flex-none lg:block">
             <footer className="bg-white dark:bg-dark-100">
               <div
-                className={`max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 dark:bg-dark-bg bg-${styles.backgroundColor}`}
+                className={classNames(
+                  "mx-auto max-w-7xl overflow-hidden dark:bg-dark-bg sm:px-6 lg:px-8",
+                  `bg-${styles.backgroundColor}`,
+                )}
               >
                 <nav
                   className="-mx-5 -my-2 flex flex-wrap justify-center"
@@ -425,7 +431,7 @@ const Footer = () => {
               </div>
             </footer>
           </div>
-          <div className="flex flex-1 justify-end lg:w-1/5 lg:hidden max-h-10 mr-3">
+          <div className="mr-3 flex max-h-10 flex-1 justify-end lg:hidden lg:w-1/5">
             <a
               href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
               target="_blank"
@@ -454,8 +460,8 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="flex-none text-right w-1/3 lg:w-full">
-          <div className="mt-8 justify-center hidden lg:flex items-center space-x-6">
+        <div className="w-1/3 flex-none text-right lg:w-full">
+          <div className="mt-8 hidden items-center justify-center space-x-6 lg:flex">
             {navigation.social.map((item) => (
               <a
                 key={item.name}
@@ -475,8 +481,8 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div className="flex px-4 py-1 justify-between items-center dark:bg-copyright-bg">
-        <div className="flex-none w-1/2 lg:w-1/5 hidden lg:inline-block">
+      <div className="flex items-center justify-between px-4 py-1 dark:bg-copyright-bg">
+        <div className="hidden w-1/2 flex-none lg:inline-block lg:w-1/5">
           {/* commented out for now  until next release
           <Menu as="div" className="relative text-left ">
             {({ open }) => (
@@ -579,8 +585,8 @@ const Footer = () => {
           */}
         </div>
 
-        <div className="flex-none block w-full lg:w-3/5">
-          <p className="text-sm text-center text-gray-400">
+        <div className="block w-full flex-none lg:w-3/5">
+          <p className="text-center text-sm text-gray-400">
             {`© ${new Date().getFullYear()} Copyright: `}
             <a
               href="https://vedvyas.org/"
@@ -594,7 +600,7 @@ const Footer = () => {
             <span className="sm:inline"> All rights reserved.</span>
           </p>
         </div>
-        <div className="flex lg:w-1/5 justify-end items-center lg:space-x-1  lg:flex">
+        <div className="flex items-center justify-end lg:flex lg:w-1/5  lg:space-x-1">
           <a
             href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
             target="_blank"
@@ -604,7 +610,7 @@ const Footer = () => {
             <Image
               src="/play_store.svg"
               alt="Bhagavad Gita"
-              className="object-contain h-full rounded"
+              className="h-full rounded object-contain"
               height={40}
               width={140}
             />
@@ -618,7 +624,7 @@ const Footer = () => {
             <Image
               src="/app_store.svg"
               alt="Bhagavad Gita"
-              className="object-contain h-full"
+              className="h-full object-contain"
               height={40}
               width={140}
             />

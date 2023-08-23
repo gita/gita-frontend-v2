@@ -140,41 +140,41 @@ export default function IndexHeader() {
   }
 
   return (
-    <div className="w-full fixed top-0 z-50">
+    <div className="fixed top-0 z-50 w-full">
       <Popover className="relative bg-white font-inter dark:bg-dark-100">
-        <div className="max-w-7xl mx-auto px-4 xl:px-0">
-          <div className="flex justify-between items-center  py-6 md:space-x-10">
+        <div className="mx-auto max-w-7xl px-4 xl:px-0">
+          <div className="flex items-center justify-between  py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <Link
                 href="/"
-                className="font-bold text-3xl dark:text-white focus:outline-none"
+                className="text-3xl font-bold focus:outline-none dark:text-white"
               >
                 <span className="sr-only">Workflow</span>
                 Bhagavad Gita
               </Link>
             </div>
-            <div className="-mr-2 -my-2 md:hidden">
+            <div className="-my-2 -mr-2 md:hidden">
               <DarkModeToggle />
-              <Popover.Button className="bg-white dark:bg-dark-bg rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
+              <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange dark:bg-dark-bg">
                 <span className="sr-only">Open menu</span>
                 <MenuIcon className="h-6 w-6" aria-hidden="true" />
               </Popover.Button>
             </div>
-            <Popover.Group as="nav" className="hidden md:flex space-x-10">
+            <Popover.Group as="nav" className="hidden space-x-10 md:flex">
               <Popover className="relative">
                 {({ open }) => (
                   <>
                     <Popover.Button
                       className={classNames(
                         open ? "text-gray-900" : "text-black",
-                        "group dark:text-white bg-white dark:bg-dark-100 rounded-md inline-flex items-center text-base font-medium hover:text-gray-500 focus:outline-none "
+                        "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-500 focus:outline-none dark:bg-dark-100 dark:text-white ",
                       )}
                     >
                       <span>Chapters</span>
                       <ChevronDownIcon
                         className={classNames(
                           open ? "text-gray-600" : "text-gray-500",
-                          "ml-2 h-5 dark:text-white w-5 group-hover:text-gray-500"
+                          "ml-2 h-5 w-5 group-hover:text-gray-500 dark:text-white",
                         )}
                         aria-hidden="true"
                       />
@@ -189,17 +189,17 @@ export default function IndexHeader() {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-                        <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                          <div className="relative grid md:grid-cols-2 gap-6 bg-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
+                      <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-xs px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
+                        <div className="overflow-hidden rounded shadow-lg ring-1 ring-black ring-opacity-5">
+                          <div className="relative grid gap-6 bg-white py-2 dark:bg-dark-100 sm:gap-8 sm:p-8 md:grid-cols-2">
                             {chapters.map((chapter, index) => (
                               <Link
                                 href={chapter.href}
                                 key={index}
-                                className="-m-3 p-1 flex items-start rounded-lg hover:bg-gray-100 dark:hover:bg-dark-bg hover:cursor-pointer	"
+                                className="-m-3 flex items-start rounded-lg p-1 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-bg	"
                               >
                                 <chapter.icon
-                                  className="flex-shrink-0 h-6 w-6 text-my-orange"
+                                  className="h-6 w-6 shrink-0 text-my-orange"
                                   aria-hidden="true"
                                 />
                                 <div className="ml-4">
@@ -218,13 +218,13 @@ export default function IndexHeader() {
               </Popover>
               <Link
                 href="/quotes"
-                className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
+                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
               >
                 Quotes
               </Link>
               <Link
                 href="/about"
-                className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
+                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
               >
                 About Geeta
               </Link>
@@ -235,14 +235,14 @@ export default function IndexHeader() {
                       <Popover.Button
                         className={classNames(
                           open ? "text-gray-900" : "text-black",
-                          "group dark:text-white bg-white dark:bg-dark-100 rounded-md inline-flex items-center text-base font-medium hover:text-gray-500 focus:outline-none "
+                          "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-500 focus:outline-none dark:bg-dark-100 dark:text-white ",
                         )}
                       >
                         <span>Account</span>
                         <ChevronDownIcon
                           className={classNames(
                             open ? "text-gray-600" : "text-gray-500",
-                            "ml-2 h-5 dark:text-white w-5 group-hover:text-gray-500"
+                            "ml-2 h-5 w-5 group-hover:text-gray-500 dark:text-white",
                           )}
                           aria-hidden="true"
                         />
@@ -257,18 +257,18 @@ export default function IndexHeader() {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-32 max-w-xs sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-                          <div className="rounded shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                            <div className="relative grid md:grid-cols-1  bg-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
+                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-32 max-w-xs px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
+                          <div className="overflow-hidden rounded shadow-lg ring-1 ring-black ring-opacity-5">
+                            <div className="relative grid bg-white  py-2 dark:bg-dark-100 sm:gap-8 sm:p-8 md:grid-cols-1">
                               <Link
                                 href="/signup"
-                                className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
+                                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
                               >
                                 Signup
                               </Link>
                               <Link
                                 href="/login"
-                                className="text-base font-medium text-black dark:text-white hover:text-gray-500 focus:outline-none"
+                                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
                               >
                                 Login
                               </Link>
@@ -284,22 +284,22 @@ export default function IndexHeader() {
                   type="button"
                   onClick={signOut}
                   className={classNames(
-                    "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                    "flex items-center mb-2 px-3  font-medium"
+                    "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
+                    "mb-2 flex items-center px-3  font-medium",
                   )}
                 >
                   <span className="truncate">Signout</span>
                 </button>
               )}
             </Popover.Group>
-            <div className="hidden md:flex justify-end items-end w-auto md:flex-1 lg:w-0 py-px">
+            <div className="hidden w-auto items-end justify-end py-px md:flex md:flex-1 lg:w-0">
               <form
                 onSubmit={handleSearch}
                 className="relative flex text-gray-600"
               >
                 <button
                   type="submit"
-                  className="absolute left-3 top-0 mt-2 mr-4"
+                  className="absolute left-3 top-0 mr-4 mt-2"
                 >
                   <SearchIcon
                     className="h-5 w-5 text-gray-400 dark:text-gray-50"
@@ -310,7 +310,7 @@ export default function IndexHeader() {
                 <input
                   id="search"
                   name="search"
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white dark:bg-dark-100 placeholder-gray-500 dark:placeholder-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-my-orange focus:border-my-orange sm:text-sm"
+                  className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:placeholder:text-gray-50 sm:text-sm"
                   placeholder="Search"
                   type="search"
                   value={input}
@@ -334,22 +334,22 @@ export default function IndexHeader() {
         >
           <Popover.Panel
             focus
-            className="absolute top-0 inset-x-0 pb-2 transition transform origin-top-right md:hidden"
+            className="absolute inset-x-0 top-0 origin-top-right pb-2 transition md:hidden"
           >
-            <div className=" shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-dark-100 divide-y-2 divide-gray-50 dark:divide-dark-100">
+            <div className=" divide-y-2 divide-gray-50 bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:divide-dark-100 dark:bg-dark-100">
               <div className="pt-5">
-                <div className="flex items-center pr-5 justify-between">
-                  <button className="font-bold text-3xl" type="button">
+                <div className="flex items-center justify-between pr-5">
+                  <button className="text-3xl font-bold" type="button">
                     <form
                       onSubmit={handleSearch}
-                      className="px-3 py-2 text-sm font-medium relative mx-auto text-gray-600"
+                      className="relative mx-auto px-3 py-2 text-sm font-medium text-gray-600"
                     >
                       <button
                         type="submit"
-                        className="absolute left-6 top-0 mt-5 mr-4"
+                        className="absolute left-6 top-0 mr-4 mt-5"
                       >
                         <svg
-                          className="text-gray-600 dark:text-white h-4 w-4 fill-current"
+                          className="h-4 w-4 fill-current text-gray-600 dark:text-white"
                           version="1.1"
                           id="Capa_1"
                           x="0px"
@@ -362,7 +362,7 @@ export default function IndexHeader() {
                         </svg>
                       </button>
                       <input
-                        className="border border-gray-300 w-max bg-white dark:placeholder-white dark:bg-dark-100 h-10 px-8 pr-16 rounded-lg text-sm focus:outline-none"
+                        className="h-10 w-max rounded-lg border border-gray-300 bg-white px-8 pr-16 text-sm focus:outline-none dark:bg-dark-100 dark:placeholder:text-white"
                         type="search"
                         name="search"
                         placeholder="Search"
@@ -374,7 +374,7 @@ export default function IndexHeader() {
                     </form>
                   </button>
                   <div className="-mr-2">
-                    <Popover.Button className="bg-white dark:bg-dark-bg rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
+                    <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange dark:bg-dark-bg">
                       <span className="sr-only px-5">Close menu</span>
                       <XIcon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
@@ -384,20 +384,20 @@ export default function IndexHeader() {
                   <nav className="grid gap-y-8">
                     <nav className="space-y-1" aria-label="Sidebar">
                       <Disclosure>
-                        <Disclosure.Button className="w-full flex justify-between px-3 py-2 text-left dark:text-white font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900">
+                        <Disclosure.Button className="flex w-full justify-between px-3 py-2 text-left font-medium hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
                           Chapters
                           <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                         </Disclosure.Button>
-                        <Disclosure.Panel className="text-gray-500 dark:text-white dark:bg-dark-100 py-4">
-                          <div className="relative grid grid-cols-2 gap-6 bg-white px-8 dark:text-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
+                        <Disclosure.Panel className="py-4 text-gray-500 dark:bg-dark-100 dark:text-white">
+                          <div className="relative grid grid-cols-2 gap-6 bg-white px-8 py-2 dark:bg-dark-100 dark:text-white sm:gap-8 sm:p-8">
                             {chapters.map((item) => (
                               <a
                                 key={item.name}
                                 href={item.href}
-                                className="-m-3 p-1 flex items-start hover:bg-yellow-100 hover:cursor-pointer dark:hover:bg-yellow-100 dark:focus:bg-yellow-100 hover:rounded-md"
+                                className="-m-3 flex items-start p-1 hover:cursor-pointer hover:rounded-md hover:bg-yellow-100 dark:hover:bg-yellow-100 dark:focus:bg-yellow-100"
                               >
                                 <item.icon
-                                  className="flex-shrink-0 h-6 w-6 text-my-orange"
+                                  className="h-6 w-6 shrink-0 text-my-orange"
                                   aria-hidden="true"
                                 />
                                 <div className="ml-4">
@@ -416,9 +416,9 @@ export default function IndexHeader() {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? "bg-yellow-100 border-l-4 border-my-orange text-gray-900 dark:text-white"
-                              : "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                            "flex items-center mb-2 px-3 py-2 font-medium"
+                              ? "border-l-4 border-my-orange bg-yellow-100 text-gray-900 dark:text-white"
+                              : "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
+                            "mb-2 flex items-center px-3 py-2 font-medium",
                           )}
                           aria-current={item.current ? "page" : undefined}
                         >
@@ -427,17 +427,17 @@ export default function IndexHeader() {
                       ))}
                       {!loggedIn ? (
                         <Disclosure>
-                          <Disclosure.Button className="w-full flex justify-between px-3 py-2 text-left dark:text-white font-medium hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 focus:bg-yellow-100 focus:border-l-4 focus:border-my-orange focus:text-gray-900 dark:hover:text-gray-900 dark:focus:text-gray-900">
+                          <Disclosure.Button className="flex w-full justify-between px-3 py-2 text-left font-medium hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
                             Account
                             <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                           </Disclosure.Button>
-                          <Disclosure.Panel className="text-gray-500 dark:text-white dark:bg-dark-100 py-4">
-                            <div className="relative grid grid-cols-2 gap-6 bg-white px-8 dark:text-white dark:bg-dark-100 py-2 sm:gap-8 sm:p-8">
+                          <Disclosure.Panel className="py-4 text-gray-500 dark:bg-dark-100 dark:text-white">
+                            <div className="relative grid grid-cols-2 gap-6 bg-white px-8 py-2 dark:bg-dark-100 dark:text-white sm:gap-8 sm:p-8">
                               <Link
                                 href="/signup"
                                 className={classNames(
-                                  "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                                  "flex items-center mb-2 px-3 py-2 font-medium"
+                                  "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
+                                  "mb-2 flex items-center px-3 py-2 font-medium",
                                 )}
                               >
                                 <span className="truncate">Signup</span>
@@ -446,8 +446,8 @@ export default function IndexHeader() {
                               <Link
                                 href="/login"
                                 className={classNames(
-                                  "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                                  "flex items-center mb-2 px-3 py-2 font-medium"
+                                  "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
+                                  "mb-2 flex items-center px-3 py-2 font-medium",
                                 )}
                               >
                                 <span className="truncate">login</span>
@@ -460,8 +460,8 @@ export default function IndexHeader() {
                           type="button"
                           onClick={signOut}
                           className={classNames(
-                            "hover:bg-yellow-100 hover:border-l-4 hover:border-my-orange hover:text-gray-900 dark:hover:text-gray-900",
-                            "flex items-center mb-2 px-3 py-2 font-medium"
+                            "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
+                            "mb-2 flex items-center px-3 py-2 font-medium",
                           )}
                         >
                           <span className="truncate">Signout</span>

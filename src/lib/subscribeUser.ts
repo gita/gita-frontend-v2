@@ -7,6 +7,6 @@ export const subscribeUser = async (name: string, email: string) => {
         user_name: name,
         user_email: email,
       },
-    })
+    }),
   );
 };

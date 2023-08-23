@@ -25,7 +25,7 @@ export default function ContentModal({ isOpen, close }: Props) {
   }
   function handleSubmit() {
     router.push(
-      `chapter/${selectedChapter}/verse/${selectedVerse.verseNumber}`
+      `chapter/${selectedChapter}/verse/${selectedVerse.verseNumber}`,
     );
     setSelectedChapter(1);
     setSelectedVerse({ verseNumber: 1, id: 1 });
@@ -67,16 +67,16 @@ export default function ContentModal({ isOpen, close }: Props) {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-flex w-5/6 max-w-4xl overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-dark-100 shadow-xl rounded-2xl">
-              <div className="flex flex-col p-8 w-full md:hidden">
-                <p className="text-my-orange py-2 font-semibold">Chapters</p>
+            <div className="inline-flex w-5/6 max-w-4xl overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+              <div className="flex w-full flex-col p-8 md:hidden">
+                <p className="py-2 font-semibold text-my-orange">Chapters</p>
                 <Listbox value={selectedChapter} onChange={setSelectedChapter}>
                   <div className="relative mt-1">
-                    <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
+                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                       <span className="block">Chapter {selectedChapter}</span>
-                      <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                         <SelectorIcon
-                          className="w-5 h-5 text-gray-400"
+                          className="h-5 w-5 text-gray-400"
                           aria-hidden="true"
                         />
                       </span>
@@ -87,17 +87,17 @@ export default function ContentModal({ isOpen, close }: Props) {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className=" w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                      <Listbox.Options className=" mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark-bg sm:text-sm">
                         {data.map((chapter) => (
                           <Listbox.Option
                             key={chapter.chapterNumber}
                             className={({ active }) =>
                               `${
                                 active
-                                  ? "text-amber-900 bg-amber-100"
+                                  ? "bg-amber-100 text-amber-900"
                                   : "text-gray-900"
                               }
-                          cursor-default select-none relative py-2 pl-10 pr-4`
+                          relative cursor-default select-none py-2 pl-10 pr-4`
                             }
                             value={chapter.chapterNumber}
                           >
@@ -120,7 +120,7 @@ export default function ContentModal({ isOpen, close }: Props) {
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                   >
                                     <CheckIcon
-                                      className="w-5 h-5"
+                                      className="h-5 w-5"
                                       aria-hidden="true"
                                     />
                                   </span>
@@ -133,16 +133,16 @@ export default function ContentModal({ isOpen, close }: Props) {
                     </Transition>
                   </div>
                 </Listbox>
-                <p className="text-my-orange mt-2 py-2 font-semibold">Verses</p>
+                <p className="mt-2 py-2 font-semibold text-my-orange">Verses</p>
                 <Listbox value={selectedVerse} onChange={setSelectedVerse}>
                   <div className="relative mt-1">
-                    <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-dark-bg rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-my-orange focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
+                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                       <span className="block">
                         Verses {selectedVerse.verseNumber}
                       </span>
-                      <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                         <SelectorIcon
-                          className="w-5 h-5 text-gray-400"
+                          className="h-5 w-5 text-gray-400"
                           aria-hidden="true"
                         />
                       </span>
@@ -153,11 +153,11 @@ export default function ContentModal({ isOpen, close }: Props) {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className=" w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-dark-bg rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                      <Listbox.Options className=" mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark-bg sm:text-sm">
                         {data
                           .filter(
                             (chapter) =>
-                              chapter.chapterNumber === selectedChapter
+                              chapter.chapterNumber === selectedChapter,
                           )[0]
                           .gitaVersesByChapterId.nodes.map((verse) => (
                             <Listbox.Option
@@ -165,10 +165,10 @@ export default function ContentModal({ isOpen, close }: Props) {
                               className={({ active }) =>
                                 `${
                                   active
-                                    ? "text-amber-900 bg-amber-100"
+                                    ? "bg-amber-100 text-amber-900"
                                     : "text-gray-900 dark:text-gray-50"
                                 }
-                          cursor-default select-none relative py-2 pl-10 pr-4`
+                          relative cursor-default select-none py-2 pl-10 pr-4`
                               }
                               value={verse}
                             >
@@ -191,7 +191,7 @@ export default function ContentModal({ isOpen, close }: Props) {
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
-                                        className="w-5 h-5"
+                                        className="h-5 w-5"
                                         aria-hidden="true"
                                       />
                                     </span>
@@ -205,15 +205,15 @@ export default function ContentModal({ isOpen, close }: Props) {
                   </div>
                 </Listbox>
                 <button
-                  className="bg-my-orange/80 w-2/3 mx-auto mt-3 text-white font-bold py-2 px-4 rounded"
+                  className="mx-auto mt-3 w-2/3 rounded bg-my-orange/80 px-4 py-2 font-bold text-white"
                   onClick={handleSubmit}
                 >
                   Lets Go
                 </button>
               </div>
-              <div className="items-center justify-center hidden md:flex">
-                <div className="flex justify-center h-full flex-1 p-6 gap-2">
-                  <div className="flex flex-col gap-1 my-auto">
+              <div className="hidden items-center justify-center md:flex">
+                <div className="flex h-full flex-1 justify-center gap-2 p-6">
+                  <div className="my-auto flex flex-col gap-1">
                     {data.slice(0, 9).map((chapter) =>
                       selectedChapter === chapter.chapterNumber ? (
                         <button
@@ -221,13 +221,13 @@ export default function ContentModal({ isOpen, close }: Props) {
                           onClick={() => {
                             setSelectedChapter(chapter.chapterNumber);
                           }}
-                          className="p-2 w-40 group flex items-center justify-between rounded-lg bg-light-orange hover:cursor-pointer"
+                          className="group flex w-40 items-center justify-between rounded-lg bg-light-orange p-2 hover:cursor-pointer"
                           key={chapter.chapterNumber}
                         >
                           <p className="text-base font-medium text-my-orange">
                             Chapter {chapter.chapterNumber}
                           </p>
-                          <ArrowNarrowRightIcon className="w-8 h-5 text-my-orange opacity-100" />
+                          <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-100" />
                         </button>
                       ) : (
                         <button
@@ -235,18 +235,18 @@ export default function ContentModal({ isOpen, close }: Props) {
                           onClick={() => {
                             setSelectedChapter(chapter.chapterNumber);
                           }}
-                          className="p-2 w-40 group flex items-center justify-between rounded-lg hover:bg-light-orange dark:hover:bg-dark-bg hover:cursor-pointer"
+                          className="group flex w-40 items-center justify-between rounded-lg p-2 hover:cursor-pointer hover:bg-light-orange dark:hover:bg-dark-bg"
                           key={chapter.chapterNumber}
                         >
                           <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
                             Chapter {chapter.chapterNumber}
                           </p>
-                          <ArrowNarrowRightIcon className="w-8 h-5 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                          <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </button>
-                      )
+                      ),
                     )}
                   </div>
-                  <div className="flex flex-col gap-1 my-auto">
+                  <div className="my-auto flex flex-col gap-1">
                     {data.slice(9, 18).map((chapter) =>
                       selectedChapter === chapter.chapterNumber ? (
                         <button
@@ -254,13 +254,13 @@ export default function ContentModal({ isOpen, close }: Props) {
                           onClick={() => {
                             setSelectedChapter(chapter.chapterNumber);
                           }}
-                          className="p-2 w-40 group flex items-center justify-between rounded-lg bg-light-orange hover:cursor-pointer"
+                          className="group flex w-40 items-center justify-between rounded-lg bg-light-orange p-2 hover:cursor-pointer"
                           key={chapter.chapterNumber}
                         >
                           <p className="text-base font-medium text-my-orange">
                             Chapter {chapter.chapterNumber}
                           </p>
-                          <ArrowNarrowRightIcon className="w-8 h-5 text-my-orange opacity-100" />
+                          <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-100" />
                         </button>
                       ) : (
                         <button
@@ -268,27 +268,27 @@ export default function ContentModal({ isOpen, close }: Props) {
                           onClick={() => {
                             setSelectedChapter(chapter.chapterNumber);
                           }}
-                          className="p-2 w-40 group flex items-center justify-between rounded-lg hover:bg-light-orange dark:hover:bg-dark-bg hover:cursor-pointer"
+                          className="group flex w-40 items-center justify-between rounded-lg p-2 hover:cursor-pointer hover:bg-light-orange dark:hover:bg-dark-bg"
                           key={chapter.chapterNumber}
                         >
                           <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
                             Chapter {chapter.chapterNumber}
                           </p>
-                          <ArrowNarrowRightIcon className="w-8 h-5 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                          <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </button>
-                      )
+                      ),
                     )}
                   </div>
                 </div>
-                <div className="flex justify-start h-full flex-1 flex-col bg-light-orange p-6">
-                  <p className="text-my-orange py-2 font-semibold">
+                <div className="flex h-full flex-1 flex-col justify-start bg-light-orange p-6">
+                  <p className="py-2 font-semibold text-my-orange">
                     Chapter {selectedChapter}
                   </p>
                   <hr className="border-my-orange/10" />
-                  <div className={`flex p-3 flex-wrap `}>
+                  <div className={`flex flex-wrap p-3 `}>
                     {data
                       .filter(
-                        (chapter) => chapter.chapterNumber === selectedChapter
+                        (chapter) => chapter.chapterNumber === selectedChapter,
                       )[0]
                       .gitaVersesByChapterId.nodes.map((verse) => (
                         <Link
@@ -299,14 +299,14 @@ export default function ContentModal({ isOpen, close }: Props) {
                           {selectedVerse.id === verse.id ? (
                             <div
                               onClick={modalClose}
-                              className="flex justify-center items-center h-10 w-10 p-1.5 m-px rounded hover:cursor-pointer bg-my-orange text-white"
+                              className="m-px flex h-10 w-10 items-center justify-center rounded bg-my-orange p-1.5 text-white hover:cursor-pointer"
                             >
                               {verse.verseNumber}
                             </div>
                           ) : (
                             <div
                               onClick={modalClose}
-                              className="flex justify-center items-center h-10 w-10 p-1.5 m-px text-gray-500 rounded hover:cursor-pointer hover:bg-my-orange hover:text-white"
+                              className="m-px flex h-10 w-10 items-center justify-center rounded p-1.5 text-gray-500 hover:cursor-pointer hover:bg-my-orange hover:text-white"
                             >
                               {verse.verseNumber}
                             </div>

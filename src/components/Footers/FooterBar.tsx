@@ -7,7 +7,7 @@ const FooterBar = () => {
   return (
     <div>
       <>
-        <div className="flex flex-col max-w-7xl mx-auto md:flex-row mb-4 justify-between align-baseline flex-wrap font-inter">
+        <div className="mx-auto mb-4 flex max-w-7xl flex-col flex-wrap justify-between align-baseline font-inter md:flex-row">
           {/* commented out for now  until next release 
           <div className="">
             <div className="relative inline-flex align-middle w-full">
@@ -101,7 +101,7 @@ const FooterBar = () => {
             </div>
           </div>
           */}
-          <div className="mt-4 md:mt-0 text-gray-400">
+          <div className="mt-4 text-gray-400 md:mt-0">
             © 2021 BhagavadGita.io.
           </div>
 

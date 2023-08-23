@@ -26,9 +26,9 @@ function VerseNavigator({
     <div
       className={classNames(
         fontSize === "large" ? "top-12" : "top-10",
-        `flex absolute w-full bg-white dark:bg-dark-bg p-3 flex-wrap border border-gray-200 dark:border-dark-100 shadow rounded ${
+        `absolute flex w-full flex-wrap rounded border border-gray-200 bg-white p-3 shadow dark:border-dark-100 dark:bg-dark-bg ${
           !viewNavigation && "hidden"
-        }`
+        }`,
       )}
     >
       <div
@@ -37,10 +37,10 @@ function VerseNavigator({
           setVerseId(0);
         }}
         className={classNames(
-          `flex items-center justify-center min-w-[2.5rem] p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+          `m-px flex min-w-[2.5rem] items-center justify-center rounded p-2 hover:cursor-pointer hover:bg-my-orange hover:text-white ${
             !currentVerse && "bg-my-orange text-white"
           }`,
-          styles.fontSize.para
+          styles.fontSize.para,
         )}
       >
         {"All"}
@@ -55,10 +55,10 @@ function VerseNavigator({
             }}
             key={index}
             className={classNames(
-              `flex items-center justify-center min-w-[2.5rem] p-2 m-px rounded hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+              `m-px flex min-w-[2.5rem] items-center justify-center rounded p-2 hover:cursor-pointer hover:bg-my-orange hover:text-white ${
                 index + 1 === currentVerse && "bg-my-orange text-white"
               }`,
-              styles.fontSize.para
+              styles.fontSize.para,
             )}
           >
             {index + 1}

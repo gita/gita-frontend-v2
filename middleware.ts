@@ -21,7 +21,7 @@ export function middleware(req: NextRequest) {
       languageId: parseInt(anyL),
       translationAuthorId: parseInt(anyT),
       commentaryAuthorId: parseInt(anyC),
-    }
+    },
   );
   const languageIsInconsistent = searchL && searchL !== String(language.id);
   const translationAuthorIsInconsistent =

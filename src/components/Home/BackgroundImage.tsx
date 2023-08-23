@@ -19,7 +19,7 @@ const BackgroundImage = () => {
 
   return (
     <>
-      <div className="absolute top-[204px] z-0 w-full h-[460px]">
+      <div className="absolute top-[204px] z-0 h-[460px] w-full">
         <Image src="/main-background.png" alt="background image" fill />
       </div>
       <Image
@@ -27,7 +27,7 @@ const BackgroundImage = () => {
         alt="flower"
         width={365}
         height={150}
-        className="absolute top-[54%] left-[50%] -translate-x-2/4"
+        className="absolute left-[50%] top-[54%] -translate-x-2/4"
       />
     </>
   );

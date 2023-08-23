@@ -90,7 +90,7 @@ export default async function Chapter({ params: { chapterNumber } }: Props) {
   };
 
   if (!chapterData) {
-    return <h1 className="text-center p-10">Not found</h1>;
+    return <h1 className="p-10 text-center">Not found</h1>;
   }
 
   return (

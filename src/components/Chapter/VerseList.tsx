@@ -20,19 +20,19 @@ const VerseList = ({ verseData }: Props) => {
       href={`/chapter/${chapter_number}/verse/${verse_number}`}
       prefetch={false}
     >
-      <div className="w-full flex flex-col lg:flex-row py-2 lg:py-5 justify-between px-6 hover:cursor-pointer hover:bg-box-bg dark:hover:bg-dark-100 rounded-lg">
+      <div className="flex w-full flex-col justify-between rounded-lg px-6 py-2 hover:cursor-pointer hover:bg-box-bg dark:hover:bg-dark-100 lg:flex-row lg:py-5">
         <div
           className={classNames(
-            "lg:w-1/5 font-medium text-my-orange uppercase",
-            styles.fontSize && styles.fontSize.para && styles.lineHeight
+            "font-medium uppercase text-my-orange lg:w-1/5",
+            styles.fontSize && styles.fontSize.para && styles.lineHeight,
           )}
         >
           Verse {verse_number}
         </div>
         <div
           className={classNames(
-            "flex-1 text-gray-900 dark:text-gray-50 sm:mt-0 sm:col-span-4",
-            styles.fontSize && styles.fontSize.para && styles.lineHeight
+            "flex-1 text-gray-900 dark:text-gray-50 sm:col-span-4 sm:mt-0",
+            styles.fontSize && styles.fontSize.para && styles.lineHeight,
           )}
         >
           {gita_translations[0].description}

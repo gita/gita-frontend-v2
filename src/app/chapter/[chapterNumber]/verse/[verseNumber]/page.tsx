@@ -109,7 +109,7 @@ const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
     chapterNumber,
     verseNumber,
     languageSettings.commentaryAuthor.name,
-    languageSettings.translationAuthor.name
+    languageSettings.translationAuthor.name,
   );
 
   if (!verseData) {
