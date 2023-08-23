@@ -1,4 +1,10 @@
-import { order_by, query, resolved } from "src/gqty-client";
+import { query, resolved } from "src/gqty-client";
+
+const msInDay = 24 * 60 * 60 * 1000;
+const dayOfYear = (date: Date) =>
+  (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
+    Date.UTC(date.getFullYear(), 0, 0)) /
+  msInDay;
 
 const whereGitaAuthor = {
   where: {
@@ -12,27 +18,9 @@ const whereGitaAuthor = {
 
 export const getDailyVerse = () =>
   resolved(() => {
-    const versesOfTheDay = query
-      .verse_of_the_day({
-        where: {
-          date: {
-            _lte: new Date(),
-          },
-        },
-        order_by: [{ date: order_by.desc }],
-        limit: 1,
-      })
-      .map((verseOfTheDay) => ({
-        id: verseOfTheDay.id!,
-        date: verseOfTheDay.date!,
-        verse_order: verseOfTheDay.verse_order!,
-      }));
-
-    const verseOrder = versesOfTheDay[0]?.verse_order || 1;
-
     const gitaVerse =
       query.gita_verses_by_pk({
-        id: verseOrder,
+        id: dayOfYear(new Date()),
       }) ||
       query.gita_verses({
         limit: 1,
