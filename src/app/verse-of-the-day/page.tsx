@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import NotFound from "components/NotFound";
+import { getTranslations } from "shared/translate/server";
 
 import { getDailyVerse } from "../../lib/getDailyVerse";
 import { VerseOfTheDay } from "./verse-of-the-day";
@@ -60,7 +61,12 @@ const Page = async () => {
     return <NotFound hint="Daily verse not found" />;
   }
 
-  return <VerseOfTheDay dailyVerse={dailyVerse} />;
+  return (
+    <VerseOfTheDay
+      dailyVerse={dailyVerse}
+      translations={await getTranslations(["components/Headers"])}
+    />
+  );
 };
 
 export default Page;

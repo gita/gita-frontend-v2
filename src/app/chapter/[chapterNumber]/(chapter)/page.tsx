@@ -70,7 +70,6 @@ export async function generateMetadata({
 export default async function Chapter({ params: { chapterNumber } }: Props) {
   const headersList = headers();
   const languageSettings = getLanguageSettings({
-    languageId: parseInt(headersList.get("x-settings-l") || ""),
     translationAuthorId: parseInt(headersList.get("x-settings-t") || ""),
     commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),
   });

@@ -1,11 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server";
 
+import { supportedLocales } from "shared/constants";
 import { getLanguageSettings } from "shared/functions";
 
 export function middleware(req: NextRequest) {
   const { origin, pathname, searchParams } = new URL(req.url);
 
-  const cookieL = req.cookies.get("languageId")?.value;
   const cookieT = req.cookies.get("translationAuthorId")?.value;
   const cookieC = req.cookies.get("commentaryAuthorId")?.value;
 
@@ -13,31 +13,23 @@ export function middleware(req: NextRequest) {
   const searchT = searchParams.get("t");
   const searchC = searchParams.get("c");
 
-  const anyL = searchL || (typeof cookieL === "string" && cookieL) || "";
   const anyT = searchT || (typeof cookieT === "string" && cookieT) || "";
   const anyC = searchC || (typeof cookieC === "string" && cookieC) || "";
 
-  const { language, translationAuthor, commentaryAuthor } = getLanguageSettings(
-    {
-      languageId: parseInt(anyL),
-      translationAuthorId: parseInt(anyT),
-      commentaryAuthorId: parseInt(anyC),
-    },
-  );
-  const languageIsInconsistent = searchL && searchL !== String(language.id);
+  const { translationAuthor, commentaryAuthor } = getLanguageSettings({
+    translationAuthorId: parseInt(anyT),
+    commentaryAuthorId: parseInt(anyC),
+  });
   const translationAuthorIsInconsistent =
     searchT && searchT !== String(translationAuthor.id);
   const commentaryAuthorIsInconsistent =
     searchC && searchC !== String(commentaryAuthor.id);
 
   const someSettingIsInconsistent =
-    languageIsInconsistent ||
-    translationAuthorIsInconsistent ||
-    commentaryAuthorIsInconsistent;
+    translationAuthorIsInconsistent || commentaryAuthorIsInconsistent;
 
   if (someSettingIsInconsistent) {
     const urlSearchParams = new URLSearchParams({
-      l: String(language.id),
       t: String(translationAuthor.id),
       c: String(commentaryAuthor.id),
     });
@@ -45,9 +37,11 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(updatedUrl);
   }
 
+  const [maybeLocale] = pathname.split("/").filter(Boolean).reverse();
+
   const response = NextResponse.next({
     headers: {
-      "x-settings-l": String(language.id),
+      "x-settings-l": supportedLocales.includes(maybeLocale) ? maybeLocale : "",
       "x-settings-t": String(translationAuthor.id),
       "x-settings-c": String(commentaryAuthor.id),
     },

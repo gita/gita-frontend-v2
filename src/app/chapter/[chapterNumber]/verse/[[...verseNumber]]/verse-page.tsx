@@ -7,9 +7,10 @@ import classNames from "utils/classNames";
 
 type Props = {
   verseData: GitaVerse;
+  translations: Record<string, string>;
 };
 
-export default function VersePage({ verseData }: Props) {
+export default function VersePage({ verseData, translations }: Props) {
   const styles = getMyStyles();
 
   return (
@@ -19,7 +20,7 @@ export default function VersePage({ verseData }: Props) {
         `bg-${styles.backgroundColor}`,
       )}
     >
-      <PageHeader />
+      <PageHeader translations={translations} />
       {verseData && <Verse verse={verseData} />}
       {!verseData && (
         <h1 className="p-5 text-center">This verse was not found</h1>

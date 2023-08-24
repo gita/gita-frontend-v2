@@ -4,13 +4,14 @@ import { headers } from "next/headers";
 import NotFound from "components/NotFound";
 import { getVerseData } from "lib/getVerseData";
 import { getLanguageSettings } from "shared/functions";
+import { getTranslations } from "shared/translate/server";
 
 import VersePage from "./verse-page";
 
 export const dynamic = "force-dynamic";
 
 type Props = {
-  params: { chapterNumber: string; verseNumberAndLocale: [string, string?] };
+  params: { chapterNumber: string; verseNumber: [string, string?] };
 };
 
 // export async function generateStaticParams() {
@@ -26,7 +27,7 @@ type Props = {
 
 export async function generateMetadata({
   params: {
-    verseNumberAndLocale: [verseNumber],
+    verseNumber: [verseNumber],
     chapterNumber,
   },
 }: Props): Promise<Metadata> {
@@ -72,7 +73,7 @@ export async function generateMetadata({
 const Verse = async ({
   params: {
     chapterNumber,
-    verseNumberAndLocale: [verseNumber /* , locale */],
+    verseNumber: [verseNumber],
   },
 }: Props) => {
   const jsonLd = {
@@ -110,7 +111,6 @@ const Verse = async ({
 
   const headersList = headers();
   const languageSettings = getLanguageSettings({
-    languageId: parseInt(headersList.get("x-settings-l") || ""),
     translationAuthorId: parseInt(headersList.get("x-settings-t") || ""),
     commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),
   });
@@ -132,7 +132,10 @@ const Verse = async ({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <VersePage verseData={verseData} />
+      <VersePage
+        verseData={verseData}
+        translations={await getTranslations(["components/Headers"])}
+      />
     </article>
   );
 };

@@ -68,10 +68,6 @@ interface AdvancedSettings {
 }
 
 interface LanguageSettings {
-  language: {
-    id: number;
-    language: string;
-  };
   translationAuthor: {
     id: number;
     name: string;

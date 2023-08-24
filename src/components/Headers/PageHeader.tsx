@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 import { defaultAdvancedSettings } from "shared/constants";
 import { getLanguageSettings } from "shared/functions";
+import { getTranslate } from "shared/translate";
 
 import useEnvironment from "../../hooks/useEnvironment";
 import useToggle from "../../hooks/useToggle";
@@ -28,6 +29,7 @@ interface Props {
   setAdvancedSettings?: Dispatch<SetStateAction<AdvancedSettings>>;
   languageSettings?: LanguageSettings;
   setLanguageSettings?: Dispatch<SetStateAction<LanguageSettings>>;
+  translations: Record<string, string>;
 }
 
 const PageHeader = ({
@@ -35,6 +37,7 @@ const PageHeader = ({
   setAdvancedSettings = noop,
   languageSettings = getLanguageSettings(),
   setLanguageSettings = noop,
+  translations,
 }: Props) => {
   const { devnagari, verseText, synonyms, translation, purport } =
     advancedSettings;
@@ -70,6 +73,9 @@ const PageHeader = ({
   const toggleClass = () => {
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
+
+  const translate = getTranslate(translations);
+
   function handleSearch(e) {
     e.preventDefault();
 
@@ -105,7 +111,7 @@ const PageHeader = ({
                           width={24}
                           height={24}
                         />
-                        Home
+                        {translate("Home")}
                       </Link>
                     </div>
                     <button

@@ -4,12 +4,10 @@ import { FC, useState } from "react";
 
 import {
   defaultCommentaryAuthorId,
-  defaultLanguageId,
   defaultTranslationAuthorId,
 } from "shared/constants";
 import {
   getCommentaryAuthorById,
-  getLanguageById,
   getTranslationAuthorById,
 } from "shared/functions";
 
@@ -20,9 +18,13 @@ import classNames from "../../utils/classNames";
 
 interface VerseOfTheDayProps {
   dailyVerse: GitaVerse;
+  translations: Record<string, string>;
 }
 
-export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({ dailyVerse }) => {
+export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({
+  dailyVerse,
+  translations,
+}) => {
   const styles = useMyStyles();
 
   const [advancedSettings, setAdvancedSettings] = useState({
@@ -34,7 +36,6 @@ export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({ dailyVerse }) => {
   });
 
   const [languageSettings, setLanguageSettings] = useState({
-    language: getLanguageById(defaultLanguageId)!,
     translationAuthor: getTranslationAuthorById(defaultTranslationAuthorId)!,
     commentaryAuthor: getCommentaryAuthorById(defaultCommentaryAuthorId)!,
   });
@@ -49,8 +50,7 @@ export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({ dailyVerse }) => {
       <PageHeader
         advancedSettings={advancedSettings}
         setAdvancedSettings={setAdvancedSettings}
-        languageSettings={languageSettings}
-        setLanguageSettings={setLanguageSettings}
+        translations={translations}
       />
       {dailyVerse && (
         <Verse verse={dailyVerse} advancedSettings={advancedSettings} />

@@ -32,7 +32,6 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
     "commentaryAuthorId",
   ]);
 
-  const [language, setLanguage] = useState(languageSettings.language);
   const [translationAuthor, setTranslationAuthor] = useState({
     id: 0,
     name: "",
@@ -46,12 +45,10 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
 
   useEffect(() => {
     const myLanguageSettings = getLanguageSettings({
-      languageId: parseInt(String(cookies.languageId)),
       translationAuthorId: parseInt(String(cookies.translationAuthorId)),
       commentaryAuthorId: parseInt(String(cookies.commentaryAuthorId)),
     });
 
-    setLanguage(myLanguageSettings.language);
     setTranslationAuthor(myLanguageSettings.translationAuthor);
     setCommentaryAuthor(myLanguageSettings.commentaryAuthor);
   }, [
@@ -62,7 +59,6 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
 
   function handleSubmit() {
     setIsSubmitting(true);
-    setCookie("languageId", language.id, cookieOptions);
     setCookie("translationAuthorId", translationAuthor.id, cookieOptions);
     setCookie("commentaryAuthorId", commentaryAuthor.id, cookieOptions);
     window.location.reload();

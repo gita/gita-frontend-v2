@@ -99,13 +99,11 @@ export const getCommentaryAuthorById = (commentaryAuthorId: number) =>
   commentaryAuthors.find(({ id }) => id === commentaryAuthorId);
 
 export const getLanguageSettings = (
-  { languageId, translationAuthorId, commentaryAuthorId } = {
-    languageId: defaultLanguageId,
+  { translationAuthorId, commentaryAuthorId } = {
     translationAuthorId: defaultTranslationAuthorId,
     commentaryAuthorId: defaultCommentaryAuthorId,
   },
 ): LanguageSettings => ({
-  language: getLanguageById(languageId) || getLanguageById(defaultLanguageId)!,
   translationAuthor:
     getTranslationAuthorById(translationAuthorId) ||
     getTranslationAuthorById(defaultTranslationAuthorId)!,
