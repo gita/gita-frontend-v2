@@ -1,3 +1,4 @@
+"use client";
 import { Fragment, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { Dialog, Listbox, Switch, Transition } from "@headlessui/react";

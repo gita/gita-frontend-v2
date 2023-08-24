@@ -1,3 +1,5 @@
+"use client";
+
 import { Fragment, useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";

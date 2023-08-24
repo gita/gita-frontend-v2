@@ -21,6 +21,7 @@ import Settings from "../Shared/Settings";
 import AudioPlayer from "./AudioPlayer";
 import ContentModal from "./ContentModal";
 import DarkModeToggle from "./DarkModeToggle";
+import LanguageDropdown from "./LanguageDropdown";
 
 const noop = () => {};
 
@@ -131,7 +132,7 @@ const PageHeader = ({
                         width={24}
                         height={24}
                       />
-                      Content
+                      {translate("Content")}
                     </button>
                     <button
                       type="button"
@@ -148,7 +149,7 @@ const PageHeader = ({
                         width={28}
                         height={24}
                       />
-                      Appearance
+                      {translate("Appearance")}
                     </button>
                     <button
                       type="button"
@@ -167,17 +168,8 @@ const PageHeader = ({
                         width={24}
                         height={24}
                       />
-                      Source
+                      {translate("Source")}
                     </button>
-                    {/*<Link href="/verse-parallel">
-                      <a
-                        href="#"
-                        className="border-transparent text-current flex flex-col items-center p-2 rounded border-b-2 text-sm font-medium hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <img className="w-6 h-6 mb-1" src="/Parellel.svg" />
-                        Parallel Mode
-                      </a>
-                    </Link> */}
 
                     <button
                       type="button"
@@ -194,7 +186,7 @@ const PageHeader = ({
                         width={24}
                         height={24}
                       />
-                      Play Audio
+                      {translate("Play Audio")}
                     </button>
 
                     <button
@@ -214,7 +206,7 @@ const PageHeader = ({
                         width={24}
                         height={24}
                       />
-                      Advanced View
+                      {translate("Advanced View")}
                     </button>
                     {isProduction ? null : (
                       <button
@@ -234,7 +226,7 @@ const PageHeader = ({
                           width={24}
                           height={24}
                         />
-                        Notes
+                        {translate("Notes")}
                       </button>
                     )}
                     {isProduction ? null : (
@@ -249,7 +241,7 @@ const PageHeader = ({
                           width={24}
                           height={24}
                         />
-                        Bookmark
+                        {translate("Bookmark")}
                       </Link>
                     )}
                   </div>
@@ -257,7 +249,7 @@ const PageHeader = ({
                 <div className="flex flex-1 items-center justify-start pr-2  lg:ml-6 lg:justify-end">
                   <div className="w-full max-w-lg lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
-                      Search
+                      {translate("Search")}
                     </label>
                     <div className="relative">
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
@@ -279,7 +271,7 @@ const PageHeader = ({
                           id="search"
                           name="search"
                           className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:placeholder:text-gray-50 sm:text-sm"
-                          placeholder="Search"
+                          placeholder={translate("Search")}
                           type="search"
                           value={input}
                           onChange={(e) => {
@@ -290,6 +282,7 @@ const PageHeader = ({
                     </div>
                   </div>
                   <DarkModeToggle />
+                  <LanguageDropdown align="right" />
                 </div>
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}
@@ -311,52 +304,53 @@ const PageHeader = ({
                   href="/"
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Home
+                  {translate("Home")}
                 </Link>
                 <button
                   type="button"
                   onClick={openContentModal}
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Content
+                  {translate("Content")}
                 </button>
                 <button
                   type="button"
                   onClick={openSettingsModal}
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Appearance
+                  {translate("Appearance")}
                 </button>
                 <button
                   type="button"
                   onClick={openAuthorSettingsModal}
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Language
+                  {translate("Source")}
                 </button>
                 <button
                   type="button"
                   onClick={openPlayerModal}
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Play Audio
+                  {translate("Play Audio")}
                 </button>
                 <button
                   type="button"
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Notes
+                  {translate("Notes")}
                 </button>
                 <button
                   type="button"
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Bookmark
+                  {translate("Bookmark")}
                 </button>
               </div>
+
               <Disclosure>
                 <Disclosure.Button className="flex w-full justify-between border-t-2 border-gray-300 py-2 pl-3 pr-4 text-base font-medium text-black hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-900 dark:focus:text-gray-900">
-                  Advanced View
+                  {translate("Advanced View")}
                   <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                 </Disclosure.Button>
                 <Disclosure.Panel className="z-50 text-gray-500">
@@ -370,7 +364,7 @@ const PageHeader = ({
                         className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
-                        Devnagari
+                        {translate("Devnagari")}
                       </Switch.Label>
                     </span>
                     <Switch
@@ -410,7 +404,7 @@ const PageHeader = ({
                         className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
-                        Verse Text
+                        {translate("Verse Text")}
                       </Switch.Label>
                     </span>
                     <Switch
@@ -450,7 +444,7 @@ const PageHeader = ({
                         className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
-                        Synonyms
+                        {translate("Synonyms")}
                       </Switch.Label>
                     </span>
                     <Switch
@@ -489,7 +483,7 @@ const PageHeader = ({
                         className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
-                        Translation
+                        {translate("Translation")}
                       </Switch.Label>
                     </span>
                     <Switch
@@ -528,7 +522,7 @@ const PageHeader = ({
                         className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
-                        Purport
+                        {translate("Purport")}
                       </Switch.Label>
                     </span>
                     <Switch
