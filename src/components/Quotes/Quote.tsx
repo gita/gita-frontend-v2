@@ -1,6 +1,6 @@
-import { SvgChapterBackground } from "../svgs";
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
+import { SvgChapterBackground } from "../svgs";
 
 interface Props {
   quoteNumber: number;

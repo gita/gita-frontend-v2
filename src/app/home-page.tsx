@@ -1,11 +1,12 @@
 "use server";
 
-import HomeLayout from "../layouts/HomeLayout";
-import Banner from "../components/Home/Banner";
-import VerseOfDay from "../components/Home/VerseOfDay";
-import Newsletter from "../components/Home/Newsletter";
-import Chapters from "../components/Home/Chapters";
 import BackgroundImage from "components/Home/BackgroundImage";
+
+import Banner from "../components/Home/Banner";
+import Chapters from "../components/Home/Chapters";
+import Newsletter from "../components/Home/Newsletter";
+import VerseOfDay from "../components/Home/VerseOfDay";
+import HomeLayout from "../layouts/HomeLayout";
 
 function HomePage({ chapters }: ChaptersProps) {
   return (

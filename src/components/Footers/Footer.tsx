@@ -1,12 +1,13 @@
 "use client";
 
 import { Fragment } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
-import classNames from "../../utils/classNames";
+import Image from "next/image";
+import Link from "next/link";
+
 import useMyStyles from "../../hooks/useMyStyles";
+import classNames from "../../utils/classNames";
 
 interface IconProps {
   className: string;

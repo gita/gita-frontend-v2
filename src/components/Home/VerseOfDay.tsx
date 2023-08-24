@@ -1,8 +1,9 @@
 "use server";
 
 import Link from "next/link";
-import { Skeleton } from "../Shared/Skeleton";
+
 import { getDailyVerse } from "../../lib/getDailyVerse";
+import { Skeleton } from "../Shared/Skeleton";
 
 const VerseOfDay = async () => {
   const dailyVerse = await getDailyVerse();

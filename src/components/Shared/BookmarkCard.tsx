@@ -1,9 +1,10 @@
 "use client";
 
 import { Fragment } from "react";
-import Image from "next/image";
 import { Menu, Transition } from "@headlessui/react";
 import { DotsVerticalIcon } from "@heroicons/react/solid";
+import Image from "next/image";
+
 import classNames from "../../utils/classNames";
 
 const Bookmarkcard = () => {

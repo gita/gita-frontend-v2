@@ -1,14 +1,16 @@
+import { Metadata } from "next";
 import { headers } from "next/headers";
 
-import { Metadata } from "next";
+import NotFound from "components/NotFound";
 import { getVerseData } from "lib/getVerseData";
-import VersePage from "./verse-page";
 import { getLanguageSettings } from "shared/functions";
+
+import VersePage from "./verse-page";
 
 export const dynamic = "force-dynamic";
 
 type Props = {
-  params: { chapterNumber: string; verseNumber: string };
+  params: { chapterNumber: string; verseNumberAndLocale: [string, string?] };
 };
 
 // export async function generateStaticParams() {
@@ -23,7 +25,10 @@ type Props = {
 // }
 
 export async function generateMetadata({
-  params: { verseNumber, chapterNumber },
+  params: {
+    verseNumberAndLocale: [verseNumber],
+    chapterNumber,
+  },
 }: Props): Promise<Metadata> {
   return {
     title: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber} - BhagavadGita.io`,
@@ -64,7 +69,12 @@ export async function generateMetadata({
   };
 }
 
-const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
+const Verse = async ({
+  params: {
+    chapterNumber,
+    verseNumberAndLocale: [verseNumber /* , locale */],
+  },
+}: Props) => {
   const jsonLd = {
     "@context": "http://schema.org",
     "@type": "BreadcrumbList",
@@ -113,7 +123,7 @@ const Verse = async ({ params: { chapterNumber, verseNumber } }: Props) => {
   );
 
   if (!verseData) {
-    return <h1>Not found</h1>;
+    return <NotFound hint={`Verse ${verseNumber} not found`} />;
   }
 
   return (

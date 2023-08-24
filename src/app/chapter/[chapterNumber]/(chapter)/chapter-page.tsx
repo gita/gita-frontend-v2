@@ -6,12 +6,13 @@ import {
   SortAscendingIcon,
   SortDescendingIcon,
 } from "@heroicons/react/solid";
-import { SvgChapterBackground } from "components/svgs";
+
 import PageNavigator from "components/Chapter/PageNavigator";
-import classNames from "utils/classNames";
-import VerseNavigator from "components/Chapter/VerseNavigator";
 import VerseList from "components/Chapter/VerseList";
+import VerseNavigator from "components/Chapter/VerseNavigator";
+import { SvgChapterBackground } from "components/svgs";
 import useMyStyles from "hooks/useMyStyles";
+import classNames from "utils/classNames";
 
 interface Props {
   chapterData: GitaChapterData;

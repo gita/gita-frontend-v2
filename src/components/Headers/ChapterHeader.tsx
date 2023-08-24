@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Disclosure } from "@headlessui/react";
-import { SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import Link from "next/link";
+import { SearchIcon } from "@heroicons/react/solid";
 import Image from "next/image";
-import Settings from "../Shared/Settings";
-import DarkModeToggle from "./DarkModeToggle";
-import ContentModal from "./ContentModal";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
+import Settings from "../Shared/Settings";
+import ContentModal from "./ContentModal";
+import DarkModeToggle from "./DarkModeToggle";
 
 const ChapterHeader = () => {
   const [input, setInput] = useState("");

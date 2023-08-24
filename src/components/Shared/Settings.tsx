@@ -1,11 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+
 import { editSettings } from "../../redux/actions/settings";
-import classNames from "../../utils/classNames";
 import { RootState } from "../../redux/reducers/rootReducer";
+import classNames from "../../utils/classNames";
 
 interface Props {
   settingsIsOpen: boolean;

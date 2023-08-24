@@ -1,6 +1,9 @@
+import { Metadata } from "next";
+
+import NotFound from "components/NotFound";
+
 import { getDailyVerse } from "../../lib/getDailyVerse";
 import { VerseOfTheDay } from "./verse-of-the-day";
-import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gitaVerse = await getDailyVerse();
@@ -54,7 +57,7 @@ const Page = async () => {
   const dailyVerse = await getDailyVerse();
 
   if (!dailyVerse) {
-    return <h1>Not found</h1>;
+    return <NotFound hint="Daily verse not found" />;
   }
 
   return <VerseOfTheDay dailyVerse={dailyVerse} />;

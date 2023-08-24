@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import QuotesBannerBG from "../../../public/quotes-bg.png";
 export default function QuotesBanner() {
   return (

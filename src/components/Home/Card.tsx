@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { SvgList, SvgBookmark, SvgShuffle } from "../svgs";
+
 import truncate from "../../utils/truncate";
+import { SvgBookmark, SvgList, SvgShuffle } from "../svgs";
 
 interface Props {
   chapter: TChapter;

@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+
 import { SvgChevronLeft, SvgChevronRight } from "../svgs";
 
 interface Props {

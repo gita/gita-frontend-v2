@@ -1,8 +1,9 @@
-import Translation from "../../components/Verse/Translation";
-import Commentary from "../../components/Verse/Commentary";
 import { Metadata } from "next";
 import Image from "next/image";
+
 import { SvgFloralDivider } from "../../components/svgs";
+import Commentary from "../../components/Verse/Commentary";
+import Translation from "../../components/Verse/Translation";
 
 export const metadata: Metadata = {
   title: "Bhagavad Gita App - Verse",

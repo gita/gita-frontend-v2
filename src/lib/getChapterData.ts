@@ -7,7 +7,10 @@ export const getChapterNumbers = () =>
       .map(({ chapter_number }) => ({ chapter_number: chapter_number! })),
   }));
 
-export const getChapterData = (chapterNumber: number) =>
+export const getChapterData = (
+  chapterNumber: number,
+  translationsAuthor = "Swami Sivananda",
+) =>
   resolved(() => {
     const gitaChapter = query.gita_chapters_by_pk({
       id: chapterNumber,
@@ -45,8 +48,7 @@ export const getChapterData = (chapterNumber: number) =>
         gita_translations: gitaVerse
           .gita_translations({
             where: {
-              language: { _eq: "english" },
-              author_name: { _eq: "Swami Gambirananda" },
+              author_name: { _eq: translationsAuthor },
             },
           })
           .map((gitaTranslation) => ({

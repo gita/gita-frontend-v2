@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import AboutBanner from "../../components/Shared/AboutBanner";
 
 export const metadata: Metadata = {

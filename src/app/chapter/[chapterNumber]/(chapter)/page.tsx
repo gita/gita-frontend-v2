@@ -1,5 +1,10 @@
 import { Metadata } from "next";
+import { headers } from "next/headers";
+
+import NotFound from "components/NotFound";
 import { getChapterData } from "lib/getChapterData";
+import { getLanguageSettings } from "shared/functions";
+
 import ChapterPage from "./chapter-page";
 
 type Props = {
@@ -63,7 +68,17 @@ export async function generateMetadata({
 }
 
 export default async function Chapter({ params: { chapterNumber } }: Props) {
-  const chapterData = await getChapterData(parseInt(chapterNumber));
+  const headersList = headers();
+  const languageSettings = getLanguageSettings({
+    languageId: parseInt(headersList.get("x-settings-l") || ""),
+    translationAuthorId: parseInt(headersList.get("x-settings-t") || ""),
+    commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),
+  });
+
+  const chapterData = await getChapterData(
+    parseInt(chapterNumber),
+    languageSettings.translationAuthor.name,
+  );
 
   const jsonLd = {
     "@context": "http://schema.org",
@@ -90,7 +105,7 @@ export default async function Chapter({ params: { chapterNumber } }: Props) {
   };
 
   if (!chapterData) {
-    return <h1 className="p-10 text-center">Not found</h1>;
+    return <NotFound hint={`Chapter ${chapterNumber} not found`} />;
   }
 
   return (

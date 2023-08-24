@@ -1,13 +1,15 @@
 "use client";
 
-import { connect } from "react-redux";
 import { FormEvent, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { useCookies } from "react-cookie";
+import { connect } from "react-redux";
 import Image from "next/image";
-import Modal from "./Modal";
-import { subscribeUser } from "lib/subscribeUser";
+import { usePathname } from "next/navigation";
+
 import NotificationBanner from "components/Shared/NotificationBanner";
+import { subscribeUser } from "lib/subscribeUser";
+
+import Modal from "./Modal";
 
 type SubscribeMessage = { isSuccess: boolean; message: string };
 

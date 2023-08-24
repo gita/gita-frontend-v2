@@ -1,6 +1,7 @@
 import { Metadata } from "next";
-import HomePage from "./home-page";
+
 import { getAllChapters } from "../lib/getAllChapters";
+import HomePage from "./home-page";
 
 export const metadata: Metadata = {
   title: "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",

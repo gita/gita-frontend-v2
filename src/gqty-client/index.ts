@@ -4,6 +4,7 @@
 
 import type { QueryFetcher } from "gqty";
 import { createClient } from "gqty";
+
 import type {
   GeneratedSchema,
   SchemaObjectTypes,

@@ -1,9 +1,9 @@
 "use client";
 
-import classNames from "utils/classNames";
 import PageHeader from "components/Headers/PageHeader";
 import { Verse } from "components/Verse/Verse";
 import { getMyStyles } from "shared/functions";
+import classNames from "utils/classNames";
 
 type Props = {
   verseData: GitaVerse;

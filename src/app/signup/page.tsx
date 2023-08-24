@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
-import { supabase } from "../../utils/supabase";
-import { setNotification } from "../../redux/actions/main";
+
 import {
   SvgEyeCross,
   SvgEyeOpen,
@@ -13,6 +12,8 @@ import {
   SvgMail,
   SvgUser,
 } from "../../components/svgs";
+import { setNotification } from "../../redux/actions/main";
+import { supabase } from "../../utils/supabase";
 
 function Signup() {
   const [error, setError] = useState("");

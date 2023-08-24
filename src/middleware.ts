@@ -1,5 +1,6 @@
-import { getLanguageSettings } from "shared/functions";
 import { type NextRequest, NextResponse } from "next/server";
+
+import { getLanguageSettings } from "shared/functions";
 
 export function middleware(req: NextRequest) {
   const { origin, pathname, searchParams } = new URL(req.url);
@@ -51,6 +52,7 @@ export function middleware(req: NextRequest) {
       "x-settings-c": String(commentaryAuthor.id),
     },
   });
+
   return response;
 }
 

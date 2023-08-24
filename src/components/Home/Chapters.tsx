@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import Card from "./Card";
 
 const Chapters = ({ chapters }: ChaptersProps) => {

@@ -1,12 +1,14 @@
 "use client";
 
-import "tailwindcss/tailwind.css";
-import { ThemeProvider } from "next-themes";
-import { CookiesProvider } from "react-cookie";
-import PlausibleProvider from "next-plausible";
 import { ReactNode } from "react";
+import { CookiesProvider } from "react-cookie";
 import { Provider } from "react-redux";
+import PlausibleProvider from "next-plausible";
+import { ThemeProvider } from "next-themes";
+
 import { useStore } from "../redux/store";
+
+import "tailwindcss/tailwind.css";
 
 export default function Providers({ children }: { children: ReactNode }) {
   const store = useStore(undefined);

@@ -2,22 +2,24 @@
 
 import { Dispatch, SetStateAction, useState } from "react";
 import { Disclosure, Switch } from "@headlessui/react";
-import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import Link from "next/link";
+import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import Image from "next/image";
-import ContentModal from "./ContentModal";
-import AudioPlayer from "./AudioPlayer";
-import Settings from "../Shared/Settings";
-import AuthorSettings from "../Shared/Author";
-import DarkModeToggle from "./DarkModeToggle";
-import useToggle from "../../hooks/useToggle";
-import classNames from "../../utils/classNames";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import useEnvironment from "../../hooks/useEnvironment";
-import NotesModal from "../Shared/NotesModal";
+
 import { defaultAdvancedSettings } from "shared/constants";
 import { getLanguageSettings } from "shared/functions";
+
+import useEnvironment from "../../hooks/useEnvironment";
+import useToggle from "../../hooks/useToggle";
+import classNames from "../../utils/classNames";
+import AuthorSettings from "../Shared/Author";
+import NotesModal from "../Shared/NotesModal";
+import Settings from "../Shared/Settings";
+import AudioPlayer from "./AudioPlayer";
+import ContentModal from "./ContentModal";
+import DarkModeToggle from "./DarkModeToggle";
 
 const noop = () => {};
 

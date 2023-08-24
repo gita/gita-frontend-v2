@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { supabase } from "../../utils/supabase";
+import { useRouter } from "next/navigation";
+
 import Notescard from "../../components/Shared/NotesCard";
 import { setNotification } from "../../redux/actions/main";
+import { supabase } from "../../utils/supabase";
 
 const Notes = () => {
   const [notes, setNotes] = useState<any>([]);

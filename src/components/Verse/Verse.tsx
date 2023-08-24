@@ -1,12 +1,14 @@
 import { FC } from "react";
-import classNames from "../../utils/classNames";
+
+import { defaultAdvancedSettings } from "shared/constants";
+
 import useMyStyles from "../../hooks/useMyStyles";
+import classNames from "../../utils/classNames";
 import PageNavigator from "../Chapter/PageNavigator";
 import { Skeleton } from "../Shared/Skeleton";
 import { SvgFloralDivider } from "../svgs";
-import Translation from "./Translation";
 import Commentary from "./Commentary";
-import { defaultAdvancedSettings } from "shared/constants";
+import Translation from "./Translation";
 
 interface VerseProps {
   verse: GitaVerse;

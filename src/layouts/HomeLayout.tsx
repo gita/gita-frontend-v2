@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import Footer from "../components/Footers/Footer";
 import IndexHeader from "../components/Headers/IndexHeader";
 

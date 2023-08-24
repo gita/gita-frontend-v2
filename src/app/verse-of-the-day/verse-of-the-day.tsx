@@ -1,20 +1,22 @@
 "use client";
 
 import { FC, useState } from "react";
-import useMyStyles from "../../hooks/useMyStyles";
-import classNames from "../../utils/classNames";
-import PageHeader from "../../components/Headers/PageHeader";
-import { Verse } from "../../components/Verse/Verse";
-import {
-  getCommentaryAuthorById,
-  getLanguageById,
-  getTranslationAuthorById,
-} from "shared/functions";
+
 import {
   defaultCommentaryAuthorId,
   defaultLanguageId,
   defaultTranslationAuthorId,
 } from "shared/constants";
+import {
+  getCommentaryAuthorById,
+  getLanguageById,
+  getTranslationAuthorById,
+} from "shared/functions";
+
+import PageHeader from "../../components/Headers/PageHeader";
+import { Verse } from "../../components/Verse/Verse";
+import useMyStyles from "../../hooks/useMyStyles";
+import classNames from "../../utils/classNames";
 
 interface VerseOfTheDayProps {
   dailyVerse: GitaVerse;

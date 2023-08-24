@@ -1,8 +1,9 @@
 import { getCookie } from "cookies-next";
 
-import languages from "constant/languages.json";
 import commentaryAuthors from "constant/commentary_authors.json";
+import languages from "constant/languages.json";
 import translationAuthors from "constant/translation_authors.json";
+
 import {
   defaultCommentaryAuthorId,
   defaultLanguageId,

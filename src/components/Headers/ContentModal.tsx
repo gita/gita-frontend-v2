@@ -1,12 +1,13 @@
 import { Fragment, useState } from "react";
-import Link from "next/link";
 import { Dialog, Listbox, Transition } from "@headlessui/react";
 import {
   ArrowNarrowRightIcon,
   CheckIcon,
   SelectorIcon,
 } from "@heroicons/react/solid";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+
 import data from "../../constant/contentModal.json";
 
 interface Props {

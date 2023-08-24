@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
-import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
-import { supabase } from "../../utils/supabase";
-import { setNotification } from "../../redux/actions/main";
+import { useRouter } from "next/navigation";
+
 import {
   SvgEyeCross,
   SvgEyeOpen,
@@ -15,6 +14,8 @@ import {
   SvgKey,
   SvgMail,
 } from "../../components/svgs";
+import { setNotification } from "../../redux/actions/main";
+import { supabase } from "../../utils/supabase";
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

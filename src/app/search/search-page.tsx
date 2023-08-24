@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+
 import SearchCard from "../../components/Search/SearchCard";
 
 interface SearchQueryVerse {

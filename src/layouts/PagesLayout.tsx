@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import Footer from "../components/Footers/Footer";
 
 const PagesLayout = ({ children }: { children: ReactNode }) => {

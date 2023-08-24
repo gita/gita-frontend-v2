@@ -1,13 +1,14 @@
+import { Fragment, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-
-import { useState, Fragment, useEffect } from "react";
-import { Dialog, Transition, Switch, Listbox } from "@headlessui/react";
+import { Dialog, Listbox, Switch, Transition } from "@headlessui/react";
 import { SelectorIcon } from "@heroicons/react/solid";
-import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
-import commentary_authors from "../../constant/commentary_authors.json";
-import translation_authors from "../../constant/translation_authors.json";
+
 import { getLanguageSettings } from "shared/functions";
 import classNames from "utils/classNames";
+
+import commentary_authors from "../../constant/commentary_authors.json";
+import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
+import translation_authors from "../../constant/translation_authors.json";
 
 const cookieOptions = { path: "/", maxAge: 365 * 24 * 60 * 60 };
 

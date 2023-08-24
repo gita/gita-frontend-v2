@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
 import { connect } from "react-redux";
-import Link from "next/link";
+import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   currentVerse: GitaVerse;

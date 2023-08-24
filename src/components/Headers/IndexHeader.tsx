@@ -2,15 +2,16 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import { Popover, Transition, Disclosure } from "@headlessui/react";
+import { Disclosure, Popover, Transition } from "@headlessui/react";
 import { DocumentReportIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
-import { useAsyncEffect } from "rooks";
-import DarkModeToggle from "./DarkModeToggle";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { supabase } from "../../utils/supabase";
+import { useAsyncEffect } from "rooks";
+
 import classNames from "../../utils/classNames";
+import { supabase } from "../../utils/supabase";
+import DarkModeToggle from "./DarkModeToggle";
 
 const chapters = [
   {

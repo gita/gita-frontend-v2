@@ -1,10 +1,11 @@
-import { useState, Fragment } from "react";
+import { Fragment, useState } from "react";
+import { connect, useDispatch } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
-import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
 import Link from "next/link";
-import { useDispatch, connect } from "react-redux";
-import { supabase } from "../../utils/supabase";
+
+import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
 import { setNotification } from "../../redux/actions/main";
+import { supabase } from "../../utils/supabase";
 
 interface Props {
   notesSettingsIsOpen: boolean;

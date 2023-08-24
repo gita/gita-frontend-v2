@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import AuthHeader from "../components/Headers/AuthHeader";
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {

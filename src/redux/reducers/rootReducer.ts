@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+
 import main from "./main";
 import settings from "./settings";
 

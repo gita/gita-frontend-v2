@@ -24,6 +24,7 @@
     "@svgr/cli": "^6.1.1",
     "cookies-next": "^2.1.2",
     "encoding": "^0.1.13",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "graphql": "^16.0.1",
     "next": "^13.4.9",
     "next-plausible": "^3.9.1",
