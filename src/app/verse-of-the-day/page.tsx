@@ -1,6 +1,8 @@
 import { Metadata } from "next";
+import { headers } from "next/headers";
 
 import NotFound from "components/NotFound";
+import { headerToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import { getDailyVerse } from "../../lib/getDailyVerse";
@@ -56,6 +58,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const Page = async () => {
   const dailyVerse = await getDailyVerse();
+  const headersList = headers();
 
   if (!dailyVerse) {
     return <NotFound hint="Daily verse not found" />;
@@ -65,6 +68,7 @@ const Page = async () => {
     <VerseOfTheDay
       dailyVerse={dailyVerse}
       translations={await getTranslations(["components/Headers"])}
+      locale={headerToLocale(headersList.get("x-settings-l"))}
     />
   );
 };

@@ -9,7 +9,6 @@ export function middleware(req: NextRequest) {
   const cookieT = req.cookies.get("translationAuthorId")?.value;
   const cookieC = req.cookies.get("commentaryAuthorId")?.value;
 
-  const searchL = searchParams.get("l");
   const searchT = searchParams.get("t");
   const searchC = searchParams.get("c");
 
@@ -41,7 +40,7 @@ export function middleware(req: NextRequest) {
 
   const response = NextResponse.next({
     headers: {
-      "x-settings-l": supportedLocales.includes(maybeLocale) ? maybeLocale : "",
+      "x-settings-l": req.cookies.get("locale")?.value,
       "x-settings-t": String(translationAuthor.id),
       "x-settings-c": String(commentaryAuthor.id),
     },

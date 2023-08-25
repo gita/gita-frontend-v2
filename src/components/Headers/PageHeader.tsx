@@ -28,17 +28,15 @@ const noop = () => {};
 interface Props {
   advancedSettings?: AdvancedSettings;
   setAdvancedSettings?: Dispatch<SetStateAction<AdvancedSettings>>;
-  languageSettings?: LanguageSettings;
-  setLanguageSettings?: Dispatch<SetStateAction<LanguageSettings>>;
   translations: Record<string, string>;
+  locale: Locale;
 }
 
 const PageHeader = ({
   advancedSettings = defaultAdvancedSettings,
   setAdvancedSettings = noop,
-  languageSettings = getLanguageSettings(),
-  setLanguageSettings = noop,
   translations,
+  locale,
 }: Props) => {
   const { devnagari, verseText, synonyms, translation, purport } =
     advancedSettings;
@@ -282,7 +280,7 @@ const PageHeader = ({
                     </div>
                   </div>
                   <DarkModeToggle />
-                  <LanguageDropdown align="right" />
+                  <LanguageDropdown locale={locale} align="right" />
                 </div>
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}

@@ -67,6 +67,8 @@ interface AdvancedSettings {
   purport: boolean;
 }
 
+type Locale = "en" | "hi";
+
 interface LanguageSettings {
   translationAuthor: {
     id: number;

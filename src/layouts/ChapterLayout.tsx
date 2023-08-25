@@ -3,10 +3,17 @@ import { ReactNode } from "react";
 import Footer from "../components/Footers/Footer";
 import ChapterHeader from "../components/Headers/ChapterHeader";
 
-const ChapterLayout = ({ children }: { children: ReactNode }) => {
+type Props = {
+  locale: Locale;
+};
+
+const ChapterLayout = ({
+  children,
+  locale,
+}: React.PropsWithChildren<Props>) => {
   return (
     <div className="dark:bg-dark-bg">
-      <ChapterHeader />
+      <ChapterHeader locale={locale} />
       {children}
       <Footer />
     </div>

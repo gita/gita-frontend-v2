@@ -13,8 +13,15 @@ import classNames from "../../utils/classNames";
 import Settings from "../Shared/Settings";
 import ContentModal from "./ContentModal";
 import DarkModeToggle from "./DarkModeToggle";
+import LanguageDropdown from "./LanguageDropdown";
 
-const ChapterHeader = () => {
+type Props = {
+  locale: Locale;
+};
+
+const ChapterHeader = (props: Props) => {
+  const { locale } = props;
+
   const [input, setInput] = useState("");
   const {
     data: settingsIsOpen,
@@ -131,6 +138,7 @@ const ChapterHeader = () => {
                     </form>
                   </div>
                   <DarkModeToggle />
+                  <LanguageDropdown locale={locale} align="right" />
                 </div>
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}

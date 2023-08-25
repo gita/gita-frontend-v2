@@ -19,11 +19,13 @@ import classNames from "../../utils/classNames";
 interface VerseOfTheDayProps {
   dailyVerse: GitaVerse;
   translations: Record<string, string>;
+  locale: Locale;
 }
 
 export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({
   dailyVerse,
   translations,
+  locale,
 }) => {
   const styles = useMyStyles();
 
@@ -51,6 +53,7 @@ export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({
         advancedSettings={advancedSettings}
         setAdvancedSettings={setAdvancedSettings}
         translations={translations}
+        locale={locale}
       />
       {dailyVerse && (
         <Verse verse={dailyVerse} advancedSettings={advancedSettings} />

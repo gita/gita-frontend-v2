@@ -6,8 +6,9 @@ import translationAuthors from "constant/translation_authors.json";
 
 import {
   defaultCommentaryAuthorId,
-  defaultLanguageId,
+  defaultLocale,
   defaultTranslationAuthorId,
+  supportedLocales,
 } from "./constants";
 
 const defaultStyles = {
@@ -98,8 +99,20 @@ export const getTranslationAuthorById = (translationAuthorId: number) =>
 export const getCommentaryAuthorById = (commentaryAuthorId: number) =>
   commentaryAuthors.find(({ id }) => id === commentaryAuthorId);
 
+export const isLocale = (value: unknown): value is Locale =>
+  supportedLocales.includes(String(value));
+
+export const headerToLocale = (headerLocale: string) =>
+  isLocale(headerLocale) ? headerLocale : defaultLocale;
+
 export const getLanguageSettings = (
-  { translationAuthorId, commentaryAuthorId } = {
+  {
+    translationAuthorId,
+    commentaryAuthorId,
+  }: {
+    translationAuthorId: number;
+    commentaryAuthorId: number;
+  } = {
     translationAuthorId: defaultTranslationAuthorId,
     commentaryAuthorId: defaultCommentaryAuthorId,
   },
