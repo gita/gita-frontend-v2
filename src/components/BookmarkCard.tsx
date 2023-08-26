@@ -1,20 +1,26 @@
+"use client";
+
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { DotsVerticalIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 
-import classNames from "../../utils/classNames";
+import classNames from "utils/classNames";
 
-const Notescard = (note: any) => {
+const Bookmarkcard = () => {
   return (
     <div className="mt-4 flex items-baseline gap-2 border-b border-gray-300 pb-4 font-inter">
       <div>
-        <Image src="star.svg" alt="star icon" width={24} height={24} />
+        <Image
+          src="bookmark-header.svg"
+          alt="bookmark icon"
+          width={24}
+          height={24}
+        />
       </div>
       <div>
-        <h3 className="font-bold text-black"> Verse {note.note.verse_id}</h3>
-        <p className="mt-3 text-gray-400">{note.note.description}</p>
-        <p className="mt-3 border-l-2 border-my-orange pl-4">
+        <h3 className="font-bold text-black"> Verse 10.18</h3>
+        <p className="mt-3 text-gray-400">
           Dhṛtarāṣṭra said: O Sañjaya, after my sons and the sons of Pāṇḍu
           assembled in the place of pilgrimage at Kurukṣetra, desiring to fight,
           what did they do?
@@ -40,33 +46,6 @@ const Notescard = (note: any) => {
           >
             <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        " flex items-center gap-3 px-4 py-2 text-sm",
-                      )}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                        />
-                      </svg>
-                      Edit Note
-                    </a>
-                  )}
-                </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
                     <a
@@ -130,4 +109,4 @@ const Notescard = (note: any) => {
   );
 };
 
-export default Notescard;
+export default Bookmarkcard;

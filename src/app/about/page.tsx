@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import AboutBanner from "../../components/Shared/AboutBanner";
+import AboutBanner from "../../components/AboutBanner";
 
 export const metadata: Metadata = {
   title: "What is The Bhagavad Gita -  BhagavadGita.io",

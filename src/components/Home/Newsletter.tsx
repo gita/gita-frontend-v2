@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-import NotificationBanner from "components/Shared/NotificationBanner";
+import NotificationBanner from "components/NotificationBanner";
 import { subscribeUser } from "lib/subscribeUser";
 
 import Modal from "./Modal";

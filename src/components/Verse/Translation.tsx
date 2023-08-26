@@ -1,6 +1,6 @@
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
-import { Skeleton } from "../Shared/Skeleton";
+import { Skeleton } from "../Skeleton";
 
 interface Props {
   translationData: GitaLanguage[] | undefined;

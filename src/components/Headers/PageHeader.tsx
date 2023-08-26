@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Disclosure, Switch } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
@@ -8,15 +8,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import useAdvancedSettings from "hooks/useAdvancedSettings";
 import { defaultAdvancedSettings } from "shared/constants";
 import { getTranslate } from "shared/translate";
 
 import useEnvironment from "../../hooks/useEnvironment";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
-import AuthorSettings from "../Shared/Author";
-import NotesModal from "../Shared/NotesModal";
-import Settings from "../Shared/Settings";
+import AuthorSettings from "../Author";
+import NotesModal from "../NotesModal";
+import Settings from "../Settings";
 import AudioPlayer from "./AudioPlayer";
 import ContentModal from "./ContentModal";
 import DarkModeToggle from "./DarkModeToggle";
@@ -25,21 +26,20 @@ import LanguageDropdown from "./LanguageDropdown";
 const noop = () => {};
 
 interface Props {
-  advancedSettings?: AdvancedSettings;
-  setAdvancedSettings?: Dispatch<SetStateAction<AdvancedSettings>>;
+  advancedSettings: AdvancedSettings;
+  updateAdvancedSettings: (update: Partial<AdvancedSettings>) => void;
   translations: Record<string, string>;
   locale: Locale;
 }
 
 const PageHeader = ({
-  advancedSettings = defaultAdvancedSettings,
-  setAdvancedSettings = noop,
+  advancedSettings,
+  updateAdvancedSettings,
   translations,
   locale,
 }: Props) => {
-  const { devnagari, verseText, synonyms, translation, purport } =
-    advancedSettings;
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
+
   const {
     data: settingsIsOpen,
     onClose: closeSettingsModal,
@@ -68,9 +68,11 @@ const PageHeader = ({
   const [input, setInput] = useState("");
   const router = useRouter();
   const [isProduction, isDevelopment] = useEnvironment();
-  const toggleClass = () => {
-    setAdvancedOptionsActive(!advancedOptionsActive);
-  };
+
+  const { devanagari, verseText, synonyms, translation, purport } =
+    advancedSettings;
+
+  const toggleClass = () => setAdvancedOptionsActive(!advancedOptionsActive);
 
   const translate = getTranslate(translations, locale);
 
@@ -365,17 +367,12 @@ const PageHeader = ({
                       </Switch.Label>
                     </span>
                     <Switch
-                      checked={devnagari}
+                      checked={devanagari}
                       onChange={() =>
-                        setAdvancedSettings((prevState) => {
-                          return {
-                            ...prevState,
-                            devnagari: !devnagari,
-                          };
-                        })
+                        updateAdvancedSettings({ devanagari: !devanagari })
                       }
                       className={classNames(
-                        devnagari
+                        devanagari
                           ? "bg-my-orange"
                           : "bg-gray-200 dark:bg-dark-bg",
                         "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
@@ -384,7 +381,7 @@ const PageHeader = ({
                       <span
                         aria-hidden="true"
                         className={classNames(
-                          devnagari ? "translate-x-5" : "translate-x-0",
+                          devanagari ? "translate-x-5" : "translate-x-0",
                           "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
                         )}
                       />
@@ -407,12 +404,7 @@ const PageHeader = ({
                     <Switch
                       checked={verseText}
                       onChange={() =>
-                        setAdvancedSettings((prevState) => {
-                          return {
-                            ...prevState,
-                            verseText: !verseText,
-                          };
-                        })
+                        updateAdvancedSettings({ verseText: !verseText })
                       }
                       className={classNames(
                         verseText
@@ -447,12 +439,7 @@ const PageHeader = ({
                     <Switch
                       checked={synonyms}
                       onChange={() =>
-                        setAdvancedSettings((prevState) => {
-                          return {
-                            ...prevState,
-                            synonyms: !synonyms,
-                          };
-                        })
+                        updateAdvancedSettings({ synonyms: !synonyms })
                       }
                       className={classNames(
                         synonyms
@@ -486,12 +473,7 @@ const PageHeader = ({
                     <Switch
                       checked={translation}
                       onChange={() =>
-                        setAdvancedSettings((prevState) => {
-                          return {
-                            ...prevState,
-                            translation: !translation,
-                          };
-                        })
+                        updateAdvancedSettings({ translation: !translation })
                       }
                       className={classNames(
                         translation
@@ -525,12 +507,7 @@ const PageHeader = ({
                     <Switch
                       checked={purport}
                       onChange={() =>
-                        setAdvancedSettings((prevState) => {
-                          return {
-                            ...prevState,
-                            purport: !purport,
-                          };
-                        })
+                        updateAdvancedSettings({ purport: !purport })
                       }
                       className={classNames(
                         purport
@@ -558,7 +535,9 @@ const PageHeader = ({
       {advancedOptionsActive ? (
         <AdvancedOptions
           advancedSettings={advancedSettings}
-          setAdvancedSettings={setAdvancedSettings}
+          updateAdvancedSettings={updateAdvancedSettings}
+          translations={translations}
+          locale={locale}
         />
       ) : null}
       <AudioPlayer
@@ -587,43 +566,46 @@ export default PageHeader;
 
 type TAdvancedOptions = Partial<
   Omit<Props, "languageSettings" | "setLanguageSettings">
->;
+> & {
+  advancedSettings: AdvancedSettings;
+  updateAdvancedSettings: (update: Partial<AdvancedSettings>) => void;
+  translations: Record<string, string>;
+  locale: Locale;
+};
 
 const AdvancedOptions = ({
-  advancedSettings = defaultAdvancedSettings,
-  setAdvancedSettings = noop,
+  advancedSettings,
+  updateAdvancedSettings,
+  translations,
+  locale,
 }: TAdvancedOptions) => {
-  const { devnagari, verseText, synonyms, translation, purport } =
+  const { devanagari, verseText, synonyms, translation, purport } =
     advancedSettings;
+
+  const translate = getTranslate(translations, locale);
+
   return (
     <div className="mx-auto mt-4 max-w-full px-2 transition duration-500 ease-in-out sm:hidden lg:block lg:px-8">
       <span className="z-0 flex justify-center rounded-md">
         <div className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
-            checked={devnagari}
-            onChange={() =>
-              setAdvancedSettings((prevState) => {
-                return {
-                  ...prevState,
-                  devnagari: !devnagari,
-                };
-              })
-            }
+            checked={devanagari}
+            onChange={() => updateAdvancedSettings({ devanagari: !devanagari })}
             className={classNames(
-              devnagari ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
+              devanagari ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
-            <span className="sr-only">Use setting</span>
+            <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
-                devnagari ? "translate-x-5" : "translate-x-0",
+                devanagari ? "translate-x-5" : "translate-x-0",
                 "pointer-events-none relative inline-block h-5 w-5 transform rounded-full  bg-white shadow ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
                 className={classNames(
-                  devnagari
+                  devanagari
                     ? "opacity-0 duration-100 ease-out"
                     : "opacity-100 duration-200 ease-in",
                   "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
@@ -646,7 +628,7 @@ const AdvancedOptions = ({
               </span>
               <span
                 className={classNames(
-                  devnagari
+                  devanagari
                     ? "opacity-100 duration-200 ease-in"
                     : "opacity-0 duration-100 ease-out",
                   "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity",
@@ -663,25 +645,18 @@ const AdvancedOptions = ({
               </span>
             </span>
           </Switch>
-          Devanagari
+          {translate("Devanagari")}
         </div>
         <div className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={verseText}
-            onChange={() =>
-              setAdvancedSettings((prevState) => {
-                return {
-                  ...prevState,
-                  verseText: !verseText,
-                };
-              })
-            }
+            onChange={() => updateAdvancedSettings({ verseText: !verseText })}
             className={classNames(
               verseText ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
-            <span className="sr-only">Use setting</span>
+            <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
                 verseText ? "translate-x-5" : "translate-x-0",
@@ -730,25 +705,18 @@ const AdvancedOptions = ({
               </span>
             </span>
           </Switch>
-          Verse Text
+          {translate("Verse Text")}
         </div>
         <div className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={synonyms}
-            onChange={() =>
-              setAdvancedSettings((prevState) => {
-                return {
-                  ...prevState,
-                  synonyms: !synonyms,
-                };
-              })
-            }
+            onChange={() => updateAdvancedSettings({ synonyms: !synonyms })}
             className={classNames(
               synonyms ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
-            <span className="sr-only">Use setting</span>
+            <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
                 synonyms ? "translate-x-5" : "translate-x-0",
@@ -797,25 +765,20 @@ const AdvancedOptions = ({
               </span>
             </span>
           </Switch>
-          Synonyms
+          {translate("Synonyms")}
         </div>
         <div className="relative -ml-px inline-flex items-center border border-gray-300  bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={translation}
             onChange={() =>
-              setAdvancedSettings((prevState) => {
-                return {
-                  ...prevState,
-                  translation: !translation,
-                };
-              })
+              updateAdvancedSettings({ translation: !translation })
             }
             className={classNames(
               translation ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
-            <span className="sr-only">Use setting</span>
+            <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
                 translation ? "translate-x-5" : "translate-x-0",
@@ -864,26 +827,19 @@ const AdvancedOptions = ({
               </span>
             </span>
           </Switch>
-          Translation
+          {translate("Translation")}
         </div>
 
         <div className="relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={purport}
-            onChange={() =>
-              setAdvancedSettings((prevState) => {
-                return {
-                  ...prevState,
-                  purport: !purport,
-                };
-              })
-            }
+            onChange={() => updateAdvancedSettings({ purport: !purport })}
             className={classNames(
               purport ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
               "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
             )}
           >
-            <span className="sr-only">Use setting</span>
+            <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
                 purport ? "translate-x-5" : "translate-x-0",
@@ -932,7 +888,7 @@ const AdvancedOptions = ({
               </span>
             </span>
           </Switch>
-          Commentary
+          {translate("Commentary")}
         </div>
       </span>
     </div>

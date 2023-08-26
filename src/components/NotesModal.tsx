@@ -3,9 +3,9 @@ import { connect, useDispatch } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
 
-import languages from "../../constant/languages.json"; //todo: use graphql api to fetch
-import { setNotification } from "../../redux/actions/main";
-import { supabase } from "../../utils/supabase";
+import languages from "constant/languages.json"; //todo: use graphql api to fetch
+import { setNotification } from "redux/actions/main";
+import { supabase } from "utils/supabase";
 
 interface Props {
   notesSettingsIsOpen: boolean;

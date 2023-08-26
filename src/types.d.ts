@@ -60,7 +60,7 @@ interface GitaChapter {
 }
 
 interface AdvancedSettings {
-  devnagari: boolean;
+  devanagari: boolean;
   verseText: boolean;
   synonyms: boolean;
   translation: boolean;

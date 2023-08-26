@@ -2,19 +2,22 @@
 
 import { FC } from "react";
 
+import PageHeader from "components/Headers/PageHeader";
+import useAdvancedSettings from "hooks/useAdvancedSettings";
 import { defaultAdvancedSettings } from "shared/constants";
 
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 import PageNavigator from "../Chapter/PageNavigator";
-import { Skeleton } from "../Shared/Skeleton";
+import { Skeleton } from "../Skeleton";
 import { SvgFloralDivider } from "../svgs";
 import Commentary from "./Commentary";
 import Translation from "./Translation";
 
 interface VerseProps {
   verse: GitaVerse;
-  advancedSettings?: AdvancedSettings;
+  translations: Record<string, string>;
+  locale: Locale;
 }
 
 export const Verse: FC<VerseProps> = ({
@@ -28,18 +31,25 @@ export const Verse: FC<VerseProps> = ({
     gita_translations,
     gita_commentaries,
   },
-  advancedSettings: {
-    devnagari,
-    verseText,
-    synonyms,
-    translation,
-    purport,
-  } = defaultAdvancedSettings,
+  translations,
+  locale,
 }) => {
   const styles = useMyStyles();
 
+  const { advancedSettings, updateAdvancedSettings } = useAdvancedSettings();
+
+  const { devanagari, verseText, synonyms, translation, purport } =
+    advancedSettings;
+
   return (
     <>
+      <PageHeader
+        advancedSettings={advancedSettings}
+        updateAdvancedSettings={updateAdvancedSettings}
+        translations={translations}
+        locale={locale}
+      />
+
       <PageNavigator
         pageCount={18}
         route="verse"
@@ -57,7 +67,7 @@ export const Verse: FC<VerseProps> = ({
         >
           BG {chapter_number}.{verse_number}
         </h1>
-        {devnagari &&
+        {devanagari &&
           (text ? (
             <p
               className={classNames(

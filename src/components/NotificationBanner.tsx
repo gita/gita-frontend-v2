@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { setNotification } from "../../redux/actions/main";
+import { setNotification } from "redux/actions/main";
 
 interface Props {
   message: string;

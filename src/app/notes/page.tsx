@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 
-import Notescard from "../../components/Shared/NotesCard";
-import { setNotification } from "../../redux/actions/main";
-import { supabase } from "../../utils/supabase";
+import Notescard from "components/NotesCard";
+import { setNotification } from "redux/actions/main";
+import { supabase } from "utils/supabase";
 
 const Notes = () => {
   const [notes, setNotes] = useState<any>([]);

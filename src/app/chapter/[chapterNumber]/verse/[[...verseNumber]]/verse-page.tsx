@@ -13,6 +13,7 @@ type Props = {
 export default function VersePage({ verseData, translations }: Props) {
   // const styles = getMyStyles();
   const headersList = headers();
+  const locale = headerToLocale(headersList.get("x-settings-l"));
 
   return (
     <div
@@ -21,11 +22,9 @@ export default function VersePage({ verseData, translations }: Props) {
         // `bg-${styles.backgroundColor}`,
       )}
     >
-      <PageHeader
-        translations={translations}
-        locale={headerToLocale(headersList.get("x-settings-l"))}
-      />
-      {verseData && <Verse verse={verseData} />}
+      {verseData && (
+        <Verse verse={verseData} translations={translations} locale={locale} />
+      )}
       {!verseData && (
         <h1 className="p-5 text-center">This verse was not found</h1>
       )}

@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import { getDailyVerse } from "../../lib/getDailyVerse";
-import { Skeleton } from "../Shared/Skeleton";
+import { Skeleton } from "../Skeleton";
 
 const VerseOfDay = async () => {
   const dailyVerse = await getDailyVerse();

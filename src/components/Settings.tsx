@@ -4,9 +4,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
-import { editSettings } from "../../redux/actions/settings";
-import { RootState } from "../../redux/reducers/rootReducer";
-import classNames from "../../utils/classNames";
+import { editSettings } from "redux/actions/settings";
+import { RootState } from "redux/reducers/rootReducer";
+import classNames from "utils/classNames";
 
 interface Props {
   settingsIsOpen: boolean;

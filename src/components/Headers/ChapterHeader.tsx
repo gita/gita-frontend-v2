@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
-import Settings from "../Shared/Settings";
+import Settings from "../Settings";
 import ContentModal from "./ContentModal";
 import DarkModeToggle from "./DarkModeToggle";
 import LanguageDropdown from "./LanguageDropdown";

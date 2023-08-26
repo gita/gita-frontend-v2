@@ -2,19 +2,10 @@
 
 import { FC, useState } from "react";
 
-import {
-  defaultCommentaryAuthorId,
-  defaultTranslationAuthorId,
-} from "shared/constants";
-import {
-  getCommentaryAuthorById,
-  getTranslationAuthorById,
-} from "shared/functions";
-
-import PageHeader from "../../components/Headers/PageHeader";
-import { Verse } from "../../components/Verse/Verse";
-import useMyStyles from "../../hooks/useMyStyles";
-import classNames from "../../utils/classNames";
+import PageHeader from "components/Headers/PageHeader";
+import { Verse } from "components/Verse/Verse";
+import useMyStyles from "hooks/useMyStyles";
+import classNames from "utils/classNames";
 
 interface VerseOfTheDayProps {
   dailyVerse: GitaVerse;
@@ -29,19 +20,6 @@ export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({
 }) => {
   const styles = useMyStyles();
 
-  const [advancedSettings, setAdvancedSettings] = useState({
-    devnagari: true,
-    verseText: true,
-    synonyms: true,
-    translation: true,
-    purport: true,
-  });
-
-  const [languageSettings, setLanguageSettings] = useState({
-    translationAuthor: getTranslationAuthorById(defaultTranslationAuthorId)!,
-    commentaryAuthor: getCommentaryAuthorById(defaultCommentaryAuthorId)!,
-  });
-
   return (
     <div
       className={classNames(
@@ -49,14 +27,8 @@ export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({
         `bg-${styles.backgroundColor}`,
       )}
     >
-      <PageHeader
-        advancedSettings={advancedSettings}
-        setAdvancedSettings={setAdvancedSettings}
-        translations={translations}
-        locale={locale}
-      />
       {dailyVerse && (
-        <Verse verse={dailyVerse} advancedSettings={advancedSettings} />
+        <Verse verse={dailyVerse} translations={translations} locale={locale} />
       )}
     </div>
   );

@@ -11,9 +11,9 @@ import {
   SvgKey,
   SvgMail,
   SvgUser,
-} from "../../components/svgs";
-import { setNotification } from "../../redux/actions/main";
-import { supabase } from "../../utils/supabase";
+} from "components/svgs";
+import { setNotification } from "redux/actions/main";
+import { supabase } from "utils/supabase";
 
 function Signup() {
   const [error, setError] = useState("");

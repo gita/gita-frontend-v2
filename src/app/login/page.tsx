@@ -13,9 +13,9 @@ import {
   SvgGithub,
   SvgKey,
   SvgMail,
-} from "../../components/svgs";
-import { setNotification } from "../../redux/actions/main";
-import { supabase } from "../../utils/supabase";
+} from "components/svgs";
+import { setNotification } from "redux/actions/main";
+import { supabase } from "utils/supabase";
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

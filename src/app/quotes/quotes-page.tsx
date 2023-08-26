@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import Quote from "../../components/Quotes/Quote";
 import QuotesNavigator from "../../components/Quotes/QuotesNavigator";
-import QuotesBanner from "../../components/Shared/QuotesBanner";
+import QuotesBanner from "../../components/QuotesBanner";
 
 const quotes = [
   "Whenever dharma declines and the purpose of life is forgotten, I manifest myself on earth. I am born in every age to protect the good, to destroy evil, and to reestablish dharma.",

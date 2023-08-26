@@ -1,7 +1,7 @@
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 import splitIntoParagraphs from "../../utils/splitIntoParagraphs";
-import { Skeleton } from "../Shared/Skeleton";
+import { Skeleton } from "../Skeleton";
 
 interface Props {
   commentaryData: GitaLanguage[] | undefined;

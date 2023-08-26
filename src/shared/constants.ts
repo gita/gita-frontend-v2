@@ -5,7 +5,7 @@ export const defaultTranslationAuthorId = 16;
 export const defaultCommentaryAuthorId = 16;
 
 export const defaultAdvancedSettings: AdvancedSettings = {
-  devnagari: true,
+  devanagari: true,
   verseText: true,
   synonyms: true,
   translation: true,
