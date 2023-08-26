@@ -126,16 +126,15 @@ const Verse = async ({
     return <NotFound hint={`Verse ${verseNumber} not found`} />;
   }
 
+  const translations = await getTranslations(["components/Headers"]);
+
   return (
     <article>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <VersePage
-        verseData={verseData}
-        translations={await getTranslations(["components/Headers"])}
-      />
+      <VersePage verseData={verseData} translations={translations} />
     </article>
   );
 };

@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 
 import NotFound from "components/NotFound";
+import { getDailyVerse } from "lib/getDailyVerse";
 import { headerToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
-import { getDailyVerse } from "../../lib/getDailyVerse";
 import { VerseOfTheDay } from "./verse-of-the-day";
 
 export async function generateMetadata(): Promise<Metadata> {

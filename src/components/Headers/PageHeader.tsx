@@ -9,7 +9,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { defaultAdvancedSettings } from "shared/constants";
-import { getLanguageSettings } from "shared/functions";
 import { getTranslate } from "shared/translate";
 
 import useEnvironment from "../../hooks/useEnvironment";
@@ -73,7 +72,7 @@ const PageHeader = ({
     setAdvancedOptionsActive(!advancedOptionsActive);
   };
 
-  const translate = getTranslate(translations);
+  const translate = getTranslate(translations, locale);
 
   function handleSearch(e) {
     e.preventDefault();
@@ -362,7 +361,7 @@ const PageHeader = ({
                         className=" font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
-                        {translate("Devnagari")}
+                        {translate("Devanagari")}
                       </Switch.Label>
                     </span>
                     <Switch
@@ -664,7 +663,7 @@ const AdvancedOptions = ({
               </span>
             </span>
           </Switch>
-          Devnagari
+          Devanagari
         </div>
         <div className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
