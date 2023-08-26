@@ -241,7 +241,7 @@ const PageHeader = ({
                     )}
                   </div>
                 </div>
-                <div className="flex flex-1 items-center justify-start pr-2  lg:ml-6 lg:justify-end">
+                <div className="flex flex-1 items-center justify-start pr-2 lg:ml-6 lg:justify-end">
                   <div className="w-full max-w-lg lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
                       {translate("Search")}

@@ -12,6 +12,7 @@ import { useAsyncEffect } from "rooks";
 import classNames from "../../utils/classNames";
 import { supabase } from "../../utils/supabase";
 import DarkModeToggle from "./DarkModeToggle";
+import LanguageDropdown from "./LanguageDropdown";
 
 const chapters = [
   {
@@ -112,10 +113,11 @@ const mobileNav = [
 ];
 
 type Props = {
+  locale: Locale;
   translate: (literal: string) => string;
 };
 
-export default function IndexHeader({ translate }: Props) {
+export default function IndexHeader({ locale, translate }: Props) {
   const [input, setInput] = useState("");
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -297,7 +299,7 @@ export default function IndexHeader({ translate }: Props) {
                 </button>
               )}
             </Popover.Group>
-            <div className="hidden w-auto items-end justify-end py-px md:flex md:flex-1 lg:w-0">
+            <div className="hidden w-auto items-center justify-end py-px md:flex md:flex-1 lg:w-0">
               <form
                 onSubmit={handleSearch}
                 className="relative flex text-gray-600"
@@ -325,6 +327,7 @@ export default function IndexHeader({ translate }: Props) {
                 />
               </form>
               <DarkModeToggle />
+              <LanguageDropdown locale={locale} align="right" />
             </div>
           </div>
         </div>
