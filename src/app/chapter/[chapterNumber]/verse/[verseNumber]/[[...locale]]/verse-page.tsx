@@ -1,20 +1,15 @@
 import { headers } from "next/headers";
 
-import PageHeader from "components/Headers/PageHeader";
 import { Verse } from "components/Verse/Verse";
-import { headerToLocale } from "shared/functions";
 import classNames from "utils/classNames";
 
 type Props = {
   verseData: GitaVerse;
   translations: Record<string, string>;
+  locale: Locale;
 };
 
-export default function VersePage({ verseData, translations }: Props) {
-  // const styles = getMyStyles();
-  const headersList = headers();
-  const locale = headerToLocale(headersList.get("x-settings-l"));
-
+export default function VersePage({ verseData, translations, locale }: Props) {
   return (
     <div
       className={classNames(

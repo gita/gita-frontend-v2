@@ -1,22 +1,15 @@
-import React from "react";
-import { headers } from "next/headers";
-
 import PagesLayout from "layouts/PagesLayout";
-import { headerToLocale } from "shared/functions";
+import { paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 export default async function Layout({
+  params,
   children,
-}: {
-  children: React.ReactNode;
-}) {
-  const headersList = headers();
+}: React.PropsWithChildren<ParamsWithLocale>) {
+  const locale = paramsToLocale(params);
 
   return (
-    <PagesLayout
-      locale={headerToLocale(headersList.get("x-settings-l"))}
-      translations={await getTranslations()}
-    >
+    <PagesLayout locale={locale} translations={await getTranslations(locale)}>
       {children}
     </PagesLayout>
   );

@@ -102,8 +102,15 @@ export const getCommentaryAuthorById = (commentaryAuthorId: number) =>
 export const isLocale = (value: unknown): value is Locale =>
   supportedLocales.includes(String(value));
 
-export const headerToLocale = (headerLocale: string) =>
+export const deprecated_headerToLocale = (headerLocale: string) =>
   isLocale(headerLocale) ? headerLocale : defaultLocale;
+
+export const paramsToLocale = (localeFromParams: { locale: string[] }) => {
+  const paramsLocale = Array.isArray(localeFromParams?.locale)
+    ? localeFromParams.locale[0]
+    : "en";
+  return isLocale(paramsLocale) ? paramsLocale : defaultLocale;
+};
 
 export const getLanguageSettings = (
   {

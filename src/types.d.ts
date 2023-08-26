@@ -8,6 +8,7 @@ interface TChapter {
 
 interface ChaptersProps {
   chapters: TChapter[];
+  locale: Locale;
 }
 
 interface NewsletterFormData {
@@ -68,6 +69,8 @@ interface AdvancedSettings {
 }
 
 type Locale = "en" | "hi";
+
+type ParamsWithLocale = { params: { locale: string[] } };
 
 interface LanguageSettings {
   translationAuthor: {

@@ -14,9 +14,14 @@ const cookieOptions = { path: "/", maxAge: 365 * 24 * 60 * 60 };
 interface Props {
   authorSettingsIsOpen: boolean;
   closeAuthorSettingsModal: () => void;
+  translate: (literal: string) => string;
 }
 
-const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
+const Author = ({
+  authorSettingsIsOpen,
+  closeAuthorSettingsModal,
+  translate,
+}: Props) => {
   const languageSettings = getLanguageSettings();
 
   const [isVerseCommentarySourceEnabled, setIsVerseCommentarySourceEnabled] =
@@ -103,7 +108,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
               <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
                 <div className="my-2 flex items-center justify-between py-2">
                   <p className="text-base text-black dark:text-white">
-                    Verse Commentary Source
+                    {translate("Verse Commentary Source")}
                   </p>
                   <Switch
                     checked={isVerseCommentarySourceEnabled}
@@ -134,7 +139,8 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                     <div className="relative">
                       <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-black focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                         <span className="block truncate text-black dark:text-white">
-                          {commentaryAuthor?.name}({commentaryAuthor?.language})
+                          {commentaryAuthor?.name}&nbsp;(
+                          {commentaryAuthor?.language})
                         </span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                           <SelectorIcon
@@ -175,7 +181,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
 
                 <div className="mb-2 flex items-center justify-between py-2">
                   <p className="text-base text-black dark:text-white">
-                    Verse Translation Source
+                    {translate("Verse Translation Source")}
                   </p>
                   <Switch
                     checked={isVerseTranslationSourceEnabled}
@@ -207,7 +213,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                     <div className="relative">
                       <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-black focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                         <span className="flex justify-between text-black dark:text-white">
-                          {translationAuthor?.name}(
+                          {translationAuthor?.name}&nbsp; (
                           {translationAuthor?.language})
                         </span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -253,7 +259,7 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                     className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
                     onClick={closeAuthorSettingsModal}
                   >
-                    Cancel
+                    {translate("Cancel")}
                   </button>
 
                   <button
@@ -272,10 +278,12 @@ const Author = ({ authorSettingsIsOpen, closeAuthorSettingsModal }: Props) => {
                         className="mr-2 inline-block h-4 w-4 animate-spin rounded-3xl border-2 border-solid border-r-transparent align-text-bottom"
                         role="status"
                       >
-                        <span className="sr-only">Loading...</span>
+                        <span className="sr-only">
+                          {translate("Loading")}...
+                        </span>
                       </div>
                     )}
-                    Apply Settings
+                    {translate("Apply Settings")}
                   </button>
                 </div>
               </div>

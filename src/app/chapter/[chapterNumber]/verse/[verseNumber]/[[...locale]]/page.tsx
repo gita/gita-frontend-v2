@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 
 import NotFound from "components/NotFound";
 import { getVerseData } from "lib/getVerseData";
-import { getLanguageSettings } from "shared/functions";
+import { getLanguageSettings, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import VersePage from "./verse-page";
@@ -11,7 +11,11 @@ import VersePage from "./verse-page";
 export const dynamic = "force-dynamic";
 
 type Props = {
-  params: { chapterNumber: string; verseNumber: [string, string?] };
+  params: {
+    chapterNumber: string;
+    verseNumber: [string, string?];
+    locale: string[];
+  };
 };
 
 // export async function generateStaticParams() {
@@ -70,12 +74,13 @@ export async function generateMetadata({
   };
 }
 
-const Verse = async ({
-  params: {
+const Verse = async ({ params }: Props) => {
+  const {
     chapterNumber,
     verseNumber: [verseNumber],
-  },
-}: Props) => {
+  } = params;
+  const locale = paramsToLocale(params);
+
   const jsonLd = {
     "@context": "http://schema.org",
     "@type": "BreadcrumbList",
@@ -126,7 +131,7 @@ const Verse = async ({
     return <NotFound hint={`Verse ${verseNumber} not found`} />;
   }
 
-  const translations = await getTranslations(["components/Headers"]);
+  const translations = await getTranslations(locale);
 
   return (
     <article>
@@ -134,7 +139,11 @@ const Verse = async ({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <VersePage verseData={verseData} translations={translations} />
+      <VersePage
+        verseData={verseData}
+        translations={translations}
+        locale={locale}
+      />
     </article>
   );
 };

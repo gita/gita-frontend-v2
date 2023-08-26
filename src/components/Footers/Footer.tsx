@@ -16,12 +16,20 @@ interface IconProps {
 
 const getNavigation = (translate: (literal: string) => string) => ({
   main: [
-    { name: "About Us", href: "/about", newTab: false },
-    { name: "Privacy Policy", href: "/privacy-policy", newTab: false },
-    { name: "Terms", href: "/terms-of-service", newTab: false },
-    { name: "Blog", href: "https://radhakrishna.net/", newTab: true },
+    { name: translate("About Us"), href: "/about", newTab: false },
     {
-      name: "Donate",
+      name: translate("Privacy Policy"),
+      href: "/privacy-policy",
+      newTab: false,
+    },
+    { name: translate("Terms"), href: "/terms-of-service", newTab: false },
+    {
+      name: translate("Blog"),
+      href: "https://radhakrishna.net/",
+      newTab: true,
+    },
+    {
+      name: translate("Donate"),
       href: "https://opencollective.com/the-gita-initiative",
       newTab: true,
     },
@@ -31,7 +39,7 @@ const getNavigation = (translate: (literal: string) => string) => ({
       newTab: true,
     },
     {
-      name: "Contact Us",
+      name: translate("Contact Us"),
       href: "mailto:admin@bhagavadgita.io",
       newTab: false,
     },
@@ -595,7 +603,7 @@ const Footer = (props: Props) => {
 
         <div className="block w-full flex-none lg:w-3/5">
           <p className="text-center text-sm text-gray-400">
-            {`© ${new Date().getFullYear()} Copyright: `}
+            {`© ${new Date().getFullYear()} ${translate("Copyright")}: `}
             <a
               href="https://vedvyas.org/"
               target="_blank"
@@ -605,7 +613,10 @@ const Footer = (props: Props) => {
               Ved Vyas Foundation.
             </a>
             <br className="sm:hidden" />
-            <span className="sm:inline"> All rights reserved.</span>
+            <span className="sm:inline">
+              {" "}
+              {translate("All rights reserved")}.
+            </span>
           </p>
         </div>
         <div className="flex items-center justify-end lg:flex lg:w-1/5  lg:space-x-1">

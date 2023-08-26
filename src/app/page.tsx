@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 
+import { paramsToLocale } from "shared/functions";
+
 import { getAllChapters } from "../lib/getAllChapters";
 import HomePage from "./home-page";
 
@@ -43,8 +45,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Home() {
+export default async function Home({ params }: ParamsWithLocale) {
   const chapters = await getAllChapters();
+  const locale = paramsToLocale(params);
 
   const jsonLdFirst = {
     "@context": "http://schema.org",
@@ -122,7 +125,7 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdThree) }}
       />
-      <HomePage chapters={chapters} />
+      <HomePage chapters={chapters} locale={locale} />
     </>
   );
 }

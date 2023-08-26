@@ -1,3 +1,5 @@
+import { getTranslate } from "shared/translate";
+
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
 import splitIntoParagraphs from "../../utils/splitIntoParagraphs";
@@ -5,10 +7,17 @@ import { Skeleton } from "../Skeleton";
 
 interface Props {
   commentaryData: GitaLanguage[] | undefined;
+  translations: Record<string, string>;
+  locale: Locale;
 }
 
-export default function Commentary({ commentaryData }: Props) {
+export default function Commentary({
+  commentaryData,
+  translations,
+  locale,
+}: Props) {
   const styles = useMyStyles();
+  const translate = getTranslate(translations, locale);
 
   const paragraphs = splitIntoParagraphs(commentaryData);
 
@@ -20,7 +29,7 @@ export default function Commentary({ commentaryData }: Props) {
           styles.fontSize.heading,
         )}
       >
-        Commentary
+        {translate("Commentary")}
       </h1>
       {paragraphs?.[0] ? (
         paragraphs.map((paragraph) => (

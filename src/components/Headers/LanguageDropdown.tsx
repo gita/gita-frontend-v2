@@ -3,10 +3,14 @@ import { useCookies } from "react-cookie";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 
+import { updatedLocalePath } from "components/shared/functions";
 import { useClickOutside } from "hooks/useClickOutside";
 import classNames from "utils/classNames";
 
-const languages = [
+const languages: {
+  locale: Locale;
+  language: string;
+}[] = [
   {
     locale: "en",
     language: "English",
@@ -49,7 +53,7 @@ function LanguageDropdown(props: Props) {
       {showMenu && (
         <div
           className={classNames(
-            "absolute top-8 w-32 cursor-pointer border bg-white dark:bg-dark-100",
+            "absolute top-8 z-10 w-32 cursor-pointer border bg-white dark:bg-dark-100",
             align === "left" ? "left-0" : "right-0",
           )}
         >
@@ -60,7 +64,7 @@ function LanguageDropdown(props: Props) {
               onClick={() => {
                 if (language.locale !== locale) {
                   setCookie("locale", language.locale);
-                  window.location.reload();
+                  window.location.href = updatedLocalePath(language.locale);
                 }
                 setShowMenu(false);
               }}

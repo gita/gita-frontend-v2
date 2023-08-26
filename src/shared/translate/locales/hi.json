@@ -1,4 +1,8 @@
 {
+  "Home": "होम पेज",
+  "Content": "सामग्री",
+  "Appearance": "उपस्थिति",
+  "Search": "खोज",
   "Play Audio": "ऑडियो चलाएं",
   "Source": "स्रोत",
   "Notes": "टिप्पणियाँ",
@@ -11,6 +15,19 @@
   "Translation": "अनुवाद",
   "Chapter": "अध्याय",
   "Chapters": "अध्याय",
-  "Verses": "Verses",
-  "Verse": "Verse"
+  "Verses": "वर्सेज",
+  "Verse": "कविता",
+  "Privacy Policy": "गोपनीयता नीति",
+  "Blog": "ब्लॉग",
+  "About Us": "हमारे बारे में",
+  "Donate": "दान करें",
+  "Terms": "शर्तें",
+  "Contact Us": "संपर्क करें",
+  "Verse Commentary Source": "पद्य टीका स्रोत",
+  "Verse Translation Source": "पद्य अनुवाद स्रोत",
+  "Cancel": "रद्द करना",
+  "Apply Settings": "सेटिंग लागू करें",
+  "Commentary": "टीका",
+  "All rights reserved": "सर्वाधिकार सुरक्षित",
+  "Copyright": "कॉपीराइट"
 }

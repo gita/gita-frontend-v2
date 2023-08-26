@@ -1,5 +1,8 @@
 "use client";
 
+import { supportedLocales } from "shared/constants";
+import { isLocale } from "shared/functions";
+
 export const setCookie = (
   name: string,
   value: string | boolean,
@@ -34,4 +37,25 @@ export const getCookie = (name: string) => {
     }
   }
   return null;
+};
+
+const getLocaleFromPath = (): Locale => {
+  const maybeLocale = window.location.pathname.split("/").pop();
+  return isLocale(maybeLocale) ? maybeLocale : "en";
+};
+
+export const updatedLocalePath = (newLocale: Locale) => {
+  const currentLocale = getLocaleFromPath();
+  const newUrl = new URL(window.location.href);
+  if (currentLocale === newLocale) {
+    // Do nothing
+  } else if (currentLocale === "en") {
+    newUrl.pathname = `${newUrl.pathname}/${newLocale}`;
+  } else {
+    newUrl.pathname = newUrl.pathname.replace(
+      `/${currentLocale}`,
+      newLocale === "en" ? "" : `/${newLocale}`,
+    );
+  }
+  return newUrl.toString();
 };

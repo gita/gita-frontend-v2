@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 
 import NotFound from "components/NotFound";
 import { getDailyVerse } from "lib/getDailyVerse";
-import { headerToLocale } from "shared/functions";
+import { paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import { VerseOfTheDay } from "./verse-of-the-day";
@@ -56,7 +56,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const Page = async () => {
+const Page = async ({ params }: ParamsWithLocale) => {
+  const locale = paramsToLocale(params);
   const dailyVerse = await getDailyVerse();
   const headersList = headers();
 
@@ -67,8 +68,8 @@ const Page = async () => {
   return (
     <VerseOfTheDay
       dailyVerse={dailyVerse}
-      translations={await getTranslations(["components/Headers"])}
-      locale={headerToLocale(headersList.get("x-settings-l"))}
+      translations={await getTranslations(locale)}
+      locale={locale}
     />
   );
 };

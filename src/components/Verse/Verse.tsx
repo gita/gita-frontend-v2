@@ -127,8 +127,20 @@ export const Verse: FC<VerseProps> = ({
             } dark:text-dark-bg`}
           />
         )}
-        {translation && <Translation translationData={gita_translations} />}
-        {purport && <Commentary commentaryData={gita_commentaries} />}
+        {translation && (
+          <Translation
+            translationData={gita_translations}
+            translations={translations}
+            locale={locale}
+          />
+        )}
+        {purport && (
+          <Commentary
+            commentaryData={gita_commentaries}
+            translations={translations}
+            locale={locale}
+          />
+        )}
       </section>
     </>
   );

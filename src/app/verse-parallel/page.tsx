@@ -2,8 +2,6 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 import { SvgFloralDivider } from "../../components/svgs";
-import Commentary from "../../components/Verse/Commentary";
-import Translation from "../../components/Verse/Translation";
 
 export const metadata: Metadata = {
   title: "Bhagavad Gita App - Verse",
@@ -32,11 +30,11 @@ export default function VerseParallel() {
           धृतराष्ट्र उवाच | धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः | मामकाः
           पाण्डवाश्चैव किमकुर्वत सञ्जय ||1||
         </p>
-        <p className="  mx-auto  mt-4 max-w-md text-xl">
+        <p className="mx-auto mt-4 max-w-md text-xl">
           dhṛitarāśhtra uvācha dharma-kṣhetre kuru-kṣhetre samavetā yuyutsavaḥ
           māmakāḥ pāṇḍavāśhchaiva kimakurvata sañjaya
         </p>
-        <p className="  mx-auto  mt-4  text-xl">
+        <p className="mx-auto mt-4 text-xl">
           dhṛitarāśhtraḥ uvācha—Dhritarashtra said; dharma-kṣhetre—the land of
           dharma; kuru-kṣhetre—at Kurukshetra; samavetāḥ—having gathered;
           yuyutsavaḥ—desiring to fight; māmakāḥ—my sons; pāṇḍavāḥ—the sons of
@@ -44,18 +42,6 @@ export default function VerseParallel() {
           sañjaya—Sanjay
         </p>
         <SvgFloralDivider className="my-16 w-full text-white dark:text-dark-bg" />
-
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            {/*<Translation />*/}
-            {/*<Commentary />*/}
-          </div>
-
-          <div>
-            {/*<Translation />*/}
-            {/*<Commentary />*/}
-          </div>
-        </div>
       </div>
     </div>
   );

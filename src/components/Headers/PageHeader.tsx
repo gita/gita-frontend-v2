@@ -21,8 +21,6 @@ import ContentModal from "./ContentModal";
 import DarkModeToggle from "./DarkModeToggle";
 import LanguageDropdown from "./LanguageDropdown";
 
-const noop = () => {};
-
 interface Props {
   advancedSettings: AdvancedSettings;
   updateAdvancedSettings: (update: Partial<AdvancedSettings>) => void;
@@ -65,7 +63,7 @@ const PageHeader = ({
   } = useToggle();
   const [input, setInput] = useState("");
   const router = useRouter();
-  const [isProduction, isDevelopment] = useEnvironment();
+  const [isProduction] = useEnvironment();
 
   const { devanagari, verseText, synonyms, translation, purport } =
     advancedSettings;
@@ -555,6 +553,7 @@ const PageHeader = ({
       <AuthorSettings
         authorSettingsIsOpen={authorSettingsIsOpen}
         closeAuthorSettingsModal={closeAuthorSettingsModal}
+        translate={translate}
       />
       <NotesModal
         notesSettingsIsOpen={notesSettingsIsOpen}

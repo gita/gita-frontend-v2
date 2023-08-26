@@ -1,9 +1,6 @@
 "use server";
 
-import { headers } from "next/headers";
-
 import BackgroundImage from "components/Home/BackgroundImage";
-import { headerToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import Banner from "../components/Home/Banner";
@@ -12,15 +9,13 @@ import Newsletter from "../components/Home/Newsletter";
 import VerseOfDay from "../components/Home/VerseOfDay";
 import HomeLayout from "../layouts/HomeLayout";
 
-async function HomePage({ chapters }: ChaptersProps) {
-  const headersList = headers();
-
+async function HomePage({ locale, chapters }: ChaptersProps) {
   return (
     <div className="min-h-screen font-inter dark:bg-dark-bg">
       <main>
         <HomeLayout
-          locale={headerToLocale(headersList.get("x-settings-l"))}
-          translations={await getTranslations()}
+          locale={locale}
+          translations={await getTranslations(locale)}
         >
           <div className="relative">
             <Banner />
@@ -28,7 +23,7 @@ async function HomePage({ chapters }: ChaptersProps) {
             <VerseOfDay />
           </div>
           <Newsletter />
-          <Chapters chapters={chapters} />
+          <Chapters chapters={chapters} locale={locale} />
         </HomeLayout>
       </main>
     </div>

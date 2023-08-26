@@ -1,13 +1,21 @@
+import { getTranslate } from "shared/translate";
+
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
-import { Skeleton } from "../Skeleton";
 
 interface Props {
   translationData: GitaLanguage[] | undefined;
+  translations: Record<string, string>;
+  locale: Locale;
 }
 
-export default function Translation({ translationData }: Props) {
+export default function Translation({
+  translationData,
+  translations,
+  locale,
+}: Props) {
   const styles = useMyStyles();
+  const translate = getTranslate(translations, locale);
 
   return (
     <div>
@@ -17,7 +25,7 @@ export default function Translation({ translationData }: Props) {
           styles.fontSize.heading,
         )}
       >
-        Translation
+        {translate("Translation")}
       </h1>
       {translationData && translationData[0]?.description ? (
         <p
