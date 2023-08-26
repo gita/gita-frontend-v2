@@ -40,6 +40,9 @@ export const getCookie = (name: string) => {
 };
 
 export const getLocaleFromPath = (): Locale => {
+  if (typeof window === "undefined") {
+    throw new Error("Server side only");
+  }
   const maybeLocale = window.location.pathname.split("/").pop();
   return isLocale(maybeLocale) ? maybeLocale : "en";
 };

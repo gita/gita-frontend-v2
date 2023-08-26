@@ -23,14 +23,14 @@ export default function Commentary({
 
   return (
     <div className="mt-16">
-      <h1
+      <h2
         className={classNames(
           "font-extrabold dark:text-gray-50",
           styles.fontSize.heading,
         )}
       >
         {translate("Commentary")}
-      </h1>
+      </h2>
       {paragraphs?.[0] ? (
         paragraphs.map((paragraph) => (
           <p

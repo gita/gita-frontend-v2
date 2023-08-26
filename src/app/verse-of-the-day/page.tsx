@@ -18,16 +18,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const { chapter_number, verse_number } = gitaVerse;
 
   return {
-    title: `Bhagavad Gita Chapter ${chapter_number} Verse ${verse_number} - BhagavadGita.io`,
+    title: `Bhagavad Gita - Verse of the Day`,
     openGraph: {
-      url: `https://bhagavadgita.io/chapter/${chapter_number}/verse/${verse_number}/`,
+      url: `https://bhagavadgita.io/verse-of-the-day`,
       siteName: "Bhagavad Gita",
       locale: "en_US",
       type: "article",
       authors: "https://www.facebook.com/radhakrishnablog/",
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
-      title: `Bhagavad Gita Chapter ${chapter_number} Verse ${verse_number} - BhagavadGita.io`,
+      title: `Bhagavad Gita - Verse of the Day`,
       images: [
         {
           url: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
@@ -40,18 +40,19 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `Bhagavad Gita Chapter ${chapter_number} Verse ${verse_number} - BhagavadGita.io`,
+      title: `Bhagavad Gita - Verse of the Day`,
       images: ["https://bhagavadgita.io/static/images/sribhagavadgita.jpg"],
       site: "@ShriKrishna",
     },
     alternates: {
       languages: {
-        en: `https://bhagavadgita.io/chapter/${chapter_number}/verse/${verse_number}/`,
-        "en-US": `https://bhagavadgita.io/chapter/${chapter_number}/verse/${verse_number}/`,
-        "en-GB": `https://bhagavadgita.io/chapter/${chapter_number}/verse/${verse_number}/`,
-        "en-IN": `https://bhagavadgita.io/chapter/${chapter_number}/verse/${verse_number}/`,
-        hi: `https://bhagavadgita.io/chapter/${chapter_number}/verse/${verse_number}/hi`,
+        en: `https://bhagavadgita.io/verse-of-the-day`,
+        "en-US": `https://bhagavadgita.io/verse-of-the-day`,
+        "en-GB": `https://bhagavadgita.io/verse-of-the-day`,
+        "en-IN": `https://bhagavadgita.io/verse-of-the-day`,
+        hi: `https://bhagavadgita.io/verse-of-the-day/hi`,
       },
+      canonical: `https://bhagavadgita.io/verse-of-the-day`,
     },
   };
 }

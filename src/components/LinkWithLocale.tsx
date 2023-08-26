@@ -23,7 +23,11 @@ function LinkWithLocale({
   children,
   ...props
 }: React.PropsWithChildren<React.ComponentProps<typeof Link>>) {
-  const locale = getLocaleFromPath();
+  const [locale, setLocale] = useState<Locale>("en");
+
+  useEffect(() => {
+    setLocale(getLocaleFromPath());
+  }, []);
 
   return (
     <Link

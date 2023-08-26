@@ -203,42 +203,6 @@ const PageHeader = ({
                       />
                       {translate("Advanced View")}
                     </button>
-                    {isProduction ? null : (
-                      <button
-                        type="button"
-                        onClick={openNotesSettingsModal}
-                        className={classNames(
-                          notesSettingsIsOpen
-                            ? "bg-nav-hover dark:bg-dark-bg"
-                            : null,
-                          "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
-                        )}
-                      >
-                        <Image
-                          className="mb-1 h-6 w-6"
-                          src="/notes.svg"
-                          alt="notes icon"
-                          width={24}
-                          height={24}
-                        />
-                        {translate("Notes")}
-                      </button>
-                    )}
-                    {isProduction ? null : (
-                      <LinkWithLocale
-                        href="/bookmark"
-                        className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg"
-                      >
-                        <Image
-                          className="mb-1 h-6 w-6"
-                          src="/bookmark-header.svg"
-                          alt="bookmark icon"
-                          width={24}
-                          height={24}
-                        />
-                        {translate("Bookmark")}
-                      </LinkWithLocale>
-                    )}
                   </div>
                 </div>
                 <div className="flex flex-1 items-center justify-start pr-2 lg:ml-6 lg:justify-end">

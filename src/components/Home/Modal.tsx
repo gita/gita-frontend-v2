@@ -47,12 +47,12 @@ function Modal({ modalVisible, setModalVisible }: Props) {
                 </svg>
               </div>
               <div className="mt-3 px-5 text-center sm:mt-5">
-                <h3
+                <p
                   className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200"
                   id="modal-title"
                 >
                   Subscription Successful!
-                </h3>
+                </p>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500 dark:text-gray-300">
                     Congratulations! You have now subscribed to the daily
