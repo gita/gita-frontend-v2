@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import PrivacyTermsBannerImage from "../../../public/quotes-bg.png";
+import PrivacyTermsBannerImage from "../../public/quotes-bg.png";
 
 interface PrivacyTermsBannerProps {
   title: string;
