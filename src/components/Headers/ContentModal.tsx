@@ -13,10 +13,11 @@ import { useRouter } from "next/navigation";
 import data from "../../constant/contentModal.json";
 
 interface Props {
+  translate: (literal: string) => string;
   isOpen: boolean;
   close: () => void;
 }
-export default function ContentModal({ isOpen, close }: Props) {
+export default function ContentModal({ translate, isOpen, close }: Props) {
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [selectedVerse, setSelectedVerse] = useState({ verseNumber: 1, id: 1 });
 
@@ -72,11 +73,15 @@ export default function ContentModal({ isOpen, close }: Props) {
           >
             <div className="inline-flex w-5/6 max-w-4xl overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-dark-100">
               <div className="flex w-full flex-col p-8 md:hidden">
-                <p className="py-2 font-semibold text-my-orange">Chapters</p>
+                <p className="py-2 font-semibold text-my-orange">
+                  {translate("Chapters")}
+                </p>
                 <Listbox value={selectedChapter} onChange={setSelectedChapter}>
                   <div className="relative mt-1">
                     <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
-                      <span className="block">Chapter {selectedChapter}</span>
+                      <span className="block">
+                        {translate("Chapter")} {selectedChapter}
+                      </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                         <SelectorIcon
                           className="h-5 w-5 text-gray-400"
@@ -111,7 +116,7 @@ export default function ContentModal({ isOpen, close }: Props) {
                                     selected ? "font-medium" : "font-normal"
                                   } block truncate dark:text-gray-50`}
                                 >
-                                  Chapter {chapter.chapterNumber}
+                                  {translate("Chapter")} {chapter.chapterNumber}
                                 </span>
                                 {selected ? (
                                   <span
@@ -136,12 +141,14 @@ export default function ContentModal({ isOpen, close }: Props) {
                     </Transition>
                   </div>
                 </Listbox>
-                <p className="mt-2 py-2 font-semibold text-my-orange">Verses</p>
+                <p className="mt-2 py-2 font-semibold text-my-orange">
+                  {translate("Verses")}
+                </p>
                 <Listbox value={selectedVerse} onChange={setSelectedVerse}>
                   <div className="relative mt-1">
                     <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                       <span className="block">
-                        Verses {selectedVerse.verseNumber}
+                        {translate("Verse")} {selectedVerse.verseNumber}
                       </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                         <SelectorIcon
@@ -182,7 +189,7 @@ export default function ContentModal({ isOpen, close }: Props) {
                                       selected ? "font-medium" : "font-normal"
                                     } block truncate dark:text-gray-50`}
                                   >
-                                    Verse {verse.verseNumber}
+                                    {translate("Verse")} {verse.verseNumber}
                                   </span>
                                   {selected ? (
                                     <span
@@ -228,7 +235,7 @@ export default function ContentModal({ isOpen, close }: Props) {
                           key={chapter.chapterNumber}
                         >
                           <p className="text-base font-medium text-my-orange">
-                            Chapter {chapter.chapterNumber}
+                            {translate("Chapter")} {chapter.chapterNumber}
                           </p>
                           <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-100" />
                         </button>
@@ -242,7 +249,7 @@ export default function ContentModal({ isOpen, close }: Props) {
                           key={chapter.chapterNumber}
                         >
                           <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
-                            Chapter {chapter.chapterNumber}
+                            {translate("Chapter")} {chapter.chapterNumber}
                           </p>
                           <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </button>
@@ -261,7 +268,7 @@ export default function ContentModal({ isOpen, close }: Props) {
                           key={chapter.chapterNumber}
                         >
                           <p className="text-base font-medium text-my-orange">
-                            Chapter {chapter.chapterNumber}
+                            {translate("Chapter")} {chapter.chapterNumber}
                           </p>
                           <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-100" />
                         </button>
@@ -275,7 +282,7 @@ export default function ContentModal({ isOpen, close }: Props) {
                           key={chapter.chapterNumber}
                         >
                           <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
-                            Chapter {chapter.chapterNumber}
+                            {translate("Chapter")} {chapter.chapterNumber}
                           </p>
                           <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </button>
@@ -285,7 +292,7 @@ export default function ContentModal({ isOpen, close }: Props) {
                 </div>
                 <div className="flex h-full flex-1 flex-col justify-start bg-light-orange p-6">
                   <p className="py-2 font-semibold text-my-orange">
-                    Chapter {selectedChapter}
+                    {translate("Chapter")} {selectedChapter}
                   </p>
                   <hr className="border-my-orange/10" />
                   <div className={`flex flex-wrap p-3 `}>

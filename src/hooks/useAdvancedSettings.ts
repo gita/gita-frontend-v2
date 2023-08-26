@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getCookie, setCookie } from "components/shared/functions";
 
@@ -21,9 +21,17 @@ const getAdvancedSettings = () => ({
 });
 
 function useAdvancedSettings() {
-  const [advancedSettings, setAdvancedSettings] = useState<AdvancedSettings>(
-    getAdvancedSettings(),
-  );
+  const [advancedSettings, setAdvancedSettings] = useState<AdvancedSettings>({
+    devanagari: true,
+    verseText: true,
+    synonyms: true,
+    translation: true,
+    purport: true,
+  });
+
+  useEffect(() => {
+    setAdvancedSettings(getAdvancedSettings());
+  }, []);
 
   const updateAdvancedSettings = (update: Partial<AdvancedSettings>) => {
     const updatedAdvancedSettings = {

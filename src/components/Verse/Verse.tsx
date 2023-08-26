@@ -74,6 +74,7 @@ export const Verse: FC<VerseProps> = ({
                 "mx-auto mt-8 max-w-md font-dev text-my-orange",
                 styles.fontSize.subHeading1,
               )}
+              suppressHydrationWarning
             >
               {text}
             </p>

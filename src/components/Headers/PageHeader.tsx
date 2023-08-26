@@ -8,8 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import useAdvancedSettings from "hooks/useAdvancedSettings";
-import { defaultAdvancedSettings } from "shared/constants";
 import { getTranslate } from "shared/translate";
 
 import useEnvironment from "../../hooks/useEnvironment";
@@ -544,7 +542,11 @@ const PageHeader = ({
         playerIsOpen={playerIsOpen}
         closePlayerModal={closePlayerModal}
       />
-      <ContentModal isOpen={contentModalIsOpen} close={closeContentModal} />
+      <ContentModal
+        translate={translate}
+        isOpen={contentModalIsOpen}
+        close={closeContentModal}
+      />
 
       <Settings
         settingsIsOpen={settingsIsOpen}

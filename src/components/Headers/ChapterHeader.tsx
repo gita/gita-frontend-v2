@@ -17,10 +17,11 @@ import LanguageDropdown from "./LanguageDropdown";
 
 type Props = {
   locale: Locale;
+  translate: (literal: string) => string;
 };
 
 const ChapterHeader = (props: Props) => {
-  const { locale } = props;
+  const { locale, translate } = props;
 
   const [input, setInput] = useState("");
   const {
@@ -180,7 +181,11 @@ const ChapterHeader = (props: Props) => {
           </>
         )}
       </Disclosure>
-      <ContentModal isOpen={contentModalIsOpen} close={closeContentModal} />
+      <ContentModal
+        translate={translate}
+        isOpen={contentModalIsOpen}
+        close={closeContentModal}
+      />
       <Settings
         settingsIsOpen={settingsIsOpen}
         closeSettingsModal={closeSettingsModal}
