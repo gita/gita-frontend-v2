@@ -9,6 +9,7 @@ interface TChapter {
 interface ChaptersProps {
   chapters: TChapter[];
   locale: Locale;
+  translations: Record<string, string>;
 }
 
 interface NewsletterFormData {

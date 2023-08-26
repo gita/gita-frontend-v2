@@ -19,7 +19,7 @@ const HomeLayout = ({
 
   return (
     <div className="flex min-h-screen flex-col dark:bg-dark-bg">
-      <IndexHeader />
+      <IndexHeader translate={translate} />
       <div className="flex-1 pt-[84px] lg:pt-[90px]">{children}</div>
       <Footer translate={translate} />
     </div>

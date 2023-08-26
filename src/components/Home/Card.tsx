@@ -5,9 +5,10 @@ import { SvgBookmark, SvgList, SvgShuffle } from "../svgs";
 
 interface Props {
   chapter: TChapter;
+  translate: (literal: string) => string;
 }
 
-const Card = ({ chapter }: Props) => {
+const Card = ({ chapter, translate }: Props) => {
   return (
     <Link
       href={`/chapter/${chapter.id}`}
@@ -15,7 +16,7 @@ const Card = ({ chapter }: Props) => {
       className="z-10 flex flex-col rounded-md border-2 border-white bg-white p-6 drop-shadow-card hover:cursor-pointer hover:border-2 hover:border-box-stroke hover:bg-box-bg hover:shadow-none dark:border-dark-bg dark:bg-dark-100 dark:text-gray-200 dark:hover:border-dark-100 dark:hover:bg-dark-bg"
     >
       <h3 className="font-bold text-my-orange">
-        Chapter {chapter.chapter_number}
+        {translate("Chapter")} {chapter.chapter_number}
       </h3>
       <h2 className="text-xl font-bold dark:text-white">
         {chapter.name_translated}

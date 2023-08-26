@@ -8,16 +8,23 @@ import { usePathname } from "next/navigation";
 
 import NotificationBanner from "components/NotificationBanner";
 import { subscribeUser } from "lib/subscribeUser";
+import { getTranslate } from "shared/translate";
 
 import Modal from "./Modal";
 
 type SubscribeMessage = { isSuccess: boolean; message: string };
 
 interface Props {
-  notification: { name: string; message: string; status: string };
+  notification: {
+    name: string;
+    message: string;
+    status: string;
+  };
+  locale: Locale;
+  translations: Record<string, string>;
 }
 
-const Newsletter = ({ notification }: Props) => {
+const Newsletter = ({ notification, locale, translations }: Props) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [formData, setFormData] = useState<NewsletterFormData>({
     name: "",
@@ -28,6 +35,8 @@ const Newsletter = ({ notification }: Props) => {
 
   const pathName = usePathname();
   const [cookies, setCookie] = useCookies(["access_token"]);
+
+  const translate = getTranslate(translations, locale);
 
   useEffect(() => {
     const access_token = pathName?.match(/\#(?:access_token)\=([\S\s]*?)\&/);
@@ -92,7 +101,9 @@ const Newsletter = ({ notification }: Props) => {
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="mt-10 p-14 text-center">
           <h1 className="z-50 mb-8 text-4xl font-bold text-black">
-            Have the Shloka of the Day delivered to your inbox each morning.
+            {translate(
+              "Have the Shloka of the Day delivered to your inbox each morning",
+            )}
           </h1>
           <form className="flex flex-col md:flex-row" onSubmit={onSubmit}>
             <input
@@ -108,13 +119,13 @@ const Newsletter = ({ notification }: Props) => {
                   };
                 })
               }
-              placeholder="Enter Your Name"
+              placeholder={translate("Enter Your Name")}
             />
             <input
               className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight  text-gray-700 focus:border-my-orange focus:outline-none dark:bg-white  md:mt-0"
               id="email"
               type="email"
-              placeholder="Enter Your Email"
+              placeholder={translate("Enter Your Email")}
               value={formData.email}
               onChange={(e) =>
                 setFormData((prevData) => {
@@ -129,7 +140,7 @@ const Newsletter = ({ notification }: Props) => {
               type="submit"
               className="z-50 mt-4 rounded-md bg-my-orange px-8 py-3 text-white shadow hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 md:mt-0"
             >
-              Subscribe
+              {translate("Subscribe")}
             </button>
           </form>
           {!isValid && (

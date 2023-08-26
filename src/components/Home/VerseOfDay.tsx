@@ -2,11 +2,21 @@
 
 import Link from "next/link";
 
+import { getTranslate } from "shared/translate";
+
 import { getDailyVerse } from "../../lib/getDailyVerse";
 import { Skeleton } from "../Skeleton";
 
-const VerseOfDay = async () => {
+type Props = {
+  locale: Locale;
+  translations: Record<string, string>;
+};
+
+const VerseOfDay = async (props: Props) => {
+  const { translations, locale } = props;
+
   const dailyVerse = await getDailyVerse();
+  const translate = getTranslate(translations, locale);
 
   return (
     <div className="relative z-10 mx-auto mt-24 max-w-7xl px-4 sm:px-6">
@@ -14,7 +24,7 @@ const VerseOfDay = async () => {
         {dailyVerse ? (
           <>
             <h2 className="divider line one-line mb-4 px-4 font-bold text-my-orange">
-              Verse of the day - BG {dailyVerse?.chapter_number}.
+              {translate("Verse of the day")} - BG {dailyVerse?.chapter_number}.
               {dailyVerse.verse_number}
             </h2>
             <p className="text-lg">
@@ -22,7 +32,7 @@ const VerseOfDay = async () => {
             </p>
             <button className="mt-4 text-sm font-bold uppercase text-black hover:text-gray-700 focus:outline-none dark:text-white dark:hover:text-gray-400">
               <Link href="/verse-of-the-day" shallow>
-                See more
+                {translate("See more")}
               </Link>
             </button>
           </>

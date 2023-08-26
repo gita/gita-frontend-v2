@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
+import { getAllChapters } from "lib/getAllChapters";
 import { paramsToLocale } from "shared/functions";
 
-import { getAllChapters } from "../lib/getAllChapters";
 import HomePage from "./home-page";
 
 export const metadata: Metadata = {

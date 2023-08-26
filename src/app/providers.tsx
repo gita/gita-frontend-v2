@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import PlausibleProvider from "next-plausible";
 import { ThemeProvider } from "next-themes";
 
-import { useStore } from "../redux/store";
+import { useStore } from "redux/store";
 
 import "tailwindcss/tailwind.css";
 

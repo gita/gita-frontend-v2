@@ -111,7 +111,11 @@ const mobileNav = [
   { name: "About Geeta", href: "/about", current: false },
 ];
 
-export default function IndexHeader() {
+type Props = {
+  translate: (literal: string) => string;
+};
+
+export default function IndexHeader({ translate }: Props) {
   const [input, setInput] = useState("");
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -150,8 +154,8 @@ export default function IndexHeader() {
                 href="/"
                 className="text-3xl font-bold focus:outline-none dark:text-white"
               >
-                <span className="sr-only">Workflow</span>
-                Bhagavad Gita
+                <span className="sr-only">{translate("Workflow")}</span>
+                {translate("Bhagavad Gita")}
               </Link>
             </div>
             <div className="-my-2 -mr-2 md:hidden">
@@ -171,7 +175,7 @@ export default function IndexHeader() {
                         "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-500 focus:outline-none dark:bg-dark-100 dark:text-white ",
                       )}
                     >
-                      <span>Chapters</span>
+                      <span>{translate("Chapters")}</span>
                       <ChevronDownIcon
                         className={classNames(
                           open ? "text-gray-600" : "text-gray-500",
@@ -221,13 +225,13 @@ export default function IndexHeader() {
                 href="/quotes"
                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
               >
-                Quotes
+                {translate("Quotes")}
               </Link>
               <Link
                 href="/about"
                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
               >
-                About Geeta
+                {translate("About Gita")}
               </Link>
               {!loggedIn ? (
                 <Popover className="relative">
@@ -239,7 +243,7 @@ export default function IndexHeader() {
                           "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-500 focus:outline-none dark:bg-dark-100 dark:text-white ",
                         )}
                       >
-                        <span>Account</span>
+                        <span>{translate("Account")}</span>
                         <ChevronDownIcon
                           className={classNames(
                             open ? "text-gray-600" : "text-gray-500",
@@ -265,13 +269,13 @@ export default function IndexHeader() {
                                 href="/signup"
                                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
                               >
-                                Signup
+                                {translate("Sign Up")}
                               </Link>
                               <Link
                                 href="/login"
                                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
                               >
-                                Login
+                                {translate("Sign In")}
                               </Link>
                             </div>
                           </div>
@@ -289,7 +293,7 @@ export default function IndexHeader() {
                     "mb-2 flex items-center px-3  font-medium",
                   )}
                 >
-                  <span className="truncate">Signout</span>
+                  <span className="truncate">{translate("Sign Out")}</span>
                 </button>
               )}
             </Popover.Group>
@@ -312,7 +316,7 @@ export default function IndexHeader() {
                   id="search"
                   name="search"
                   className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:placeholder:text-gray-50 sm:text-sm"
-                  placeholder="Search"
+                  placeholder={translate("Search")}
                   type="search"
                   value={input}
                   onChange={(e) => {
@@ -376,7 +380,9 @@ export default function IndexHeader() {
                   </button>
                   <div className="-mr-2">
                     <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange dark:bg-dark-bg">
-                      <span className="sr-only px-5">Close menu</span>
+                      <span className="sr-only px-5">
+                        {translate("Close Menu")}
+                      </span>
                       <XIcon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
                   </div>
@@ -386,7 +392,7 @@ export default function IndexHeader() {
                     <nav className="space-y-1" aria-label="Sidebar">
                       <Disclosure>
                         <Disclosure.Button className="flex w-full justify-between px-3 py-2 text-left font-medium hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
-                          Chapters
+                          {translate("Chapters")}
                           <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                         </Disclosure.Button>
                         <Disclosure.Panel className="py-4 text-gray-500 dark:bg-dark-100 dark:text-white">
@@ -429,7 +435,7 @@ export default function IndexHeader() {
                       {!loggedIn ? (
                         <Disclosure>
                           <Disclosure.Button className="flex w-full justify-between px-3 py-2 text-left font-medium hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
-                            Account
+                            {translate("Account")}
                             <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
                           </Disclosure.Button>
                           <Disclosure.Panel className="py-4 text-gray-500 dark:bg-dark-100 dark:text-white">
@@ -441,7 +447,9 @@ export default function IndexHeader() {
                                   "mb-2 flex items-center px-3 py-2 font-medium",
                                 )}
                               >
-                                <span className="truncate">Signup</span>
+                                <span className="truncate">
+                                  {translate("Sign Up")}
+                                </span>
                               </Link>
 
                               <Link
@@ -451,7 +459,7 @@ export default function IndexHeader() {
                                   "mb-2 flex items-center px-3 py-2 font-medium",
                                 )}
                               >
-                                <span className="truncate">login</span>
+                                <span className="truncate">{"Sign In"}</span>
                               </Link>
                             </div>
                           </Disclosure.Panel>
@@ -465,7 +473,9 @@ export default function IndexHeader() {
                             "mb-2 flex items-center px-3 py-2 font-medium",
                           )}
                         >
-                          <span className="truncate">Signout</span>
+                          <span className="truncate">
+                            {translate("Sign Out")}
+                          </span>
                         </button>
                       )}
                     </nav>
