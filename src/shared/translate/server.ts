@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 
 import { defaultLocale, supportedLocales } from "shared/constants";
 
-export const getTranslations = async (paths: string[]) => {
+export const getTranslations = async (paths: string[] = []) => {
   const headersList = headers();
   const locale = headersList.get("x-settings-l") || defaultLocale;
 

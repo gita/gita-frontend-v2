@@ -14,7 +14,7 @@ interface IconProps {
   ariaHidden: boolean;
 }
 
-const navigation = {
+const getNavigation = (translate: (literal: string) => string) => ({
   main: [
     { name: "About Us", href: "/about", newTab: false },
     { name: "Privacy Policy", href: "/privacy-policy", newTab: false },
@@ -88,10 +88,17 @@ const navigation = {
       ),
     },
   ],
+});
+
+type Props = {
+  translate: (literal: string) => string;
 };
 
-const Footer = () => {
+const Footer = (props: Props) => {
+  const { translate } = props;
+
   const styles = useMyStyles();
+  const navigation = getNavigation(translate);
 
   return (
     <div className="bottom-0 w-full border-y border-gray-200 bg-white font-inter dark:bg-dark-100">

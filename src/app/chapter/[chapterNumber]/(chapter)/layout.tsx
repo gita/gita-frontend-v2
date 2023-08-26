@@ -11,7 +11,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
   return (
     <ChapterLayout
       locale={headerToLocale(headersList.get("x-settings-l"))}
-      translations={await getTranslations([""])}
+      translations={await getTranslations()}
     >
       {children}
     </ChapterLayout>

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+"use client";
 
 import { getTranslate } from "shared/translate";
 
@@ -21,7 +21,7 @@ const ChapterLayout = ({
     <div className="dark:bg-dark-bg">
       <ChapterHeader translate={translate} locale={locale} />
       {children}
-      <Footer />
+      <Footer translate={translate} />
     </div>
   );
 };
