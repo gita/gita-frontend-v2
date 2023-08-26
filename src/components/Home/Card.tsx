@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LinkWithLocale from "components/LinkWithLocale";
 
 import truncate from "../../utils/truncate";
 import { SvgBookmark, SvgList, SvgShuffle } from "../svgs";
@@ -10,7 +10,7 @@ interface Props {
 
 const Card = ({ chapter, translate }: Props) => {
   return (
-    <Link
+    <LinkWithLocale
       href={`/chapter/${chapter.id}`}
       prefetch={false}
       className="z-10 flex flex-col rounded-md border-2 border-white bg-white p-6 drop-shadow-card hover:cursor-pointer hover:border-2 hover:border-box-stroke hover:bg-box-bg hover:shadow-none dark:border-dark-bg dark:bg-dark-100 dark:text-gray-200 dark:hover:border-dark-100 dark:hover:bg-dark-bg"
@@ -41,7 +41,7 @@ const Card = ({ chapter, translate }: Props) => {
           </div>
         </div>
       </div>
-    </Link>
+    </LinkWithLocale>
   );
 };
 

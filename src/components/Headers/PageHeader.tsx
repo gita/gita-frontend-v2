@@ -5,9 +5,9 @@ import { Disclosure, Switch } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import LinkWithLocale from "components/LinkWithLocale";
 import { getTranslate } from "shared/translate";
 
 import useEnvironment from "../../hooks/useEnvironment";
@@ -96,7 +96,7 @@ const PageHeader = ({
                     {/* Current: "border-my-orange text-gray-900", Default: "border-transparent text-gray-500 " */}
 
                     <div className="text-gray-900 dark:text-gray-50">
-                      <Link
+                      <LinkWithLocale
                         href="/"
                         className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
@@ -108,7 +108,7 @@ const PageHeader = ({
                           height={24}
                         />
                         {translate("Home")}
-                      </Link>
+                      </LinkWithLocale>
                     </div>
                     <button
                       type="button"
@@ -225,7 +225,7 @@ const PageHeader = ({
                       </button>
                     )}
                     {isProduction ? null : (
-                      <Link
+                      <LinkWithLocale
                         href="/bookmark"
                         className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
@@ -237,7 +237,7 @@ const PageHeader = ({
                           height={24}
                         />
                         {translate("Bookmark")}
-                      </Link>
+                      </LinkWithLocale>
                     )}
                   </div>
                 </div>
@@ -295,12 +295,12 @@ const PageHeader = ({
 
             <Disclosure.Panel className="lg:hidden">
               <div className="space-y-1 pb-1 pt-2">
-                <Link
+                <LinkWithLocale
                   href="/"
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Home")}
-                </Link>
+                </LinkWithLocale>
                 <button
                   type="button"
                   onClick={openContentModal}

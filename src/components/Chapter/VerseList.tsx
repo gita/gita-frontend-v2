@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LinkWithLocale from "components/LinkWithLocale";
 
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
@@ -10,14 +10,15 @@ type VerseData = Pick<
 
 interface Props {
   verseData: VerseData;
+  translate: (literal: string) => string;
 }
 
-const VerseList = ({ verseData }: Props) => {
+const VerseList = ({ verseData, translate }: Props) => {
   const { verse_number, gita_translations, chapter_number } = verseData;
   const styles = useMyStyles();
 
   return (
-    <Link
+    <LinkWithLocale
       href={`/chapter/${chapter_number}/verse/${verse_number}`}
       prefetch={false}
     >
@@ -28,7 +29,7 @@ const VerseList = ({ verseData }: Props) => {
             styles.fontSize && styles.fontSize.para && styles.lineHeight,
           )}
         >
-          Verse {verse_number}
+          {translate("Verse")} {verse_number}
         </div>
         <div
           className={classNames(
@@ -39,7 +40,7 @@ const VerseList = ({ verseData }: Props) => {
           {gita_translations[0].description}
         </div>
       </div>
-    </Link>
+    </LinkWithLocale>
   );
 };
 

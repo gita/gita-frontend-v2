@@ -5,9 +5,10 @@ import { Fragment, useState } from "react";
 import { Disclosure, Popover, Transition } from "@headlessui/react";
 import { DocumentReportIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAsyncEffect } from "rooks";
+
+import LinkWithLocale from "components/LinkWithLocale";
 
 import classNames from "../../utils/classNames";
 import { supabase } from "../../utils/supabase";
@@ -152,13 +153,13 @@ export default function IndexHeader({ locale, translate }: Props) {
         <div className="mx-auto max-w-7xl px-4 xl:px-0">
           <div className="flex items-center justify-between  py-6 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <Link
+              <LinkWithLocale
                 href="/"
                 className="text-3xl font-bold focus:outline-none dark:text-white"
               >
                 <span className="sr-only">{translate("Workflow")}</span>
                 {translate("Bhagavad Gita")}
-              </Link>
+              </LinkWithLocale>
             </div>
             <div className="-my-2 -mr-2 md:hidden">
               <DarkModeToggle />
@@ -200,7 +201,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                         <div className="overflow-hidden rounded shadow-lg ring-1 ring-black ring-opacity-5">
                           <div className="relative grid gap-6 bg-white py-2 dark:bg-dark-100 sm:gap-8 sm:p-8 md:grid-cols-2">
                             {chapters.map((chapter, index) => (
-                              <Link
+                              <LinkWithLocale
                                 href={chapter.href}
                                 key={index}
                                 className="-m-3 flex items-start rounded-lg p-1 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-bg	"
@@ -214,7 +215,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                                     {chapter.name}
                                   </p>
                                 </div>
-                              </Link>
+                              </LinkWithLocale>
                             ))}
                           </div>
                         </div>
@@ -223,18 +224,18 @@ export default function IndexHeader({ locale, translate }: Props) {
                   </>
                 )}
               </Popover>
-              <Link
+              <LinkWithLocale
                 href="/quotes"
                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
               >
                 {translate("Quotes")}
-              </Link>
-              <Link
+              </LinkWithLocale>
+              <LinkWithLocale
                 href="/about"
                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
               >
                 {translate("About Gita")}
-              </Link>
+              </LinkWithLocale>
               {!loggedIn ? (
                 <Popover className="relative">
                   {({ open }) => (
@@ -267,18 +268,18 @@ export default function IndexHeader({ locale, translate }: Props) {
                         <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-32 max-w-xs px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
                           <div className="overflow-hidden rounded shadow-lg ring-1 ring-black ring-opacity-5">
                             <div className="relative grid bg-white  py-2 dark:bg-dark-100 sm:gap-8 sm:p-8 md:grid-cols-1">
-                              <Link
+                              <LinkWithLocale
                                 href="/signup"
                                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
                               >
                                 {translate("Sign Up")}
-                              </Link>
-                              <Link
+                              </LinkWithLocale>
+                              <LinkWithLocale
                                 href="/login"
                                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
                               >
                                 {translate("Sign In")}
-                              </Link>
+                              </LinkWithLocale>
                             </div>
                           </div>
                         </Popover.Panel>
@@ -421,7 +422,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                         </Disclosure.Panel>
                       </Disclosure>
                       {mobileNav.map((item) => (
-                        <Link
+                        <LinkWithLocale
                           key={item.name}
                           href={item.href}
                           className={classNames(
@@ -433,7 +434,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                           aria-current={item.current ? "page" : undefined}
                         >
                           <span className="truncate">{item.name}</span>
-                        </Link>
+                        </LinkWithLocale>
                       ))}
                       {!loggedIn ? (
                         <Disclosure>
@@ -443,7 +444,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                           </Disclosure.Button>
                           <Disclosure.Panel className="py-4 text-gray-500 dark:bg-dark-100 dark:text-white">
                             <div className="relative grid grid-cols-2 gap-6 bg-white px-8 py-2 dark:bg-dark-100 dark:text-white sm:gap-8 sm:p-8">
-                              <Link
+                              <LinkWithLocale
                                 href="/signup"
                                 className={classNames(
                                   "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
@@ -453,9 +454,9 @@ export default function IndexHeader({ locale, translate }: Props) {
                                 <span className="truncate">
                                   {translate("Sign Up")}
                                 </span>
-                              </Link>
+                              </LinkWithLocale>
 
-                              <Link
+                              <LinkWithLocale
                                 href="/login"
                                 className={classNames(
                                   "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
@@ -463,7 +464,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                                 )}
                               >
                                 <span className="truncate">{"Sign In"}</span>
-                              </Link>
+                              </LinkWithLocale>
                             </div>
                           </Disclosure.Panel>
                         </Disclosure>

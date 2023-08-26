@@ -5,8 +5,9 @@ import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { SearchIcon } from "@heroicons/react/solid";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+import LinkWithLocale from "components/LinkWithLocale";
 
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
@@ -56,7 +57,7 @@ const ChapterHeader = (props: Props) => {
               <div className="flex h-16 justify-between">
                 <div className="flex px-2 lg:px-0">
                   <div className="hidden items-center py-2 lg:flex lg:space-x-4">
-                    <Link
+                    <LinkWithLocale
                       href="/"
                       className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-gray-900 hover:bg-nav-hover dark:text-gray-50 dark:hover:bg-dark-bg"
                     >
@@ -67,8 +68,8 @@ const ChapterHeader = (props: Props) => {
                         width={24}
                         height={24}
                       />
-                      Home
-                    </Link>
+                      {translate("Home")}
+                    </LinkWithLocale>
                     <button
                       type="button"
                       onClick={openContentModal}
@@ -86,7 +87,7 @@ const ChapterHeader = (props: Props) => {
                         width={24}
                         height={24}
                       />
-                      Content
+                      {translate("Content")}
                     </button>
                     <button
                       type="button"
@@ -103,14 +104,14 @@ const ChapterHeader = (props: Props) => {
                         width={24}
                         height={24}
                       />
-                      Appearance
+                      {translate("Appearance")}
                     </button>
                   </div>
                 </div>
                 <div className="flex flex-1 items-center justify-start pr-2  lg:ml-6 lg:justify-end">
                   <div className="w-full max-w-lg lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
-                      Search
+                      {translate("Search")}
                     </label>
                     <form
                       onSubmit={handleSearch}
@@ -129,7 +130,7 @@ const ChapterHeader = (props: Props) => {
                         id="search"
                         name="search"
                         className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:placeholder:text-gray-50 sm:text-sm"
-                        placeholder="Search"
+                        placeholder={translate("Search")}
                         type="search"
                         value={input}
                         onChange={(e) => {
@@ -144,7 +145,9 @@ const ChapterHeader = (props: Props) => {
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}
                   <Disclosure.Button className="inline-flex items-center justify-start rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
-                    <span className="sr-only">Open main menu</span>
+                    <span className="sr-only">
+                      {translate("Open main menu")}
+                    </span>
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />
                     ) : (
@@ -158,23 +161,23 @@ const ChapterHeader = (props: Props) => {
             <Disclosure.Panel className="lg:hidden">
               <div className="space-y-1 pb-3 pt-2">
                 {/* Current: "bg-indigo-50 border-my-orange text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
-                <Link
+                <LinkWithLocale
                   href="/"
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Home
-                </Link>
+                  {translate("Home")}
+                </LinkWithLocale>
                 <button
                   onClick={openContentModal}
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Content
+                  {translate("Content")}
                 </button>
                 <button
                   onClick={openSettingsModal}
                   className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
-                  Appearance
+                  {translate("Appearance")}
                 </button>
               </div>
             </Disclosure.Panel>

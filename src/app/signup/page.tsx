@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
-import Link from "next/link";
 
+import LinkWithLocale from "components/LinkWithLocale";
 import {
   SvgEyeCross,
   SvgEyeOpen,
@@ -195,12 +195,12 @@ function Signup() {
       </div>
       <p className="mt-2 text-center text-sm font-normal text-gray-500">
         Already have an account?{" "}
-        <Link
+        <LinkWithLocale
           href="/login"
           className="font-bold text-my-orange hover:cursor-pointer"
         >
           Login
-        </Link>
+        </LinkWithLocale>
       </p>
     </>
   );

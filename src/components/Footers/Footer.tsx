@@ -4,7 +4,8 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import Image from "next/image";
-import Link from "next/link";
+
+import LinkWithLocale from "components/LinkWithLocale";
 
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
@@ -241,7 +242,7 @@ const Footer = (props: Props) => {
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
-                            <Link
+                            <LinkWithLocale
                               href="/about"
                               className={classNames(
                                 active
@@ -250,8 +251,8 @@ const Footer = (props: Props) => {
                                 "block px-4 py-2 text-sm",
                               )}
                             >
-                              About Us
-                            </Link>
+                              {translate("About Us")}
+                            </LinkWithLocale>
                           )}
                         </Menu.Item>
                         <Menu.Item>
@@ -266,7 +267,7 @@ const Footer = (props: Props) => {
                               )}
                               target="_blank"
                             >
-                              Blog
+                              {translate("Blog")}
                             </a>
                           )}
                         </Menu.Item>
@@ -282,7 +283,7 @@ const Footer = (props: Props) => {
                               )}
                               target="_blank"
                             >
-                              Donate
+                              {translate("Donate")}
                             </a>
                           )}
                         </Menu.Item>
@@ -433,13 +434,13 @@ const Footer = (props: Props) => {
                           {item.name}
                         </a>
                       ) : (
-                        <Link
+                        <LinkWithLocale
                           className="text-base text-gray-500 hover:text-gray-900 dark:hover:text-white"
                           href={item.href}
                           passHref
                         >
                           {item.name}
-                        </Link>
+                        </LinkWithLocale>
                       )}
                     </div>
                   ))}

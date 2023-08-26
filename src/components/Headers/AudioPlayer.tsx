@@ -4,7 +4,8 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
-import Link from "next/link";
+
+import LinkWithLocale from "components/LinkWithLocale";
 
 interface Props {
   currentVerse: GitaVerse;
@@ -142,7 +143,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                 </div>
 
                 <div className="mt-4 flex justify-between px-4">
-                  <Link
+                  <LinkWithLocale
                     href={`/chapter/${currentVerse?.chapter_number}/verse/${prevId}`}
                     className={`hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50 ${
                       prevId <= 0 ? "pointer-events-none" : ""
@@ -154,7 +155,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                       width={50}
                       height={50}
                     />
-                  </Link>
+                  </LinkWithLocale>
                   <Image
                     id="play"
                     ref={(element) => {
@@ -167,7 +168,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                     height={54}
                     alt="play or pause icon"
                   />
-                  <Link
+                  <LinkWithLocale
                     href={`/chapter/${currentVerse?.chapter_number}/verse/${nextId}`}
                     className={`hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50 ${
                       nextId > 701 ? "pointer-events-none" : ""
@@ -179,7 +180,7 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                       width={50}
                       height={50}
                     />
-                  </Link>
+                  </LinkWithLocale>
                 </div>
                 <div
                   className=" mx-auto my-3 flex h-2 w-full cursor-pointer items-center"

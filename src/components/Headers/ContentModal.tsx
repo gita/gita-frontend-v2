@@ -7,8 +7,9 @@ import {
   CheckIcon,
   SelectorIcon,
 } from "@heroicons/react/solid";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+import LinkWithLocale from "components/LinkWithLocale";
 
 import data from "../../constant/contentModal.json";
 
@@ -301,7 +302,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                         (chapter) => chapter.chapterNumber === selectedChapter,
                       )[0]
                       .gitaVersesByChapterId.nodes.map((verse) => (
-                        <Link
+                        <LinkWithLocale
                           href={`/chapter/${selectedChapter}/verse/${verse.verseNumber}`}
                           key={verse.id}
                           prefetch={false}
@@ -321,7 +322,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                               {verse.verseNumber}
                             </div>
                           )}
-                        </Link>
+                        </LinkWithLocale>
                       ))}
                   </div>
                 </div>

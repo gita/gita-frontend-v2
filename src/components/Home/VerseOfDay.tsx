@@ -1,7 +1,6 @@
 "use server";
 
-import Link from "next/link";
-
+import LinkWithLocale from "components/LinkWithLocale";
 import { getTranslate } from "shared/translate";
 
 import { getDailyVerse } from "../../lib/getDailyVerse";
@@ -31,9 +30,9 @@ const VerseOfDay = async (props: Props) => {
               {dailyVerse?.gita_translations[0].description}{" "}
             </p>
             <button className="mt-4 text-sm font-bold uppercase text-black hover:text-gray-700 focus:outline-none dark:text-white dark:hover:text-gray-400">
-              <Link href="/verse-of-the-day" shallow>
+              <LinkWithLocale href="/verse-of-the-day" shallow>
                 {translate("See more")}
-              </Link>
+              </LinkWithLocale>
             </button>
           </>
         ) : (

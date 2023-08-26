@@ -79,6 +79,7 @@ const Verse = async ({ params }: Props) => {
     chapterNumber,
     verseNumber: [verseNumber],
   } = params;
+
   const locale = paramsToLocale(params);
 
   const jsonLd = {

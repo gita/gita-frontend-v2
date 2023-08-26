@@ -1,11 +1,12 @@
 import { Fragment, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
-import Link from "next/link";
 
 import languages from "constant/languages.json"; //todo: use graphql api to fetch
 import { setNotification } from "redux/actions/main";
 import { supabase } from "utils/supabase";
+
+import LinkWithLocale from "./LinkWithLocale";
 
 interface Props {
   notesSettingsIsOpen: boolean;
@@ -95,7 +96,7 @@ const NotesModal = ({
               leaveTo="opacity-0 scale-95"
             >
               <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
-                <Link href="/notes">View Notes</Link>
+                <LinkWithLocale href="/notes">View Notes</LinkWithLocale>
                 <div className="my-2 flex items-center justify-between py-2">
                   <p className="text-base text-black dark:text-white">
                     Add/Edit Notes

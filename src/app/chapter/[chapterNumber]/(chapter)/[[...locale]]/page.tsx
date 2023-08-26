@@ -3,13 +3,15 @@ import { headers } from "next/headers";
 
 import NotFound from "components/NotFound";
 import { getChapterData } from "lib/getChapterData";
-import { getLanguageSettings } from "shared/functions";
+import { getLanguageSettings, paramsToLocale } from "shared/functions";
+import { getTranslations } from "shared/translate/server";
 
 import ChapterPage from "./chapter-page";
 
 type Props = {
   params: {
     chapterNumber: string;
+    locale: string[];
   };
 };
 
@@ -67,12 +69,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function Chapter({ params: { chapterNumber } }: Props) {
+export default async function Chapter({ params }: Props) {
   const headersList = headers();
   const languageSettings = getLanguageSettings({
     translationAuthorId: parseInt(headersList.get("x-settings-t") || ""),
     commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),
   });
+
+  const { chapterNumber } = params;
 
   const chapterData = await getChapterData(
     parseInt(chapterNumber),
@@ -107,6 +111,9 @@ export default async function Chapter({ params: { chapterNumber } }: Props) {
     return <NotFound hint={`Chapter ${chapterNumber} not found`} />;
   }
 
+  const locale = paramsToLocale(params);
+  const translations = await getTranslations(locale);
+
   return (
     <>
       <script
@@ -116,6 +123,8 @@ export default async function Chapter({ params: { chapterNumber } }: Props) {
       <ChapterPage
         chapterData={chapterData.gita_chapters_by_pk}
         versesData={chapterData.gita_verses}
+        translations={translations}
+        locale={locale}
       />
     </>
   );

@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import LinkWithLocale from "components/LinkWithLocale";
 import {
   SvgEyeCross,
   SvgEyeOpen,
@@ -119,12 +119,12 @@ const Login = () => {
       </div>
       <p className="mt-2 text-center text-sm font-normal text-gray-500">
         Don’t have an account?{" "}
-        <Link
+        <LinkWithLocale
           href="/signup"
           className="font-bold text-my-orange hover:cursor-pointer"
         >
           Sign up
-        </Link>
+        </LinkWithLocale>
       </p>
     </>
   );

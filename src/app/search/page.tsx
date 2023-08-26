@@ -1,6 +1,9 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 
+import { paramsToLocale } from "shared/functions";
+import { getTranslations } from "shared/translate/server";
+
 import SearchPage from "./search-page";
 
 export const metadata: Metadata = {
@@ -11,10 +14,13 @@ function SearchFallback() {
   return <>Loading...</>;
 }
 
-export default function Search() {
+export default async function Search({ params }: ParamsWithLocale) {
+  const locale = paramsToLocale(params);
+  const translations = await getTranslations(locale);
+
   return (
     <Suspense fallback={<SearchFallback />}>
-      <SearchPage />;
+      <SearchPage locale={locale} translations={translations} />;
     </Suspense>
   );
 }

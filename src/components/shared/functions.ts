@@ -39,7 +39,7 @@ export const getCookie = (name: string) => {
   return null;
 };
 
-const getLocaleFromPath = (): Locale => {
+export const getLocaleFromPath = (): Locale => {
   const maybeLocale = window.location.pathname.split("/").pop();
   return isLocale(maybeLocale) ? maybeLocale : "en";
 };

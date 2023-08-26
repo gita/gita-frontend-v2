@@ -12,6 +12,7 @@ import VerseList from "components/Chapter/VerseList";
 import VerseNavigator from "components/Chapter/VerseNavigator";
 import { SvgChapterBackground } from "components/svgs";
 import useMyStyles from "hooks/useMyStyles";
+import { getTranslate } from "shared/translate";
 import classNames from "utils/classNames";
 
 interface Props {
@@ -20,6 +21,8 @@ interface Props {
     GitaVerse,
     "id" | "verse_number" | "gita_translations" | "chapter_number"
   >[];
+  locale: Locale;
+  translations: Record<string, string>;
 }
 
 export default function ChapterPage({
@@ -30,11 +33,15 @@ export default function ChapterPage({
     verses_count,
   },
   versesData,
+  translations,
+  locale,
 }: Props) {
   const [viewNavigation, setViewNavigation] = useState(false);
   const [verseId, setVerseId] = useState(0);
   const [isAscSorted, setIsAscSorted] = useState(true);
   const styles = useMyStyles();
+
+  const translate = getTranslate(translations, locale);
 
   const filteredVerses = versesData?.filter((verse) => {
     if (!verseId) return true;
@@ -64,7 +71,7 @@ export default function ChapterPage({
             styles.fontSize.subHeading2,
           )}
         >
-          Chapter {chapter_number}
+          {translate("Chapter")} {chapter_number}
         </h3>
         <h1
           className={classNames(
@@ -93,7 +100,7 @@ export default function ChapterPage({
               styles.fontSize.para,
             )}
           >
-            {verses_count} Verses
+            {verses_count} {translate("Verses")}
           </div>
           <div className="relative mt-1 flex rounded-md shadow-sm">
             <div className="relative flex grow items-stretch focus-within:z-10">
@@ -107,7 +114,7 @@ export default function ChapterPage({
                   "block w-full rounded-none rounded-l-md border border-gray-300 pl-2 focus:border-my-orange focus:ring-my-orange",
                   styles.fontSize.para,
                 )}
-                placeholder="Go To Verse"
+                placeholder={translate("Go To Verse")}
                 onClick={() => setViewNavigation(!viewNavigation)}
                 onChange={() => {}}
               />
@@ -135,7 +142,7 @@ export default function ChapterPage({
                   aria-hidden="true"
                 />
               )}
-              <span className={styles.fontSize.para}>Sort</span>
+              <span className={styles.fontSize.para}>{translate("Sort")}</span>
 
               <ChevronDownIcon
                 className="h-5 w-5 text-gray-400 dark:text-gray-50"
@@ -148,7 +155,7 @@ export default function ChapterPage({
 
       <div className="mx-auto mb-16 max-w-5xl px-4 py-8 font-inter sm:px-6">
         {sortedVerses?.map((verse) => (
-          <VerseList verseData={verse} key={verse.id} />
+          <VerseList key={verse.id} verseData={verse} translate={translate} />
         ))}
       </div>
     </div>

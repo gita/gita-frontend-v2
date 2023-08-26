@@ -1,9 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
+
+import LinkWithLocale from "components/LinkWithLocale";
 
 export default function AuthHeader() {
   return (
-    <Link
+    <LinkWithLocale
       href="/"
       className="flex items-center gap-3 text-3xl font-bold focus:outline-none"
     >
@@ -17,6 +18,6 @@ export default function AuthHeader() {
         <span className="sr-only">Workflow</span>
         <p className="pl-3">Bhagavad Gita</p>
       </div>
-    </Link>
+    </LinkWithLocale>
   );
 }

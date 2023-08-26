@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import { getTranslate } from "shared/translate";
+
 import SearchCard from "../../components/Search/SearchCard";
 
 interface SearchQueryVerse {
@@ -15,11 +17,19 @@ interface SearchQueryVerse {
   text: string;
 }
 
-export default function SearchPage() {
+export default function SearchPage({
+  translations,
+  locale,
+}: {
+  locale: Locale;
+  translations: Record<string, string>;
+}) {
   const searchParams = useSearchParams();
   const query = searchParams?.get("query");
   const [data, setData] = useState<SearchQueryVerse[]>();
   const [isSearchLoading, setIsSearchLoading] = useState(false);
+
+  const translate = getTranslate(translations, locale);
 
   useEffect(() => {
     setIsSearchLoading(true);
@@ -53,7 +63,8 @@ export default function SearchPage() {
             isSearchLoading ? "animate-pulse" : ""
           }`}
         >
-          Searching results for: <span className="font-extrabold">{query}</span>
+          {translate("Searching results for")}:{" "}
+          <span className="font-extrabold">{query}</span>
         </p>
         <hr />
 
@@ -66,6 +77,7 @@ export default function SearchPage() {
                   chapterNumber={verse.chapter_number}
                   transliteration={verse.transliteration}
                   verseNumber={verse.verse_number}
+                  translate={translate}
                 />
               );
             })}
