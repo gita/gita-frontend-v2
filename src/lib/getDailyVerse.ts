@@ -1,4 +1,5 @@
-import { query, resolved } from "gqty-client";
+import { gita_translations_bool_exp, query, resolved } from "gqty-client";
+import { getDefaultsForLocale } from "shared/functions";
 
 const msInDay = 24 * 60 * 60 * 1000;
 const dayOfYear = (date: Date) =>
@@ -6,17 +7,22 @@ const dayOfYear = (date: Date) =>
     Date.UTC(date.getFullYear(), 0, 0)) /
   msInDay;
 
-const whereGitaAuthor = {
-  where: {
-    gita_author: {
-      name: {
-        _eq: "Swami Sivananda",
+const getWhereGitaAuthor = (
+  locale: Locale,
+): {
+  where: gita_translations_bool_exp;
+} => {
+  const defaultsForLocale = getDefaultsForLocale(locale);
+  return {
+    where: {
+      author_id: {
+        _eq: defaultsForLocale.translationAuthorId,
       },
     },
-  },
+  };
 };
 
-export const getDailyVerse = () =>
+export const getDailyVerse = (locale: Locale) =>
   resolved(() => {
     const gitaVerse =
       query.gita_verses_by_pk({
@@ -29,6 +35,8 @@ export const getDailyVerse = () =>
     if (!gitaVerse) {
       return null;
     }
+
+    const whereGitaAuthor = getWhereGitaAuthor(locale);
 
     return {
       id: gitaVerse.id!,

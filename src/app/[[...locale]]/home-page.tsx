@@ -12,33 +12,22 @@ async function HomePage({
   locale,
   chapters,
 }: Omit<ChaptersProps, "translations">) {
+  const translationProps = {
+    locale,
+    translations: await getTranslations(locale),
+  };
+
   return (
     <div className="min-h-screen font-inter dark:bg-dark-bg">
       <main>
-        <HomeLayout
-          locale={locale}
-          translations={await getTranslations(locale)}
-        >
+        <HomeLayout {...translationProps}>
           <div className="relative">
-            <Banner
-              locale={locale}
-              translations={await getTranslations(locale)}
-            />
+            <Banner {...translationProps} />
             <BackgroundImage />
-            <VerseOfDay
-              locale={locale}
-              translations={await getTranslations(locale)}
-            />
+            <VerseOfDay {...translationProps} />
           </div>
-          <Newsletter
-            locale={locale}
-            translations={await getTranslations(locale)}
-          />
-          <Chapters
-            chapters={chapters}
-            locale={locale}
-            translations={await getTranslations(locale)}
-          />
+          <Newsletter {...translationProps} />
+          <Chapters chapters={chapters} {...translationProps} />
         </HomeLayout>
       </main>
     </div>

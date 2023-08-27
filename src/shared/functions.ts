@@ -64,31 +64,18 @@ export const getMyStyles = () => {
   return myStyles;
 };
 
-// export const getMyLanguage = () => {
-//   const languageId = getCookie("languageId") || 1;
-//   return (
-//     languages.find(({ id }) => String(id) === String(languageId)) ||
-//     languages[0]
-//   );
-// };
-
-// export const getMyCommentaryAuthor = () => {
-//   const commentaryAuthorId = getCookie("commentaryAuthorId") || 16;
-//   return (
-//     commentaryAuthors.find(
-//       ({ id }) => String(id) === String(commentaryAuthorId),
-//     ) || commentaryAuthors[0]
-//   );
-// };
-
-// export const getMyTranslationAuthor = () => {
-//   const translationAuthorId = getCookie("translationAuthorId") || 16;
-//   return (
-//     translationAuthors.find(
-//       ({ id }) => String(id) === String(translationAuthorId),
-//     ) || translationAuthors[0]
-//   );
-// };
+export const getDefaultsForLocale = (locale: Locale) => {
+  if (locale === "hi") {
+    return {
+      translationAuthorId: 1,
+      commentaryAuthorId: 1,
+    };
+  }
+  return {
+    translationAuthorId: 16,
+    commentaryAuthorId: 16,
+  };
+};
 
 export const getLanguageById = (languageId: number) =>
   languages.find(({ id }) => id === languageId);
@@ -131,3 +118,6 @@ export const getLanguageSettings = (
     getCommentaryAuthorById(commentaryAuthorId) ||
     getCommentaryAuthorById(defaultCommentaryAuthorId)!,
 });
+
+export const upperFirst = (string: string) =>
+  string.charAt(0).toUpperCase() + string.slice(1);

@@ -1,6 +1,6 @@
 import LinkWithLocale from "components/LinkWithLocale";
+import truncate from "utils/truncate";
 
-import truncate from "../../utils/truncate";
 import { SvgBookmark, SvgList, SvgShuffle } from "../svgs";
 
 interface Props {
@@ -28,7 +28,9 @@ const Card = ({ chapter, translate }: Props) => {
       <div className="flex justify-between">
         <div className="mt-4 flex items-center text-sm ">
           <SvgList className="mr-4" />
-          <span className="mb-0.5">{chapter.verses_count} Verses</span>
+          <span className="mb-0.5">
+            {chapter.verses_count} {translate("Verses")}
+          </span>
         </div>
 
         <div className="mt-4 flex">

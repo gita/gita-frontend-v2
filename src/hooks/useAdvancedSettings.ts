@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { getCookie, setCookie } from "components/shared/functions";
+import { upperFirst } from "shared/functions";
 
 const booleanOrTrue = (cookieValue: string | boolean | undefined) => {
   try {
@@ -13,11 +14,11 @@ const booleanOrTrue = (cookieValue: string | boolean | undefined) => {
 };
 
 const getAdvancedSettings = () => ({
-  devanagari: booleanOrTrue(getCookie("devanagari")),
-  verseText: booleanOrTrue(getCookie("verseText")),
-  synonyms: booleanOrTrue(getCookie("synonyms")),
-  translation: booleanOrTrue(getCookie("translation")),
-  purport: booleanOrTrue(getCookie("purport")),
+  devanagari: booleanOrTrue(getCookie("bgDevanagari")),
+  verseText: booleanOrTrue(getCookie("bgVerseText")),
+  synonyms: booleanOrTrue(getCookie("bsSynonyms")),
+  translation: booleanOrTrue(getCookie("bgTranslation")),
+  purport: booleanOrTrue(getCookie("bgPurport")),
 });
 
 function useAdvancedSettings() {
@@ -39,7 +40,7 @@ function useAdvancedSettings() {
       ...update,
     };
     Object.entries(update).forEach(([key, value]) => {
-      setCookie(key, String(value));
+      setCookie(`bg${upperFirst(key)}`, String(value));
     });
     setAdvancedSettings(updatedAdvancedSettings);
   };

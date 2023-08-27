@@ -14,7 +14,7 @@ type Props = {
 const VerseOfDay = async (props: Props) => {
   const { translations, locale } = props;
 
-  const dailyVerse = await getDailyVerse();
+  const dailyVerse = await getDailyVerse(locale);
   const translate = getTranslate(translations, locale);
 
   return (

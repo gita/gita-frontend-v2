@@ -1,7 +1,6 @@
+import useMyStyles from "hooks/useMyStyles";
 import { getTranslate } from "shared/translate";
-
-import useMyStyles from "../../hooks/useMyStyles";
-import classNames from "../../utils/classNames";
+import classNames from "utils/classNames";
 
 interface Props {
   translationData: GitaLanguage[] | undefined;

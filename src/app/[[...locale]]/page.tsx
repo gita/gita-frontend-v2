@@ -47,8 +47,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Home({ params }: ParamsWithLocale) {
-  const chapters = await getAllChapters();
   const locale = paramsToLocale(params);
+  const chapters = await getAllChapters(locale);
 
   const jsonLdFirst = {
     "@context": "http://schema.org",

@@ -31,9 +31,8 @@ const Author = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [cookies, setCookie] = useCookies([
-    "languageId",
-    "translationAuthorId",
-    "commentaryAuthorId",
+    "bgTranslationAuthorId",
+    "bgCommentaryAuthorId",
   ]);
 
   const [translationAuthor, setTranslationAuthor] = useState({
@@ -49,22 +48,18 @@ const Author = ({
 
   useEffect(() => {
     const myLanguageSettings = getLanguageSettings({
-      translationAuthorId: parseInt(String(cookies.translationAuthorId)),
-      commentaryAuthorId: parseInt(String(cookies.commentaryAuthorId)),
+      translationAuthorId: parseInt(String(cookies.bgTranslationAuthorId)),
+      commentaryAuthorId: parseInt(String(cookies.bgCommentaryAuthorId)),
     });
 
     setTranslationAuthor(myLanguageSettings.translationAuthor);
     setCommentaryAuthor(myLanguageSettings.commentaryAuthor);
-  }, [
-    cookies.commentaryAuthorId,
-    cookies.languageId,
-    cookies.translationAuthorId,
-  ]);
+  }, [cookies.bgTranslationAuthorId, cookies.bgCommentaryAuthorId]);
 
   function handleSubmit() {
     setIsSubmitting(true);
-    setCookie("translationAuthorId", translationAuthor.id, cookieOptions);
-    setCookie("commentaryAuthorId", commentaryAuthor.id, cookieOptions);
+    setCookie("bgTranslationAuthorId", translationAuthor.id, cookieOptions);
+    setCookie("bgCommentaryAuthorId", commentaryAuthor.id, cookieOptions);
     window.location.reload();
   }
 

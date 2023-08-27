@@ -6,8 +6,9 @@ import { getLanguageSettings } from "shared/functions";
 export function middleware(req: NextRequest) {
   const { origin, pathname, searchParams } = new URL(req.url);
 
-  const cookieT = req.cookies.get("translationAuthorId")?.value;
-  const cookieC = req.cookies.get("commentaryAuthorId")?.value;
+  const cookieT = req.cookies.get("bgTranslationAuthorId")?.value;
+  const cookieC = req.cookies.get("bgCommentaryAuthorId")?.value;
+  const cookieL = req.cookies.get("bgLocale")?.value;
 
   const searchT = searchParams.get("t");
   const searchC = searchParams.get("c");
@@ -36,11 +37,9 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(updatedUrl);
   }
 
-  const [maybeLocale] = pathname.split("/").filter(Boolean).reverse();
-
   const response = NextResponse.next({
     headers: {
-      "x-settings-l": req.cookies.get("locale")?.value,
+      "x-settings-l": cookieL,
       "x-settings-t": String(translationAuthor.id),
       "x-settings-c": String(commentaryAuthor.id),
     },

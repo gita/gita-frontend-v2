@@ -9,14 +9,6 @@ import { getTranslations } from "shared/translate/server";
 import { VerseOfTheDay } from "./verse-of-the-day";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const gitaVerse = await getDailyVerse();
-
-  if (!gitaVerse) {
-    return {};
-  }
-
-  const { chapter_number, verse_number } = gitaVerse;
-
   return {
     title: `Bhagavad Gita - Verse of the Day`,
     openGraph: {
@@ -59,8 +51,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const Page = async ({ params }: ParamsWithLocale) => {
   const locale = paramsToLocale(params);
-  const dailyVerse = await getDailyVerse();
-  const headersList = headers();
+  const dailyVerse = await getDailyVerse(locale);
 
   if (!dailyVerse) {
     return <NotFound hint="Daily verse not found" />;
