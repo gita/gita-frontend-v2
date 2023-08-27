@@ -6,13 +6,20 @@ import { UrlObject } from "url";
 
 import { getLocaleFromPath } from "./shared/functions";
 
+const getAsUrl = (href: string) => {
+  try {
+    return new URL(
+      href.startsWith("/") ? `${window.location.origin}${href}` : href,
+    );
+  } catch (err) {
+    console.error("Unable to create URL");
+    console.error(href);
+  }
+  return new URL(window.location.href);
+};
+
 const getUpdatedHref = (href: UrlObject | string, locale: Locale) => {
-  const hrefUrl =
-    typeof href === "string"
-      ? new URL(
-          href.startsWith("/") ? `${window.location.origin}${href}` : href,
-        )
-      : href;
+  const hrefUrl = typeof href === "string" ? getAsUrl(href) : href;
   const addSlash = !hrefUrl.pathname.endsWith("/");
   hrefUrl.pathname = `${hrefUrl.pathname}${addSlash ? "/" : ""}${locale}`;
   return hrefUrl.toString();

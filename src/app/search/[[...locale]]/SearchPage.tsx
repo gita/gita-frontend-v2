@@ -66,26 +66,26 @@ export default function SearchPage({
 
         {data && data?.length > 0 ? (
           <div>
-            {data.map((verse) => {
-              return (
-                <SearchCard
-                  key={verse.id}
-                  chapterNumber={verse.chapter_number}
-                  transliteration={verse.transliteration}
-                  verseNumber={verse.verse_number}
-                  translate={translate}
-                />
-              );
-            })}
+            {data.map((verse) => (
+              <SearchCard
+                key={verse.id}
+                chapterNumber={verse.chapter_number}
+                transliteration={verse.transliteration}
+                verseNumber={verse.verse_number}
+                translate={translate}
+              />
+            ))}
           </div>
         ) : (
           <div className={`py-7 ${isSearchLoading ? "animate-pulse" : ""}`}>
             <p className="text-4xl font-extrabold text-my-orange">
-              {isSearchLoading ? "Loading" : "No Results"}
+              {isSearchLoading ? translate("Loading") : translate("No results")}
             </p>
             <p className="text-sm font-normal text-gray-500">
               {!isSearchLoading &&
-                "Sorry, we couldn’t find the page you’re looking for."}
+                translate(
+                  "Sorry, we couldn't find the page you're looking for",
+                )}
             </p>
           </div>
         )}

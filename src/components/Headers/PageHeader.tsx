@@ -76,7 +76,7 @@ const PageHeader = ({
     if (input?.trim().length <= 0) {
       return;
     }
-    router.push(`/search?query=${input}`);
+    router.push(`/search${locale === "en" ? "" : `/${locale}`}?query=${input}`);
   }
 
   return (
