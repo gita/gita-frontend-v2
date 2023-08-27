@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 import { supportedLocales } from "shared/constants";
-import { getLanguageSettings } from "shared/functions";
+import { getLanguageSettings, isLocale } from "shared/functions";
 
 export function middleware(req: NextRequest) {
   const { origin, pathname, searchParams } = new URL(req.url);
@@ -16,7 +16,10 @@ export function middleware(req: NextRequest) {
   const anyT = searchT || (typeof cookieT === "string" && cookieT) || "";
   const anyC = searchC || (typeof cookieC === "string" && cookieC) || "";
 
-  const { translationAuthor, commentaryAuthor } = getLanguageSettings({
+  const [maybeLocale] = pathname.split("/").filter(Boolean).reverse();
+  const locale = isLocale(maybeLocale) ? maybeLocale : "en";
+
+  const { translationAuthor, commentaryAuthor } = getLanguageSettings(locale, {
     translationAuthorId: parseInt(anyT),
     commentaryAuthorId: parseInt(anyC),
   });

@@ -15,15 +15,15 @@ interface Props {
   authorSettingsIsOpen: boolean;
   closeAuthorSettingsModal: () => void;
   translate: (literal: string) => string;
+  locale: Locale;
 }
 
-const Author = ({
+const AuthorSettings = ({
   authorSettingsIsOpen,
   closeAuthorSettingsModal,
   translate,
+  locale,
 }: Props) => {
-  const languageSettings = getLanguageSettings();
-
   const [isVerseCommentarySourceEnabled, setIsVerseCommentarySourceEnabled] =
     useState(true);
   const [isVerseTranslationSourceEnabled, setIsVerseTranslationSourceEnabled] =
@@ -47,14 +47,14 @@ const Author = ({
   });
 
   useEffect(() => {
-    const myLanguageSettings = getLanguageSettings({
+    const myLanguageSettings = getLanguageSettings(locale, {
       translationAuthorId: parseInt(String(cookies.bgTranslationAuthorId)),
       commentaryAuthorId: parseInt(String(cookies.bgCommentaryAuthorId)),
     });
 
     setTranslationAuthor(myLanguageSettings.translationAuthor);
     setCommentaryAuthor(myLanguageSettings.commentaryAuthor);
-  }, [cookies.bgTranslationAuthorId, cookies.bgCommentaryAuthorId]);
+  }, [cookies.bgTranslationAuthorId, cookies.bgCommentaryAuthorId, locale]);
 
   function handleSubmit() {
     setIsSubmitting(true);
@@ -290,4 +290,4 @@ const Author = ({
   );
 };
 
-export default Author;
+export default AuthorSettings;

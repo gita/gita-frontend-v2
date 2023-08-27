@@ -7,6 +7,7 @@ import { getLanguageSettings, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import ChapterPage from "./chapter-page";
+import { getJsonLd } from "./functions";
 
 type Props = {
   params: {
@@ -15,10 +16,12 @@ type Props = {
   };
 };
 
-export async function generateMetadata({
-  params: { chapterNumber },
-}: Props): Promise<Metadata> {
-  const chapterData = await getChapterData(parseInt(chapterNumber));
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { chapterNumber } = params;
+  const chapterData = await getChapterData(
+    paramsToLocale(params),
+    parseInt(chapterNumber),
+  );
   if (!chapterData) {
     return {};
   }
@@ -72,7 +75,8 @@ export async function generateMetadata({
 
 export default async function Chapter({ params }: Props) {
   const headersList = headers();
-  const languageSettings = getLanguageSettings({
+  const locale = paramsToLocale(params);
+  const languageSettings = getLanguageSettings(locale, {
     translationAuthorId: parseInt(headersList.get("x-settings-t") || ""),
     commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),
   });
@@ -80,46 +84,29 @@ export default async function Chapter({ params }: Props) {
   const { chapterNumber } = params;
 
   const chapterData = await getChapterData(
+    locale,
     parseInt(chapterNumber),
-    languageSettings.translationAuthor.name,
+    languageSettings.translationAuthor.id,
   );
-
-  const jsonLd = {
-    "@context": "http://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        item: {
-          "@id": "https://bhagavadgita.io",
-          name: "Home",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        item: {
-          "@id": `https://bhagavadgita.io/chapter/${chapterNumber}/`,
-          name: `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData?.gita_chapters_by_pk.name_translated}`,
-          image: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
-        },
-      },
-    ],
-  };
 
   if (!chapterData) {
     return <NotFound hint={`Chapter ${chapterNumber} not found`} />;
   }
 
-  const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getJsonLd(
+              chapterNumber,
+              chapterData?.gita_chapters_by_pk.name_translated,
+            ),
+          ),
+        }}
       />
       <ChapterPage
         chapterData={chapterData.gita_chapters_by_pk}

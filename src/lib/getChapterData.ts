@@ -1,4 +1,5 @@
 import { order_by, query, resolved } from "gqty-client";
+import { defaultTranslationAuthorId } from "shared/constants";
 
 export const getChapterNumbers = () =>
   resolved(() => ({
@@ -8,8 +9,9 @@ export const getChapterNumbers = () =>
   }));
 
 export const getChapterData = (
+  locale: Locale,
   chapterNumber: number,
-  translationsAuthor = "Swami Sivananda",
+  translationsAuthorId = defaultTranslationAuthorId,
 ) =>
   resolved(() => {
     const gitaChapter = query.gita_chapters_by_pk({
@@ -36,8 +38,12 @@ export const getChapterData = (
     return {
       gita_chapters_by_pk: {
         chapter_number: gitaChapter.chapter_number!,
-        chapter_summary: gitaChapter.chapter_summary!,
-        name_translated: gitaChapter.name_translated!,
+        chapter_summary:
+          locale === "en"
+            ? gitaChapter.chapter_summary!
+            : gitaChapter.chapter_summary_hindi!,
+        name_translated:
+          locale === "en" ? gitaChapter.name_translated! : gitaChapter.name!,
         verses_count: gitaChapter.verses_count!,
       },
       gita_verses: gitaVerses.map((gitaVerse) => ({
@@ -48,7 +54,9 @@ export const getChapterData = (
         gita_translations: gitaVerse
           .gita_translations({
             where: {
-              author_name: { _eq: translationsAuthor },
+              author_id: {
+                _eq: translationsAuthorId,
+              },
             },
           })
           .map((gitaTranslation) => ({

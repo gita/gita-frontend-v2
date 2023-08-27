@@ -13,7 +13,7 @@ import { getTranslate } from "shared/translate";
 import useEnvironment from "../../hooks/useEnvironment";
 import useToggle from "../../hooks/useToggle";
 import classNames from "../../utils/classNames";
-import AuthorSettings from "../Author";
+import AuthorSettings from "../AuthorSettings";
 import NotesModal from "../NotesModal";
 import Settings from "../Settings";
 import AudioPlayer from "./AudioPlayer";
@@ -518,6 +518,7 @@ const PageHeader = ({
         authorSettingsIsOpen={authorSettingsIsOpen}
         closeAuthorSettingsModal={closeAuthorSettingsModal}
         translate={translate}
+        locale={locale}
       />
       <NotesModal
         notesSettingsIsOpen={notesSettingsIsOpen}

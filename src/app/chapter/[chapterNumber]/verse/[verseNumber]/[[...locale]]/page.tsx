@@ -7,6 +7,7 @@ import { getLanguageSettings, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import VersePage from "./verse-page";
+import { getJsonLd } from "./functions";
 
 export const dynamic = "force-dynamic";
 
@@ -83,41 +84,8 @@ const Verse = async ({ params }: Props) => {
 
   const locale = paramsToLocale(params);
 
-  const jsonLd = {
-    "@context": "http://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        item: {
-          "@id": "https://bhagavadgita.io",
-          name: "Home",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        item: {
-          "@id": `https://bhagavadgita.io/chapter/${chapterNumber}?page=1`,
-          name: `Bhagavad Gita Chapter ${chapterNumber}`,
-          image: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        item: {
-          "@id": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}/`,
-          name: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber}`,
-          image: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
-        },
-      },
-    ],
-  };
-
   const headersList = headers();
-  const languageSettings = getLanguageSettings({
+  const languageSettings = getLanguageSettings(locale, {
     translationAuthorId: parseInt(headersList.get("x-settings-t") || ""),
     commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),
   });
@@ -139,7 +107,9 @@ const Verse = async ({ params }: Props) => {
     <article>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getJsonLd(chapterNumber, verseNumber)),
+        }}
       />
       <VersePage
         verseData={verseData}

@@ -100,6 +100,7 @@ export const paramsToLocale = (localeFromParams: { locale: string[] }) => {
 };
 
 export const getLanguageSettings = (
+  locale: Locale,
   {
     translationAuthorId,
     commentaryAuthorId,
@@ -110,14 +111,17 @@ export const getLanguageSettings = (
     translationAuthorId: defaultTranslationAuthorId,
     commentaryAuthorId: defaultCommentaryAuthorId,
   },
-): LanguageSettings => ({
-  translationAuthor:
-    getTranslationAuthorById(translationAuthorId) ||
-    getTranslationAuthorById(defaultTranslationAuthorId)!,
-  commentaryAuthor:
-    getCommentaryAuthorById(commentaryAuthorId) ||
-    getCommentaryAuthorById(defaultCommentaryAuthorId)!,
-});
+): LanguageSettings => {
+  const defaults = getDefaultsForLocale(locale);
+  return {
+    translationAuthor:
+      getTranslationAuthorById(translationAuthorId) ||
+      getTranslationAuthorById(defaults.translationAuthorId)!,
+    commentaryAuthor:
+      getCommentaryAuthorById(commentaryAuthorId) ||
+      getCommentaryAuthorById(defaults.commentaryAuthorId)!,
+  };
+};
 
 export const upperFirst = (string: string) =>
   string.charAt(0).toUpperCase() + string.slice(1);
