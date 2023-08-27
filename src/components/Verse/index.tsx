@@ -35,7 +35,8 @@ const Verse = ({
 }: Props) => {
   const styles = useMyStyles();
 
-  const { advancedSettings, updateAdvancedSettings } = useAdvancedSettings();
+  const { advancedSettings, updateAdvancedSettings } =
+    useAdvancedSettings(locale);
 
   const { devanagari, verseText, synonyms, translation, purport } =
     advancedSettings;

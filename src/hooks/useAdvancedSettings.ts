@@ -3,25 +3,28 @@ import { useEffect, useState } from "react";
 import { getCookie, setCookie } from "components/shared/functions";
 import { upperFirst } from "shared/functions";
 
-const booleanOrTrue = (cookieValue: string | boolean | undefined) => {
+const booleanOrTrue = (
+  cookieValue: string | boolean | undefined,
+  defaultTo = true,
+) => {
   try {
     const parsed = JSON.parse(String(cookieValue));
-    return parsed ?? true;
+    return parsed ?? defaultTo;
   } catch {
     //
   }
   return true;
 };
 
-const getAdvancedSettings = () => ({
+const getAdvancedSettings = (locale: Locale) => ({
   devanagari: booleanOrTrue(getCookie("bgDevanagari")),
-  verseText: booleanOrTrue(getCookie("bgVerseText")),
-  synonyms: booleanOrTrue(getCookie("bsSynonyms")),
+  verseText: booleanOrTrue(getCookie("bgVerseText"), locale === "en"),
+  synonyms: booleanOrTrue(getCookie("bgSynonyms"), locale === "en"),
   translation: booleanOrTrue(getCookie("bgTranslation")),
   purport: booleanOrTrue(getCookie("bgPurport")),
 });
 
-function useAdvancedSettings() {
+function useAdvancedSettings(locale: Locale) {
   const [advancedSettings, setAdvancedSettings] = useState<AdvancedSettings>({
     devanagari: true,
     verseText: true,
@@ -31,8 +34,9 @@ function useAdvancedSettings() {
   });
 
   useEffect(() => {
-    setAdvancedSettings(getAdvancedSettings());
-  }, []);
+    console.error(locale);
+    setAdvancedSettings(getAdvancedSettings(locale));
+  }, [locale]);
 
   const updateAdvancedSettings = (update: Partial<AdvancedSettings>) => {
     const updatedAdvancedSettings = {
