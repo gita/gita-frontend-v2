@@ -4,12 +4,7 @@ import { getTranslate } from "shared/translate";
 
 import AboutGitaBanner from "../../public/quotes-bg.png";
 
-type Props = {
-  locale: Locale;
-  translations: Record<string, string>;
-};
-
-export default function AboutBanner(props: Props) {
+export default function AboutBanner(props: LocaleAndTranslations) {
   const { locale, translations } = props;
   const translate = getTranslate(translations, locale);
 

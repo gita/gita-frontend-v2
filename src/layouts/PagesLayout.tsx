@@ -4,16 +4,11 @@ import { getTranslate } from "shared/translate";
 
 import Footer from "../components/Footers/Footer";
 
-type Props = {
-  locale: Locale;
-  translations: Record<string, string>;
-};
-
 const PagesLayout = ({
   children,
   locale,
   translations,
-}: React.PropsWithChildren<Props>) => {
+}: React.PropsWithChildren<LocaleAndTranslations>) => {
   const translate = getTranslate(translations, locale);
 
   return (

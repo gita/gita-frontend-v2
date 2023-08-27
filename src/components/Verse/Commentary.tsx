@@ -5,11 +5,9 @@ import classNames from "../../utils/classNames";
 import splitIntoParagraphs from "../../utils/splitIntoParagraphs";
 import { Skeleton } from "../Skeleton";
 
-interface Props {
+type Props = {
   commentaryData: GitaLanguage[] | undefined;
-  translations: Record<string, string>;
-  locale: Locale;
-}
+} & LocaleAndTranslations;
 
 export default function Commentary({
   commentaryData,

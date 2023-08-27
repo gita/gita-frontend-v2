@@ -4,17 +4,11 @@ import Verse from "components/Verse";
 import useMyStyles from "hooks/useMyStyles";
 import classNames from "utils/classNames";
 
-interface VerseOfTheDayProps {
+type Props = {
   dailyVerse: GitaVerse;
-  translations: Record<string, string>;
-  locale: Locale;
-}
+} & LocaleAndTranslations;
 
-const VerseOfTheDay = ({
-  dailyVerse,
-  translations,
-  locale,
-}: VerseOfTheDayProps) => {
+const VerseOfTheDay = ({ dailyVerse, translations, locale }: Props) => {
   const styles = useMyStyles();
 
   return (

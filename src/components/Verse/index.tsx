@@ -15,11 +15,9 @@ import { SvgFloralDivider } from "../svgs";
 import Commentary from "./Commentary";
 import Translation from "./Translation";
 
-interface VerseProps {
+type Props = {
   verse: GitaVerse;
-  translations: Record<string, string>;
-  locale: Locale;
-}
+} & LocaleAndTranslations;
 
 const Verse = ({
   verse: {
@@ -34,7 +32,7 @@ const Verse = ({
   },
   translations,
   locale,
-}: VerseProps) => {
+}: Props) => {
   const styles = useMyStyles();
 
   const { advancedSettings, updateAdvancedSettings } = useAdvancedSettings();

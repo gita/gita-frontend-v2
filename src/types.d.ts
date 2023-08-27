@@ -6,11 +6,9 @@ interface TChapter {
   verses_count: number;
 }
 
-interface ChaptersProps {
+type ChaptersProps = {
   chapters: TChapter[];
-  locale: Locale;
-  translations: Record<string, string>;
-}
+} & LocaleAndTranslations;
 
 interface NewsletterFormData {
   name: string;
@@ -93,3 +91,8 @@ interface SvgProps {
 }
 
 type Translate = (literal: string, options?: {}) => string;
+
+type LocaleAndTranslations = {
+  locale: Locale;
+  translations: Record<string, string>;
+};

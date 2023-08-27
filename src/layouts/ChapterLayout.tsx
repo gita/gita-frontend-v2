@@ -5,16 +5,11 @@ import { getTranslate } from "shared/translate";
 import Footer from "../components/Footers/Footer";
 import ChapterHeader from "../components/Headers/ChapterHeader";
 
-type Props = {
-  locale: Locale;
-  translations: Record<string, string>;
-};
-
 const ChapterLayout = ({
   children,
   translations,
   locale,
-}: React.PropsWithChildren<Props>) => {
+}: React.PropsWithChildren<LocaleAndTranslations>) => {
   const translate = getTranslate(translations, locale);
 
   return (

@@ -3,12 +3,7 @@ import Image from "next/image";
 import LinkWithLocale from "components/LinkWithLocale";
 import { getTranslate } from "shared/translate";
 
-type Props = {
-  locale: Locale;
-  translations: Record<string, string>;
-};
-
-const Banner = (props: Props) => {
+const Banner = (props: LocaleAndTranslations) => {
   const { translations, locale } = props;
 
   const translate = getTranslate(translations, locale);

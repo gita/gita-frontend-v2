@@ -14,15 +14,13 @@ import Modal from "./Modal";
 
 type SubscribeMessage = { isSuccess: boolean; message: string };
 
-interface Props {
+type Props = {
   notification: {
     name: string;
     message: string;
     status: string;
   };
-  locale: Locale;
-  translations: Record<string, string>;
-}
+} & LocaleAndTranslations;
 
 const Newsletter = ({ notification, locale, translations }: Props) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);

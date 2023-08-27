@@ -5,9 +5,7 @@ import classNames from "utils/classNames";
 
 type Props = {
   verseData: GitaVerse;
-  translations: Record<string, string>;
-  locale: Locale;
-};
+} & LocaleAndTranslations;
 
 export default function VersePage({ verseData, translations, locale }: Props) {
   return (

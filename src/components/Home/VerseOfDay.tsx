@@ -6,12 +6,7 @@ import { getTranslate } from "shared/translate";
 import { getDailyVerse } from "../../lib/getDailyVerse";
 import { Skeleton } from "../Skeleton";
 
-type Props = {
-  locale: Locale;
-  translations: Record<string, string>;
-};
-
-const VerseOfDay = async (props: Props) => {
+const VerseOfDay = async (props: LocaleAndTranslations) => {
   const { translations, locale } = props;
 
   const dailyVerse = await getDailyVerse(locale);

@@ -2,11 +2,9 @@ import useMyStyles from "hooks/useMyStyles";
 import { getTranslate } from "shared/translate";
 import classNames from "utils/classNames";
 
-interface Props {
+type Props = {
   translationData: GitaLanguage[] | undefined;
-  translations: Record<string, string>;
-  locale: Locale;
-}
+} & LocaleAndTranslations;
 
 export default function Translation({
   translationData,

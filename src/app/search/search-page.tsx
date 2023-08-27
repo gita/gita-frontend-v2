@@ -20,10 +20,7 @@ interface SearchQueryVerse {
 export default function SearchPage({
   translations,
   locale,
-}: {
-  locale: Locale;
-  translations: Record<string, string>;
-}) {
+}: LocaleAndTranslations) {
   const searchParams = useSearchParams();
   const query = searchParams?.get("query");
   const [data, setData] = useState<SearchQueryVerse[]>();

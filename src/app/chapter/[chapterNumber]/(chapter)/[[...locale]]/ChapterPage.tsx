@@ -15,15 +15,13 @@ import useMyStyles from "hooks/useMyStyles";
 import { getTranslate } from "shared/translate";
 import classNames from "utils/classNames";
 
-interface Props {
+type Props = {
   chapterData: GitaChapterData;
   versesData: Pick<
     GitaVerse,
     "id" | "verse_number" | "gita_translations" | "chapter_number"
   >[];
-  locale: Locale;
-  translations: Record<string, string>;
-}
+} & LocaleAndTranslations;
 
 export default function ChapterPage({
   chapterData: {
