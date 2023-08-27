@@ -14,7 +14,7 @@ const cookieOptions = { path: "/", maxAge: 365 * 24 * 60 * 60 };
 interface Props {
   authorSettingsIsOpen: boolean;
   closeAuthorSettingsModal: () => void;
-  translate: (literal: string) => string;
+  translate: Translate;
   locale: Locale;
 }
 

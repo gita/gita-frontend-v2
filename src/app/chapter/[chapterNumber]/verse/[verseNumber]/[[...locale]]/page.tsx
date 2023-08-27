@@ -6,7 +6,7 @@ import { getVerseData } from "lib/getVerseData";
 import { getLanguageSettings, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
-import VersePage from "./verse-page";
+import VersePage from "./VersePage";
 import { getJsonLd } from "./functions";
 
 export const dynamic = "force-dynamic";

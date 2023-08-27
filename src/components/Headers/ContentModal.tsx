@@ -14,7 +14,7 @@ import LinkWithLocale from "components/LinkWithLocale";
 import data from "../../constant/contentModal.json";
 
 interface Props {
-  translate: (literal: string) => string;
+  translate: Translate;
   isOpen: boolean;
   close: () => void;
 }

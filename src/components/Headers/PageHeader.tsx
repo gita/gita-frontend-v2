@@ -24,14 +24,14 @@ import LanguageDropdown from "./LanguageDropdown";
 interface Props {
   advancedSettings: AdvancedSettings;
   updateAdvancedSettings: (update: Partial<AdvancedSettings>) => void;
-  translations: Record<string, string>;
+  translate: Translate;
   locale: Locale;
 }
 
 const PageHeader = ({
   advancedSettings,
   updateAdvancedSettings,
-  translations,
+  translate,
   locale,
 }: Props) => {
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
@@ -69,8 +69,6 @@ const PageHeader = ({
     advancedSettings;
 
   const toggleClass = () => setAdvancedOptionsActive(!advancedOptionsActive);
-
-  const translate = getTranslate(translations, locale);
 
   function handleSearch(e) {
     e.preventDefault();
@@ -496,13 +494,13 @@ const PageHeader = ({
         <AdvancedOptions
           advancedSettings={advancedSettings}
           updateAdvancedSettings={updateAdvancedSettings}
-          translations={translations}
-          locale={locale}
+          translate={translate}
         />
       ) : null}
       <AudioPlayer
         playerIsOpen={playerIsOpen}
         closePlayerModal={closePlayerModal}
+        translate={translate}
       />
       <ContentModal
         translate={translate}
@@ -535,20 +533,16 @@ type TAdvancedOptions = Partial<
 > & {
   advancedSettings: AdvancedSettings;
   updateAdvancedSettings: (update: Partial<AdvancedSettings>) => void;
-  translations: Record<string, string>;
-  locale: Locale;
+  translate: Translate;
 };
 
 const AdvancedOptions = ({
   advancedSettings,
   updateAdvancedSettings,
-  translations,
-  locale,
+  translate,
 }: TAdvancedOptions) => {
   const { devanagari, verseText, synonyms, translation, purport } =
     advancedSettings;
-
-  const translate = getTranslate(translations, locale);
 
   return (
     <div className="mx-auto mt-4 max-w-full px-2 transition duration-500 ease-in-out sm:hidden lg:block lg:px-8">

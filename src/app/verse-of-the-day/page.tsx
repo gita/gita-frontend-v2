@@ -6,7 +6,7 @@ import { getDailyVerse } from "lib/getDailyVerse";
 import { paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
-import { VerseOfTheDay } from "./verse-of-the-day";
+import VerseOfTheDay from "./VerseOfTheDay";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

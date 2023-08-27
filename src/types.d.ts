@@ -91,3 +91,5 @@ type CurrentVerse = Omit<GitaVerse, "word_meanings" | "text">;
 interface SvgProps {
   className: string;
 }
+
+type Translate = (literal: string, options?: {}) => string;

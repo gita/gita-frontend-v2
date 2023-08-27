@@ -1,9 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
-
-import PageHeader from "components/Headers/PageHeader";
-import { Verse } from "components/Verse/Verse";
+import Verse from "components/Verse";
 import useMyStyles from "hooks/useMyStyles";
 import classNames from "utils/classNames";
 
@@ -13,11 +10,11 @@ interface VerseOfTheDayProps {
   locale: Locale;
 }
 
-export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({
+const VerseOfTheDay = ({
   dailyVerse,
   translations,
   locale,
-}) => {
+}: VerseOfTheDayProps) => {
   const styles = useMyStyles();
 
   return (
@@ -33,3 +30,5 @@ export const VerseOfTheDay: FC<VerseOfTheDayProps> = ({
     </div>
   );
 };
+
+export default VerseOfTheDay;

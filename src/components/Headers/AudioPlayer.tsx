@@ -11,9 +11,15 @@ interface Props {
   currentVerse: GitaVerse;
   playerIsOpen: boolean;
   closePlayerModal: () => void;
+  translate: Translate;
 }
 
-function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
+function AudioPlayer({
+  playerIsOpen,
+  closePlayerModal,
+  currentVerse,
+  translate,
+}: Props) {
   const refs = useRef<HTMLAudioElement[] | HTMLImageElement>([]);
 
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -134,7 +140,9 @@ function AudioPlayer({ playerIsOpen, closePlayerModal, currentVerse }: Props) {
                   as="h3"
                   className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50 "
                 >
-                  BG {currentVerse?.chapter_number}.{currentVerse?.verse_number}
+                  {translate("BG <%= verseNumber %>", {
+                    verseNumber: `${currentVerse?.chapter_number}.${currentVerse?.verse_number}`,
+                  })}
                 </Dialog.Title>
                 <div className="mt-2 border-b pb-8">
                   <p className="text-sm text-gray-500 dark:text-gray-200">

@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 
-import { Verse } from "components/Verse/Verse";
+import Verse from "components/Verse";
 import classNames from "utils/classNames";
 
 type Props = {

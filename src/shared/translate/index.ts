@@ -1,3 +1,5 @@
+import { template } from "lodash";
+
 import { defaultLocale } from "shared/constants";
 
 const translationsCache: string[] = [];
@@ -5,15 +7,13 @@ const translationsCache: string[] = [];
 export const getTranslate = (
   translations: Record<string, string>,
   locale: Locale,
-) => {
-  return (literal: string) => {
-    if (locale === defaultLocale) {
-      return literal;
-    }
+): Translate => {
+  return (literal: string, options = {}) => {
+    const compiled = template(translations[literal] || literal);
+    const translated = String(compiled(options));
 
-    const translation = translations[literal];
-    if (translation) {
-      return translation;
+    if (translations[literal] || locale === defaultLocale) {
+      return translated;
     }
 
     if (
@@ -21,7 +21,7 @@ export const getTranslate = (
       typeof window === "undefined" &&
       !translationsCache.includes(literal)
     ) {
-      translationsCache.push(translation);
+      translationsCache.push(literal);
       fetch("http://localhost:3000/translations", {
         method: "post",
         body: JSON.stringify({

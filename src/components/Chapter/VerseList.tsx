@@ -10,7 +10,7 @@ type VerseData = Pick<
 
 interface Props {
   verseData: VerseData;
-  translate: (literal: string) => string;
+  translate: Translate;
 }
 
 const VerseList = ({ verseData, translate }: Props) => {

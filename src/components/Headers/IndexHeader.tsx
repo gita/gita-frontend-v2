@@ -115,7 +115,7 @@ const mobileNav = [
 
 type Props = {
   locale: Locale;
-  translate: (literal: string) => string;
+  translate: Translate;
 };
 
 export default function IndexHeader({ locale, translate }: Props) {

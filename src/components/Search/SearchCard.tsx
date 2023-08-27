@@ -4,7 +4,7 @@ interface Props {
   chapterNumber: number;
   verseNumber: number;
   transliteration: string;
-  translate: (literal: string) => string;
+  translate: Translate;
 }
 
 const SearchCard = ({

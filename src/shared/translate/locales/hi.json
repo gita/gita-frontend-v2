@@ -49,5 +49,6 @@
   "Subscribe": "सदस्यता लें",
   "Sort": "क्रम से लगाना",
   "Open main menu": "मुख्य मेनू खोलें",
-  "Go To Verse": "पद्य पर जाएँ"
+  "Go To Verse": "पद्य पर जाएँ",
+  "BG <%= verseNumber %>": "।।<%= verseNumber %>।।"
 }

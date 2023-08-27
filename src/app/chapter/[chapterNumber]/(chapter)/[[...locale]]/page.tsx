@@ -6,7 +6,7 @@ import { getChapterData } from "lib/getChapterData";
 import { getLanguageSettings, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
-import ChapterPage from "./chapter-page";
+import ChapterPage from "./ChapterPage";
 import { getJsonLd } from "./functions";
 
 type Props = {

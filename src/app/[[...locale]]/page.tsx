@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { getAllChapters } from "lib/getAllChapters";
 import { paramsToLocale } from "shared/functions";
 
-import HomePage from "./home-page";
+import HomePage from "./HomePage";
 
 export const metadata: Metadata = {
   title: "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",

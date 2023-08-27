@@ -5,7 +5,7 @@ import { SvgBookmark, SvgList, SvgShuffle } from "../svgs";
 
 interface Props {
   chapter: TChapter;
-  translate: (literal: string) => string;
+  translate: Translate;
 }
 
 const Card = ({ chapter, translate }: Props) => {

@@ -23,8 +23,10 @@ const VerseOfDay = async (props: Props) => {
         {dailyVerse ? (
           <>
             <h2 className="divider line one-line mb-4 px-4 font-bold text-my-orange">
-              {translate("Verse of the day")} - BG {dailyVerse?.chapter_number}.
-              {dailyVerse.verse_number}
+              {translate("Verse of the day")} -{" "}
+              {translate("BG <%= verseNumber %>", {
+                verseNumber: `${dailyVerse?.chapter_number}`,
+              })}
             </h2>
             <p className="text-lg">
               {dailyVerse?.gita_translations[0].description}{" "}

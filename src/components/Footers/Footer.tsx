@@ -15,7 +15,7 @@ interface IconProps {
   ariaHidden: boolean;
 }
 
-const getNavigation = (translate: (literal: string) => string) => ({
+const getNavigation = (translate: Translate) => ({
   main: [
     { name: translate("About Us"), href: "/about", newTab: false },
     {
@@ -100,7 +100,7 @@ const getNavigation = (translate: (literal: string) => string) => ({
 });
 
 type Props = {
-  translate: (literal: string) => string;
+  translate: Translate;
 };
 
 const Footer = (props: Props) => {

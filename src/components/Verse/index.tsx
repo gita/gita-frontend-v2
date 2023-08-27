@@ -5,6 +5,7 @@ import { FC } from "react";
 import PageHeader from "components/Headers/PageHeader";
 import useAdvancedSettings from "hooks/useAdvancedSettings";
 import { defaultAdvancedSettings } from "shared/constants";
+import { getTranslate } from "shared/translate";
 
 import useMyStyles from "../../hooks/useMyStyles";
 import classNames from "../../utils/classNames";
@@ -20,7 +21,7 @@ interface VerseProps {
   locale: Locale;
 }
 
-export const Verse: FC<VerseProps> = ({
+const Verse = ({
   verse: {
     gita_chapter,
     verse_number,
@@ -33,7 +34,7 @@ export const Verse: FC<VerseProps> = ({
   },
   translations,
   locale,
-}) => {
+}: VerseProps) => {
   const styles = useMyStyles();
 
   const { advancedSettings, updateAdvancedSettings } = useAdvancedSettings();
@@ -41,12 +42,14 @@ export const Verse: FC<VerseProps> = ({
   const { devanagari, verseText, synonyms, translation, purport } =
     advancedSettings;
 
+  const translate = getTranslate(translations, locale);
+
   return (
     <>
       <PageHeader
         advancedSettings={advancedSettings}
         updateAdvancedSettings={updateAdvancedSettings}
-        translations={translations}
+        translate={translate}
         locale={locale}
       />
 
@@ -65,7 +68,9 @@ export const Verse: FC<VerseProps> = ({
             styles.fontSize.heading,
           )}
         >
-          BG {chapter_number}.{verse_number}
+          {translate("BG <%= verseNumber %>", {
+            verseNumber: `${chapter_number}.${verse_number}`,
+          })}
         </h1>
         {devanagari &&
           (text ? (
@@ -145,3 +150,5 @@ export const Verse: FC<VerseProps> = ({
     </>
   );
 };
+
+export default Verse;

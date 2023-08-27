@@ -18,7 +18,7 @@ import LanguageDropdown from "./LanguageDropdown";
 
 type Props = {
   locale: Locale;
-  translate: (literal: string) => string;
+  translate: Translate;
 };
 
 const ChapterHeader = (props: Props) => {
