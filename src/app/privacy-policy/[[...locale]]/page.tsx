@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import PrivacyTermsBanner from "../../components/PrivacyTermsBanner";
+import PrivacyTermsBanner from "components/PrivacyTermsBanner";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",

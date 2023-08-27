@@ -17,92 +17,92 @@ import LanguageDropdown from "./LanguageDropdown";
 
 const chapters = [
   {
-    name: "Chapter 1",
+    number: 1,
     icon: DocumentReportIcon,
     href: "/chapter/1",
   },
   {
-    name: "Chapter 2",
+    number: 2,
     icon: DocumentReportIcon,
     href: "/chapter/2",
   },
   {
-    name: "Chapter 3",
+    number: 3,
     icon: DocumentReportIcon,
     href: "/chapter/3",
   },
   {
-    name: "Chapter 4",
+    number: 4,
     icon: DocumentReportIcon,
     href: "/chapter/4",
   },
   {
-    name: "Chapter 5",
+    number: 5,
     icon: DocumentReportIcon,
     href: "/chapter/5",
   },
   {
-    name: "Chapter 6",
+    number: 6,
     icon: DocumentReportIcon,
     href: "/chapter/6",
   },
   {
-    name: "Chapter 7",
+    number: 7,
     icon: DocumentReportIcon,
     href: "/chapter/7",
   },
   {
-    name: "Chapter 8",
+    number: 8,
     icon: DocumentReportIcon,
     href: "/chapter/8",
   },
   {
-    name: "Chapter 9",
+    number: 9,
     icon: DocumentReportIcon,
     href: "/chapter/9",
   },
   {
-    name: "Chapter 10",
+    number: 10,
     icon: DocumentReportIcon,
     href: "/chapter/10",
   },
   {
-    name: "Chapter 11",
+    number: 11,
     icon: DocumentReportIcon,
     href: "/chapter/11",
   },
   {
-    name: "Chapter 12",
+    number: 12,
     icon: DocumentReportIcon,
     href: "/chapter/12",
   },
   {
-    name: "Chapter 13",
+    number: 13,
     icon: DocumentReportIcon,
     href: "/chapter/13",
   },
   {
-    name: "Chapter 14",
+    number: 14,
     icon: DocumentReportIcon,
     href: "/chapter/14",
   },
   {
-    name: "Chapter 15",
+    number: 15,
     icon: DocumentReportIcon,
     href: "/chapter/15",
   },
   {
-    name: "Chapter 16",
+    number: 16,
     icon: DocumentReportIcon,
     href: "/chapter/16",
   },
   {
-    name: "Chapter 17",
+    number: 17,
     icon: DocumentReportIcon,
     href: "/chapter/17",
   },
   {
-    name: "Chapter 18",
+    number: 18,
     icon: DocumentReportIcon,
     href: "/chapter/18",
   },
@@ -212,7 +212,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                                 />
                                 <div className="ml-4">
                                   <p className="text-base font-medium text-gray-900 dark:text-white">
-                                    {chapter.name}
+                                    {translate("Chapter")} {chapter.number}
                                   </p>
                                 </div>
                               </LinkWithLocale>
@@ -403,7 +403,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                           <div className="relative grid grid-cols-2 gap-6 bg-white px-8 py-2 dark:bg-dark-100 dark:text-white sm:gap-8 sm:p-8">
                             {chapters.map((item) => (
                               <a
-                                key={item.name}
+                                key={item.number}
                                 href={item.href}
                                 className="-m-3 flex items-start p-1 hover:cursor-pointer hover:rounded-md hover:bg-yellow-100 dark:hover:bg-yellow-100 dark:focus:bg-yellow-100"
                               >
@@ -413,7 +413,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                                 />
                                 <div className="ml-4">
                                   <p className="text-base font-medium text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
-                                    {item.name}
+                                    {translate("Chapter")} {item.number}
                                   </p>
                                 </div>
                               </a>

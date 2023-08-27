@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import SearchCard from "components/Search/SearchCard";
 import { getTranslate } from "shared/translate";
-
-import SearchCard from "../../components/Search/SearchCard";
 
 interface SearchQueryVerse {
   id: number;

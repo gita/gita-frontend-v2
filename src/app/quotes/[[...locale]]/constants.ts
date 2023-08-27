@@ -1,12 +1,4 @@
-"use client";
-
-import { useState } from "react";
-
-import Quote from "../../components/Quotes/Quote";
-import QuotesNavigator from "../../components/Quotes/QuotesNavigator";
-import QuotesBanner from "../../components/QuotesBanner";
-
-const quotes = [
+export const quotes = [
   "Whenever dharma declines and the purpose of life is forgotten, I manifest myself on earth. I am born in every age to protect the good, to destroy evil, and to reestablish dharma.",
   "As they approach me, so I receive them. All paths, Arjuna, lead to me.",
   "I am the beginning, middle, and end of creation.",
@@ -110,20 +102,34 @@ const quotes = [
   "I give you these precious words of wisdom; reflect on them and then do as you choose.",
 ];
 
-export default function QuotesPage() {
-  const [quoteIndex, setQuoteIndex] = useState(0);
+export const jsonLdFirst = {
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "@id": "#organization",
+  name: "Bhagavad Gita",
+  url: "https://bhagavadgita.io",
+  logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
+};
 
-  return (
-    <div className="mb-16">
-      <QuotesBanner />
-      <div className="relative z-10 m-auto h-96 p-0 md:w-[90%] lg:w-[73%] xl:w-[66%]">
-        <QuotesNavigator
-          quoteCount={quotes.length}
-          quoteIndex={quoteIndex}
-          setQuote={setQuoteIndex}
-        />
-        <Quote quoteNumber={quoteIndex + 1} quote={quotes[quoteIndex]} />
-      </div>
-    </div>
-  );
-}
+export const jsonLdTwo = {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      item: {
+        "@id": "https://bhagavadgita.io",
+        name: "Home",
+      },
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      item: {
+        "@id": "https://bhagavadgita.io/bhagavad-gita-quotes/",
+        name: "Bhagavad Gita Quotes",
+      },
+    },
+  ],
+};

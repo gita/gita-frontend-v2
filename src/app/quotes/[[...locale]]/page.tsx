@@ -1,6 +1,10 @@
 import { Metadata } from "next";
 
-import QuotesPage from "./quotes-page";
+import { paramsToLocale } from "shared/functions";
+import { getTranslations } from "shared/translate/server";
+
+import QuotesPage from "./QuotesPage";
+import { jsonLdFirst, jsonLdTwo } from "./constants";
 
 export const metadata: Metadata = {
   title: "Bhagavad Gita Quotes By Krishna - BhagavadGita.io",
@@ -27,38 +31,11 @@ export const metadata: Metadata = {
   },
 };
 
-const Quotes = () => {
-  const jsonLdFirst = {
-    "@context": "http://schema.org",
-    "@type": "Organization",
-    "@id": "#organization",
-    name: "Bhagavad Gita",
-    url: "https://bhagavadgita.io",
-    logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
-  };
+async function Quotes(props: ParamsWithLocale) {
+  const { params } = props;
 
-  const jsonLdTwo = {
-    "@context": "http://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        item: {
-          "@id": "https://bhagavadgita.io",
-          name: "Home",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        item: {
-          "@id": "https://bhagavadgita.io/bhagavad-gita-quotes/",
-          name: "Bhagavad Gita Quotes",
-        },
-      },
-    ],
-  };
+  const locale = paramsToLocale(params);
+  const translations = await getTranslations(locale);
 
   return (
     <>
@@ -70,9 +47,9 @@ const Quotes = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
       />
-      <QuotesPage />
+      <QuotesPage translations={translations} locale={locale} />
     </>
   );
-};
+}
 
 export default Quotes;

@@ -1,13 +1,15 @@
-import useMyStyles from "../../hooks/useMyStyles";
-import classNames from "../../utils/classNames";
+import useMyStyles from "hooks/useMyStyles";
+import classNames from "utils/classNames";
+
 import { SvgChapterBackground } from "../svgs";
 
 interface Props {
   quoteNumber: number;
   quote: string;
+  translate: Translate;
 }
 
-export default function Quote({ quoteNumber, quote }: Props) {
+export default function Quote({ quoteNumber, quote, translate }: Props) {
   const styles = useMyStyles();
   return (
     <>
@@ -22,7 +24,7 @@ export default function Quote({ quoteNumber, quote }: Props) {
             styles.fontSize.subHeading2,
           )}
         >
-          Quote {quoteNumber}
+          {translate("Quote")} {quoteNumber}
         </h3>
         <p
           className={classNames(

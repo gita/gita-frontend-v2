@@ -1,4 +1,4 @@
-import Bookmarkcard from "../../components/BookmarkCard";
+import Bookmarkcard from "components/BookmarkCard";
 
 const Bookmark = () => {
   return (

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 
-import { SvgFloralDivider } from "../../components/svgs";
+import { SvgFloralDivider } from "components/svgs";
 
 export const metadata: Metadata = {
   title: "Bhagavad Gita App - Verse",
