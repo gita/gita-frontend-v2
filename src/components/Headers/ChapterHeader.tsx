@@ -192,6 +192,7 @@ const ChapterHeader = (props: Props) => {
       <Settings
         settingsIsOpen={settingsIsOpen}
         closeSettingsModal={closeSettingsModal}
+        translate={translate}
       />
     </>
   );

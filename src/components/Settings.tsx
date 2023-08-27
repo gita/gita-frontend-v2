@@ -11,16 +11,17 @@ import classNames from "utils/classNames";
 interface Props {
   settingsIsOpen: boolean;
   closeSettingsModal: () => void;
+  translate: Translate;
 }
 
-const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
+const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
   const state = useSelector((state: RootState) => state.settings);
   const dispatch = useDispatch();
-  const [appearenceSettings, setAppearnceSettings] = useState(state);
-  const { theme, setTheme, themes } = useTheme();
+  const [appearenceSettings, setAppearanceSettings] = useState(state);
+  const { setTheme } = useTheme();
 
   useEffect(() => {
-    setAppearnceSettings(state);
+    setAppearanceSettings(state);
   }, [state]);
 
   return (
@@ -65,7 +66,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                   as="h3"
                   className="border-gray-200 pb-4 text-lg font-bold leading-6 text-gray-900 dark:text-gray-50"
                 >
-                  Setting
+                  {translate("Settings")}
                 </Dialog.Title>
                 <div className="mt-2 border-y py-2">
                   <p
@@ -85,9 +86,9 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                         : "",
                     )}
                   >
-                    O Kṛṣṇa, maintainer of the people, I have heard by disciplic
-                    succession that those whose family traditions are destroyed
-                    dwell always in hell.
+                    {translate(
+                      "O Kṛṣṇa, maintainer of the people, I have heard by disciplic succession that those whose family traditions are destroyed dwell always in hell.",
+                    )}
                   </p>
                 </div>
 
@@ -95,7 +96,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                   <button
                     type="button"
                     onClick={() =>
-                      setAppearnceSettings((prevState) => {
+                      setAppearanceSettings((prevState) => {
                         return { ...prevState, fontSize: "small" };
                       })
                     }
@@ -106,12 +107,12 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                       "align-center relative w-1/2 items-center rounded-l-md border border-gray-300 bg-white px-2 py-6 text-center text-sm font-bold hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
                     )}
                   >
-                    <h2 className="text-center">-Aa</h2>
+                    <h2 className="text-center">-{translate("Aa")}</h2>
                   </button>
                   <button
                     type="button"
                     onClick={() =>
-                      setAppearnceSettings((prevState) => {
+                      setAppearanceSettings((prevState) => {
                         return { ...prevState, fontSize: "large" };
                       })
                     }
@@ -122,7 +123,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                       "align-center relative w-1/2 items-center rounded-r-md border border-gray-300 bg-white px-2 py-6 text-center text-sm font-bold hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
                     )}
                   >
-                    <h2 className="text-center text-xl">+Aa</h2>
+                    <h2 className="text-center text-xl">+{translate("Aa")}</h2>
                   </button>
                 </span>
 
@@ -131,7 +132,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                     <button
                       type="button"
                       onClick={() =>
-                        setAppearnceSettings((prevState) => {
+                        setAppearanceSettings((prevState) => {
                           return { ...prevState, spacing: "large" };
                         })
                       }
@@ -153,7 +154,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                     <button
                       type="button"
                       onClick={() =>
-                        setAppearnceSettings((prevState) => {
+                        setAppearanceSettings((prevState) => {
                           return { ...prevState, spacing: "medium" };
                         })
                       }
@@ -176,7 +177,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                     <button
                       type="button"
                       onClick={() =>
-                        setAppearnceSettings((prevState) => {
+                        setAppearanceSettings((prevState) => {
                           return { ...prevState, spacing: "small" };
                         })
                       }
@@ -202,7 +203,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                   <button
                     type="button"
                     onClick={() =>
-                      setAppearnceSettings((prevState) => {
+                      setAppearanceSettings((prevState) => {
                         return { ...prevState, bg: "bg-light-bg" };
                       })
                     }
@@ -217,7 +218,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                   <button
                     type="button"
                     onClick={() =>
-                      setAppearnceSettings((prevState) => {
+                      setAppearanceSettings((prevState) => {
                         return { ...prevState, bg: "bg-yellow-bg" };
                       })
                     }
@@ -232,7 +233,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                   <button
                     type="button"
                     onClick={() =>
-                      setAppearnceSettings((prevState) => {
+                      setAppearanceSettings((prevState) => {
                         return { ...prevState, bg: "bg-dark-bg" };
                       })
                     }
@@ -251,7 +252,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                     className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
                     onClick={closeSettingsModal}
                   >
-                    Cancel
+                    {translate("Cancel")}
                   </button>
 
                   <button
@@ -270,7 +271,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal }: Props) => {
                     }}
                     className="w-1/2 items-center rounded-md border border-transparent bg-my-orange px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2"
                   >
-                    Apply Settings
+                    {translate("Apply Settings")}
                   </button>
                 </div>
               </div>

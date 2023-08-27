@@ -15,8 +15,8 @@ export const getVerseId = () =>
 export const getVerseData = (
   chapterNumber,
   verseNumber,
-  commentariesAuthor = "Swami Sivananda",
-  translationsAuthor = "Swami Sivananda",
+  commentariesAuthorId,
+  translationsAuthorId,
 ) =>
   resolved(() => {
     const [gitaVerse] = query.gita_verses({
@@ -47,8 +47,8 @@ export const getVerseData = (
       gita_commentaries: gitaVerse
         .gita_commentaries({
           where: {
-            author_name: {
-              _eq: commentariesAuthor,
+            author_id: {
+              _eq: commentariesAuthorId,
             },
           },
         })
@@ -56,8 +56,8 @@ export const getVerseData = (
       gita_translations: gitaVerse
         .gita_translations({
           where: {
-            author_name: {
-              _eq: translationsAuthor,
+            author_id: {
+              _eq: translationsAuthorId,
             },
           },
         })

@@ -511,6 +511,7 @@ const PageHeader = ({
       <Settings
         settingsIsOpen={settingsIsOpen}
         closeSettingsModal={closeSettingsModal}
+        translate={translate}
       />
       <AuthorSettings
         authorSettingsIsOpen={authorSettingsIsOpen}

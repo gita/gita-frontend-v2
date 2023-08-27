@@ -35,16 +35,8 @@ const AuthorSettings = ({
     "bgCommentaryAuthorId",
   ]);
 
-  const [translationAuthor, setTranslationAuthor] = useState({
-    id: 0,
-    name: "",
-    language: "",
-  });
-  const [commentaryAuthor, setCommentaryAuthor] = useState({
-    id: 0,
-    name: "",
-    language: "",
-  });
+  const [translationAuthor, setTranslationAuthor] = useState(null);
+  const [commentaryAuthor, setCommentaryAuthor] = useState(null);
 
   useEffect(() => {
     const myLanguageSettings = getLanguageSettings(locale, {
@@ -134,8 +126,8 @@ const AuthorSettings = ({
                     <div className="relative">
                       <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-black focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                         <span className="block truncate text-black dark:text-white">
-                          {commentaryAuthor?.name}&nbsp;(
-                          {commentaryAuthor?.language})
+                          {translate(commentaryAuthor?.name)}&nbsp;(
+                          {translate(commentaryAuthor?.language)})
                         </span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                           <SelectorIcon
@@ -164,8 +156,8 @@ const AuthorSettings = ({
                               }
                               value={author}
                             >
-                              <div>{author.name}</div>
-                              <div>{author.language}</div>
+                              <div>{translate(author.name)}</div>
+                              <div>{translate(author.language)}</div>
                             </Listbox.Option>
                           ))}
                         </Listbox.Options>
@@ -208,8 +200,8 @@ const AuthorSettings = ({
                     <div className="relative">
                       <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-black focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                         <span className="flex justify-between text-black dark:text-white">
-                          {translationAuthor?.name}&nbsp; (
-                          {translationAuthor?.language})
+                          {translate(translationAuthor?.name)}&nbsp; (
+                          {translate(translationAuthor?.language)})
                         </span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                           <SelectorIcon
@@ -239,7 +231,7 @@ const AuthorSettings = ({
                               value={author}
                             >
                               <div>{author.name}</div>
-                              <div>{author.language}</div>
+                              <div>{translate(author.language)}</div>
                             </Listbox.Option>
                           ))}
                         </Listbox.Options>
