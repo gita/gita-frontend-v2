@@ -24,9 +24,13 @@ export const getVerseData = (
         chapter_number: {
           _eq: chapterNumber,
         },
-        verse_number: {
-          _eq: verseNumber,
-        },
+        ...(verseNumber
+          ? {
+              verse_number: {
+                _eq: verseNumber,
+              },
+            }
+          : {}),
       },
     });
 

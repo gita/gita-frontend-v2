@@ -59,6 +59,7 @@ export default function ChapterPage({
       <PageNavigator
         pageNumber={chapter_number}
         pageCount={18}
+        locale={locale}
         route="chapter"
       />
 

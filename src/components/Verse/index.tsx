@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import PageHeader from "components/Headers/PageHeader";
 import useAdvancedSettings from "hooks/useAdvancedSettings";
@@ -19,8 +19,12 @@ type Props = {
   verse: GitaVerse;
 } & LocaleAndTranslations;
 
-const Verse = ({
-  verse: {
+const Verse = ({ verse: propsVerse, translations, locale }: Props) => {
+  const styles = useMyStyles();
+
+  const [verse, setVerse] = useState<GitaVerse>(propsVerse);
+
+  const {
     gita_chapter,
     verse_number,
     chapter_number,
@@ -29,11 +33,7 @@ const Verse = ({
     word_meanings,
     gita_translations,
     gita_commentaries,
-  },
-  translations,
-  locale,
-}: Props) => {
-  const styles = useMyStyles();
+  } = verse;
 
   const { advancedSettings, updateAdvancedSettings } =
     useAdvancedSettings(locale);
@@ -58,6 +58,8 @@ const Verse = ({
         maxVerseCount={gita_chapter.verses_count}
         verseNumber={verse_number}
         pageNumber={chapter_number}
+        locale={locale}
+        setVerse={setVerse}
       />
 
       <section className="mx-auto max-w-5xl px-4 py-16 text-center font-inter sm:px-6">

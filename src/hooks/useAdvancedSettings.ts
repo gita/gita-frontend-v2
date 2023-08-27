@@ -34,7 +34,6 @@ function useAdvancedSettings(locale: Locale) {
   });
 
   useEffect(() => {
-    console.error(locale);
     setAdvancedSettings(getAdvancedSettings(locale));
   }, [locale]);
 
