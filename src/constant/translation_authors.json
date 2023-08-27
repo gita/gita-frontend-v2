@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Swami Ramsukhdas",
+    "language": "Hindi"
+  },
+  {
+    "id": 17,
+    "name": "Swami Tejomayananda",
+    "language": "Hindi"
+  },
+  {
+    "id": 18,
+    "name": "Swami Adidevananda",
+    "language": "English"
+  },
+  {
+    "id": 19,
+    "name": "Swami Gambirananda",
+    "language": "English"
+  },
+  {
+    "id": 16,
+    "name": "Swami Sivananda",
+    "language": "English"
+  },
+  {
+    "id": 20,
+    "name": "Dr. S. Sankaranarayan",
+    "language": "English"
+  },
+  {
+    "id": 21,
+    "name": "Shri Purohit Swami",
+    "language": "English"
+  }
+]

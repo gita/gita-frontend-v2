@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Swami Ramsukhdas",
+    "language": "Hindi"
+  },
+  {
+    "id": 2,
+    "name": "Swami Chinmayananda",
+    "language": "Hindi"
+  },
+  {
+    "id": 3,
+    "name": "Sri Anandgiri",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 4,
+    "name": "Sri Dhanpati",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 5,
+    "name": "Sri Madhvacharya",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 6,
+    "name": "Sri Neelkanth",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 7,
+    "name": "Sri Ramanujacharya",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 8,
+    "name": "Sri Sridhara Swami",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 9,
+    "name": "Sri Vedanta Deshika Charya Venkatanatha",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 10,
+    "name": "Sri Abhinavagupta",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 11,
+    "name": "Sri Jayatirtha",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 12,
+    "name": "Sri Madhusudan Saraswati",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 13,
+    "name": "Sri Purushottam Ji",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 14,
+    "name": "Sri Shankaracharya",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 15,
+    "name": "Sri Vallabhacharya",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 16,
+    "name": "Swami Sivananda",
+    "language": "English"
+  }
+]

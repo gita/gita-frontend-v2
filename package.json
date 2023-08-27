@@ -4,6 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "gqty:generate-schema": "gqty generate",
     "find:unused": "npx next-unused",
     "prettier": "prettier --write .",
     "lint": "next lint",
@@ -16,14 +17,15 @@
     "prettier"
   ],
   "dependencies": {
-    "@apollo/client": "^3.5.5",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "v1",
     "@popperjs/core": "2.9.1",
     "@supabase/supabase-js": "^2.0.4",
     "@svgr/cli": "^6.1.1",
     "encoding": "^0.1.13",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "graphql": "^16.0.1",
+    "lodash": "^4.17.21",
     "next": "^13.4.9",
     "next-plausible": "^3.9.1",
     "next-redux-wrapper": "^7.0.5",
@@ -41,14 +43,19 @@
     "rooks": "^7.4.0"
   },
   "devDependencies": {
+    "@gqty/cli": "3.3.0",
     "@netlify/plugin-nextjs": "^4.24.0",
+    "@svgr/webpack": "^8.1.0",
     "autoprefixer": "^10.2.6",
+    "dotenv": "^16.3.1",
     "eslint": "8.44.0",
     "eslint-config-next": "^13.4.9",
+    "eslint-plugin-tailwindcss": "^3.13.0",
     "postcss": "^8.3.5",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.5.1",
-    "tailwindcss": "^2.2.4",
+    "prettier": "^3.0.2",
+    "prettier-plugin-tailwindcss": "^0.5.3",
+    "tailwindcss": "^3.3.3",
     "typescript": "5.1.6"
   }
 }

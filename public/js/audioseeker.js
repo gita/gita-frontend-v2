@@ -7,7 +7,7 @@ player.addEventListener("timeupdate", function () {
     .animate(
       { width: ((currentTime + 0.25) / duration) * 100 + "%" },
       250,
-      "linear"
+      "linear",
     );
 });
 
