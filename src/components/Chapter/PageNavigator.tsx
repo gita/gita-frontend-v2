@@ -46,7 +46,7 @@ function PageNavigator({
               ? `/chapter/${previousPage}/${route}/${previousVerse}`
               : `/chapter/${previousPage}`
           }
-          className="z-neg fixed left-3 top-1/2 flex h-10 w-10 items-center justify-center rounded-full border bg-white  hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg"
+          className="fixed left-3 top-1/2 flex h-10 w-10 items-center justify-center rounded-full border bg-white  hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg"
         >
           <SvgChevronLeft className="dark:text-gray-50" />
         </LinkWithLocale>
@@ -59,7 +59,7 @@ function PageNavigator({
               ? `/chapter/${nextPage}/${route}/${nextVerse}`
               : `/chapter/${nextPage}`
           }
-          className="z-neg fixed right-3 top-1/2 flex h-10 w-10 items-center justify-center rounded-full border bg-white  hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg"
+          className="fixed right-3 top-1/2 flex h-10 w-10 items-center justify-center rounded-full border bg-white  hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg"
         >
           <SvgChevronRight className="dark:text-gray-50" />
         </LinkWithLocale>

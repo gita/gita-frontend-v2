@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Disclosure, Switch } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
@@ -8,7 +8,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import LinkWithLocale from "components/LinkWithLocale";
-import { getTranslate } from "shared/translate";
 
 import useEnvironment from "../../hooks/useEnvironment";
 import useToggle from "../../hooks/useToggle";
@@ -16,10 +15,11 @@ import classNames from "../../utils/classNames";
 import AuthorSettings from "../AuthorSettings";
 import NotesModal from "../NotesModal";
 import Settings from "../Settings";
-import AudioPlayer from "./AudioPlayer";
 import ContentModal from "./ContentModal";
 import DarkModeToggle from "./DarkModeToggle";
 import LanguageDropdown from "./LanguageDropdown";
+
+const AudioPlayer = lazy(() => import("./AudioPlayer"));
 
 interface Props {
   advancedSettings: AdvancedSettings;
@@ -497,11 +497,17 @@ const PageHeader = ({
           translate={translate}
         />
       ) : null}
-      <AudioPlayer
-        playerIsOpen={playerIsOpen}
-        closePlayerModal={closePlayerModal}
-        translate={translate}
-      />
+      {playerIsOpen && (
+        <Suspense
+          fallback={<div className="absolute">{translate("Loading")}</div>}
+        >
+          <AudioPlayer
+            playerIsOpen={playerIsOpen}
+            closePlayerModal={closePlayerModal}
+            translate={translate}
+          />
+        </Suspense>
+      )}
       <ContentModal
         translate={translate}
         isOpen={contentModalIsOpen}

@@ -19,6 +19,9 @@ const getAsUrl = (href: string) => {
 };
 
 const getUpdatedHref = (href: UrlObject | string, locale: Locale) => {
+  if (typeof href === "string" && href.startsWith("mailto:")) {
+    return href;
+  }
   const hrefUrl = typeof href === "string" ? getAsUrl(href) : href;
   const addSlash = !hrefUrl.pathname.endsWith("/");
   hrefUrl.pathname = `${hrefUrl.pathname}${addSlash ? "/" : ""}${locale}`;

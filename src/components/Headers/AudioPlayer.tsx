@@ -192,7 +192,7 @@ function AudioPlayer({
                 </div>
                 <div
                   className=" mx-auto my-3 flex h-2 w-full cursor-pointer items-center"
-                  onClick={(event) => sayLoc(event)}
+                  onClick={(event) => (window as any).sayLoc(event)}
                 >
                   <div
                     id="audiobar"
