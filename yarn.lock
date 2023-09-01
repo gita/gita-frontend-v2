@@ -3473,6 +3473,11 @@ expand-template@^2.0.3:
   resolved "https://registry.yarnpkg.com/expand-template/-/expand-template-2.0.3.tgz#6e14b3fcee0f3a6340ecb57d2e8918692052a47c"
   integrity sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==
 
+express-rate-limit@^6.10.0:
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/express-rate-limit/-/express-rate-limit-6.10.0.tgz#e881fcfb1d2a5b364e4850bacb333d537b05e414"
+  integrity sha512-CtGn2IyklQnIWpA4pcRaovXkNR8psDQ9Fa0y5u7Yhz5TL74dNsm7oXpfm1HPKUYiNe5w0TPEyNbIrvNVU/xUIg==
+
 express@^4.18.2:
   version "4.18.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.18.2.tgz#3fabe08296e930c796c19e3c516979386ba9fd59"
