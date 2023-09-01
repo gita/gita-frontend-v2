@@ -1,8 +1,8 @@
-import express from 'express';
-import path from 'path';
-import next from 'next';
+import express from "express";
+import next from "next";
+import path from "path";
 
-const dev = process.env.NODE_ENV !== 'production';
+const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -10,20 +10,20 @@ app.prepare().then(() => {
   const server = express();
 
   // Serve index.html when someone navigates to /app
-  server.get('/app', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/app/index.html'));
+  server.get("/app", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/app/index.html"));
   });
 
   // Serve other static files under /app
-  server.use('/app', express.static(path.join(__dirname, 'public/app')));
+  server.use("/app", express.static(path.join(__dirname, "public/app")));
 
   // Handle Next.js routes
-  server.all('*', (req, res) => {
+  server.all("*", (req, res) => {
     return handle(req, res);
   });
 
   server.listen(3000, (err?: any) => {
     if (err) throw err;
-    console.log('> Ready on http://localhost:3000');
+    console.log("> Ready on http://localhost:3000");
   });
 });
