@@ -22,7 +22,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   },
   "include": ["src", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

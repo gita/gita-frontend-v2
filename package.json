@@ -9,7 +9,8 @@
     "prettier": "prettier --write .",
     "lint": "next lint",
     "lint:fix": "eslint . --fix",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "postinstall": "cp tsconfig.template.json tsconfig.json"
   },
   "pre-commit": [
     "lint",
