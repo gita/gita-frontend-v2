@@ -4,9 +4,7 @@
 const fs = require("fs");
 require("dotenv").config({ path: ".env.development.local" });
 
-if (
-  !process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT 
-) {
+if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
   throw new Error("Some required env vars not found in file");
 }
 
