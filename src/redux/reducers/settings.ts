@@ -1,6 +1,6 @@
 import * as t from "../Types";
 
-const initialVerse = {
+const initialVerse: GitaVerse = {
   verse_number: 1,
   chapter_number: 1,
   id: 1,
@@ -10,6 +10,7 @@ const initialVerse = {
   gita_chapter: {
     verses_count: 1,
   },
+  prev_chapter_verses_count: 0,
   gita_commentaries: [{ description: "" }],
   gita_translations: [{ description: "" }],
 };

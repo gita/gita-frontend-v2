@@ -14,27 +14,13 @@ export const dynamic = "force-dynamic";
 type Props = {
   params: {
     chapterNumber: string;
-    verseNumber: [string, string?];
+    verseNumber: string;
     locale: string[];
   };
 };
 
-// export async function generateStaticParams() {
-//   const data = await getVerseId();
-
-//   return data.gita_verses.map(({ chapter_number, verse_number }) => ({
-//     params: {
-//       chapterNumber: chapter_number.toString(),
-//       verseNumber: verse_number.toString(),
-//     },
-//   }));
-// }
-
 export async function generateMetadata({
-  params: {
-    verseNumber: [verseNumber],
-    chapterNumber,
-  },
+  params: { verseNumber, chapterNumber },
 }: Props): Promise<Metadata> {
   return {
     title: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber} - BhagavadGita.io`,
@@ -77,10 +63,7 @@ export async function generateMetadata({
 }
 
 const Verse = async ({ params }: Props) => {
-  const {
-    chapterNumber,
-    verseNumber: [verseNumber],
-  } = params;
+  const { chapterNumber, verseNumber } = params;
 
   const locale = paramsToLocale(params);
 
@@ -91,8 +74,8 @@ const Verse = async ({ params }: Props) => {
   });
 
   const verseData = await getVerseData(
-    chapterNumber,
-    verseNumber,
+    Number(chapterNumber),
+    Number(verseNumber),
     languageSettings.commentaryAuthor.id,
     languageSettings.translationAuthor.id,
   );

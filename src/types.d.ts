@@ -29,6 +29,7 @@ interface GitaVerse {
   gita_chapter: {
     verses_count: number;
   };
+  prev_chapter_verses_count: number;
   gita_commentaries: GitaLanguage[];
   gita_translations: GitaLanguage[];
 }

@@ -56,11 +56,7 @@ export default function ChapterPage({
         <SvgChapterBackground className="relative inset-x-0 bottom-0 m-auto w-full rounded-full text-gray-300 text-opacity-25 dark:text-black dark:text-opacity-25 lg:top-12 lg:w-min" />
       </div>
 
-      <PageNavigator
-        pageNumber={chapter_number}
-        pageCount={18}
-        route="chapter"
-      />
+      <PageNavigator currentChapter={chapter_number} />
 
       <section className="relative mx-auto max-w-5xl px-4 py-24 text-center font-inter sm:px-6">
         <h3

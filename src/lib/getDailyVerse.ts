@@ -22,7 +22,7 @@ const getWhereGitaAuthor = (
   };
 };
 
-export const getDailyVerse = (locale: Locale) =>
+export const getDailyVerse = (locale: Locale): Promise<GitaVerse> =>
   resolved(() => {
     const gitaVerse =
       query.gita_verses_by_pk({
@@ -58,5 +58,6 @@ export const getDailyVerse = (locale: Locale) =>
       gita_chapter: {
         verses_count: gitaVerse.gita_chapter?.verses_count || 0,
       },
+      prev_chapter_verses_count: 0,
     };
   });

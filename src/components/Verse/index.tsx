@@ -22,6 +22,7 @@ type Props = {
 const Verse = ({
   verse: {
     gita_chapter,
+    prev_chapter_verses_count,
     verse_number,
     chapter_number,
     text,
@@ -53,11 +54,10 @@ const Verse = ({
       />
 
       <PageNavigator
-        pageCount={18}
-        route="verse"
-        maxVerseCount={gita_chapter.verses_count}
-        verseNumber={verse_number}
-        pageNumber={chapter_number}
+        currentChapter={chapter_number}
+        currentVerse={verse_number}
+        totalVerses={gita_chapter.verses_count}
+        prevChapterTotalVerses={prev_chapter_verses_count}
       />
 
       <section className="mx-auto max-w-5xl px-4 py-16 text-center font-inter sm:px-6">

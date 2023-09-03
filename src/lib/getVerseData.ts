@@ -13,11 +13,11 @@ export const getVerseId = () =>
   );
 
 export const getVerseData = (
-  chapterNumber,
-  verseNumber,
-  commentariesAuthorId,
-  translationsAuthorId,
-) =>
+  chapterNumber: number,
+  verseNumber: number,
+  commentariesAuthorId: number,
+  translationsAuthorId: number,
+): Promise<GitaVerse> =>
   resolved(() => {
     const [gitaVerse] = query.gita_verses({
       where: {
@@ -26,6 +26,14 @@ export const getVerseData = (
         },
         verse_number: {
           _eq: verseNumber,
+        },
+      },
+    });
+
+    const [prevChapter] = query.gita_chapters({
+      where: {
+        chapter_number: {
+          _eq: chapterNumber - 1 || 18,
         },
       },
     });
@@ -42,8 +50,13 @@ export const getVerseData = (
       verse_number: gitaVerse.verse_number!,
       word_meanings: gitaVerse.word_meanings!,
       gita_chapter: {
-        verses_count: gitaVerse.gita_chapter?.verses_count || 0,
+        verses_count: gitaVerse.gita_chapter
+          .gita_verses_aggregate()
+          .aggregate.count(),
       },
+      prev_chapter_verses_count: prevChapter
+        .gita_verses_aggregate()
+        .aggregate.count(),
       gita_commentaries: gitaVerse
         .gita_commentaries({
           where: {
