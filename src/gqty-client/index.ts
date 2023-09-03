@@ -21,7 +21,6 @@ const queryFetcher: QueryFetcher = async function (
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-hasura-admin-secret": process.env.NEXT_PUBLIC_HASURA_ADMIN_SECRET!,
     },
     body: JSON.stringify({
       query,
