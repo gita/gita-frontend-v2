@@ -1,69 +1,41 @@
 import LinkWithLocale from "components/LinkWithLocale";
 
 import { SvgChevronLeft, SvgChevronRight } from "../svgs";
+import { getNextPageHref, getPrevPageHref } from "./functions";
 
 interface Props {
-  pageNumber: number;
-  pageCount: number;
-  route: string;
-  maxVerseCount?: number;
-  verseNumber?: number;
+  currentChapter: number;
+  currentVerse?: number;
+  totalVerses?: number;
+  prevChapterTotalVerses?: number;
 }
 
 function PageNavigator({
-  pageNumber,
-  pageCount,
-  route,
-  maxVerseCount = 0,
-  verseNumber = 0,
+  currentChapter,
+  currentVerse,
+  totalVerses,
+  prevChapterTotalVerses,
 }: Props) {
-  const staticVerse = verseNumber;
-  let currentVerse = verseNumber;
-  const nextPage =
-    route === "verse"
-      ? verseNumber >= maxVerseCount
-        ? pageNumber + 1
-        : pageNumber
-      : pageNumber + 1;
-  const previousPage =
-    route === "verse"
-      ? verseNumber === 1
-        ? pageNumber - 1
-        : pageNumber
-      : pageNumber - 1;
-  const nextVerse =
-    verseNumber >= maxVerseCount ? (verseNumber = 1) : verseNumber + 1;
-
-  const previousVerse = currentVerse >= 2 ? currentVerse - 1 : verseNumber;
-
   return (
     <div className="relative z-10">
-      {previousPage >= 1 && (
-        <LinkWithLocale
-          prefetch={false}
-          href={
-            route === "verse" && currentVerse > 1
-              ? `/chapter/${previousPage}/${route}/${previousVerse}`
-              : `/chapter/${previousPage}`
-          }
-          className="fixed left-3 top-1/2 flex h-10 w-10 items-center justify-center rounded-full border bg-white  hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg"
-        >
-          <SvgChevronLeft className="dark:text-gray-50" />
-        </LinkWithLocale>
-      )}
-      {nextPage <= pageCount && (
-        <LinkWithLocale
-          prefetch={false}
-          href={
-            route === "verse" && maxVerseCount > staticVerse
-              ? `/chapter/${nextPage}/${route}/${nextVerse}`
-              : `/chapter/${nextPage}`
-          }
-          className="fixed right-3 top-1/2 flex h-10 w-10 items-center justify-center rounded-full border bg-white  hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg"
-        >
-          <SvgChevronRight className="dark:text-gray-50" />
-        </LinkWithLocale>
-      )}
+      <LinkWithLocale
+        prefetch={false}
+        href={getPrevPageHref(
+          currentChapter,
+          currentVerse,
+          prevChapterTotalVerses,
+        )}
+        className="fixed left-3 top-1/2 flex h-10 w-10 items-center justify-center rounded-full border bg-white  hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg"
+      >
+        <SvgChevronLeft className="dark:text-gray-50" />
+      </LinkWithLocale>
+      <LinkWithLocale
+        prefetch={false}
+        href={getNextPageHref(currentChapter, currentVerse, totalVerses)}
+        className="fixed right-3 top-1/2 flex h-10 w-10 items-center justify-center rounded-full border bg-white  hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg"
+      >
+        <SvgChevronRight className="dark:text-gray-50" />
+      </LinkWithLocale>
     </div>
   );
 }
