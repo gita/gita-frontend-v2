@@ -6,7 +6,8 @@ import { useTheme } from "next-themes";
 
 import { editSettings } from "redux/actions/settings";
 import { RootState } from "redux/reducers/rootReducer";
-import classNames from "utils/classNames";
+import { SettingsState } from "redux/types";
+import { classNames } from "shared/functions";
 
 interface Props {
   settingsIsOpen: boolean;
@@ -17,7 +18,8 @@ interface Props {
 const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
   const state = useSelector((state: RootState) => state.settings);
   const dispatch = useDispatch();
-  const [appearenceSettings, setAppearanceSettings] = useState(state);
+  const [appearanceSettings, setAppearanceSettings] =
+    useState<SettingsState>(state);
   const { setTheme } = useTheme();
 
   useEffect(() => {
@@ -72,16 +74,16 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                   <p
                     className={classNames(
                       " text-gray-500 dark:text-gray-200",
-                      appearenceSettings?.fontSize === "small"
+                      appearanceSettings?.fontSize === "small"
                         ? "text-md"
                         : "text-xl",
-                      appearenceSettings?.spacing === "large"
+                      appearanceSettings?.spacing === "large"
                         ? "leading-loose"
                         : "",
-                      appearenceSettings?.spacing === "medium"
+                      appearanceSettings?.spacing === "medium"
                         ? "leading-normal"
                         : "",
-                      appearenceSettings?.spacing === "small"
+                      appearanceSettings?.spacing === "small"
                         ? "leading-tight"
                         : "",
                     )}
@@ -101,7 +103,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                       })
                     }
                     className={classNames(
-                      appearenceSettings?.fontSize === "small"
+                      appearanceSettings?.fontSize === "small"
                         ? "text-my-orange"
                         : "text-gray-500 dark:text-gray-200",
                       "align-center relative w-1/2 items-center rounded-l-md border border-gray-300 bg-white px-2 py-6 text-center text-sm font-bold hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
@@ -117,7 +119,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                       })
                     }
                     className={classNames(
-                      appearenceSettings?.fontSize === "large"
+                      appearanceSettings?.fontSize === "large"
                         ? "text-my-orange"
                         : "text-gray-500 dark:text-gray-200",
                       "align-center relative w-1/2 items-center rounded-r-md border border-gray-300 bg-white px-2 py-6 text-center text-sm font-bold hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
@@ -137,7 +139,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         })
                       }
                       className={classNames(
-                        appearenceSettings?.spacing === "large"
+                        appearanceSettings?.spacing === "large"
                           ? "text-my-orange"
                           : "text-gray-700 dark:text-gray-200",
                         "relative w-1/3 items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50  focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
@@ -159,7 +161,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         })
                       }
                       className={classNames(
-                        appearenceSettings?.spacing === "medium"
+                        appearanceSettings?.spacing === "medium"
                           ? "text-my-orange"
                           : "text-gray-700 dark:text-gray-200",
                         "relative -ml-px w-1/3 items-center border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50  focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
@@ -182,7 +184,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         })
                       }
                       className={classNames(
-                        appearenceSettings?.spacing === "small"
+                        appearanceSettings?.spacing === "small"
                           ? "text-my-orange"
                           : "text-gray-700 dark:text-gray-200",
                         "relative -ml-px w-1/3 items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50  focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
@@ -208,7 +210,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                       })
                     }
                     className={classNames(
-                      appearenceSettings?.bg === "bg-light-bg"
+                      appearanceSettings?.bg === "bg-light-bg"
                         ? "ring-2 ring-my-orange ring-offset-2"
                         : "",
                       "inline-flex items-center rounded-full border border-transparent bg-light-bg p-5 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:ring-offset-dark-100",
@@ -223,7 +225,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                       })
                     }
                     className={classNames(
-                      appearenceSettings?.bg === "bg-yellow-bg"
+                      appearanceSettings?.bg === "bg-yellow-bg"
                         ? "ring-2 ring-my-orange ring-offset-2"
                         : "",
                       "inline-flex items-center rounded-full border border-transparent bg-yellow-bg p-5 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:ring-offset-dark-100",
@@ -238,7 +240,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                       })
                     }
                     className={classNames(
-                      appearenceSettings?.bg === "bg-dark-bg"
+                      appearanceSettings?.bg === "bg-dark-bg"
                         ? "ring-2 ring-my-orange ring-offset-2"
                         : "",
                       "inline-flex items-center rounded-full border border-transparent bg-dark-bg p-5 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:ring-offset-dark-100",
@@ -258,7 +260,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                   <button
                     type="button"
                     onClick={() => {
-                      switch (appearenceSettings?.bg) {
+                      switch (appearanceSettings?.bg) {
                         case "bg-dark-bg":
                           setTheme("dark");
                           break;
@@ -266,7 +268,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                           setTheme("light");
                       }
 
-                      dispatch(editSettings(appearenceSettings));
+                      dispatch(editSettings(appearanceSettings));
                       closeSettingsModal();
                     }}
                     className="w-1/2 items-center rounded-md border border-transparent bg-my-orange px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2"

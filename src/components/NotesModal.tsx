@@ -1,8 +1,7 @@
 import { Fragment, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 
-import languages from "constant/languages.json"; //todo: use graphql api to fetch
 import { setNotification } from "redux/actions/main";
 import { supabase } from "utils/supabase";
 
@@ -15,9 +14,9 @@ interface Props {
 }
 
 const NotesModal = ({
+  currentVerse,
   notesSettingsIsOpen,
   closeNotesSettingsModal,
-  currentVerse,
 }: Props) => {
   const [description, setDescription] = useState("");
   const dispatch = useDispatch();
@@ -145,10 +144,4 @@ const NotesModal = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    currentVerse: state?.settings?.currentVerse,
-  };
-};
-
-export default connect(mapStateToProps)(NotesModal);
+export default NotesModal;

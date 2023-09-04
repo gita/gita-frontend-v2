@@ -1,12 +1,7 @@
-import * as t from "../Types";
+import { SET_NOTIFICATION } from "redux/constants";
+import { Notification } from "redux/types";
 
-export const setInfo = (name) => (dispatch) => {
-  dispatch({
-    type: t.SET_NAME,
-    payload: name,
-  });
-};
-
-export const setNotification = (notification) => {
-  return { type: t.SET_NOTIFICATION, payload: notification };
-};
+export const setNotification = (notification: Notification | null) => ({
+  type: SET_NOTIFICATION,
+  payload: notification,
+});

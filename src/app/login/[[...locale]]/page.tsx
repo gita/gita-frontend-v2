@@ -20,11 +20,11 @@ import { supabase } from "utils/supabase";
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const dispatch = useDispatch();
-  const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
+  const [, setCookie] = useCookies(["access_token"]);
   const router = useRouter();
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
+  async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
+    const formData = new FormData(evt.currentTarget);
     const values = Object.fromEntries(formData.entries());
 
     const { data, error } = await supabase.auth.signInWithPassword({

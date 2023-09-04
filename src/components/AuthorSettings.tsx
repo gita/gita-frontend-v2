@@ -7,7 +7,7 @@ import { SelectorIcon } from "@heroicons/react/solid";
 import commentary_authors from "constant/commentary_authors.json";
 import translation_authors from "constant/translation_authors.json";
 import { getLanguageSettings } from "shared/functions";
-import classNames from "utils/classNames";
+import { classNames } from "shared/functions";
 
 const cookieOptions = { path: "/", maxAge: 365 * 24 * 60 * 60 };
 
@@ -35,8 +35,10 @@ const AuthorSettings = ({
     "bgCommentaryAuthorId",
   ]);
 
-  const [translationAuthor, setTranslationAuthor] = useState(null);
-  const [commentaryAuthor, setCommentaryAuthor] = useState(null);
+  const [translationAuthor, setTranslationAuthor] =
+    useState<TranslationAuthor | null>(null);
+  const [commentaryAuthor, setCommentaryAuthor] =
+    useState<CommentaryAuthor | null>(null);
 
   useEffect(() => {
     const myLanguageSettings = getLanguageSettings(locale, {
@@ -50,8 +52,8 @@ const AuthorSettings = ({
 
   function handleSubmit() {
     setIsSubmitting(true);
-    setCookie("bgTranslationAuthorId", translationAuthor.id, cookieOptions);
-    setCookie("bgCommentaryAuthorId", commentaryAuthor.id, cookieOptions);
+    setCookie("bgTranslationAuthorId", translationAuthor?.id, cookieOptions);
+    setCookie("bgCommentaryAuthorId", commentaryAuthor?.id, cookieOptions);
     window.location.reload();
   }
 

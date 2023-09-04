@@ -4,9 +4,9 @@ import { getCookie, setCookie } from "components/shared/functions";
 import { upperFirst } from "shared/functions";
 
 const booleanOrTrue = (
-  cookieValue: string | boolean | undefined,
+  cookieValue: string | boolean | undefined | null,
   defaultTo = true,
-) => {
+): boolean => {
   try {
     const parsed = JSON.parse(String(cookieValue));
     return parsed ?? defaultTo;

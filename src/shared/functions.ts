@@ -125,3 +125,6 @@ export const getLanguageSettings = (
 
 export const upperFirst = (string: string) =>
   string.charAt(0).toUpperCase() + string.slice(1);
+
+export const classNames = (...classes: (string | false | undefined)[]) =>
+  classes.filter(Boolean).join(" ");

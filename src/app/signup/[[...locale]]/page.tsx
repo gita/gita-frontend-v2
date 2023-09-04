@@ -36,15 +36,15 @@ function Signup() {
       dispatch(
         setNotification({
           status: "failed",
-          message: error,
+          message: String(error),
         }),
       );
     }
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
+  async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
+    const formData = new FormData(evt.currentTarget);
     const values = Object.fromEntries(formData.entries());
     if (values.password !== values.confirmPassword) {
       setError("Password and confirm password does not match");
@@ -78,7 +78,7 @@ function Signup() {
           }),
         );
       }
-      e.target.reset();
+      evt.currentTarget.reset();
     }
   }
 

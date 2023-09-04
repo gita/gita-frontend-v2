@@ -1,7 +1,6 @@
 import LinkWithLocale from "components/LinkWithLocale";
-
-import useMyStyles from "../../hooks/useMyStyles";
-import classNames from "../../utils/classNames";
+import useMyStyles from "hooks/useMyStyles";
+import { classNames } from "shared/functions";
 
 type VerseData = Pick<
   GitaVerse,

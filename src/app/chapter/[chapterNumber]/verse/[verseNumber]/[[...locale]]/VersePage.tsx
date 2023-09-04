@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 
 import Verse from "components/Verse";
-import classNames from "utils/classNames";
+import { classNames } from "shared/functions";
 
 type Props = {
   verseData: GitaVerse;

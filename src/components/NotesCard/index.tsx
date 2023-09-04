@@ -3,17 +3,25 @@ import { Menu, Transition } from "@headlessui/react";
 import { DotsVerticalIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 
-import classNames from "utils/classNames";
+import { classNames } from "shared/functions";
 
-const Notescard = (note: any) => {
+import { Note } from "./types";
+
+type Props = {
+  note: Note;
+};
+
+function NotesCard(props: Props) {
+  const { note } = props;
+
   return (
     <div className="mt-4 flex items-baseline gap-2 border-b border-gray-300 pb-4 font-inter">
       <div>
         <Image src="star.svg" alt="star icon" width={24} height={24} />
       </div>
       <div>
-        <h3 className="font-bold text-black"> Verse {note.note.verse_id}</h3>
-        <p className="mt-3 text-gray-400">{note.note.description}</p>
+        <h3 className="font-bold text-black"> Verse {note.verse_id}</h3>
+        <p className="mt-3 text-gray-400">{note.description}</p>
         <p className="mt-3 border-l-2 border-my-orange pl-4">
           Dhṛtarāṣṭra said: O Sañjaya, after my sons and the sons of Pāṇḍu
           assembled in the place of pilgrimage at Kurukṣetra, desiring to fight,
@@ -128,6 +136,6 @@ const Notescard = (note: any) => {
       </div>
     </div>
   );
-};
+}
 
-export default Notescard;
+export default NotesCard;

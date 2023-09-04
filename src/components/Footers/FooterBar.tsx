@@ -1,7 +1,6 @@
 // import React, { Fragment } from "react";
 // import { Menu, Transition } from "@headlessui/react";
 // import { ChevronUpIcon } from "@heroicons/react/solid";
-// import classNames from "../../utils/classNames";
 
 const FooterBar = () => {
   return (

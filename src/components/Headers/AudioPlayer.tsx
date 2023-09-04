@@ -1,7 +1,6 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
-import { connect } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 
@@ -20,38 +19,54 @@ function AudioPlayer({
   currentVerse,
   translate,
 }: Props) {
-  const refs = useRef<HTMLAudioElement[] | HTMLImageElement>([]);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
+  const { current: audio } = audioRef;
+  const { current: image } = imageRef;
+
   const play = () => {
-    if (refs.current[1].paused) {
-      refs.current[1].play();
-      refs.current[0].src = "/pause.svg";
+    if (!audio || !image) {
+      return;
+    }
+
+    if (audio.paused) {
+      audio.play();
+      image.src = "/pause.svg";
       setIsAudioPlaying(true);
     } else {
-      refs.current[1].pause();
-      refs.current[0].src = "/play.svg";
+      audio.pause();
+      image.src = "/play.svg";
       setIsAudioPlaying(false);
     }
   };
 
   const endFunction = () => {
-    refs.current[1].currentTime = 0;
-    refs.current[1].load();
-    refs.current[0]?.src ? (refs.current[0].src = "/play.svg") : null;
+    if (!audio || !image) {
+      return;
+    }
+
+    audio.currentTime = 0;
+    audio.load();
+    image.src = "/play.svg";
 
     setIsAudioPlaying(false);
   };
 
   const playback = (speed: number) => {
-    if (!refs.current[1].paused) {
-      refs.current[1].load();
-      refs.current[1].playbackRate = speed;
-      refs.current[1].play();
+    if (!audio) {
+      return;
+    }
+
+    if (audio.paused) {
+      audio.load();
+      audio.playbackRate = speed;
     } else {
-      refs.current[1].load();
-      refs.current[1].playbackRate = speed;
+      audio.load();
+      audio.playbackRate = speed;
+      audio.play();
     }
   };
 
@@ -73,17 +88,16 @@ function AudioPlayer({
   }, []);
 
   useEffect(() => {
-    if (playerIsOpen && refs.current[0]?.src) {
-      refs.current[0].src = "/pause.svg";
-
-      refs.current[1].play();
+    if (playerIsOpen && imageRef.current?.src) {
+      imageRef.current.src = "/pause.svg";
+      audioRef.current?.play();
     }
   }, [currentVerse?.id, playerIsOpen]);
 
   //below use effect is not working
   useEffect(() => {
-    if (playerIsOpen && !refs.current[1].paused) {
-      refs.current[0]?.src ? (refs.current[0].src = "/pause.svg") : null;
+    if (playerIsOpen && !audioRef.current?.paused) {
+      imageRef.current?.src ? (imageRef.current.src = "/pause.svg") : null;
     }
   }, [playerIsOpen]);
 
@@ -94,9 +108,7 @@ function AudioPlayer({
     <div>
       <audio
         id="a1"
-        ref={(element) => {
-          refs.current[1] = element;
-        }}
+        ref={audioRef}
         src={`https://gita.github.io/gita/data/verse_recitation/${currentVerse?.chapter_number}/${currentVerse?.verse_number}.mp3`}
         onEnded={() => endFunction()}
       />
@@ -166,9 +178,7 @@ function AudioPlayer({
                   </LinkWithLocale>
                   <Image
                     id="play"
-                    ref={(element) => {
-                      refs.current[0] = element;
-                    }}
+                    ref={imageRef}
                     className="cursor-pointer"
                     src={isAudioPlaying ? "/pause.svg" : "/play.svg"}
                     onClick={play}
@@ -244,10 +254,4 @@ function AudioPlayer({
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentVerse: state?.settings?.currentVerse,
-  };
-};
-
-export default connect(mapStateToProps)(AudioPlayer);
+export default AudioPlayer;

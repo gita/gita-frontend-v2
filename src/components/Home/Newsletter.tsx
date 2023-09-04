@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 
 import NotificationBanner from "components/NotificationBanner";
 import { subscribeUser } from "lib/subscribeUser";
+import { RootState } from "redux/types";
 import { getTranslate } from "shared/translate";
 
 import Modal from "./Modal";
@@ -15,8 +16,8 @@ import Modal from "./Modal";
 type SubscribeMessage = { isSuccess: boolean; message: string };
 
 type Props = {
-  notification: {
-    name: string;
+  notification?: {
+    name?: string;
     message: string;
     status: string;
   };
@@ -44,8 +45,8 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
     }
   }, [pathName, setCookie]);
 
-  const onSubmit = async (e) => {
-    const { isSuccess, message } = await handleSubscribe(e, formData);
+  const onSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+    const { isSuccess, message } = await handleSubscribe(evt, formData);
     if (isSuccess) {
       setFormData({ name: "", email: "" });
       setIsValid(true);
@@ -158,7 +159,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
   );
 };
 
-const mapStateToPros = (state) => {
+const mapStateToPros = (state: RootState) => {
   return {
     notification: state.main?.notification,
   };

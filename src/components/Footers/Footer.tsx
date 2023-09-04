@@ -6,9 +6,9 @@ import { ChevronUpIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 
 import LinkWithLocale from "components/LinkWithLocale";
+import { classNames } from "shared/functions";
 
 import useMyStyles from "../../hooks/useMyStyles";
-import classNames from "../../utils/classNames";
 
 interface IconProps {
   className: string;

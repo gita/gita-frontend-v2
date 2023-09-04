@@ -31,7 +31,8 @@ export const getNextPageHref = (
     return `/chapter/${nextChapterNumber}`;
   }
 
-  const nextVerseAvailable = currentVerse < totalVerses;
+  const nextVerseAvailable =
+    typeof totalVerses === "number" && currentVerse < totalVerses;
   if (!nextVerseAvailable) {
     return `/chapter/${nextChapterNumber}/verse/1`;
   }

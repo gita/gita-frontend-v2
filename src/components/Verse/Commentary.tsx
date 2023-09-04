@@ -1,7 +1,7 @@
+import { classNames } from "shared/functions";
 import { getTranslate } from "shared/translate";
 
 import useMyStyles from "../../hooks/useMyStyles";
-import classNames from "../../utils/classNames";
 import splitIntoParagraphs from "../../utils/splitIntoParagraphs";
 import { Skeleton } from "../Skeleton";
 

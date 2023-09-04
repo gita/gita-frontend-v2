@@ -1,0 +1,2 @@
+export const EDIT_SETTINGS = "EDIT_SETTINGS";
+export const SET_NOTIFICATION = "SET_NOTIFICATION";

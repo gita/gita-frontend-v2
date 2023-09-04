@@ -1,24 +1,22 @@
-import * as t from "../Types";
+import { SET_NOTIFICATION } from "redux/constants";
 
 const main = (
-  state = {
-    name: "guest",
+  state = {},
+  action: {
+    type: typeof SET_NOTIFICATION;
+    payload: Notification;
   },
-  action,
 ) => {
   switch (action.type) {
-    case t.SET_NAME:
-      return {
-        ...state,
-        name: action.payload,
-      };
-    case t.SET_NOTIFICATION:
+    case SET_NOTIFICATION:
       return {
         ...state,
         notification: action.payload,
       };
     default:
-      return { ...state };
+      return {
+        ...state,
+      };
   }
 };
 

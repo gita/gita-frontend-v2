@@ -1,21 +1,11 @@
-import * as t from "../Types";
+import { Dispatch } from "redux";
+import { EDIT_SETTINGS } from "redux/constants";
+import { SettingsState } from "redux/types";
 
-export const loadSettings = () => async (dispatch) => {
-  dispatch({
-    type: t.LOAD_SETTINGS,
-  });
-};
-
-export const editSettings = (value) => async (dispatch) => {
-  dispatch({
-    type: t.EDIT_SETTINGS,
-    payLoad: value,
-  });
-};
-
-export const setCurrentverse = (value) => async (dispatch) => {
-  dispatch({
-    type: t.SET_CURRENT_VERSE,
-    payLoad: value,
-  });
-};
+export const editSettings =
+  (value: SettingsState) => async (dispatch: Dispatch) => {
+    dispatch({
+      type: EDIT_SETTINGS,
+      payLoad: value,
+    });
+  };
