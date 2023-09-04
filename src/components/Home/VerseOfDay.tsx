@@ -20,7 +20,7 @@ const VerseOfDay = async (props: LocaleAndTranslations) => {
             <h2 className="divider line one-line mb-4 px-4 font-bold text-my-orange">
               {translate("Verse of the day")} -{" "}
               {translate("BG <%= verseNumber %>", {
-                verseNumber: `${dailyVerse?.chapter_number}`,
+                verseNumber: `${dailyVerse?.chapter_number}.${dailyVerse?.verse_number}`,
               })}
             </h2>
             <p className="text-lg">
