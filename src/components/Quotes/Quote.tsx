@@ -18,14 +18,14 @@ export default function Quote({ quoteNumber, quote, translate }: Props) {
       </div>
 
       <div className="xs:py-24 relative mx-auto max-w-5xl px-4 text-center font-inter sm:px-6 sm:py-28">
-        <h3
+        <h2
           className={classNames(
             "font-medium uppercase text-my-orange",
             styles.fontSize.subHeading2,
           )}
         >
           {translate("Quote")} {quoteNumber}
-        </h3>
+        </h2>
         <p
           className={classNames(
             "mx-auto mt-3 max-w-2xl text-center text-2xl dark:text-white",

@@ -99,11 +99,11 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
       />
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="mt-10 p-14 text-center">
-          <h1 className="z-50 mb-8 text-4xl font-bold text-black">
+          <h3 className="z-50 mb-8 text-4xl font-bold text-black">
             {translate(
               "Have the Shloka of the Day delivered to your inbox each morning",
             )}
-          </h1>
+          </h3>
           <form className="flex flex-col md:flex-row" onSubmit={onSubmit}>
             <input
               className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight text-gray-700 focus:border-my-orange focus:outline-none dark:bg-white md:mt-0"
