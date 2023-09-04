@@ -21,9 +21,9 @@ const Chapters = ({ chapters, locale, translations }: ChaptersProps) => {
       />
       <div className="z-50 mx-auto max-w-7xl px-4 sm:px-6">
         <div>
-          <h1 className="mb-10 text-5xl font-bold dark:text-white">
+          <h2 className="mb-10 text-4xl font-bold dark:text-white">
             {translate("Chapters")}
-          </h1>
+          </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {chapters.map((chapter) => (
               <Card key={chapter.id} chapter={chapter} translate={translate} />

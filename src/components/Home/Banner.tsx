@@ -23,10 +23,10 @@ const Banner = (props: LocaleAndTranslations) => {
         />
         <div className="flex h-4/5 flex-col px-8 py-36 xl:rounded-lg">
           <h1 className="text-shadow t-shadow z-30 text-center text-3xl font-extrabold text-white md:text-6xl">
-            {translate("Experience the Gita")}
-          </h1>
-          <h1 className="text-shadow t-shadow z-30 text-center text-3xl font-extrabold text-lead-text md:text-6xl">
-            {translate("Anywhere, Anytime")}
+            {translate("Experience the Gita")} <br />
+            <span className="text-lead-text">
+              {translate("Anywhere, Anytime")}
+            </span>
           </h1>
 
           <LinkWithLocale
