@@ -33,7 +33,7 @@ const Card = ({ chapter, translate }: Props) => {
           </span>
         </div>
 
-        <div className="mt-4 flex">
+        {/* <div className="mt-4 flex">
           <div className="mr-3 flex items-center align-middle text-sm">
             <SvgBookmark className="mr-1 h-5 w-5" />2
           </div>
@@ -41,7 +41,7 @@ const Card = ({ chapter, translate }: Props) => {
           <div className="flex items-center text-sm">
             <SvgShuffle className="mr-1 h-5 w-5" />2
           </div>
-        </div>
+        </div> */}
       </div>
     </LinkWithLocale>
   );

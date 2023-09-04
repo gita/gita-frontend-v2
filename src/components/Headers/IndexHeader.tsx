@@ -236,7 +236,7 @@ export default function IndexHeader({ locale, translate }: Props) {
               >
                 {translate("About Gita")}
               </LinkWithLocale>
-              {!loggedIn ? (
+              {/* {!loggedIn ? (
                 <Popover className="relative">
                   {({ open }) => (
                     <>
@@ -298,7 +298,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                 >
                   <span className="truncate">{translate("Sign Out")}</span>
                 </button>
-              )}
+              )} */}
             </Popover.Group>
             <div className="hidden w-auto items-center justify-end py-px md:flex md:flex-1 lg:w-0">
               <form
@@ -436,7 +436,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                           <span className="truncate">{item.name}</span>
                         </LinkWithLocale>
                       ))}
-                      {!loggedIn ? (
+                      {/* {!loggedIn ? (
                         <Disclosure>
                           <Disclosure.Button className="flex w-full justify-between px-3 py-2 text-left font-medium hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
                             {translate("Account")}
@@ -481,7 +481,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                             {translate("Sign Out")}
                           </span>
                         </button>
-                      )}
+                      )} */}
                     </nav>
                   </nav>
                 </div>
