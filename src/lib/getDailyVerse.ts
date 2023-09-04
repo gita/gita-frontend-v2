@@ -22,7 +22,7 @@ const getWhereGitaAuthor = (
   };
 };
 
-export const getDailyVerse = (locale: Locale): Promise<GitaVerse> =>
+export const getDailyVerse = (locale: Locale): Promise<GitaVerse | null> =>
   resolved(() => {
     const gitaVerse =
       query.gita_verses_by_pk({

@@ -8,9 +8,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import LinkWithLocale from "components/LinkWithLocale";
+import useToggle from "hooks/useToggle";
+import { classNames } from "shared/functions";
 
-import useToggle from "../../hooks/useToggle";
-import classNames from "../../utils/classNames";
 import Settings from "../Settings";
 import ContentModal from "./ContentModal";
 import DarkModeToggle from "./DarkModeToggle";
@@ -37,8 +37,8 @@ const ChapterHeader = (props: Props) => {
   } = useToggle();
   const router = useRouter();
 
-  function handleSearch(e) {
-    e.preventDefault();
+  function handleSearch(evt: React.FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
 
     if (input?.trim().length <= 0) {
       return;
@@ -74,9 +74,7 @@ const ChapterHeader = (props: Props) => {
                       type="button"
                       onClick={openContentModal}
                       className={classNames(
-                        contentModalIsOpen
-                          ? "bg-nav-hover dark:bg-dark-bg"
-                          : null,
+                        contentModalIsOpen && "bg-nav-hover dark:bg-dark-bg",
                         "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
@@ -93,7 +91,7 @@ const ChapterHeader = (props: Props) => {
                       type="button"
                       onClick={openSettingsModal}
                       className={classNames(
-                        settingsIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        settingsIsOpen && "bg-nav-hover dark:bg-dark-bg",
                         "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >

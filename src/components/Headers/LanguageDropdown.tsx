@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { updatedLocalePath } from "components/shared/functions";
 import { useClickOutside } from "hooks/useClickOutside";
-import classNames from "utils/classNames";
+import { classNames } from "shared/functions";
 
 const languages: {
   locale: Locale;

@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 
-import useMyStyles from "../../hooks/useMyStyles";
-import { RootState } from "../../redux/reducers/rootReducer";
-import classNames from "../../utils/classNames";
+import useMyStyles from "hooks/useMyStyles";
+import { RootState } from "redux/reducers/rootReducer";
+import { classNames } from "shared/functions";
 
 interface Props {
   verseCount: number;

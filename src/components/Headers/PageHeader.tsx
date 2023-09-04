@@ -8,10 +8,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import LinkWithLocale from "components/LinkWithLocale";
+import useToggle from "hooks/useToggle";
+import { classNames } from "shared/functions";
 
-import useEnvironment from "../../hooks/useEnvironment";
-import useToggle from "../../hooks/useToggle";
-import classNames from "../../utils/classNames";
 import AuthorSettings from "../AuthorSettings";
 import NotesModal from "../NotesModal";
 import Settings from "../Settings";
@@ -24,16 +23,20 @@ const AudioPlayer = lazy(() => import("./AudioPlayer"));
 interface Props {
   advancedSettings: AdvancedSettings;
   updateAdvancedSettings: (update: Partial<AdvancedSettings>) => void;
+  currentVerse: GitaVerse;
   translate: Translate;
   locale: Locale;
 }
 
-const PageHeader = ({
-  advancedSettings,
-  updateAdvancedSettings,
-  translate,
-  locale,
-}: Props) => {
+function PageHeader(props: Props) {
+  const {
+    advancedSettings,
+    updateAdvancedSettings,
+    currentVerse,
+    translate,
+    locale,
+  } = props;
+
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
 
   const {
@@ -63,15 +66,14 @@ const PageHeader = ({
   } = useToggle();
   const [input, setInput] = useState("");
   const router = useRouter();
-  const [isProduction] = useEnvironment();
 
   const { devanagari, verseText, synonyms, translation, purport } =
     advancedSettings;
 
   const toggleClass = () => setAdvancedOptionsActive(!advancedOptionsActive);
 
-  function handleSearch(e) {
-    e.preventDefault();
+  function handleSearch(evt: React.FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
 
     if (input?.trim().length <= 0) {
       return;
@@ -112,9 +114,7 @@ const PageHeader = ({
                       type="button"
                       onClick={openContentModal}
                       className={classNames(
-                        contentModalIsOpen
-                          ? "bg-nav-hover dark:bg-dark-bg"
-                          : null,
+                        contentModalIsOpen && "bg-nav-hover dark:bg-dark-bg",
                         "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
@@ -131,7 +131,7 @@ const PageHeader = ({
                       type="button"
                       onClick={openSettingsModal}
                       className={classNames(
-                        settingsIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        settingsIsOpen && "bg-nav-hover dark:bg-dark-bg",
                         "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
@@ -148,9 +148,7 @@ const PageHeader = ({
                       type="button"
                       onClick={openAuthorSettingsModal}
                       className={classNames(
-                        authorSettingsIsOpen
-                          ? "bg-nav-hover dark:bg-dark-bg"
-                          : null,
+                        authorSettingsIsOpen && "bg-nav-hover dark:bg-dark-bg",
                         "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
@@ -168,7 +166,7 @@ const PageHeader = ({
                       type="button"
                       onClick={openPlayerModal}
                       className={classNames(
-                        playerIsOpen ? "bg-nav-hover dark:bg-dark-bg" : null,
+                        playerIsOpen && "bg-nav-hover dark:bg-dark-bg",
                         "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
@@ -186,9 +184,7 @@ const PageHeader = ({
                       type="button"
                       onClick={toggleClass}
                       className={classNames(
-                        advancedOptionsActive
-                          ? "bg-nav-hover dark:bg-dark-bg"
-                          : null,
+                        advancedOptionsActive && "bg-nav-hover dark:bg-dark-bg",
                         "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
                       )}
                     >
@@ -502,6 +498,7 @@ const PageHeader = ({
           fallback={<div className="absolute">{translate("Loading")}</div>}
         >
           <AudioPlayer
+            currentVerse={currentVerse}
             playerIsOpen={playerIsOpen}
             closePlayerModal={closePlayerModal}
             translate={translate}
@@ -526,12 +523,13 @@ const PageHeader = ({
         locale={locale}
       />
       <NotesModal
+        currentVerse={currentVerse}
         notesSettingsIsOpen={notesSettingsIsOpen}
         closeNotesSettingsModal={closeNotesSettingsModal}
       />
     </>
   );
-};
+}
 
 export default PageHeader;
 

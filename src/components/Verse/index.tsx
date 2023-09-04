@@ -1,14 +1,11 @@
 "use client";
 
-import { FC } from "react";
-
 import PageHeader from "components/Headers/PageHeader";
 import useAdvancedSettings from "hooks/useAdvancedSettings";
-import { defaultAdvancedSettings } from "shared/constants";
+import { classNames } from "shared/functions";
 import { getTranslate } from "shared/translate";
 
 import useMyStyles from "../../hooks/useMyStyles";
-import classNames from "../../utils/classNames";
 import PageNavigator from "../Chapter/PageNavigator";
 import { Skeleton } from "../Skeleton";
 import { SvgFloralDivider } from "../svgs";
@@ -19,8 +16,8 @@ type Props = {
   verse: GitaVerse;
 } & LocaleAndTranslations;
 
-const Verse = ({
-  verse: {
+const Verse = ({ verse, translations, locale }: Props) => {
+  const {
     gita_chapter,
     prev_chapter_verses_count,
     verse_number,
@@ -30,10 +27,8 @@ const Verse = ({
     word_meanings,
     gita_translations,
     gita_commentaries,
-  },
-  translations,
-  locale,
-}: Props) => {
+  } = verse;
+
   const styles = useMyStyles();
 
   const { advancedSettings, updateAdvancedSettings } =
@@ -47,6 +42,7 @@ const Verse = ({
   return (
     <>
       <PageHeader
+        currentVerse={verse}
         advancedSettings={advancedSettings}
         updateAdvancedSettings={updateAdvancedSettings}
         translate={translate}

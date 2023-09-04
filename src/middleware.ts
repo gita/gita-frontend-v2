@@ -45,7 +45,7 @@ export function middleware(req: NextRequest) {
       "x-settings-l": cookieL,
       "x-settings-t": String(translationAuthor.id),
       "x-settings-c": String(commentaryAuthor.id),
-    },
+    } as HeadersInit,
   });
 
   return response;

@@ -1,6 +1,5 @@
 "use client";
 
-import { supportedLocales } from "shared/constants";
 import { isLocale } from "shared/functions";
 
 export const setCookie = (

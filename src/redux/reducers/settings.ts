@@ -1,4 +1,5 @@
-import * as t from "../Types";
+import { EDIT_SETTINGS } from "redux/constants";
+import { SettingsState } from "redux/types";
 
 const initialVerse: GitaVerse = {
   verse_number: 1,
@@ -15,15 +16,6 @@ const initialVerse: GitaVerse = {
   gita_translations: [{ description: "" }],
 };
 
-interface Settings {
-  loading: boolean;
-  fontSize: string;
-  fontFamily: string;
-  spacing: string;
-  bg: string;
-  currentVerse: GitaVerse;
-}
-
 const initialState = {
   loading: false,
   fontSize: "large", //small, large todo: change to exact values
@@ -33,22 +25,17 @@ const initialState = {
   currentVerse: initialVerse,
 };
 
-const settings = (prevState = initialState, action): Settings => {
+type Action = {
+  type: typeof EDIT_SETTINGS;
+  payLoad: Partial<SettingsState>;
+};
+
+const settings = (prevState = initialState, action: Action): SettingsState => {
   switch (action.type) {
-    case t.LOAD_SETTINGS:
-      return {
-        ...prevState,
-        loading: true,
-      };
-    case t.EDIT_SETTINGS:
+    case EDIT_SETTINGS:
       return {
         ...prevState,
         ...action.payLoad,
-      };
-    case t.SET_CURRENT_VERSE:
-      return {
-        ...prevState,
-        currentVerse: action.payLoad,
       };
     default: {
       return { ...prevState };

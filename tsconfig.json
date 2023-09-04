@@ -15,8 +15,7 @@
     "noEmit": true,
     "jsx": "preserve",
     "baseUrl": "./src",
-    // Should be re-enabled
-    "strict": false,
+    "strict": true,
     "incremental": true,
     "plugins": [
       {

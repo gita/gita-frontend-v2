@@ -1,6 +1,0 @@
-export const SET_NAME = "SET_NAME";
-export const LOAD_SETTINGS = "LOAD_SETTINGS";
-export const EDIT_SETTINGS = "EDIT_SETTINGS";
-export const RESET_SETTING = "RESET_SETTING";
-export const SET_CURRENT_VERSE = "SET_CURRENT_VERSE";
-export const SET_NOTIFICATION = "SET_NOTIFICATION";

@@ -23,7 +23,7 @@ const getUpdatedHref = (href: UrlObject | string, locale: Locale) => {
     return href;
   }
   const hrefUrl = typeof href === "string" ? getAsUrl(href) : href;
-  const addSlash = !hrefUrl.pathname.endsWith("/");
+  const addSlash = !hrefUrl.pathname?.endsWith("/");
   hrefUrl.pathname = `${hrefUrl.pathname}${addSlash ? "/" : ""}${locale}`;
   return hrefUrl.toString();
 };

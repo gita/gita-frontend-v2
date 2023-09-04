@@ -1,5 +1,5 @@
 import useMyStyles from "hooks/useMyStyles";
-import classNames from "utils/classNames";
+import { classNames } from "shared/functions";
 
 import { SvgChapterBackground } from "../svgs";
 

@@ -1,3 +1,5 @@
+declare module "react-dom";
+
 interface TChapter {
   id: number;
   chapter_number: number;
@@ -72,18 +74,22 @@ type Locale = "en" | "hi";
 
 type ParamsWithLocale = { params: { locale: string[] } };
 
-interface LanguageSettings {
-  translationAuthor: {
-    id: number;
-    name: string;
-    language: string;
-  };
-  commentaryAuthor: {
-    id: number;
-    name: string;
-    language: string;
-  };
-}
+type TranslationAuthor = {
+  id: number;
+  name: string;
+  language: string;
+};
+
+type CommentaryAuthor = {
+  id: number;
+  name: string;
+  language: string;
+};
+
+type LanguageSettings = {
+  translationAuthor: TranslationAuthor;
+  commentaryAuthor: CommentaryAuthor;
+};
 
 type CurrentVerse = Omit<GitaVerse, "word_meanings" | "text">;
 
@@ -91,7 +97,7 @@ interface SvgProps {
   className: string;
 }
 
-type Translate = (literal: string, options?: {}) => string;
+type Translate = (literal: string | undefined, options?: {}) => string;
 
 type LocaleAndTranslations = {
   locale: Locale;

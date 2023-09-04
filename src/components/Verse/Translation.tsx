@@ -1,6 +1,6 @@
 import useMyStyles from "hooks/useMyStyles";
+import { classNames } from "shared/functions";
 import { getTranslate } from "shared/translate";
-import classNames from "utils/classNames";
 
 type Props = {
   translationData: GitaLanguage[] | undefined;

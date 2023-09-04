@@ -2,7 +2,7 @@
 
 import Verse from "components/Verse";
 import useMyStyles from "hooks/useMyStyles";
-import classNames from "utils/classNames";
+import { classNames } from "shared/functions";
 
 type Props = {
   dailyVerse: GitaVerse;

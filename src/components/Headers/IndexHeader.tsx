@@ -9,9 +9,9 @@ import { useRouter } from "next/navigation";
 import { useAsyncEffect } from "rooks";
 
 import LinkWithLocale from "components/LinkWithLocale";
+import { classNames } from "shared/functions";
+import { supabase } from "utils/supabase";
 
-import classNames from "../../utils/classNames";
-import { supabase } from "../../utils/supabase";
 import DarkModeToggle from "./DarkModeToggle";
 import LanguageDropdown from "./LanguageDropdown";
 
@@ -138,8 +138,8 @@ export default function IndexHeader({ locale, translate }: Props) {
     setLoggedIn(false);
   };
 
-  function handleSearch(e) {
-    e.preventDefault();
+  function handleSearch(evt: React.FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
 
     if (input?.trim().length <= 0) {
       return;
