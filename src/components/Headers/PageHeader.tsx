@@ -495,7 +495,11 @@ function PageHeader(props: Props) {
       ) : null}
       {playerIsOpen && (
         <Suspense
-          fallback={<div className="absolute">{translate("Loading")}</div>}
+          fallback={
+            <div className="absolute animate-pulse p-3 text-gray-300">
+              {translate("Loading")}
+            </div>
+          }
         >
           <AudioPlayer
             currentVerse={currentVerse}

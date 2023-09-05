@@ -4,6 +4,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 
+import { getNextPageHref, getPrevPageHref } from "components/Chapter/functions";
 import LinkWithLocale from "components/LinkWithLocale";
 
 interface Props {
@@ -164,7 +165,11 @@ function AudioPlayer({
 
                 <div className="mt-4 flex justify-between px-4">
                   <LinkWithLocale
-                    href={`/chapter/${currentVerse?.chapter_number}/verse/${prevId}`}
+                    href={getPrevPageHref(
+                      currentVerse.chapter_number,
+                      currentVerse.verse_number,
+                      currentVerse.prev_chapter_verses_count,
+                    )}
                     className={`hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50 ${
                       prevId <= 0 ? "pointer-events-none" : ""
                     }`}
@@ -187,7 +192,11 @@ function AudioPlayer({
                     alt="play or pause icon"
                   />
                   <LinkWithLocale
-                    href={`/chapter/${currentVerse?.chapter_number}/verse/${nextId}`}
+                    href={getNextPageHref(
+                      currentVerse.chapter_number,
+                      currentVerse.verse_number,
+                      currentVerse.gita_chapter.verses_count,
+                    )}
                     className={`hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50 ${
                       nextId > 701 ? "pointer-events-none" : ""
                     }`}
