@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { chapterNumber } = params;
   const chapterData = await getChapterData(
     paramsToLocale(params),
-    parseInt(chapterNumber),
+    Number(chapterNumber) || 1,
   );
   if (!chapterData) {
     return {};
@@ -85,7 +85,7 @@ export default async function Chapter({ params }: Props) {
 
   const chapterData = await getChapterData(
     locale,
-    parseInt(chapterNumber),
+    Number(chapterNumber) || 1,
     languageSettings.translationAuthor.id,
   );
 
