@@ -1,3 +1,7 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import LinkWithLocale from "components/LinkWithLocale";
 
 import { SvgChevronLeft, SvgChevronRight } from "../svgs";
@@ -16,6 +20,8 @@ function PageNavigator({
   totalVerses,
   prevChapterTotalVerses,
 }: Props) {
+  useRouter();
+
   return (
     <div className="relative z-10">
       <LinkWithLocale

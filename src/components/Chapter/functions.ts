@@ -1,6 +1,9 @@
 const totalChapters = 18;
 
 const getSearchPostfix = () => {
+  if (typeof window === "undefined") {
+    return "";
+  }
   const searchParams = new URLSearchParams(window.location.search);
   const prefix = searchParams.size ? "?" : "";
   return `${prefix}${searchParams.toString()}`;
