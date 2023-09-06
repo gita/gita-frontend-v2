@@ -54,71 +54,137 @@ export default async function Acknowledgement(props: ParamsWithLocale) {
       {["en", "hi"].includes(locale) && (
         <div className="mx-auto max-w-5xl px-4 py-12 font-inter sm:px-6">
           <p className="mb-6">
-            We extend our heartfelt gratitude to the esteemed organizations listed below for allowing us to feature their invaluable publications. All copyrights are retained by the respective organizations. For acquiring individual copies of any books, please directly contact the relevant organization.
+            We extend our heartfelt gratitude to the esteemed organizations
+            listed below for allowing us to feature their invaluable
+            publications. All copyrights are retained by the respective
+            organizations. For acquiring individual copies of any books, please
+            directly contact the relevant organization.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {/* Advaita Ashrama */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-2">Advaita Ashrama</h2>
-              <address className="not-italic mb-4">
-                Located at 5 Dehi Entally Road, Calcutta, India.<br />
-                Contact: Various phone lines and Fax available.<br />
-                Email: <a href="mailto:advaita@giascl01.vsnl.net.in">advaita@giascl01.vsnl.net.in</a>
+            <div className="rounded-lg bg-white p-6 shadow-md">
+              <h2 className="mb-2 text-xl font-semibold">Advaita Ashrama</h2>
+              <address className="mb-4 not-italic">
+                Located at 5 Dehi Entally Road, Calcutta, India.
+                <br />
+                Contact: Various phone lines and Fax available.
+                <br />
+                Email:{" "}
+                <a href="mailto:advaita@giascl01.vsnl.net.in">
+                  advaita@giascl01.vsnl.net.in
+                </a>
               </address>
-              <p>Featured Work: Commentary on Bhagavadgita by Sankaracarya, translated by Swami Gambhirananda (Published in 1995).</p>
+              <p>
+                Featured Work: Commentary on Bhagavadgita by Sankaracarya,
+                translated by Swami Gambhirananda (Published in 1995).
+              </p>
             </div>
 
             {/* Central Chinmaya Mission Trust */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-2">Central Chinmaya Mission Trust</h2>
-              <address className="not-italic mb-4">
-                Located at Sandeepany Sadhanalaya, Saki Vihar Road, Mumbai 400 072, India.<br />
-                Phone: 91-22-8572367/8575806; Fax: 91-22-8573065<br />
-                Email: <a href="mailto:chinmaya@bom2.vsnl.net.in">chinmaya@bom2.vsnl.net.in</a>
+            <div className="rounded-lg bg-white p-6 shadow-md">
+              <h2 className="mb-2 text-xl font-semibold">
+                Central Chinmaya Mission Trust
+              </h2>
+              <address className="mb-4 not-italic">
+                Located at Sandeepany Sadhanalaya, Saki Vihar Road, Mumbai 400
+                072, India.
+                <br />
+                Phone: 91-22-8572367/8575806; Fax: 91-22-8573065
+                <br />
+                Email:{" "}
+                <a href="mailto:chinmaya@bom2.vsnl.net.in">
+                  chinmaya@bom2.vsnl.net.in
+                </a>
               </address>
-              <p>Featured Work: Srimadbhagavadgita translated by Swami Tejomayananda (1993, Central Chinmaya Mission Trust, Bombay) [Hindi translation of The Holy Geeta by Swami Chinmayananda]</p>
+              <p>
+                Featured Work: Srimadbhagavadgita translated by Swami
+                Tejomayananda (1993, Central Chinmaya Mission Trust, Bombay)
+                [Hindi translation of The Holy Geeta by Swami Chinmayananda]
+              </p>
             </div>
 
             {/* Divine Life Society */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-2">Divine Life Society</h2>
-              <address className="not-italic mb-4">
-                Located at P.O. Shivanandanagar 249192, District Tehri-Garhwal, Uttar Pradesh, Himalayas, India.<br />
+            <div className="rounded-lg bg-white p-6 shadow-md">
+              <h2 className="mb-2 text-xl font-semibold">
+                Divine Life Society
+              </h2>
+              <address className="mb-4 not-italic">
+                Located at P.O. Shivanandanagar 249192, District Tehri-Garhwal,
+                Uttar Pradesh, Himalayas, India.
+                <br />
               </address>
-              <p>Featured Work: The Bhagavad Gita by Swami Sivananda (1995, The Divine Life Society, Shivanandanagar)</p>
+              <p>
+                Featured Work: The Bhagavad Gita by Swami Sivananda (1995, The
+                Divine Life Society, Shivanandanagar)
+              </p>
             </div>
 
             {/* Gita Press, Gorakhpur */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-2">Gita Press, Gorakhpur</h2>
-              <address className="not-italic mb-4">
-                Located at Govind Bhawan Karyalaya, Gitapress, Gorakhpur 273005, Uttar Pradesh, India. Phone: 334721<br />
+            <div className="rounded-lg bg-white p-6 shadow-md">
+              <h2 className="mb-2 text-xl font-semibold">
+                Gita Press, Gorakhpur
+              </h2>
+              <address className="mb-4 not-italic">
+                Located at Govind Bhawan Karyalaya, Gitapress, Gorakhpur 273005,
+                Uttar Pradesh, India. Phone: 334721
+                <br />
               </address>
-              <p>Featured Works:
+              <p>
+                Featured Works:
                 <ul>
-                  <li>Srimadbhagavadgita: with Hindi translation of Sankarabhashya translated by Sri Harikrishandas Goenka (1998, Gita Press, Gorakhpur)</li>
-                  <li>Srimadbhagavadgita: Sadhaka Sanjivani (Hindi Commentary) by Swami Ramsukhdas (1995, Gita Press, Gorakhpur)</li>
+                  <li>
+                    Srimadbhagavadgita: with Hindi translation of Sankarabhashya
+                    translated by Sri Harikrishandas Goenka (1998, Gita Press,
+                    Gorakhpur)
+                  </li>
+                  <li>
+                    Srimadbhagavadgita: Sadhaka Sanjivani (Hindi Commentary) by
+                    Swami Ramsukhdas (1995, Gita Press, Gorakhpur)
+                  </li>
                 </ul>
               </p>
             </div>
 
             {/* Sri Venkateswara University, Tirupati */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-2">Sri Venkateswara University, Tirupati</h2>
-              <address className="not-italic mb-4">
-                Located at Oriental Research Institute, Sri Venkateswara University, Tirupati 517502, Andhra Pradesh, India.<br />
-                Phone: 91-8574-24166-Extension 291; Fax: 91-8574-24111<br />
+            <div className="rounded-lg bg-white p-6 shadow-md">
+              <h2 className="mb-2 text-xl font-semibold">
+                Sri Venkateswara University, Tirupati
+              </h2>
+              <address className="mb-4 not-italic">
+                Located at Oriental Research Institute, Sri Venkateswara
+                University, Tirupati 517502, Andhra Pradesh, India.
+                <br />
+                Phone: 91-8574-24166-Extension 291; Fax: 91-8574-24111
+                <br />
               </address>
-              <p>Featured Work: Srimadbhagavadgita with Gitarthasangraha of Abhinavagupta Part 1 & 2. Translation by Dr. S Sankaranarayan (1985, Sri Venkateswara University, Tirupati)</p>
+              <p>
+                Featured Work: Srimadbhagavadgita with Gitarthasangraha of
+                Abhinavagupta Part 1 & 2. Translation by Dr. S Sankaranarayan
+                (1985, Sri Venkateswara University, Tirupati)
+              </p>
             </div>
 
             {/* Gita Supersite IITK Team */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-2">Gita Supersite IITK Team</h2>
-              <address className="not-italic mb-4">
-                Website: <a href="https://gitasupersite.iitk.ac.in/" target="_blank" rel="noopener noreferrer">gitasupersite.iitk.ac.in</a><br />
+            <div className="rounded-lg bg-white p-6 shadow-md">
+              <h2 className="mb-2 text-xl font-semibold">
+                Gita Supersite IITK Team
+              </h2>
+              <address className="mb-4 not-italic">
+                Website:{" "}
+                <a
+                  href="https://gitasupersite.iitk.ac.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  gitasupersite.iitk.ac.in
+                </a>
+                <br />
               </address>
-              <p>We extend special thanks to the team at Gita Supersite by IIT Kanpur for their hard work in collating various translations and commentaries of the Bhagavad Gita in one comprehensive platform.</p>
+              <p>
+                We extend special thanks to the team at Gita Supersite by IIT
+                Kanpur for their hard work in collating various translations and
+                commentaries of the Bhagavad Gita in one comprehensive platform.
+              </p>
             </div>
           </div>
 
