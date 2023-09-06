@@ -1,5 +1,5 @@
-import Head from "next/head";
 import * as Sentry from "@sentry/nextjs";
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -70,7 +70,10 @@ export default function Home() {
 
         <p>
           Next, look for the error on the{" "}
-          <a href="https://sentry.writesonic.com/organizations/writesonic/issues/?project=10">Issues Page</a>.
+          <a href="https://sentry.writesonic.com/organizations/writesonic/issues/?project=10">
+            Issues Page
+          </a>
+          .
         </p>
         <p style={{ marginTop: "24px" }}>
           For more information, see{" "}
