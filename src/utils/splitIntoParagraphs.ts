@@ -2,7 +2,7 @@ export default function splitIntoParagraphs(
   textData: GitaLanguage[] | undefined,
 ): string[] | undefined {
   if (textData) {
-    const sentences = textData[0].description.split(/(?<=[.!?])\s+/);
+    const sentences = textData[0].description.split(" ");
 
     const paragraphs: string[] = [];
     let currentParagraph = "";
