@@ -23,6 +23,7 @@ function AudioPlayer({
   const audioRef = useRef<HTMLAudioElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
+  const [trackProgress, setTrackProgress] = useState(0);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   const { current: audio } = audioRef;
@@ -72,23 +73,6 @@ function AudioPlayer({
   };
 
   useEffect(() => {
-    const scriptTag = document.createElement("script");
-    const scrptTag = document.createElement("script");
-    scrptTag.src = "https://code.jquery.com/jquery-2.2.4.min.js";
-    scrptTag.crossOrigin = "anonymous";
-    scrptTag.integrity = "sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=";
-
-    scriptTag.src = "/js/audioseeker.js";
-    scriptTag.async = true;
-
-    document.body.appendChild(scriptTag);
-    document.body.appendChild(scrptTag);
-    return () => {
-      document.body.removeChild(scriptTag);
-    };
-  }, []);
-
-  useEffect(() => {
     if (playerIsOpen && imageRef.current?.src) {
       imageRef.current.src = "/pause.svg";
       audioRef.current?.play();
@@ -104,6 +88,23 @@ function AudioPlayer({
 
   const prevId = currentVerse?.id - 1;
   const nextId = currentVerse?.id + 1;
+  const setAudioPlaybackRate = (newRate: number) => {
+    if (audio) {
+      audio.playbackRate = newRate;
+    }
+  };
+  const setPlaybackTime = (
+    evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    if (!audio) {
+      return;
+    }
+    const rect = evt.currentTarget.getBoundingClientRect();
+    const barLength = rect.right - rect.left;
+    const clickX = evt.pageX - rect.left;
+    const progression = clickX / barLength;
+    audio.currentTime = Math.round(audio.duration * progression);
+  };
 
   return (
     <div>
@@ -112,6 +113,11 @@ function AudioPlayer({
         ref={audioRef}
         src={`https://gita.github.io/gita/data/verse_recitation/${currentVerse?.chapter_number}/${currentVerse?.verse_number}.mp3`}
         onEnded={() => endFunction()}
+        onTimeUpdate={(evt) => {
+          const currentProgress =
+            evt.currentTarget.currentTime / evt.currentTarget.duration;
+          setTrackProgress(Math.round(currentProgress * 100));
+        }}
       />
       <Transition appear show={playerIsOpen} as={Fragment}>
         <Dialog
@@ -210,14 +216,16 @@ function AudioPlayer({
                   </LinkWithLocale>
                 </div>
                 <div
-                  className=" mx-auto my-3 flex h-2 w-full cursor-pointer items-center"
-                  onClick={(event) => (window as any).sayLoc(event)}
+                  className="mx-auto my-3 flex h-2 w-full cursor-pointer items-center"
+                  onClick={setPlaybackTime}
                 >
-                  <div
-                    id="audiobar"
-                    className="hp_slide h-1 w-full bg-light-orange"
-                  >
-                    <div className="hp_range h-1 bg-my-orange"></div>
+                  <div className="mb-4 h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                    <div
+                      className="h-1.5 rounded-full bg-my-orange"
+                      style={{
+                        width: `${trackProgress}%`,
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -226,14 +234,14 @@ function AudioPlayer({
                     <button
                       type="button"
                       className="grow items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => playback(0.75)}
+                      onClick={() => setAudioPlaybackRate(0.75)}
                     >
                       0.75x
                     </button>
                     <button
                       type="button"
                       className="-ml-px grow items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => playback(1.0)}
+                      onClick={() => setAudioPlaybackRate(1)}
                     >
                       1x
                     </button>
@@ -241,14 +249,14 @@ function AudioPlayer({
                     <button
                       type="button"
                       className="-ml-px grow items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => playback(1.5)}
+                      onClick={() => setAudioPlaybackRate(1.5)}
                     >
                       1.5x
                     </button>
                     <button
                       type="button"
                       className="-ml-px grow items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => playback(2.0)}
+                      onClick={() => setAudioPlaybackRate(2)}
                     >
                       2x
                     </button>
