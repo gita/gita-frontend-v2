@@ -7,6 +7,9 @@ import Image from "next/image";
 import { getNextPageHref, getPrevPageHref } from "components/Chapter/functions";
 import LinkWithLocale from "components/LinkWithLocale";
 
+import PlaybackRateButton from "./PlaybackRateButton";
+import { updateQueryString } from "./functions";
+
 interface Props {
   currentVerse: GitaVerse;
   playerIsOpen: boolean;
@@ -23,7 +26,24 @@ function AudioPlayer({
   const audioRef = useRef<HTMLAudioElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
+  const [trackProgress, setTrackProgress] = useState(0);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [currentRate, setCurrentRate] = useState(1);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("audio") !== "1") {
+      searchParams.set("audio", "1");
+      updateQueryString(searchParams);
+    }
+  }, []);
+
+  const closeAndUpdateSearchParams = () => {
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.delete("audio");
+    updateQueryString(newSearchParams);
+    closePlayerModal();
+  };
 
   const { current: audio } = audioRef;
   const { current: image } = imageRef;
@@ -56,38 +76,6 @@ function AudioPlayer({
     setIsAudioPlaying(false);
   };
 
-  const playback = (speed: number) => {
-    if (!audio) {
-      return;
-    }
-
-    if (audio.paused) {
-      audio.load();
-      audio.playbackRate = speed;
-    } else {
-      audio.load();
-      audio.playbackRate = speed;
-      audio.play();
-    }
-  };
-
-  useEffect(() => {
-    const scriptTag = document.createElement("script");
-    const scrptTag = document.createElement("script");
-    scrptTag.src = "https://code.jquery.com/jquery-2.2.4.min.js";
-    scrptTag.crossOrigin = "anonymous";
-    scrptTag.integrity = "sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=";
-
-    scriptTag.src = "/js/audioseeker.js";
-    scriptTag.async = true;
-
-    document.body.appendChild(scriptTag);
-    document.body.appendChild(scrptTag);
-    return () => {
-      document.body.removeChild(scriptTag);
-    };
-  }, []);
-
   useEffect(() => {
     if (playerIsOpen && imageRef.current?.src) {
       imageRef.current.src = "/pause.svg";
@@ -105,6 +93,26 @@ function AudioPlayer({
   const prevId = currentVerse?.id - 1;
   const nextId = currentVerse?.id + 1;
 
+  const setAudioPlaybackRate = (newRate: number) => {
+    if (audio) {
+      audio.playbackRate = newRate;
+    }
+    setCurrentRate(newRate);
+  };
+
+  const setPlaybackTime = (
+    evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    if (!audio) {
+      return;
+    }
+    const rect = evt.currentTarget.getBoundingClientRect();
+    const barLength = rect.right - rect.left;
+    const clickX = evt.pageX - rect.left;
+    const progression = clickX / barLength;
+    audio.currentTime = Math.round(audio.duration * progression);
+  };
+
   return (
     <div>
       <audio
@@ -112,12 +120,17 @@ function AudioPlayer({
         ref={audioRef}
         src={`https://gita.github.io/gita/data/verse_recitation/${currentVerse?.chapter_number}/${currentVerse?.verse_number}.mp3`}
         onEnded={() => endFunction()}
+        onTimeUpdate={(evt) => {
+          const currentProgress =
+            evt.currentTarget.currentTime / evt.currentTarget.duration;
+          setTrackProgress(Math.round(currentProgress * 100));
+        }}
       />
       <Transition appear show={playerIsOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 -top-20 z-10 overflow-y-auto"
-          onClose={closePlayerModal}
+          onClose={closeAndUpdateSearchParams}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -210,48 +223,41 @@ function AudioPlayer({
                   </LinkWithLocale>
                 </div>
                 <div
-                  className=" mx-auto my-3 flex h-2 w-full cursor-pointer items-center"
-                  onClick={(event) => (window as any).sayLoc(event)}
+                  className="mx-auto my-3 flex h-2 w-full cursor-pointer items-center"
+                  onClick={setPlaybackTime}
                 >
-                  <div
-                    id="audiobar"
-                    className="hp_slide h-1 w-full bg-light-orange"
-                  >
-                    <div className="hp_range h-1 bg-my-orange"></div>
+                  <div className="mb-4 h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                    <div
+                      className="h-1.5 rounded-full bg-my-orange"
+                      style={{
+                        width: `${trackProgress}%`,
+                      }}
+                    />
                   </div>
                 </div>
 
                 <div className="mt-4">
                   <span className=" z-0 mt-4 flex w-full rounded-md shadow-sm">
-                    <button
-                      type="button"
-                      className="grow items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => playback(0.75)}
-                    >
-                      0.75x
-                    </button>
-                    <button
-                      type="button"
-                      className="-ml-px grow items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => playback(1.0)}
-                    >
-                      1x
-                    </button>
-
-                    <button
-                      type="button"
-                      className="-ml-px grow items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => playback(1.5)}
-                    >
-                      1.5x
-                    </button>
-                    <button
-                      type="button"
-                      className="-ml-px grow items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => playback(2.0)}
-                    >
-                      2x
-                    </button>
+                    <PlaybackRateButton
+                      currentRate={currentRate}
+                      playbackRate={0.75}
+                      setAudioPlaybackRate={setAudioPlaybackRate}
+                    />
+                    <PlaybackRateButton
+                      currentRate={currentRate}
+                      playbackRate={1}
+                      setAudioPlaybackRate={setAudioPlaybackRate}
+                    />
+                    <PlaybackRateButton
+                      currentRate={currentRate}
+                      playbackRate={1.5}
+                      setAudioPlaybackRate={setAudioPlaybackRate}
+                    />
+                    <PlaybackRateButton
+                      currentRate={currentRate}
+                      playbackRate={2}
+                      setAudioPlaybackRate={setAudioPlaybackRate}
+                    />
                   </span>
                 </div>
               </div>
