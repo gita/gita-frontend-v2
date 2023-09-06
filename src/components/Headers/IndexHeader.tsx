@@ -110,7 +110,7 @@ const chapters = [
 
 const mobileNav = [
   { name: "Quotes", href: "/quotes", current: false },
-  { name: "About Geeta", href: "/about", current: false },
+  { name: "About Gita", href: "/about", current: false },
 ];
 
 type Props = {

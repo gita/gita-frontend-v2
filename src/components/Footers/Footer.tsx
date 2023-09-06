@@ -24,7 +24,12 @@ const getNavigation = (translate: Translate) => ({
       newTab: false,
     },
     {
-      name: translate("Privacy Policy"),
+      name: translate("Acknowledgements"),
+      href: "/acknowledgements",
+      newTab: false,
+    },
+    {
+      name: translate("Privacy"),
       href: "/privacy-policy",
       newTab: false,
     },
