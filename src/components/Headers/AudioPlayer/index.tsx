@@ -7,6 +7,9 @@ import Image from "next/image";
 import { getNextPageHref, getPrevPageHref } from "components/Chapter/functions";
 import LinkWithLocale from "components/LinkWithLocale";
 
+import PlaybackRateButton from "./PlaybackRateButton";
+import { updateQueryString } from "./functions";
+
 interface Props {
   currentVerse: GitaVerse;
   playerIsOpen: boolean;
@@ -25,6 +28,21 @@ function AudioPlayer({
 
   const [trackProgress, setTrackProgress] = useState(0);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [currentRate, setCurrentRate] = useState(1);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("audio") !== "1") {
+      searchParams.set("audio", "1");
+      updateQueryString(searchParams);
+    }
+
+    return () => {
+      const newSearchParams = new URLSearchParams(window.location.search);
+      newSearchParams.delete("audio");
+      updateQueryString(newSearchParams);
+    };
+  }, []);
 
   const { current: audio } = audioRef;
   const { current: image } = imageRef;
@@ -57,21 +75,6 @@ function AudioPlayer({
     setIsAudioPlaying(false);
   };
 
-  const playback = (speed: number) => {
-    if (!audio) {
-      return;
-    }
-
-    if (audio.paused) {
-      audio.load();
-      audio.playbackRate = speed;
-    } else {
-      audio.load();
-      audio.playbackRate = speed;
-      audio.play();
-    }
-  };
-
   useEffect(() => {
     if (playerIsOpen && imageRef.current?.src) {
       imageRef.current.src = "/pause.svg";
@@ -88,11 +91,14 @@ function AudioPlayer({
 
   const prevId = currentVerse?.id - 1;
   const nextId = currentVerse?.id + 1;
+
   const setAudioPlaybackRate = (newRate: number) => {
     if (audio) {
       audio.playbackRate = newRate;
     }
+    setCurrentRate(newRate);
   };
+
   const setPlaybackTime = (
     evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
@@ -231,35 +237,26 @@ function AudioPlayer({
 
                 <div className="mt-4">
                   <span className=" z-0 mt-4 flex w-full rounded-md shadow-sm">
-                    <button
-                      type="button"
-                      className="grow items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => setAudioPlaybackRate(0.75)}
-                    >
-                      0.75x
-                    </button>
-                    <button
-                      type="button"
-                      className="-ml-px grow items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => setAudioPlaybackRate(1)}
-                    >
-                      1x
-                    </button>
-
-                    <button
-                      type="button"
-                      className="-ml-px grow items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => setAudioPlaybackRate(1.5)}
-                    >
-                      1.5x
-                    </button>
-                    <button
-                      type="button"
-                      className="-ml-px grow items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                      onClick={() => setAudioPlaybackRate(2)}
-                    >
-                      2x
-                    </button>
+                    <PlaybackRateButton
+                      currentRate={currentRate}
+                      playbackRate={0.75}
+                      setAudioPlaybackRate={setAudioPlaybackRate}
+                    />
+                    <PlaybackRateButton
+                      currentRate={currentRate}
+                      playbackRate={1}
+                      setAudioPlaybackRate={setAudioPlaybackRate}
+                    />
+                    <PlaybackRateButton
+                      currentRate={currentRate}
+                      playbackRate={1.5}
+                      setAudioPlaybackRate={setAudioPlaybackRate}
+                    />
+                    <PlaybackRateButton
+                      currentRate={currentRate}
+                      playbackRate={2}
+                      setAudioPlaybackRate={setAudioPlaybackRate}
+                    />
                   </span>
                 </div>
               </div>
