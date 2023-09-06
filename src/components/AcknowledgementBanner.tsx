@@ -4,7 +4,7 @@ import { getTranslate } from "shared/translate";
 
 import AboutGitaBanner from "../../public/quotes-bg.png";
 
-export default function AboutBanner(props: LocaleAndTranslations) {
+export default function AcknowledgementBanner(props: LocaleAndTranslations) {
   const { locale, translations } = props;
   const translate = getTranslate(translations, locale);
 
@@ -24,7 +24,7 @@ export default function AboutBanner(props: LocaleAndTranslations) {
         />
         <div className="flex h-4/5 flex-col px-8 py-36">
           <h1 className="text-shadow z-20 text-center text-3xl font-extrabold uppercase text-white md:text-5xl">
-            {translate("About Bhagwat Gita")}
+            {translate("Acknowledgements")}
           </h1>
         </div>
       </div>

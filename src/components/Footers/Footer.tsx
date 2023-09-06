@@ -23,8 +23,9 @@ const getNavigation = (translate: Translate) => ({
       href: "/app",
       newTab: false,
     },
+    { name: translate("Acknowledgements"), href: "/acknowledgements", newTab: false },
     {
-      name: translate("Privacy Policy"),
+      name: translate("Privacy"),
       href: "/privacy-policy",
       newTab: false,
     },
