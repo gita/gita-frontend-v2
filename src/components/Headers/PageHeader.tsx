@@ -1,6 +1,6 @@
 "use client";
 
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Disclosure, Switch } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
@@ -38,6 +38,9 @@ function PageHeader(props: Props) {
   } = props;
 
   const [advancedOptionsActive, setAdvancedOptionsActive] = useState(false);
+  const [input, setInput] = useState("");
+
+  const router = useRouter();
 
   const {
     data: settingsIsOpen,
@@ -64,8 +67,13 @@ function PageHeader(props: Props) {
     onClose: closeNotesSettingsModal,
     onOpen: openNotesSettingsModal,
   } = useToggle();
-  const [input, setInput] = useState("");
-  const router = useRouter();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("audio") === "1") {
+      openPlayerModal();
+    }
+  }, [openPlayerModal]);
 
   const { devanagari, verseText, synonyms, translation, purport } =
     advancedSettings;

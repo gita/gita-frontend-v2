@@ -36,13 +36,14 @@ function AudioPlayer({
       searchParams.set("audio", "1");
       updateQueryString(searchParams);
     }
-
-    return () => {
-      const newSearchParams = new URLSearchParams(window.location.search);
-      newSearchParams.delete("audio");
-      updateQueryString(newSearchParams);
-    };
   }, []);
+
+  const closeAndUpdateSearchParams = () => {
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.delete("audio");
+    updateQueryString(newSearchParams);
+    closePlayerModal();
+  };
 
   const { current: audio } = audioRef;
   const { current: image } = imageRef;
@@ -129,7 +130,7 @@ function AudioPlayer({
         <Dialog
           as="div"
           className="fixed inset-0 -top-20 z-10 overflow-y-auto"
-          onClose={closePlayerModal}
+          onClose={closeAndUpdateSearchParams}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child

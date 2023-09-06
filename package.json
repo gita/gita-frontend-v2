@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "ts-node --project tsconfig.server.json server.ts",
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "node dist/server.js",
     "gqty:generate-schema": "gqty generate",
