@@ -17,7 +17,10 @@ const queryFetcher: QueryFetcher = async function (
   variables,
   fetchOptions,
 ) {
-  const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT!, {
+  if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
+    throw new Error("NEXT_PUBLIC_GRAPHQL_ENDPOINT should be present");
+  }
+  const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

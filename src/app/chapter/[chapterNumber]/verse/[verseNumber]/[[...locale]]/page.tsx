@@ -74,8 +74,8 @@ const Verse = async ({ params }: Props) => {
   });
 
   const verseData = await getVerseData(
-    Number(chapterNumber),
-    Number(verseNumber),
+    Number(chapterNumber) || 1,
+    Number(verseNumber) || 1,
     languageSettings.commentaryAuthor.id,
     languageSettings.translationAuthor.id,
   );
