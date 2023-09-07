@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
     description:
       "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface; Gita Saar In Hindi; Bhagavad Gita quotes.",
-    url: "https://bhagavadgita.io/",
+    url: "https://bhagavadgita.io",
     siteName: "Bhagavad Gita",
     images: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
     locale: "en_US",
@@ -36,13 +36,13 @@ export const metadata: Metadata = {
   },
   alternates: {
     languages: {
-      en: "https://bhagavadgita.io/",
-      "en-US": "https://bhagavadgita.io/",
-      "en-GB": "https://bhagavadgita.io/",
-      "en-IN": "https://bhagavadgita.io/",
-      hi: "https://bhagavadgita.io/hi/",
+      en: "https://bhagavadgita.io",
+      "en-US": "https://bhagavadgita.io",
+      "en-GB": "https://bhagavadgita.io",
+      "en-IN": "https://bhagavadgita.io",
+      hi: "https://bhagavadgita.io/hi",
     },
-    canonical: "https://bhagavadgita.io/",
+    canonical: "https://bhagavadgita.io",
   },
 };
 

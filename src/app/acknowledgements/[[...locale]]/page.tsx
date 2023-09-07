@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Acknowledgements - Featured Bhagavad Gita Translations",
     description:
       "We extend our heartfelt gratitude to esteemed organizations and individuals for allowing us to feature their invaluable Bhagavad Gita translations and commentaries.",
-    url: "https://bhagavadgita.io/acknowledgements/",
+    url: "https://bhagavadgita.io/acknowledgements",
     siteName: "Bhagavad Gita",
     images: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
     locale: "en_US",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     site: "@ShriKrishna",
   },
   alternates: {
-    canonical: "https://bhagavadgita.io/acknowledgements/",
+    canonical: "https://bhagavadgita.io/acknowledgements",
   },
 };
 

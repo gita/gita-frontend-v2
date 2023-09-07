@@ -23,7 +23,7 @@ export const jsonLdTwo = {
       "@type": "ListItem",
       position: 2,
       item: {
-        "@id": "https://bhagavadgita.io/about/",
+        "@id": "https://bhagavadgita.io/about",
         name: "What is The Bhagavad Gita -  BhagavadGita.io",
       },
     },

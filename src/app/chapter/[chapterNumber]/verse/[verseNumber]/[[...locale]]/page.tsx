@@ -25,7 +25,7 @@ export async function generateMetadata({
   return {
     title: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber} - BhagavadGita.io`,
     openGraph: {
-      url: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}/`,
+      url: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
       siteName: "Bhagavad Gita",
       locale: "en_US",
       type: "article",
@@ -51,13 +51,13 @@ export async function generateMetadata({
     },
     alternates: {
       languages: {
-        en: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}/`,
-        "en-US": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}/`,
-        "en-GB": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}/`,
-        "en-IN": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}/`,
+        en: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
+        "en-US": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
+        "en-GB": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
+        "en-IN": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
         hi: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}/hi`,
       },
-      canonical: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}/`,
+      canonical: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
     },
   };
 }

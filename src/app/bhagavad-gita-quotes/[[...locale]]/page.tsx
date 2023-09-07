@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Bhagavad Gita Quotes By Krishna - BhagavadGita.io",
     description:
       "100+ Bhagavad Gita Quotes spoken by Lord Krishna in the Bhagavad Gita to Arjuna on the battlefield of the Kurukshetra.",
-    url: "https://bhagavadgita.io/about/",
+    url: "https://bhagavadgita.io/bhagavad-gita-quotes",
     siteName: "Bhagavad Gita",
     images: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
     locale: "en_US",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     site: "@ShriKrishna",
   },
   alternates: {
-    canonical: "https://bhagavadgita.io/bhagavad-gita-quotes/",
+    canonical: "https://bhagavadgita.io/bhagavad-gita-quotes",
   },
 };
 
