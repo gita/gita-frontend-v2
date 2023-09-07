@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "Bhagavad Gita",
       locale: "en_US",
       type: "article",
-      authors: "https://www.facebook.com/radhakrishnablog/",
+      authors: "https://www.facebook.com/iiRadhaKrishnaii/",
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
       title: `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`,
@@ -62,13 +62,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       languages: {
-        en: `https://bhagavadgita.io/chapter/${chapterNumber}/`,
-        "en-US": `https://bhagavadgita.io/chapter/${chapterNumber}/`,
-        "en-GB": `https://bhagavadgita.io/chapter/${chapterNumber}/`,
-        "en-IN": `https://bhagavadgita.io/chapter/${chapterNumber}/`,
+        en: `https://bhagavadgita.io/chapter/${chapterNumber}`,
+        "en-US": `https://bhagavadgita.io/chapter/${chapterNumber}`,
+        "en-GB": `https://bhagavadgita.io/chapter/${chapterNumber}`,
+        "en-IN": `https://bhagavadgita.io/chapter/${chapterNumber}`,
         hi: `https://bhagavadgita.io/chapter/${chapterNumber}/hi`,
       },
-      canonical: `https://bhagavadgita.io/chapter/${chapterNumber}/`,
+      canonical: `https://bhagavadgita.io/chapter/${chapterNumber}`,
     },
   };
 }

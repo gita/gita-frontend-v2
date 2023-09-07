@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
     description:
       "Bhagavad Gita, also known as the Gita - the song of lord is a practical guide to one's life that guides one re-organise their life, achieve inner peace and approach supreme lord (the ultimate reality).",
-    url: "https://bhagavadgita.io/about/",
+    url: "https://bhagavadgita.io/about",
     siteName: "Bhagavad Gita",
     images: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
     locale: "en_US",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     site: "@ShriKrishna",
   },
   alternates: {
-    canonical: "https://bhagavadgita.io/about/",
+    canonical: "https://bhagavadgita.io/about",
   },
 };
 

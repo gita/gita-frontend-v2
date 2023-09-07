@@ -116,11 +116,11 @@ export default function PrivacyPolicy() {
                 <strong>Website</strong> refers to BhagavadGita.io, accessible
                 from{" "}
                 <a
-                  href="https://bhagavadgita.io/"
+                  href="https://bhagavadgita.io"
                   rel="external nofollow noopener"
                   target="_blank"
                 >
-                  https://bhagavadgita.io/
+                  https://bhagavadgita.io
                 </a>
               </p>
             </li>

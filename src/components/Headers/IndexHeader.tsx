@@ -109,7 +109,7 @@ const chapters = [
 ];
 
 const mobileNav = [
-  { name: "Quotes", href: "/quotes", current: false },
+  { name: "Quotes", href: "/bhagavad-gita-quotes", current: false },
   { name: "About Gita", href: "/about", current: false },
 ];
 
@@ -225,7 +225,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                 )}
               </Popover>
               <LinkWithLocale
-                href="/quotes"
+                href="/bhagavad-gita-quotes"
                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
               >
                 {translate("Quotes")}
