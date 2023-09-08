@@ -105,7 +105,7 @@ export default function ChapterPage({
                 id="verse-id"
                 value={verseId ? verseId : ""}
                 className={classNames(
-                  "block w-full rounded-none rounded-l-md border border-gray-300 pl-2 focus:border-my-orange focus:ring-my-orange",
+                  "block w-28 sm:w-36 rounded-none rounded-l-md border border-gray-300 pl-2 focus:border-my-orange focus:ring-my-orange",
                   styles.fontSize.para,
                 )}
                 placeholder={translate("Go To Verse")}
@@ -115,6 +115,7 @@ export default function ChapterPage({
             </div>
             <VerseNavigator
               verseCount={verses_count}
+              currentChapter={chapter_number}
               currentVerse={verseId}
               viewNavigation={viewNavigation}
               setViewNavigation={setViewNavigation}
