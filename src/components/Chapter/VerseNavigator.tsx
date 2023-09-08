@@ -53,11 +53,11 @@ function VerseNavigator({
         .fill(verseCount)
         .map((_verse, index) => (
           <LinkWithLocale
+          key={index}
           href={`/chapter/${currentChapter}/verse/${index + 1}`}
           prefetch={false}
         >
           <div
-            key={index}
             className={classNames(
               `m-px flex min-w-[2.35rem] items-center justify-center rounded p-2 hover:cursor-pointer hover:bg-my-orange hover:text-white ${
                 index + 1 === currentVerse && "bg-my-orange text-white"
