@@ -34,7 +34,7 @@ function Modal({ modalVisible, setModalVisible }: Props) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white text-left  shadow-xl transition-all sm:w-full sm:max-w-sm">
+              <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white text-left  shadow-xl transition-all sm:w-full sm:max-w-sm dark:bg-dark-100">
                 <div>
                   <div className="z-50 inline-block  overflow-hidden rounded-lg bg-white  text-left align-bottom shadow-xl transition-all duration-200 dark:bg-dark-100 sm:mt-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle">
                     <div>
