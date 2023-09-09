@@ -318,7 +318,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                 <input
                   id="search"
                   name="search"
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:placeholder:text-gray-50 dark:text-white sm:text-sm"
+                  className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:text-white dark:placeholder:text-gray-50 sm:text-sm"
                   placeholder={translate("Search")}
                   type="search"
                   value={input}
@@ -371,7 +371,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                         </svg>
                       </button>
                       <input
-                        className="h-10 w-max rounded-lg border border-gray-300 bg-white px-8 pr-16 text-sm focus:outline-none dark:bg-dark-100 dark:placeholder:text-white"
+                        className="h-10 w-max rounded-lg border border-gray-300 bg-white px-8 pr-16 text-sm focus:outline-none dark:bg-dark-100 dark:placeholder:text-white dark:text-white"
                         type="search"
                         name="search"
                         placeholder="Search"
