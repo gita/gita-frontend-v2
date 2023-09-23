@@ -16,7 +16,8 @@ export const metadata: Metadata = {
       "Bhagavad Gita, also known as the Gita - the song of lord is a practical guide to one's life that guides one re-organise their life, achieve inner peace and approach supreme lord (the ultimate reality).",
     url: "https://bhagavadgita.io/about",
     siteName: "Bhagavad Gita",
-    images: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
+    images:
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     locale: "en_US",
     type: "website",
   },
@@ -25,7 +26,9 @@ export const metadata: Metadata = {
     title: "What is The Bhagavad Gita -  BhagavadGita.io",
     description:
       "Bhagavad Gita, also known as the Gita - the song of lord is a practical guide to one's life that guides one re-organise their life, achieve inner peace and approach supreme lord (the ultimate reality).",
-    images: ["https://bhagavadgita.io/static/images/sribhagavadgita.jpg"],
+    images: [
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    ],
     site: "@ShriKrishna",
   },
   alternates: {

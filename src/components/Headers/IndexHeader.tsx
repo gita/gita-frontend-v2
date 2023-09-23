@@ -111,6 +111,7 @@ const chapters = [
 const mobileNav = [
   { name: "Quotes", href: "/bhagavad-gita-quotes", current: false },
   { name: "About Gita", href: "/about", current: false },
+  { name: "Gita AI", href: "/gitagpt", current: false },
 ];
 
 type Props = {
@@ -235,6 +236,12 @@ export default function IndexHeader({ locale, translate }: Props) {
                 className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
               >
                 {translate("About Gita")}
+              </LinkWithLocale>
+              <LinkWithLocale
+                href="/gitagpt"
+                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
+              >
+                {translate("Gita AI")}
               </LinkWithLocale>
               {/* {!loggedIn ? (
                 <Popover className="relative">

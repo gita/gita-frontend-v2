@@ -15,7 +15,8 @@ export const metadata: Metadata = {
       "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface; Gita Saar In Hindi; Bhagavad Gita quotes.",
     url: "https://bhagavadgita.io",
     siteName: "Bhagavad Gita",
-    images: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
+    images:
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     locale: "en_US",
     type: "website",
   },
@@ -24,7 +25,9 @@ export const metadata: Metadata = {
     title: "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
     description:
       "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface; Gita Saar In Hindi; Bhagavad Gita quotes.",
-    images: ["https://bhagavadgita.io/static/images/sribhagavadgita.jpg"],
+    images: [
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    ],
     site: "@ShriKrishna",
   },
   verification: {
@@ -80,7 +83,7 @@ export default async function Home({ params }: ParamsWithLocale) {
     },
     image: {
       "@type": "ImageObject",
-      url: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
+      url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       width: 1553,
       height: 660,
     },
