@@ -1,12 +1,14 @@
 import { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 
+import LinkWithLocale from "components/LinkWithLocale";
 import useMyStyles from "hooks/useMyStyles";
 import { RootState } from "redux/reducers/rootReducer";
 import { classNames } from "shared/functions";
 
 interface Props {
   verseCount: number;
+  currentChapter: number;
   currentVerse: number;
   viewNavigation: boolean;
   setViewNavigation: Dispatch<SetStateAction<boolean>>;
@@ -15,6 +17,7 @@ interface Props {
 
 function VerseNavigator({
   verseCount,
+  currentChapter,
   currentVerse,
   viewNavigation,
   setViewNavigation,
@@ -49,14 +52,14 @@ function VerseNavigator({
       {Array(verseCount)
         .fill(verseCount)
         .map((_verse, index) => (
+          <LinkWithLocale
+          key={index}
+          href={`/chapter/${currentChapter}/verse/${index + 1}`}
+          prefetch={false}
+        >
           <div
-            onClick={() => {
-              setViewNavigation(false);
-              setVerseId(index + 1);
-            }}
-            key={index}
             className={classNames(
-              `m-px flex min-w-[2.5rem] items-center justify-center rounded p-2 hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+              `m-px flex min-w-[2.35rem] items-center justify-center rounded p-2 hover:cursor-pointer hover:bg-my-orange hover:text-white ${
                 index + 1 === currentVerse && "bg-my-orange text-white"
               }`,
               styles.fontSize.para,
@@ -64,6 +67,7 @@ function VerseNavigator({
           >
             {index + 1}
           </div>
+          </LinkWithLocale>
         ))}
     </div>
   );
