@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   ChevronDownIcon,
   SortAscendingIcon,
@@ -11,6 +11,7 @@ import PageNavigator from "components/Chapter/PageNavigator";
 import VerseList from "components/Chapter/VerseList";
 import VerseNavigator from "components/Chapter/VerseNavigator";
 import { SvgChapterBackground } from "components/svgs";
+import { useClickOutside } from "hooks/useClickOutside";
 import useMyStyles from "hooks/useMyStyles";
 import { classNames } from "shared/functions";
 import { getTranslate } from "shared/translate";
@@ -38,6 +39,8 @@ export default function ChapterPage({
   const [verseId, setVerseId] = useState(0);
   const [isAscSorted, setIsAscSorted] = useState(true);
   const styles = useMyStyles();
+  const toggleRef = useRef<HTMLDivElement>(null);
+  useClickOutside([toggleRef], () => setViewNavigation(false));
 
   const translate = getTranslate(translations, locale);
 
@@ -96,7 +99,7 @@ export default function ChapterPage({
           >
             {verses_count} {translate("Verses")}
           </div>
-          <div className="relative mt-1 flex rounded-md shadow-sm">
+          <div ref={toggleRef} className="relative mt-1 flex rounded-md shadow-sm">
             <div className="relative flex grow items-stretch focus-within:z-10">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 "></div>
               <input
