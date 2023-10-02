@@ -28,7 +28,7 @@ export default function Quote({ quoteNumber, quote, translate }: Props) {
         </h2>
         <p
           className={classNames(
-            "mx-auto mt-3 max-w-2xl text-center text-2xl dark:text-white",
+            "dark:text-white max-w-2xl md:text-2xl mt-3 mx-auto sm:text-xl text-center text-lg",
             styles.lineHeight,
           )}
         >
