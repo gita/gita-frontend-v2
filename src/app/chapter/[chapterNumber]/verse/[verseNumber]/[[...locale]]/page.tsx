@@ -121,11 +121,18 @@ const Verse = async ({ params }: Props) => {
     languageSettings.translationAuthor.id,
   );
 
-  if (!verseData) {
-    return <NotFound hint={`Verse ${verseNumber} not found`} />;
-  }
-
   const translations = await getTranslations(locale);
+
+  if (!verseData) {
+    return (
+      <NotFound
+        translations={translations}
+        locale={locale}
+        hint={verseNumber}
+        isVerse={true}
+      />
+    );
+  }
 
   return (
     <article>
