@@ -16,9 +16,9 @@ export default function QuotesPage(props: LocaleAndTranslations) {
   const [quoteIndex, setQuoteIndex] = useState(0);
 
   return (
-    <div className="mb-16">
+    <div className="">
       <QuotesBanner translate={translate} />
-      <div className="relative z-10 m-auto h-96 p-0 md:w-[90%] lg:w-[73%] xl:w-[66%]">
+      <div className="relative z-10 m-auto flex min-h-screen items-center p-0 md:w-[90%] lg:w-[73%] xl:w-[66%]">
         <QuotesNavigator
           quoteCount={quotes.length}
           quoteIndex={quoteIndex}

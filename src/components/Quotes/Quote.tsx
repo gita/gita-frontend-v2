@@ -13,14 +13,14 @@ export default function Quote({ quoteNumber, quote, translate }: Props) {
   const styles = useMyStyles();
   return (
     <>
-      <div className="absolute inset-x-0 top-[5%] mx-auto max-w-5xl text-center font-inter">
-        <SvgChapterBackground className="relative inset-x-0 bottom-0 m-auto w-full rounded-full text-gray-300 text-opacity-25 dark:text-black dark:text-opacity-25 lg:top-12 lg:w-min" />
+      <div className="absolute inset-x-0 mx-auto text-center font-inter">
+        <SvgChapterBackground className="relative inset-x-0 bottom-0 m-auto h-full w-full rounded-full text-gray-300 text-opacity-25 dark:text-black dark:text-opacity-25 md:min-w-fit lg:w-min" />
       </div>
 
       <div className="xs:py-24 relative mx-auto max-w-5xl px-4 text-center font-inter sm:px-6 sm:py-28">
         <h2
           className={classNames(
-            "font-medium uppercase text-my-orange",
+            "font-medium uppercase text-my-orange mt-2",
             styles.fontSize.subHeading2,
           )}
         >
