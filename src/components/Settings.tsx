@@ -217,7 +217,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                     )}
                   ></button>
 
-                  <button
+                  {/*<button
                     type="button"
                     onClick={() =>
                       setAppearanceSettings((prevState) => {
@@ -230,7 +230,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         : "",
                       "inline-flex items-center rounded-full border border-transparent bg-yellow-bg p-5 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:ring-offset-dark-100",
                     )}
-                  ></button>
+                    ></button>*/}
 
                   <button
                     type="button"
