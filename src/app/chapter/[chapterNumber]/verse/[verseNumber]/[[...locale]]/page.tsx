@@ -35,9 +35,9 @@ export async function generateMetadata({
       title: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber} - BhagavadGita.io`,
       images: [
         {
-          url: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
+          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
+            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -46,7 +46,9 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber} - BhagavadGita.io`,
-      images: ["https://bhagavadgita.io/static/images/sribhagavadgita.jpg"],
+      images: [
+        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      ],
       site: "@ShriKrishna",
     },
     alternates: {

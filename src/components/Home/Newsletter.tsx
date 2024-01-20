@@ -106,7 +106,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
           </h3>
           <form className="flex flex-col md:flex-row" onSubmit={onSubmit}>
             <input
-              className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight text-gray-700 focus:border-my-orange focus:outline-none md:mt-0 dark:bg-dark-100 dark:placeholder:text-gray-50 dark:text-white"
+              className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight text-gray-700 focus:border-my-orange focus:outline-none dark:bg-dark-100 dark:text-white dark:placeholder:text-gray-50 md:mt-0"
               id="name"
               type="text"
               value={formData.name}
@@ -121,7 +121,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
               placeholder={translate("Enter Your Name")}
             />
             <input
-              className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight  text-gray-700 focus:border-my-orange focus:outline-none md:mt-0 dark:bg-dark-100 dark:placeholder:text-gray-50 dark:text-white"
+              className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight  text-gray-700 focus:border-my-orange focus:outline-none dark:bg-dark-100 dark:text-white dark:placeholder:text-gray-50 md:mt-0"
               id="email"
               type="email"
               placeholder={translate("Enter Your Email")}
