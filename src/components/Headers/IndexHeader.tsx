@@ -371,7 +371,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                         </svg>
                       </button>
                       <input
-                        className="h-10 w-max rounded-lg border border-gray-300 bg-white px-8 pr-16 text-sm focus:outline-none dark:bg-dark-100 dark:placeholder:text-white dark:text-white"
+                        className="h-10 w-max rounded-lg border border-gray-300 bg-white px-8 pr-16 text-sm focus:outline-none dark:bg-dark-100 dark:text-white dark:placeholder:text-white"
                         type="search"
                         name="search"
                         placeholder="Search"

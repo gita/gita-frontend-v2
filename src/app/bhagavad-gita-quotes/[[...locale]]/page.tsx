@@ -16,14 +16,17 @@ export const metadata: Metadata = {
       "100+ Bhagavad Gita Quotes spoken by Lord Krishna in the Bhagavad Gita to Arjuna on the battlefield of the Kurukshetra.",
     url: "https://bhagavadgita.io/bhagavad-gita-quotes",
     siteName: "Bhagavad Gita",
-    images: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    images:
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Bhagavad Gita Quotes By Krishna - BhagavadGita.io",
-    images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
+    images: [
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    ],
     site: "@ShriKrishna",
   },
   alternates: {

@@ -16,7 +16,8 @@ export const getJsonLd = (chapterNumber: string, verseNumber: string) => ({
       item: {
         "@id": `https://bhagavadgita.io/chapter/${chapterNumber}?page=1`,
         name: `Bhagavad Gita Chapter ${chapterNumber}`,
-        image: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        image:
+          "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       },
     },
     {
@@ -25,7 +26,8 @@ export const getJsonLd = (chapterNumber: string, verseNumber: string) => ({
       item: {
         "@id": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
         name: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber}`,
-        image: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        image:
+          "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       },
     },
   ],

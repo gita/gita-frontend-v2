@@ -16,7 +16,8 @@ export const metadata: Metadata = {
       "We extend our heartfelt gratitude to esteemed organizations and individuals for allowing us to feature their invaluable Bhagavad Gita translations and commentaries.",
     url: "https://bhagavadgita.io/acknowledgements",
     siteName: "Bhagavad Gita",
-    images: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    images:
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     locale: "en_US",
     type: "website",
   },
@@ -25,7 +26,9 @@ export const metadata: Metadata = {
     title: "Acknowledgements - Featured Bhagavad Gita Translations",
     description:
       "We extend our heartfelt gratitude to esteemed organizations and individuals for allowing us to feature their invaluable Bhagavad Gita translations and commentaries.",
-    images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
+    images: [
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    ],
     site: "@ShriKrishna",
   },
   alternates: {
