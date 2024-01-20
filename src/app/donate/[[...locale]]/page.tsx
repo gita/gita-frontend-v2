@@ -62,10 +62,21 @@ export default async function Donate(props: ParamsWithLocale) {
               Support the Digital Revival of Ancient Wisdom
             </h1>
             <p className="mb-6 text-center text-lg">
-              Your generous support enables the Ved Vyas Foundation to offer a suite of spiritual resources entirely free of charge and devoid of distractions. By donating, you help us maintain and expand our offerings, such as the ad-free Bhagavad Gita website and mobile app and Bhagavad Gita AI, ensuring that the essence of Sanatana Dharma reaches the hands and hearts of seekers around the world without any barriers.
+              Your generous support enables the Ved Vyas Foundation to offer a
+              suite of spiritual resources entirely free of charge and devoid of
+              distractions. By donating, you help us maintain and expand our
+              offerings, such as the ad-free Bhagavad Gita website and mobile
+              app and Bhagavad Gita AI, ensuring that the essence of Sanatana
+              Dharma reaches the hands and hearts of seekers around the world
+              without any barriers.
             </p>
             <p className="mb-6 text-center text-lg">
-              Our dedication is to the digitization and modern presentation of the Ramayan, Mahabharat, Vedas, Puranas, and other precious Indian scriptures. With your contribution, we continue to create and innovate—providing state-of-the-art applications for state-of-the-art spirituality, accessible to all, anytime and anywhere.
+              Our dedication is to the digitization and modern presentation of
+              the Ramayan, Mahabharat, Vedas, Puranas, and other precious Indian
+              scriptures. With your contribution, we continue to create and
+              innovate—providing state-of-the-art applications for
+              state-of-the-art spirituality, accessible to all, anytime and
+              anywhere.
             </p>
             <div className="flex items-center justify-center">
               <Image
@@ -76,12 +87,28 @@ export default async function Donate(props: ParamsWithLocale) {
               />
             </div>
             <p className="mt-4 text-center">
-              Scan the QR code with any UPI app to make your donation. We are grateful for your partnership in creating a compassionate and harmonious world through the wisdom of Sanatana Dharma.
+              Scan the QR code with any UPI app to make your donation. We are
+              grateful for your partnership in creating a compassionate and
+              harmonious world through the wisdom of Sanatana Dharma.
             </p>
             <div className="mt-8 text-center">
-              <a href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Download our Bhagavad Gita Mobile App</a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
+                className="text-blue-600 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download our Bhagavad Gita Mobile App
+              </a>
               <br />
-              <a href="https://bhagavadgita.io/gitagpt" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Try Bhagavad Gita AI</a>
+              <a
+                href="https://bhagavadgita.io/gitagpt"
+                className="text-blue-600 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Try Bhagavad Gita AI
+              </a>
             </div>
           </div>
         </div>
