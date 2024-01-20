@@ -49,15 +49,17 @@ export default async function GitagptPage(props: ParamsWithLocale) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
       />
-      <div style={{ height: "100vh", width: "100vw" }}>
-        <iframe
-          style={{ height: "100%", width: "100%" }}
-          src="https://widget.writesonic.com/CDN/index.html?service-base-url=https://api.botsonic.ai&token=aa0b5e0e-9284-4c52-968f-77f2c959dcdc&base-origin=https://bot.writesonic.com&instance-name=Botsonic&standalone=true&page-url=https://bot.writesonic.com/61178c5c-aed2-47c0-8759-305d2489956c?t=connect&workspace_id=91c72ad8-79d9-44aa-88e5-6c3738324985"
-          title="GitaGPT"
-        >
-          You need to enable JavaScript to run this app.
-        </iframe>
-      </div>
+      {["en", "hi"].includes(locale) && (
+        <div style={{ height: "100vh", width: "100vw" }}>
+          <iframe
+            style={{ height: "100%", width: "100%" }}
+            src="https://widget.writesonic.com/CDN/index.html?service-base-url=https://api.botsonic.ai&token=aa0b5e0e-9284-4c52-968f-77f2c959dcdc&base-origin=https://bot.writesonic.com&instance-name=Botsonic&standalone=true&page-url=https://bot.writesonic.com/61178c5c-aed2-47c0-8759-305d2489956c?t=connect&workspace_id=91c72ad8-79d9-44aa-88e5-6c3738324985"
+            title="GitaGPT"
+          >
+            You need to enable JavaScript to run this app.
+          </iframe>
+        </div>
+      )}
     </>
   );
 }
