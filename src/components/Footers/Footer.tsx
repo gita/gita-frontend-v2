@@ -46,8 +46,8 @@ const getNavigation = (translate: Translate) => ({
     },
     {
       name: translate("Donate"),
-      href: "https://opencollective.com/the-gita-initiative",
-      newTab: true,
+      href: "/donate",
+      newTab: false,
     },
     {
       name: "API",
@@ -289,14 +289,13 @@ const Footer = (props: Props) => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="https://opencollective.com/the-gita-initiative"
+                              href="/donate"
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm",
                               )}
-                              target="_blank"
                             >
                               {translate("Donate")}
                             </a>
