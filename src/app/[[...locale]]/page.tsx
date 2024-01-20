@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Script from 'next/script';
+import Script from "next/script";
 
 import { getAllChapters } from "lib/getAllChapters";
 import { paramsToLocale } from "shared/functions";
