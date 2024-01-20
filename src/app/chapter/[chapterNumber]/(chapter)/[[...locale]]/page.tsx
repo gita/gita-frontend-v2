@@ -45,9 +45,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: `${chapterDescription}...`,
       images: [
         {
-          url: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
+          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
+            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`,
       description: `${chapterDescription}...`,
-      images: ["https://bhagavadgita.io/static/images/sribhagavadgita.jpg"],
+      images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
       site: "@ShriKrishna",
     },
     alternates: {

@@ -16,7 +16,7 @@ export const getJsonLd = (chapterNumber: string, nameTranslated?: string) => ({
       item: {
         "@id": `https://bhagavadgita.io/chapter/${chapterNumber}`,
         name: `Bhagavad Gita Chapter ${chapterNumber} - ${nameTranslated}`,
-        image: "https://bhagavadgita.io/static/images/sribhagavadgita.jpg",
+        image: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       },
     },
   ],
