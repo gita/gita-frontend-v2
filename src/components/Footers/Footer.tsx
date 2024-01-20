@@ -25,8 +25,8 @@ const getNavigation = (translate: Translate) => ({
     },
     {
       name: translate("Bhagavad Gita AI"),
-      href: "https://bhagavadgita.ai",
-      newTab: true,
+      href: "/gitagpt",
+      newTab: false,
     },
     {
       name: translate("Acknowledgements"),

@@ -49,6 +49,7 @@ export default async function GitagptPage(props: ParamsWithLocale) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
       />
+      {["en", "hi"].includes(locale) && (
       <div style={{ height: "100vh", width: "100vw" }}>
         <iframe
           style={{ height: "100%", width: "100%" }}
@@ -58,6 +59,7 @@ export default async function GitagptPage(props: ParamsWithLocale) {
           You need to enable JavaScript to run this app.
         </iframe>
       </div>
+      )}
     </>
   );
 }
