@@ -10,7 +10,7 @@ export default function QuotesBanner(props: Props) {
   const { translate } = props;
 
   return (
-    <div className="relative z-10 mx-auto max-w-full xl:mx-24">
+    <div className="relative z-10 mx-auto max-w-full xl:mx-24 md:mb-5">
       <Image
         src={QuotesBannerBG}
         alt="BG Quotes Banner Image"
