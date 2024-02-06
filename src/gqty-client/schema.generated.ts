@@ -21,6 +21,20 @@ export interface Scalars {
   Int: number;
   Float: number;
   date: any;
+  timestamptz: any;
+}
+
+/** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
+export interface Boolean_comparison_exp {
+  _eq?: InputMaybe<Scalars["Boolean"]>;
+  _gt?: InputMaybe<Scalars["Boolean"]>;
+  _gte?: InputMaybe<Scalars["Boolean"]>;
+  _in?: InputMaybe<Array<Scalars["Boolean"]>>;
+  _is_null?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["Boolean"]>;
+  _lte?: InputMaybe<Scalars["Boolean"]>;
+  _neq?: InputMaybe<Scalars["Boolean"]>;
+  _nin?: InputMaybe<Array<Scalars["Boolean"]>>;
 }
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
@@ -78,7 +92,7 @@ export const cursor_ordering = {
 } as const;
 
 export type cursor_ordering =
-  (typeof cursor_ordering)[keyof typeof cursor_ordering];
+  typeof cursor_ordering[keyof typeof cursor_ordering];
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
 export interface date_comparison_exp {
   _eq?: InputMaybe<Scalars["date"]>;
@@ -112,7 +126,7 @@ export const gita_authors_constraint = {
 } as const;
 
 export type gita_authors_constraint =
-  (typeof gita_authors_constraint)[keyof typeof gita_authors_constraint];
+  typeof gita_authors_constraint[keyof typeof gita_authors_constraint];
 /** input type for incrementing numeric columns in table "gita_authors" */
 export interface gita_authors_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -162,7 +176,7 @@ export const gita_authors_select_column = {
 } as const;
 
 export type gita_authors_select_column =
-  (typeof gita_authors_select_column)[keyof typeof gita_authors_select_column];
+  typeof gita_authors_select_column[keyof typeof gita_authors_select_column];
 /** input type for updating data in table "gita_authors" */
 export interface gita_authors_set_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -192,7 +206,7 @@ export const gita_authors_update_column = {
 } as const;
 
 export type gita_authors_update_column =
-  (typeof gita_authors_update_column)[keyof typeof gita_authors_update_column];
+  typeof gita_authors_update_column[keyof typeof gita_authors_update_column];
 export interface gita_authors_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_authors_inc_input>;
@@ -228,7 +242,7 @@ export const gita_chapters_constraint = {
 } as const;
 
 export type gita_chapters_constraint =
-  (typeof gita_chapters_constraint)[keyof typeof gita_chapters_constraint];
+  typeof gita_chapters_constraint[keyof typeof gita_chapters_constraint];
 /** input type for incrementing numeric columns in table "gita_chapters" */
 export interface gita_chapters_inc_input {
   chapter_number?: InputMaybe<Scalars["Int"]>;
@@ -310,7 +324,7 @@ export const gita_chapters_select_column = {
 } as const;
 
 export type gita_chapters_select_column =
-  (typeof gita_chapters_select_column)[keyof typeof gita_chapters_select_column];
+  typeof gita_chapters_select_column[keyof typeof gita_chapters_select_column];
 /** input type for updating data in table "gita_chapters" */
 export interface gita_chapters_set_input {
   chapter_number?: InputMaybe<Scalars["Int"]>;
@@ -372,7 +386,7 @@ export const gita_chapters_update_column = {
 } as const;
 
 export type gita_chapters_update_column =
-  (typeof gita_chapters_update_column)[keyof typeof gita_chapters_update_column];
+  typeof gita_chapters_update_column[keyof typeof gita_chapters_update_column];
 export interface gita_chapters_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_chapters_inc_input>;
@@ -447,7 +461,7 @@ export const gita_commentaries_constraint = {
 } as const;
 
 export type gita_commentaries_constraint =
-  (typeof gita_commentaries_constraint)[keyof typeof gita_commentaries_constraint];
+  typeof gita_commentaries_constraint[keyof typeof gita_commentaries_constraint];
 /** input type for incrementing numeric columns in table "gita_commentaries" */
 export interface gita_commentaries_inc_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -537,7 +551,7 @@ export const gita_commentaries_select_column = {
 } as const;
 
 export type gita_commentaries_select_column =
-  (typeof gita_commentaries_select_column)[keyof typeof gita_commentaries_select_column];
+  typeof gita_commentaries_select_column[keyof typeof gita_commentaries_select_column];
 /** input type for updating data in table "gita_commentaries" */
 export interface gita_commentaries_set_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -619,7 +633,7 @@ export const gita_commentaries_update_column = {
 } as const;
 
 export type gita_commentaries_update_column =
-  (typeof gita_commentaries_update_column)[keyof typeof gita_commentaries_update_column];
+  typeof gita_commentaries_update_column[keyof typeof gita_commentaries_update_column];
 export interface gita_commentaries_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_commentaries_inc_input>;
@@ -673,7 +687,7 @@ export const gita_languages_constraint = {
 } as const;
 
 export type gita_languages_constraint =
-  (typeof gita_languages_constraint)[keyof typeof gita_languages_constraint];
+  typeof gita_languages_constraint[keyof typeof gita_languages_constraint];
 /** input type for incrementing numeric columns in table "gita_languages" */
 export interface gita_languages_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -723,7 +737,7 @@ export const gita_languages_select_column = {
 } as const;
 
 export type gita_languages_select_column =
-  (typeof gita_languages_select_column)[keyof typeof gita_languages_select_column];
+  typeof gita_languages_select_column[keyof typeof gita_languages_select_column];
 /** input type for updating data in table "gita_languages" */
 export interface gita_languages_set_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -753,7 +767,7 @@ export const gita_languages_update_column = {
 } as const;
 
 export type gita_languages_update_column =
-  (typeof gita_languages_update_column)[keyof typeof gita_languages_update_column];
+  typeof gita_languages_update_column[keyof typeof gita_languages_update_column];
 export interface gita_languages_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_languages_inc_input>;
@@ -828,7 +842,7 @@ export const gita_translations_constraint = {
 } as const;
 
 export type gita_translations_constraint =
-  (typeof gita_translations_constraint)[keyof typeof gita_translations_constraint];
+  typeof gita_translations_constraint[keyof typeof gita_translations_constraint];
 /** input type for incrementing numeric columns in table "gita_translations" */
 export interface gita_translations_inc_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -918,7 +932,7 @@ export const gita_translations_select_column = {
 } as const;
 
 export type gita_translations_select_column =
-  (typeof gita_translations_select_column)[keyof typeof gita_translations_select_column];
+  typeof gita_translations_select_column[keyof typeof gita_translations_select_column];
 /** input type for updating data in table "gita_translations" */
 export interface gita_translations_set_input {
   author_id?: InputMaybe<Scalars["Int"]>;
@@ -1000,7 +1014,7 @@ export const gita_translations_update_column = {
 } as const;
 
 export type gita_translations_update_column =
-  (typeof gita_translations_update_column)[keyof typeof gita_translations_update_column];
+  typeof gita_translations_update_column[keyof typeof gita_translations_update_column];
 export interface gita_translations_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_translations_inc_input>;
@@ -1032,6 +1046,168 @@ export interface gita_translations_variance_order_by {
   id?: InputMaybe<order_by>;
   language_id?: InputMaybe<order_by>;
   verse_id?: InputMaybe<order_by>;
+}
+
+/** Boolean expression to filter rows from the table "gita_users". All fields are combined with a logical 'AND'. */
+export interface gita_users_bool_exp {
+  _and?: InputMaybe<Array<gita_users_bool_exp>>;
+  _not?: InputMaybe<gita_users_bool_exp>;
+  _or?: InputMaybe<Array<gita_users_bool_exp>>;
+  api_key?: InputMaybe<String_comparison_exp>;
+  app_description?: InputMaybe<String_comparison_exp>;
+  app_link?: InputMaybe<String_comparison_exp>;
+  app_name?: InputMaybe<String_comparison_exp>;
+  created_on?: InputMaybe<timestamptz_comparison_exp>;
+  email?: InputMaybe<String_comparison_exp>;
+  full_name?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<Int_comparison_exp>;
+  is_active?: InputMaybe<Boolean_comparison_exp>;
+}
+
+/** unique or primary key constraints on table "gita_users" */
+export const gita_users_constraint = {
+  /** unique or primary key constraint on columns "id" */
+  gita_users_pkey: "gita_users_pkey",
+  /** unique or primary key constraint on columns "api_key" */
+  ix_gita_users_api_key: "ix_gita_users_api_key",
+  /** unique or primary key constraint on columns "email" */
+  ix_gita_users_email: "ix_gita_users_email",
+} as const;
+
+export type gita_users_constraint =
+  typeof gita_users_constraint[keyof typeof gita_users_constraint];
+/** input type for incrementing numeric columns in table "gita_users" */
+export interface gita_users_inc_input {
+  id?: InputMaybe<Scalars["Int"]>;
+}
+
+/** input type for inserting data into table "gita_users" */
+export interface gita_users_insert_input {
+  api_key?: InputMaybe<Scalars["String"]>;
+  app_description?: InputMaybe<Scalars["String"]>;
+  app_link?: InputMaybe<Scalars["String"]>;
+  app_name?: InputMaybe<Scalars["String"]>;
+  created_on?: InputMaybe<Scalars["timestamptz"]>;
+  email?: InputMaybe<Scalars["String"]>;
+  full_name?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["Int"]>;
+  is_active?: InputMaybe<Scalars["Boolean"]>;
+}
+
+/** on_conflict condition type for table "gita_users" */
+export interface gita_users_on_conflict {
+  constraint: gita_users_constraint;
+  update_columns?: Array<gita_users_update_column>;
+  where?: InputMaybe<gita_users_bool_exp>;
+}
+
+/** Ordering options when selecting data from "gita_users". */
+export interface gita_users_order_by {
+  api_key?: InputMaybe<order_by>;
+  app_description?: InputMaybe<order_by>;
+  app_link?: InputMaybe<order_by>;
+  app_name?: InputMaybe<order_by>;
+  created_on?: InputMaybe<order_by>;
+  email?: InputMaybe<order_by>;
+  full_name?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  is_active?: InputMaybe<order_by>;
+}
+
+/** primary key columns input for table: gita_users */
+export interface gita_users_pk_columns_input {
+  id: Scalars["Int"];
+}
+
+/** select columns of table "gita_users" */
+export const gita_users_select_column = {
+  /** column name */
+  api_key: "api_key",
+  /** column name */
+  app_description: "app_description",
+  /** column name */
+  app_link: "app_link",
+  /** column name */
+  app_name: "app_name",
+  /** column name */
+  created_on: "created_on",
+  /** column name */
+  email: "email",
+  /** column name */
+  full_name: "full_name",
+  /** column name */
+  id: "id",
+  /** column name */
+  is_active: "is_active",
+} as const;
+
+export type gita_users_select_column =
+  typeof gita_users_select_column[keyof typeof gita_users_select_column];
+/** input type for updating data in table "gita_users" */
+export interface gita_users_set_input {
+  api_key?: InputMaybe<Scalars["String"]>;
+  app_description?: InputMaybe<Scalars["String"]>;
+  app_link?: InputMaybe<Scalars["String"]>;
+  app_name?: InputMaybe<Scalars["String"]>;
+  created_on?: InputMaybe<Scalars["timestamptz"]>;
+  email?: InputMaybe<Scalars["String"]>;
+  full_name?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["Int"]>;
+  is_active?: InputMaybe<Scalars["Boolean"]>;
+}
+
+/** Streaming cursor of the table "gita_users" */
+export interface gita_users_stream_cursor_input {
+  /** Stream column input with initial value */
+  initial_value: gita_users_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+}
+
+/** Initial value of the column from where the streaming should start */
+export interface gita_users_stream_cursor_value_input {
+  api_key?: InputMaybe<Scalars["String"]>;
+  app_description?: InputMaybe<Scalars["String"]>;
+  app_link?: InputMaybe<Scalars["String"]>;
+  app_name?: InputMaybe<Scalars["String"]>;
+  created_on?: InputMaybe<Scalars["timestamptz"]>;
+  email?: InputMaybe<Scalars["String"]>;
+  full_name?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["Int"]>;
+  is_active?: InputMaybe<Scalars["Boolean"]>;
+}
+
+/** update columns of table "gita_users" */
+export const gita_users_update_column = {
+  /** column name */
+  api_key: "api_key",
+  /** column name */
+  app_description: "app_description",
+  /** column name */
+  app_link: "app_link",
+  /** column name */
+  app_name: "app_name",
+  /** column name */
+  created_on: "created_on",
+  /** column name */
+  email: "email",
+  /** column name */
+  full_name: "full_name",
+  /** column name */
+  id: "id",
+  /** column name */
+  is_active: "is_active",
+} as const;
+
+export type gita_users_update_column =
+  typeof gita_users_update_column[keyof typeof gita_users_update_column];
+export interface gita_users_updates {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<gita_users_inc_input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<gita_users_set_input>;
+  /** filter the rows which have to be updated */
+  where: gita_users_bool_exp;
 }
 
 export interface gita_verses_aggregate_bool_exp {
@@ -1102,7 +1278,7 @@ export const gita_verses_constraint = {
 } as const;
 
 export type gita_verses_constraint =
-  (typeof gita_verses_constraint)[keyof typeof gita_verses_constraint];
+  typeof gita_verses_constraint[keyof typeof gita_verses_constraint];
 /** input type for incrementing numeric columns in table "gita_verses" */
 export interface gita_verses_inc_input {
   chapter_id?: InputMaybe<Scalars["Int"]>;
@@ -1205,7 +1381,7 @@ export const gita_verses_select_column = {
 } as const;
 
 export type gita_verses_select_column =
-  (typeof gita_verses_select_column)[keyof typeof gita_verses_select_column];
+  typeof gita_verses_select_column[keyof typeof gita_verses_select_column];
 /** input type for updating data in table "gita_verses" */
 export interface gita_verses_set_input {
   chapter_id?: InputMaybe<Scalars["Int"]>;
@@ -1291,7 +1467,7 @@ export const gita_verses_update_column = {
 } as const;
 
 export type gita_verses_update_column =
-  (typeof gita_verses_update_column)[keyof typeof gita_verses_update_column];
+  typeof gita_verses_update_column[keyof typeof gita_verses_update_column];
 export interface gita_verses_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<gita_verses_inc_input>;
@@ -1345,7 +1521,7 @@ export const newsletter_subscriptions_constraint = {
 } as const;
 
 export type newsletter_subscriptions_constraint =
-  (typeof newsletter_subscriptions_constraint)[keyof typeof newsletter_subscriptions_constraint];
+  typeof newsletter_subscriptions_constraint[keyof typeof newsletter_subscriptions_constraint];
 /** input type for incrementing numeric columns in table "newsletter_subscriptions" */
 export interface newsletter_subscriptions_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -1388,7 +1564,7 @@ export const newsletter_subscriptions_select_column = {
 } as const;
 
 export type newsletter_subscriptions_select_column =
-  (typeof newsletter_subscriptions_select_column)[keyof typeof newsletter_subscriptions_select_column];
+  typeof newsletter_subscriptions_select_column[keyof typeof newsletter_subscriptions_select_column];
 /** input type for updating data in table "newsletter_subscriptions" */
 export interface newsletter_subscriptions_set_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -1422,7 +1598,7 @@ export const newsletter_subscriptions_update_column = {
 } as const;
 
 export type newsletter_subscriptions_update_column =
-  (typeof newsletter_subscriptions_update_column)[keyof typeof newsletter_subscriptions_update_column];
+  typeof newsletter_subscriptions_update_column[keyof typeof newsletter_subscriptions_update_column];
 export interface newsletter_subscriptions_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<newsletter_subscriptions_inc_input>;
@@ -1448,7 +1624,20 @@ export const order_by = {
   desc_nulls_last: "desc_nulls_last",
 } as const;
 
-export type order_by = (typeof order_by)[keyof typeof order_by];
+export type order_by = typeof order_by[keyof typeof order_by];
+/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
+export interface timestamptz_comparison_exp {
+  _eq?: InputMaybe<Scalars["timestamptz"]>;
+  _gt?: InputMaybe<Scalars["timestamptz"]>;
+  _gte?: InputMaybe<Scalars["timestamptz"]>;
+  _in?: InputMaybe<Array<Scalars["timestamptz"]>>;
+  _is_null?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["timestamptz"]>;
+  _lte?: InputMaybe<Scalars["timestamptz"]>;
+  _neq?: InputMaybe<Scalars["timestamptz"]>;
+  _nin?: InputMaybe<Array<Scalars["timestamptz"]>>;
+}
+
 /** Boolean expression to filter rows from the table "verse_of_the_day". All fields are combined with a logical 'AND'. */
 export interface verse_of_the_day_bool_exp {
   _and?: InputMaybe<Array<verse_of_the_day_bool_exp>>;
@@ -1466,7 +1655,7 @@ export const verse_of_the_day_constraint = {
 } as const;
 
 export type verse_of_the_day_constraint =
-  (typeof verse_of_the_day_constraint)[keyof typeof verse_of_the_day_constraint];
+  typeof verse_of_the_day_constraint[keyof typeof verse_of_the_day_constraint];
 /** input type for incrementing numeric columns in table "verse_of_the_day" */
 export interface verse_of_the_day_inc_input {
   id?: InputMaybe<Scalars["Int"]>;
@@ -1510,7 +1699,7 @@ export const verse_of_the_day_select_column = {
 } as const;
 
 export type verse_of_the_day_select_column =
-  (typeof verse_of_the_day_select_column)[keyof typeof verse_of_the_day_select_column];
+  typeof verse_of_the_day_select_column[keyof typeof verse_of_the_day_select_column];
 /** input type for updating data in table "verse_of_the_day" */
 export interface verse_of_the_day_set_input {
   date?: InputMaybe<Scalars["date"]>;
@@ -1544,7 +1733,7 @@ export const verse_of_the_day_update_column = {
 } as const;
 
 export type verse_of_the_day_update_column =
-  (typeof verse_of_the_day_update_column)[keyof typeof verse_of_the_day_update_column];
+  typeof verse_of_the_day_update_column[keyof typeof verse_of_the_day_update_column];
 export interface verse_of_the_day_updates {
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<verse_of_the_day_inc_input>;
@@ -1576,6 +1765,9 @@ export const scalarsEnumsHash: import("gqty").ScalarsEnumsHash = {
   gita_translations_constraint: true,
   gita_translations_select_column: true,
   gita_translations_update_column: true,
+  gita_users_constraint: true,
+  gita_users_select_column: true,
+  gita_users_update_column: true,
   gita_verses_constraint: true,
   gita_verses_select_column: true,
   gita_verses_update_column: true,
@@ -1583,11 +1775,23 @@ export const scalarsEnumsHash: import("gqty").ScalarsEnumsHash = {
   newsletter_subscriptions_select_column: true,
   newsletter_subscriptions_update_column: true,
   order_by: true,
+  timestamptz: true,
   verse_of_the_day_constraint: true,
   verse_of_the_day_select_column: true,
   verse_of_the_day_update_column: true,
 };
 export const generatedSchema = {
+  Boolean_comparison_exp: {
+    _eq: { __type: "Boolean" },
+    _gt: { __type: "Boolean" },
+    _gte: { __type: "Boolean" },
+    _in: { __type: "[Boolean!]" },
+    _is_null: { __type: "Boolean" },
+    _lt: { __type: "Boolean" },
+    _lte: { __type: "Boolean" },
+    _neq: { __type: "Boolean" },
+    _nin: { __type: "[Boolean!]" },
+  },
   Int_comparison_exp: {
     _eq: { __type: "Int" },
     _gt: { __type: "Int" },
@@ -2783,6 +2987,173 @@ export const generatedSchema = {
     language_id: { __type: "order_by" },
     verse_id: { __type: "order_by" },
   },
+  gita_users: {
+    __typename: { __type: "String!" },
+    api_key: { __type: "String" },
+    app_description: { __type: "String" },
+    app_link: { __type: "String" },
+    app_name: { __type: "String" },
+    created_on: { __type: "timestamptz" },
+    email: { __type: "String" },
+    full_name: { __type: "String" },
+    id: { __type: "Int!" },
+    is_active: { __type: "Boolean" },
+  },
+  gita_users_aggregate: {
+    __typename: { __type: "String!" },
+    aggregate: { __type: "gita_users_aggregate_fields" },
+    nodes: { __type: "[gita_users!]!" },
+  },
+  gita_users_aggregate_fields: {
+    __typename: { __type: "String!" },
+    avg: { __type: "gita_users_avg_fields" },
+    count: {
+      __type: "Int!",
+      __args: { columns: "[gita_users_select_column!]", distinct: "Boolean" },
+    },
+    max: { __type: "gita_users_max_fields" },
+    min: { __type: "gita_users_min_fields" },
+    stddev: { __type: "gita_users_stddev_fields" },
+    stddev_pop: { __type: "gita_users_stddev_pop_fields" },
+    stddev_samp: { __type: "gita_users_stddev_samp_fields" },
+    sum: { __type: "gita_users_sum_fields" },
+    var_pop: { __type: "gita_users_var_pop_fields" },
+    var_samp: { __type: "gita_users_var_samp_fields" },
+    variance: { __type: "gita_users_variance_fields" },
+  },
+  gita_users_avg_fields: {
+    __typename: { __type: "String!" },
+    id: { __type: "Float" },
+  },
+  gita_users_bool_exp: {
+    _and: { __type: "[gita_users_bool_exp!]" },
+    _not: { __type: "gita_users_bool_exp" },
+    _or: { __type: "[gita_users_bool_exp!]" },
+    api_key: { __type: "String_comparison_exp" },
+    app_description: { __type: "String_comparison_exp" },
+    app_link: { __type: "String_comparison_exp" },
+    app_name: { __type: "String_comparison_exp" },
+    created_on: { __type: "timestamptz_comparison_exp" },
+    email: { __type: "String_comparison_exp" },
+    full_name: { __type: "String_comparison_exp" },
+    id: { __type: "Int_comparison_exp" },
+    is_active: { __type: "Boolean_comparison_exp" },
+  },
+  gita_users_inc_input: { id: { __type: "Int" } },
+  gita_users_insert_input: {
+    api_key: { __type: "String" },
+    app_description: { __type: "String" },
+    app_link: { __type: "String" },
+    app_name: { __type: "String" },
+    created_on: { __type: "timestamptz" },
+    email: { __type: "String" },
+    full_name: { __type: "String" },
+    id: { __type: "Int" },
+    is_active: { __type: "Boolean" },
+  },
+  gita_users_max_fields: {
+    __typename: { __type: "String!" },
+    api_key: { __type: "String" },
+    app_description: { __type: "String" },
+    app_link: { __type: "String" },
+    app_name: { __type: "String" },
+    created_on: { __type: "timestamptz" },
+    email: { __type: "String" },
+    full_name: { __type: "String" },
+    id: { __type: "Int" },
+  },
+  gita_users_min_fields: {
+    __typename: { __type: "String!" },
+    api_key: { __type: "String" },
+    app_description: { __type: "String" },
+    app_link: { __type: "String" },
+    app_name: { __type: "String" },
+    created_on: { __type: "timestamptz" },
+    email: { __type: "String" },
+    full_name: { __type: "String" },
+    id: { __type: "Int" },
+  },
+  gita_users_mutation_response: {
+    __typename: { __type: "String!" },
+    affected_rows: { __type: "Int!" },
+    returning: { __type: "[gita_users!]!" },
+  },
+  gita_users_on_conflict: {
+    constraint: { __type: "gita_users_constraint!" },
+    update_columns: { __type: "[gita_users_update_column!]!" },
+    where: { __type: "gita_users_bool_exp" },
+  },
+  gita_users_order_by: {
+    api_key: { __type: "order_by" },
+    app_description: { __type: "order_by" },
+    app_link: { __type: "order_by" },
+    app_name: { __type: "order_by" },
+    created_on: { __type: "order_by" },
+    email: { __type: "order_by" },
+    full_name: { __type: "order_by" },
+    id: { __type: "order_by" },
+    is_active: { __type: "order_by" },
+  },
+  gita_users_pk_columns_input: { id: { __type: "Int!" } },
+  gita_users_set_input: {
+    api_key: { __type: "String" },
+    app_description: { __type: "String" },
+    app_link: { __type: "String" },
+    app_name: { __type: "String" },
+    created_on: { __type: "timestamptz" },
+    email: { __type: "String" },
+    full_name: { __type: "String" },
+    id: { __type: "Int" },
+    is_active: { __type: "Boolean" },
+  },
+  gita_users_stddev_fields: {
+    __typename: { __type: "String!" },
+    id: { __type: "Float" },
+  },
+  gita_users_stddev_pop_fields: {
+    __typename: { __type: "String!" },
+    id: { __type: "Float" },
+  },
+  gita_users_stddev_samp_fields: {
+    __typename: { __type: "String!" },
+    id: { __type: "Float" },
+  },
+  gita_users_stream_cursor_input: {
+    initial_value: { __type: "gita_users_stream_cursor_value_input!" },
+    ordering: { __type: "cursor_ordering" },
+  },
+  gita_users_stream_cursor_value_input: {
+    api_key: { __type: "String" },
+    app_description: { __type: "String" },
+    app_link: { __type: "String" },
+    app_name: { __type: "String" },
+    created_on: { __type: "timestamptz" },
+    email: { __type: "String" },
+    full_name: { __type: "String" },
+    id: { __type: "Int" },
+    is_active: { __type: "Boolean" },
+  },
+  gita_users_sum_fields: {
+    __typename: { __type: "String!" },
+    id: { __type: "Int" },
+  },
+  gita_users_updates: {
+    _inc: { __type: "gita_users_inc_input" },
+    _set: { __type: "gita_users_set_input" },
+    where: { __type: "gita_users_bool_exp!" },
+  },
+  gita_users_var_pop_fields: {
+    __typename: { __type: "String!" },
+    id: { __type: "Float" },
+  },
+  gita_users_var_samp_fields: {
+    __typename: { __type: "String!" },
+    id: { __type: "Float" },
+  },
+  gita_users_variance_fields: {
+    __typename: { __type: "String!" },
+    id: { __type: "Float" },
+  },
   gita_verses: {
     __typename: { __type: "String!" },
     chapter_id: { __type: "Int" },
@@ -3173,6 +3544,11 @@ export const generatedSchema = {
       __type: "gita_translations",
       __args: { id: "Int!" },
     },
+    delete_gita_users: {
+      __type: "gita_users_mutation_response",
+      __args: { where: "gita_users_bool_exp!" },
+    },
+    delete_gita_users_by_pk: { __type: "gita_users", __args: { id: "Int!" } },
     delete_gita_verses: {
       __type: "gita_verses_mutation_response",
       __args: { where: "gita_verses_bool_exp!" },
@@ -3262,6 +3638,20 @@ export const generatedSchema = {
       __args: {
         object: "gita_translations_insert_input!",
         on_conflict: "gita_translations_on_conflict",
+      },
+    },
+    insert_gita_users: {
+      __type: "gita_users_mutation_response",
+      __args: {
+        objects: "[gita_users_insert_input!]!",
+        on_conflict: "gita_users_on_conflict",
+      },
+    },
+    insert_gita_users_one: {
+      __type: "gita_users",
+      __args: {
+        object: "gita_users_insert_input!",
+        on_conflict: "gita_users_on_conflict",
       },
     },
     insert_gita_verses: {
@@ -3405,6 +3795,26 @@ export const generatedSchema = {
     update_gita_translations_many: {
       __type: "[gita_translations_mutation_response]",
       __args: { updates: "[gita_translations_updates!]!" },
+    },
+    update_gita_users: {
+      __type: "gita_users_mutation_response",
+      __args: {
+        _inc: "gita_users_inc_input",
+        _set: "gita_users_set_input",
+        where: "gita_users_bool_exp!",
+      },
+    },
+    update_gita_users_by_pk: {
+      __type: "gita_users",
+      __args: {
+        _inc: "gita_users_inc_input",
+        _set: "gita_users_set_input",
+        pk_columns: "gita_users_pk_columns_input!",
+      },
+    },
+    update_gita_users_many: {
+      __type: "[gita_users_mutation_response]",
+      __args: { updates: "[gita_users_updates!]!" },
     },
     update_gita_verses: {
       __type: "gita_verses_mutation_response",
@@ -3706,6 +4116,27 @@ export const generatedSchema = {
       __type: "gita_translations",
       __args: { id: "Int!" },
     },
+    gita_users: {
+      __type: "[gita_users!]!",
+      __args: {
+        distinct_on: "[gita_users_select_column!]",
+        limit: "Int",
+        offset: "Int",
+        order_by: "[gita_users_order_by!]",
+        where: "gita_users_bool_exp",
+      },
+    },
+    gita_users_aggregate: {
+      __type: "gita_users_aggregate!",
+      __args: {
+        distinct_on: "[gita_users_select_column!]",
+        limit: "Int",
+        offset: "Int",
+        order_by: "[gita_users_order_by!]",
+        where: "gita_users_bool_exp",
+      },
+    },
+    gita_users_by_pk: { __type: "gita_users", __args: { id: "Int!" } },
     gita_verses: {
       __type: "[gita_verses!]!",
       __args: {
@@ -3929,6 +4360,35 @@ export const generatedSchema = {
         where: "gita_translations_bool_exp",
       },
     },
+    gita_users: {
+      __type: "[gita_users!]!",
+      __args: {
+        distinct_on: "[gita_users_select_column!]",
+        limit: "Int",
+        offset: "Int",
+        order_by: "[gita_users_order_by!]",
+        where: "gita_users_bool_exp",
+      },
+    },
+    gita_users_aggregate: {
+      __type: "gita_users_aggregate!",
+      __args: {
+        distinct_on: "[gita_users_select_column!]",
+        limit: "Int",
+        offset: "Int",
+        order_by: "[gita_users_order_by!]",
+        where: "gita_users_bool_exp",
+      },
+    },
+    gita_users_by_pk: { __type: "gita_users", __args: { id: "Int!" } },
+    gita_users_stream: {
+      __type: "[gita_users!]!",
+      __args: {
+        batch_size: "Int!",
+        cursor: "[gita_users_stream_cursor_input]!",
+        where: "gita_users_bool_exp",
+      },
+    },
     gita_verses: {
       __type: "[gita_verses!]!",
       __args: {
@@ -4022,6 +4482,17 @@ export const generatedSchema = {
         where: "verse_of_the_day_bool_exp",
       },
     },
+  },
+  timestamptz_comparison_exp: {
+    _eq: { __type: "timestamptz" },
+    _gt: { __type: "timestamptz" },
+    _gte: { __type: "timestamptz" },
+    _in: { __type: "[timestamptz!]" },
+    _is_null: { __type: "Boolean" },
+    _lt: { __type: "timestamptz" },
+    _lte: { __type: "timestamptz" },
+    _neq: { __type: "timestamptz" },
+    _nin: { __type: "[timestamptz!]" },
   },
   verse_of_the_day: {
     __typename: { __type: "String!" },
@@ -5233,6 +5704,161 @@ export interface gita_translations_variance_fields {
 }
 
 /**
+ * columns and relationships of "gita_users"
+ */
+export interface gita_users {
+  __typename?: "gita_users";
+  api_key?: Maybe<ScalarsEnums["String"]>;
+  app_description?: Maybe<ScalarsEnums["String"]>;
+  app_link?: Maybe<ScalarsEnums["String"]>;
+  app_name?: Maybe<ScalarsEnums["String"]>;
+  created_on?: Maybe<ScalarsEnums["timestamptz"]>;
+  email?: Maybe<ScalarsEnums["String"]>;
+  full_name?: Maybe<ScalarsEnums["String"]>;
+  id: ScalarsEnums["Int"];
+  is_active?: Maybe<ScalarsEnums["Boolean"]>;
+}
+
+/**
+ * aggregated selection of "gita_users"
+ */
+export interface gita_users_aggregate {
+  __typename?: "gita_users_aggregate";
+  aggregate?: Maybe<gita_users_aggregate_fields>;
+  nodes: Array<gita_users>;
+}
+
+/**
+ * aggregate fields of "gita_users"
+ */
+export interface gita_users_aggregate_fields {
+  __typename?: "gita_users_aggregate_fields";
+  avg?: Maybe<gita_users_avg_fields>;
+  count: (args?: {
+    columns?: Maybe<Array<gita_users_select_column>>;
+    distinct?: Maybe<Scalars["Boolean"]>;
+  }) => ScalarsEnums["Int"];
+  max?: Maybe<gita_users_max_fields>;
+  min?: Maybe<gita_users_min_fields>;
+  stddev?: Maybe<gita_users_stddev_fields>;
+  stddev_pop?: Maybe<gita_users_stddev_pop_fields>;
+  stddev_samp?: Maybe<gita_users_stddev_samp_fields>;
+  sum?: Maybe<gita_users_sum_fields>;
+  var_pop?: Maybe<gita_users_var_pop_fields>;
+  var_samp?: Maybe<gita_users_var_samp_fields>;
+  variance?: Maybe<gita_users_variance_fields>;
+}
+
+/**
+ * aggregate avg on columns
+ */
+export interface gita_users_avg_fields {
+  __typename?: "gita_users_avg_fields";
+  id?: Maybe<ScalarsEnums["Float"]>;
+}
+
+/**
+ * aggregate max on columns
+ */
+export interface gita_users_max_fields {
+  __typename?: "gita_users_max_fields";
+  api_key?: Maybe<ScalarsEnums["String"]>;
+  app_description?: Maybe<ScalarsEnums["String"]>;
+  app_link?: Maybe<ScalarsEnums["String"]>;
+  app_name?: Maybe<ScalarsEnums["String"]>;
+  created_on?: Maybe<ScalarsEnums["timestamptz"]>;
+  email?: Maybe<ScalarsEnums["String"]>;
+  full_name?: Maybe<ScalarsEnums["String"]>;
+  id?: Maybe<ScalarsEnums["Int"]>;
+}
+
+/**
+ * aggregate min on columns
+ */
+export interface gita_users_min_fields {
+  __typename?: "gita_users_min_fields";
+  api_key?: Maybe<ScalarsEnums["String"]>;
+  app_description?: Maybe<ScalarsEnums["String"]>;
+  app_link?: Maybe<ScalarsEnums["String"]>;
+  app_name?: Maybe<ScalarsEnums["String"]>;
+  created_on?: Maybe<ScalarsEnums["timestamptz"]>;
+  email?: Maybe<ScalarsEnums["String"]>;
+  full_name?: Maybe<ScalarsEnums["String"]>;
+  id?: Maybe<ScalarsEnums["Int"]>;
+}
+
+/**
+ * response of any mutation on the table "gita_users"
+ */
+export interface gita_users_mutation_response {
+  __typename?: "gita_users_mutation_response";
+  /**
+   * number of rows affected by the mutation
+   */
+  affected_rows: ScalarsEnums["Int"];
+  /**
+   * data from the rows affected by the mutation
+   */
+  returning: Array<gita_users>;
+}
+
+/**
+ * aggregate stddev on columns
+ */
+export interface gita_users_stddev_fields {
+  __typename?: "gita_users_stddev_fields";
+  id?: Maybe<ScalarsEnums["Float"]>;
+}
+
+/**
+ * aggregate stddev_pop on columns
+ */
+export interface gita_users_stddev_pop_fields {
+  __typename?: "gita_users_stddev_pop_fields";
+  id?: Maybe<ScalarsEnums["Float"]>;
+}
+
+/**
+ * aggregate stddev_samp on columns
+ */
+export interface gita_users_stddev_samp_fields {
+  __typename?: "gita_users_stddev_samp_fields";
+  id?: Maybe<ScalarsEnums["Float"]>;
+}
+
+/**
+ * aggregate sum on columns
+ */
+export interface gita_users_sum_fields {
+  __typename?: "gita_users_sum_fields";
+  id?: Maybe<ScalarsEnums["Int"]>;
+}
+
+/**
+ * aggregate var_pop on columns
+ */
+export interface gita_users_var_pop_fields {
+  __typename?: "gita_users_var_pop_fields";
+  id?: Maybe<ScalarsEnums["Float"]>;
+}
+
+/**
+ * aggregate var_samp on columns
+ */
+export interface gita_users_var_samp_fields {
+  __typename?: "gita_users_var_samp_fields";
+  id?: Maybe<ScalarsEnums["Float"]>;
+}
+
+/**
+ * aggregate variance on columns
+ */
+export interface gita_users_variance_fields {
+  __typename?: "gita_users_variance_fields";
+  id?: Maybe<ScalarsEnums["Float"]>;
+}
+
+/**
  * columns and relationships of "gita_verses"
  */
 export interface gita_verses {
@@ -5546,6 +6172,10 @@ export interface Mutation {
   delete_gita_translations_by_pk: (args: {
     id: Scalars["Int"];
   }) => Maybe<gita_translations>;
+  delete_gita_users: (args: {
+    where: gita_users_bool_exp;
+  }) => Maybe<gita_users_mutation_response>;
+  delete_gita_users_by_pk: (args: { id: Scalars["Int"] }) => Maybe<gita_users>;
   delete_gita_verses: (args: {
     where: gita_verses_bool_exp;
   }) => Maybe<gita_verses_mutation_response>;
@@ -5604,6 +6234,14 @@ export interface Mutation {
     object: gita_translations_insert_input;
     on_conflict?: Maybe<gita_translations_on_conflict>;
   }) => Maybe<gita_translations>;
+  insert_gita_users: (args: {
+    objects: Array<gita_users_insert_input>;
+    on_conflict?: Maybe<gita_users_on_conflict>;
+  }) => Maybe<gita_users_mutation_response>;
+  insert_gita_users_one: (args: {
+    object: gita_users_insert_input;
+    on_conflict?: Maybe<gita_users_on_conflict>;
+  }) => Maybe<gita_users>;
   insert_gita_verses: (args: {
     objects: Array<gita_verses_insert_input>;
     on_conflict?: Maybe<gita_verses_on_conflict>;
@@ -5693,6 +6331,19 @@ export interface Mutation {
   update_gita_translations_many: (args: {
     updates: Array<gita_translations_updates>;
   }) => Maybe<Array<Maybe<gita_translations_mutation_response>>>;
+  update_gita_users: (args: {
+    _inc?: Maybe<gita_users_inc_input>;
+    _set?: Maybe<gita_users_set_input>;
+    where: gita_users_bool_exp;
+  }) => Maybe<gita_users_mutation_response>;
+  update_gita_users_by_pk: (args: {
+    _inc?: Maybe<gita_users_inc_input>;
+    _set?: Maybe<gita_users_set_input>;
+    pk_columns: gita_users_pk_columns_input;
+  }) => Maybe<gita_users>;
+  update_gita_users_many: (args: {
+    updates: Array<gita_users_updates>;
+  }) => Maybe<Array<Maybe<gita_users_mutation_response>>>;
   update_gita_verses: (args: {
     _inc?: Maybe<gita_verses_inc_input>;
     _set?: Maybe<gita_verses_set_input>;
@@ -5954,6 +6605,21 @@ export interface Query {
   gita_translations_by_pk: (args: {
     id: Scalars["Int"];
   }) => Maybe<gita_translations>;
+  gita_users: (args?: {
+    distinct_on?: Maybe<Array<gita_users_select_column>>;
+    limit?: Maybe<Scalars["Int"]>;
+    offset?: Maybe<Scalars["Int"]>;
+    order_by?: Maybe<Array<gita_users_order_by>>;
+    where?: Maybe<gita_users_bool_exp>;
+  }) => Array<gita_users>;
+  gita_users_aggregate: (args?: {
+    distinct_on?: Maybe<Array<gita_users_select_column>>;
+    limit?: Maybe<Scalars["Int"]>;
+    offset?: Maybe<Scalars["Int"]>;
+    order_by?: Maybe<Array<gita_users_order_by>>;
+    where?: Maybe<gita_users_bool_exp>;
+  }) => gita_users_aggregate;
+  gita_users_by_pk: (args: { id: Scalars["Int"] }) => Maybe<gita_users>;
   gita_verses: (args?: {
     distinct_on?: Maybe<Array<gita_verses_select_column>>;
     limit?: Maybe<Scalars["Int"]>;
@@ -6111,6 +6777,26 @@ export interface Subscription {
     cursor: Array<Maybe<gita_translations_stream_cursor_input>>;
     where?: Maybe<gita_translations_bool_exp>;
   }) => Array<gita_translations>;
+  gita_users: (args?: {
+    distinct_on?: Maybe<Array<gita_users_select_column>>;
+    limit?: Maybe<Scalars["Int"]>;
+    offset?: Maybe<Scalars["Int"]>;
+    order_by?: Maybe<Array<gita_users_order_by>>;
+    where?: Maybe<gita_users_bool_exp>;
+  }) => Array<gita_users>;
+  gita_users_aggregate: (args?: {
+    distinct_on?: Maybe<Array<gita_users_select_column>>;
+    limit?: Maybe<Scalars["Int"]>;
+    offset?: Maybe<Scalars["Int"]>;
+    order_by?: Maybe<Array<gita_users_order_by>>;
+    where?: Maybe<gita_users_bool_exp>;
+  }) => gita_users_aggregate;
+  gita_users_by_pk: (args: { id: Scalars["Int"] }) => Maybe<gita_users>;
+  gita_users_stream: (args: {
+    batch_size: Scalars["Int"];
+    cursor: Array<Maybe<gita_users_stream_cursor_input>>;
+    where?: Maybe<gita_users_bool_exp>;
+  }) => Array<gita_users>;
   gita_verses: (args?: {
     distinct_on?: Maybe<Array<gita_verses_select_column>>;
     limit?: Maybe<Scalars["Int"]>;
@@ -6398,6 +7084,20 @@ export interface SchemaObjectTypes {
   gita_translations_var_pop_fields: gita_translations_var_pop_fields;
   gita_translations_var_samp_fields: gita_translations_var_samp_fields;
   gita_translations_variance_fields: gita_translations_variance_fields;
+  gita_users: gita_users;
+  gita_users_aggregate: gita_users_aggregate;
+  gita_users_aggregate_fields: gita_users_aggregate_fields;
+  gita_users_avg_fields: gita_users_avg_fields;
+  gita_users_max_fields: gita_users_max_fields;
+  gita_users_min_fields: gita_users_min_fields;
+  gita_users_mutation_response: gita_users_mutation_response;
+  gita_users_stddev_fields: gita_users_stddev_fields;
+  gita_users_stddev_pop_fields: gita_users_stddev_pop_fields;
+  gita_users_stddev_samp_fields: gita_users_stddev_samp_fields;
+  gita_users_sum_fields: gita_users_sum_fields;
+  gita_users_var_pop_fields: gita_users_var_pop_fields;
+  gita_users_var_samp_fields: gita_users_var_samp_fields;
+  gita_users_variance_fields: gita_users_variance_fields;
   gita_verses: gita_verses;
   gita_verses_aggregate: gita_verses_aggregate;
   gita_verses_aggregate_fields: gita_verses_aggregate_fields;
@@ -6515,6 +7215,20 @@ export type SchemaObjectTypesNames =
   | "gita_translations_var_pop_fields"
   | "gita_translations_var_samp_fields"
   | "gita_translations_variance_fields"
+  | "gita_users"
+  | "gita_users_aggregate"
+  | "gita_users_aggregate_fields"
+  | "gita_users_avg_fields"
+  | "gita_users_max_fields"
+  | "gita_users_min_fields"
+  | "gita_users_mutation_response"
+  | "gita_users_stddev_fields"
+  | "gita_users_stddev_pop_fields"
+  | "gita_users_stddev_samp_fields"
+  | "gita_users_sum_fields"
+  | "gita_users_var_pop_fields"
+  | "gita_users_var_samp_fields"
+  | "gita_users_variance_fields"
   | "gita_verses"
   | "gita_verses_aggregate"
   | "gita_verses_aggregate_fields"
@@ -6585,6 +7299,9 @@ export interface ScalarsEnums extends MakeNullable<Scalars> {
   gita_translations_constraint: gita_translations_constraint | undefined;
   gita_translations_select_column: gita_translations_select_column | undefined;
   gita_translations_update_column: gita_translations_update_column | undefined;
+  gita_users_constraint: gita_users_constraint | undefined;
+  gita_users_select_column: gita_users_select_column | undefined;
+  gita_users_update_column: gita_users_update_column | undefined;
   gita_verses_constraint: gita_verses_constraint | undefined;
   gita_verses_select_column: gita_verses_select_column | undefined;
   gita_verses_update_column: gita_verses_update_column | undefined;
