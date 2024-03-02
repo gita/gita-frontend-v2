@@ -51,7 +51,8 @@ export default function ChapterPage({
     : filteredVerses?.slice(0).reverse();
 
   return (
-    <div>
+    <div
+       onClick={() => (viewNavigation && setViewNavigation(false))}>
       <div className="absolute inset-x-0 mx-auto max-w-5xl text-center font-inter">
         <SvgChapterBackground className="relative inset-x-0 bottom-0 m-auto w-full rounded-full text-gray-300 text-opacity-25 dark:text-black dark:text-opacity-25 lg:top-12 lg:w-min" />
       </div>
@@ -86,8 +87,10 @@ export default function ChapterPage({
         </p>
       </section>
 
-      <div className="mx-auto max-w-5xl px-4 text-center  font-inter sm:px-6">
-        <div className="flex items-center justify-between border-y border-gray-200 py-6">
+      <div className="mx-auto max-w-5xl px-4 text-center font-inter sm:px-6">
+        <div
+          className="flex items-center justify-between border-y border-gray-200 py-6"
+        >
           <div
             className={classNames(
               "font-extrabold dark:text-white",
@@ -116,13 +119,14 @@ export default function ChapterPage({
             <VerseNavigator
               verseCount={verses_count}
               currentVerse={verseId}
+              chapterNumber={chapter_number}
               viewNavigation={viewNavigation}
               setViewNavigation={setViewNavigation}
               setVerseId={setVerseId}
             />
             <button
               type="button"
-              className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-50 dark:hover:bg-dark-bg"
+              className="relative -ml-px inline-flex items-center space-x-0.5 rounded-r-md border border-gray-300 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-50 dark:hover:bg-dark-bg"
               onClick={() => setIsAscSorted(!isAscSorted)}
             >
               {isAscSorted ? (
