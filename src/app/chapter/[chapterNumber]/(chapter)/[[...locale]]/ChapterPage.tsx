@@ -123,7 +123,7 @@ export default function ChapterPage({
             />
             <button
               type="button"
-              className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 p-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-50 dark:hover:bg-dark-bg"
+              className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 p-1 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-50 dark:hover:bg-dark-bg"
               onClick={() => setIsAscSorted(!isAscSorted)}
             >
               {isAscSorted ? (
