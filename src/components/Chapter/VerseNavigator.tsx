@@ -30,9 +30,10 @@ function VerseNavigator({
     <div
       className={classNames(
         fontSize === "large" ? "top-12" : "top-10",
-        `absolute mt-2 flex w-full flex-wrap justify-center rounded border border-gray-200 bg-white py-1 shadow dark:border-dark-100 dark:bg-dark-bg ${
-          !viewNavigation && "hidden"
-        }`,
+        `absolute mt-2 flex flex-wrap justify-center rounded border border-gray-200 bg-white py-2 shadow dark:border-dark-100 dark:bg-dark-bg 
+        ${!viewNavigation && "hidden"}
+         ${verseCount > 50 ? "-right-3 w-[350px] md:w-[550px]" : "w-full"}
+        `,
       )}
     >
       <div
@@ -41,7 +42,7 @@ function VerseNavigator({
           setVerseId(0);
         }}
         className={classNames(
-          ` flex min-w-[2.5rem] items-center justify-center rounded  hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+          `flex min-w-[2.5rem] items-center justify-center rounded p-3 hover:cursor-pointer hover:bg-my-orange hover:text-white lg:p-1 ${
             !currentVerse && "bg-my-orange text-white"
           }`,
           styles.fontSize.para,
@@ -60,10 +61,9 @@ function VerseNavigator({
             <div
               onClick={() => {
                 setViewNavigation(false);
-                setVerseId(index + 1);
               }}
               className={classNames(
-                `flex min-w-[2.3rem] items-center justify-center rounded py-1 hover:cursor-pointer hover:border hover:bg-my-orange hover:text-white ${
+                ` flex min-w-[2.5rem] items-center justify-center rounded p-3 hover:cursor-pointer hover:bg-my-orange hover:text-white lg:p-1 ${
                   index + 1 === currentVerse && "bg-my-orange text-white"
                 }`,
                 styles.fontSize.para,
