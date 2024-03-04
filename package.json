@@ -34,6 +34,7 @@
     "next-plausible": "^3.9.1",
     "next-redux-wrapper": "^7.0.5",
     "next-themes": "^0.2.1",
+    "nextjs-toploader": "^1.6.6",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
