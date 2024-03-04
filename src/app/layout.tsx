@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import TopLoader from "components/Headers/TopLoader";
+
 import { PreloadResources } from "./preload-resources";
 import Providers from "./providers";
 
@@ -53,6 +55,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Providers>
           <PreloadResources />
+          <TopLoader />
           {children}
         </Providers>
       </body>
