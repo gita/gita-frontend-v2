@@ -56,7 +56,13 @@ const Page = async ({ params }: ParamsWithLocale) => {
   const dailyVerse = await getDailyVerse(locale);
 
   if (!dailyVerse) {
-    return <NotFound hint="Daily verse not found" />;
+    return (
+      <NotFound
+        translations={await getTranslations(locale)}
+        locale={locale}
+        hint="Daily verse not found"
+      />
+    );
   }
 
   return (
