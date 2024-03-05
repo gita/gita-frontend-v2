@@ -17,7 +17,7 @@ export default function Quote({ quoteNumber, quote, translate }: Props) {
         <SvgChapterBackground className="relative inset-x-0 bottom-0 m-auto w-full rounded-full text-gray-300 text-opacity-25 dark:text-black dark:text-opacity-25 lg:top-12 lg:w-min" />
       </div>
 
-      <div className="xs:py-24 relative mx-auto max-w-5xl px-4 text-center font-inter sm:px-6 sm:py-28">
+      <div className="xs:py-24 relative mx-auto max-w-5xl p-2  text-center font-inter sm:px-6 sm:py-8 ">
         <h2
           className={classNames(
             "font-medium uppercase text-my-orange",
