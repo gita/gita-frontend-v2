@@ -34,11 +34,9 @@ export default function QuotesNavigator({
     const handleScroll = () => {
       setIsScrolling(true);
       clearTimeout(timeoutId);
-
-      // Set a timeout of 3 seconds to reset isScrolling after 3 seconds of no scrolling
       timeoutId = setTimeout(() => {
         setIsScrolling(false);
-      }, 1500);
+      }, 3000);
     };
 
     window.addEventListener("scroll", handleScroll);
