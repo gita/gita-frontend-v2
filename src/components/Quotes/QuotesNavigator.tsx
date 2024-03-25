@@ -52,7 +52,7 @@ export default function QuotesNavigator({
       {previousQuote >= 1 && (
         <button
           onClick={previous}
-          className={`fixed left-3 top-3/4 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg lg:left-40 ${
+          className={`left-3 top-3/4 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg absolute lg:left-40 ${
             isScrolling ? "bg-white dark:bg-dark-100" : ""
           }`}
         >
@@ -62,8 +62,8 @@ export default function QuotesNavigator({
       {nextQuote <= quoteCount && (
         <button
           onClick={next}
-          className={`fixed right-3 top-3/4 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer  hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg lg:right-40
-            ${ isScrolling ? "bg-white dark:bg-dark-100" : ""}
+          className={`right-3 top-3/4 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer  hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg absolute lg:right-40
+            ${isScrolling ? "bg-white dark:bg-dark-100" : ""}
           `}
         >
           <SvgChevronRight className="dark:text-gray-50" />
