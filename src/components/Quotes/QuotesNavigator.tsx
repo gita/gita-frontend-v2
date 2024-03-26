@@ -52,7 +52,7 @@ export default function QuotesNavigator({
       {previousQuote >= 1 && (
         <button
           onClick={previous}
-          className={`left-3 top-3/4 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg absolute lg:left-40 ${
+          className={`absolute left-3 top-1/2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg lg:left-40 ${
             isScrolling ? "bg-white dark:bg-dark-100" : ""
           }`}
         >
@@ -62,7 +62,7 @@ export default function QuotesNavigator({
       {nextQuote <= quoteCount && (
         <button
           onClick={next}
-          className={`right-3 top-3/4 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer  hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg absolute lg:right-40
+          className={`absolute right-3 top-1/2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border  hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg lg:right-40
             ${isScrolling ? "bg-white dark:bg-dark-100" : ""}
           `}
         >
