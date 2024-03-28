@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 import { SvgChevronLeft, SvgChevronRight } from "../svgs";
@@ -30,7 +31,7 @@ export default function QuotesNavigator({
       {previousQuote >= 1 && (
         <button
           onClick={previous}
-          className="absolute left-1 top-1/2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border bg-white hover:cursor-pointer  hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg md:top-1/2"
+          className={`absolute left-3 top-2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg md:top-1/2 lg:left-40`}
         >
           <SvgChevronLeft className="dark:text-gray-50" />
         </button>
@@ -38,7 +39,8 @@ export default function QuotesNavigator({
       {nextQuote <= quoteCount && (
         <button
           onClick={next}
-          className="absolute right-1 top-1/2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border bg-white hover:cursor-pointer  hover:brightness-90 dark:border-gray-600 dark:bg-dark-100 dark:hover:bg-dark-bg md:top-1/2"
+          className={`absolute right-3 top-2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer  hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg md:top-1/2 lg:right-40
+          `}
         >
           <SvgChevronRight className="dark:text-gray-50" />
         </button>
