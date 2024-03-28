@@ -18,8 +18,6 @@ export default function QuotesNavigator({
   const nextQuote = quoteNumber + 1;
   const previousQuote = quoteNumber - 1;
 
-  const [isScrolling, setIsScrolling] = useState(false);
-
   const next = () => {
     quoteIndex < quoteCount - 1 && setQuote(quoteIndex + 1);
   };
@@ -28,33 +26,12 @@ export default function QuotesNavigator({
     quoteIndex > 0 && setQuote(quoteIndex - 1);
   };
 
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
-    const handleScroll = () => {
-      setIsScrolling(true);
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsScrolling(false);
-      }, 3000);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
   return (
     <>
       {previousQuote >= 1 && (
         <button
           onClick={previous}
-          className={`absolute left-3 top-2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg md:top-1/2 lg:left-40 ${
-            isScrolling ? "bg-white dark:bg-dark-100" : ""
-          }`}
+          className={`absolute left-3 top-2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg md:top-1/2 lg:left-40`}
         >
           <SvgChevronLeft className="dark:text-gray-50" />
         </button>
@@ -63,7 +40,6 @@ export default function QuotesNavigator({
         <button
           onClick={next}
           className={`absolute right-3 top-2 z-[60] flex h-10 w-10 items-center justify-center rounded-full border hover:cursor-pointer  hover:brightness-90 dark:border-gray-600 dark:hover:bg-dark-bg md:top-1/2 lg:right-40
-            ${isScrolling ? "bg-white dark:bg-dark-100" : ""}
           `}
         >
           <SvgChevronRight className="dark:text-gray-50" />
