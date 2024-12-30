@@ -149,7 +149,7 @@ const Footer = (props: Props) => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute bottom-10 left-0 mt-2 w-56 origin-bottom-left rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark-bg">
+                    <Menu.Items className="absolute bottom-10 left-0 mt-2 w-56 origin-bottom-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg">
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
@@ -253,7 +253,7 @@ const Footer = (props: Props) => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute bottom-10 left-0 z-50 mt-2 w-56 origin-bottom-left rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark-bg">
+                    <Menu.Items className="absolute bottom-10 left-0 z-50 mt-2 w-56 origin-bottom-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg">
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
@@ -406,7 +406,7 @@ const Footer = (props: Props) => {
                     </Menu.Items>
                   </Transition>
                   <div>
-                    <Menu.Button className="justify-centerw-full ml-3 inline-flex rounded-lg border border-gray-300 bg-white p-2 text-xs text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 focus:ring-offset-gray-100 dark:bg-dark-100 dark:text-gray-400 dark:hover:bg-dark-bg dark:focus:ring-offset-gray-700">
+                    <Menu.Button className="inline-flex justify-center w-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white dark:bg-dark-100 text-xs text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-700 focus:ring-my-orange">
                       More
                       {open ? (
                         <ChevronUpIcon

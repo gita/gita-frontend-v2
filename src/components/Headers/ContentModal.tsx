@@ -79,7 +79,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                 </p>
                 <Listbox value={selectedChapter} onChange={setSelectedChapter}>
                   <div className="relative mt-1">
-                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                       <span className="block">
                         {translate("Chapter")} {selectedChapter}
                       </span>
@@ -96,7 +96,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className=" mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark-bg sm:text-sm">
+                      <Listbox.Options className=" mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg sm:text-sm">
                         {data.map((chapter) => (
                           <Listbox.Option
                             key={chapter.chapterNumber}
@@ -147,7 +147,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                 </p>
                 <Listbox value={selectedVerse} onChange={setSelectedVerse}>
                   <div className="relative mt-1">
-                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                       <span className="block">
                         {translate("Verse")} {selectedVerse.verseNumber}
                       </span>
@@ -164,7 +164,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className=" mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark-bg sm:text-sm">
+                      <Listbox.Options className=" mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg sm:text-sm">
                         {data
                           .filter(
                             (chapter) =>

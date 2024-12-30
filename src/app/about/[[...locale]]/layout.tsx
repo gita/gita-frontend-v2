@@ -1,4 +1,4 @@
-import HomeLayout from "layouts/HomeLayout";
+import ServerHomeLayout from "layouts/ServerHomeLayout";
 import { paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
@@ -7,10 +7,11 @@ export default async function Layout({
   children,
 }: React.PropsWithChildren<ParamsWithLocale>) {
   const locale = paramsToLocale(params);
+  const translations = await getTranslations(locale);
 
   return (
-    <HomeLayout locale={locale} translations={await getTranslations(locale)}>
+    <ServerHomeLayout locale={locale} translations={translations}>
       {children}
-    </HomeLayout>
+    </ServerHomeLayout>
   );
 }

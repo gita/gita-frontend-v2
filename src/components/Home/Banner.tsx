@@ -22,7 +22,7 @@ const Banner = (props: LocaleAndTranslations) => {
           priority
         />
         <div className="flex h-4/5 flex-col px-8 py-36 xl:rounded-lg">
-          <h1 className="text-shadow t-shadow z-30 text-center text-3xl font-extrabold text-white md:text-6xl">
+          <h1 className="text-shadow z-30 text-center text-3xl font-extrabold text-white shadow-lg md:text-6xl">
             {translate("Experience the Gita")} <br />
             <span className="text-lead-text">
               {translate("Anywhere, Anytime")}

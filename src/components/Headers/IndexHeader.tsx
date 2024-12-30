@@ -200,7 +200,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                       leaveTo="opacity-0 translate-y-1"
                     >
                       <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-xs px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
-                        <div className="overflow-hidden rounded shadow-lg ring-1 ring-black ring-opacity-5">
+                        <div className="overflow-hidden rounded shadow-lg ring-1 ring-black/5">
                           <div className="relative grid gap-6 bg-white py-2 dark:bg-dark-100 sm:gap-8 sm:p-8 md:grid-cols-2">
                             {chapters.map((chapter, index) => (
                               <LinkWithLocale

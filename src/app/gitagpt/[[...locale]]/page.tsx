@@ -1,34 +1,33 @@
-import React from "react";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { paramsToLocale } from "shared/functions";
-import { getTranslations } from "shared/translate/server";
 
-import { jsonLdFirst, jsonLdTwo } from "./constants";
+import { getJsonLdTwo,jsonLdFirst } from "./constants";
 
 export const metadata: Metadata = {
   title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
-  description:
-    "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
+  description: "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
   openGraph: {
     title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
-    description:
-      "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
+    description: "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
     url: "https://bhagavadgita.io/gitagpt",
     siteName: "Bhagavad Gita",
-    images:
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        secureUrl: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        height: 1080,
+        width: 1920,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
-    description:
-      "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
-    images: [
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-    ],
+    description: "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
+    images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
     site: "@ShriKrishna",
   },
   alternates: {
@@ -39,6 +38,8 @@ export const metadata: Metadata = {
 export default async function GitagptPage(props: ParamsWithLocale) {
   const { params } = props;
   const locale = paramsToLocale(params);
+  const jsonLdSecond = getJsonLdTwo(locale);
+
   return (
     <>
       <script
@@ -47,7 +48,7 @@ export default async function GitagptPage(props: ParamsWithLocale) {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSecond) }}
       />
       {["en", "hi"].includes(locale) && (
         <div style={{ height: "100vh", width: "100vw" }}>

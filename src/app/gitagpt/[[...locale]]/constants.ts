@@ -5,9 +5,15 @@ export const jsonLdFirst = {
   name: "Bhagavad Gita",
   url: "https://bhagavadgita.io",
   logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
+  sameAs: [
+    "https://www.facebook.com/iiRadhaKrishnaii/",
+    "https://www.linkedin.com/company/bhagavadgita/",
+    "https://www.pinterest.com/iiradhakrishnaii/",
+    "https://twitter.com/ShriKrishna",
+  ],
 };
 
-export const jsonLdTwo = {
+export const getJsonLdTwo = (locale: string) => ({
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
@@ -15,17 +21,26 @@ export const jsonLdTwo = {
       "@type": "ListItem",
       position: 1,
       item: {
-        "@id": "https://bhagavadgita.io",
-        name: "Home",
+        "@id":
+          locale === "hi"
+            ? "https://bhagavadgita.io/hi"
+            : "https://bhagavadgita.io",
+        name: locale === "hi" ? "होम" : "Home",
       },
     },
     {
       "@type": "ListItem",
       position: 2,
       item: {
-        "@id": "https://bhagavadgita.io/ai",
-        name: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
+        "@id":
+          locale === "hi"
+            ? "https://bhagavadgita.io/gitagpt/hi"
+            : "https://bhagavadgita.io/gitagpt",
+        name:
+          locale === "hi"
+            ? "Bhagavad Gita AI - Gita GPT - Ask Krishna"
+            : "Bhagavad Gita AI - Gita GPT - Ask Krishna",
       },
     },
   ],
-};
+});

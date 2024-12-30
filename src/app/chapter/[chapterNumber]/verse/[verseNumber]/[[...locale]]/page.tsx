@@ -20,24 +20,51 @@ type Props = {
 };
 
 export async function generateMetadata({
-  params: { verseNumber, chapterNumber },
+  params: { verseNumber, chapterNumber, locale: localeParams },
 }: Props): Promise<Metadata> {
+  const locale = paramsToLocale({ locale: localeParams });
+  const isHindi = locale === 'hi';
+  const baseUrl = 'https://bhagavadgita.io';
+  const verseUrl = `${baseUrl}/chapter/${chapterNumber}/verse/${verseNumber}`;
+
+  const verseData = await getVerseData(
+    Number(chapterNumber) || 1,
+    Number(verseNumber) || 1,
+    1, // default commentary author
+    1, // default translation author
+  );
+
+  if (!verseData) {
+    return {};
+  }
+
+  const verseText = verseData.text.slice(0, 100);
+  const verseTranslation = verseData.gita_translations[0]?.description?.slice(0, 100);
+  const description = isHindi 
+    ? `भगवद् गीता अध्याय ${chapterNumber} श्लोक ${verseNumber}: ${verseText}... ${verseTranslation}...`
+    : `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber}: ${verseText}... ${verseTranslation}...`;
+
+  const title = isHindi
+    ? `भगवद् गीता अध्याय ${chapterNumber} श्लोक ${verseNumber} - BhagavadGita.io`
+    : `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber} - BhagavadGita.io`;
+
   return {
-    title: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber} - BhagavadGita.io`,
+    title,
+    description,
     openGraph: {
-      url: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
+      url: isHindi ? `${verseUrl}/hi` : verseUrl,
       siteName: "Bhagavad Gita",
-      locale: "en_US",
+      locale: isHindi ? "hi_IN" : "en_US",
       type: "article",
       authors: "https://www.facebook.com/radhakrishnablog/",
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
-      title: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber} - BhagavadGita.io`,
+      title,
+      description,
       images: [
         {
           url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          secureUrl: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -45,21 +72,21 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber} - BhagavadGita.io`,
-      images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
+      title,
+      description,
+      images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
       site: "@ShriKrishna",
     },
     alternates: {
       languages: {
-        en: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
-        "en-US": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
-        "en-GB": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
-        "en-IN": `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
-        hi: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}/hi`,
+        "x-default": verseUrl,
+        en: verseUrl,
+        "en-US": verseUrl,
+        "en-GB": verseUrl,
+        "en-IN": verseUrl,
+        hi: `${verseUrl}/hi`,
       },
-      canonical: `https://bhagavadgita.io/chapter/${chapterNumber}/verse/${verseNumber}`,
+      canonical: isHindi ? `${verseUrl}/hi` : verseUrl,
     },
   };
 }
