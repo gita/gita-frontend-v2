@@ -26,7 +26,7 @@ export default function PrivacyTermsBanner({
           className="xl:rounded-lg"
         />
         <div className="flex h-4/5 flex-col px-8 py-36">
-          <h1 className="text-shadow t-shadow z-20 text-center text-3xl font-extrabold text-white md:text-5xl">
+          <h1 className="text-shadow z-20 text-center text-3xl font-extrabold text-white shadow-lg md:text-5xl">
             {title}
           </h1>
           <p className="text-shadow z-20 mt-5 text-center text-gray-200">
