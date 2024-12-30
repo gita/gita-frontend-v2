@@ -20,7 +20,7 @@ function Modal({ modalVisible, setModalVisible }: Props) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-gray-500/75 transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -74,7 +74,7 @@ function Modal({ modalVisible, setModalVisible }: Props) {
                     <div className="mt-5 sm:mt-6">
                       <button
                         type="button"
-                        className="mx-auto flex w-1/3 justify-center rounded-md border border-transparent bg-my-orange px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 sm:text-sm"
+                        className="mx-auto flex w-1/3 justify-center rounded-md border border-transparent bg-my-orange px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-my-orange/75 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 sm:text-sm"
                         onClick={() => setModalVisible(false)}
                       >
                         I got it

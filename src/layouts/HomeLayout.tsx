@@ -1,11 +1,13 @@
 "use client";
 
+import { headers } from "next/headers";
+
 import { getTranslate } from "shared/translate";
 
 import Footer from "../components/Footers/Footer";
 import IndexHeader from "../components/Headers/IndexHeader";
 
-const HomeLayout = ({
+const HomeLayoutClient = ({
   children,
   locale,
   translations,
@@ -15,10 +17,10 @@ const HomeLayout = ({
   return (
     <div className="flex min-h-screen flex-col dark:bg-dark-bg">
       <IndexHeader locale={locale} translate={translate} />
-      <div className="flex-1 pt-[84px] lg:pt-[90px]">{children}</div>
+      <main className="flex-1 pt-[84px] lg:pt-[90px]">{children}</main>
       <Footer translate={translate} />
     </div>
   );
 };
 
-export default HomeLayout;
+export default HomeLayoutClient;

@@ -24,6 +24,7 @@ type Props = {
 } & LocaleAndTranslations;
 
 const Newsletter = ({ notification, locale, translations }: Props) => {
+  const [isClient, setIsClient] = useState(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [formData, setFormData] = useState<NewsletterFormData>({
     name: "",
@@ -36,6 +37,11 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
   const [cookies, setCookie] = useCookies(["access_token"]);
 
   const translate = getTranslate(translations, locale);
+
+  useEffect(() => {
+    console.log("[Newsletter] Component mounted");
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     const access_token = pathName?.match(/\#(?:access_token)\=([\S\s]*?)\&/);
@@ -84,6 +90,11 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
       };
   }
 
+  // Only render content after hydration
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <div className="relative z-0 mt-14">
       <Modal modalVisible={modalVisible} setModalVisible={setModalVisible} />
@@ -111,33 +122,29 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
               type="text"
               value={formData.name}
               onChange={(e) =>
-                setFormData((prevData) => {
-                  return {
-                    ...prevData,
-                    name: e.target.value,
-                  };
-                })
+                setFormData((prevData) => ({
+                  ...prevData,
+                  name: e.target.value,
+                }))
               }
               placeholder={translate("Enter Your Name")}
             />
             <input
-              className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight  text-gray-700 focus:border-my-orange focus:outline-none dark:bg-dark-100 dark:text-white dark:placeholder:text-gray-50 md:mt-0"
+              className="z-50 mr-6 mt-4 w-full appearance-none rounded-md border p-3 leading-tight text-gray-700 focus:border-my-orange focus:outline-none dark:bg-dark-100 dark:text-white dark:placeholder:text-gray-50 md:mt-0"
               id="email"
               type="email"
               placeholder={translate("Enter Your Email")}
               value={formData.email}
               onChange={(e) =>
-                setFormData((prevData) => {
-                  return {
-                    ...prevData,
-                    email: e.target.value,
-                  };
-                })
+                setFormData((prevData) => ({
+                  ...prevData,
+                  email: e.target.value,
+                }))
               }
             />
             <button
               type="submit"
-              className="z-50 mt-4 rounded-md bg-my-orange px-8 py-3 text-white shadow hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 md:mt-0"
+              className="z-50 mt-4 rounded-md bg-my-orange px-8 py-3 text-white shadow hover:bg-my-orange/75 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 md:mt-0"
             >
               {translate("Subscribe")}
             </button>
@@ -159,10 +166,8 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
   );
 };
 
-const mapStateToPros = (state: RootState) => {
-  return {
-    notification: state.main?.notification,
-  };
-};
+const mapStateToPros = (state: RootState) => ({
+  notification: state.main?.notification,
+});
 
 export default connect(mapStateToPros)(Newsletter);

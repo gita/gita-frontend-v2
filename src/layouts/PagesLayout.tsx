@@ -4,7 +4,7 @@ import { getTranslate } from "shared/translate";
 
 import Footer from "../components/Footers/Footer";
 
-const PagesLayout = ({
+const PagesLayoutClient = ({
   children,
   locale,
   translations,
@@ -22,4 +22,4 @@ const PagesLayout = ({
   );
 };
 
-export default PagesLayout;
+export default PagesLayoutClient;

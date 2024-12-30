@@ -6,49 +6,67 @@ import { paramsToLocale } from "shared/functions";
 
 import HomePage from "./HomePage";
 
-export const metadata: Metadata = {
-  title: "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
-  description:
-    "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface; Gita Saar In Hindi; Bhagavad Gita quotes.",
-  openGraph: {
-    title: "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
-    description:
-      "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface; Gita Saar In Hindi; Bhagavad Gita quotes.",
-    url: "https://bhagavadgita.io",
-    siteName: "Bhagavad Gita",
-    images:
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
-    description:
-      "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface; Gita Saar In Hindi; Bhagavad Gita quotes.",
-    images: [
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-    ],
-    site: "@ShriKrishna",
-  },
-  verification: {
-    google: "FafB0VlsAZd51s-bIT0hsgtAY9xdb8PNxCNQ9tsqDqE",
-    other: {
-      "p:domain_verify": ["21a3d58146eb60f13c6fc72f26abda2d"],
-      "msvalidate.01": ["0451A734F7E9BD838957319E106DE363"],
+export async function generateMetadata({
+  params,
+}: ParamsWithLocale): Promise<Metadata> {
+  const locale = paramsToLocale(params);
+  const isHindi = locale === "hi";
+  const baseUrl = "https://bhagavadgita.io";
+
+  return {
+    title: isHindi
+      ? "श्रीमद् भगवद् गीता - नि:शुल्क ऑनलाइन भगवद् गीता"
+      : "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
+    description: isHindi
+      ? "हिंदी और अंग्रेजी में भगवद् गीता। सरल, सुंदर और उपयोग में आसान इंटरफ़ेस में ऑनलाइन भगवद् गीता पढ़ें; हिंदी में गीता सार; भगवद् गीता के श्लोक।"
+      : "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface; Gita Saar In Hindi; Bhagavad Gita quotes.",
+    openGraph: {
+      title: isHindi
+        ? "श्रीमद् भगवद् गीता - नि:शुल्क ऑनलाइन भगवद् गीता"
+        : "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
+      description: isHindi
+        ? "हिंदी और अंग्रेजी में भगवद् गीता। सरल, सुंदर और उपयोग में आसान इंटरफ़ेस में ऑनलाइन भगवद् गीता पढ़ें"
+        : "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface",
+      url: isHindi ? `${baseUrl}/hi` : baseUrl,
+      siteName: "Bhagavad Gita",
+      images:
+        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      locale: isHindi ? "hi_IN" : "en_US",
+      type: "website",
     },
-  },
-  alternates: {
-    languages: {
-      en: "https://bhagavadgita.io",
-      "en-US": "https://bhagavadgita.io",
-      "en-GB": "https://bhagavadgita.io",
-      "en-IN": "https://bhagavadgita.io",
-      hi: "https://bhagavadgita.io/hi",
+    twitter: {
+      card: "summary_large_image",
+      title: isHindi
+        ? "श्रीमद् भगवद् गीता - नि:शुल्क ऑनलाइन भगवद् गीता"
+        : "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
+      description: isHindi
+        ? "हिंदी और अंग्रेजी में भगवद् गीता। सरल, सुंदर और उपयोग में आसान इंटरफ़ेस में ऑनलाइन भगवद् गीता पढ़ें"
+        : "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface",
+      images: [
+        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      ],
+      site: "@ShriKrishna",
     },
-    canonical: "https://bhagavadgita.io",
-  },
-};
+    verification: {
+      google: "FafB0VlsAZd51s-bIT0hsgtAY9xdb8PNxCNQ9tsqDqE",
+      other: {
+        "p:domain_verify": ["21a3d58146eb60f13c6fc72f26abda2d"],
+        "msvalidate.01": ["0451A734F7E9BD838957319E106DE363"],
+      },
+    },
+    alternates: {
+      languages: {
+        "x-default": baseUrl,
+        en: baseUrl,
+        "en-US": baseUrl,
+        "en-GB": baseUrl,
+        "en-IN": baseUrl,
+        hi: `${baseUrl}/hi`,
+      },
+      canonical: isHindi ? `${baseUrl}/hi` : baseUrl,
+    },
+  };
+}
 
 export default async function Home({ params }: ParamsWithLocale) {
   const locale = paramsToLocale(params);
@@ -62,9 +80,7 @@ export default async function Home({ params }: ParamsWithLocale) {
     url: "https://bhagavadgita.io",
     sameAs: [
       "https://www.facebook.com/iiRadhaKrishnaii/",
-      "https://instagram.com/iiradhakrishnaii/",
       "https://www.linkedin.com/company/bhagavadgita/",
-      "https://www.youtube.com/c/krsna",
       "https://www.pinterest.com/iiradhakrishnaii/",
       "https://twitter.com/ShriKrishna",
     ],

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { headers } from "next/headers";
 
 import TopLoader from "components/Headers/TopLoader";
 
@@ -50,8 +51,22 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const headersList = headers();
+  const pathname = headersList.get("x-invoke-path") || "";
+  const isHindi = pathname.includes("/hi") || pathname === "/hi";
+  const htmlLang = isHindi ? "hi" : "en";
+
+  // Log all headers for debugging
+  console.log("[RootLayout] Path:", pathname);
+  console.log("[RootLayout] Is Hindi path:", isHindi);
+  console.log("[RootLayout] Using HTML lang:", htmlLang);
+
   return (
-    <html className={inter.className} suppressHydrationWarning>
+    <html lang={htmlLang} className={inter.className} suppressHydrationWarning>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body>
         <Providers>
           <PreloadResources />
