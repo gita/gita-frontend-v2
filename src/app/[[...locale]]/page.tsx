@@ -162,8 +162,8 @@ export default async function Home({ params }: ParamsWithLocale) {
               fjs.parentNode.insertBefore(js, fjs);
             })(window, document, "script", "Botsonic", "https://widget.writesonic.com/CDN/botsonic.min.js");
             Botsonic("init", {
-              serviceBaseUrl: "https://api.botsonic.ai",
-              token: "aa0b5e0e-9284-4c52-968f-77f2c959dcdc",
+              serviceBaseUrl: "https://api-azure.botsonic.ai",
+              token: "97984adc-5eec-43db-ae83-69cbffb823af",
             });
           `}
       </Script>
