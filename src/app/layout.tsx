@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
+import Script from "next/script";
 
 import TopLoader from "components/Headers/TopLoader";
 
@@ -66,13 +67,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="https://p.usestyle.ai" defer />
       </head>
       <body>
         <Providers>
           <PreloadResources />
           <TopLoader />
           {children}
+          <Script src="https://p.usestyle.ai" defer />
+          <Script
+            id="sa-dynamic-optimization"
+            dangerouslySetInnerHTML={{
+              __html: `var script = document.createElement("script");script.setAttribute("nowprocket", "");script.setAttribute("nitro-exclude", "");script.src = "https://dashboard.searchatlas.com/scripts/dynamic_optimization.js";script.dataset.uuid = "aa22da35-1a8e-43c4-b313-ba60739e999c";script.id = "sa-dynamic-optimization-loader";document.head.appendChild(script);`
+            }}
+          />
         </Providers>
       </body>
     </html>
