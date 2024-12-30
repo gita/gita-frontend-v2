@@ -218,7 +218,7 @@ const AuthorSettings = ({
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="relative z-20 mt-1 w-full max-h-48 overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                        <Listbox.Options className="relative z-20 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
                           {translation_authors.map((author) => (
                             <Listbox.Option
                               key={author.id}

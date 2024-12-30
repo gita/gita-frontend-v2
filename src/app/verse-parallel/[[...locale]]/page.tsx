@@ -13,14 +13,14 @@ export default function VerseParallel() {
       <div className="mx-auto max-w-5xl px-4 py-12 text-center  font-inter sm:px-6">
         <Image
           src="/arrow-left.png"
-          className="-z-10 fixed left-3 top-1/2 md:top-1/3"
+          className="fixed left-3 top-1/2 -z-10 md:top-1/3"
           width={40}
           height={40}
           alt="arrow left icon"
         />
         <Image
           src="/arrow-right.png"
-          className="-z-10 fixed right-3 top-1/2 md:top-1/3"
+          className="fixed right-3 top-1/2 -z-10 md:top-1/3"
           width={40}
           height={40}
           alt="arrow right icon"

@@ -6,20 +6,22 @@ import { paramsToLocale } from "shared/functions";
 
 import HomePage from "./HomePage";
 
-export async function generateMetadata({ params }: ParamsWithLocale): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ParamsWithLocale): Promise<Metadata> {
   const locale = paramsToLocale(params);
-  const isHindi = locale === 'hi';
-  const baseUrl = 'https://bhagavadgita.io';
-  
+  const isHindi = locale === "hi";
+  const baseUrl = "https://bhagavadgita.io";
+
   return {
-    title: isHindi 
+    title: isHindi
       ? "श्रीमद् भगवद् गीता - नि:शुल्क ऑनलाइन भगवद् गीता"
       : "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
     description: isHindi
       ? "हिंदी और अंग्रेजी में भगवद् गीता। सरल, सुंदर और उपयोग में आसान इंटरफ़ेस में ऑनलाइन भगवद् गीता पढ़ें; हिंदी में गीता सार; भगवद् गीता के श्लोक।"
       : "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface; Gita Saar In Hindi; Bhagavad Gita quotes.",
     openGraph: {
-      title: isHindi 
+      title: isHindi
         ? "श्रीमद् भगवद् गीता - नि:शुल्क ऑनलाइन भगवद् गीता"
         : "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
       description: isHindi
@@ -27,19 +29,22 @@ export async function generateMetadata({ params }: ParamsWithLocale): Promise<Me
         : "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface",
       url: isHindi ? `${baseUrl}/hi` : baseUrl,
       siteName: "Bhagavad Gita",
-      images: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      images:
+        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: isHindi 
+      title: isHindi
         ? "श्रीमद् भगवद् गीता - नि:शुल्क ऑनलाइन भगवद् गीता"
         : "Srimad Bhagavad Gita - Free Searchable Online Bhagwat Geeta",
       description: isHindi
         ? "हिंदी और अंग्रेजी में भगवद् गीता। सरल, सुंदर और उपयोग में आसान इंटरफ़ेस में ऑनलाइन भगवद् गीता पढ़ें"
         : "Bhagwat Geeta in Hindi and English. Read Bhagavad Gita online in a simple, beautiful and easy-to-use interface",
-      images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
+      images: [
+        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      ],
       site: "@ShriKrishna",
     },
     verification: {

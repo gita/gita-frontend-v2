@@ -19,21 +19,19 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { chapterNumber } = params;
   const locale = paramsToLocale(params);
-  const isHindi = locale === 'hi';
-  const baseUrl = 'https://bhagavadgita.io';
+  const isHindi = locale === "hi";
+  const baseUrl = "https://bhagavadgita.io";
   const chapterUrl = `${baseUrl}/chapter/${chapterNumber}`;
-  
-  const chapterData = await getChapterData(
-    locale,
-    Number(chapterNumber) || 1,
-  );
+
+  const chapterData = await getChapterData(locale, Number(chapterNumber) || 1);
   if (!chapterData) {
     return {};
   }
 
   // Get first two sentences for description
-  const sentences = chapterData.gita_chapters_by_pk.chapter_summary.split(/[.!?]+\s+/);
-  const chapterDescription = sentences.slice(0, 2).join('. ') + '.';
+  const sentences =
+    chapterData.gita_chapters_by_pk.chapter_summary.split(/[.!?]+\s+/);
+  const chapterDescription = sentences.slice(0, 2).join(". ") + ".";
 
   const title = isHindi
     ? `भगवद् गीता अध्याय ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`
@@ -55,7 +53,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [
         {
           url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          secureUrl:
+            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -65,7 +64,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description: `${chapterDescription}...`,
-      images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
+      images: [
+        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      ],
       site: "@ShriKrishna",
     },
     alternates: {

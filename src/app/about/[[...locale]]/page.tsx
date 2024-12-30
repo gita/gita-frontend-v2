@@ -8,10 +8,12 @@ import { jsonLdFirst, jsonLdTwo } from "./constants";
 
 export const metadata: Metadata = {
   title: "About Bhagavad Gita - BhagavadGita.io",
-  description: "Learn about the Bhagavad Gita, a 700-verse Hindu scripture that is part of the epic Mahabharata. Discover its profound wisdom, teachings, and the eternal dialogue between Arjuna and Lord Krishna.",
+  description:
+    "Learn about the Bhagavad Gita, a 700-verse Hindu scripture that is part of the epic Mahabharata. Discover its profound wisdom, teachings, and the eternal dialogue between Arjuna and Lord Krishna.",
   openGraph: {
     title: "About Bhagavad Gita - BhagavadGita.io",
-    description: "Learn about the Bhagavad Gita, a 700-verse Hindu scripture that is part of the epic Mahabharata. Discover its profound wisdom, teachings, and the eternal dialogue between Arjuna and Lord Krishna.",
+    description:
+      "Learn about the Bhagavad Gita, a 700-verse Hindu scripture that is part of the epic Mahabharata. Discover its profound wisdom, teachings, and the eternal dialogue between Arjuna and Lord Krishna.",
     url: "https://bhagavadgita.io/about",
     siteName: "Bhagavad Gita",
     locale: "en_US",
@@ -19,7 +21,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-        secureUrl: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        secureUrl:
+          "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
         height: 1080,
         width: 1920,
       },
@@ -28,8 +31,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "About Bhagavad Gita - BhagavadGita.io",
-    description: "Learn about the Bhagavad Gita, a 700-verse Hindu scripture that is part of the epic Mahabharata. Discover its profound wisdom, teachings, and the eternal dialogue between Arjuna and Lord Krishna.",
-    images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
+    description:
+      "Learn about the Bhagavad Gita, a 700-verse Hindu scripture that is part of the epic Mahabharata. Discover its profound wisdom, teachings, and the eternal dialogue between Arjuna and Lord Krishna.",
+    images: [
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    ],
     site: "@ShriKrishna",
   },
   alternates: {

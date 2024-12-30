@@ -406,7 +406,7 @@ const Footer = (props: Props) => {
                     </Menu.Items>
                   </Transition>
                   <div>
-                    <Menu.Button className="inline-flex justify-center w-full rounded-lg border border-gray-300 shadow-sm px-2 py-2 bg-white dark:bg-dark-100 text-xs text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-700 focus:ring-my-orange">
+                    <Menu.Button className="inline-flex w-full justify-center rounded-lg border border-gray-300 bg-white p-2 text-xs text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 focus:ring-offset-gray-100 dark:bg-dark-100 dark:text-gray-400 dark:hover:bg-dark-bg dark:focus:ring-offset-gray-700">
                       More
                       {open ? (
                         <ChevronUpIcon

@@ -23,8 +23,8 @@ export async function generateMetadata({
   params: { verseNumber, chapterNumber, locale: localeParams },
 }: Props): Promise<Metadata> {
   const locale = paramsToLocale({ locale: localeParams });
-  const isHindi = locale === 'hi';
-  const baseUrl = 'https://bhagavadgita.io';
+  const isHindi = locale === "hi";
+  const baseUrl = "https://bhagavadgita.io";
   const verseUrl = `${baseUrl}/chapter/${chapterNumber}/verse/${verseNumber}`;
 
   const verseData = await getVerseData(
@@ -39,8 +39,11 @@ export async function generateMetadata({
   }
 
   const verseText = verseData.text.slice(0, 100);
-  const verseTranslation = verseData.gita_translations[0]?.description?.slice(0, 100);
-  const description = isHindi 
+  const verseTranslation = verseData.gita_translations[0]?.description?.slice(
+    0,
+    100,
+  );
+  const description = isHindi
     ? `भगवद् गीता अध्याय ${chapterNumber} श्लोक ${verseNumber}: ${verseText}... ${verseTranslation}...`
     : `Bhagavad Gita Chapter ${chapterNumber} Verse ${verseNumber}: ${verseText}... ${verseTranslation}...`;
 
@@ -64,7 +67,8 @@ export async function generateMetadata({
       images: [
         {
           url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          secureUrl:
+            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -74,7 +78,9 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
+      images: [
+        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      ],
       site: "@ShriKrishna",
     },
     alternates: {

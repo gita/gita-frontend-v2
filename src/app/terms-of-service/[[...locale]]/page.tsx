@@ -4,10 +4,12 @@ import PrivacyTermsBanner from "components/PrivacyTermsBanner";
 
 export const metadata: Metadata = {
   title: "Terms of Service - BhagavadGita.io",
-  description: "Read our terms of service to understand the rules, guidelines, and conditions for using BhagavadGita.io. Learn about user responsibilities, copyright policies, and acceptable use.",
+  description:
+    "Read our terms of service to understand the rules, guidelines, and conditions for using BhagavadGita.io. Learn about user responsibilities, copyright policies, and acceptable use.",
   openGraph: {
     title: "Terms of Service - BhagavadGita.io",
-    description: "Read our terms of service to understand the rules, guidelines, and conditions for using BhagavadGita.io. Learn about user responsibilities, copyright policies, and acceptable use.",
+    description:
+      "Read our terms of service to understand the rules, guidelines, and conditions for using BhagavadGita.io. Learn about user responsibilities, copyright policies, and acceptable use.",
     url: "https://bhagavadgita.io/terms-of-service",
     siteName: "Bhagavad Gita",
     locale: "en_US",
@@ -15,7 +17,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-        secureUrl: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        secureUrl:
+          "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
         height: 1080,
         width: 1920,
       },
@@ -24,8 +27,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Terms of Service - BhagavadGita.io",
-    description: "Read our terms of service to understand the rules, guidelines, and conditions for using BhagavadGita.io. Learn about user responsibilities, copyright policies, and acceptable use.",
-    images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
+    description:
+      "Read our terms of service to understand the rules, guidelines, and conditions for using BhagavadGita.io. Learn about user responsibilities, copyright policies, and acceptable use.",
+    images: [
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    ],
     site: "@ShriKrishna",
   },
   alternates: {

@@ -18,4 +18,4 @@ export default function ServerPagesLayout({
       {children}
     </PagesLayoutClient>
   );
-} 
+}

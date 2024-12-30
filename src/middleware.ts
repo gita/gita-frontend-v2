@@ -9,13 +9,17 @@ export function middleware(req: NextRequest) {
   console.log("[Middleware] Processing request for path:", pathname);
 
   // Skip middleware for static files and API routes
-  if (pathname.startsWith('/app') || pathname.startsWith('/_next') || pathname.startsWith('/api')) {
+  if (
+    pathname.startsWith("/app") ||
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api")
+  ) {
     console.log("[Middleware] Skipping middleware for static/api path");
     return NextResponse.next();
   }
 
   // Handle trailing slashes
-  if (pathname.endsWith('/') && pathname !== '/') {
+  if (pathname.endsWith("/") && pathname !== "/") {
     console.log("[Middleware] Redirecting to remove trailing slash");
     return NextResponse.redirect(new URL(pathname.slice(0, -1), req.url));
   }
@@ -81,14 +85,12 @@ export function middleware(req: NextRequest) {
     "x-settings-t": String(translationAuthor.id),
     "x-settings-c": String(commentaryAuthor.id),
     "x-locale": locale,
-    "x-html-lang": locale
+    "x-html-lang": locale,
   });
 
   return response;
 }
 
 export const config = {
-  matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|app).*)',
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|app).*)"],
 };

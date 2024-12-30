@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 
 import { paramsToLocale } from "shared/functions";
 
-import { getJsonLdTwo,jsonLdFirst } from "./constants";
+import { getJsonLdTwo, jsonLdFirst } from "./constants";
 
 export const metadata: Metadata = {
   title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
-  description: "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
+  description:
+    "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
   openGraph: {
     title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
-    description: "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
+    description:
+      "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
     url: "https://bhagavadgita.io/gitagpt",
     siteName: "Bhagavad Gita",
     locale: "en_US",
@@ -17,7 +19,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-        secureUrl: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        secureUrl:
+          "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
         height: 1080,
         width: 1920,
       },
@@ -26,8 +29,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
-    description: "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
-    images: ["https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75"],
+    description:
+      "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
+    images: [
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    ],
     site: "@ShriKrishna",
   },
   alternates: {
