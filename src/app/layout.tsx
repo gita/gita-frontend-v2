@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 
 import TopLoader from "components/Headers/TopLoader";
+import { paramsToLocale } from "shared/functions";
 
 import { PreloadResources } from "./preload-resources";
 import Providers from "./providers";
@@ -53,11 +54,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   const headersList = headers();
   const pathname = headersList.get("x-invoke-path") || "";
-  const htmlLang = headersList.get("x-html-lang") || "en";
+  
+  // Extract locale from path similar to pages
+  const pathParts = pathname.split("/").filter(Boolean);
+  const lastPart = pathParts[pathParts.length - 1];
+  const htmlLang = lastPart === "hi" ? "hi" : "en";
 
   // Log for debugging
   console.log("[RootLayout] Path:", pathname);
-  console.log("[RootLayout] HTML Lang from header:", htmlLang);
+  console.log("[RootLayout] Path parts:", pathParts);
+  console.log("[RootLayout] Last part:", lastPart);
+  console.log("[RootLayout] Using HTML lang:", htmlLang);
 
   return (
     <html lang={htmlLang} className={inter.className} suppressHydrationWarning>

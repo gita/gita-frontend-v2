@@ -38,7 +38,8 @@ export function middleware(req: NextRequest) {
 
   // More robust locale detection
   const pathParts = pathname.split("/").filter(Boolean);
-  const hasHindiInPath = pathname.includes("/hi") || pathname === "/hi" || pathname.endsWith("/hi");
+  const hasHindiInPath =
+    pathname.includes("/hi") || pathname === "/hi" || pathname.endsWith("/hi");
   const isHindiCookie = cookieL === "hi";
   const locale = hasHindiInPath || isHindiCookie ? "hi" : "en";
 
