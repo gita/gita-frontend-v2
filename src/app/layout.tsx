@@ -54,16 +54,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   const headersList = headers();
   const pathname = headersList.get("x-invoke-path") || "";
-  
-  // Extract locale from path similar to pages
-  const pathParts = pathname.split("/").filter(Boolean);
-  const lastPart = pathParts[pathParts.length - 1];
-  const htmlLang = lastPart === "hi" ? "hi" : "en";
+  const htmlLang = pathname.includes("/hi") ? "hi" : "en";
 
   // Log for debugging
   console.log("[RootLayout] Path:", pathname);
-  console.log("[RootLayout] Path parts:", pathParts);
-  console.log("[RootLayout] Last part:", lastPart);
   console.log("[RootLayout] Using HTML lang:", htmlLang);
 
   return (
