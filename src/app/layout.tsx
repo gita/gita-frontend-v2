@@ -74,12 +74,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <TopLoader />
           {children}
           <Script src="https://p.usestyle.ai" defer />
-          <Script
-            id="sa-dynamic-optimization"
-            dangerouslySetInnerHTML={{
-              __html: `var script = document.createElement("script");script.setAttribute("nowprocket", "");script.setAttribute("nitro-exclude", "");script.src = "https://dashboard.searchatlas.com/scripts/dynamic_optimization.js";script.dataset.uuid = "aa22da35-1a8e-43c4-b313-ba60739e999c";script.id = "sa-dynamic-optimization-loader";document.head.appendChild(script);`
-            }}
-          />
         </Providers>
       </body>
     </html>
