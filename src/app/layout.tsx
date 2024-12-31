@@ -53,13 +53,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const headersList = headers();
-  const host = headersList.get("host") || "";
-  const url = headersList.get("referer") || "";
-  const htmlLang = url.includes("/hi") ? "hi" : "en";
+  const requestUrl = headersList.get("x-invoke-path") || "";
+  const htmlLang = requestUrl.includes("/hi") ? "hi" : "en";
 
   // Log for debugging
-  console.log("[RootLayout] Host:", host);
-  console.log("[RootLayout] URL:", url);
+  console.log("[RootLayout] Request URL:", requestUrl);
   console.log("[RootLayout] Using HTML lang:", htmlLang);
 
   return (
