@@ -53,10 +53,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   const headersList = headers();
   const pathname = headersList.get("x-invoke-path") || "";
-  const isHindi = pathname.includes("/hi") || pathname === "/hi";
+  
+  // More robust Hindi path detection
+  const isHindi = pathname.includes("/hi") || 
+                 pathname.endsWith("/hi") || 
+                 pathname === "/hi";
+  
   const htmlLang = isHindi ? "hi" : "en";
 
-  // Log all headers for debugging
+  // Log for debugging
   console.log("[RootLayout] Path:", pathname);
   console.log("[RootLayout] Is Hindi path:", isHindi);
   console.log("[RootLayout] Using HTML lang:", htmlLang);

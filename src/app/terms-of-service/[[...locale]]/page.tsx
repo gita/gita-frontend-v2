@@ -5,11 +5,11 @@ import PrivacyTermsBanner from "components/PrivacyTermsBanner";
 export const metadata: Metadata = {
   title: "Terms of Service - BhagavadGita.io",
   description:
-    "Read our terms of service to understand the rules, guidelines, and conditions for using BhagavadGita.io. Learn about user responsibilities, copyright policies, and acceptable use.",
+    "Essential guidelines for using our platform. Read about user responsibilities, content usage, copyright policies, and service terms.",
   openGraph: {
     title: "Terms of Service - BhagavadGita.io",
     description:
-      "Read our terms of service to understand the rules, guidelines, and conditions for using BhagavadGita.io. Learn about user responsibilities, copyright policies, and acceptable use.",
+      "Essential guidelines for using our platform. Read about user responsibilities, content usage, copyright policies, and service terms.",
     url: "https://bhagavadgita.io/terms-of-service",
     siteName: "Bhagavad Gita",
     locale: "en_US",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Terms of Service - BhagavadGita.io",
     description:
-      "Read our terms of service to understand the rules, guidelines, and conditions for using BhagavadGita.io. Learn about user responsibilities, copyright policies, and acceptable use.",
+      "Essential guidelines for using our platform. Read about user responsibilities, content usage, copyright policies, and service terms.",
     images: [
       "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],
