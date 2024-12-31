@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
-import Script from "next/script";
 
 import TopLoader from "components/Headers/TopLoader";
 
@@ -73,7 +72,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <PreloadResources />
           <TopLoader />
           {children}
-          <Script src="https://p.usestyle.ai" defer />
         </Providers>
       </body>
     </html>
