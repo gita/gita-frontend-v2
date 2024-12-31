@@ -39,17 +39,19 @@ export async function generateMetadata({
   }
 
   // Create description with verse text and translation, limited to 160 chars
-  const prefix = isHindi 
+  const prefix = isHindi
     ? `भगवद् गीता ${chapterNumber}.${verseNumber}: `
     : `Bhagavad Gita ${chapterNumber}.${verseNumber}: `;
   const verseText = verseData.text;
   const verseTranslation = verseData.gita_translations[0]?.description || "";
-  
+
   // Calculate remaining space after prefix
   const remainingSpace = 157 - prefix.length; // 157 to leave room for "..."
-  const description = prefix + (verseText.length > remainingSpace 
-    ? verseText.slice(0, remainingSpace) + "..."
-    : verseText);
+  const description =
+    prefix +
+    (verseText.length > remainingSpace
+      ? verseText.slice(0, remainingSpace) + "..."
+      : verseText);
 
   const title = isHindi
     ? `भगवद् गीता अध्याय ${chapterNumber} श्लोक ${verseNumber} - BhagavadGita.io`

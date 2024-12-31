@@ -11,7 +11,7 @@ import VerseOfTheDay from "./VerseOfTheDay";
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Bhagavad Gita - Verse of the Day",
-    description: 
+    description:
       "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
     openGraph: {
       url: "https://bhagavadgita.io/verse-of-the-day",

@@ -29,10 +29,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   // Get first sentence and limit to 160 chars
-  const firstSentence = chapterData.gita_chapters_by_pk.chapter_summary.split(/[.!?]+\s+/)[0];
-  const chapterDescription = firstSentence.length > 157 
-    ? firstSentence.slice(0, 157) + "..."
-    : firstSentence + ".";
+  const firstSentence =
+    chapterData.gita_chapters_by_pk.chapter_summary.split(/[.!?]+\s+/)[0];
+  const chapterDescription =
+    firstSentence.length > 157
+      ? firstSentence.slice(0, 157) + "..."
+      : firstSentence + ".";
 
   const title = isHindi
     ? `भगवद् गीता अध्याय ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`
