@@ -73,7 +73,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <PreloadResources />
           <TopLoader />
           {children}
-          <Script src="https://p.usestyle.ai" defer />
         </Providers>
       </body>
     </html>
