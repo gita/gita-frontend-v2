@@ -9,11 +9,11 @@ import { jsonLdFirst, jsonLdTwo } from "./constants";
 export const metadata: Metadata = {
   title: "About Bhagavad Gita - BhagavadGita.io",
   description:
-    "Learn about the Bhagavad Gita, a 700-verse Hindu scripture that is part of the epic Mahabharata. Discover its profound wisdom, teachings, and the eternal dialogue between Arjuna and Lord Krishna.",
+    "Bhagavad Gita is a 700-verse Hindu scripture from Mahabharata containing Lord Krishna's teachings to Arjuna. Discover timeless wisdom on dharma, karma, and spirituality.",
   openGraph: {
     title: "About Bhagavad Gita - BhagavadGita.io",
     description:
-      "Learn about the Bhagavad Gita, a 700-verse Hindu scripture that is part of the epic Mahabharata. Discover its profound wisdom, teachings, and the eternal dialogue between Arjuna and Lord Krishna.",
+      "Bhagavad Gita is a 700-verse Hindu scripture from Mahabharata containing Lord Krishna's teachings to Arjuna. Discover timeless wisdom on dharma, karma, and spirituality.",
     url: "https://bhagavadgita.io/about",
     siteName: "Bhagavad Gita",
     locale: "en_US",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Bhagavad Gita - BhagavadGita.io",
     description:
-      "Learn about the Bhagavad Gita, a 700-verse Hindu scripture that is part of the epic Mahabharata. Discover its profound wisdom, teachings, and the eternal dialogue between Arjuna and Lord Krishna.",
+      "Bhagavad Gita is a 700-verse Hindu scripture from Mahabharata containing Lord Krishna's teachings to Arjuna. Discover timeless wisdom on dharma, karma, and spirituality.",
     images: [
       "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],

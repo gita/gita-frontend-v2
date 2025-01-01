@@ -7,11 +7,11 @@ import { getJsonLdTwo, jsonLdFirst } from "./constants";
 export const metadata: Metadata = {
   title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
   description:
-    "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
+    "GitaGPT is a free AI chatbot powered by ChatGPT that provides wisdom from the Bhagavad Gita. Get instant spiritual guidance for your questions through Krishna's teachings.",
   openGraph: {
     title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
     description:
-      "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
+      "GitaGPT is a free AI chatbot powered by ChatGPT that provides wisdom from the Bhagavad Gita. Get instant spiritual guidance for your questions through Krishna's teachings.",
     url: "https://bhagavadgita.io/gitagpt",
     siteName: "Bhagavad Gita",
     locale: "en_US",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
     description:
-      "GitaGPT is a free Bhagavad Gita AI chatbot that uses the wisdom of the Bhagavad Gita to help answer your day-to-day questions. It's simple, insightful, and powered by ChatGPT.",
+      "GitaGPT is a free AI chatbot powered by ChatGPT that provides wisdom from the Bhagavad Gita. Get instant spiritual guidance for your questions through Krishna's teachings.",
     images: [
       "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],

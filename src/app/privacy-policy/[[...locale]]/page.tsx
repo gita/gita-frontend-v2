@@ -5,11 +5,11 @@ import PrivacyTermsBanner from "components/PrivacyTermsBanner";
 export const metadata: Metadata = {
   title: "Privacy Policy - BhagavadGita.io",
   description:
-    "Our privacy policy outlines how we collect, use, and protect your personal information when you use BhagavadGita.io. Learn about your data rights and our commitment to privacy.",
+    "Learn how we protect your data, ensure your privacy, and maintain security. Read about data collection, usage, cookies, and your rights.",
   openGraph: {
     title: "Privacy Policy - BhagavadGita.io",
     description:
-      "Our privacy policy outlines how we collect, use, and protect your personal information when you use BhagavadGita.io. Learn about your data rights and our commitment to privacy.",
+      "Learn how we protect your data, ensure your privacy, and maintain security. Read about data collection, usage, cookies, and your rights.",
     url: "https://bhagavadgita.io/privacy-policy",
     siteName: "Bhagavad Gita",
     locale: "en_US",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Privacy Policy - BhagavadGita.io",
     description:
-      "Our privacy policy outlines how we collect, use, and protect your personal information when you use BhagavadGita.io. Learn about your data rights and our commitment to privacy.",
+      "Learn how we protect your data, ensure your privacy, and maintain security. Read about data collection, usage, cookies, and your rights.",
     images: [
       "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],

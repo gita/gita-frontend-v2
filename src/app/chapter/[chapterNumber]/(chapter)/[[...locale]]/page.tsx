@@ -28,10 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
 
-  // Get first two sentences for description
-  const sentences =
-    chapterData.gita_chapters_by_pk.chapter_summary.split(/[.!?]+\s+/);
-  const chapterDescription = sentences.slice(0, 2).join(". ") + ".";
+  // Get first sentence and limit to 160 chars
+  const firstSentence =
+    chapterData.gita_chapters_by_pk.chapter_summary.split(/[.!?]+\s+/)[0];
+  const chapterDescription =
+    firstSentence.length > 157
+      ? firstSentence.slice(0, 157) + "..."
+      : firstSentence + ".";
 
   const title = isHindi
     ? `भगवद् गीता अध्याय ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`
@@ -39,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title,
-    description: `${chapterDescription}...`,
+    description: chapterDescription,
     openGraph: {
       url: isHindi ? `${chapterUrl}/hi` : chapterUrl,
       siteName: "Bhagavad Gita",
@@ -49,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
       title,
-      description: `${chapterDescription}...`,
+      description: chapterDescription,
       images: [
         {
           url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
@@ -63,7 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title,
-      description: `${chapterDescription}...`,
+      description: chapterDescription,
       images: [
         "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],

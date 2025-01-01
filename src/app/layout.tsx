@@ -2,8 +2,10 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
+import Script from "next/script";
 
 import TopLoader from "components/Headers/TopLoader";
+import { paramsToLocale } from "shared/functions";
 
 import { PreloadResources } from "./preload-resources";
 import Providers from "./providers";
@@ -52,13 +54,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const headersList = headers();
-  const pathname = headersList.get("x-invoke-path") || "";
-  const isHindi = pathname.includes("/hi") || pathname === "/hi";
-  const htmlLang = isHindi ? "hi" : "en";
+  const requestUrl = headersList.get("x-invoke-path") || "";
+  const htmlLang = requestUrl.includes("/hi") ? "hi" : "en";
 
-  // Log all headers for debugging
-  console.log("[RootLayout] Path:", pathname);
-  console.log("[RootLayout] Is Hindi path:", isHindi);
+  // Log for debugging
+  console.log("[RootLayout] Request URL:", requestUrl);
   console.log("[RootLayout] Using HTML lang:", htmlLang);
 
   return (
@@ -66,6 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Script src="https://p.usestyle.ai" defer />
       </head>
       <body>
         <Providers>

@@ -10,16 +10,20 @@ import VerseOfTheDay from "./VerseOfTheDay";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: `Bhagavad Gita - Verse of the Day`,
+    title: "Bhagavad Gita - Verse of the Day",
+    description:
+      "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
     openGraph: {
-      url: `https://bhagavadgita.io/verse-of-the-day`,
+      url: "https://bhagavadgita.io/verse-of-the-day",
       siteName: "Bhagavad Gita",
       locale: "en_US",
       type: "article",
       authors: "https://www.facebook.com/radhakrishnablog/",
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
-      title: `Bhagavad Gita - Verse of the Day`,
+      title: "Bhagavad Gita - Verse of the Day",
+      description:
+        "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
       images: [
         {
           url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
@@ -32,7 +36,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `Bhagavad Gita - Verse of the Day`,
+      title: "Bhagavad Gita - Verse of the Day",
+      description:
+        "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
       images: [
         "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
@@ -40,13 +46,13 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       languages: {
-        en: `https://bhagavadgita.io/verse-of-the-day`,
-        "en-US": `https://bhagavadgita.io/verse-of-the-day`,
-        "en-GB": `https://bhagavadgita.io/verse-of-the-day`,
-        "en-IN": `https://bhagavadgita.io/verse-of-the-day`,
-        hi: `https://bhagavadgita.io/verse-of-the-day/hi`,
+        en: "https://bhagavadgita.io/verse-of-the-day",
+        "en-US": "https://bhagavadgita.io/verse-of-the-day",
+        "en-GB": "https://bhagavadgita.io/verse-of-the-day",
+        "en-IN": "https://bhagavadgita.io/verse-of-the-day",
+        hi: "https://bhagavadgita.io/verse-of-the-day/hi",
       },
-      canonical: `https://bhagavadgita.io/verse-of-the-day`,
+      canonical: "https://bhagavadgita.io/verse-of-the-day",
     },
   };
 }
