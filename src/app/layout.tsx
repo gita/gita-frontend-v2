@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
+import Script from "next/script";
 
 import TopLoader from "components/Headers/TopLoader";
 import { paramsToLocale } from "shared/functions";
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Script src="https://p.usestyle.ai" defer />
       </head>
       <body>
         <Providers>
