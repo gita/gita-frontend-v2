@@ -9,14 +9,15 @@ const ChapterLayout = ({
   children,
   translations,
   locale,
-}: React.PropsWithChildren<LocaleAndTranslations>) => {
+  hideFooter,
+}: React.PropsWithChildren<LocaleAndTranslations & {hideFooter?: boolean}>) => {
   const translate = getTranslate(translations, locale);
 
   return (
     <div className="dark:bg-dark-bg">
       <ChapterHeader translate={translate} locale={locale} />
       {children}
-      <Footer translate={translate} />
+      {!hideFooter && <Footer translate={translate} />}
     </div>
   );
 };

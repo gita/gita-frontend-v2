@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 
 import NotFound from "components/NotFound";
+import ChapterLayout from "layouts/ChapterLayout";
 import { getVerseData } from "lib/getVerseData";
 import { getLanguageSettings, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
@@ -114,23 +115,25 @@ const Verse = async ({ params }: Props) => {
     commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),
   });
 
-  const verseData = await getVerseData(
-    Number(chapterNumber) || 1,
-    Number(verseNumber) || 1,
+  const verseData = Number(chapterNumber) || Number(verseNumber) ? await getVerseData(
+    Number(chapterNumber),
+    Number(verseNumber),
     languageSettings.commentaryAuthor.id,
     languageSettings.translationAuthor.id,
-  );
+  ) : null;
 
   const translations = await getTranslations(locale);
 
   if (!verseData) {
     return (
+     <ChapterLayout locale={locale} translations={translations} hideFooter>
       <NotFound
         translations={translations}
         locale={locale}
-        hint={verseNumber}
+        hint={chapterNumber + " " + verseNumber}
         isVerse={true}
       />
+      </ChapterLayout>
     );
   }
 

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Script from "next/script";
 
 import { getAllChapters } from "lib/getAllChapters";
-import { paramsToLocale } from "shared/functions";
+import { IsPathInvalid, paramsToLocale } from "shared/functions";
 
 import HomePage from "./HomePage";
 
@@ -167,7 +167,7 @@ export default async function Home({ params }: ParamsWithLocale) {
             });
           `}
       </Script>
-      <HomePage chapters={chapters} locale={locale} />
+      <HomePage chapters={chapters} locale={locale} isPathInvalid={IsPathInvalid(params)} />
     </>
   );
 }

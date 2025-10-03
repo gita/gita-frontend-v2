@@ -5,13 +5,15 @@ import Banner from "components/Home/Banner";
 import Chapters from "components/Home/Chapters";
 import Newsletter from "components/Home/Newsletter";
 import VerseOfDay from "components/Home/VerseOfDay";
+import NotFound from "components/NotFound";
 import HomeLayout from "layouts/HomeLayout";
 import { getTranslations } from "shared/translate/server";
 
 async function HomePage({
   locale,
   chapters,
-}: Omit<ChaptersProps, "translations">) {
+  isPathInvalid,
+}: Omit<ChaptersProps, "translations"> & {"isPathInvalid"?: boolean}) {
   const translationProps = {
     locale,
     translations: await getTranslations(locale),
@@ -21,13 +23,19 @@ async function HomePage({
     <div className="min-h-screen font-inter dark:bg-dark-bg">
       <main>
         <HomeLayout {...translationProps}>
-          <div className="relative">
-            <Banner {...translationProps} />
-            <BackgroundImage />
-            <VerseOfDay {...translationProps} />
-          </div>
-          <Newsletter {...translationProps} />
-          <Chapters chapters={chapters} {...translationProps} />
+          {
+            isPathInvalid ?
+            <NotFound locale={locale} translations={translationProps.translations}/>: 
+            <>
+              <div className="relative">
+                <Banner {...translationProps} />
+                <BackgroundImage />
+                <VerseOfDay {...translationProps} />
+              </div>
+              <Newsletter {...translationProps} />
+              <Chapters chapters={chapters} {...translationProps} />
+            </>
+          }
         </HomeLayout>
       </main>
     </div>

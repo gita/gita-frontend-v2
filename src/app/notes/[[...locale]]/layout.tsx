@@ -1,5 +1,6 @@
+import NotFound from "components/NotFound";
 import PagesLayout from "layouts/PagesLayout";
-import { paramsToLocale } from "shared/functions";
+import { IsPathInvalid, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 export default async function Layout({
@@ -7,10 +8,11 @@ export default async function Layout({
   children,
 }: React.PropsWithChildren<ParamsWithLocale>) {
   const locale = paramsToLocale(params);
+  const translations = await getTranslations(locale);
 
   return (
     <PagesLayout locale={locale} translations={await getTranslations(locale)}>
-      {children}
+      {IsPathInvalid(params)? <NotFound locale={locale} translations={translations}/>: children}
     </PagesLayout>
   );
 }

@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 
 import NotFound from "components/NotFound";
 import { getDailyVerse } from "lib/getDailyVerse";
-import { paramsToLocale } from "shared/functions";
+import { IsPathInvalid, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import VerseOfTheDay from "./VerseOfTheDay";
@@ -61,7 +61,7 @@ const Page = async ({ params }: ParamsWithLocale) => {
   const locale = paramsToLocale(params);
   const dailyVerse = await getDailyVerse(locale);
 
-  if (!dailyVerse) {
+  if (IsPathInvalid(params) || !dailyVerse) {
     return (
       <NotFound
         translations={await getTranslations(locale)}

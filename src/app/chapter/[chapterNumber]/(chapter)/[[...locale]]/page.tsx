@@ -96,11 +96,11 @@ export default async function Chapter({ params }: Props) {
 
   const { chapterNumber } = params;
 
-  const chapterData = await getChapterData(
+  const chapterData = Number(chapterNumber)? await getChapterData(
     locale,
-    Number(chapterNumber) || 1,
+    Number(chapterNumber),
     languageSettings.translationAuthor.id,
-  );
+  ): null;
 
   const translations = await getTranslations(locale);
 

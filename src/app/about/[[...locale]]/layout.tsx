@@ -1,5 +1,6 @@
+import NotFound from "components/NotFound";
 import ServerHomeLayout from "layouts/ServerHomeLayout";
-import { paramsToLocale } from "shared/functions";
+import { IsPathInvalid, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 export default async function Layout({
@@ -11,7 +12,7 @@ export default async function Layout({
 
   return (
     <ServerHomeLayout locale={locale} translations={translations}>
-      {children}
+      {IsPathInvalid(params)? <NotFound locale={locale} translations={translations}/>: children}
     </ServerHomeLayout>
   );
 }

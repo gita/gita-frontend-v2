@@ -94,10 +94,15 @@ export const deprecated_headerToLocale = (headerLocale: string) =>
 
 export const paramsToLocale = (localeFromParams: { locale: string[] }) => {
   const paramsLocale = Array.isArray(localeFromParams?.locale)
-    ? localeFromParams.locale[0]
-    : "en";
+  ? localeFromParams.locale.find(el => isLocale(el)) ?? "en"
+  : "en";
   return isLocale(paramsLocale) ? paramsLocale : defaultLocale;
 };
+
+export const IsPathInvalid = (localeFromParams: { locale: string[] }) => {
+  return Array.isArray(localeFromParams?.locale) && localeFromParams.locale.some(el => !isLocale(el))
+};
+
 
 export const getLanguageSettings = (
   locale: Locale,
