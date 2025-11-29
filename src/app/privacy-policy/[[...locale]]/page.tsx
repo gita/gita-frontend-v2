@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
         title={metadata.title as string}
         lastUpdated="2023-07-17"
       />
-      <div className="mx-auto max-w-5xl px-4 py-12  font-inter sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 py-12 font-inter sm:px-6">
         <div className="prose prose-lg mx-auto p-4">
           <p className="mb-4">
             This Privacy Policy describes Our policies and procedures on the
@@ -150,7 +150,7 @@ export default function PrivacyPolicy() {
                 from{" "}
                 <a
                   href="https://bhagavadgita.io"
-                  rel="external nofollow noopener"
+                  rel="external nofollow noopener noreferrer"
                   target="_blank"
                 >
                   https://bhagavadgita.io

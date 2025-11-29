@@ -18,8 +18,8 @@ export default function NotificationBanner({ message, status }: Props) {
         status == "failed"
           ? "bg-red-600"
           : status == "success"
-          ? "bg-my-orange"
-          : "bg-my-orange"
+            ? "bg-my-orange"
+            : "bg-my-orange"
       }`}
     >
       <div className="mx-auto max-w-7xl p-3 sm:px-6 lg:px-8">
@@ -39,7 +39,7 @@ export default function NotificationBanner({ message, status }: Props) {
             <svg
               onClick={hideBanner}
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="size-5"
               viewBox="0 0 20 20"
               fill="currentColor"
             >

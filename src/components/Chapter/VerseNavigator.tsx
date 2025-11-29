@@ -30,14 +30,11 @@ function VerseNavigator({
     <div
       className={classNames(
         fontSize === "large" ? "top-12" : "top-10",
-        `absolute mt-2 flex flex-wrap rounded border border-gray-200 bg-white p-2 shadow dark:border-dark-100 dark:bg-dark-bg 
-        ${!viewNavigation && "hidden"}
-         ${
-           verseCount > 50
-             ? "-right-1 w-[360px] md:w-[550px]"
-             : "-right-1 w-[360px]"
-         }
-        `,
+        `absolute mt-2 flex flex-wrap rounded border border-gray-200 bg-white p-2 shadow dark:border-dark-100 dark:bg-dark-bg ${!viewNavigation && "hidden"} ${
+          verseCount > 50
+            ? "-right-1 w-[360px] md:w-[550px]"
+            : "-right-1 w-[360px]"
+        } `,
       )}
     >
       <div

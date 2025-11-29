@@ -27,7 +27,7 @@ export default function Translation({
       {translationData && translationData[0]?.description ? (
         <p
           className={classNames(
-            "mx-auto mt-6 text-justify dark:text-gray-50 ",
+            "mx-auto mt-6 text-justify dark:text-gray-50",
             styles.fontSize.para,
           )}
         >

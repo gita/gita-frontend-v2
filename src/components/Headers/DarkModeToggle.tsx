@@ -9,7 +9,7 @@ function DarkModeToggle() {
     <button
       aria-label="Toggle Dark Mode"
       type="button"
-      className="group mx-2 h-10 w-10  rounded p-2  hover:bg-gray-900 dark:hover:bg-dark-bg"
+      className="group mx-2 size-10 rounded p-2 hover:bg-gray-900 dark:hover:bg-dark-bg"
       onClick={() => {
         setTheme(theme === "dark" ? "light" : "dark");
       }}
@@ -18,7 +18,7 @@ function DarkModeToggle() {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        className="hidden h-6 w-6 text-yellow-300 group-hover:text-yellow-600 dark:block"
+        className="hidden size-6 text-yellow-300 group-hover:text-yellow-600 dark:block"
       >
         <path
           strokeLinecap="round"
@@ -30,7 +30,7 @@ function DarkModeToggle() {
       </svg>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6 group-hover:text-gray-50 dark:hidden"
+        className="size-6 group-hover:text-gray-50 dark:hidden"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

@@ -12,16 +12,18 @@ import { getJsonLd } from "./functions";
 export const dynamic = "force-dynamic";
 
 type Props = {
-  params: {
+  params: Promise<{
     chapterNumber: string;
     verseNumber: string;
     locale: string[];
-  };
+  }>;
 };
 
 export async function generateMetadata({
-  params: { verseNumber, chapterNumber, locale: localeParams },
+  params: paramsPromise,
 }: Props): Promise<Metadata> {
+  const params = await paramsPromise;
+  const { verseNumber, chapterNumber, locale: localeParams } = params;
   const locale = paramsToLocale({ locale: localeParams });
   const isHindi = locale === "hi";
   const baseUrl = "https://bhagavadgita.io";
@@ -103,12 +105,13 @@ export async function generateMetadata({
   };
 }
 
-const Verse = async ({ params }: Props) => {
+const Verse = async ({ params: paramsPromise }: Props) => {
+  const params = await paramsPromise;
   const { chapterNumber, verseNumber } = params;
 
   const locale = paramsToLocale(params);
 
-  const headersList = headers();
+  const headersList = await headers();
   const languageSettings = getLanguageSettings(locale, {
     translationAuthorId: parseInt(headersList.get("x-settings-t") || ""),
     commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),

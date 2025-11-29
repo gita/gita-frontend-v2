@@ -8,13 +8,25 @@ module.exports = withPlausibleProxy()({
     });
     return config;
   },
+  // Enable React Compiler for automatic memoization (stable in Next.js 16)
+  reactCompiler: true,
+
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
+  },
   experimental: {
     largePageDataBytes: 128 * 100000,
-    serverActions: true,
-  },
-  i18n: {
-    locales: ["en", "hi"],
-    defaultLocale: "en",
+    // Enable Turbopack filesystem caching for faster dev builds (beta)
+    turbopackFileSystemCacheForDev: true,
+    // Enable optimized CSS loading (Next.js 14+)
+    optimizeCss: true,
+    // Enable optimized package imports (Next.js 14+)
+    optimizePackageImports: ["@headlessui/react", "lodash", "react-player"],
   },
   // Serve old static app from /app route
   async rewrites() {

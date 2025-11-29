@@ -1,27 +1,53 @@
 import { useMemo } from "react";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunkMiddleware from "redux-thunk";
+import {
+  useDispatch as useReduxDispatch,
+  useSelector as useReduxSelector,
+} from "react-redux";
+import { composeWithDevTools } from "@redux-devtools/extension";
+import {
+  thunk as thunkMiddleware,
+  ThunkDispatch,
+  ThunkMiddleware,
+} from "redux-thunk";
 
-import { applyMiddleware, createStore, Store } from "redux";
+import {
+  AnyAction,
+  applyMiddleware,
+  createStore,
+  Middleware,
+  Store,
+  UnknownAction,
+} from "redux";
 
-import reducers from "./reducers/rootReducer";
-import { MainState, RootState } from "./types";
+import reducers, {
+  RootState as RootReducerState,
+} from "./reducers/rootReducer";
+import { MainState, RootState, SettingsState } from "./types";
+
+export type AppDispatch = ThunkDispatch<
+  RootReducerState,
+  undefined,
+  UnknownAction
+>;
+export const useAppDispatch = () => useReduxDispatch<AppDispatch>();
+export const useAppSelector = useReduxSelector.withTypes<RootReducerState>();
 
 let store:
   | Store<{
       main: MainState;
+      settings: SettingsState;
     }>
   | undefined = undefined;
 
-function initStore(initialState: RootState) {
+function initStore(initialState?: Partial<RootReducerState>) {
   return createStore(
     reducers,
-    initialState,
-    composeWithDevTools(applyMiddleware(thunkMiddleware)),
+    initialState as any,
+    composeWithDevTools(applyMiddleware(thunkMiddleware as Middleware)),
   );
 }
 
-export const initializeStore = (preloadedState: RootState) => {
+export const initializeStore = (preloadedState?: Partial<RootReducerState>) => {
   let _store = store ?? initStore(preloadedState);
 
   // After navigating to a page with an initial Redux state, merge that state
@@ -43,11 +69,7 @@ export const initializeStore = (preloadedState: RootState) => {
   return _store;
 };
 
-export function useStore(
-  initialState: RootState = {
-    main: {},
-  },
-) {
+export function useStore(initialState?: Partial<RootReducerState>) {
   const store = useMemo(() => initializeStore(initialState), [initialState]);
   return store;
 }

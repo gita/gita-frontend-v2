@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -62,7 +62,7 @@ const ChapterHeader = (props: Props) => {
                       className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-gray-900 hover:bg-nav-hover dark:text-gray-50 dark:hover:bg-dark-bg"
                     >
                       <Image
-                        className="mb-1 h-6 w-6"
+                        className="mb-1 size-6"
                         src="/Home.svg"
                         alt="Home"
                         width={24}
@@ -79,7 +79,7 @@ const ChapterHeader = (props: Props) => {
                       )}
                     >
                       <Image
-                        className="mb-1 h-6 w-6"
+                        className="mb-1 size-6"
                         src="/content.svg"
                         alt="Home"
                         width={24}
@@ -106,7 +106,7 @@ const ChapterHeader = (props: Props) => {
                     </button>
                   </div>
                 </div>
-                <div className="flex flex-1 items-center justify-start pr-2  lg:ml-6 lg:justify-end">
+                <div className="flex flex-1 items-center justify-start pr-2 lg:ml-6 lg:justify-end">
                   <div className="w-full max-w-lg lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
                       {translate("Search")}
@@ -119,8 +119,8 @@ const ChapterHeader = (props: Props) => {
                         type="submit"
                         className="absolute left-3 top-0 mr-4 mt-2"
                       >
-                        <SearchIcon
-                          className="h-5 w-5 text-gray-400 dark:text-gray-50"
+                        <MagnifyingGlassIcon
+                          className="size-5 text-gray-400 dark:text-gray-50"
                           aria-hidden="true"
                         />
                       </button>
@@ -147,9 +147,9 @@ const ChapterHeader = (props: Props) => {
                       {translate("Open main menu")}
                     </span>
                     {open ? (
-                      <XIcon className="block h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="block size-6" aria-hidden="true" />
                     ) : (
-                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                      <Bars3Icon className="block size-6" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>

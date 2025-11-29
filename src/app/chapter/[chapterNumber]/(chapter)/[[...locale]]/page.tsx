@@ -10,13 +10,16 @@ import ChapterPage from "./ChapterPage";
 import { getJsonLd } from "./functions";
 
 type Props = {
-  params: {
+  params: Promise<{
     chapterNumber: string;
     locale: string[];
-  };
+  }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params: paramsPromise,
+}: Props): Promise<Metadata> {
+  const params = await paramsPromise;
   const { chapterNumber } = params;
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
@@ -86,8 +89,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Chapter({ params }: Props) {
-  const headersList = headers();
+export default async function Chapter({ params: paramsPromise }: Props) {
+  const params = await paramsPromise;
+  const headersList = await headers();
   const locale = paramsToLocale(params);
   const languageSettings = getLanguageSettings(locale, {
     translationAuthorId: parseInt(headersList.get("x-settings-t") || ""),

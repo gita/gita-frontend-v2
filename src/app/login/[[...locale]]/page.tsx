@@ -106,14 +106,14 @@ const Login = () => {
       </form>
       <div className="relative mt-5 px-20 py-10">
         <hr className="border-gray-400" />
-        <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#FFD3AB] font-medium dark:bg-my-orange">
+        <div className="absolute left-1/2 top-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#FFD3AB] font-medium dark:bg-my-orange">
           OR
         </div>
       </div>
       <div className="mb-10 mt-4 flex justify-center gap-8">
         {/* will use next/auth for authentication */}
         <SvgGithub className="hover:cursor-pointer" />
-        <div className="relative h-9 w-9 cursor-pointer">
+        <div className="relative size-9 cursor-pointer">
           <Image src="/google-logo.png" fill alt="google logo" />
         </div>
       </div>

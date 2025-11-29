@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import {
+  BarsArrowDownIcon,
+  BarsArrowUpIcon,
   ChevronDownIcon,
-  SortAscendingIcon,
-  SortDescendingIcon,
-} from "@heroicons/react/solid";
+} from "@heroicons/react/24/solid";
 
 import PageNavigator from "components/Chapter/PageNavigator";
 import VerseList from "components/Chapter/VerseList";
@@ -98,7 +98,7 @@ export default function ChapterPage({
           </div>
           <div className="relative mt-1 flex rounded-md shadow-sm">
             <div className="relative flex grow items-stretch focus-within:z-10">
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 "></div>
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
               <input
                 type="text"
                 name="verse-id"
@@ -127,20 +127,20 @@ export default function ChapterPage({
               onClick={() => setIsAscSorted(!isAscSorted)}
             >
               {isAscSorted ? (
-                <SortDescendingIcon
-                  className="h-5 w-5 text-gray-400 dark:text-gray-50"
+                <BarsArrowDownIcon
+                  className="size-5 text-gray-400 dark:text-gray-50"
                   aria-hidden="true"
                 />
               ) : (
-                <SortAscendingIcon
-                  className="h-5 w-5 text-gray-400 dark:text-gray-50"
+                <BarsArrowUpIcon
+                  className="size-5 text-gray-400 dark:text-gray-50"
                   aria-hidden="true"
                 />
               )}
               <span className={styles.fontSize.para}>{translate("Sort")}</span>
 
               <ChevronDownIcon
-                className="h-5 w-5 text-gray-400 dark:text-gray-50"
+                className="size-5 text-gray-400 dark:text-gray-50"
                 aria-hidden="true"
               />
             </button>

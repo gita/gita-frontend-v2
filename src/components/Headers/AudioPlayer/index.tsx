@@ -142,7 +142,7 @@ function AudioPlayer({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <div className="fixed inset-0" aria-hidden="true" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -164,7 +164,7 @@ function AudioPlayer({
               <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-bg">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50 "
+                  className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50"
                 >
                   {translate("BG <%= verseNumber %>", {
                     verseNumber: `${currentVerse?.chapter_number}.${currentVerse?.verse_number}`,
@@ -183,7 +183,7 @@ function AudioPlayer({
                       currentVerse.verse_number,
                       currentVerse.prev_chapter_verses_count,
                     )}
-                    className={`hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50 ${
+                    className={`hover:cursor-pointer hover:brightness-90 dark:hover:brightness-50 ${
                       prevId <= 0 ? "pointer-events-none" : ""
                     }`}
                   >
@@ -210,7 +210,7 @@ function AudioPlayer({
                       currentVerse.verse_number,
                       currentVerse.gita_chapter.verses_count,
                     )}
-                    className={`hover:cursor-pointer  hover:brightness-90 dark:hover:brightness-50 ${
+                    className={`hover:cursor-pointer hover:brightness-90 dark:hover:brightness-50 ${
                       nextId > 701 ? "pointer-events-none" : ""
                     }`}
                   >
@@ -237,7 +237,7 @@ function AudioPlayer({
                 </div>
 
                 <div className="mt-4">
-                  <span className=" z-0 mt-4 flex w-full rounded-md shadow-sm">
+                  <span className="z-0 mt-4 flex w-full rounded-md shadow-sm">
                     <PlaybackRateButton
                       currentRate={currentRate}
                       playbackRate={0.75}

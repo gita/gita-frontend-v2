@@ -46,7 +46,7 @@ export default function TermsOfService() {
         title={metadata.title as string}
         lastUpdated="2023-07-17"
       />
-      <div className="mx-auto max-w-5xl px-4 py-12  font-inter sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 py-12 font-inter sm:px-6">
         <p className="mb-4">
           Please read these Terms of Service (&quot;Terms&quot;, &quot;Terms of
           Service&quot;) carefully before using the BhagavadGita.io website (the

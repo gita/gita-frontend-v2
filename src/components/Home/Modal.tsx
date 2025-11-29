@@ -34,13 +34,13 @@ function Modal({ modalVisible, setModalVisible }: Props) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white text-left  shadow-xl transition-all dark:bg-dark-100 sm:w-full sm:max-w-sm">
+              <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all dark:bg-dark-100 sm:w-full sm:max-w-sm">
                 <div>
-                  <div className="z-50 inline-block  overflow-hidden rounded-lg bg-white  text-left align-bottom shadow-xl transition-all duration-200 dark:bg-dark-100 sm:mt-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle">
+                  <div className="z-50 inline-block overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all duration-200 dark:bg-dark-100 sm:mt-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle">
                     <div>
-                      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100 dark:bg-dark-bg ">
+                      <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-yellow-100 dark:bg-dark-bg">
                         <svg
-                          className="h-6 w-6 text-yellow-400"
+                          className="size-6 text-yellow-400"
                           x-description="Heroicon name: outline/check"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
