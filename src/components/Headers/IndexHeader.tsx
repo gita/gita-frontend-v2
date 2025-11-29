@@ -3,8 +3,15 @@
 
 import { Fragment, useState } from "react";
 import { Disclosure, Popover, Transition } from "@headlessui/react";
-import { DocumentTextIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import {
+  Bars3Icon,
+  DocumentTextIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import { useAsyncEffect } from "rooks";
 
@@ -167,7 +174,7 @@ export default function IndexHeader({ locale, translate }: Props) {
               <DarkModeToggle />
               <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange dark:bg-dark-bg">
                 <span className="sr-only">Open menu</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                <Bars3Icon className="size-6" aria-hidden="true" />
               </Popover.Button>
             </div>
             <Popover.Group as="nav" className="hidden space-x-10 md:flex">
@@ -177,7 +184,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                     <Popover.Button
                       className={classNames(
                         open ? "text-gray-900" : "text-black",
-                        "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-500 focus:outline-none dark:bg-dark-100 dark:text-white ",
+                        "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-500 focus:outline-none dark:bg-dark-100 dark:text-white",
                       )}
                     >
                       <span>{translate("Chapters")}</span>
@@ -206,10 +213,10 @@ export default function IndexHeader({ locale, translate }: Props) {
                               <LinkWithLocale
                                 href={chapter.href}
                                 key={index}
-                                className="-m-3 flex items-start rounded-lg p-1 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-bg	"
+                                className="-m-3 flex items-start rounded-lg p-1 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-bg"
                               >
                                 <chapter.icon
-                                  className="h-6 w-6 shrink-0 text-my-orange"
+                                  className="size-6 shrink-0 text-my-orange"
                                   aria-hidden="true"
                                 />
                                 <div className="ml-4">
@@ -324,7 +331,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                   className="absolute left-3 top-0 mr-4 mt-2"
                 >
                   <MagnifyingGlassIcon
-                    className="h-5 w-5 text-gray-400 dark:text-gray-50"
+                    className="size-5 text-gray-400 dark:text-gray-50"
                     aria-hidden="true"
                   />
                 </button>
@@ -359,7 +366,7 @@ export default function IndexHeader({ locale, translate }: Props) {
             focus
             className="absolute inset-x-0 top-0 origin-top-right pb-2 transition md:hidden"
           >
-            <div className=" divide-y-2 divide-gray-50 bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:divide-dark-100 dark:bg-dark-100">
+            <div className="divide-y-2 divide-gray-50 bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:divide-dark-100 dark:bg-dark-100">
               <div className="pt-5">
                 <div className="flex items-center justify-between pr-5">
                   <button className="text-3xl font-bold" type="button">
@@ -372,7 +379,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                         className="absolute left-6 top-0 mr-4 mt-5"
                       >
                         <svg
-                          className="h-4 w-4 fill-current text-gray-600 dark:text-white"
+                          className="size-4 fill-current text-gray-600 dark:text-white"
                           version="1.1"
                           id="Capa_1"
                           x="0px"
@@ -401,7 +408,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                       <span className="sr-only px-5">
                         {translate("Close Menu")}
                       </span>
-                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="size-6" aria-hidden="true" />
                     </Popover.Button>
                   </div>
                 </div>
@@ -411,7 +418,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                       <Disclosure>
                         <Disclosure.Button className="flex w-full justify-between px-3 py-2 text-left font-medium hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
                           {translate("Chapters")}
-                          <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
+                          <ChevronDownIcon className="ml-2 size-5 group-hover:text-black" />
                         </Disclosure.Button>
                         <Disclosure.Panel className="py-4 text-gray-500 dark:bg-dark-100 dark:text-white">
                           <div className="relative grid grid-cols-2 gap-6 bg-white px-8 py-2 dark:bg-dark-100 dark:text-white sm:gap-8 sm:p-8">
@@ -422,7 +429,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                                 className="-m-3 flex items-start p-1 hover:cursor-pointer hover:rounded-md hover:bg-yellow-100 dark:hover:bg-yellow-100 dark:focus:bg-yellow-100"
                               >
                                 <item.icon
-                                  className="h-6 w-6 shrink-0 text-my-orange"
+                                  className="size-6 shrink-0 text-my-orange"
                                   aria-hidden="true"
                                 />
                                 <div className="ml-4">

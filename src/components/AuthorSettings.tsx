@@ -106,8 +106,7 @@ const AuthorSettings = ({
                       isVerseCommentarySourceEnabled
                         ? "bg-my-orange"
                         : "bg-gray-200 dark:bg-dark-bg"
-                    }
-                    relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white/75`}
+                    } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
                   >
                     <span
                       aria-hidden="true"
@@ -115,8 +114,7 @@ const AuthorSettings = ({
                         isVerseCommentarySourceEnabled
                           ? "translate-x-5"
                           : "translate-x-0"
-                      }
-                      pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                      } pointer-events-none inline-block size-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                     />
                   </Switch>
                 </div>
@@ -133,7 +131,7 @@ const AuthorSettings = ({
                         </span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                           <ChevronUpDownIcon
-                            className="h-5 w-5 text-gray-400"
+                            className="size-5 text-gray-400"
                             aria-hidden="true"
                           />
                         </span>
@@ -153,8 +151,7 @@ const AuthorSettings = ({
                                   active
                                     ? "bg-my-orange text-white"
                                     : "text-black dark:text-white"
-                                }
-                                relative flex cursor-pointer select-none justify-between px-4 py-2`
+                                } relative flex cursor-pointer select-none justify-between px-4 py-2`
                               }
                               value={author}
                             >
@@ -179,8 +176,7 @@ const AuthorSettings = ({
                       isVerseTranslationSourceEnabled
                         ? "bg-my-orange"
                         : "bg-gray-200 dark:bg-dark-bg"
-                    }
-                    relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white/75`}
+                    } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
                   >
                     <span
                       aria-hidden="true"
@@ -188,8 +184,7 @@ const AuthorSettings = ({
                         isVerseTranslationSourceEnabled
                           ? "translate-x-5"
                           : "translate-x-0"
-                      }
-                      pointer-events-none inline-block h-[25px] w-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                      } pointer-events-none inline-block size-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                     />
                   </Switch>
                 </div>
@@ -207,7 +202,7 @@ const AuthorSettings = ({
                         </span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                           <ChevronUpDownIcon
-                            className="h-5 w-5 text-gray-400"
+                            className="size-5 text-gray-400"
                             aria-hidden="true"
                           />
                         </span>
@@ -227,8 +222,7 @@ const AuthorSettings = ({
                                   active
                                     ? "bg-my-orange text-white"
                                     : "text-black dark:text-white"
-                                }
-                                relative flex cursor-pointer select-none justify-between px-4 py-2`
+                                } relative flex cursor-pointer select-none justify-between px-4 py-2`
                               }
                               value={author}
                             >
@@ -264,7 +258,7 @@ const AuthorSettings = ({
                   >
                     {isSubmitting && (
                       <div
-                        className="mr-2 inline-block h-4 w-4 animate-spin rounded-3xl border-2 border-solid border-r-transparent align-text-bottom"
+                        className="mr-2 inline-block size-4 animate-spin rounded-3xl border-2 border-solid border-r-transparent align-text-bottom"
                         role="status"
                       >
                         <span className="sr-only">

@@ -1,14 +1,34 @@
 import { useMemo } from "react";
-import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from "react-redux";
+import {
+  useDispatch as useReduxDispatch,
+  useSelector as useReduxSelector,
+} from "react-redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
-import { thunk as thunkMiddleware, ThunkMiddleware, ThunkDispatch } from "redux-thunk";
+import {
+  thunk as thunkMiddleware,
+  ThunkDispatch,
+  ThunkMiddleware,
+} from "redux-thunk";
 
-import { applyMiddleware, createStore, Store, Middleware, UnknownAction, AnyAction } from "redux";
+import {
+  AnyAction,
+  applyMiddleware,
+  createStore,
+  Middleware,
+  Store,
+  UnknownAction,
+} from "redux";
 
-import reducers, { RootState as RootReducerState } from "./reducers/rootReducer";
+import reducers, {
+  RootState as RootReducerState,
+} from "./reducers/rootReducer";
 import { MainState, RootState, SettingsState } from "./types";
 
-export type AppDispatch = ThunkDispatch<RootReducerState, undefined, UnknownAction>;
+export type AppDispatch = ThunkDispatch<
+  RootReducerState,
+  undefined,
+  UnknownAction
+>;
 export const useAppDispatch = () => useReduxDispatch<AppDispatch>();
 export const useAppSelector = useReduxSelector.withTypes<RootReducerState>();
 
@@ -49,9 +69,7 @@ export const initializeStore = (preloadedState?: Partial<RootReducerState>) => {
   return _store;
 };
 
-export function useStore(
-  initialState?: Partial<RootReducerState>,
-) {
+export function useStore(initialState?: Partial<RootReducerState>) {
   const store = useMemo(() => initializeStore(initialState), [initialState]);
   return store;
 }

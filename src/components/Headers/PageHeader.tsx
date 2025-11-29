@@ -3,7 +3,10 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Disclosure, Switch } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -109,7 +112,7 @@ function PageHeader(props: Props) {
                         className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg"
                       >
                         <Image
-                          className="mb-1 h-6 w-6"
+                          className="mb-1 size-6"
                           src="/Home.svg"
                           alt="home icon"
                           width={24}
@@ -127,7 +130,7 @@ function PageHeader(props: Props) {
                       )}
                     >
                       <Image
-                        className="mb-1 h-6 w-6"
+                        className="mb-1 size-6"
                         src="/content.svg"
                         alt="content icon"
                         width={24}
@@ -161,7 +164,7 @@ function PageHeader(props: Props) {
                       )}
                     >
                       <Image
-                        className="mb-1 h-6 w-6"
+                        className="mb-1 size-6"
                         src="/language.svg"
                         alt="source icon"
                         width={24}
@@ -179,7 +182,7 @@ function PageHeader(props: Props) {
                       )}
                     >
                       <Image
-                        className="mb-1 h-6 w-6"
+                        className="mb-1 size-6"
                         src="/Audio.svg"
                         alt="audio icon"
                         width={24}
@@ -197,7 +200,7 @@ function PageHeader(props: Props) {
                       )}
                     >
                       <Image
-                        className="mb-1 h-6 w-6"
+                        className="mb-1 size-6"
                         src="/Advanced.svg"
                         alt="advanced icon"
                         width={24}
@@ -223,7 +226,7 @@ function PageHeader(props: Props) {
                           className="absolute left-3 top-0 mr-4 mt-2"
                         >
                           <MagnifyingGlassIcon
-                            className="h-5 w-5 text-gray-400 dark:text-gray-50"
+                            className="size-5 text-gray-400 dark:text-gray-50"
                             aria-hidden="true"
                           />
                         </button>
@@ -250,9 +253,9 @@ function PageHeader(props: Props) {
                   <Disclosure.Button className="inline-flex items-center justify-start rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="block size-6" aria-hidden="true" />
                     ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                      <Bars3Icon className="block size-6" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>
@@ -312,7 +315,7 @@ function PageHeader(props: Props) {
               <Disclosure>
                 <Disclosure.Button className="flex w-full justify-between border-t-2 border-gray-300 py-2 pl-3 pr-4 text-base font-medium text-black hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-900 dark:focus:text-gray-900">
                   {translate("Advanced View")}
-                  <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
+                  <ChevronDownIcon className="ml-2 size-5 group-hover:text-black" />
                 </Disclosure.Button>
                 <Disclosure.Panel className="z-50 text-gray-500">
                   <Switch.Group
@@ -322,7 +325,7 @@ function PageHeader(props: Props) {
                     <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600 dark:text-gray-50"
+                        className="font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         {translate("Devanagari")}
@@ -357,7 +360,7 @@ function PageHeader(props: Props) {
                     <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600 dark:text-gray-50"
+                        className="font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         {translate("Verse Text")}
@@ -392,7 +395,7 @@ function PageHeader(props: Props) {
                     <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600 dark:text-gray-50"
+                        className="font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         {translate("Synonyms")}
@@ -426,7 +429,7 @@ function PageHeader(props: Props) {
                     <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600 dark:text-gray-50"
+                        className="font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         {translate("Translation")}
@@ -460,7 +463,7 @@ function PageHeader(props: Props) {
                     <span className="flex grow flex-col">
                       <Switch.Label
                         as="span"
-                        className=" font-medium text-gray-600 dark:text-gray-50"
+                        className="font-medium text-gray-600 dark:text-gray-50"
                         passive
                       >
                         {translate("Purport")}
@@ -577,7 +580,7 @@ const AdvancedOptions = ({
             <span
               className={classNames(
                 devanagari ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full  bg-white shadow ring-0 transition duration-200 ease-in-out",
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
@@ -590,7 +593,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-gray-400"
+                  className="size-3 text-gray-400"
                   fill="none"
                   viewBox="0 0 12 12"
                 >
@@ -613,7 +616,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-my-orange"
+                  className="size-3 text-my-orange"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >
@@ -650,7 +653,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-gray-400"
+                  className="size-3 text-gray-400"
                   fill="none"
                   viewBox="0 0 12 12"
                 >
@@ -673,7 +676,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-my-orange"
+                  className="size-3 text-my-orange"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >
@@ -710,7 +713,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-gray-400"
+                  className="size-3 text-gray-400"
                   fill="none"
                   viewBox="0 0 12 12"
                 >
@@ -733,7 +736,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-my-orange"
+                  className="size-3 text-my-orange"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >
@@ -744,7 +747,7 @@ const AdvancedOptions = ({
           </Switch>
           {translate("Synonyms")}
         </div>
-        <div className="relative -ml-px inline-flex items-center border border-gray-300  bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
+        <div className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
           <Switch
             checked={translation}
             onChange={() =>
@@ -772,7 +775,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-gray-400"
+                  className="size-3 text-gray-400"
                   fill="none"
                   viewBox="0 0 12 12"
                 >
@@ -795,7 +798,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-my-orange"
+                  className="size-3 text-my-orange"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >
@@ -833,7 +836,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-gray-400"
+                  className="size-3 text-gray-400"
                   fill="none"
                   viewBox="0 0 12 12"
                 >
@@ -856,7 +859,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="h-3 w-3 text-my-orange"
+                  className="size-3 text-my-orange"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >

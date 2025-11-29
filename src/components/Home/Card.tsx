@@ -26,7 +26,7 @@ const Card = ({ chapter, translate }: Props) => {
       </p>
 
       <div className="flex justify-between">
-        <div className="mt-4 flex items-center text-sm ">
+        <div className="mt-4 flex items-center text-sm">
           <SvgList className="mr-4" />
           <span className="mb-0.5">
             {chapter.verses_count} {translate("Verses")}

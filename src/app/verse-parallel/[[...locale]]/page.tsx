@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function VerseParallel() {
   return (
     <div className="mb-16 font-inter">
-      <div className="mx-auto max-w-5xl px-4 py-12 text-center  font-inter sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 py-12 text-center font-inter sm:px-6">
         <Image
           src="/arrow-left.png"
           className="fixed left-3 top-1/2 -z-10 md:top-1/3"
@@ -26,7 +26,7 @@ export default function VerseParallel() {
           alt="arrow right icon"
         />
         <h1 className="text-3xl font-extrabold">BG 1.1</h1>
-        <p className="mx-auto mt-4 max-w-md  font-dev text-2xl text-my-orange">
+        <p className="mx-auto mt-4 max-w-md font-dev text-2xl text-my-orange">
           धृतराष्ट्र उवाच | धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः | मामकाः
           पाण्डवाश्चैव किमकुर्वत सञ्जय ||1||
         </p>

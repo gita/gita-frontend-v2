@@ -3,9 +3,9 @@
  * Copyright 2013-2018 David Deutsch
  * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
  */
-!(function (a, b, c, d) {
+(!(function (a, b, c, d) {
   function e(b, c) {
-    (this.settings = null),
+    ((this.settings = null),
       (this.options = a.extend({}, e.Defaults, c)),
       (this.$element = a(b)),
       (this._handlers = {}),
@@ -56,9 +56,9 @@
         }, this),
       ),
       this.setup(),
-      this.initialize();
+      this.initialize());
   }
-  (e.Defaults = {
+  ((e.Defaults = {
     items: 3,
     loop: !1,
     center: !1,
@@ -131,7 +131,7 @@
               "margin-left": d ? b : "",
               "margin-right": d ? "" : b,
             };
-          !c && this.$stage.children().css(e), (a.css = e);
+          (!c && this.$stage.children().css(e), (a.css = e));
         },
       },
       {
@@ -145,12 +145,12 @@
             e = !this.settings.autoWidth,
             f = [];
           for (a.items = { merge: !1, width: b }; d--; )
-            (c = this._mergers[d]),
+            ((c = this._mergers[d]),
               (c =
                 (this.settings.mergeFit && Math.min(c, this.settings.items)) ||
                 c),
               (a.items.merge = c > 1 || a.items.merge),
-              (f[d] = e ? b * c : this._items[d].width());
+              (f[d] = e ? b * c : this._items[d].width()));
           this._widths = f;
         },
       },
@@ -166,14 +166,14 @@
             h = "",
             i = "";
           for (g /= 2; g > 0; )
-            b.push(this.normalize(b.length / 2, !0)),
+            (b.push(this.normalize(b.length / 2, !0)),
               (h += c[b[b.length - 1]][0].outerHTML),
               b.push(this.normalize(c.length - 1 - (b.length - 1) / 2, !0)),
               (i = c[b[b.length - 1]][0].outerHTML + i),
-              (g -= 1);
-          (this._clones = b),
+              (g -= 1));
+          ((this._clones = b),
             a(h).addClass("cloned").appendTo(this.$stage),
-            a(i).addClass("cloned").prependTo(this.$stage);
+            a(i).addClass("cloned").prependTo(this.$stage));
         },
       },
       {
@@ -187,11 +187,10 @@
               e = 0,
               f = [];
             ++c < b;
-
           )
-            (d = f[c - 1] || 0),
+            ((d = f[c - 1] || 0),
               (e = this._widths[this.relative(c)] + this.settings.margin),
-              f.push(d + e * a);
+              f.push(d + e * a));
           this._coordinates = f;
         },
       },
@@ -216,8 +215,8 @@
             d = this.$stage.children();
           if (c && a.items.merge)
             for (; b--; )
-              (a.css.width = this._widths[this.relative(b)]),
-                d.eq(b).css(a.css);
+              ((a.css.width = this._widths[this.relative(b)]),
+                d.eq(b).css(a.css));
           else c && ((a.css.width = a.items.width), d.css(a.css));
         },
       },
@@ -230,12 +229,14 @@
       {
         filter: ["width", "items", "settings"],
         run: function (a) {
-          (a.current = a.current ? this.$stage.children().index(a.current) : 0),
+          ((a.current = a.current
+            ? this.$stage.children().index(a.current)
+            : 0),
             (a.current = Math.max(
               this.minimum(),
               Math.min(this.maximum(), a.current),
             )),
-            this.reset(a.current);
+            this.reset(a.current));
         },
       },
       {
@@ -257,29 +258,29 @@
             h = g + this.width() * e,
             i = [];
           for (c = 0, d = this._coordinates.length; c < d; c++)
-            (a = this._coordinates[c - 1] || 0),
+            ((a = this._coordinates[c - 1] || 0),
               (b = Math.abs(this._coordinates[c]) + f * e),
               ((this.op(a, "<=", g) && this.op(a, ">", h)) ||
                 (this.op(b, "<", g) && this.op(b, ">", h))) &&
-                i.push(c);
-          this.$stage.children(".active").removeClass("active"),
+                i.push(c));
+          (this.$stage.children(".active").removeClass("active"),
             this.$stage
               .children(":eq(" + i.join("), :eq(") + ")")
               .addClass("active"),
             this.$stage.children(".center").removeClass("center"),
             this.settings.center &&
-              this.$stage.children().eq(this.current()).addClass("center");
+              this.$stage.children().eq(this.current()).addClass("center"));
         },
       },
     ]),
     (e.prototype.initializeStage = function () {
-      (this.$stage = this.$element.find("." + this.settings.stageClass)),
+      ((this.$stage = this.$element.find("." + this.settings.stageClass)),
         this.$stage.length ||
           (this.$element.addClass(this.options.loadingClass),
           (this.$stage = a("<" + this.settings.stageElement + ">", {
             class: this.settings.stageClass,
           }).wrap(a("<div/>", { class: this.settings.stageOuterClass }))),
-          this.$element.append(this.$stage.parent()));
+          this.$element.append(this.$stage.parent())));
     }),
     (e.prototype.initializeItems = function () {
       var b = this.$element.find(".owl-item");
@@ -293,11 +294,11 @@
           })),
           void this.refresh()
         );
-      this.replace(this.$element.children().not(this.$stage.parent())),
+      (this.replace(this.$element.children().not(this.$stage.parent())),
         this.isVisible() ? this.refresh() : this.invalidate("width"),
         this.$element
           .removeClass(this.options.loadingClass)
-          .addClass(this.options.loadedClass);
+          .addClass(this.options.loadedClass));
     }),
     (e.prototype.initialize = function () {
       if (
@@ -307,18 +308,18 @@
         this.settings.autoWidth && !this.is("pre-loading"))
       ) {
         var a, b, c;
-        (a = this.$element.find("img")),
+        ((a = this.$element.find("img")),
           (b = this.settings.nestedItemSelector
             ? "." + this.settings.nestedItemSelector
             : d),
           (c = this.$element.children(b).width()),
-          a.length && c <= 0 && this.preloadAutoWidthImages(a);
+          a.length && c <= 0 && this.preloadAutoWidthImages(a));
       }
-      this.initializeStage(),
+      (this.initializeStage(),
         this.initializeItems(),
         this.registerEventHandlers(),
         this.leave("initializing"),
-        this.trigger("initialized");
+        this.trigger("initialized"));
     }),
     (e.prototype.isVisible = function () {
       return !this.settings.checkVisibility || this.$element.is(":visible");
@@ -328,7 +329,7 @@
         c = this.options.responsive,
         d = -1,
         e = null;
-      c
+      (c
         ? (a.each(c, function (a) {
             a <= b && a > d && (d = Number(a));
           }),
@@ -356,7 +357,7 @@
         this.invalidate("settings"),
         this.trigger("changed", {
           property: { name: "settings", value: this.settings },
-        });
+        }));
     }),
     (e.prototype.optionsLogic = function () {
       this.settings.autoWidth &&
@@ -382,12 +383,12 @@
           }, this._invalidated),
           e = {};
         b < c;
-
       )
-        (this._invalidated.all || a.grep(this._pipe[b].filter, d).length > 0) &&
+        ((this._invalidated.all ||
+          a.grep(this._pipe[b].filter, d).length > 0) &&
           this._pipe[b].run(e),
-          b++;
-      (this._invalidated = {}), !this.is("valid") && this.enter("valid");
+          b++);
+      ((this._invalidated = {}), !this.is("valid") && this.enter("valid"));
     }),
     (e.prototype.width = function (a) {
       switch ((a = a || e.Width.Default)) {
@@ -401,7 +402,7 @@
       }
     }),
     (e.prototype.refresh = function () {
-      this.enter("refreshing"),
+      (this.enter("refreshing"),
         this.trigger("refresh"),
         this.setup(),
         this.optionsLogic(),
@@ -409,14 +410,14 @@
         this.update(),
         this.$element.removeClass(this.options.refreshClass),
         this.leave("refreshing"),
-        this.trigger("refreshed");
+        this.trigger("refreshed"));
     }),
     (e.prototype.onThrottledResize = function () {
-      b.clearTimeout(this.resizeTimer),
+      (b.clearTimeout(this.resizeTimer),
         (this.resizeTimer = b.setTimeout(
           this._handlers.onResize,
           this.settings.responsiveRefreshRate,
-        ));
+        )));
     }),
     (e.prototype.onResize = function () {
       return (
@@ -433,7 +434,7 @@
       );
     }),
     (e.prototype.registerEventHandlers = function () {
-      a.support.transition &&
+      (a.support.transition &&
         this.$stage.on(
           a.support.transition.end + ".owl.core",
           a.proxy(this.onTransitionEnd, this),
@@ -457,7 +458,7 @@
           this.$stage.on(
             "touchcancel.owl.core",
             a.proxy(this.onDragEnd, this),
-          ));
+          )));
     }),
     (e.prototype.onDragStart = function (b) {
       var d = null;
@@ -502,14 +503,14 @@
           "mousemove.owl.core touchmove.owl.core",
           a.proxy(function (b) {
             var d = this.difference(this._drag.pointer, this.pointer(b));
-            a(c).on(
+            (a(c).on(
               "mousemove.owl.core touchmove.owl.core",
               a.proxy(this.onDragMove, this),
             ),
               (Math.abs(d.x) < Math.abs(d.y) && this.is("valid")) ||
                 (b.preventDefault(),
                 this.enter("dragging"),
-                this.trigger("drag"));
+                this.trigger("drag")));
           }, this),
         ));
     }),
@@ -540,7 +541,7 @@
       var d = this.difference(this._drag.pointer, this.pointer(b)),
         e = this._drag.stage.current,
         f = (d.x > 0) ^ this.settings.rtl ? "left" : "right";
-      a(c).off(".owl.core"),
+      (a(c).off(".owl.core"),
         this.$element.removeClass(this.options.grabClass),
         ((0 !== d.x && this.is("dragging")) || !this.is("valid")) &&
           (this.speed(this.settings.dragEndSpeed || this.settings.smartSpeed),
@@ -553,7 +554,7 @@
               return !1;
             })),
         this.is("dragging") &&
-          (this.leave("dragging"), this.trigger("dragged"));
+          (this.leave("dragging"), this.trigger("dragged")));
     }),
     (e.prototype.closest = function (b, c) {
       var e = -1,
@@ -569,10 +570,10 @@
                 "left" === c && b > i - f && b < i + f
                   ? (e = a)
                   : "right" === c && b > i - g - f && b < i - g + f
-                  ? (e = a + 1)
-                  : this.op(b, "<", i) &&
-                    this.op(b, ">", h[a + 1] !== d ? h[a + 1] : i - g) &&
-                    (e = "left" === c ? a + 1 : a),
+                    ? (e = a + 1)
+                    : this.op(b, "<", i) &&
+                      this.op(b, ">", h[a + 1] !== d ? h[a + 1] : i - g) &&
+                      (e = "left" === c ? a + 1 : a),
                 -1 === e
               );
             }, this),
@@ -586,7 +587,7 @@
     }),
     (e.prototype.animate = function (b) {
       var c = this.speed() > 0;
-      this.is("animating") && this.onTransitionEnd(),
+      (this.is("animating") && this.onTransitionEnd(),
         c && (this.enter("animating"), this.trigger("translate")),
         a.support.transform3d && a.support.transition
           ? this.$stage.css({
@@ -599,13 +600,13 @@
                   : ""),
             })
           : c
-          ? this.$stage.animate(
-              { left: b + "px" },
-              this.speed(),
-              this.settings.fallbackEasing,
-              a.proxy(this.onTransitionEnd, this),
-            )
-          : this.$stage.css({ left: b + "px" });
+            ? this.$stage.animate(
+                { left: b + "px" },
+                this.speed(),
+                this.settings.fallbackEasing,
+                a.proxy(this.onTransitionEnd, this),
+              )
+            : this.$stage.css({ left: b + "px" }));
     }),
     (e.prototype.is = function (a) {
       return this._states.current[a] && this._states.current[a] > 0;
@@ -617,12 +618,12 @@
         var b = this.trigger("change", {
           property: { name: "position", value: a },
         });
-        b.data !== d && (a = this.normalize(b.data)),
+        (b.data !== d && (a = this.normalize(b.data)),
           (this._current = a),
           this.invalidate("position"),
           this.trigger("changed", {
             property: { name: "position", value: this._current },
-          });
+          }));
       }
       return this._current;
     }),
@@ -656,7 +657,7 @@
       );
     }),
     (e.prototype.relative = function (a) {
-      return (a -= this._clones.length / 2), this.normalize(a, !0);
+      return ((a -= this._clones.length / 2), this.normalize(a, !0));
     }),
     (e.prototype.maximum = function (a) {
       var b,
@@ -670,12 +671,11 @@
           for (
             c = this._items[--b].width(), d = this.$element.width();
             b-- && !((c += this._items[b].width() + this.settings.margin) > d);
-
           );
         f = b + 1;
       } else
         f = e.center ? this._items.length - 1 : this._items.length - e.items;
-      return a && (f -= this._clones.length / 2), Math.max(f, 0);
+      return (a && (f -= this._clones.length / 2), Math.max(f, 0));
     }),
     (e.prototype.minimum = function (a) {
       return a ? 0 : this._clones.length / 2;
@@ -705,7 +705,7 @@
           });
     }),
     (e.prototype.speed = function (a) {
-      return a !== d && (this._speed = a), this._speed;
+      return (a !== d && (this._speed = a), this._speed);
     }),
     (e.prototype.coordinates = function (b) {
       var c,
@@ -739,7 +739,7 @@
         g = this._items.length,
         h = this.minimum(),
         i = this.maximum();
-      this.settings.loop
+      (this.settings.loop
         ? (!this.settings.rewind && Math.abs(e) > g / 2 && (e += -1 * f * g),
           (a = c + e),
           (d = ((((a - h) % g) + g) % g) + h) !== a &&
@@ -747,17 +747,17 @@
             d - e > 0 &&
             ((c = d - e), (a = d), this.reset(c)))
         : this.settings.rewind
-        ? ((i += 1), (a = ((a % i) + i) % i))
-        : (a = Math.max(h, Math.min(i, a))),
+          ? ((i += 1), (a = ((a % i) + i) % i))
+          : (a = Math.max(h, Math.min(i, a))),
         this.speed(this.duration(c, a, b)),
         this.current(a),
-        this.isVisible() && this.update();
+        this.isVisible() && this.update());
     }),
     (e.prototype.next = function (a) {
-      (a = a || !1), this.to(this.relative(this.current()) + 1, a);
+      ((a = a || !1), this.to(this.relative(this.current()) + 1, a));
     }),
     (e.prototype.prev = function (a) {
-      (a = a || !1), this.to(this.relative(this.current()) - 1, a);
+      ((a = a || !1), this.to(this.relative(this.current()) - 1, a));
     }),
     (e.prototype.onTransitionEnd = function (a) {
       if (
@@ -766,7 +766,7 @@
         (a.target || a.srcElement || a.originalTarget) !== this.$stage.get(0))
       )
         return !1;
-      this.leave("animating"), this.trigger("translated");
+      (this.leave("animating"), this.trigger("translated"));
     }),
     (e.prototype.viewport = function () {
       var d;
@@ -774,15 +774,15 @@
         this.options.responsiveBaseElement !== b
           ? (d = a(this.options.responsiveBaseElement).width())
           : b.innerWidth
-          ? (d = b.innerWidth)
-          : c.documentElement && c.documentElement.clientWidth
-          ? (d = c.documentElement.clientWidth)
-          : console.warn("Can not detect viewport width."),
+            ? (d = b.innerWidth)
+            : c.documentElement && c.documentElement.clientWidth
+              ? (d = c.documentElement.clientWidth)
+              : console.warn("Can not detect viewport width."),
         d
       );
     }),
     (e.prototype.replace = function (b) {
-      this.$stage.empty(),
+      (this.$stage.empty(),
         (this._items = []),
         b && (b = b instanceof jQuery ? b : a(b)),
         this.settings.nestedItemSelector &&
@@ -793,7 +793,7 @@
           })
           .each(
             a.proxy(function (a, b) {
-              (b = this.prepare(b)),
+              ((b = this.prepare(b)),
                 this.$stage.append(b),
                 this._items.push(b),
                 this._mergers.push(
@@ -802,7 +802,7 @@
                       .find("[data-merge]")
                       .addBack("[data-merge]")
                       .attr("data-merge") || 1,
-                );
+                ));
             }, this),
           ),
         this.reset(
@@ -810,11 +810,11 @@
             ? this.settings.startPosition
             : 0,
         ),
-        this.invalidate("items");
+        this.invalidate("items"));
     }),
     (e.prototype.add = function (b, c) {
       var e = this.relative(this._current);
-      (c = c === d ? this._items.length : this.normalize(c, !0)),
+      ((c = c === d ? this._items.length : this.normalize(c, !0)),
         (b = b instanceof jQuery ? b : a(b)),
         this.trigger("add", { content: b, position: c }),
         (b = this.prepare(b)),
@@ -842,7 +842,7 @@
             )),
         this._items[e] && this.reset(this._items[e].index()),
         this.invalidate("items"),
-        this.trigger("added", { content: b, position: c });
+        this.trigger("added", { content: b, position: c }));
     }),
     (e.prototype.remove = function (a) {
       (a = this.normalize(a, !0)) !== d &&
@@ -856,18 +856,18 @@
     (e.prototype.preloadAutoWidthImages = function (b) {
       b.each(
         a.proxy(function (b, c) {
-          this.enter("pre-loading"),
+          (this.enter("pre-loading"),
             (c = a(c)),
             a(new Image())
               .one(
                 "load",
                 a.proxy(function (a) {
-                  c.attr("src", a.target.src),
+                  (c.attr("src", a.target.src),
                     c.css("opacity", 1),
                     this.leave("pre-loading"),
                     !this.is("pre-loading") &&
                       !this.is("initializing") &&
-                      this.refresh();
+                      this.refresh());
                 }, this),
               )
               .attr(
@@ -875,19 +875,19 @@
                 c.attr("src") ||
                   c.attr("data-src") ||
                   c.attr("data-src-retina"),
-              );
+              ));
         }, this),
       );
     }),
     (e.prototype.destroy = function () {
-      this.$element.off(".owl.core"),
+      (this.$element.off(".owl.core"),
         this.$stage.off(".owl.core"),
         a(c).off(".owl.core"),
         !1 !== this.settings.responsive &&
           (b.clearTimeout(this.resizeTimer),
-          this.off(b, "resize", this._handlers.onThrottledResize));
+          this.off(b, "resize", this._handlers.onThrottledResize)));
       for (var d in this._plugins) this._plugins[d].destroy();
-      this.$stage.children(".cloned").remove(),
+      (this.$stage.children(".cloned").remove(),
         this.$stage.unwrap(),
         this.$stage.children().contents().unwrap(),
         this.$stage.children().unwrap(),
@@ -908,7 +908,7 @@
                 "",
               ),
           )
-          .removeData("owl.carousel");
+          .removeData("owl.carousel"));
     }),
     (e.prototype.op = function (a, b, c) {
       var d = this.settings.rtl;
@@ -964,8 +964,8 @@
       a.each(
         [b].concat(this._states.tags[b] || []),
         a.proxy(function (a, b) {
-          this._states.current[b] === d && (this._states.current[b] = 0),
-            this._states.current[b]++;
+          (this._states.current[b] === d && (this._states.current[b] = 0),
+            this._states.current[b]++);
         }, this),
       );
     }),
@@ -984,14 +984,14 @@
           !a.event.special[b.name].owl)
         ) {
           var c = a.event.special[b.name]._default;
-          (a.event.special[b.name]._default = function (a) {
+          ((a.event.special[b.name]._default = function (a) {
             return !c ||
               !c.apply ||
               (a.namespace && -1 !== a.namespace.indexOf("owl"))
               ? a.namespace && a.namespace.indexOf("owl") > -1
               : c.apply(this, arguments);
           }),
-            (a.event.special[b.name].owl = !0);
+            (a.event.special[b.name].owl = !0));
         }
       } else
         b.type === e.Type.State &&
@@ -1031,8 +1031,8 @@
           a.touches && a.touches.length
             ? a.touches[0]
             : a.changedTouches && a.changedTouches.length
-            ? a.changedTouches[0]
-            : a),
+              ? a.changedTouches[0]
+              : a),
         a.pageX
           ? ((c.x = a.pageX), (c.y = a.pageY))
           : ((c.x = a.clientX), (c.y = a.clientY)),
@@ -1050,7 +1050,7 @@
       return this.each(function () {
         var d = a(this),
           f = d.data("owl.carousel");
-        f ||
+        (f ||
           ((f = new e(this, "object" == typeof b && b)),
           d.data("owl.carousel", f),
           a.each(
@@ -1065,7 +1065,7 @@
               "remove",
             ],
             function (b, c) {
-              f.register({ type: e.Type.Event, name: c }),
+              (f.register({ type: e.Type.Event, name: c }),
                 f.$element.on(
                   c + ".owl.carousel.core",
                   a.proxy(function (a) {
@@ -1075,17 +1075,17 @@
                       f[c].apply(this, [].slice.call(arguments, 1)),
                       this.release([c]));
                   }, f),
-                );
+                ));
             },
           )),
-          "string" == typeof b && "_" !== b.charAt(0) && f[b].apply(f, c);
+          "string" == typeof b && "_" !== b.charAt(0) && f[b].apply(f, c));
       });
     }),
-    (a.fn.owlCarousel.Constructor = e);
+    (a.fn.owlCarousel.Constructor = e));
 })(window.Zepto || window.jQuery, window, document),
   (function (a, b, c, d) {
     var e = function (b) {
-      (this._core = b),
+      ((this._core = b),
         (this._interval = null),
         (this._visible = null),
         (this._handlers = {
@@ -1094,9 +1094,9 @@
           }, this),
         }),
         (this._core.options = a.extend({}, e.Defaults, this._core.options)),
-        this._core.$element.on(this._handlers);
+        this._core.$element.on(this._handlers));
     };
-    (e.Defaults = { autoRefresh: !0, autoRefreshInterval: 500 }),
+    ((e.Defaults = { autoRefresh: !0, autoRefreshInterval: 500 }),
       (e.prototype.watch = function () {
         this._interval ||
           ((this._visible = this._core.isVisible()),
@@ -1120,11 +1120,11 @@
         for (c in Object.getOwnPropertyNames(this))
           "function" != typeof this[c] && (this[c] = null);
       }),
-      (a.fn.owlCarousel.Constructor.Plugins.AutoRefresh = e);
+      (a.fn.owlCarousel.Constructor.Plugins.AutoRefresh = e));
   })(window.Zepto || window.jQuery, window, document),
   (function (a, b, c, d) {
     var e = function (b) {
-      (this._core = b),
+      ((this._core = b),
         (this._loaded = []),
         (this._handlers = {
           "initialized.owl.carousel change.owl.carousel resized.owl.carousel":
@@ -1152,18 +1152,17 @@
                   ((e += c.lazyLoadEager),
                   c.loop && ((g -= c.lazyLoadEager), e++));
                   f++ < e;
-
                 )
-                  this.load(h / 2 + this._core.relative(g)),
+                  (this.load(h / 2 + this._core.relative(g)),
                     h && a.each(this._core.clones(this._core.relative(g)), i),
-                    g++;
+                    g++);
               }
             }, this),
         }),
         (this._core.options = a.extend({}, e.Defaults, this._core.options)),
-        this._core.$element.on(this._handlers);
+        this._core.$element.on(this._handlers));
     };
-    (e.Defaults = { lazyLoad: !1, lazyLoadEager: 0 }),
+    ((e.Defaults = { lazyLoad: !1, lazyLoadEager: 0 }),
       (e.prototype.load = function (c) {
         var d = this._core.$stage.children().eq(c),
           e = d && d.find(".owl-lazy");
@@ -1177,47 +1176,47 @@
                   (b.devicePixelRatio > 1 && f.attr("data-src-retina")) ||
                   f.attr("data-src") ||
                   f.attr("data-srcset");
-              this._core.trigger("load", { element: f, url: g }, "lazy"),
+              (this._core.trigger("load", { element: f, url: g }, "lazy"),
                 f.is("img")
                   ? f
                       .one(
                         "load.owl.lazy",
                         a.proxy(function () {
-                          f.css("opacity", 1),
+                          (f.css("opacity", 1),
+                            this._core.trigger(
+                              "loaded",
+                              { element: f, url: g },
+                              "lazy",
+                            ));
+                        }, this),
+                      )
+                      .attr("src", g)
+                  : f.is("source")
+                    ? f
+                        .one(
+                          "load.owl.lazy",
+                          a.proxy(function () {
                             this._core.trigger(
                               "loaded",
                               { element: f, url: g },
                               "lazy",
                             );
-                        }, this),
-                      )
-                      .attr("src", g)
-                  : f.is("source")
-                  ? f
-                      .one(
-                        "load.owl.lazy",
-                        a.proxy(function () {
+                          }, this),
+                        )
+                        .attr("srcset", g)
+                    : ((e = new Image()),
+                      (e.onload = a.proxy(function () {
+                        (f.css({
+                          "background-image": 'url("' + g + '")',
+                          opacity: "1",
+                        }),
                           this._core.trigger(
                             "loaded",
                             { element: f, url: g },
                             "lazy",
-                          );
-                        }, this),
-                      )
-                      .attr("srcset", g)
-                  : ((e = new Image()),
-                    (e.onload = a.proxy(function () {
-                      f.css({
-                        "background-image": 'url("' + g + '")',
-                        opacity: "1",
-                      }),
-                        this._core.trigger(
-                          "loaded",
-                          { element: f, url: g },
-                          "lazy",
-                        );
-                    }, this)),
-                    (e.src = g));
+                          ));
+                      }, this)),
+                      (e.src = g)));
             }, this),
           ),
           this._loaded.push(d.get(0)));
@@ -1228,11 +1227,11 @@
         for (b in Object.getOwnPropertyNames(this))
           "function" != typeof this[b] && (this[b] = null);
       }),
-      (a.fn.owlCarousel.Constructor.Plugins.Lazy = e);
+      (a.fn.owlCarousel.Constructor.Plugins.Lazy = e));
   })(window.Zepto || window.jQuery, window, document),
   (function (a, b, c, d) {
     var e = function (c) {
-      (this._core = c),
+      ((this._core = c),
         (this._previousHeight = null),
         (this._handlers = {
           "initialized.owl.carousel refreshed.owl.carousel": a.proxy(function (
@@ -1256,9 +1255,9 @@
         }),
         (this._core.options = a.extend({}, e.Defaults, this._core.options)),
         this._core.$element.on(this._handlers),
-        (this._intervalId = null);
+        (this._intervalId = null));
       var d = this;
-      a(b).on("load", function () {
+      (a(b).on("load", function () {
         d._core.settings.autoHeight && d.update();
       }),
         a(b).resize(function () {
@@ -1267,9 +1266,9 @@
             (d._intervalId = setTimeout(function () {
               d.update();
             }, 250)));
-        });
+        }));
     };
-    (e.Defaults = { autoHeight: !1, autoHeightClass: "owl-height" }),
+    ((e.Defaults = { autoHeight: !1, autoHeightClass: "owl-height" }),
       (e.prototype.update = function () {
         var b = this._core._current,
           c = b + this._core.settings.items,
@@ -1277,7 +1276,7 @@
           e = this._core.$stage.children().toArray().slice(b, c),
           f = [],
           g = 0;
-        a.each(e, function (b, c) {
+        (a.each(e, function (b, c) {
           f.push(a(c).height());
         }),
           (g = Math.max.apply(null, f)),
@@ -1286,7 +1285,7 @@
           this._core.$stage
             .parent()
             .height(g)
-            .addClass(this._core.settings.autoHeightClass);
+            .addClass(this._core.settings.autoHeightClass));
       }),
       (e.prototype.destroy = function () {
         var a, b;
@@ -1294,11 +1293,11 @@
         for (b in Object.getOwnPropertyNames(this))
           "function" != typeof this[b] && (this[b] = null);
       }),
-      (a.fn.owlCarousel.Constructor.Plugins.AutoHeight = e);
+      (a.fn.owlCarousel.Constructor.Plugins.AutoHeight = e));
   })(window.Zepto || window.jQuery, window, document),
   (function (a, b, c, d) {
     var e = function (b) {
-      (this._core = b),
+      ((this._core = b),
         (this._videos = {}),
         (this._playing = null),
         (this._handlers = {
@@ -1343,16 +1342,16 @@
           a.proxy(function (a) {
             this.play(a);
           }, this),
-        );
+        ));
     };
-    (e.Defaults = { video: !1, videoHeight: !1, videoWidth: !1 }),
+    ((e.Defaults = { video: !1, videoHeight: !1, videoWidth: !1 }),
       (e.prototype.fetch = function (a, b) {
         var c = (function () {
             return a.attr("data-vimeo-id")
               ? "vimeo"
               : a.attr("data-vzaar-id")
-              ? "vzaar"
-              : "youtube";
+                ? "vzaar"
+                : "youtube";
           })(),
           d =
             a.attr("data-vimeo-id") ||
@@ -1375,10 +1374,10 @@
             throw new Error("Video URL not supported.");
           c = "vzaar";
         }
-        (d = d[6]),
+        ((d = d[6]),
           (this._videos[g] = { type: c, id: d, width: e, height: f }),
           b.attr("data-video", g),
-          this.thumbnail(a, this._videos[g]);
+          this.thumbnail(a, this._videos[g]));
       }),
       (e.prototype.thumbnail = function (b, c) {
         var d,
@@ -1393,7 +1392,7 @@
           j = "",
           k = this._core.settings,
           l = function (c) {
-            (e = '<div class="owl-video-play-icon"></div>'),
+            ((e = '<div class="owl-video-play-icon"></div>'),
               (d = k.lazyLoad
                 ? a("<div/>", { class: "owl-video-tn " + j, srcType: c })
                 : a("<div/>", {
@@ -1401,44 +1400,44 @@
                     style: "opacity:1;background-image:url(" + c + ")",
                   })),
               b.after(d),
-              b.after(e);
+              b.after(e));
           };
         if (
           (b.wrap(a("<div/>", { class: "owl-video-wrapper", style: g })),
           this._core.settings.lazyLoad && ((i = "data-src"), (j = "owl-lazy")),
           h.length)
         )
-          return l(h.attr(i)), h.remove(), !1;
+          return (l(h.attr(i)), h.remove(), !1);
         "youtube" === c.type
           ? ((f = "//img.youtube.com/vi/" + c.id + "/hqdefault.jpg"), l(f))
           : "vimeo" === c.type
-          ? a.ajax({
-              type: "GET",
-              url: "//vimeo.com/api/v2/video/" + c.id + ".json",
-              jsonp: "callback",
-              dataType: "jsonp",
-              success: function (a) {
-                (f = a[0].thumbnail_large), l(f);
-              },
-            })
-          : "vzaar" === c.type &&
-            a.ajax({
-              type: "GET",
-              url: "//vzaar.com/api/videos/" + c.id + ".json",
-              jsonp: "callback",
-              dataType: "jsonp",
-              success: function (a) {
-                (f = a.framegrab_url), l(f);
-              },
-            });
+            ? a.ajax({
+                type: "GET",
+                url: "//vimeo.com/api/v2/video/" + c.id + ".json",
+                jsonp: "callback",
+                dataType: "jsonp",
+                success: function (a) {
+                  ((f = a[0].thumbnail_large), l(f));
+                },
+              })
+            : "vzaar" === c.type &&
+              a.ajax({
+                type: "GET",
+                url: "//vzaar.com/api/videos/" + c.id + ".json",
+                jsonp: "callback",
+                dataType: "jsonp",
+                success: function (a) {
+                  ((f = a.framegrab_url), l(f));
+                },
+              });
       }),
       (e.prototype.stop = function () {
-        this._core.trigger("stop", null, "video"),
+        (this._core.trigger("stop", null, "video"),
           this._playing.find(".owl-video-frame").remove(),
           this._playing.removeClass("owl-video-playing"),
           (this._playing = null),
           this._core.leave("playing"),
-          this._core.trigger("stopped", null, "video");
+          this._core.trigger("stopped", null, "video"));
       }),
       (e.prototype.play = function (b) {
         var c,
@@ -1466,12 +1465,15 @@
                   f.id,
               )
             : "vimeo" === f.type
-            ? c.attr("src", "//player.vimeo.com/video/" + f.id + "?autoplay=1")
-            : "vzaar" === f.type &&
-              c.attr(
-                "src",
-                "//view.vzaar.com/" + f.id + "/player?autoplay=true",
-              ),
+              ? c.attr(
+                  "src",
+                  "//player.vimeo.com/video/" + f.id + "?autoplay=1",
+                )
+              : "vzaar" === f.type &&
+                c.attr(
+                  "src",
+                  "//view.vzaar.com/" + f.id + "/player?autoplay=true",
+                ),
           a(c)
             .wrap('<div class="owl-video-frame" />')
             .insertAfter(e.find(".owl-video")),
@@ -1491,11 +1493,11 @@
         for (b in Object.getOwnPropertyNames(this))
           "function" != typeof this[b] && (this[b] = null);
       }),
-      (a.fn.owlCarousel.Constructor.Plugins.Video = e);
+      (a.fn.owlCarousel.Constructor.Plugins.Video = e));
   })(window.Zepto || window.jQuery, window, document),
   (function (a, b, c, d) {
     var e = function (b) {
-      (this.core = b),
+      ((this.core = b),
         (this.core.options = a.extend({}, e.Defaults, this.core.options)),
         (this.swapping = !0),
         (this.previous = d),
@@ -1518,9 +1520,9 @@
               this.swap();
           }, this),
         }),
-        this.core.$element.on(this.handlers);
+        this.core.$element.on(this.handlers));
     };
-    (e.Defaults = { animateOut: !1, animateIn: !1 }),
+    ((e.Defaults = { animateOut: !1, animateIn: !1 }),
       (e.prototype.swap = function () {
         if (
           1 === this.core.settings.items &&
@@ -1552,12 +1554,12 @@
         }
       }),
       (e.prototype.clear = function (b) {
-        a(b.target)
+        (a(b.target)
           .css({ left: "" })
           .removeClass("animated owl-animated-out owl-animated-in")
           .removeClass(this.core.settings.animateIn)
           .removeClass(this.core.settings.animateOut),
-          this.core.onTransitionEnd();
+          this.core.onTransitionEnd());
       }),
       (e.prototype.destroy = function () {
         var a, b;
@@ -1565,11 +1567,11 @@
         for (b in Object.getOwnPropertyNames(this))
           "function" != typeof this[b] && (this[b] = null);
       }),
-      (a.fn.owlCarousel.Constructor.Plugins.Animate = e);
+      (a.fn.owlCarousel.Constructor.Plugins.Animate = e));
   })(window.Zepto || window.jQuery, window, document),
   (function (a, b, c, d) {
     var e = function (b) {
-      (this._core = b),
+      ((this._core = b),
         (this._call = null),
         (this._time = 0),
         (this._timeout = 0),
@@ -1614,30 +1616,30 @@
           }, this),
         }),
         this._core.$element.on(this._handlers),
-        (this._core.options = a.extend({}, e.Defaults, this._core.options));
+        (this._core.options = a.extend({}, e.Defaults, this._core.options)));
     };
-    (e.Defaults = {
+    ((e.Defaults = {
       autoplay: !1,
       autoplayTimeout: 5e3,
       autoplayHoverPause: !1,
       autoplaySpeed: !1,
     }),
       (e.prototype._next = function (d) {
-        (this._call = b.setTimeout(
+        ((this._call = b.setTimeout(
           a.proxy(this._next, this, d),
           this._timeout * (Math.round(this.read() / this._timeout) + 1) -
             this.read(),
         )),
           this._core.is("interacting") ||
             c.hidden ||
-            this._core.next(d || this._core.settings.autoplaySpeed);
+            this._core.next(d || this._core.settings.autoplaySpeed));
       }),
       (e.prototype.read = function () {
         return new Date().getTime() - this._time;
       }),
       (e.prototype.play = function (c, d) {
         var e;
-        this._core.is("rotating") || this._core.enter("rotating"),
+        (this._core.is("rotating") || this._core.enter("rotating"),
           (c = c || this._core.settings.autoplayTimeout),
           (e = Math.min(this._time % (this._timeout || c), c)),
           this._paused
@@ -1645,7 +1647,7 @@
             : b.clearTimeout(this._call),
           (this._time += (this.read() % c) - e),
           (this._timeout = c),
-          (this._call = b.setTimeout(a.proxy(this._next, this, d), c - e));
+          (this._call = b.setTimeout(a.proxy(this._next, this, d), c - e)));
       }),
       (e.prototype.stop = function () {
         this._core.is("rotating") &&
@@ -1668,12 +1670,12 @@
         for (b in Object.getOwnPropertyNames(this))
           "function" != typeof this[b] && (this[b] = null);
       }),
-      (a.fn.owlCarousel.Constructor.Plugins.autoplay = e);
+      (a.fn.owlCarousel.Constructor.Plugins.autoplay = e));
   })(window.Zepto || window.jQuery, window, document),
   (function (a, b, c, d) {
     "use strict";
     var e = function (b) {
-      (this._core = b),
+      ((this._core = b),
         (this._initialized = !1),
         (this._pages = []),
         (this._controls = {}),
@@ -1732,9 +1734,9 @@
           }, this),
         }),
         (this._core.options = a.extend({}, e.Defaults, this._core.options)),
-        this.$element.on(this._handlers);
+        this.$element.on(this._handlers));
     };
-    (e.Defaults = {
+    ((e.Defaults = {
       nav: !1,
       navText: [
         '<span aria-label="Previous">&#x2039;</span>',
@@ -1757,7 +1759,7 @@
       (e.prototype.initialize = function () {
         var b,
           c = this._core.settings;
-        (this._controls.$relative = (
+        ((this._controls.$relative = (
           c.navContainer
             ? a(c.navContainer)
             : a("<div>").addClass(c.navContainerClass).appendTo(this.$element)
@@ -1801,9 +1803,9 @@
               var d = a(b.target).parent().is(this._controls.$absolute)
                 ? a(b.target).index()
                 : a(b.target).parent().index();
-              b.preventDefault(), this.to(d, c.dotsSpeed);
+              (b.preventDefault(), this.to(d, c.dotsSpeed));
             }, this),
-          );
+          ));
         for (b in this._overrides) this._core[b] = a.proxy(this[b], this);
       }),
       (e.prototype.destroy = function () {
@@ -1841,7 +1843,7 @@
                 Math.min(f, a - d) === f)
               )
                 break;
-              (b = 0), ++c;
+              ((b = 0), ++c);
             }
             b += this._core.mergers(this._core.relative(a));
           }
@@ -1852,7 +1854,7 @@
           d = this._core.items().length <= c.items,
           e = this._core.relative(this._core.current()),
           f = c.loop || c.rewind;
-        this._controls.$relative.toggleClass("disabled", !c.nav || d),
+        (this._controls.$relative.toggleClass("disabled", !c.nav || d),
           c.nav &&
             (this._controls.$previous.toggleClass(
               "disabled",
@@ -1869,15 +1871,16 @@
             c.dotsData && 0 !== b
               ? this._controls.$absolute.html(this._templates.join(""))
               : b > 0
-              ? this._controls.$absolute.append(
-                  new Array(b + 1).join(this._templates[0]),
-                )
-              : b < 0 && this._controls.$absolute.children().slice(b).remove(),
+                ? this._controls.$absolute.append(
+                    new Array(b + 1).join(this._templates[0]),
+                  )
+                : b < 0 &&
+                  this._controls.$absolute.children().slice(b).remove(),
             this._controls.$absolute.find(".active").removeClass("active"),
             this._controls.$absolute
               .children()
               .eq(a.inArray(this.current(), this._pages))
-              .addClass("active"));
+              .addClass("active")));
       }),
       (e.prototype.onTrigger = function (b) {
         var c = this._core.settings;
@@ -1932,12 +1935,12 @@
             ))
           : a.proxy(this._overrides.to, this._core)(b, c);
       }),
-      (a.fn.owlCarousel.Constructor.Plugins.Navigation = e);
+      (a.fn.owlCarousel.Constructor.Plugins.Navigation = e));
   })(window.Zepto || window.jQuery, window, document),
   (function (a, b, c, d) {
     "use strict";
     var e = function (c) {
-      (this._core = c),
+      ((this._core = c),
         (this._hashes = {}),
         (this.$element = this._core.$element),
         (this._handlers = {
@@ -1983,9 +1986,9 @@
               f !== this._core.current() &&
               this._core.to(this._core.relative(f), !1, !0);
           }, this),
-        );
+        ));
     };
-    (e.Defaults = { URLhashListener: !1 }),
+    ((e.Defaults = { URLhashListener: !1 }),
       (e.prototype.destroy = function () {
         var c, d;
         a(b).off("hashchange.owl.navigation");
@@ -1993,7 +1996,7 @@
         for (d in Object.getOwnPropertyNames(this))
           "function" != typeof this[d] && (this[d] = null);
       }),
-      (a.fn.owlCarousel.Constructor.Plugins.Hash = e);
+      (a.fn.owlCarousel.Constructor.Plugins.Hash = e));
   })(window.Zepto || window.jQuery, window, document),
   (function (a, b, c, d) {
     function e(b, c) {
@@ -2001,7 +2004,7 @@
         f = b.charAt(0).toUpperCase() + b.slice(1);
       return (
         a.each((b + " " + h.join(f + " ") + f).split(" "), function (a, b) {
-          if (g[b] !== d) return (e = !c || b), !1;
+          if (g[b] !== d) return ((e = !c || b), !1);
         }),
         e
       );
@@ -2043,7 +2046,7 @@
           return !!e("animation");
         },
       };
-    j.csstransitions() &&
+    (j.csstransitions() &&
       ((a.support.transition = new String(f("transition"))),
       (a.support.transition.end = i.transition.end[a.support.transition])),
       j.cssanimations() &&
@@ -2051,5 +2054,5 @@
         (a.support.animation.end = i.animation.end[a.support.animation])),
       j.csstransforms() &&
         ((a.support.transform = new String(f("transform"))),
-        (a.support.transform3d = j.csstransforms3d()));
-  })(window.Zepto || window.jQuery, window, document);
+        (a.support.transform3d = j.csstransforms3d())));
+  })(window.Zepto || window.jQuery, window, document));

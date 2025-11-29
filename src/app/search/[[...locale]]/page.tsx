@@ -15,7 +15,9 @@ function SearchFallback({ translate }: { translate: Translate }) {
   return <>{translate("Loading")}</>;
 }
 
-export default async function Search({ params: paramsPromise }: ParamsWithLocale) {
+export default async function Search({
+  params: paramsPromise,
+}: ParamsWithLocale) {
   const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);

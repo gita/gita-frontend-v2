@@ -61,7 +61,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const headersList = await headers();
   const requestUrl = headersList.get("x-invoke-path") || "";
   const htmlLang = requestUrl.includes("/hi") ? "hi" : "en";
@@ -71,7 +75,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   console.log("[RootLayout] Using HTML lang:", htmlLang);
 
   return (
-    <html lang={htmlLang} className={`${inter.variable} ${notoSansDevanagari.variable}`} suppressHydrationWarning>
+    <html
+      lang={htmlLang}
+      className={`${inter.variable} ${notoSansDevanagari.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

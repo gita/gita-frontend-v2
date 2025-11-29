@@ -10,12 +10,12 @@ module.exports = withPlausibleProxy()({
   },
   // Enable React Compiler for automatic memoization (stable in Next.js 16)
   reactCompiler: true,
-  
+
   turbopack: {
     rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
       },
     },
   },
@@ -26,7 +26,7 @@ module.exports = withPlausibleProxy()({
     // Enable optimized CSS loading (Next.js 14+)
     optimizeCss: true,
     // Enable optimized package imports (Next.js 14+)
-    optimizePackageImports: ['@headlessui/react', 'lodash', 'react-player'],
+    optimizePackageImports: ["@headlessui/react", "lodash", "react-player"],
   },
   // Serve old static app from /app route
   async rewrites() {

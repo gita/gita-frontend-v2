@@ -53,7 +53,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-              <div className="fixed inset-0" aria-hidden="true" />
+            <div className="fixed inset-0" aria-hidden="true" />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -85,7 +85,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                       </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                         <ChevronUpDownIcon
-                          className="h-5 w-5 text-gray-400"
+                          className="size-5 text-gray-400"
                           aria-hidden="true"
                         />
                       </span>
@@ -96,7 +96,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className=" mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg sm:text-sm">
+                      <Listbox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg sm:text-sm">
                         {data.map((chapter) => (
                           <Listbox.Option
                             key={chapter.chapterNumber}
@@ -105,8 +105,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                                 active
                                   ? "bg-amber-100 text-amber-900"
                                   : "text-gray-900"
-                              }
-                          relative cursor-default select-none py-2 pl-10 pr-4`
+                              } relative cursor-default select-none py-2 pl-10 pr-4`
                             }
                             value={chapter.chapterNumber}
                           >
@@ -125,11 +124,10 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                                       active
                                         ? "text-amber-600"
                                         : "text-amber-600"
-                                    }
-                                absolute inset-y-0 left-0 flex items-center pl-3`}
+                                    } absolute inset-y-0 left-0 flex items-center pl-3`}
                                   >
                                     <CheckIcon
-                                      className="h-5 w-5"
+                                      className="size-5"
                                       aria-hidden="true"
                                     />
                                   </span>
@@ -153,7 +151,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                       </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                         <ChevronUpDownIcon
-                          className="h-5 w-5 text-gray-400"
+                          className="size-5 text-gray-400"
                           aria-hidden="true"
                         />
                       </span>
@@ -164,7 +162,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className=" mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg sm:text-sm">
+                      <Listbox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg sm:text-sm">
                         {data
                           .filter(
                             (chapter) =>
@@ -178,8 +176,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                                   active
                                     ? "bg-amber-100 text-amber-900"
                                     : "text-gray-900 dark:text-gray-50"
-                                }
-                          relative cursor-default select-none py-2 pl-10 pr-4`
+                                } relative cursor-default select-none py-2 pl-10 pr-4`
                               }
                               value={verse}
                             >
@@ -198,11 +195,10 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                                         active
                                           ? "text-amber-600"
                                           : "text-amber-600"
-                                      }
-                                absolute inset-y-0 left-0 flex items-center pl-3`}
+                                      } absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
-                                        className="h-5 w-5"
+                                        className="size-5"
                                         aria-hidden="true"
                                       />
                                     </span>
@@ -296,7 +292,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                     {translate("Chapter")} {selectedChapter}
                   </p>
                   <hr className="border-my-orange/10" />
-                  <div className={`flex flex-wrap p-3 `}>
+                  <div className={`flex flex-wrap p-3`}>
                     {data
                       .filter(
                         (chapter) => chapter.chapterNumber === selectedChapter,
@@ -310,14 +306,14 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                           {selectedVerse.id === verse.id ? (
                             <div
                               onClick={modalClose}
-                              className="m-px flex h-10 w-10 items-center justify-center rounded bg-my-orange p-1.5 text-white hover:cursor-pointer"
+                              className="m-px flex size-10 items-center justify-center rounded bg-my-orange p-1.5 text-white hover:cursor-pointer"
                             >
                               {verse.verseNumber}
                             </div>
                           ) : (
                             <div
                               onClick={modalClose}
-                              className="m-px flex h-10 w-10 items-center justify-center rounded p-1.5 text-gray-500 hover:cursor-pointer hover:bg-my-orange hover:text-white"
+                              className="m-px flex size-10 items-center justify-center rounded p-1.5 text-gray-500 hover:cursor-pointer hover:bg-my-orange hover:text-white"
                             >
                               {verse.verseNumber}
                             </div>

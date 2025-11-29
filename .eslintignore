@@ -1,0 +1,7 @@
+node_modules/
+.next/
+out/
+public/app/
+*.config.js
+*.config.ts
+*.config.mjs

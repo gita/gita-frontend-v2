@@ -280,7 +280,7 @@ const Footer = (props: Props) => {
                                   : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm",
                               )}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                             >
                               {translate("Blog")}
                             </a>
@@ -329,13 +329,13 @@ const Footer = (props: Props) => {
                                   : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm",
                               )}
-                              target="_blank"
+                              target="_blank" rel="noreferrer"
                             >
                               API
                             </a>
                           )}
                         </Menu.Item>
-                        <div className="border-t  border-gray-200 py-1">
+                        <div className="border-t border-gray-200 py-1">
                           <Menu.Item>
                             {({ active }) => (
                               <a
@@ -346,7 +346,7 @@ const Footer = (props: Props) => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm",
                                 )}
-                                target="_blank"
+                                target="_blank" rel="noreferrer"
                               >
                                 Facebook
                               </a>
@@ -362,7 +362,7 @@ const Footer = (props: Props) => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm",
                                 )}
-                                target="_blank"
+                                target="_blank" rel="noreferrer"
                               >
                                 Instagram
                               </a>
@@ -379,7 +379,7 @@ const Footer = (props: Props) => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm",
                                 )}
-                                target="_blank"
+                                target="_blank" rel="noreferrer"
                               >
                                 Twitter
                               </a>
@@ -410,12 +410,12 @@ const Footer = (props: Props) => {
                       More
                       {open ? (
                         <ChevronUpIcon
-                          className="-mr-1 ml-1 h-4 w-4 rotate-180"
+                          className="-mr-1 ml-1 size-4 rotate-180"
                           aria-hidden="true"
                         />
                       ) : (
                         <ChevronUpIcon
-                          className="-mr-1 ml-1 h-4 w-4"
+                          className="-mr-1 ml-1 size-4"
                           aria-hidden="true"
                         />
                       )}
@@ -443,7 +443,7 @@ const Footer = (props: Props) => {
                         <a
                           href={item.href}
                           className="text-base text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                          target="_blank"
+                          target="_blank" rel="noreferrer"
                         >
                           {item.name}
                         </a>
@@ -498,10 +498,10 @@ const Footer = (props: Props) => {
                 key={item.name}
                 href={item.href}
                 className="text-gray-400 hover:text-gray-500 dark:hover:text-white"
-                target="_blank"
+                target="_blank" rel="noreferrer"
               >
                 <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" ariaHidden={true} />
+                <item.icon className="size-6" ariaHidden={true} />
               </a>
             ))}
             {/* <a href="#">App Icon</a> */}
@@ -634,7 +634,7 @@ const Footer = (props: Props) => {
             </span>
           </p>
         </div>
-        <div className="flex items-center justify-end lg:flex lg:w-1/5  lg:space-x-1">
+        <div className="flex items-center justify-end lg:flex lg:w-1/5 lg:space-x-1">
           <a
             href="https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita"
             target="_blank"

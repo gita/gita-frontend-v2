@@ -16,7 +16,9 @@ type Props = {
   }>;
 };
 
-export async function generateMetadata({ params: paramsPromise }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params: paramsPromise,
+}: Props): Promise<Metadata> {
   const params = await paramsPromise;
   const { chapterNumber } = params;
   const locale = paramsToLocale(params);

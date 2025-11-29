@@ -69,7 +69,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function Home({ params: paramsPromise }: ParamsWithLocale) {
+export default async function Home({
+  params: paramsPromise,
+}: ParamsWithLocale) {
   const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const chapters = await getAllChapters(locale);

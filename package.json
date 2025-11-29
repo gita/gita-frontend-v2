@@ -7,11 +7,12 @@
     "gqty:generate-schema": "gqty generate",
     "find:unused": "npx next-unused",
     "prettier": "prettier --write .",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "type-check": "tsc"
   },
   "pre-commit": [
+    "lint",
     "type-check",
     "prettier"
   ],
@@ -100,7 +101,7 @@
     "autoprefixer": "^10.2.6",
     "babel-plugin-react-compiler": "^1.0.0",
     "dotenv": "^17.2.3",
-    "eslint": "^9.0.0",
+    "eslint": "^8.57.0",
     "eslint-config-next": "^16.0.5",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "postcss": "^8.3.5",

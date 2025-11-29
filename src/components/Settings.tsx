@@ -73,7 +73,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                 <div className="mt-2 border-y py-2">
                   <p
                     className={classNames(
-                      " text-gray-500 dark:text-gray-200",
+                      "text-gray-500 dark:text-gray-200",
                       appearanceSettings?.fontSize === "small"
                         ? "text-md"
                         : "text-xl",
@@ -142,7 +142,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         appearanceSettings?.spacing === "large"
                           ? "text-my-orange"
                           : "text-gray-700 dark:text-gray-200",
-                        "relative w-1/3 items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50  focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
+                        "relative w-1/3 items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
                       )}
                     >
                       <Image
@@ -164,7 +164,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         appearanceSettings?.spacing === "medium"
                           ? "text-my-orange"
                           : "text-gray-700 dark:text-gray-200",
-                        "relative -ml-px w-1/3 items-center border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50  focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
+                        "relative -ml-px w-1/3 items-center border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
                       )}
                     >
                       <Image
@@ -187,7 +187,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         appearanceSettings?.spacing === "small"
                           ? "text-my-orange"
                           : "text-gray-700 dark:text-gray-200",
-                        "relative -ml-px w-1/3 items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50  focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
+                        "relative -ml-px w-1/3 items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
                       )}
                     >
                       <Image

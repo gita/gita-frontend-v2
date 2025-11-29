@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-import { supportedLocales } from "shared/constants";
-import { getLanguageSettings, isLocale } from "shared/functions";
+import { getLanguageSettings } from "shared/functions";
 
 export function proxy(req: NextRequest) {
   const { origin, pathname, searchParams } = new URL(req.url);
@@ -95,4 +94,3 @@ export function proxy(req: NextRequest) {
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|app).*)"],
 };
-
