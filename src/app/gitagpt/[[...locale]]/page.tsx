@@ -59,12 +59,12 @@ export default async function GitagptPage(props: ParamsWithLocale) {
       {["en", "hi"].includes(locale) && (
         <div style={{ height: "100vh", width: "100vw" }}>
           <iframe
-            style={{ height: "100%", width: "100%" }}
-            src="https://widget.botsonic.com/CDN/index.html?service-base-url=https%3A%2F%2Fapi-azure.botsonic.ai&token=97984adc-5eec-43db-ae83-69cbffb823af&base-origin=https%3A%2F%2Fbot.writesonic.com&instance-name=Botsonic&standalone=true&page-url=https%3A%2F%2Fbot.writesonic.com%2Fbots%2F56dc43c9-8238-4921-935a-9de28caca114%2Fconnect"
+            src="https://www.chatbase.co/chatbot-iframe/FUopn1I5lRD_dEopmyuQk"
+            width="100%"
+            style={{ height: "100%", minHeight: "700px" }}
+            frameBorder="0"
             title="GitaGPT"
-          >
-            You need to enable JavaScript to run this app.
-          </iframe>
+          />
         </div>
       )}
     </>

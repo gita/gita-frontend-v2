@@ -146,25 +146,9 @@ export default async function Home({ params }: ParamsWithLocale) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdThree) }}
       />
-      <Script strategy="lazyOnload" id="botsonic-widget-script">
+      <Script strategy="lazyOnload" id="chatbase-widget-script">
         {`
-            (function (w, d, s, o, f, js, fjs) {
-              w["botsonic_widget"] = o;
-              w[o] =
-                w[o] ||
-                function () {
-                  (w[o].q = w[o].q || []).push(arguments);
-                };
-              (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-              js.id = o;
-              js.src = f;
-              js.async = 1;
-              fjs.parentNode.insertBefore(js, fjs);
-            })(window, document, "script", "Botsonic", "https://widget.writesonic.com/CDN/botsonic.min.js");
-            Botsonic("init", {
-              serviceBaseUrl: "https://api-azure.botsonic.ai",
-              token: "97984adc-5eec-43db-ae83-69cbffb823af",
-            });
+            (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="FUopn1I5lRD_dEopmyuQk";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
           `}
       </Script>
       <HomePage chapters={chapters} locale={locale} />

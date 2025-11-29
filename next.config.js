@@ -13,8 +13,23 @@ module.exports = withPlausibleProxy()({
     serverActions: true,
   },
   i18n: {
-    locales: ["en", "ru"],
+    locales: ["en", "hi"],
     defaultLocale: "en",
+  },
+  // Serve old static app from /app route
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/app',
+          destination: '/app/index.html',
+        },
+        {
+          source: '/app/:path*',
+          destination: '/app/:path*',
+        },
+      ],
+    };
   },
 });
 
