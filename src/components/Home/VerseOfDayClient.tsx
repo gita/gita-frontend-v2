@@ -17,9 +17,7 @@ const VerseOfDayClient = ({ locale, translations }: Props) => {
   useEffect(() => {
     const fetchDailyVerse = async () => {
       try {
-        const response = await fetch(
-          `/api/verse-of-the-day?locale=${locale}`,
-        );
+        const response = await fetch(`/api/verse-of-the-day?locale=${locale}`);
         if (response.ok) {
           const data = await response.json();
           setDailyVerse(data);
@@ -72,4 +70,3 @@ const VerseOfDayClient = ({ locale, translations }: Props) => {
 };
 
 export default VerseOfDayClient;
-

@@ -89,180 +89,183 @@ const AuthorSettings = ({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
-                <div className="my-2 flex items-center justify-between py-2">
-                  <p className="text-base text-black dark:text-white">
-                    {translate("Verse Commentary Source")}
-                  </p>
-                  <Switch
-                    checked={isVerseCommentarySourceEnabled}
-                    onChange={setIsVerseCommentarySourceEnabled}
-                    className={`${
-                      isVerseCommentarySourceEnabled
-                        ? "bg-my-orange"
-                        : "bg-gray-200 dark:bg-dark-bg"
-                    } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
-                  >
-                    <span
-                      aria-hidden="true"
+                  <div className="my-2 flex items-center justify-between py-2">
+                    <p className="text-base text-black dark:text-white">
+                      {translate("Verse Commentary Source")}
+                    </p>
+                    <Switch
+                      checked={isVerseCommentarySourceEnabled}
+                      onChange={setIsVerseCommentarySourceEnabled}
                       className={`${
                         isVerseCommentarySourceEnabled
-                          ? "translate-x-5"
-                          : "translate-x-0"
-                      } pointer-events-none inline-block size-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-                    />
-                  </Switch>
-                </div>
-                <div className="mb-4" hidden={!isVerseCommentarySourceEnabled}>
-                  <Listbox
-                    value={commentaryAuthor}
-                    onChange={setCommentaryAuthor}
+                          ? "bg-my-orange"
+                          : "bg-gray-200 dark:bg-dark-bg"
+                      } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`${
+                          isVerseCommentarySourceEnabled
+                            ? "translate-x-5"
+                            : "translate-x-0"
+                        } pointer-events-none inline-block size-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                      />
+                    </Switch>
+                  </div>
+                  <div
+                    className="mb-4"
+                    hidden={!isVerseCommentarySourceEnabled}
                   >
-                    <div className="relative">
-                      <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
-                        <span className="block truncate text-black dark:text-white">
-                          {translate(commentaryAuthor?.name)}&nbsp;(
-                          {translate(commentaryAuthor?.language)})
-                        </span>
-                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                          <ChevronUpDownIcon
-                            className="size-5 text-gray-400"
-                            aria-hidden="true"
-                          />
-                        </span>
-                      </Listbox.Button>
-                      <Transition
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <Listbox.Options className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
-                          {commentary_authors.map((author) => (
-                            <Listbox.Option
-                              key={author.id}
-                              className={({ active }) =>
-                                `${
-                                  active
-                                    ? "bg-my-orange text-white"
-                                    : "text-black dark:text-white"
-                                } relative flex cursor-pointer select-none justify-between px-4 py-2`
-                              }
-                              value={author}
-                            >
-                              <div>{translate(author.name)}</div>
-                              <div>{translate(author.language)}</div>
-                            </Listbox.Option>
-                          ))}
-                        </Listbox.Options>
-                      </Transition>
-                    </div>
-                  </Listbox>
-                </div>
+                    <Listbox
+                      value={commentaryAuthor}
+                      onChange={setCommentaryAuthor}
+                    >
+                      <div className="relative">
+                        <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                          <span className="block truncate text-black dark:text-white">
+                            {translate(commentaryAuthor?.name)}&nbsp;(
+                            {translate(commentaryAuthor?.language)})
+                          </span>
+                          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                            <ChevronUpDownIcon
+                              className="size-5 text-gray-400"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </Listbox.Button>
+                        <Transition
+                          as={Fragment}
+                          leave="transition ease-in duration-100"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Listbox.Options className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                            {commentary_authors.map((author) => (
+                              <Listbox.Option
+                                key={author.id}
+                                className={({ active }) =>
+                                  `${
+                                    active
+                                      ? "bg-my-orange text-white"
+                                      : "text-black dark:text-white"
+                                  } relative flex cursor-pointer select-none justify-between px-4 py-2`
+                                }
+                                value={author}
+                              >
+                                <div>{translate(author.name)}</div>
+                                <div>{translate(author.language)}</div>
+                              </Listbox.Option>
+                            ))}
+                          </Listbox.Options>
+                        </Transition>
+                      </div>
+                    </Listbox>
+                  </div>
 
-                <div className="mb-2 flex items-center justify-between py-2">
-                  <p className="text-base text-black dark:text-white">
-                    {translate("Verse Translation Source")}
-                  </p>
-                  <Switch
-                    checked={isVerseTranslationSourceEnabled}
-                    onChange={setIsVerseTranslationSourceEnabled}
-                    className={`${
-                      isVerseTranslationSourceEnabled
-                        ? "bg-my-orange"
-                        : "bg-gray-200 dark:bg-dark-bg"
-                    } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
-                  >
-                    <span
-                      aria-hidden="true"
+                  <div className="mb-2 flex items-center justify-between py-2">
+                    <p className="text-base text-black dark:text-white">
+                      {translate("Verse Translation Source")}
+                    </p>
+                    <Switch
+                      checked={isVerseTranslationSourceEnabled}
+                      onChange={setIsVerseTranslationSourceEnabled}
                       className={`${
                         isVerseTranslationSourceEnabled
-                          ? "translate-x-5"
-                          : "translate-x-0"
-                      } pointer-events-none inline-block size-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-                    />
-                  </Switch>
-                </div>
+                          ? "bg-my-orange"
+                          : "bg-gray-200 dark:bg-dark-bg"
+                      } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`${
+                          isVerseTranslationSourceEnabled
+                            ? "translate-x-5"
+                            : "translate-x-0"
+                        } pointer-events-none inline-block size-[25px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                      />
+                    </Switch>
+                  </div>
 
-                <div hidden={!isVerseTranslationSourceEnabled}>
-                  <Listbox
-                    value={translationAuthor}
-                    onChange={setTranslationAuthor}
-                  >
-                    <div className="relative">
-                      <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
-                        <span className="flex justify-between text-black dark:text-white">
-                          {translate(translationAuthor?.name)}&nbsp; (
-                          {translate(translationAuthor?.language)})
-                        </span>
-                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                          <ChevronUpDownIcon
-                            className="size-5 text-gray-400"
-                            aria-hidden="true"
-                          />
-                        </span>
-                      </Listbox.Button>
-                      <Transition
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <Listbox.Options className="relative z-20 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
-                          {translation_authors.map((author) => (
-                            <Listbox.Option
-                              key={author.id}
-                              className={({ active }) =>
-                                `${
-                                  active
-                                    ? "bg-my-orange text-white"
-                                    : "text-black dark:text-white"
-                                } relative flex cursor-pointer select-none justify-between px-4 py-2`
-                              }
-                              value={author}
-                            >
-                              <div>{author.name}</div>
-                              <div>{translate(author.language)}</div>
-                            </Listbox.Option>
-                          ))}
-                        </Listbox.Options>
-                      </Transition>
-                    </div>
-                  </Listbox>
-                </div>
-
-                <div className="mt-8 flex w-full gap-5">
-                  <button
-                    type="button"
-                    className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                    onClick={closeAuthorSettingsModal}
-                  >
-                    {translate("Cancel")}
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => handleSubmit()}
-                    className={classNames(
-                      "w-1/2 items-center border border-transparent px-6 py-3 text-center",
-                      "rounded-md bg-my-orange text-base font-medium text-white shadow-sm",
-                      "hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
-                      isSubmitting && "bg-opacity-30 hover:bg-opacity-30",
-                    )}
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting && (
-                      <div
-                        className="mr-2 inline-block size-4 animate-spin rounded-3xl border-2 border-solid border-r-transparent align-text-bottom"
-                        role="status"
-                      >
-                        <span className="sr-only">
-                          {translate("Loading")}...
-                        </span>
+                  <div hidden={!isVerseTranslationSourceEnabled}>
+                    <Listbox
+                      value={translationAuthor}
+                      onChange={setTranslationAuthor}
+                    >
+                      <div className="relative">
+                        <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                          <span className="flex justify-between text-black dark:text-white">
+                            {translate(translationAuthor?.name)}&nbsp; (
+                            {translate(translationAuthor?.language)})
+                          </span>
+                          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                            <ChevronUpDownIcon
+                              className="size-5 text-gray-400"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </Listbox.Button>
+                        <Transition
+                          as={Fragment}
+                          leave="transition ease-in duration-100"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Listbox.Options className="relative z-20 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                            {translation_authors.map((author) => (
+                              <Listbox.Option
+                                key={author.id}
+                                className={({ active }) =>
+                                  `${
+                                    active
+                                      ? "bg-my-orange text-white"
+                                      : "text-black dark:text-white"
+                                  } relative flex cursor-pointer select-none justify-between px-4 py-2`
+                                }
+                                value={author}
+                              >
+                                <div>{author.name}</div>
+                                <div>{translate(author.language)}</div>
+                              </Listbox.Option>
+                            ))}
+                          </Listbox.Options>
+                        </Transition>
                       </div>
-                    )}
-                    {translate("Apply Settings")}
-                  </button>
-                </div>
+                    </Listbox>
+                  </div>
+
+                  <div className="mt-8 flex w-full gap-5">
+                    <button
+                      type="button"
+                      className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
+                      onClick={closeAuthorSettingsModal}
+                    >
+                      {translate("Cancel")}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleSubmit()}
+                      className={classNames(
+                        "w-1/2 items-center border border-transparent px-6 py-3 text-center",
+                        "rounded-md bg-my-orange text-base font-medium text-white shadow-sm",
+                        "hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+                        isSubmitting && "bg-opacity-30 hover:bg-opacity-30",
+                      )}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting && (
+                        <div
+                          className="mr-2 inline-block size-4 animate-spin rounded-3xl border-2 border-solid border-r-transparent align-text-bottom"
+                          role="status"
+                        >
+                          <span className="sr-only">
+                            {translate("Loading")}...
+                          </span>
+                        </div>
+                      )}
+                      {translate("Apply Settings")}
+                    </button>
+                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

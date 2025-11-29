@@ -19,7 +19,7 @@ type Props = {
 // Pre-generate all 18 chapters for both English and Hindi
 export async function generateStaticParams() {
   const chapters = Array.from({ length: 18 }, (_, i) => i + 1);
-  
+
   return chapters.flatMap((chapter) => [
     { chapterNumber: String(chapter), locale: [] }, // English
     { chapterNumber: String(chapter), locale: ["hi"] }, // Hindi

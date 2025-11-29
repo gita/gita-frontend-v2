@@ -280,7 +280,8 @@ const Footer = (props: Props) => {
                                   : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm",
                               )}
-                              target="_blank" rel="noreferrer"
+                              target="_blank"
+                              rel="noreferrer"
                             >
                               {translate("Blog")}
                             </a>
@@ -329,7 +330,8 @@ const Footer = (props: Props) => {
                                   : "text-gray-700 dark:text-gray-400",
                                 "block px-4 py-2 text-sm",
                               )}
-                              target="_blank" rel="noreferrer"
+                              target="_blank"
+                              rel="noreferrer"
                             >
                               API
                             </a>
@@ -346,7 +348,8 @@ const Footer = (props: Props) => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm",
                                 )}
-                                target="_blank" rel="noreferrer"
+                                target="_blank"
+                                rel="noreferrer"
                               >
                                 Facebook
                               </a>
@@ -362,7 +365,8 @@ const Footer = (props: Props) => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm",
                                 )}
-                                target="_blank" rel="noreferrer"
+                                target="_blank"
+                                rel="noreferrer"
                               >
                                 Instagram
                               </a>
@@ -379,7 +383,8 @@ const Footer = (props: Props) => {
                                     : "text-gray-700 dark:text-gray-400",
                                   "block px-4 py-2 text-sm",
                                 )}
-                                target="_blank" rel="noreferrer"
+                                target="_blank"
+                                rel="noreferrer"
                               >
                                 Twitter
                               </a>
@@ -443,7 +448,8 @@ const Footer = (props: Props) => {
                         <a
                           href={item.href}
                           className="text-base text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                          target="_blank" rel="noreferrer"
+                          target="_blank"
+                          rel="noreferrer"
                         >
                           {item.name}
                         </a>
@@ -498,7 +504,8 @@ const Footer = (props: Props) => {
                 key={item.name}
                 href={item.href}
                 className="text-gray-400 hover:text-gray-500 dark:hover:text-white"
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="size-6" ariaHidden={true} />
