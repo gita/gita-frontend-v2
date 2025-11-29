@@ -72,7 +72,7 @@ interface AdvancedSettings {
 
 type Locale = "en" | "hi";
 
-type ParamsWithLocale = { params: { locale: string[] } };
+type ParamsWithLocale = { params: Promise<{ locale?: string[] }> };
 
 type TranslationAuthor = {
   id: number;

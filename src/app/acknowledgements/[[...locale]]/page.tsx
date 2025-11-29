@@ -37,7 +37,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Acknowledgement(props: ParamsWithLocale) {
-  const { params } = props;
+  const { params: paramsPromise } = props;
+  const params = await paramsPromise;
   const locale = paramsToLocale(params);
 
   return (

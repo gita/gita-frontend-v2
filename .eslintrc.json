@@ -1,0 +1,35 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:tailwindcss/recommended"],
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "simple-import-sort/imports": [
+      2,
+      {
+        "groups": [
+          ["^react", "^@?\\w"],
+          [
+            "^app(/.*|$)",
+            "^components(/.*|$)",
+            "^constant(/.*|$)",
+            "^gqty-client(/.*|$)",
+            "^hooks(/.*|$)",
+            "^layouts(/.*|$)",
+            "^lib(/.*|$)",
+            "^redux(/.*|$)",
+            "^shared(/.*|$)",
+            "^utils(/.*|$)"
+          ],
+          [
+            "^\\../",
+            "^\\./",
+            "^\\./types",
+            "^\\./constants",
+            "^\\./functions",
+            "^\\./use"
+          ],
+          ["^[^.]"]
+        ]
+      }
+    ]
+  }
+}

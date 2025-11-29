@@ -3,9 +3,9 @@
 import { useState } from "react";
 import {
   ChevronDownIcon,
-  SortAscendingIcon,
-  SortDescendingIcon,
-} from "@heroicons/react/solid";
+  BarsArrowUpIcon,
+  BarsArrowDownIcon,
+} from "@heroicons/react/24/solid";
 
 import PageNavigator from "components/Chapter/PageNavigator";
 import VerseList from "components/Chapter/VerseList";
@@ -127,12 +127,12 @@ export default function ChapterPage({
               onClick={() => setIsAscSorted(!isAscSorted)}
             >
               {isAscSorted ? (
-                <SortDescendingIcon
+                <BarsArrowDownIcon
                   className="h-5 w-5 text-gray-400 dark:text-gray-50"
                   aria-hidden="true"
                 />
               ) : (
-                <SortAscendingIcon
+                <BarsArrowUpIcon
                   className="h-5 w-5 text-gray-400 dark:text-gray-50"
                   aria-hidden="true"
                 />

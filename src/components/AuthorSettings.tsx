@@ -2,7 +2,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { Dialog, Listbox, Switch, Transition } from "@headlessui/react";
-import { SelectorIcon } from "@heroicons/react/solid";
+import { ChevronUpDownIcon } from "@heroicons/react/24/solid";
 
 import commentary_authors from "constant/commentary_authors.json";
 import translation_authors from "constant/translation_authors.json";
@@ -75,7 +75,7 @@ const AuthorSettings = ({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <div className="fixed inset-0" aria-hidden="true" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -132,7 +132,7 @@ const AuthorSettings = ({
                           {translate(commentaryAuthor?.language)})
                         </span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                          <SelectorIcon
+                          <ChevronUpDownIcon
                             className="h-5 w-5 text-gray-400"
                             aria-hidden="true"
                           />
@@ -206,7 +206,7 @@ const AuthorSettings = ({
                           {translate(translationAuthor?.language)})
                         </span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                          <SelectorIcon
+                          <ChevronUpDownIcon
                             className="h-5 w-5 text-gray-400"
                             aria-hidden="true"
                           />

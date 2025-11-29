@@ -57,7 +57,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const Page = async ({ params }: ParamsWithLocale) => {
+const Page = async ({ params: paramsPromise }: ParamsWithLocale) => {
+  const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const dailyVerse = await getDailyVerse(locale);
 

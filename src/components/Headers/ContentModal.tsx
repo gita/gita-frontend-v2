@@ -3,10 +3,10 @@
 import { Fragment, useState } from "react";
 import { Dialog, Listbox, Transition } from "@headlessui/react";
 import {
-  ArrowNarrowRightIcon,
+  ArrowLongRightIcon,
   CheckIcon,
-  SelectorIcon,
-} from "@heroicons/react/solid";
+  ChevronUpDownIcon,
+} from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 
 import LinkWithLocale from "components/LinkWithLocale";
@@ -53,7 +53,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0" />
+              <div className="fixed inset-0" aria-hidden="true" />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -84,7 +84,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                         {translate("Chapter")} {selectedChapter}
                       </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                        <SelectorIcon
+                        <ChevronUpDownIcon
                           className="h-5 w-5 text-gray-400"
                           aria-hidden="true"
                         />
@@ -152,7 +152,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                         {translate("Verse")} {selectedVerse.verseNumber}
                       </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                        <SelectorIcon
+                        <ChevronUpDownIcon
                           className="h-5 w-5 text-gray-400"
                           aria-hidden="true"
                         />
@@ -238,7 +238,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                           <p className="text-base font-medium text-my-orange">
                             {translate("Chapter")} {chapter.chapterNumber}
                           </p>
-                          <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-100" />
+                          <ArrowLongRightIcon className="h-5 w-8 text-my-orange opacity-100" />
                         </button>
                       ) : (
                         <button
@@ -252,7 +252,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                           <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
                             {translate("Chapter")} {chapter.chapterNumber}
                           </p>
-                          <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                          <ArrowLongRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </button>
                       ),
                     )}
@@ -271,7 +271,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                           <p className="text-base font-medium text-my-orange">
                             {translate("Chapter")} {chapter.chapterNumber}
                           </p>
-                          <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-100" />
+                          <ArrowLongRightIcon className="h-5 w-8 text-my-orange opacity-100" />
                         </button>
                       ) : (
                         <button
@@ -285,7 +285,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                           <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
                             {translate("Chapter")} {chapter.chapterNumber}
                           </p>
-                          <ArrowNarrowRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                          <ArrowLongRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </button>
                       ),
                     )}

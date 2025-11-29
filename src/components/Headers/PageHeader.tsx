@@ -2,8 +2,8 @@
 
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Disclosure, Switch } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -222,7 +222,7 @@ function PageHeader(props: Props) {
                           type="submit"
                           className="absolute left-3 top-0 mr-4 mt-2"
                         >
-                          <SearchIcon
+                          <MagnifyingGlassIcon
                             className="h-5 w-5 text-gray-400 dark:text-gray-50"
                             aria-hidden="true"
                           />
@@ -250,9 +250,9 @@ function PageHeader(props: Props) {
                   <Disclosure.Button className="inline-flex items-center justify-start rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
-                      <XIcon className="block h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                     ) : (
-                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>

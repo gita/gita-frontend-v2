@@ -2,11 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap");
-
 body {
-  font-family: "Inter", sans-serif !important;
+  font-family: var(--font-inter), sans-serif !important;
 }
 
 .divider {

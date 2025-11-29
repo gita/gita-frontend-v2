@@ -75,7 +75,7 @@ const NotesModal = ({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <div className="fixed inset-0" aria-hidden="true" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}

@@ -4,7 +4,7 @@ const isNode = (evt: EventTarget | null): evt is Node =>
   Boolean(evt && "nodeType" in evt);
 
 export const useClickOutside = (
-  ref: React.RefObject<HTMLElement> | React.RefObject<HTMLElement>[],
+  ref: React.RefObject<HTMLElement | null> | React.RefObject<HTMLElement | null>[],
   callback: () => void,
 ) => {
   const handleClick = (evt: MouseEvent | TouchEvent) => {

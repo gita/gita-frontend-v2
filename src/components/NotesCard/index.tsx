@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { DotsVerticalIcon } from "@heroicons/react/solid";
+import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
 import { classNames } from "shared/functions";
@@ -33,7 +33,7 @@ function NotesCard(props: Props) {
           <div>
             <Menu.Button className="flex items-center rounded-full bg-gray-100 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 focus:ring-offset-gray-100">
               <span className="sr-only">Open options</span>
-              <DotsVerticalIcon className="h-5 w-5" aria-hidden="true" />
+              <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
             </Menu.Button>
           </div>
 

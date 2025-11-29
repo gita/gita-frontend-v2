@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useCookies } from "react-cookie";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
 import { updatedLocalePath } from "components/shared/functions";

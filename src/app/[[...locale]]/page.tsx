@@ -7,8 +7,9 @@ import { paramsToLocale } from "shared/functions";
 import HomePage from "./HomePage";
 
 export async function generateMetadata({
-  params,
+  params: paramsPromise,
 }: ParamsWithLocale): Promise<Metadata> {
+  const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
   const baseUrl = "https://bhagavadgita.io";
@@ -68,7 +69,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function Home({ params }: ParamsWithLocale) {
+export default async function Home({ params: paramsPromise }: ParamsWithLocale) {
+  const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const chapters = await getAllChapters(locale);
 

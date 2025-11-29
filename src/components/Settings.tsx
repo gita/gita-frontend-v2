@@ -1,11 +1,11 @@
 import { Fragment, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
 import { editSettings } from "redux/actions/settings";
 import { RootState } from "redux/reducers/rootReducer";
+import { useAppDispatch, useAppSelector } from "redux/store";
 import { SettingsState } from "redux/types";
 import { classNames } from "shared/functions";
 
@@ -16,8 +16,8 @@ interface Props {
 }
 
 const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
-  const state = useSelector((state: RootState) => state.settings);
-  const dispatch = useDispatch();
+  const state = useAppSelector((state: RootState) => state.settings);
+  const dispatch = useAppDispatch();
   const [appearanceSettings, setAppearanceSettings] =
     useState<SettingsState>(state);
   const { setTheme } = useTheme();
@@ -44,7 +44,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <div className="fixed inset-0" aria-hidden="true" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}

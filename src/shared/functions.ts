@@ -92,7 +92,7 @@ export const isLocale = (value: unknown): value is Locale =>
 export const deprecated_headerToLocale = (headerLocale: string) =>
   isLocale(headerLocale) ? headerLocale : defaultLocale;
 
-export const paramsToLocale = (localeFromParams: { locale: string[] }) => {
+export const paramsToLocale = (localeFromParams: { locale?: string[] }) => {
   const paramsLocale = Array.isArray(localeFromParams?.locale)
     ? localeFromParams.locale[0]
     : "en";

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -119,7 +119,7 @@ const ChapterHeader = (props: Props) => {
                         type="submit"
                         className="absolute left-3 top-0 mr-4 mt-2"
                       >
-                        <SearchIcon
+                        <MagnifyingGlassIcon
                           className="h-5 w-5 text-gray-400 dark:text-gray-50"
                           aria-hidden="true"
                         />
@@ -147,9 +147,9 @@ const ChapterHeader = (props: Props) => {
                       {translate("Open main menu")}
                     </span>
                     {open ? (
-                      <XIcon className="block h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                     ) : (
-                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>

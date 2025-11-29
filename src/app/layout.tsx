@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Metadata, Viewport } from "next";
+import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import { headers } from "next/headers";
 import Script from "next/script";
 
@@ -16,16 +16,25 @@ import "./global.css";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-inter",
 });
 
-export const metadata: Metadata = {
+const notoSansDevanagari = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  display: "swap",
+  variable: "--font-devanagari",
+});
+
+// Next.js 14+ recommends separating viewport from metadata
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   themeColor: "#ffffff",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
+};
+
+export const metadata: Metadata = {
   manifest: "/favicon/site.webmanifest",
   icons: {
     icon: [
@@ -52,8 +61,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
-  const headersList = headers();
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const headersList = await headers();
   const requestUrl = headersList.get("x-invoke-path") || "";
   const htmlLang = requestUrl.includes("/hi") ? "hi" : "en";
 
@@ -62,7 +71,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   console.log("[RootLayout] Using HTML lang:", htmlLang);
 
   return (
-    <html lang={htmlLang} className={inter.className} suppressHydrationWarning>
+    <html lang={htmlLang} className={`${inter.variable} ${notoSansDevanagari.variable}`} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

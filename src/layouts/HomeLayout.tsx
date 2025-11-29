@@ -1,7 +1,5 @@
 "use client";
 
-import { headers } from "next/headers";
-
 import { getTranslate } from "shared/translate";
 
 import Footer from "../components/Footers/Footer";

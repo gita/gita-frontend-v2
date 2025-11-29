@@ -3,8 +3,8 @@
 
 import { Fragment, useState } from "react";
 import { Disclosure, Popover, Transition } from "@headlessui/react";
-import { DocumentReportIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
+import { DocumentTextIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import { useAsyncEffect } from "rooks";
 
@@ -18,92 +18,92 @@ import LanguageDropdown from "./LanguageDropdown";
 const chapters = [
   {
     number: 1,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/1",
   },
   {
     number: 2,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/2",
   },
   {
     number: 3,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/3",
   },
   {
     number: 4,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/4",
   },
   {
     number: 5,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/5",
   },
   {
     number: 6,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/6",
   },
   {
     number: 7,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/7",
   },
   {
     number: 8,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/8",
   },
   {
     number: 9,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/9",
   },
   {
     number: 10,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/10",
   },
   {
     number: 11,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/11",
   },
   {
     number: 12,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/12",
   },
   {
     number: 13,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/13",
   },
   {
     number: 14,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/14",
   },
   {
     number: 15,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/15",
   },
   {
     number: 16,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/16",
   },
   {
     number: 17,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/17",
   },
   {
     number: 18,
-    icon: DocumentReportIcon,
+    icon: DocumentTextIcon,
     href: "/chapter/18",
   },
 ];
@@ -167,7 +167,7 @@ export default function IndexHeader({ locale, translate }: Props) {
               <DarkModeToggle />
               <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange dark:bg-dark-bg">
                 <span className="sr-only">Open menu</span>
-                <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               </Popover.Button>
             </div>
             <Popover.Group as="nav" className="hidden space-x-10 md:flex">
@@ -323,7 +323,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                   type="submit"
                   className="absolute left-3 top-0 mr-4 mt-2"
                 >
-                  <SearchIcon
+                  <MagnifyingGlassIcon
                     className="h-5 w-5 text-gray-400 dark:text-gray-50"
                     aria-hidden="true"
                   />
@@ -401,7 +401,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                       <span className="sr-only px-5">
                         {translate("Close Menu")}
                       </span>
-                      <XIcon className="h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
                   </div>
                 </div>

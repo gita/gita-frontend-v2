@@ -12,6 +12,7 @@ export type MainState = {
 
 export type RootState = {
   main: MainState;
+  settings: SettingsState;
 };
 
 export type SettingsState = {
