@@ -62,81 +62,76 @@ const NotesModal = ({
       <Transition appear show={notesSettingsIsOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10"
+          className="relative z-50"
           onClose={closeNotesSettingsModal}
         >
-          <div className="min-h-screen px-4 text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0" aria-hidden="true" />
-            </Transition.Child>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/30" />
+          </Transition.Child>
 
-            {/* This element is to trick the browser into centering the modal contents. */}
-            <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
-                <LinkWithLocale href="/notes">View Notes</LinkWithLocale>
-                <div className="my-2 flex items-center justify-between py-2">
-                  <p className="text-base text-black dark:text-white">
-                    Add/Edit Notes
-                  </p>
-                </div>
-                <div>
-                  <label
-                    htmlFor="comment"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Add your comment
-                  </label>
-                  <div className="mt-1">
-                    <textarea
-                      rows={4}
-                      onChange={(event) => setDescription(event.target.value)}
-                      value={description}
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    />
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+                  <LinkWithLocale href="/notes">View Notes</LinkWithLocale>
+                  <div className="my-2 flex items-center justify-between py-2">
+                    <p className="text-base text-black dark:text-white">
+                      Add/Edit Notes
+                    </p>
                   </div>
-                </div>
+                  <div>
+                    <label
+                      htmlFor="comment"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Add your comment
+                    </label>
+                    <div className="mt-1">
+                      <textarea
+                        rows={4}
+                        onChange={(event) => setDescription(event.target.value)}
+                        value={description}
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                  </div>
 
-                <div className="mt-8 flex w-full gap-5">
-                  <button
-                    type="button"
-                    className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
-                    onClick={closeNotesSettingsModal}
-                  >
-                    Cancel
-                  </button>
+                  <div className="mt-8 flex w-full gap-5">
+                    <button
+                      type="button"
+                      className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
+                      onClick={closeNotesSettingsModal}
+                    >
+                      Cancel
+                    </button>
 
-                  <button
-                    type="button"
-                    onClick={() => handleSubmit()}
-                    className="w-1/2 items-center rounded-md border border-transparent bg-my-orange px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </div>
-            </Transition.Child>
+                    <button
+                      type="button"
+                      onClick={() => handleSubmit()}
+                      className="w-1/2 items-center rounded-md border border-transparent bg-my-orange px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
           </div>
         </Dialog>
       </Transition>

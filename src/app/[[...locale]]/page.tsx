@@ -6,6 +6,17 @@ import { paramsToLocale } from "shared/functions";
 
 import HomePage from "./HomePage";
 
+// Pre-generate both English and Hindi versions
+export async function generateStaticParams() {
+  return [
+    { locale: [] }, // Default route (English)
+    { locale: ["hi"] }, // Hindi route
+  ];
+}
+
+// Use ISR to regenerate every 24 hours for fresh content
+export const revalidate = 86400; // 24 hours in seconds
+
 export async function generateMetadata({
   params: paramsPromise,
 }: ParamsWithLocale): Promise<Metadata> {
@@ -152,7 +163,10 @@ export default async function Home({
       />
       <Script strategy="lazyOnload" id="chatbase-widget-script">
         {`
-            (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="FUopn1I5lRD_dEopmyuQk";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+            (function(){
+              // Don't load chatbot widget on GitaGPT page (it has iframe instead)
+              if(window.location.pathname.includes('/gitagpt')) return;
+              if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="FUopn1I5lRD_dEopmyuQk";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
           `}
       </Script>
       <HomePage chapters={chapters} locale={locale} />

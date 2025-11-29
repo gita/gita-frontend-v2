@@ -23,8 +23,6 @@ module.exports = withPlausibleProxy()({
     largePageDataBytes: 128 * 100000,
     // Enable Turbopack filesystem caching for faster dev builds (beta)
     turbopackFileSystemCacheForDev: true,
-    // Enable optimized CSS loading (Next.js 14+)
-    optimizeCss: true,
     // Enable optimized package imports (Next.js 14+)
     optimizePackageImports: ["@headlessui/react", "lodash", "react-player"],
   },

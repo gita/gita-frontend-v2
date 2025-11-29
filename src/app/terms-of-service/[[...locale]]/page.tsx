@@ -2,6 +2,9 @@ import { Metadata } from "next";
 
 import PrivacyTermsBanner from "components/PrivacyTermsBanner";
 
+// Force static generation for better SEO
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Terms of Service - BhagavadGita.io",
   description:

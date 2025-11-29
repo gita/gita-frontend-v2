@@ -9,8 +9,6 @@ import { getTranslations } from "shared/translate/server";
 import VersePage from "./VersePage";
 import { getJsonLd } from "./functions";
 
-export const dynamic = "force-dynamic";
-
 type Props = {
   params: Promise<{
     chapterNumber: string;
@@ -18,6 +16,40 @@ type Props = {
     locale: string[];
   }>;
 };
+
+// Pre-generate popular verses (Chapters 1-6) for better SEO
+// Other verses are generated on-demand and cached forever
+export async function generateStaticParams() {
+  const verseCounts = [47, 72, 43, 42, 29, 47]; // Verse counts for chapters 1-6
+  const verses: Array<{
+    chapterNumber: string;
+    verseNumber: string;
+    locale: string[];
+  }> = [];
+
+  // Generate all verses for chapters 1-6 in both languages
+  for (let chapter = 1; chapter <= 6; chapter++) {
+    for (let verse = 1; verse <= verseCounts[chapter - 1]; verse++) {
+      verses.push(
+        {
+          chapterNumber: String(chapter),
+          verseNumber: String(verse),
+          locale: [],
+        }, // English
+        {
+          chapterNumber: String(chapter),
+          verseNumber: String(verse),
+          locale: ["hi"],
+        }, // Hindi
+      );
+    }
+  }
+
+  return verses;
+}
+
+// Bhagavad Gita verses never change - cache forever once generated
+export const revalidate = false;
 
 export async function generateMetadata({
   params: paramsPromise,

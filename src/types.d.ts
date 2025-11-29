@@ -97,7 +97,10 @@ interface SvgProps {
   className: string;
 }
 
-type Translate = (literal: string | undefined, options?: Record<string, unknown>) => string;
+type Translate = (
+  literal: string | undefined,
+  options?: Record<string, unknown>,
+) => string;
 
 type LocaleAndTranslations = {
   locale: Locale;

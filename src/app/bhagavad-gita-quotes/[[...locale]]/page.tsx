@@ -6,6 +6,14 @@ import { getTranslations } from "shared/translate/server";
 import QuotesPage from "./QuotesPage";
 import { jsonLdFirst, jsonLdTwo } from "./constants";
 
+// Force static generation for better SEO
+export const dynamic = "force-static";
+
+// Pre-generate both English and Hindi versions
+export async function generateStaticParams() {
+  return [{ locale: ["en"] }, { locale: ["hi"] }];
+}
+
 export const metadata: Metadata = {
   title: "Bhagavad Gita Quotes By Krishna - BhagavadGita.io",
   description:
