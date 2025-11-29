@@ -16,6 +16,21 @@ type Props = {
   }>;
 };
 
+// Pre-generate all 18 chapters for both English and Hindi
+export async function generateStaticParams() {
+  const chapters = Array.from({ length: 18 }, (_, i) => i + 1);
+  
+  return chapters.flatMap((chapter) => [
+    { chapterNumber: String(chapter), locale: [] }, // English
+    { chapterNumber: String(chapter), locale: ["hi"] }, // Hindi
+  ]);
+}
+
+// Bhagavad Gita text never changes - no need for revalidation
+// Static pages generated with default authors for SEO
+// User preferences still work via headers at request time
+export const revalidate = false; // Never revalidate - content is eternal
+
 export async function generateMetadata({
   params: paramsPromise,
 }: Props): Promise<Metadata> {

@@ -3,8 +3,48 @@ import Image from "next/image";
 
 import { SvgFloralDivider } from "components/svgs";
 
+// Static page - optimize for SEO
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  return [{ locale: [] }, { locale: ["hi"] }];
+}
+
 export const metadata: Metadata = {
-  title: "Bhagavad Gita App - Verse",
+  title: "Bhagavad Gita Parallel Translation - Compare Multiple Translations",
+  description:
+    "Read Bhagavad Gita verses with parallel translations from multiple authors side by side. Compare different interpretations and commentaries in English and Hindi.",
+  openGraph: {
+    title: "Bhagavad Gita Parallel Translation - Compare Multiple Translations",
+    description:
+      "Read Bhagavad Gita verses with parallel translations from multiple authors side by side. Compare different interpretations and commentaries.",
+    url: "https://bhagavadgita.io/verse-parallel",
+    siteName: "Bhagavad Gita",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        secureUrl:
+          "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        height: 1080,
+        width: 1920,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bhagavad Gita Parallel Translation",
+    description:
+      "Compare multiple Bhagavad Gita translations side by side from various authors and commentaries.",
+    images: [
+      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+    ],
+    site: "@ShriKrishna",
+  },
+  alternates: {
+    canonical: "https://bhagavadgita.io/verse-parallel",
+  },
 };
 
 export default function VerseParallel() {

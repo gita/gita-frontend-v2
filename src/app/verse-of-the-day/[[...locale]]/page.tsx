@@ -8,6 +8,14 @@ import { getTranslations } from "shared/translate/server";
 
 import VerseOfTheDay from "./VerseOfTheDay";
 
+// Pre-generate for both languages
+export async function generateStaticParams() {
+  return [{ locale: [] }, { locale: ["hi"] }];
+}
+
+// Revalidate daily to show fresh verse
+export const revalidate = 86400; // 24 hours
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Bhagavad Gita - Verse of the Day",
