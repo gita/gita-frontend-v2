@@ -21,12 +21,12 @@ module.exports = withPlausibleProxy()({
     return {
       beforeFiles: [
         {
-          source: '/app',
-          destination: '/app/index.html',
+          source: "/app",
+          destination: "/app/index.html",
         },
         {
-          source: '/app/:path*',
-          destination: '/app/:path*',
+          source: "/app/:path*",
+          destination: "/app/:path*",
         },
       ],
     };
