@@ -13,17 +13,18 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Gita GPT - AI Chatbot Based on Bhagavad Gita | Ask Krishna",
+  title: "GitaGPT - Bhagavad Gita AI Chatbot | Free Gita AI by Ved Vyas Foundation",
   description:
-    "Free Bhagavad Gita AI chatbot. Get instant spiritual guidance based on Krishna's teachings. Ask questions about life, dharma, karma in Hindi & English.",
-    keywords: "gita gpt, bhagavad gita ai, gita chatbot, ask krishna, bhagavad gita chatgpt, spiritual ai, gita ai assistant",
-    authors: [{ name: "Ved Vyasa" }],
-    creator: "Ved Vyas Foundation",
-    publisher: "Ved Vyas Foundation",
+    "GitaGPT: Free Bhagavad Gita AI chatbot. Ask Krishna's wisdom, get instant spiritual guidance. Gita AI powered answers in Hindi & English. Try now!",
+  keywords:
+    "GitaGPT, Gita GPT, Bhagavad Gita AI, Gita AI, bhagavad gita chatbot, gita chatgpt, ask krishna ai, spiritual ai chatbot, free gita ai",
+  authors: [{ name: "Ved Vyasa" }],
+  creator: "Ved Vyas Foundation",
+  publisher: "Ved Vyas Foundation",
   openGraph: {
-    title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
+    title: "GitaGPT - Bhagavad Gita AI Chatbot | Free Gita AI",
     description:
-      "GitaGPT is a free AI chatbot powered by ChatGPT that provides wisdom from the Bhagavad Gita. Get instant spiritual guidance for your questions through Krishna's teachings.",
+      "GitaGPT: Free Bhagavad Gita AI chatbot powered by ChatGPT. Ask Krishna's wisdom, get instant spiritual guidance through Gita AI. Available in Hindi & English.",
     url: "https://bhagavadgita.io/gitagpt",
     siteName: "Bhagavad Gita",
     locale: "en_US",
@@ -40,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
+    title: "GitaGPT - Bhagavad Gita AI Chatbot | Free Gita AI",
     description:
-      "GitaGPT is a free AI chatbot powered by ChatGPT that provides wisdom from the Bhagavad Gita. Get instant spiritual guidance for your questions through Krishna's teachings.",
+      "GitaGPT: Free Bhagavad Gita AI chatbot. Ask Krishna's wisdom, get instant spiritual guidance through Gita AI. Hindi & English support.",
     images: [
       "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],
