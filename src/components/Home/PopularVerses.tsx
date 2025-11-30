@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 import LinkWithLocale from "components/LinkWithLocale";
 import { getTranslate } from "shared/translate";
+
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 interface PopularVerse {
   chapter: number;
@@ -225,82 +229,140 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
   };
 
   return (
-    <div className="relative my-14 py-10">
-      <Image
-        src="/bg-verses-fixed.png"
-        alt="BG Popular Verses Background"
-        fill
-        style={{
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-        className="z-[-1]"
-      />
-      <div className="z-50 mx-auto max-w-7xl px-4 sm:px-6">
-        <div>
-          <h2 className="mb-4 text-4xl font-bold dark:text-white">
-            {translate("Popular Verses")}
-          </h2>
-          <p className="mb-10 text-lg text-gray-600 dark:text-gray-300">
-            {translate(
-              "Explore timeless wisdom from Lord Krishna on karma yoga, bhakti, dharma, and moksha",
-            )}
-          </p>
+    <div className="relative bg-gradient-to-b from-transparent via-accent/25 to-transparent py-20">
+      <div className="pointer-events-none absolute inset-0 z-[-2] bg-[radial-gradient(circle_at_70%_50%,rgba(251,146,60,0.08)_0%,transparent_60%)]" />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
+              {translate("Popular Verses")}
+            </h2>
+            <p className="mx-auto max-w-3xl text-lg text-foreground/70 md:text-xl">
+              {translate(
+                "Explore timeless wisdom from Lord Krishna on karma yoga, bhakti, dharma, and moksha",
+              )}
+            </p>
+          </div>
 
           <div className="relative">
+            {/* Left scroll button - Outside cards */}
+            <button
+              onClick={() => {
+                const container = document.getElementById(
+                  "popular-verses-scroll",
+                );
+                if (container) {
+                  container.scrollBy({ left: -400, behavior: "smooth" });
+                }
+              }}
+              className="absolute -left-14 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-xl ring-1 ring-gray-200 transition-all hover:scale-110 hover:bg-primary hover:text-white hover:ring-primary dark:bg-card dark:ring-gray-700 xl:block"
+              aria-label="Scroll left to view previous verses"
+            >
+              <svg
+                className="size-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+
+            {/* Right scroll button - Outside cards */}
+            <button
+              onClick={() => {
+                const container = document.getElementById(
+                  "popular-verses-scroll",
+                );
+                if (container) {
+                  container.scrollBy({ left: 400, behavior: "smooth" });
+                }
+              }}
+              className="absolute -right-14 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-xl ring-1 ring-gray-200 transition-all hover:scale-110 hover:bg-primary hover:text-white hover:ring-primary dark:bg-card dark:ring-gray-700 xl:block"
+              aria-label="Scroll right to view more verses"
+            >
+              <svg
+                className="size-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+
             {/* Horizontal scrollable container */}
             <div
-              className="no-scrollbar flex gap-4 overflow-x-auto pb-4"
+              id="popular-verses-scroll"
+              className="no-scrollbar flex gap-6 overflow-x-auto scroll-smooth pb-4"
               onScroll={handleScroll}
-              style={{
-                scrollBehavior: "smooth",
-              }}
             >
               {popularVerses.map((verse, index) => (
                 <LinkWithLocale
                   key={`${verse.chapter}-${verse.verse}`}
                   href={`/chapter/${verse.chapter}/verse/${verse.verse}`}
                   prefetch={false}
-                  className="z-10 flex min-w-[320px] flex-col rounded-md border-2 border-gray-200 bg-white p-6 shadow-md hover:cursor-pointer hover:border-my-orange hover:shadow-lg dark:border-gray-700 dark:bg-dark-100 dark:text-gray-200 dark:hover:border-my-orange sm:min-w-[360px]"
+                  className="group block w-[300px] shrink-0 sm:w-[340px]"
+                  aria-label={`Read verse ${verse.chapter}.${verse.verse} about ${verse.category}`}
                 >
-                  <div className="mb-2 flex items-center justify-between">
-                    <h3 className="text-lg font-bold text-my-orange">
-                      {translate("Verse")} {verse.chapter}.{verse.verse}
-                    </h3>
-                    <span className="rounded-full bg-my-orange/10 px-3 py-1 text-xs font-medium text-my-orange dark:bg-my-orange/20">
-                      {verse.category}
-                    </span>
-                  </div>
+                  <Card className="h-full border-2 bg-white transition-all duration-300 hover:border-primary/40 hover:shadow-lg dark:bg-card">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-bold text-primary">
+                          {translate("Verse")} {verse.chapter}.{verse.verse}
+                        </h3>
+                        <Badge
+                          variant="secondary"
+                          className="bg-primary/10 text-xs font-medium text-primary hover:bg-primary/20"
+                        >
+                          {verse.category}
+                        </Badge>
+                      </div>
+                    </CardHeader>
 
-                  <p className="mt-3 flex-1 text-gray-600 dark:text-gray-300">
-                    {verse.summary}
-                  </p>
+                    <CardContent className="space-y-3">
+                      <p className="line-clamp-3 text-sm leading-relaxed text-foreground/90">
+                        {verse.summary}
+                      </p>
 
-                  <div className="mt-4 flex items-center text-sm font-medium text-my-orange">
-                    {translate("Read full verse")} →
-                  </div>
+                      <div className="flex items-center gap-1 text-sm font-semibold text-primary">
+                        {translate("Read full verse")}
+                        <span
+                          className="inline-block transition-transform group-hover:translate-x-1"
+                          aria-hidden="true"
+                        >
+                          →
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </LinkWithLocale>
               ))}
             </div>
 
-            {/* Scroll indicator hint */}
-            <div className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400 md:hidden">
-              ← {translate("Scroll to explore more")} →
+            {/* Mobile scroll hint */}
+            <div className="mt-6 text-center text-sm font-medium text-foreground/60 md:hidden">
+              ← {translate("Swipe to explore more")} →
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-
-      {/* Custom CSS to hide scrollbar */}
-      <style jsx>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </div>
   );
 };

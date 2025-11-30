@@ -62,7 +62,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-5/6 max-w-4xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+              <Dialog.Panel className="w-5/6 max-w-4xl overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-dark-100">
                 <div className="flex">
                   <div className="flex w-full flex-col p-8 md:hidden">
                     <p className="py-2 font-semibold text-my-orange">

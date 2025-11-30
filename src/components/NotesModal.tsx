@@ -88,7 +88,7 @@ const NotesModal = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+                <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
                   <LinkWithLocale href="/notes">View Notes</LinkWithLocale>
                   <div className="my-2 flex items-center justify-between py-2">
                     <p className="text-base text-black dark:text-white">

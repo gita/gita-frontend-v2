@@ -37,18 +37,22 @@ function LanguageDropdown(props: Props) {
   useClickOutside([toggleRef], () => setShowMenu(false));
 
   return (
-    <div ref={toggleRef} className="relative w-16">
+    <div ref={toggleRef} className="relative">
       <div
-        className="flex cursor-pointer"
+        className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-800"
         onClick={() => setShowMenu(!showMenu)}
       >
         <Image
           alt={`Flag for ${locale} locale`}
           src={`/assets/images/locales/${locale}.svg`}
-          width={30}
-          height={20}
+          width={24}
+          height={16}
+          className="rounded-sm"
         />
-        <ChevronDownIcon className="ml-2 w-12 group-hover:text-black" />
+        <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+          {languages.find((l) => l.locale === locale)?.language}
+        </span>
+        <ChevronDownIcon className="size-4 text-gray-500 dark:text-gray-400" />
       </div>
       {showMenu && (
         <div

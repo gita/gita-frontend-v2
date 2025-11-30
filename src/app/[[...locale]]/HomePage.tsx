@@ -1,6 +1,5 @@
 "use server";
 
-import BackgroundImage from "components/Home/BackgroundImage";
 import Banner from "components/Home/Banner";
 import Chapters from "components/Home/Chapters";
 import FAQ from "components/Home/FAQ";
@@ -20,17 +19,16 @@ async function HomePage({
   };
 
   return (
-    <div className="min-h-screen font-inter dark:bg-dark-bg">
+    <div className="min-h-screen bg-prakash-bg font-inter dark:bg-nisha-bg">
       <main>
-        <HomeLayout {...translationProps}>
+        <HomeLayout {...translationProps} chapters={chapters}>
           <div className="relative">
             <Banner {...translationProps} />
-            <BackgroundImage />
             <VerseOfDayClient {...translationProps} />
           </div>
-          <Newsletter {...translationProps} />
           <Chapters chapters={chapters} {...translationProps} />
           <PopularVerses {...translationProps} />
+          <Newsletter {...translationProps} />
           <FAQ {...translationProps} />
         </HomeLayout>
       </main>

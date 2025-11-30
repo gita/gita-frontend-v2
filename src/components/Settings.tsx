@@ -53,7 +53,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+                <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
                   <Dialog.Title
                     as="h3"
                     className="border-gray-200 pb-4 text-lg font-bold leading-6 text-gray-900 dark:text-gray-50"
