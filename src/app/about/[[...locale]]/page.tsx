@@ -15,13 +15,16 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "About Bhagavad Gita - BhagavadGita.io",
+  title: "About Bhagavad Gita - Sacred Scripture by Ved Vyasa",
   description:
-    "Bhagavad Gita is a 700-verse Hindu scripture from Mahabharata containing Lord Krishna's teachings to Arjuna. Discover timeless wisdom on dharma, karma, and spirituality.",
+    "Bhagavad Gita: 700-verse Hindu scripture from Mahabharata. Lord Krishna's teachings to Arjuna on dharma, karma, and yoga. Read in Hindi & English with commentaries.",
+  keywords: "about bhagavad gita, bhagavad gita history, mahabharata, lord krishna, ved vyasa, bhagavad gita meaning, hindu scripture",
+  authors: [{ name: "Ved Vyasa" }],
+  publisher: "Ved Vyas Foundation",
   openGraph: {
-    title: "About Bhagavad Gita - BhagavadGita.io",
+    title: "About Bhagavad Gita - Sacred Scripture by Ved Vyasa",
     description:
-      "Bhagavad Gita is a 700-verse Hindu scripture from Mahabharata containing Lord Krishna's teachings to Arjuna. Discover timeless wisdom on dharma, karma, and spirituality.",
+      "Bhagavad Gita: 700-verse Hindu scripture from Mahabharata. Lord Krishna's teachings to Arjuna on dharma, karma, and yoga. Read in Hindi & English with commentaries.",
     url: "https://bhagavadgita.io/about",
     siteName: "Bhagavad Gita",
     locale: "en_US",
@@ -38,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Bhagavad Gita - BhagavadGita.io",
+    title: "About Bhagavad Gita - Sacred Scripture by Ved Vyasa",
     description:
-      "Bhagavad Gita is a 700-verse Hindu scripture from Mahabharata containing Lord Krishna's teachings to Arjuna. Discover timeless wisdom on dharma, karma, and spirituality.",
+      "Bhagavad Gita: 700-verse Hindu scripture from Mahabharata. Lord Krishna's teachings to Arjuna on dharma, karma, and yoga. Read in Hindi & English with commentaries.",
     images: [
       "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],

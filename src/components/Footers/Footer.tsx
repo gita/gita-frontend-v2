@@ -241,6 +241,7 @@ const Footer = (props: Props) => {
             <Menu
               as="div"
               className="relative inline-block text-left lg:hidden"
+              suppressHydrationWarning
             >
               {({ open }) => (
                 <>
