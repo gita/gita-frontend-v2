@@ -18,7 +18,8 @@ const popularVerses: PopularVerse[] = [
     chapter: 2,
     verse: "47",
     category: "Karma Yog",
-    summary: "Emphasizes performing one's duty without attachment to the results.",
+    summary:
+      "Emphasizes performing one's duty without attachment to the results.",
   },
   {
     chapter: 4,
@@ -30,13 +31,15 @@ const popularVerses: PopularVerse[] = [
     chapter: 4,
     verse: "8",
     category: "Avatar Vani",
-    summary: "Explains the purpose of His incarnations: to protect the good and destroy the wicked.",
+    summary:
+      "Explains the purpose of His incarnations: to protect the good and destroy the wicked.",
   },
   {
     chapter: 18,
     verse: "66",
     category: "Moksha",
-    summary: "Urges to abandon all forms of dharma and surrender to Krishna for liberation.",
+    summary:
+      "Urges to abandon all forms of dharma and surrender to Krishna for liberation.",
   },
   {
     chapter: 2,
@@ -72,7 +75,8 @@ const popularVerses: PopularVerse[] = [
     chapter: 9,
     verse: "22",
     category: "Bhakti Yog",
-    summary: "For devoted worshippers, Krishna provides and preserves their needs.",
+    summary:
+      "For devoted worshippers, Krishna provides and preserves their needs.",
   },
   {
     chapter: 3,
@@ -102,7 +106,8 @@ const popularVerses: PopularVerse[] = [
     chapter: 12,
     verse: "12",
     category: "Bhakti Yog",
-    summary: "Qualities of a true devotee: non-envious, friendly, and compassionate.",
+    summary:
+      "Qualities of a true devotee: non-envious, friendly, and compassionate.",
   },
   {
     chapter: 2,
@@ -120,13 +125,15 @@ const popularVerses: PopularVerse[] = [
     chapter: 7,
     verse: "14",
     category: "Jnana Vijnana Yog",
-    summary: "Divine energy (Maya) is hard to overcome without surrendering to Krishna.",
+    summary:
+      "Divine energy (Maya) is hard to overcome without surrendering to Krishna.",
   },
   {
     chapter: 8,
     verse: "6",
     category: "Akshara Brahma Yog",
-    summary: "Whatever one thinks of at the time of death, that state one attains.",
+    summary:
+      "Whatever one thinks of at the time of death, that state one attains.",
   },
   {
     chapter: 17,
@@ -138,7 +145,8 @@ const popularVerses: PopularVerse[] = [
     chapter: 10,
     verse: "10",
     category: "Bhakti Yog",
-    summary: "Krishna grants understanding to devoted worshippers to reach Him.",
+    summary:
+      "Krishna grants understanding to devoted worshippers to reach Him.",
   },
   {
     chapter: 2,
@@ -150,7 +158,8 @@ const popularVerses: PopularVerse[] = [
     chapter: 13,
     verse: "22",
     category: "Kshetra Kshetrajna Vibhaga Yog",
-    summary: "The soul experiences birth and death due to attachment to material nature.",
+    summary:
+      "The soul experiences birth and death due to attachment to material nature.",
   },
   {
     chapter: 2,
@@ -174,7 +183,8 @@ const popularVerses: PopularVerse[] = [
     chapter: 3,
     verse: "27",
     category: "Karma Yog",
-    summary: "All actions are performed by nature; the self, deluded by ego, thinks 'I am the doer.'",
+    summary:
+      "All actions are performed by nature; the self, deluded by ego, thinks 'I am the doer.'",
   },
   {
     chapter: 9,
@@ -186,7 +196,8 @@ const popularVerses: PopularVerse[] = [
     chapter: 18,
     verse: "65",
     category: "Moksha",
-    summary: "Directs to fix the mind on Krishna, be devoted, and one will come to Him.",
+    summary:
+      "Directs to fix the mind on Krishna, be devoted, and one will come to Him.",
   },
   {
     chapter: 15,
@@ -198,7 +209,8 @@ const popularVerses: PopularVerse[] = [
     chapter: 6,
     verse: "47",
     category: "Dhyana Yog",
-    summary: "The yogi with great faith who always abides in Krishna is the highest.",
+    summary:
+      "The yogi with great faith who always abides in Krishna is the highest.",
   },
 ];
 
@@ -226,13 +238,20 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
       />
       <div className="z-50 mx-auto max-w-7xl px-4 sm:px-6">
         <div>
-          <h2 className="mb-6 text-4xl font-bold dark:text-white">
+          <h2 className="mb-4 text-4xl font-bold dark:text-white">
             {translate("Popular Verses")}
           </h2>
-          <p className="mb-10 text-lg text-gray-600 dark:text-gray-300">
-            {translate("Discover the most profound verses from the Bhagavad Gita")}
+          <p className="mb-2 text-lg text-gray-600 dark:text-gray-300">
+            {translate(
+              "Discover the most profound verses from the Bhagavad Gita",
+            )}
           </p>
-          
+          <p className="mb-10 text-base text-gray-500 dark:text-gray-400">
+            {translate(
+              "Explore timeless wisdom from Lord Krishna including teachings on karma yoga, bhakti, dharma, and moksha. These popular shlokas offer guidance for life's challenges.",
+            )}
+          </p>
+
           <div className="relative">
             {/* Horizontal scrollable container */}
             <div
@@ -247,7 +266,7 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
                   key={`${verse.chapter}-${verse.verse}`}
                   href={`/chapter/${verse.chapter}/verse/${verse.verse}`}
                   prefetch={false}
-                  className="z-10 flex min-w-[320px] flex-col rounded-md border-2 border-white bg-white p-6 drop-shadow-card hover:cursor-pointer hover:border-2 hover:border-box-stroke hover:bg-box-bg hover:shadow-none dark:border-dark-bg dark:bg-dark-100 dark:text-gray-200 dark:hover:border-dark-100 dark:hover:bg-dark-bg sm:min-w-[360px]"
+                  className="z-10 flex min-w-[320px] flex-col rounded-md border-2 border-gray-200 bg-white p-6 shadow-md hover:cursor-pointer hover:border-my-orange hover:shadow-lg dark:border-gray-700 dark:bg-dark-100 dark:text-gray-200 dark:hover:border-my-orange sm:min-w-[360px]"
                 >
                   <div className="mb-2 flex items-center justify-between">
                     <h3 className="text-lg font-bold text-my-orange">
@@ -257,7 +276,7 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
                       {verse.category}
                     </span>
                   </div>
-                  
+
                   <p className="mt-3 flex-1 text-gray-600 dark:text-gray-300">
                     {verse.summary}
                   </p>
@@ -268,7 +287,7 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
                 </LinkWithLocale>
               ))}
             </div>
-            
+
             {/* Scroll indicator hint */}
             <div className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400 md:hidden">
               ← {translate("Scroll to explore more")} →
@@ -276,7 +295,7 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
           </div>
         </div>
       </div>
-      
+
       {/* Custom CSS to hide scrollbar */}
       <style jsx>{`
         .no-scrollbar::-webkit-scrollbar {
@@ -292,4 +311,3 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
 };
 
 export default PopularVerses;
-
