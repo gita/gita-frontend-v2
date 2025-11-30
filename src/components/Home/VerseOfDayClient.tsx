@@ -49,7 +49,8 @@ const VerseOfDayClient = ({ locale, translations }: Props) => {
           <>
             <CardHeader className="pb-4">
               <h2 className="text-center text-xl font-bold text-primary md:text-2xl">
-                Shloka of the Day - BG {dailyVerse?.chapter_number}.{dailyVerse?.verse_number}
+                Shloka of the Day - BG {dailyVerse?.chapter_number}.
+                {dailyVerse?.verse_number}
               </h2>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -57,18 +58,23 @@ const VerseOfDayClient = ({ locale, translations }: Props) => {
                 {dailyVerse?.gita_translations[0]?.description}
               </p>
               <div className="flex justify-center">
-                <Button 
-                  variant="outline" 
-                  asChild 
+                <Button
+                  variant="outline"
+                  asChild
                   className="group gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                 >
-                  <LinkWithLocale 
-                    href="/verse-of-the-day" 
+                  <LinkWithLocale
+                    href="/verse-of-the-day"
                     shallow
                     aria-label="Explore daily verse of the day and view verse history"
                   >
                     {translate("Explore Daily Verse")}
-                    <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                    <span
+                      className="transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
                   </LinkWithLocale>
                 </Button>
               </div>

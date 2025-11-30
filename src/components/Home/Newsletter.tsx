@@ -60,9 +60,12 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
   const onSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     setIsSubmitting(true);
-    const { isSuccess: success, message } = await handleSubscribe(evt, formData);
+    const { isSuccess: success, message } = await handleSubscribe(
+      evt,
+      formData,
+    );
     setIsSubmitting(false);
-    
+
     if (success) {
       setIsSuccess(true);
       setFormData({ name: "", email: "" });
@@ -109,12 +112,11 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
   return (
     <section className="relative z-0 overflow-hidden py-16 md:py-24">
       <Modal modalVisible={modalVisible} setModalVisible={setModalVisible} />
-      
+
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="relative overflow-hidden rounded-2xl bg-white shadow-xl dark:bg-card"
         >
@@ -124,8 +126,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
               {/* Title */}
               <motion.h3
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="mb-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl"
               >
@@ -135,8 +136,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
               {/* Subtitle */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
                 className="mb-8 text-base text-muted-foreground md:text-lg"
               >
@@ -158,7 +158,11 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                      transition={{
+                        delay: 0.2,
+                        type: "spring",
+                        stiffness: 200,
+                      }}
                     >
                       <CheckCircle2 className="size-12 text-green-500" />
                     </motion.div>
@@ -182,7 +186,9 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                   >
                     {/* Name Input */}
                     <div className="relative">
-                      <User className={`pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 transition-colors ${focusedField === 'name' ? 'text-primary' : 'text-muted-foreground'}`} />
+                      <User
+                        className={`pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 transition-colors ${focusedField === "name" ? "text-primary" : "text-muted-foreground"}`}
+                      />
                       <Input
                         className="w-full bg-muted/50 pl-10 transition-all focus:bg-white focus:ring-2 focus:ring-primary/20 dark:bg-background dark:focus:bg-background"
                         id="name"
@@ -195,7 +201,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                             name: e.target.value,
                           }))
                         }
-                        onFocus={() => setFocusedField('name')}
+                        onFocus={() => setFocusedField("name")}
                         onBlur={() => setFocusedField(null)}
                         placeholder={translate("Your Name")}
                         aria-label="Your name"
@@ -205,7 +211,9 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
 
                     {/* Email Input */}
                     <div className="relative">
-                      <Mail className={`pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 transition-colors ${focusedField === 'email' ? 'text-primary' : 'text-muted-foreground'}`} />
+                      <Mail
+                        className={`pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 transition-colors ${focusedField === "email" ? "text-primary" : "text-muted-foreground"}`}
+                      />
                       <Input
                         className="w-full bg-muted/50 pl-10 transition-all focus:bg-white focus:ring-2 focus:ring-primary/20 dark:bg-background dark:focus:bg-background"
                         id="email"
@@ -219,7 +227,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                             email: e.target.value,
                           }))
                         }
-                        onFocus={() => setFocusedField('email')}
+                        onFocus={() => setFocusedField("email")}
                         onBlur={() => setFocusedField(null)}
                         aria-label="Your email address"
                         required
@@ -240,7 +248,11 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                         {isSubmitting ? (
                           <motion.div
                             animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            transition={{
+                              duration: 1,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
                             className="size-5 rounded-full border-2 border-white border-t-transparent"
                           />
                         ) : (
@@ -273,12 +285,14 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
               {!isSuccess && (
                 <motion.p
                   initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.5 }}
                   className="mt-6 text-sm text-muted-foreground"
                 >
-                  ✨ {translate("Join thousands of seekers on this spiritual journey")}
+                  ✨{" "}
+                  {translate(
+                    "Join thousands of seekers on this spiritual journey",
+                  )}
                 </motion.p>
               )}
             </div>
@@ -287,7 +301,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
             <div className="relative hidden md:block">
               {/* Gradient overlay for better text contrast if needed */}
               <div className="absolute inset-0 z-10 bg-gradient-to-r from-white/60 via-white/40 to-transparent dark:from-card/60 dark:via-card/40" />
-              
+
               {/* Image */}
               <div className="relative h-full min-h-[400px] overflow-hidden">
                 <picture>
@@ -310,13 +324,16 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
               <div className="absolute inset-0 z-20 flex items-end justify-center p-8">
                 <motion.blockquote
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
                   className="rounded-xl bg-white/90 p-4 text-center shadow-lg backdrop-blur-sm dark:bg-card/90"
                 >
                   <p className="text-sm italic text-foreground/80">
-                    &ldquo;{translate("The mind is restless and difficult to restrain, but it is subdued by practice.")}&rdquo;
+                    &ldquo;
+                    {translate(
+                      "The mind is restless and difficult to restrain, but it is subdued by practice.",
+                    )}
+                    &rdquo;
                   </p>
                   <footer className="mt-2 text-xs font-medium text-primary">
                     — Bhagavad Gita 6.35

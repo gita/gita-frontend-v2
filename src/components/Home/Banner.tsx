@@ -1,7 +1,14 @@
 "use client";
 
-import { useEffect, useRef,useState } from "react";
-import { motion, useInView, useMotionValueEvent,useScroll, useSpring, useTransform, Variants } from "framer-motion";
+import { useRef, useState } from "react";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+  Variants,
+} from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 import LinkWithLocale from "components/LinkWithLocale";
@@ -60,42 +67,45 @@ const buttonVariants: Variants = {
 const Banner = (props: LocaleAndTranslations) => {
   const { translations, locale } = props;
   const translate = getTranslate(translations, locale);
-  
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const [isParallaxActive, setIsParallaxActive] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(contentRef, { once: true });
 
   // Smooth parallax scroll effect
   const { scrollY } = useScroll();
-  
+
   // Track scroll position to disable parallax after hero section
   useMotionValueEvent(scrollY, "change", (latest) => {
     // Disable parallax once user scrolls past 70% of viewport height
     const heroHeight = window.innerHeight * 0.7;
     setIsParallaxActive(latest < heroHeight);
   });
-  
+
   // Use spring for smoother parallax
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
-  
+
   // Parallax transformations - only active when in hero section
-  const imageY = useTransform(scrollY, [0, 500], [0, isParallaxActive ? 150 : 0]);
-  const imageScale = useTransform(scrollY, [0, 500], [1, isParallaxActive ? 1.1 : 1]);
-  const contentY = useTransform(scrollY, [0, 300], [0, isParallaxActive ? 50 : 0]);
+  const imageY = useTransform(
+    scrollY,
+    [0, 500],
+    [0, isParallaxActive ? 150 : 0],
+  );
+  const imageScale = useTransform(
+    scrollY,
+    [0, 500],
+    [1, isParallaxActive ? 1.1 : 1],
+  );
+  const contentY = useTransform(
+    scrollY,
+    [0, 300],
+    [0, isParallaxActive ? 50 : 0],
+  );
   const overlayOpacity = useTransform(scrollY, [0, 300], [0.25, 0.5]);
-  
+
   // Apply spring physics for smoothness
   const smoothImageY = useSpring(imageY, springConfig);
   const smoothImageScale = useSpring(imageScale, springConfig);
   const smoothContentY = useSpring(contentY, springConfig);
-
-  useEffect(() => {
-    // Small delay to ensure smooth initial animation
-    const timer = setTimeout(() => setIsLoaded(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   const scrollToChapters = () => {
     const chaptersSection = document.querySelector("main > div:nth-child(2)");
@@ -105,7 +115,7 @@ const Banner = (props: LocaleAndTranslations) => {
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="relative flex max-h-[75vh] min-h-[75vh] items-center overflow-hidden"
     >
@@ -116,12 +126,6 @@ const Banner = (props: LocaleAndTranslations) => {
           y: isParallaxActive ? smoothImageY : 0,
           scale: isParallaxActive ? smoothImageScale : 1,
         }}
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ 
-          opacity: isLoaded ? 1 : 0,
-          scale: isLoaded ? 1 : 1.1,
-        }}
-        transition={{ duration: 2, ease: "easeOut" }}
       >
         <picture>
           <source
@@ -154,14 +158,14 @@ const Banner = (props: LocaleAndTranslations) => {
       </motion.div>
 
       {/* Animated Gradient Overlay */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 z-10 bg-black"
         style={{ opacity: overlayOpacity }}
       />
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-transparent to-prakash-bg dark:to-nisha-bg" />
 
       {/* Animated Color Tint */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 z-[5] bg-orange-700/10 mix-blend-multiply dark:bg-orange-900/20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -169,43 +173,40 @@ const Banner = (props: LocaleAndTranslations) => {
       />
 
       {/* Content with staggered animations */}
-      <motion.div 
-        ref={contentRef}
+      <motion.div
         className="container relative z-20 mx-auto max-w-7xl px-4 py-12 text-center md:py-16 lg:py-20"
         style={{ y: isParallaxActive ? smoothContentY : 0 }}
       >
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate="visible"
         >
           {/* Main Title with staggered reveal */}
-          <motion.h1 
+          <motion.h1
             variants={itemVariants}
             className="font-inter text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl"
           >
-            <motion.span 
-              className="block text-white drop-shadow-xl [text-shadow:_0_2px_10px_rgb(0_0_0_/_40%)]"
-            >
+            <motion.span className="block text-white drop-shadow-xl [text-shadow:_0_2px_10px_rgb(0_0_0_/_40%)]">
               {translate("Bhagavad Gita in")}
             </motion.span>
-            <motion.span 
-              className="mt-2 block text-white drop-shadow-xl [text-shadow:_0_2px_10px_rgb(0_0_0_/_40%)]"
-            >
+            <motion.span className="mt-2 block text-white drop-shadow-xl [text-shadow:_0_2px_10px_rgb(0_0_0_/_40%)]">
               {translate("Hindi & English with Audio")}
             </motion.span>
           </motion.h1>
 
           {/* Subtitle */}
-          <motion.p 
+          <motion.p
             variants={itemVariants}
             className="mx-auto mt-5 max-w-2xl text-lg text-white drop-shadow-xl [text-shadow:_0_2px_10px_rgb(0_0_0_/_40%)] md:text-xl"
           >
-            {translate("Read, study, and practice the eternal wisdom of Lord Krishna's Bhagavad Gita")}
+            {translate(
+              "Read, study, and practice the eternal wisdom of Lord Krishna's Bhagavad Gita",
+            )}
           </motion.p>
 
           {/* CTA Buttons with hover effects */}
-          <motion.div 
+          <motion.div
             variants={buttonContainerVariants}
             className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
@@ -215,9 +216,9 @@ const Banner = (props: LocaleAndTranslations) => {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <Button 
-                  asChild 
-                  size="lg" 
+                <Button
+                  asChild
+                  size="lg"
                   className="bg-primary text-white shadow-xl shadow-primary/30 transition-all duration-200 hover:bg-orange-700 hover:shadow-2xl hover:shadow-primary/40"
                 >
                   <LinkWithLocale href={"/chapter/1"}>
@@ -233,10 +234,10 @@ const Banner = (props: LocaleAndTranslations) => {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  asChild 
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
                   className="border-2 border-transparent bg-white text-black shadow-xl transition-all duration-200 hover:bg-gray-100"
                 >
                   <LinkWithLocale href={"/about"}>
@@ -250,21 +251,21 @@ const Banner = (props: LocaleAndTranslations) => {
       </motion.div>
 
       {/* Animated Scroll Indicator */}
-      <motion.div 
+      <motion.div
         className="absolute inset-x-0 bottom-6 z-20 flex justify-center"
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: isLoaded ? 0.8 : 0, y: isLoaded ? 0 : 20 }}
-        transition={{ duration: 0.8, delay: 1.5 }}
+        animate={{ opacity: 0.8, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
       >
         <motion.button
           onClick={scrollToChapters}
           className="group rounded-full p-2 transition-all hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary"
           aria-label="Scroll down to view chapters"
           animate={{ y: [0, 8, 0] }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}

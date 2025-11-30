@@ -234,8 +234,7 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <div className="mb-12 text-center">
@@ -253,7 +252,9 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
             {/* Left scroll button - Outside cards */}
             <button
               onClick={() => {
-                const container = document.getElementById("popular-verses-scroll");
+                const container = document.getElementById(
+                  "popular-verses-scroll",
+                );
                 if (container) {
                   container.scrollBy({ left: -400, behavior: "smooth" });
                 }
@@ -261,15 +262,28 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
               className="absolute -left-14 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-xl ring-1 ring-gray-200 transition-all hover:scale-110 hover:bg-primary hover:text-white hover:ring-primary dark:bg-card dark:ring-gray-700 xl:block"
               aria-label="Scroll left to view previous verses"
             >
-              <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              <svg
+                className="size-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
             </button>
 
             {/* Right scroll button - Outside cards */}
             <button
               onClick={() => {
-                const container = document.getElementById("popular-verses-scroll");
+                const container = document.getElementById(
+                  "popular-verses-scroll",
+                );
                 if (container) {
                   container.scrollBy({ left: 400, behavior: "smooth" });
                 }
@@ -277,8 +291,19 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
               className="absolute -right-14 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-xl ring-1 ring-gray-200 transition-all hover:scale-110 hover:bg-primary hover:text-white hover:ring-primary dark:bg-card dark:ring-gray-700 xl:block"
               aria-label="Scroll right to view more verses"
             >
-              <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              <svg
+                className="size-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </button>
 
@@ -302,7 +327,10 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
                         <h3 className="text-lg font-bold text-primary">
                           {translate("Verse")} {verse.chapter}.{verse.verse}
                         </h3>
-                        <Badge variant="secondary" className="bg-primary/10 text-xs font-medium text-primary hover:bg-primary/20">
+                        <Badge
+                          variant="secondary"
+                          className="bg-primary/10 text-xs font-medium text-primary hover:bg-primary/20"
+                        >
                           {verse.category}
                         </Badge>
                       </div>
@@ -315,7 +343,12 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
 
                       <div className="flex items-center gap-1 text-sm font-semibold text-primary">
                         {translate("Read full verse")}
-                        <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                        <span
+                          className="inline-block transition-transform group-hover:translate-x-1"
+                          aria-hidden="true"
+                        >
+                          →
+                        </span>
                       </div>
                     </CardContent>
                   </Card>

@@ -12,8 +12,9 @@ interface Props {
 }
 
 const Card = ({ chapter, translate }: Props) => {
-  const description = chapterDescriptions[chapter.chapter_number] || chapter.chapter_summary;
-  
+  const description =
+    chapterDescriptions[chapter.chapter_number] || chapter.chapter_summary;
+
   return (
     <LinkWithLocale
       href={`/chapter/${chapter.id}`}
@@ -23,9 +24,9 @@ const Card = ({ chapter, translate }: Props) => {
     >
       <CardUI
         className={cn(
-          "h-full bg-white dark:bg-card border-2 shadow-md hover:shadow-xl transition-all duration-300",
+          "h-full border-2 bg-white shadow-md transition-all duration-300 hover:shadow-xl dark:bg-card",
           "border-border hover:border-primary/30",
-          "dark:border-border dark:hover:border-primary/50"
+          "dark:border-border dark:hover:border-primary/50",
         )}
       >
         <CardHeader className="space-y-2 pb-3">

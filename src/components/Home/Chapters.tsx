@@ -41,8 +41,7 @@ const Chapters = ({ chapters, locale, translations }: ChaptersProps) => {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="mb-10 text-center text-3xl font-bold text-foreground md:text-left md:text-4xl">
@@ -51,8 +50,7 @@ const Chapters = ({ chapters, locale, translations }: ChaptersProps) => {
           <motion.div
             variants={container}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            animate="show"
             className="grid grid-cols-1 gap-6 md:grid-cols-2"
           >
             {chapters.map((chapter) => (

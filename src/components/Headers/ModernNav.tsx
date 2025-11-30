@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect,useState } from "react";
-import { BookOpen, ChevronDown,Menu, Moon, Search, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
+import { BookOpen, ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
 import Link from "next/link";
 
 import LinkWithLocale from "components/LinkWithLocale";
@@ -111,7 +111,10 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
         <nav className="hidden md:flex md:items-center md:gap-6">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex h-auto items-center gap-1 p-0 text-sm font-medium transition-colors hover:bg-transparent hover:text-primary">
+              <Button
+                variant="ghost"
+                className="flex h-auto items-center gap-1 p-0 text-sm font-medium transition-colors hover:bg-transparent hover:text-primary"
+              >
                 {translate("Chapters")}
                 <ChevronDown className="size-4" />
               </Button>
@@ -189,13 +192,19 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
           {/* Language Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="gap-2 px-2" aria-label="Change language">
+              <Button
+                variant="ghost"
+                className="gap-2 px-2"
+                aria-label="Change language"
+              >
                 <img
                   alt={`Flag for ${locale} locale`}
                   src={`/assets/images/locales/${locale}.svg`}
                   className="h-4 w-6 rounded object-cover"
                 />
-                <span className="text-sm font-medium">{locale === "en" ? "EN" : "हिं"}</span>
+                <span className="text-sm font-medium">
+                  {locale === "en" ? "EN" : "हिं"}
+                </span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-36">
@@ -203,7 +212,8 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                 onClick={() => {
                   if (locale !== "en") {
                     document.cookie = "locale=en";
-                    window.location.href = window.location.pathname.replace(/^\/hi/, "") || "/";
+                    window.location.href =
+                      window.location.pathname.replace(/^\/hi/, "") || "/";
                   }
                 }}
                 className="flex cursor-pointer items-center gap-2"
@@ -238,4 +248,3 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
     </header>
   );
 }
-

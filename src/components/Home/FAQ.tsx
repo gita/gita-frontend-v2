@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence,motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
 import { getTranslate } from "shared/translate";
@@ -105,8 +105,7 @@ const FAQ = ({ locale, translations }: FAQProps) => {
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">
@@ -121,8 +120,7 @@ const FAQ = ({ locale, translations }: FAQProps) => {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="rounded-lg border-2 border-border bg-white shadow-lg transition-all hover:shadow-xl dark:bg-card"
               >
@@ -157,7 +155,9 @@ const FAQ = ({ locale, translations }: FAQProps) => {
                       role="region"
                     >
                       <div className="border-t border-border p-6 pt-4">
-                        <p className="text-base leading-relaxed text-foreground/90">{faq.answer}</p>
+                        <p className="text-base leading-relaxed text-foreground/90">
+                          {faq.answer}
+                        </p>
                       </div>
                     </motion.div>
                   )}

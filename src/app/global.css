@@ -62,9 +62,9 @@
   * {
     @apply border-border;
   }
-body {
+  body {
     @apply bg-background text-foreground;
-  font-family: var(--font-inter), sans-serif !important;
+    font-family: var(--font-inter), sans-serif !important;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
