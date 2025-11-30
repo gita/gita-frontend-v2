@@ -43,7 +43,8 @@ const AboutFAQ = ({ locale, translations }: AboutFAQProps) => {
         "The 18 chapters are organized into three sections of six chapters each. Chapters 1-6 primarily teach Karma Yoga and deal with action. Chapters 7-12 focus on Bhakti Yoga and devotion. Chapters 13-18 emphasize Jnana Yoga and knowledge. Each chapter is titled as a form of yoga (e.g., Karma Yoga, Bhakti Yoga, Sankhya Yoga), showing different aspects of the spiritual path to liberation.",
     },
     {
-      question: "Why is the Bhagavad Gita considered relevant for modern times?",
+      question:
+        "Why is the Bhagavad Gita considered relevant for modern times?",
       answer:
         "The Bhagavad Gita addresses universal human challenges: fulfilling duties while managing stress, making ethical decisions, finding life's purpose, dealing with loss and grief, and seeking spiritual growth. Its teachings on mindfulness, detachment, and selfless service apply to modern workplace ethics, leadership, and personal development. Leaders like Mahatma Gandhi and many contemporary thinkers have drawn inspiration from its wisdom for contemporary challenges.",
     },

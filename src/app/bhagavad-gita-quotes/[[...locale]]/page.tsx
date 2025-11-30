@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
-import QuotesPage from "./QuotesPage";
+import QuotesPageNew from "./QuotesPageNew";
 import { jsonLdFirst, jsonLdTwo } from "./constants";
 
 // Force static generation for better SEO
@@ -65,7 +65,7 @@ async function Quotes(props: ParamsWithLocale) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
       />
-      <QuotesPage translations={translations} locale={locale} />
+      <QuotesPageNew translations={translations} locale={locale} />
     </>
   );
 }
