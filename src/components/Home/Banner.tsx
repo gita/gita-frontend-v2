@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef,useState } from "react";
-import { motion, useInView, useMotionValueEvent,useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useInView, useMotionValueEvent,useScroll, useSpring, useTransform, Variants } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 import LinkWithLocale from "components/LinkWithLocale";
@@ -21,14 +21,14 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.25, 0.4, 0.25, 1],
+      ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number],
     },
   },
 };
@@ -44,7 +44,7 @@ const buttonContainerVariants = {
   },
 };
 
-const buttonVariants = {
+const buttonVariants: Variants = {
   hidden: { opacity: 0, y: 20, scale: 0.9 },
   visible: {
     opacity: 1,
@@ -52,7 +52,7 @@ const buttonVariants = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.4, 0.25, 1],
+      ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number],
     },
   },
 };

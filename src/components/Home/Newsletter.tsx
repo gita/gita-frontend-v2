@@ -3,9 +3,8 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { connect } from "react-redux";
-import { AnimatePresence,motion } from "framer-motion";
-import { CheckCircle2,Mail, Sparkles, User } from "lucide-react";
-import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { CheckCircle2, Mail, Sparkles, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import NotificationBanner from "components/NotificationBanner";
@@ -42,7 +41,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const pathName = usePathname();
-  const [cookies, setCookie] = useCookies(["access_token"]);
+  const [, setCookie] = useCookies(["access_token"]);
 
   const translate = getTranslate(translations, locale);
 
@@ -89,7 +88,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
           isSuccess: true,
           message: "",
         };
-      } catch (error) {
+      } catch {
         return {
           isSuccess: false,
           message: "ERROR: Email already exists",
