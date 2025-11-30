@@ -1,0 +1,193 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Shadcn UI Components
+
+This project uses @shadcn/ui for UI components. These are beautifully designed, accessible components that you can copy and paste into your apps. Think like a Vercel staff engineer - prioritize component reusability, consistent styling, and performance.
+
+## Component Hierarchy
+
+Follow this component hierarchy to ensure reusability and maintainability:
+
+1. **UI (Base) Components** - `/components/ui/` - Pure shadcn/UI components without customization
+2. **Primitive Components** - `/components/primitives/` - Extended UI components with project-specific variants
+3. **Block Components** - `/components/blocks/` - Composed components built from primitives
+4. **Feature Components** - `/components/features/` - Domain-specific components for particular features
+
+## Never Duplicate Components
+
+First of all before importing or creating a new component, look through the project to find already existing similar components. See if that can be used directly. Only if a unique component is needed, then import from shadcn or make custom one.
+
+Instead of creating custom button components for each use case, extend the base shadcn/UI components:
+
+```tsx
+// /components/primitives/button-variants.tsx
+import { cva } from 'class-variance-authority';
+import { Button } from '@/components/ui/button';
+
+export const buttonVariants = cva('', {
+  variants: {
+    intent: {
+      primary: 'bg-primary text-white',
+      secondary: 'bg-secondary text-white',
+      vedic: 'bg-amber-600 text-white' // Special project-specific variant
+    },
+    // Add more variants as needed
+  },
+  defaultVariants: {
+    intent: 'primary'
+  }
+});
+
+export const VedicButton = ({ intent, ...props }) => (
+  <Button className={buttonVariants({ intent })} {...props} />
+);
+```
+
+Create component compositions instead of duplicating patterns:
+
+```tsx
+// components/blocks/FormField.tsx
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+
+export function FormField({ label, id, error, ...props }) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor={id}>{label}</Label>
+      <Input 
+        id={id} 
+        className={error ? "border-red-500" : ""} 
+        {...props} 
+      />
+      {error && <p className="text-red-500 text-sm">{error}</p>}
+    </div>
+  )
+}
+```
+
+## Finding and Using Components
+
+Components are available in the `src/components/ui` directory, following the aliases configured in `components.json`
+
+## Using Components
+
+Import components from the ui directory using the configured aliases:
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+```
+
+Example usage:
+
+```tsx
+<Button variant="outline">Click me</Button>
+
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card Description</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Card Content</p>
+  </CardContent>
+  <CardFooter>
+    <p>Card Footer</p>
+  </CardFooter>
+</Card>
+```
+
+## Installing Additional Components
+
+Many more components are available but not currently installed. You can view the complete list at https://ui.shadcn.com/r
+
+To install additional components, use the Shadcn CLI:
+
+```bash
+npx shadcn@latest add [component-name]
+```
+
+For example, to add the Accordion component:
+
+```bash
+npx shadcn@latest add accordion
+```
+
+Note: `npx shadcn-ui@latest` is deprecated, use `npx shadcn@latest` instead
+
+Some commonly used components are
+
+- Accordion
+- Alert
+- AlertDialog
+- AspectRatio
+- Avatar
+- Calendar
+- Checkbox
+- Collapsible
+- Command
+- ContextMenu
+- DataTable
+- DatePicker
+- Dropdown Menu
+- Form
+- Hover Card
+- Menubar
+- Navigation Menu
+- Popover
+- Progress
+- Radio Group
+- ScrollArea
+- Select
+- Separator
+- Sheet
+- Skeleton
+- Slider
+- Switch
+- Table
+- Textarea
+- Toast
+- Toggle
+- Tooltip
+
+## Component Styling
+
+Ensure mobile first approach and that any component you are working on is responsive and looks good.
+
+## Maintaining a Style System
+
+Use design tokens in Tailwind config for consistent styling:
+
+```js
+// tailwind.config.ts
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#FF6B35', // Vedic orange
+          light: '#FF8C61',
+          dark: '#E54B15',
+        },
+        scripture: {
+          DEFAULT: '#4A5568', // For scripture-specific UI
+        }
+      }
+    }
+  }
+}
+```
+
+Always reference these design tokens instead of hardcoding colors or styles:
+
+```tsx
+// ❌ Bad
+<div className="bg-[#FF6B35]">...</div>
+
+// ✅ Good
+<div className="bg-primary">...</div>
+```

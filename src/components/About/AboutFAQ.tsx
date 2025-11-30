@@ -97,7 +97,7 @@ const AboutFAQ = ({ locale, translations }: AboutFAQProps) => {
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-my-orange to-transparent dark:via-my-orange/50"></div>
           <div className="mx-4">
             <svg
-              className="h-8 w-8 text-my-orange"
+              className="size-8 text-my-orange"
               fill="currentColor"
               viewBox="0 0 24 24"
             >

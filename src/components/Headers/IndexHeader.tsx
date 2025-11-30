@@ -157,10 +157,10 @@ export default function IndexHeader({ locale, translate }: Props) {
   }
 
   return (
-    <div className="fixed top-0 z-50 w-full">
-      <Popover className="relative bg-white font-inter dark:bg-dark-100">
+    <div className="sticky top-0 z-50 w-full">
+      <Popover className="relative border-b border-border bg-background/80 font-inter backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="flex items-center justify-between py-6 md:space-x-10">
+          <div className="flex items-center justify-between py-4 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <LinkWithLocale
                 href="/"

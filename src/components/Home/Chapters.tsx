@@ -1,35 +1,67 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 import { getTranslate } from "shared/translate";
 
 import Card from "./Card";
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
 const Chapters = ({ chapters, locale, translations }: ChaptersProps) => {
   const translate = getTranslate(translations, locale);
 
   return (
-    <div className="relative my-14">
+    <div className="relative bg-gradient-to-b from-transparent via-accent/20 to-transparent py-20">
+      <div className="pointer-events-none absolute inset-0 z-[-2] bg-[radial-gradient(circle_at_30%_20%,rgba(251,146,60,0.08)_0%,transparent_60%)]" />
       <Image
         src="/bg-verses-fixed.png"
-        alt="BG Chapters Image"
+        alt="Bhagavad Gita chapters background illustration"
         fill
         style={{
           objectFit: "cover",
           objectPosition: "center",
         }}
-        className="z-[-1]"
+        className="z-[-3] opacity-5"
       />
-      <div className="z-50 mx-auto max-w-7xl px-4 sm:px-6">
-        <div>
-          <h2 className="mb-10 text-4xl font-bold dark:text-white">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="mb-10 text-center text-3xl font-bold text-foreground md:text-left md:text-4xl">
             {translate("Chapters")}
           </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 gap-6 md:grid-cols-2"
+          >
             {chapters.map((chapter) => (
-              <Card key={chapter.id} chapter={chapter} translate={translate} />
+              <motion.div key={chapter.id} variants={item}>
+                <Card chapter={chapter} translate={translate} />
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

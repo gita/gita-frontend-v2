@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence,motion } from "framer-motion";
 import Image from "next/image";
 
 import { getTranslate } from "shared/translate";
@@ -99,63 +100,72 @@ const FAQ = ({ locale, translations }: FAQProps) => {
   };
 
   return (
-    <div className="relative my-14 py-10">
-      <Image
-        src="/bg-verses-fixed.png"
-        alt="BG FAQ Background"
-        fill
-        style={{
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-        className="z-[-1]"
-      />
-      <div className="z-50 mx-auto max-w-4xl px-4 sm:px-6">
-        <div>
-          <h2 className="mb-6 text-center text-4xl font-bold dark:text-white">
+    <div className="relative bg-gradient-to-b from-transparent via-accent/20 to-transparent py-20">
+      <div className="pointer-events-none absolute inset-0 z-[-2] bg-[radial-gradient(circle_at_80%_30%,rgba(251,146,60,0.07)_0%,transparent_60%)]" />
+      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">
             {translate("Frequently Asked Questions")}
           </h2>
-          <p className="mb-10 text-center text-lg text-gray-600 dark:text-gray-300">
+          <p className="mb-12 text-center text-lg text-foreground/70 md:text-xl">
             {translate("Everything you need to know about the Bhagavad Gita")}
           </p>
 
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="rounded-md border-2 border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-dark-100"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="rounded-lg border-2 border-border bg-white shadow-lg transition-all hover:shadow-xl dark:bg-card"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="flex w-full items-start justify-between p-6 text-left transition-all hover:bg-gray-50 dark:hover:bg-dark-bg"
+                  className="flex w-full items-start justify-between p-6 text-left transition-all hover:bg-accent/30"
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-answer-${index}`}
                 >
-                  <h3 className="pr-4 text-lg font-semibold text-gray-900 dark:text-white">
+                  <h3 className="pr-4 text-lg font-semibold text-foreground">
                     {faq.question}
                   </h3>
-                  <span
-                    className={`shrink-0 text-2xl font-bold text-my-orange transition-transform ${
-                      openIndex === index ? "rotate-45" : ""
-                    }`}
+                  <motion.span
+                    animate={{ rotate: openIndex === index ? 45 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="shrink-0 text-2xl font-bold text-primary"
+                    aria-hidden="true"
                   >
                     +
-                  </span>
+                  </motion.span>
                 </button>
 
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openIndex === index ? "max-h-96" : "max-h-0"
-                  }`}
-                >
-                  <div className="border-t border-gray-200 p-6 pt-4 dark:border-gray-700">
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                      id={`faq-answer-${index}`}
+                      role="region"
+                    >
+                      <div className="border-t border-border p-6 pt-4">
+                        <p className="text-base leading-relaxed text-foreground/90">{faq.answer}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
