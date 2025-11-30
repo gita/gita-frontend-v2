@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Script from "next/script";
 
 import { getAllChapters } from "lib/getAllChapters";
 import { paramsToLocale } from "shared/functions";
@@ -161,14 +160,6 @@ export default async function Home({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdThree) }}
       />
-      <Script strategy="lazyOnload" id="chatbase-widget-script">
-        {`
-            (function(){
-              // Don't load chatbot widget on GitaGPT page (it has iframe instead)
-              if(window.location.pathname.includes('/gitagpt')) return;
-              if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="FUopn1I5lRD_dEopmyuQk";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-          `}
-      </Script>
       <HomePage chapters={chapters} locale={locale} />
     </>
   );
