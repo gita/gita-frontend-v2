@@ -24,11 +24,6 @@ export default function QuotesBanner(props: Props) {
         <h1 className="text-shadow z-20 whitespace-break-spaces text-center text-3xl font-extrabold text-white md:text-5xl">
           {translate("Bhagavad Gita Quotes By\nLord Krishna")}
         </h1>
-        <p className="text-shadow z-20 mx-auto mt-6 max-w-3xl text-center text-lg font-medium text-white md:text-xl">
-          {translate(
-            "100+ profound quotes on karma yoga, dharma, moksha, and spiritual wisdom from the sacred Gita",
-          )}
-        </p>
       </div>
     </div>
   );
