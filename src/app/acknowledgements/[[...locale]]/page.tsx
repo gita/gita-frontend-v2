@@ -15,9 +15,14 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Acknowledgements - Featured Bhagavad Gita Translations",
+  title: "Acknowledgements - Bhagavad Gita Translations & Commentary Sources",
   description:
-    "We extend our heartfelt gratitude to esteemed organizations and individuals for allowing us to feature their invaluable Bhagavad Gita translations and commentaries.",
+    "Gratitude to Gita Press, Advaita Ashrama, Chinmaya Mission, Divine Life Society & scholars for authentic Bhagavad Gita translations and commentaries featured on our platform.",
+  keywords:
+    "bhagavad gita translations sources, gita commentary acknowledgements, gita press, advaita ashrama, authentic gita translations",
+  authors: [{ name: "Ved Vyasa" }],
+  creator: "Ved Vyas Foundation",
+  publisher: "Ved Vyas Foundation",
   openGraph: {
     title: "Acknowledgements - Featured Bhagavad Gita Translations",
     description:

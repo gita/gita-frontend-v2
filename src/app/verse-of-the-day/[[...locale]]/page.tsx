@@ -18,9 +18,14 @@ export const revalidate = 86400; // 24 hours
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Bhagavad Gita - Verse of the Day",
+    title: "Bhagavad Gita Verse of the Day - Daily Wisdom in Hindi & English",
     description:
-      "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
+      "Daily Bhagavad Gita verse with translation & commentary. Get fresh spiritual wisdom from Lord Krishna's teachings every day. Free in Hindi & English.",
+    keywords:
+      "bhagavad gita verse of the day, daily gita verse, gita shloka of the day, krishna quote daily, bhagavad gita daily wisdom",
+    authors: [{ name: "Ved Vyasa" }],
+    creator: "Ved Vyas Foundation",
+    publisher: "Ved Vyas Foundation",
     openGraph: {
       url: "https://bhagavadgita.io/verse-of-the-day",
       siteName: "Bhagavad Gita",

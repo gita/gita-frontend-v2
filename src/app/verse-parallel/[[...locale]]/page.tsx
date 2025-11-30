@@ -11,9 +11,14 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Bhagavad Gita Parallel Translation - Compare Multiple Translations",
+  title: "Bhagavad Gita Parallel View - Compare 20+ Translations Side by Side",
   description:
-    "Read Bhagavad Gita verses with parallel translations from multiple authors side by side. Compare different interpretations and commentaries in English and Hindi.",
+    "Compare Bhagavad Gita translations from 20+ scholars simultaneously. View parallel interpretations and commentaries in Hindi & English for deeper understanding.",
+  keywords:
+    "bhagavad gita parallel translation, compare gita translations, gita parallel view, multiple gita commentaries, side by side gita",
+  authors: [{ name: "Ved Vyasa" }],
+  creator: "Ved Vyas Foundation",
+  publisher: "Ved Vyas Foundation",
   openGraph: {
     title: "Bhagavad Gita Parallel Translation - Compare Multiple Translations",
     description:

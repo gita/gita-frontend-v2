@@ -241,6 +241,7 @@ const Footer = (props: Props) => {
             <Menu
               as="div"
               className="relative inline-block text-left lg:hidden"
+              suppressHydrationWarning
             >
               {({ open }) => (
                 <>
@@ -411,7 +412,10 @@ const Footer = (props: Props) => {
                     </Menu.Items>
                   </Transition>
                   <div>
-                    <Menu.Button className="inline-flex w-full justify-center rounded-lg border border-gray-300 bg-white p-2 text-xs text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 focus:ring-offset-gray-100 dark:bg-dark-100 dark:text-gray-400 dark:hover:bg-dark-bg dark:focus:ring-offset-gray-700">
+                    <Menu.Button
+                      className="inline-flex w-full justify-center rounded-lg border border-gray-300 bg-white p-2 text-xs text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 focus:ring-offset-gray-100 dark:bg-dark-100 dark:text-gray-400 dark:hover:bg-dark-bg dark:focus:ring-offset-gray-700"
+                      suppressHydrationWarning
+                    >
                       More
                       {open ? (
                         <ChevronUpIcon

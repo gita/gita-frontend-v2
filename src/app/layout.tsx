@@ -4,8 +4,8 @@ import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import { headers } from "next/headers";
 import Script from "next/script";
 
+import ChatbaseWidget from "components/ChatbaseWidget";
 import TopLoader from "components/Headers/TopLoader";
-import { paramsToLocale } from "shared/functions";
 
 import { PreloadResources } from "./preload-resources";
 import Providers from "./providers";
@@ -89,6 +89,7 @@ export default async function RootLayout({
         <Providers>
           <PreloadResources />
           <TopLoader />
+          <ChatbaseWidget />
           {children}
         </Providers>
       </body>
