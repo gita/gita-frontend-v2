@@ -29,12 +29,21 @@ export default function QuotesPageNew(props: LocaleAndTranslations) {
         />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+          {/* SEO Introduction */}
+          <div className="mb-10 text-center">
+            <p className="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-300">
+              {translate(
+                "103 profound teachings on dharma, karma yoga, bhakti, and moksha",
+              )}
+            </p>
+          </div>
+
           {/* Quotes Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {quotes.map((quote, index) => (
               <div
                 key={index}
-                className="group relative flex flex-col rounded-lg border-2 border-gray-200 bg-white p-6 shadow-md transition-all hover:border-my-orange hover:shadow-xl dark:border-gray-700 dark:bg-dark-100"
+                className="group relative flex rounded-lg border-2 border-gray-200 bg-white p-6 shadow-md transition-all hover:border-my-orange hover:shadow-xl dark:border-gray-700 dark:bg-dark-100"
               >
                 {/* Quote Number Badge - Smaller and positioned to not interfere */}
                 <div className="absolute -right-2 -top-2 flex size-8 items-center justify-center rounded-full bg-my-orange text-xs font-bold text-white shadow-md">
@@ -42,16 +51,9 @@ export default function QuotesPageNew(props: LocaleAndTranslations) {
                 </div>
 
                 {/* Quote Text */}
-                <blockquote className="flex-1 pr-4 text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                <blockquote className="pr-4 text-base leading-relaxed text-gray-700 dark:text-gray-300">
                   &quot;{quote}&quot;
                 </blockquote>
-
-                {/* Simple Attribution */}
-                <div className="mt-4 border-t border-gray-200 pt-3 dark:border-gray-700">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    {translate("Bhagavad Gita")}
-                  </p>
-                </div>
               </div>
             ))}
           </div>
