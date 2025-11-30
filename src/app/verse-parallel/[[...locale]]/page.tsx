@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: "Bhagavad Gita Parallel View - Compare 20+ Translations Side by Side",
   description:
     "Compare Bhagavad Gita translations from 20+ scholars simultaneously. View parallel interpretations and commentaries in Hindi & English for deeper understanding.",
-  keywords: "bhagavad gita parallel translation, compare gita translations, gita parallel view, multiple gita commentaries, side by side gita",
+  keywords:
+    "bhagavad gita parallel translation, compare gita translations, gita parallel view, multiple gita commentaries, side by side gita",
   authors: [{ name: "Ved Vyasa" }],
   creator: "Ved Vyas Foundation",
   publisher: "Ved Vyas Foundation",

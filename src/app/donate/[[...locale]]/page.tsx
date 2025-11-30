@@ -19,7 +19,8 @@ export const metadata: Metadata = {
   title: "Donate to Ved Vyas Foundation - Support Free Bhagavad Gita Resources",
   description:
     "Support free, ad-free Bhagavad Gita resources for millions. Help Ved Vyas Foundation provide Gita in Hindi & English, mobile apps, and AI chatbot to seekers worldwide.",
-  keywords: "donate bhagavad gita, ved vyas foundation donation, support gita project, bhagavad gita charity, spiritual donation india",
+  keywords:
+    "donate bhagavad gita, ved vyas foundation donation, support gita project, bhagavad gita charity, spiritual donation india",
   authors: [{ name: "Ved Vyasa" }],
   creator: "Ved Vyas Foundation",
   publisher: "Ved Vyas Foundation",

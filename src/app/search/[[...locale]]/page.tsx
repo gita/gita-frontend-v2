@@ -16,10 +16,12 @@ export async function generateStaticParams() {
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Search Bhagavad Gita - Find Verses & Chapters in Hindi, English & Sanskrit",
+  title:
+    "Search Bhagavad Gita - Find Verses & Chapters in Hindi, English & Sanskrit",
   description:
     "Search all 700 Bhagavad Gita verses instantly. Find chapters, keywords, Krishna's teachings in Sanskrit, Hindi & English. Advanced search with commentaries.",
-  keywords: "search bhagavad gita, find gita verse, bhagavad gita search engine, gita keyword search, search krishna teachings",
+  keywords:
+    "search bhagavad gita, find gita verse, bhagavad gita search engine, gita keyword search, search krishna teachings",
   authors: [{ name: "Ved Vyasa" }],
   creator: "Ved Vyas Foundation",
   publisher: "Ved Vyas Foundation",

@@ -21,7 +21,8 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Bhagavad Gita Verse of the Day - Daily Wisdom in Hindi & English",
     description:
       "Daily Bhagavad Gita verse with translation & commentary. Get fresh spiritual wisdom from Lord Krishna's teachings every day. Free in Hindi & English.",
-    keywords: "bhagavad gita verse of the day, daily gita verse, gita shloka of the day, krishna quote daily, bhagavad gita daily wisdom",
+    keywords:
+      "bhagavad gita verse of the day, daily gita verse, gita shloka of the day, krishna quote daily, bhagavad gita daily wisdom",
     authors: [{ name: "Ved Vyasa" }],
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",

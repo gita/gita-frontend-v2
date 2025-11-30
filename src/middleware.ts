@@ -102,5 +102,6 @@ export const config = {
      * - app (old static app)
      * - public files (images, etc)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico|app|.*\\..*).*)"],
+    "/((?!api|_next/static|_next/image|favicon.ico|app|.*\\..*).*)",
+  ],
 };

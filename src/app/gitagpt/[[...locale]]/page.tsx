@@ -13,7 +13,8 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "GitaGPT - Bhagavad Gita AI Chatbot | Free Gita AI by Ved Vyas Foundation",
+  title:
+    "GitaGPT - Bhagavad Gita AI Chatbot | Free Gita AI by Ved Vyas Foundation",
   description:
     "GitaGPT: Free Bhagavad Gita AI chatbot. Ask Krishna's wisdom, get instant spiritual guidance. Gita AI powered answers in Hindi & English. Try now!",
   keywords:
