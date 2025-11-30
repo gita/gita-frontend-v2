@@ -33,7 +33,7 @@ export default function QuotesPageNew(props: LocaleAndTranslations) {
           <div className="mb-10 text-center">
             <p className="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-300">
               {translate(
-                "103 profound teachings on dharma, karma yoga, bhakti, and moksha",
+                "100+ inspiring quotes by Lord Krishna on life, karma, dharma & spiritual liberation",
               )}
             </p>
           </div>
