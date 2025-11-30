@@ -11,6 +11,10 @@ export default function QuotesPageNew(props: LocaleAndTranslations) {
   const { translations, locale } = props;
   const translate = getTranslate(translations, locale);
 
+  // Get quotes in the correct language
+  const isHindi = locale === "hi";
+  const quotesArray = isHindi ? quotes.hi : quotes.en;
+
   return (
     <div className="min-h-screen dark:bg-dark-bg">
       <QuotesBanner translate={translate} />
@@ -40,7 +44,7 @@ export default function QuotesPageNew(props: LocaleAndTranslations) {
 
           {/* Quotes Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {quotes.map((quote, index) => (
+            {quotesArray.map((quote, index) => (
               <div
                 key={index}
                 className="group relative flex rounded-lg border-2 border-gray-200 bg-white p-6 shadow-md transition-all hover:border-my-orange hover:shadow-xl dark:border-gray-700 dark:bg-dark-100"
