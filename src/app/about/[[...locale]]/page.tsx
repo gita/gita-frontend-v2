@@ -18,7 +18,8 @@ export const metadata: Metadata = {
   title: "About Bhagavad Gita - Sacred Scripture by Ved Vyasa",
   description:
     "Bhagavad Gita: 700-verse Hindu scripture from Mahabharata. Lord Krishna's teachings to Arjuna on dharma, karma, and yoga. Read in Hindi & English with commentaries.",
-  keywords: "about bhagavad gita, bhagavad gita history, mahabharata, lord krishna, ved vyasa, bhagavad gita meaning, hindu scripture",
+  keywords:
+    "about bhagavad gita, bhagavad gita history, mahabharata, lord krishna, ved vyasa, bhagavad gita meaning, hindu scripture",
   authors: [{ name: "Ved Vyasa" }],
   publisher: "Ved Vyas Foundation",
   openGraph: {

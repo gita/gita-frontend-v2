@@ -13,9 +13,13 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
+  title: "Gita GPT - AI Chatbot Based on Bhagavad Gita | Ask Krishna",
   description:
-    "GitaGPT is a free AI chatbot powered by ChatGPT that provides wisdom from the Bhagavad Gita. Get instant spiritual guidance for your questions through Krishna's teachings.",
+    "Free Bhagavad Gita AI chatbot. Get instant spiritual guidance based on Krishna's teachings. Ask questions about life, dharma, karma in Hindi & English.",
+    keywords: "gita gpt, bhagavad gita ai, gita chatbot, ask krishna, bhagavad gita chatgpt, spiritual ai, gita ai assistant",
+    authors: [{ name: "Ved Vyasa" }],
+    creator: "Ved Vyas Foundation",
+    publisher: "Ved Vyas Foundation",
   openGraph: {
     title: "Bhagavad Gita AI - Gita GPT - Ask Krishna",
     description:

@@ -18,7 +18,8 @@ export const metadata: Metadata = {
   title: "Bhagavad Gita Quotes by Lord Krishna - Hindi & English",
   description:
     "100+ Bhagavad Gita quotes by Lord Krishna in Hindi & English. Profound wisdom on karma, dharma, life, yoga, and spirituality. Read, share & inspire.",
-  keywords: "bhagavad gita quotes, krishna quotes, gita quotes in hindi, bhagavad gita sayings, spiritual quotes, dharma quotes, karma quotes",
+  keywords:
+    "bhagavad gita quotes, krishna quotes, gita quotes in hindi, bhagavad gita sayings, spiritual quotes, dharma quotes, karma quotes",
   authors: [{ name: "Ved Vyasa" }],
   publisher: "Ved Vyas Foundation",
   openGraph: {

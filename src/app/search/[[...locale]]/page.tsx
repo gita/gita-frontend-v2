@@ -16,9 +16,13 @@ export async function generateStaticParams() {
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Search Bhagavad Gita - Find Verses, Chapters & Teachings",
+  title: "Search Bhagavad Gita - Find Verses & Chapters in Hindi, English & Sanskrit",
   description:
-    "Search the complete Bhagavad Gita text. Find specific verses, chapters, keywords, and teachings from Lord Krishna. Search in Sanskrit, English, and Hindi translations.",
+    "Search all 700 Bhagavad Gita verses instantly. Find chapters, keywords, Krishna's teachings in Sanskrit, Hindi & English. Advanced search with commentaries.",
+  keywords: "search bhagavad gita, find gita verse, bhagavad gita search engine, gita keyword search, search krishna teachings",
+  authors: [{ name: "Ved Vyasa" }],
+  creator: "Ved Vyas Foundation",
+  publisher: "Ved Vyas Foundation",
   openGraph: {
     title: "Search Bhagavad Gita - Find Verses, Chapters & Teachings",
     description:

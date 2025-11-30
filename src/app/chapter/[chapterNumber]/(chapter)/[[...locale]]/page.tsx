@@ -55,12 +55,18 @@ export async function generateMetadata({
       : firstSentence + ".";
 
   const title = isHindi
-    ? `भगवद् गीता अध्याय ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`
-    : `Bhagavad Gita Chapter ${chapterNumber} - ${chapterData.gita_chapters_by_pk.name_translated} - BhagavadGita.io`;
+    ? `भगवद गीता अध्याय ${chapterNumber}: ${chapterData.gita_chapters_by_pk.name_translated}`
+    : `Bhagavad Gita Chapter ${chapterNumber}: ${chapterData.gita_chapters_by_pk.name_translated} in Hindi & English`;
 
   return {
     title,
     description: chapterDescription,
+    keywords: isHindi
+      ? `भगवद गीता अध्याय ${chapterNumber}, ${chapterData.gita_chapters_by_pk.name_translated}, भगवद गीता हिंदी, गीता अध्याय ${chapterNumber}`
+      : `bhagavad gita chapter ${chapterNumber}, ${chapterData.gita_chapters_by_pk.name_translated}, bhagavad gita chapter ${chapterNumber} hindi english, gita chapter ${chapterNumber} with commentary`,
+    authors: [{ name: "Ved Vyasa" }],
+    creator: "Ved Vyas Foundation",
+    publisher: "Ved Vyas Foundation",
     openGraph: {
       url: isHindi ? `${chapterUrl}/hi` : chapterUrl,
       siteName: "Bhagavad Gita",
