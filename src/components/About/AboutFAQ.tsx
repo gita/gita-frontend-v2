@@ -18,67 +18,67 @@ const AboutFAQ = ({ locale, translations }: AboutFAQProps) => {
 
   const faqsEnglish: FAQItem[] = [
     {
-      question: "When was the Bhagavad Gita written?",
+      question: "What is the historical context of the Bhagavad Gita?",
       answer:
-        "The Bhagavad Gita is traditionally believed to have been narrated around 5,000 years ago during the Kurukshetra war. It was composed by Sage Ved Vyasa as part of the Mahabharata epic. The exact historical dating is debated by scholars, but the text itself describes events from the ancient Dvapara Yuga.",
+        "The Bhagavad Gita is set during the Kurukshetra war, a climactic battle between the Pandavas and Kauravas described in the Mahabharata. This 18-day war represents the culmination of a long-standing conflict over succession to the throne of Hastinapura. The Gita's dialogue occurs on the first day, before battle begins, when Arjuna experiences a moral crisis seeing his loved ones on both sides.",
     },
     {
-      question: "What is the Mahabharata and how is the Gita related to it?",
+      question: "What role did Sanjaya play in preserving the Bhagavad Gita?",
       answer:
-        "The Mahabharata is one of the two major Sanskrit epics of ancient India, composed by Ved Vyasa. The Bhagavad Gita appears in the Bhishma Parva (chapters 23-40) of the Mahabharata. While the Mahabharata narrates the entire story of the Kuru dynasty and the great war, the Gita specifically contains Lord Krishna's teachings to Arjuna on the battlefield.",
+        "Sanjaya, blessed with divine vision by Ved Vyasa, narrated the entire Bhagavad Gita dialogue to the blind king Dhritarashtra who could not witness the battlefield events. Sanjaya served as both narrator and witness, ensuring that Krishna's teachings were preserved. The Gita is framed as Sanjaya's narration, making him crucial to the text's transmission through history.",
     },
     {
-      question: "Who are the Pandavas and Kauravas?",
+      question: "What are the three main paths (yogas) taught in the Gita?",
       answer:
-        "The Pandavas and Kauravas were two branches of the Kuru dynasty. The five Pandava brothers (Yudhishthira, Bhima, Arjuna, Nakula, and Sahadeva) and the hundred Kaurava brothers led by Duryodhana fought the Kurukshetra war for the throne of Hastinapura. The Bhagavad Gita dialogue occurs just before this war begins, with Arjuna as one of the Pandava warriors.",
+        "The Bhagavad Gita teaches three primary spiritual paths: Karma Yoga (path of selfless action without attachment to results), Bhakti Yoga (path of loving devotion to God), and Jnana Yoga (path of knowledge and wisdom). These are complementary paths, not contradictory. The first six chapters focus on Karma Yoga, the middle six on Bhakti Yoga, and the final six on Jnana Yoga.",
     },
     {
-      question: "Why did Krishna speak the Bhagavad Gita to Arjuna?",
+      question: "What is the Vishvarupa Darshan in the Bhagavad Gita?",
       answer:
-        "Krishna spoke the Bhagavad Gita to Arjuna when the great warrior became overwhelmed with grief and refused to fight, seeing his relatives and teachers in the opposing army. Arjuna's existential crisis about dharma (duty), karma (action), and the consequences of war prompted Krishna to reveal profound spiritual wisdom about life, death, the eternal soul, and one's responsibilities.",
+        "In Chapter 11, Krishna reveals His Vishvarupa (universal form) to Arjuna - a cosmic vision showing all of creation, past, present, and future within His divine form. This overwhelming vision demonstrates Krishna's true nature as the Supreme Being. Arjuna witnesses the entire universe, all beings, and even the outcome of the war within Krishna's form, proving His divine identity.",
     },
     {
-      question: "What languages is the Bhagavad Gita available in?",
+      question: "How is the Bhagavad Gita structured across its 18 chapters?",
       answer:
-        "The Bhagavad Gita was originally composed in Sanskrit. Today, it has been translated into virtually every major language worldwide. BhagavadGita.io provides the complete text in Sanskrit with translations in Hindi and English, along with transliterations and word-by-word meanings for better understanding.",
+        "The 18 chapters are organized into three sections of six chapters each. Chapters 1-6 primarily teach Karma Yoga and deal with action. Chapters 7-12 focus on Bhakti Yoga and devotion. Chapters 13-18 emphasize Jnana Yoga and knowledge. Each chapter is titled as a form of yoga (e.g., Karma Yoga, Bhakti Yoga, Sankhya Yoga), showing different aspects of the spiritual path to liberation.",
     },
     {
-      question: "What is the significance of Kurukshetra in the Bhagavad Gita?",
+      question: "Why is the Bhagavad Gita considered relevant for modern times?",
       answer:
-        "Kurukshetra is the battlefield where the Mahabharata war took place and where Lord Krishna delivered the Bhagavad Gita teachings. Located in present-day Haryana, India, Kurukshetra is considered a sacred place. The battlefield setting is symbolic - representing the internal battle between good and evil, duty and desire, that every human faces in life.",
+        "The Bhagavad Gita addresses universal human challenges: fulfilling duties while managing stress, making ethical decisions, finding life's purpose, dealing with loss and grief, and seeking spiritual growth. Its teachings on mindfulness, detachment, and selfless service apply to modern workplace ethics, leadership, and personal development. Leaders like Mahatma Gandhi and many contemporary thinkers have drawn inspiration from its wisdom for contemporary challenges.",
     },
   ];
 
   const faqsHindi: FAQItem[] = [
     {
-      question: "भगवद गीता कब लिखी गई थी?",
+      question: "भगवद गीता का ऐतिहासिक संदर्भ क्या है?",
       answer:
-        "भगवद गीता लगभग 5,000 वर्ष पूर्व कुरुक्षेत्र युद्ध के समय कही गई थी। इसकी रचना महर्षि वेद व्यास ने महाभारत के भाग के रूप में की थी। ऐतिहासिक तिथि पर विद्वानों में मतभेद हैं, लेकिन ग्रंथ स्वयं द्वापर युग की घटनाओं का वर्णन करता है।",
+        "भगवद गीता कुरुक्षेत्र युद्ध के दौरान स्थापित है, जो महाभारत में वर्णित पांडवों और कौरवों के बीच एक निर्णायक युद्ध है। यह 18 दिवसीय युद्ध हस्तिनापुर के सिंहासन के उत्तराधिकार को लेकर लंबे समय से चले आ रहे संघर्ष का चरमोत्कर्ष है। गीता का संवाद पहले दिन होता है, युद्ध शुरू होने से पहले, जब अर्जुन दोनों पक्षों में अपने प्रियजनों को देखकर नैतिक संकट का अनुभव करते हैं।",
     },
     {
-      question: "महाभारत क्या है और गीता का इससे क्या संबंध है?",
+      question: "भगवद गीता को संरक्षित करने में संजय की क्या भूमिका थी?",
       answer:
-        "महाभारत प्राचीन भारत के दो प्रमुख संस्कृत महाकाव्यों में से एक है, जिसकी रचना वेद व्यास जी ने की थी। भगवद गीता महाभारत के भीष्म पर्व (अध्याय 23-40) में आती है। जहां महाभारत कुरु वंश और महायुद्ध की पूरी कथा बताता है, वहीं गीता विशेष रूप से युद्धभूमि में श्री कृष्ण द्वारा अर्जुन को दी गई शिक्षाओं को प्रस्तुत करती है।",
+        "वेद व्यास द्वारा दिव्य दृष्टि से आशीर्वादित संजय ने अंधे राजा धृतराष्ट्र को संपूर्ण भगवद गीता संवाद सुनाया, जो युद्धभूमि की घटनाओं को स्वयं नहीं देख सकते थे। संजय ने वर्णनकर्ता और साक्षी दोनों की भूमिका निभाई, यह सुनिश्चित करते हुए कि कृष्ण की शिक्षाएं संरक्षित रहें। गीता को संजय के वर्णन के रूप में प्रस्तुत किया गया है, जो उन्हें इतिहास के माध्यम से पाठ के संचरण के लिए महत्वपूर्ण बनाता है।",
     },
     {
-      question: "पांडव और कौरव कौन थे?",
+      question: "गीता में सिखाए गए तीन मुख्य मार्ग (योग) कौन से हैं?",
       answer:
-        "पांडव और कौरव कुरु वंश की दो शाखाएं थीं। पांच पांडव भाई (युधिष्ठिर, भीम, अर्जुन, नकुल और सहदेव) और दुर्योधन के नेतृत्व में सौ कौरव भाइयों ने हस्तिनापुर के सिंहासन के लिए कुरुक्षेत्र युद्ध लड़ा। भगवद गीता का संवाद इसी युद्ध से ठीक पहले होता है, जिसमें अर्जुन पांडव योद्धाओं में से एक हैं।",
+        "भगवद गीता तीन प्राथमिक आध्यात्मिक मार्ग सिखाती है: कर्म योग (परिणामों के प्रति आसक्ति के बिना निस्वार्थ कर्म का मार्ग), भक्ति योग (भगवान के प्रति प्रेमपूर्ण भक्ति का मार्ग), और ज्ञान योग (ज्ञान और विवेक का मार्ग)। ये पूरक मार्ग हैं, विरोधाभासी नहीं। पहले छह अध्याय कर्म योग पर, मध्य छह भक्ति योग पर और अंतिम छह ज्ञान योग पर केंद्रित हैं।",
     },
     {
-      question: "कृष्ण ने अर्जुन को भगवद गीता क्यों सुनाई?",
+      question: "भगवद गीता में विश्वरूप दर्शन क्या है?",
       answer:
-        "श्री कृष्ण ने अर्जुन को भगवद गीता तब सुनाई जब महान योद्धा अपने रिश्तेदारों और गुरुओं को विपक्षी सेना में देखकर शोक से व्याकुल हो गए और युद्ध करने से इनकार कर दिया। धर्म (कर्तव्य), कर्म और युद्ध के परिणामों को लेकर अर्जुन के अस्तित्वगत संकट ने कृष्ण को जीवन, मृत्यु, अनश्वर आत्मा और किसी के दायित्वों के बारे में गहन आध्यात्मिक ज्ञान प्रकट करने के लिए प्रेरित किया।",
+        "अध्याय 11 में, कृष्ण अर्जुन को अपना विश्वरूप (सार्वभौमिक रूप) प्रकट करते हैं - एक ब्रह्मांडीय दृष्टि जो उनके दिव्य रूप के भीतर सभी सृष्टि, अतीत, वर्तमान और भविष्य को दिखाती है। यह अभिभूत करने वाली दृष्टि परम सत्ता के रूप में कृष्ण की वास्तविक प्रकृति को प्रदर्शित करती है। अर्जुन कृष्ण के रूप के भीतर संपूर्ण ब्रह्मांड, सभी प्राणियों और यहां तक कि युद्ध के परिणाम को भी देखते हैं, जो उनकी दिव्य पहचान को सिद्ध करता है।",
     },
     {
-      question: "भगवद गीता किन भाषाओं में उपलब्ध है?",
+      question: "भगवद गीता के 18 अध्यायों की संरचना कैसे है?",
       answer:
-        "भगवद गीता मूल रूप से संस्कृत में रची गई थी। आज यह दुनिया की लगभग हर प्रमुख भाषा में अनुवादित हो चुकी है। BhagavadGita.io पर संपूर्ण पाठ संस्कृत में हिंदी और अंग्रेजी अनुवाद, लिप्यंतरण और शब्दार्थ के साथ उपलब्ध है।",
+        "18 अध्यायों को छह-छह अध्यायों के तीन खंडों में व्यवस्थित किया गया है। अध्याय 1-6 मुख्य रूप से कर्म योग सिखाते हैं और कर्म से संबंधित हैं। अध्याय 7-12 भक्ति योग और भक्ति पर केंद्रित हैं। अध्याय 13-18 ज्ञान योग और ज्ञान पर जोर देते हैं। प्रत्येक अध्याय को योग के एक रूप के रूप में शीर्षक दिया गया है (जैसे कर्म योग, भक्ति योग, सांख्य योग), जो मुक्ति के आध्यात्मिक मार्ग के विभिन्न पहलुओं को दर्शाता है।",
     },
     {
-      question: "भगवद गीता में कुरुक्षेत्र का क्या महत्व है?",
+      question: "भगवद गीता को आधुनिक समय के लिए प्रासंगिक क्यों माना जाता है?",
       answer:
-        "कुरुक्षेत्र वह युद्धभूमि है जहां महाभारत युद्ध हुआ था और जहां भगवान कृष्ण ने भगवद गीता का उपदेश दिया था। वर्तमान हरियाणा, भारत में स्थित कुरुक्षेत्र को एक पवित्र स्थान माना जाता है। युद्धभूमि की स्थापना प्रतीकात्मक है - यह अच्छाई और बुराई, कर्तव्य और इच्छा के बीच आंतरिक संघर्ष का प्रतिनिधित्व करती है जो हर मनुष्य जीवन में सामना करता है।",
+        "भगवद गीता सार्वभौमिक मानवीय चुनौतियों को संबोधित करती है: तनाव का प्रबंधन करते हुए कर्तव्यों को पूरा करना, नैतिक निर्णय लेना, जीवन का उद्देश्य खोजना, हानि और शोक से निपटना और आध्यात्मिक विकास की तलाश करना। माइंडफुलनेस, वैराग्य और निस्वार्थ सेवा पर इसकी शिक्षाएं आधुनिक कार्यस्थल नैतिकता, नेतृत्व और व्यक्तिगत विकास पर लागू होती हैं। महात्मा गांधी और कई समकालीन विचारकों ने समकालीन चुनौतियों के लिए इसकी बुद्धिमत्ता से प्रेरणा ली है।",
     },
   ];
 
@@ -90,6 +90,23 @@ const AboutFAQ = ({ locale, translations }: AboutFAQProps) => {
 
   return (
     <div className="relative my-14 py-10">
+      {/* Decorative divider */}
+      <div className="mx-auto mb-16 max-w-4xl px-4 sm:px-6">
+        <div className="flex items-center">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-my-orange to-transparent dark:via-my-orange/50"></div>
+          <div className="mx-4">
+            <svg
+              className="h-8 w-8 text-my-orange"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
+            </svg>
+          </div>
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-my-orange to-transparent dark:via-my-orange/50"></div>
+        </div>
+      </div>
+
       <Image
         src="/bg-verses-fixed.png"
         alt="BG FAQ Background"
@@ -154,4 +171,3 @@ const AboutFAQ = ({ locale, translations }: AboutFAQProps) => {
 };
 
 export default AboutFAQ;
-

@@ -154,4 +154,3 @@ const AboutContent = ({ locale, translations }: AboutContentProps) => {
 };
 
 export default AboutContent;
-
