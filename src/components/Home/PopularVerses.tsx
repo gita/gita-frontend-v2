@@ -241,14 +241,9 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
           <h2 className="mb-4 text-4xl font-bold dark:text-white">
             {translate("Popular Verses")}
           </h2>
-          <p className="mb-2 text-lg text-gray-600 dark:text-gray-300">
+          <p className="mb-10 text-lg text-gray-600 dark:text-gray-300">
             {translate(
-              "Discover the most profound verses from the Bhagavad Gita",
-            )}
-          </p>
-          <p className="mb-10 text-base text-gray-500 dark:text-gray-400">
-            {translate(
-              "Explore timeless wisdom from Lord Krishna including teachings on karma yoga, bhakti, dharma, and moksha. These popular shlokas offer guidance for life's challenges.",
+              "Explore timeless wisdom from Lord Krishna on karma yoga, bhakti, dharma, and moksha",
             )}
           </p>
 

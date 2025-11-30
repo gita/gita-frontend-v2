@@ -48,21 +48,6 @@ const FAQ = ({ locale, translations }: FAQProps) => {
         "The main message of the Bhagavad Gita is to perform one's duty (dharma) without attachment to results, practice devotion to God, and understand the eternal nature of the soul. It teaches about karma yoga, bhakti yoga, jnana yoga, and the path to moksha (liberation).",
     },
     {
-      question: "Is Bhagavad Gita audio available for listening?",
-      answer:
-        "Yes, BhagavadGita.io provides high-quality audio recitations of Bhagavad Gita verses in Sanskrit. You can listen to the authentic pronunciation of each shloka while reading the translations and commentaries.",
-    },
-    {
-      question: "What is Gita Saar (essence of Bhagavad Gita)?",
-      answer:
-        "Gita Saar is the essence or summary of the Bhagavad Gita's teachings. It includes the core messages about performing duty without attachment, devotion to Krishna, understanding the self, and the three yogas - karma yoga, bhakti yoga, and jnana yoga for spiritual liberation.",
-    },
-    {
-      question: "How long does it take to read the Bhagavad Gita?",
-      answer:
-        "The Bhagavad Gita with 700 verses can be read in 2-3 hours for a basic reading. However, to understand it deeply with commentaries and translations, it may take several weeks of daily study. Many people read one chapter at a time for better comprehension.",
-    },
-    {
       question: "What are the different yogas explained in Bhagavad Gita?",
       answer:
         "The Bhagavad Gita explains three main yogas: Karma Yoga (path of selfless action), Bhakti Yoga (path of devotion), and Jnana Yoga (path of knowledge). It also discusses Dhyana Yoga (meditation), Raja Yoga, and other spiritual practices for self-realization and moksha.",
@@ -99,21 +84,6 @@ const FAQ = ({ locale, translations }: FAQProps) => {
       question: "भगवद गीता का मुख्य संदेश क्या है?",
       answer:
         "भगवद गीता का मुख्य संदेश है कि बिना फल की इच्छा के अपने कर्तव्य का पालन करें, भगवान में भक्ति रखें और आत्मा की अमरता को समझें। यह कर्म योग, भक्ति योग, ज्ञान योग और मोक्ष का मार्ग सिखाती है।",
-    },
-    {
-      question: "क्या भगवद गीता ऑडियो उपलब्ध है?",
-      answer:
-        "हाँ, BhagavadGita.io पर भगवद गीता के श्लोकों की उच्च गुणवत्ता वाली संस्कृत ऑडियो रिकॉर्डिंग उपलब्ध है। आप प्रत्येक श्लोक का शुद्ध उच्चारण सुन सकते हैं और साथ में अनुवाद और टीका पढ़ सकते हैं।",
-    },
-    {
-      question: "गीता सार क्या है?",
-      answer:
-        "गीता सार भगवद गीता की शिक्षाओं का सार या सारांश है। इसमें निष्काम कर्म, श्री कृष्ण में भक्ति, आत्म-ज्ञान और तीन योग - कर्म योग, भक्ति योग और ज्ञान योग के मुख्य संदेश शामिल हैं।",
-    },
-    {
-      question: "भगवद गीता पढ़ने में कितना समय लगता है?",
-      answer:
-        "700 श्लोकों वाली भगवद गीता को सामान्य पठन में 2-3 घंटे लग सकते हैं। लेकिन टीका और अनुवाद के साथ गहराई से समझने के लिए कई सप्ताह का नियमित अध्ययन आवश्यक है। बेहतर समझ के लिए एक समय में एक अध्याय पढ़ना उचित है।",
     },
     {
       question: "भगवद गीता में कौन से योग बताए गए हैं?",
