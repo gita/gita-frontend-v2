@@ -18,6 +18,40 @@ export default function ChatbaseWidget() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Add custom CSS to make chatbot less intrusive on mobile
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Make chatbot button smaller on mobile */
+      @media (max-width: 640px) {
+        iframe[src*="chatbase"] {
+          bottom: 16px !important;
+          right: 16px !important;
+        }
+        
+        /* Target the chatbot button container */
+        [id*="chatbase"] button,
+        [class*="chatbase"] button {
+          width: 48px !important;
+          height: 48px !important;
+          font-size: 12px !important;
+        }
+        
+        /* Make the opened chat window smaller on mobile */
+        [id*="chatbase"][style*="height"],
+        [class*="chatbase"][style*="height"] {
+          max-height: 60vh !important;
+          max-width: 90vw !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
+  useEffect(() => {
     // Don't load chatbot widget on GitaGPT page (it has iframe instead)
     if (pathname.includes("/gitagpt")) {
       // Remove any existing chatbot widget
@@ -67,6 +101,7 @@ export default function ChatbaseWidget() {
       script.src = "https://www.chatbase.co/embed.min.js";
       script.id = "FUopn1I5lRD_dEopmyuQk";
       script.setAttribute("data-domain", "www.chatbase.co");
+      script.setAttribute("chatbotId", "FUopn1I5lRD_dEopmyuQk");
       document.body.appendChild(script);
     };
 

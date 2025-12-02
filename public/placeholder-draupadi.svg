@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Draupadi - The Empress">
+  <defs>
+    <linearGradient id="draupadiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BE185D;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fireGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#EF4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FCD34D;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="600" fill="#FCE7F3"/>
+  
+  <!-- Decorative Border -->
+  <rect x="20" y="20" width="560" height="560" fill="none" stroke="url(#draupadiGradient)" stroke-width="3" rx="10"/>
+  
+  <!-- Fire (born from fire) -->
+  <g transform="translate(300, 450)">
+    <path d="M -60,30 Q -40,-10 -30,-40 Q -25,-20 -20,-50 Q -10,-25 0,-60 Q 10,-25 20,-50 Q 25,-20 30,-40 Q 40,-10 60,30 Z" 
+          fill="url(#fireGradient)" stroke="#92400E" stroke-width="2"/>
+    <path d="M -40,20 Q -25,-5 -20,-25 Q -15,-10 -10,-35 Q -5,-15 0,-40 Q 5,-15 10,-35 Q 15,-10 20,-25 Q 25,-5 40,20 Z" 
+          fill="#FCD34D" opacity="0.8"/>
+  </g>
+  
+  <!-- Crown with 5 gems (wife of 5 Pandavas) -->
+  <g transform="translate(300, 160)">
+    <path d="M -70,0 L -55,-40 L -35,0 L -15,-50 L 0,-10 L 15,-50 L 35,0 L 55,-40 L 70,0 L 60,20 L -60,20 Z" 
+          fill="url(#draupadiGradient)" stroke="#831843" stroke-width="2"/>
+    <!-- 5 colored gems for 5 Pandavas -->
+    <circle cx="-45" cy="-25" r="6" fill="#FCD34D"/> <!-- Yudhishthir -->
+    <circle cx="-10" cy="-35" r="6" fill="#DC2626"/> <!-- Bhima -->
+    <circle cx="0" cy="-5" r="7" fill="#3B82F6"/> <!-- Arjuna -->
+    <circle cx="10" cy="-35" r="6" fill="#10B981"/> <!-- Nakula -->
+    <circle cx="45" cy="-25" r="6" fill="#8B5CF6"/> <!-- Sahadeva -->
+  </g>
+  
+  <!-- Lotus (purity and devotion) -->
+  <g transform="translate(300, 280)">
+    <!-- Lotus petals -->
+    <ellipse cx="0" cy="0" rx="50" ry="20" fill="#FBB6CE" stroke="#BE185D" stroke-width="2"/>
+    <ellipse cx="0" cy="0" rx="50" ry="20" fill="#FBB6CE" stroke="#BE185D" stroke-width="2" transform="rotate(45)"/>
+    <ellipse cx="0" cy="0" rx="50" ry="20" fill="#FBB6CE" stroke="#BE185D" stroke-width="2" transform="rotate(90)"/>
+    <ellipse cx="0" cy="0" rx="50" ry="20" fill="#FBB6CE" stroke="#BE185D" stroke-width="2" transform="rotate(135)"/>
+    <!-- Center -->
+    <circle cx="0" cy="0" r="15" fill="#FCD34D" stroke="#F59E0B" stroke-width="2"/>
+  </g>
+  
+  <!-- Peacock Feather (Krishna's connection) -->
+  <g transform="translate(450, 250)">
+    <!-- Feather shaft -->
+    <line x1="0" y1="60" x2="0" y2="-40" stroke="#0EA5E9" stroke-width="2"/>
+    <!-- Feather eye -->
+    <ellipse cx="0" cy="-40" rx="25" ry="30" fill="#3B82F6" stroke="#1E40AF" stroke-width="2"/>
+    <ellipse cx="0" cy="-40" rx="18" ry="22" fill="#10B981"/>
+    <ellipse cx="0" cy="-40" rx="10" ry="13" fill="#1E40AF"/>
+    <!-- Feather barbs -->
+    <path d="M -2,0 Q -15,-10 -20,-20" fill="none" stroke="#0EA5E9" stroke-width="1.5"/>
+    <path d="M 2,0 Q 15,-10 20,-20" fill="none" stroke="#0EA5E9" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Five Dots (connected to 5 Pandavas) -->
+  <g transform="translate(150, 250)">
+    <circle cx="0" cy="-30" r="10" fill="#FCD34D" stroke="#92400E" stroke-width="2"/>
+    <circle cx="-25" cy="0" r="10" fill="#DC2626" stroke="#7F1D1D" stroke-width="2"/>
+    <circle cx="0" cy="0" r="10" fill="#3B82F6" stroke="#1E3A8A" stroke-width="2"/>
+    <circle cx="25" cy="0" r="10" fill="#10B981" stroke="#065F46" stroke-width="2"/>
+    <circle cx="0" cy="30" r="10" fill="#8B5CF6" stroke="#5B21B6" stroke-width="2"/>
+  </g>
+  
+  <!-- Text Label -->
+  <text x="300" y="555" font-family="serif" font-size="24" fill="#831843" text-anchor="middle" font-weight="bold">
+    Draupadi
+  </text>
+  <text x="300" y="580" font-family="serif" font-size="16" fill="#BE185D" text-anchor="middle">
+    The Empress
+  </text>
+</svg>
+

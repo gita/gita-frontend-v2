@@ -76,12 +76,12 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                 >
                   {translate("About Gita")}
                 </LinkWithLocale>
-                <LinkWithLocale
+                <Link
                   href="/gitagpt"
                   className="text-lg font-medium transition-colors hover:text-primary"
                 >
                   {translate("Gita AI")}
-                </LinkWithLocale>
+                </Link>
                 <LinkWithLocale
                   href="/donate"
                   className="text-lg font-medium transition-colors hover:text-primary"
@@ -109,38 +109,40 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
 
         {/* Center: Desktop Navigation */}
         <nav className="hidden md:flex md:items-center md:gap-6">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="flex h-auto items-center gap-1 p-0 text-sm font-medium transition-colors hover:bg-transparent hover:text-primary"
-              >
-                {translate("Chapters")}
-                <ChevronDown className="size-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="max-h-[70vh] w-[600px] overflow-y-auto">
-              <div className="grid grid-cols-2 gap-1 p-2">
-                {chapters?.map((chapter) => (
-                  <DropdownMenuItem key={chapter.id} asChild>
-                    <LinkWithLocale
-                      href={`/chapter/${chapter.id}`}
-                      className="block cursor-pointer p-3"
-                    >
-                      <div>
-                        <div className="font-semibold text-primary">
-                          {translate("Chapter")} {chapter.chapter_number}
+          {chapters && chapters.length > 0 && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="flex h-auto items-center gap-1 p-0 text-sm font-medium transition-colors hover:bg-transparent hover:text-primary"
+                >
+                  {translate("Chapters")}
+                  <ChevronDown className="size-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="max-h-[70vh] w-[600px] overflow-y-auto">
+                <div className="grid grid-cols-2 gap-1 p-2">
+                  {chapters.map((chapter) => (
+                    <DropdownMenuItem key={chapter.id} asChild>
+                      <LinkWithLocale
+                        href={`/chapter/${chapter.id}`}
+                        className="block cursor-pointer p-3"
+                      >
+                        <div>
+                          <div className="font-semibold text-primary">
+                            {translate("Chapter")} {chapter.chapter_number}
+                          </div>
+                          <div className="text-sm text-foreground">
+                            {chapter.name_translated}
+                          </div>
                         </div>
-                        <div className="text-sm text-foreground">
-                          {chapter.name_translated}
-                        </div>
-                      </div>
-                    </LinkWithLocale>
-                  </DropdownMenuItem>
-                ))}
-              </div>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                      </LinkWithLocale>
+                    </DropdownMenuItem>
+                  ))}
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
 
           <LinkWithLocale
             href="/bhagavad-gita-quotes"
@@ -154,12 +156,12 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
           >
             {translate("About Gita")}
           </LinkWithLocale>
-          <LinkWithLocale
+          <Link
             href="/gitagpt"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
             {translate("Gita AI")}
-          </LinkWithLocale>
+          </Link>
           <LinkWithLocale
             href="/donate"
             className="text-sm font-medium transition-colors hover:text-primary"
@@ -212,8 +214,12 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                 onClick={() => {
                   if (locale !== "en") {
                     document.cookie = "locale=en";
-                    window.location.href =
-                      window.location.pathname.replace(/^\/hi/, "") || "/";
+                    // Remove /hi from the end of the path
+                    const currentPath = window.location.pathname;
+                    const newPath = currentPath.endsWith("/hi") 
+                      ? currentPath.slice(0, -3) 
+                      : currentPath.replace("/hi/", "/");
+                    window.location.href = newPath || "/";
                   }
                 }}
                 className="flex cursor-pointer items-center gap-2"
@@ -229,7 +235,14 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                 onClick={() => {
                   if (locale !== "hi") {
                     document.cookie = "locale=hi";
-                    window.location.href = `/hi${window.location.pathname}`;
+                    // Append /hi to the end of the path (not beginning)
+                    const currentPath = window.location.pathname;
+                    const newPath = currentPath === "/" 
+                      ? "/hi" 
+                      : currentPath.endsWith("/") 
+                        ? `${currentPath}hi`
+                        : `${currentPath}/hi`;
+                    window.location.href = newPath;
                   }
                 }}
                 className="flex cursor-pointer items-center gap-2"

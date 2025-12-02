@@ -1,0 +1,86 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgField" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FEF3C7;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#FDE68A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D97706;stop-opacity:0.3" />
+    </linearGradient>
+    <linearGradient id="ground" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#92400E;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#78350F;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky background -->
+  <rect width="1200" height="600" fill="url(#bgField)"/>
+  
+  <!-- Ground -->
+  <rect y="400" width="1200" height="200" fill="url(#ground)"/>
+  
+  <!-- Distant mountains -->
+  <path d="M0 350 L200 250 L400 300 L600 200 L800 280 L1000 230 L1200 320 L1200 400 L0 400 Z" 
+        fill="#92400E" opacity="0.15"/>
+  
+  <!-- Chariot (simplified) -->
+  <g transform="translate(450, 320)">
+    <!-- Wheels -->
+    <circle cx="30" cy="50" r="25" fill="none" stroke="#78350F" stroke-width="4"/>
+    <circle cx="30" cy="50" r="15" fill="none" stroke="#78350F" stroke-width="2"/>
+    <line x1="30" y1="25" x2="30" y2="75" stroke="#78350F" stroke-width="2"/>
+    <line x1="5" y1="50" x2="55" y2="50" stroke="#78350F" stroke-width="2"/>
+    
+    <circle cx="120" cy="50" r="25" fill="none" stroke="#78350F" stroke-width="4"/>
+    <circle cx="120" cy="50" r="15" fill="none" stroke="#78350F" stroke-width="2"/>
+    <line x1="120" y1="25" x2="120" y2="75" stroke="#78350F" stroke-width="2"/>
+    <line x1="95" y1="50" x2="145" y2="50" stroke="#78350F" stroke-width="2"/>
+    
+    <!-- Chariot body -->
+    <rect x="20" y="20" width="110" height="35" rx="5" fill="#F59E0B" opacity="0.6"/>
+    <rect x="25" y="25" width="100" height="25" rx="3" fill="#FCD34D" opacity="0.4"/>
+    
+    <!-- Figures (Krishna and Arjuna) -->
+    <circle cx="50" cy="10" r="8" fill="#3B82F6" opacity="0.7"/>
+    <rect x="46" y="18" width="8" height="15" fill="#3B82F6" opacity="0.6"/>
+    
+    <circle cx="100" cy="10" r="8" fill="#F59E0B" opacity="0.7"/>
+    <rect x="96" y="18" width="8" height="15" fill="#F59E0B" opacity="0.6"/>
+    
+    <!-- Reins/flag -->
+    <line x1="75" y1="5" x2="75" y2="-20" stroke="#F59E0B" stroke-width="2"/>
+    <path d="M75 -20 L95 -15 L75 -10" fill="#F59E0B" opacity="0.6"/>
+  </g>
+  
+  <!-- Armies (simplified as small rectangles) -->
+  <!-- Left army -->
+  <g opacity="0.4">
+    <rect x="100" y="370" width="8" height="12" fill="#92400E"/>
+    <rect x="120" y="368" width="8" height="14" fill="#92400E"/>
+    <rect x="140" y="372" width="8" height="10" fill="#92400E"/>
+    <rect x="110" y="385" width="8" height="12" fill="#92400E"/>
+    <rect x="130" y="383" width="8" height="14" fill="#92400E"/>
+  </g>
+  
+  <!-- Right army -->
+  <g opacity="0.4">
+    <rect x="1000" y="370" width="8" height="12" fill="#78350F"/>
+    <rect x="1020" y="368" width="8" height="14" fill="#78350F"/>
+    <rect x="1040" y="372" width="8" height="10" fill="#78350F"/>
+    <rect x="1010" y="385" width="8" height="12" fill="#78350F"/>
+    <rect x="1030" y="383" width="8" height="14" fill="#78350F"/>
+  </g>
+  
+  <!-- Sun in sky -->
+  <circle cx="150" cy="100" r="40" fill="#F59E0B" opacity="0.3"/>
+  <circle cx="150" cy="100" r="30" fill="#FBBF24" opacity="0.5"/>
+  
+  <!-- Title overlay -->
+  <rect x="400" y="480" width="400" height="80" rx="10" fill="white" opacity="0.85"/>
+  <text x="600" y="520" font-family="serif" font-size="32" fill="#92400E" text-anchor="middle" font-weight="bold">
+    Kurukshetra
+  </text>
+  <text x="600" y="550" font-family="sans-serif" font-size="18" fill="#666" text-anchor="middle">
+    The Battlefield Where the Gita Was Spoken
+  </text>
+</svg>
+

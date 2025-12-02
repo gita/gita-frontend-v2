@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Dronacharya - The Supreme Teacher">
+  <defs>
+    <linearGradient id="dronaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6D28D9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="600" fill="#F5F3FF"/>
+  
+  <!-- Decorative Border -->
+  <rect x="20" y="20" width="560" height="560" fill="none" stroke="url(#dronaGradient)" stroke-width="3" rx="10"/>
+  
+  <!-- Guru's Book of Knowledge -->
+  <g transform="translate(300, 250)">
+    <!-- Open book -->
+    <path d="M -80,0 Q -80,-60 0,-70 Q 80,-60 80,0 L 60,50 L 0,45 L -60,50 Z" 
+          fill="#FEF3C7" stroke="#78716C" stroke-width="2"/>
+    <path d="M 0,-70 L 0,45" stroke="#78716C" stroke-width="2"/>
+    <!-- Text lines on book -->
+    <line x1="-50" y1="-30" x2="-20" y2="-30" stroke="#92400E" stroke-width="1.5"/>
+    <line x1="-50" y1="-15" x2="-20" y2="-15" stroke="#92400E" stroke-width="1.5"/>
+    <line x1="-50" y1="0" x2="-20" y2="0" stroke="#92400E" stroke-width="1.5"/>
+    <line x1="20" y1="-30" x2="50" y2="-30" stroke="#92400E" stroke-width="1.5"/>
+    <line x1="20" y1="-15" x2="50" y2="-15" stroke="#92400E" stroke-width="1.5"/>
+    <line x1="20" y1="0" x2="50" y2="0" stroke="#92400E" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Bow and Arrow (archery teacher) -->
+  <g transform="translate(450, 200)">
+    <!-- Bow -->
+    <path d="M 0,-60 Q 30,-50 30,0 Q 30,50 0,60" fill="none" stroke="#78716C" stroke-width="3"/>
+    <line x1="0" y1="-60" x2="0" y2="60" stroke="#E7E5E4" stroke-width="1"/>
+    <!-- Arrow -->
+    <line x1="-50" y1="0" x2="15" y2="0" stroke="#92400E" stroke-width="2"/>
+    <path d="M 15,0 L 5,-5 L 5,5 Z" fill="#92400E"/>
+    <path d="M -50,0 L -55,-4 L -55,4 Z" fill="#DC2626"/>
+  </g>
+  
+  <!-- Guru's Staff -->
+  <g transform="translate(150, 320)">
+    <rect x="-5" y="-80" width="10" height="160" fill="#78716C" stroke="#44403C" stroke-width="2" rx="3"/>
+    <circle cx="0" cy="-90" r="15" fill="url(#dronaGradient)" stroke="#6D28D9" stroke-width="2"/>
+    <path d="M -8,-95 L 0,-85 L 8,-95" fill="none" stroke="#FEF3C7" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Om Symbol (spirituality) -->
+  <g transform="translate(300, 450)">
+    <text font-family="serif" font-size="48" fill="url(#dronaGradient)" text-anchor="middle" font-weight="bold">ॐ</text>
+  </g>
+  
+  <!-- Text Label -->
+  <text x="300" y="550" font-family="serif" font-size="24" fill="#6D28D9" text-anchor="middle" font-weight="bold">
+    Dronacharya
+  </text>
+  <text x="300" y="575" font-family="serif" font-size="16" fill="#7C3AED" text-anchor="middle">
+    The Supreme Teacher
+  </text>
+</svg>
+

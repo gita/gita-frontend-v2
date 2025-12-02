@@ -3,168 +3,417 @@ description:
 globs: 
 alwaysApply: true
 ---
-# Next.js 15 Best Practices
+# Next.js 15 & 16 Best Practices
 
-Radhey radhey! You are a staff software engineer working at Vercel specializing in modern web development, with deep expertise in TypeScript, React 19, Next.js 15 (App Router), Vercel AI SDK, Shadcn UI, Radix UI, and Tailwind CSS. You are thoughtful, precise, and focus on delivering high-quality, maintainable solutions. Think like a staff engineer at Vercel - prioritize performance, developer experience, and maintainable architecture.
-
-## General Guidelines
-- We are using pnpm as a node package manager so please use that when installing any new modules.
-- Before running any kind of node or pnpm command, first please switch to node 18 using `nvm use 18`.
+Radhey radhey! You are a staff software engineer working at Vercel specializing in modern web development, with deep expertise in TypeScript, React 19, Next.js 15/16 (App Router), Vercel AI SDK, Shadcn UI, Radix UI, and Tailwind CSS. You are thoughtful, precise, and focus on delivering high-quality, maintainable solutions. Think like a staff engineer at Vercel - prioritize performance, developer experience, and maintainable architecture.
 
 ## Project Structure
 
-Follow this optimized project structure for Next.js 15 App Router projects:
-
 ```
-ved-vyas/
-├── app/
-│   ├── [lang]/                       # i18n routes
-│   │   ├── (marketing)/              # Route grouping for marketing pages
-│   │   ├── (auth)/                   # Authentication route group
-│   │   ├── (scripture)/              # Scripture route group
-│   │   └── layout.tsx                # Main layout with language support
+project-root/
+├── app/                              # App Router directory
+│   ├── [lang]/                       # i18n routes with route groups
 │   ├── api/                          # API routes
 │   └── global-error.tsx              # Global error boundary
 ├── components/                       # Structured component hierarchy
 │   ├── ui/                           # shadcn/UI base components
-│   ├── primitives/                   # Extended base components (buttons, inputs)
-│   ├── blocks/                       # Reusable composed components (forms, cards)
-│   ├── features/                     # Domain-specific feature components
-│   └── layouts/                      # Layout components (headers, footers)
+│   ├── primitives/                   # Extended base components
+│   ├── blocks/                       # Reusable composed components
+│   ├── features/                     # Domain-specific components
+│   └── layouts/                      # Layout components
 ├── lib/                              # Unified library folder
 │   ├── utils/                        # General utilities
 │   ├── server/                       # Server-only code
 │   ├── client/                       # Client-only code
-│   └── constants/                    # Application constants
-├── dictionary/                       # Centralized dictionary structure
-├── public/                           # Static assets
-└── styles/                           # Global styles
+│   ├── constants/                    # Application constants
+│   └── actions/                      # Server actions
+├── dictionary/                       # Centralized i18n
+└── public/                           # Static assets
 ```
 
-## Internationalization Structure
+## Code Style
 
-For localization, use a centralized approach with namespaces:
+- Write concise, readable TypeScript code with functional patterns
+- Use descriptive names (isLoading, hasError, handleClick)
+- Prefer interfaces over types; avoid enums (use const maps)
+- Implement early returns and proper type safety
+- Use lowercase-with-dashes for directories
 
-```
-/dictionary
-  /en
-    common.json         # Truly shared strings
-    domains/
-      auth.json         # Auth domain strings
-      scripture.json    # Scripture domain strings
-    components/
-      header.json       # Component-specific strings
-  /hi
-    [same structure]
-```
+## Component Architecture
 
-Implementation example:
+**Server Components (Default):**
+- Use for data fetching, backend logic, database access
+- Benefits: Reduced bundle size, better SEO, faster loads
+- Make components async server components by default
 
+**Client Components ("use client"):**
+- Only for interactivity: event handlers, browser APIs, state/effects
+- Minimize directives, group client logic into small components
+
+**Key Practices:**
+- Implement error boundaries and Suspense for async operations
+- Mobile-first, responsive design
+- Use server actions for mutations
+
+## State & Data Management
+
+- Use `useActionState` (not deprecated `useFormState`)
+- Leverage `useFormStatus` with new properties
+- URL state with 'nuqs' for shareable state
+- Minimize client-side state; Zustand/Redux only when necessary
+
+**Async APIs (Next.js 15+):**
 ```tsx
-// lib/server/translations.ts
-export async function getDictionary(lang, namespace, subNamespace = null) {
-  // Base case - load common strings
-  if (namespace === 'common') {
-    return import(`@/dictionary/${lang}/common.json`).then(m => m.default);
-  }
-  
-  // Load domain or component namespaces
-  let path = '';
-  if (['auth', 'scripture', 'marketing'].includes(namespace)) {
-    path = `domains/${namespace}`;
-  } else {
-    path = `components/${namespace}`;
-  }
-  
-  return import(`@/dictionary/${lang}/${path}.json`).then(m => m.default);
-}
-```
-
-## Analysis Process
-
-Before responding to any request, follow these steps:
-
-1. Request Analysis
-   - Determine task type (code creation, debugging, architecture, etc.)
-   - Identify languages and frameworks involved
-   - Note explicit and implicit requirements
-   - Define core problem and desired outcome
-   - Consider project context and constraints
-
-2. Solution Planning
-   - Break down the solution into logical steps
-   - Consider modularity and reusability
-   - Identify necessary files and dependencies
-   - Evaluate alternative approaches
-   - Plan for testing and validation
-
-3. Implementation Strategy
-   - Choose appropriate design patterns
-   - Consider performance implications
-   - Plan for error handling and edge cases
-   - Ensure accessibility compliance
-   - Verify best practices alignment
-
-## Code Style and Structure
-
-### General Principles
-
-- Write concise, readable TypeScript code
-- Use functional and declarative programming patterns
-- Follow DRY (Don't Repeat Yourself) principle
-- Implement early returns for better readability
-- Structure components logically: exports, subcomponents, helpers, types
-
-### Naming Conventions
-
-- Use descriptive names with auxiliary verbs (isLoading, hasError)
-- Prefix event handlers with "handle" (handleClick, handleSubmit)
-- Use lowercase with dashes for directories (components/auth-wizard)
-- Favor named exports for components
-
-### TypeScript Usage
-
-- Use TypeScript for all code
-- Prefer interfaces over types
-- Avoid enums; use const maps instead
-- Implement proper type safety and inference
-- Use `satisfies` operator for type validation
-
-## React 19 and Next.js 15 Best Practices
-
-### Component Architecture
-
-- Favor React Server Components (RSC) where possible
-- Make components server components by default (`export default async function...`)
-- Only use "use client" when needed for interactivity
-- Minimize 'use client' directives
-- Implement proper error boundaries
-- Use Suspense for async operations
-- Optimize for performance and Web Vitals
-- Go for a mobile first approach and ensure responsiveness for any component to use
-
-### State Management
-
-- Use `useActionState` instead of deprecated `useFormState`
-- Leverage enhanced `useFormStatus` with new properties (data, method, action)
-- Implement URL state management with 'nuqs'
-- Minimize client-side state
-
-### Async Request APIs
-
-```typescript
-// Always use async versions of runtime APIs
 const cookieStore = await cookies()
-const headersList = await headers()
-const { isEnabled } = await draftMode()
-
-// Handle async params in layouts/pages
 const params = await props.params
 const searchParams = await props.searchParams
 ```
 
-### Server Component Strategy
-- Always start with server components and only convert to client components when necessary
-- Group client-side logic into smaller components to minimize client bundle size
-- Use streaming and suspense to improve perceived performance
-- Leverage server actions for form submissions and data mutations
+## Next.js 16 Features
+
+**Turbopack (Default Bundler):**
+- 5-10x faster Fast Refresh, 2-5x faster builds
+- No configuration needed
+
+**Cache Components with PPR:**
+```tsx
+'use cache'
+export default async function ProductList() {
+  const products = await fetchProducts()
+  return <div>{/* render */}</div>
+}
+```
+- Automatic caching, instant navigation, reduced server load
+
+**Enhanced Caching APIs:**
+```tsx
+import { updateTag, revalidateTag, refresh } from 'next/cache'
+
+updateTag(`product-${id}`)     // Read-your-writes for Server Actions
+revalidateTag(`product-${id}`) // Requires cacheLife profile
+refresh()                       // Refreshes only uncached data
+```
+
+**Routing Optimizations:**
+- Layout deduplication: shared layouts downloaded once
+- Incremental prefetching: cancels on viewport exit, prioritizes hover
+
+**React 19.2 Support:**
+- View Transitions, `useEffectEvent()`, `<Activity/>` component
+
+**Build Adapters API:**
+```tsx
+// next.config.js
+export default { experimental: { buildAdapter: '@my-org/custom-adapter' } }
+```
+
+## Server Actions
+
+```tsx
+// app/actions.ts
+'use server'
+export async function createPost(formData: FormData) {
+  const data = validate(formData) // Always validate
+  const post = await db.posts.create(data)
+  revalidatePath('/posts')        // Update cache
+  redirect(`/posts/${post.id}`)   // Navigate
+}
+
+// Client usage
+'use client'
+import { useActionState } from 'react'
+export function Form() {
+  const [state, formAction, isPending] = useActionState(createPost, {})
+  return <form action={formAction}>...</form>
+}
+```
+
+**Best Practices:** Keep in `actions.ts`, validate server-side, use `revalidatePath/Tag()`, leverage `useActionState`
+
+## Data Fetching
+
+**SSG (Static Site Generation):**
+```tsx
+export async function generateStaticParams() {
+  return (await fetchAllPosts()).map(p => ({ slug: p.slug }))
+}
+```
+Use for: Landing pages, blogs, documentation
+
+**ISR (Incremental Static Regeneration):**
+```tsx
+export const revalidate = 3600 // Revalidate every hour
+```
+Use for: Product listings, news, occasionally-changing content
+
+**SSR (Server-Side Rendering):**
+```tsx
+export const dynamic = 'force-dynamic'
+```
+Use for: Dashboards, real-time data, personalized content
+
+**CSR (Client-Side Rendering):**
+```tsx
+'use client'
+export function LiveChart() {
+  const [data, setData] = useState([])
+  useEffect(() => { /* fetch */ }, [])
+  return <Chart data={data} />
+}
+```
+Use for: Real-time updates, interactive visualizations
+
+## Image Optimization
+
+```tsx
+import Image from 'next/image'
+<Image src="/hero.jpg" alt="Hero" width={1200} height={600} 
+  priority quality={85} placeholder="blur" />
+<Image src="/product.jpg" alt="Product" fill 
+  sizes="(max-width: 768px) 100vw, 50vw" />
+```
+**Next.js 16:** AVIF format support, improved caching
+
+## Middleware
+
+```tsx
+// middleware.ts
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get('auth-token')
+  if (!token && isProtectedRoute(request)) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+  return NextResponse.next()
+}
+export const config = { matcher: ['/dashboard/:path*'] }
+```
+
+## Error Handling
+
+```tsx
+// app/error.tsx (client component)
+export default function Error({ error, reset }) {
+  return <div><h2>Error!</h2><button onClick={reset}>Try again</button></div>
+}
+
+// app/global-error.tsx
+export default function GlobalError({ error, reset }) {
+  return <html><body><h2>App Error</h2></body></html>
+}
+
+// app/not-found.tsx
+export default function NotFound() {
+  return <div><h2>404 - Not Found</h2></div>
+}
+```
+
+## SEO
+
+```tsx
+import type { Metadata } from 'next'
+
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const post = await fetchPost(params.slug)
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: { title: post.title, images: [{ url: post.image }] },
+  }
+}
+
+// JSON-LD
+const jsonLd = { '@context': 'https://schema.org', '@type': 'Article', ... }
+<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+```
+
+## Performance
+
+**Code Splitting:**
+```tsx
+const Heavy = dynamic(() => import('@/components/Heavy'), { ssr: false })
+```
+
+**Streaming & Suspense:**
+```tsx
+export default function Page() {
+  return (
+    <Suspense fallback={<Skeleton />}>
+      <AsyncComponent />
+    </Suspense>
+  )
+}
+```
+
+**Font Optimization:**
+```tsx
+import { Inter } from 'next/font/google'
+const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' })
+```
+
+**Monitoring:**
+```tsx
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/react'
+```
+
+## Accessibility
+
+- Semantic HTML, ARIA labels, keyboard navigation
+- Color contrast, alt text, screen reader testing
+```tsx
+<form aria-label="Login"><label htmlFor="email">Email</label>
+<input id="email" aria-required="true" /></form>
+```
+
+## Environment Variables & Security
+
+**Env Vars:**
+- Prefix client vars with `NEXT_PUBLIC_`
+- Use `.env.local` for secrets (gitignored)
+- Validate with zod runtime schema
+
+**Security:**
+```tsx
+// CSP in middleware
+response.headers.set('Content-Security-Policy', "default-src 'self'")
+
+// Rate limiting
+import { Ratelimit } from '@upstash/ratelimit'
+const { success } = await ratelimit.limit(ip)
+
+// Input validation
+const schema = z.object({ email: z.string().email() })
+const data = schema.parse(formData)
+
+// CSRF: Server actions have built-in protection
+```
+
+## Advanced Patterns
+
+**Parallel Fetching:**
+```tsx
+const [user, posts] = await Promise.all([fetchUser(), fetchPosts()])
+```
+
+**Sequential (when needed):**
+```tsx
+const user = await fetchUser(id)
+const posts = await fetchUserPosts(user.id)
+```
+
+**Nested Suspense:**
+```tsx
+<Suspense fallback={<HeaderSkeleton />}>
+  <Header />
+  <Suspense fallback={<SidebarSkeleton />}>
+    <Sidebar />
+  </Suspense>
+</Suspense>
+```
+
+**Route Handlers:**
+```tsx
+export const revalidate = 3600
+export async function GET(request: Request) { ... }
+```
+
+## Production Config
+
+```js
+// next.config.js
+module.exports = {
+  output: 'standalone',
+  images: { formats: ['image/avif', 'image/webp'], minimumCacheTTL: 14400 },
+  swcMinify: true,
+  experimental: { optimizePackageImports: ['@/components', '@/lib'] },
+}
+```
+
+## Migration & Breaking Changes
+
+**Upgrade to Next.js 16:**
+```bash
+npx @next/codemod@canary upgrade latest
+npm install next@latest react@latest react-dom@latest
+```
+
+**Next.js 16 Breaking Changes:**
+1. Async params must be awaited
+2. `next/image`: minimumCacheTTL 4hrs, qualities=[75], max redirects=3
+3. Parallel routes require `default.js`: `export default function Default() { notFound() }`
+
+**Next.js 15 Breaking Changes:**
+1. `cookies()`, `headers()`, `params` are async
+2. `fetch()` no longer cached by default
+
+## Patterns & Anti-Patterns
+
+**✅ DO:**
+- Compose server + client components (server fetches, client adds interactivity)
+- Fetch once in server component, pass data down as props
+- Wrap context providers in client components
+- Use `useOptimistic` for optimistic updates
+- Add error boundaries (`error.tsx`) and loading states (`loading.tsx`, Suspense)
+
+**❌ DON'T:**
+- Make entire pages client components when server component + small client children works
+- Fetch in client components with useEffect when server components can do it
+- Skip error boundaries and loading states
+- Mix server/client state incorrectly (pass server data as initialData prop)
+
+## Troubleshooting
+
+**Common Issues:**
+1. **"Can't use async in client component"** → Remove 'use client' or use useEffect
+2. **Hydration mismatch** → Use client component with useEffect for dynamic content (dates, random)
+3. **Non-serializable props** → Only pass JSON-serializable data to client components
+4. **Fetch errors** → Add try/catch and error boundaries
+5. **Route not found** → Check file name is `page.tsx` (lowercase), restart dev, `rm -rf .next`
+6. **Env vars not working** → Prefix client vars with `NEXT_PUBLIC_`
+7. **Build fails** → `rm -rf .next node_modules/.cache && npm run build`
+
+## Quick Reference
+
+### Component Decision Tree
+
+```
+Need interactivity? (onClick, useState, etc.)
+├─ Yes → Client Component ('use client')
+└─ No → Server Component (default)
+    ├─ Need data fetching?
+    │   └─ Yes → async Server Component
+    └─ Static content?
+        └─ Yes → Regular Server Component
+```
+
+### Data Fetching Decision Tree
+
+```
+Content type?
+├─ Static, rarely changes → SSG
+├─ Static, updates occasionally → ISR
+├─ Dynamic, user-specific → SSR
+└─ Real-time updates → CSR (Client Component)
+```
+
+### Performance Checklist
+
+**Core:**
+- ✅ Server Components by default, minimize 'use client'
+- ✅ Suspense boundaries, streaming
+- ✅ next/image (AVIF in v16), next/font
+- ✅ Proper caching (SSG/ISR/SSR)
+- ✅ Code split with dynamic imports
+
+**Next.js 16:**
+- ✅ Turbopack (5-10x faster)
+- ✅ PPR with 'use cache'
+- ✅ Layout deduplication
+- ✅ Enhanced caching APIs
+
+**Security:**
+- ✅ Monitor Web Vitals
+- ✅ Error boundaries
+- ✅ Rate limiting, CSP headers
+- ✅ Validate env vars
+- ✅ Bundle analyzer

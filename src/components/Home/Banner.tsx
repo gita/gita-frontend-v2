@@ -270,7 +270,7 @@ const Banner = (props: LocaleAndTranslations) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <ChevronDown className="size-8 text-white drop-shadow-lg transition-colors group-hover:text-primary" />
+          <ChevronDown className="size-8 text-prakash-primary drop-shadow-lg transition-colors group-hover:text-primary dark:text-nisha-primary" />
         </motion.button>
       </motion.div>
 

@@ -1,0 +1,54 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgSanjaya" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F3E8FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E9D5FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#A855F7;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#9333EA;stop-opacity:0.05" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="600" fill="url(#bgSanjaya)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="100" cy="480" r="75" fill="url(#purpleGrad)"/>
+  <circle cx="500" cy="120" r="65" fill="url(#purpleGrad)"/>
+  
+  <!-- Main content -->
+  <rect x="150" y="180" width="300" height="240" rx="20" fill="white" opacity="0.8"/>
+  
+  <!-- Eye symbol (divine vision) -->
+  <ellipse cx="300" cy="260" rx="50" ry="30" fill="none" stroke="#9333EA" stroke-width="3"/>
+  <circle cx="300" cy="260" r="15" fill="#A855F7" opacity="0.3"/>
+  <circle cx="300" cy="260" r="8" fill="#9333EA"/>
+  <circle cx="302" cy="258" r="3" fill="#C084FC"/>
+  
+  <!-- Rays of vision -->
+  <line x1="250" y1="250" x2="235" y2="240" stroke="#A855F7" stroke-width="2" opacity="0.5"/>
+  <line x1="255" y1="260" x2="240" y2="260" stroke="#A855F7" stroke-width="2" opacity="0.5"/>
+  <line x1="250" y1="270" x2="235" y2="280" stroke="#A855F7" stroke-width="2" opacity="0.5"/>
+  <line x1="350" y1="250" x2="365" y2="240" stroke="#A855F7" stroke-width="2" opacity="0.5"/>
+  <line x1="345" y1="260" x2="360" y2="260" stroke="#A855F7" stroke-width="2" opacity="0.5"/>
+  <line x1="350" y1="270" x2="365" y2="280" stroke="#A855F7" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Scroll/narration symbol -->
+  <rect x="270" y="310" width="60" height="50" rx="5" fill="none" stroke="#9333EA" stroke-width="2"/>
+  <line x1="280" y1="325" x2="320" y2="325" stroke="#A855F7" stroke-width="1.5" opacity="0.5"/>
+  <line x1="280" y1="335" x2="320" y2="335" stroke="#A855F7" stroke-width="1.5" opacity="0.5"/>
+  <line x1="280" y1="345" x2="310" y2="345" stroke="#A855F7" stroke-width="1.5" opacity="0.5"/>
+  
+  <!-- Text -->
+  <text x="300" y="390" font-family="serif" font-size="26" fill="#7E22CE" text-anchor="middle" font-weight="bold">Sanjaya</text>
+  <text x="300" y="415" font-family="sans-serif" font-size="15" fill="#666" text-anchor="middle">The Divine Narrator</text>
+  
+  <!-- Decorative corner elements -->
+  <path d="M170 200 L175 195 L180 200" stroke="#9333EA" stroke-width="2" fill="none"/>
+  <path d="M430 200 L425 195 L420 200" stroke="#9333EA" stroke-width="2" fill="none"/>
+  <path d="M170 400 L175 405 L180 400" stroke="#9333EA" stroke-width="2" fill="none"/>
+  <path d="M430 400 L425 405 L420 400" stroke="#9333EA" stroke-width="2" fill="none"/>
+</svg>
+
