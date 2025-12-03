@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import PlausibleProvider from "next-plausible";
 import { ThemeProvider } from "next-themes";
 
+import { AuthProvider } from "lib/auth/AuthProvider";
 import { useStore } from "redux/store";
 
 import "tailwindcss/tailwind.css";
@@ -18,7 +19,7 @@ export default function Providers({ children }: { children: ReactNode }) {
       <CookiesProvider>
         <Provider store={store}>
           <ThemeProvider attribute="class" enableSystem={false}>
-            {children}
+            <AuthProvider>{children}</AuthProvider>
           </ThemeProvider>
         </Provider>
       </CookiesProvider>

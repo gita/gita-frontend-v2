@@ -1,16 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BookOpen, ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
+import {
+  BookOpen,
+  ChevronDown,
+  LogOut,
+  Menu,
+  Moon,
+  Search,
+  Sun,
+  User,
+} from "lucide-react";
 import Link from "next/link";
 
+import { AuthModal } from "components/AuthModal";
 import LinkWithLocale from "components/LinkWithLocale";
+import { useAuth } from "lib/auth/AuthProvider";
 
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -24,6 +36,8 @@ interface ModernNavProps {
 export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
   const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     setMounted(true);
@@ -94,6 +108,56 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                 >
                   {translate("App")}
                 </LinkWithLocale>
+
+                {/* Auth Section */}
+                <div className="mt-4 border-t pt-4">
+                  {!user ? (
+                    <Button
+                      onClick={() => setAuthModalOpen(true)}
+                      className="w-full gap-2"
+                    >
+                      <User className="size-4" />
+                      {translate("Sign In")}
+                    </Button>
+                  ) : (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3 rounded-lg bg-muted p-3">
+                        {(user.user_metadata?.avatar_url || user.user_metadata?.picture) ? (
+                          <img
+                            src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                            alt="Avatar"
+                            className="size-10 rounded-full object-cover"
+                            referrerPolicy="no-referrer"
+                          />
+                        ) : (
+                          <div className="flex size-10 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
+                            {(user.user_metadata?.full_name?.[0] ||
+                              user.email?.[0] ||
+                              "U"
+                            ).toUpperCase()}
+                          </div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate font-medium">
+                            {user.user_metadata?.full_name ||
+                              user.email?.split("@")[0]}
+                          </p>
+                          <p className="truncate text-sm text-muted-foreground">
+                            {user.email}
+                          </p>
+                        </div>
+                      </div>
+                      <Button
+                        variant="outline"
+                        onClick={() => signOut()}
+                        className="w-full gap-2"
+                      >
+                        <LogOut className="size-4" />
+                        {translate("Sign Out")}
+                      </Button>
+                    </div>
+                  )}
+                </div>
               </nav>
             </SheetContent>
           </Sheet>
@@ -257,8 +321,68 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+
+          {/* Auth Button / User Menu */}
+          {!user ? (
+            <Button
+              onClick={() => setAuthModalOpen(true)}
+              className="hidden gap-2 bg-primary text-primary-foreground hover:bg-primary/90 sm:flex"
+            >
+              <User className="size-4" />
+              {translate("Sign In")}
+            </Button>
+          ) : (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="gap-2 px-2">
+                  {(user.user_metadata?.avatar_url || user.user_metadata?.picture) ? (
+                    <img
+                      src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                      alt="Avatar"
+                      className="size-7 rounded-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="flex size-7 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                      {(user.user_metadata?.full_name?.[0] ||
+                        user.email?.[0] ||
+                        "U"
+                      ).toUpperCase()}
+                    </div>
+                  )}
+                  <ChevronDown className="hidden size-4 sm:block" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <div className="px-2 py-1.5">
+                  <p className="text-sm font-medium">
+                    {user.user_metadata?.full_name ||
+                      user.email?.split("@")[0]}
+                  </p>
+                  <p className="truncate text-xs text-muted-foreground">
+                    {user.email}
+                  </p>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => signOut()}
+                  className="cursor-pointer text-destructive focus:text-destructive"
+                >
+                  <LogOut className="mr-2 size-4" />
+                  {translate("Sign Out")}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </div>
+
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        translate={translate}
+      />
     </header>
   );
 }

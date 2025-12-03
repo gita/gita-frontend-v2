@@ -9,7 +9,7 @@ import {
   useTransform,
   Variants,
 } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 import LinkWithLocale from "components/LinkWithLocale";
 import { getTranslate } from "shared/translate";
@@ -210,7 +210,8 @@ const Banner = (props: LocaleAndTranslations) => {
             variants={buttonContainerVariants}
             className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
-            <motion.div variants={buttonVariants}>
+            {/* Primary CTA - Read now */}
+            <motion.div variants={buttonVariants} className="w-full sm:w-auto">
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
@@ -219,16 +220,38 @@ const Banner = (props: LocaleAndTranslations) => {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-primary text-white shadow-xl shadow-primary/30 transition-all duration-200 hover:bg-orange-700 hover:shadow-2xl hover:shadow-primary/40"
+                  className="group relative w-full overflow-hidden bg-primary px-8 text-white shadow-xl shadow-primary/30 transition-all duration-200 hover:bg-orange-700 hover:shadow-2xl hover:shadow-primary/40 sm:w-[200px]"
                 >
                   <LinkWithLocale href={"/chapter/1"}>
-                    {translate("Read now")}
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      {translate("Read now")}
+                      <motion.span
+                        initial={{ x: 0 }}
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      >
+                        <ArrowRight className="size-5" />
+                      </motion.span>
+                    </span>
+                    {/* Shimmer effect on hover */}
+                    <motion.div
+                      className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      whileHover={{
+                        translateX: ["100%", "200%"],
+                        transition: { duration: 0.6, ease: "easeInOut" },
+                      }}
+                    />
                   </LinkWithLocale>
                 </Button>
               </motion.div>
             </motion.div>
 
-            <motion.div variants={buttonVariants}>
+            {/* Secondary CTA - Learn more */}
+            <motion.div variants={buttonVariants} className="w-full sm:w-auto">
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
@@ -238,7 +261,7 @@ const Banner = (props: LocaleAndTranslations) => {
                   size="lg"
                   variant="outline"
                   asChild
-                  className="border-2 border-transparent bg-white text-black shadow-xl transition-all duration-200 hover:bg-gray-100"
+                  className="w-full border-2 border-white/30 bg-white/95 px-8 text-black shadow-xl backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white sm:w-[200px]"
                 >
                   <LinkWithLocale href={"/about"}>
                     {translate("Learn more")}

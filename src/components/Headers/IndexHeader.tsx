@@ -11,13 +11,14 @@ import {
 import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
+  UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
-import { useAsyncEffect } from "rooks";
 
+import { AuthModal } from "components/AuthModal";
 import LinkWithLocale from "components/LinkWithLocale";
+import { useAuth } from "lib/auth/AuthProvider";
 import { classNames } from "shared/functions";
-import { supabase } from "utils/supabase";
 
 import DarkModeToggle from "./DarkModeToggle";
 import LanguageDropdown from "./LanguageDropdown";
@@ -129,23 +130,9 @@ type Props = {
 
 export default function IndexHeader({ locale, translate }: Props) {
   const [input, setInput] = useState("");
+  const [authModalOpen, setAuthModalOpen] = useState(false);
   const router = useRouter();
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useAsyncEffect(async () => {
-    const { data, error } = await supabase.auth.getSession();
-    if (error) {
-      setLoggedIn(false);
-    }
-    if (data.session) {
-      setLoggedIn(true);
-    }
-  }, []);
-
-  const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    setLoggedIn(false);
-  };
+  const { user, signOut, isLoading } = useAuth();
 
   function handleSearch(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault();
@@ -257,23 +244,40 @@ export default function IndexHeader({ locale, translate }: Props) {
               >
                 {translate("Donate")}
               </LinkWithLocale>
-              {/* {!loggedIn ? (
+              {!user ? (
+                <button
+                  type="button"
+                  onClick={() => setAuthModalOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-lg bg-my-orange px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2"
+                >
+                  <UserCircleIcon className="size-5" />
+                  {translate("Sign In")}
+                </button>
+              ) : (
                 <Popover className="relative">
                   {({ open }) => (
                     <>
-                      <Popover.Button
-                        className={classNames(
-                          open ? "text-gray-900" : "text-black",
-                          "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-500 focus:outline-none dark:bg-dark-100 dark:text-white ",
+                      <Popover.Button className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-white dark:hover:bg-zinc-700">
+                        {(user.user_metadata?.avatar_url || user.user_metadata?.picture) ? (
+                          <img
+                            src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                            alt="Avatar"
+                            className="size-6 rounded-full object-cover"
+                            referrerPolicy="no-referrer"
+                          />
+                        ) : (
+                          <UserCircleIcon className="size-6 text-my-orange" />
                         )}
-                      >
-                        <span>{translate("Account")}</span>
+                        <span className="max-w-24 truncate">
+                          {user.user_metadata?.full_name ||
+                            user.email?.split("@")[0] ||
+                            "Account"}
+                        </span>
                         <ChevronDownIcon
                           className={classNames(
-                            open ? "text-gray-600" : "text-gray-500",
-                            "ml-2 h-5 w-5 group-hover:text-gray-500 dark:text-white",
+                            open ? "rotate-180" : "",
+                            "size-4 transition-transform",
                           )}
-                          aria-hidden="true"
                         />
                       </Popover.Button>
 
@@ -286,21 +290,37 @@ export default function IndexHeader({ locale, translate }: Props) {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-32 max-w-xs px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
-                          <div className="overflow-hidden rounded shadow-lg ring-1 ring-black ring-opacity-5">
-                            <div className="relative grid bg-white  py-2 dark:bg-dark-100 sm:gap-8 sm:p-8 md:grid-cols-1">
-                              <LinkWithLocale
-                                href="/signup"
-                                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
+                        <Popover.Panel className="absolute right-0 z-10 mt-3 w-48 origin-top-right">
+                          <div className="overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5 dark:bg-dark-100">
+                            <div className="p-2">
+                              <div className="border-b border-gray-100 px-3 py-2 dark:border-zinc-700">
+                                <p className="text-xs text-gray-500 dark:text-zinc-400">
+                                  {translate("Signed in as")}
+                                </p>
+                                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                                  {user.email}
+                                </p>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => signOut()}
+                                className="mt-1 flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-700"
                               >
-                                {translate("Sign Up")}
-                              </LinkWithLocale>
-                              <LinkWithLocale
-                                href="/login"
-                                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
-                              >
-                                {translate("Sign In")}
-                              </LinkWithLocale>
+                                <svg
+                                  className="size-4"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                                  />
+                                </svg>
+                                {translate("Sign Out")}
+                              </button>
                             </div>
                           </div>
                         </Popover.Panel>
@@ -308,18 +328,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                     </>
                   )}
                 </Popover>
-              ) : (
-                <button
-                  type="button"
-                  onClick={signOut}
-                  className={classNames(
-                    "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
-                    "mb-2 flex items-center px-3  font-medium",
-                  )}
-                >
-                  <span className="truncate">{translate("Sign Out")}</span>
-                </button>
-              )} */}
+              )}
             </Popover.Group>
             <div className="hidden w-auto items-center justify-end py-px md:flex md:flex-1 lg:w-0">
               <form
@@ -457,52 +466,63 @@ export default function IndexHeader({ locale, translate }: Props) {
                           <span className="truncate">{item.name}</span>
                         </LinkWithLocale>
                       ))}
-                      {/* {!loggedIn ? (
-                        <Disclosure>
-                          <Disclosure.Button className="flex w-full justify-between px-3 py-2 text-left font-medium hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
-                            {translate("Account")}
-                            <ChevronDownIcon className="ml-2 h-5 w-5 group-hover:text-black" />
-                          </Disclosure.Button>
-                          <Disclosure.Panel className="py-4 text-gray-500 dark:bg-dark-100 dark:text-white">
-                            <div className="relative grid grid-cols-2 gap-6 bg-white px-8 py-2 dark:bg-dark-100 dark:text-white sm:gap-8 sm:p-8">
-                              <LinkWithLocale
-                                href="/signup"
-                                className={classNames(
-                                  "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
-                                  "mb-2 flex items-center px-3 py-2 font-medium",
-                                )}
-                              >
-                                <span className="truncate">
-                                  {translate("Sign Up")}
-                                </span>
-                              </LinkWithLocale>
-
-                              <LinkWithLocale
-                                href="/login"
-                                className={classNames(
-                                  "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
-                                  "mb-2 flex items-center px-3 py-2 font-medium",
-                                )}
-                              >
-                                <span className="truncate">{"Sign In"}</span>
-                              </LinkWithLocale>
+                      {/* Auth Section for Mobile */}
+                      <div className="border-t border-gray-200 pt-4 dark:border-zinc-700">
+                        {!user ? (
+                          <button
+                            type="button"
+                            onClick={() => setAuthModalOpen(true)}
+                            className="mx-3 flex w-[calc(100%-24px)] items-center justify-center gap-2 rounded-lg bg-my-orange px-4 py-3 font-medium text-white shadow-sm transition-all hover:bg-orange-600"
+                          >
+                            <UserCircleIcon className="size-5" />
+                            {translate("Sign In")}
+                          </button>
+                        ) : (
+                          <div className="px-3">
+                            <div className="mb-3 flex items-center gap-3 rounded-lg bg-gray-50 p-3 dark:bg-zinc-800">
+                              {(user.user_metadata?.avatar_url || user.user_metadata?.picture) ? (
+                                <img
+                                  src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                                  alt="Avatar"
+                                  className="size-10 rounded-full object-cover"
+                                  referrerPolicy="no-referrer"
+                                />
+                              ) : (
+                                <UserCircleIcon className="size-10 text-my-orange" />
+                              )}
+                              <div className="min-w-0 flex-1">
+                                <p className="truncate font-medium text-gray-900 dark:text-white">
+                                  {user.user_metadata?.full_name ||
+                                    user.email?.split("@")[0]}
+                                </p>
+                                <p className="truncate text-sm text-gray-500 dark:text-zinc-400">
+                                  {user.email}
+                                </p>
+                              </div>
                             </div>
-                          </Disclosure.Panel>
-                        </Disclosure>
-                      ) : (
                         <button
                           type="button"
-                          onClick={signOut}
-                          className={classNames(
-                            "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
-                            "mb-2 flex items-center px-3 py-2 font-medium",
-                          )}
-                        >
-                          <span className="truncate">
+                              onClick={() => signOut()}
+                              className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-zinc-600 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
+                            >
+                              <svg
+                                className="size-5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                                />
+                              </svg>
                             {translate("Sign Out")}
-                          </span>
                         </button>
-                      )} */}
+                          </div>
+                        )}
+                      </div>
                     </nav>
                   </nav>
                 </div>
@@ -511,6 +531,13 @@ export default function IndexHeader({ locale, translate }: Props) {
           </Popover.Panel>
         </Transition>
       </Popover>
+
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        translate={translate}
+      />
     </div>
   );
 }
