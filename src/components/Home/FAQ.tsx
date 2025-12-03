@@ -6,14 +6,24 @@ import Image from "next/image";
 
 import { getTranslate } from "shared/translate";
 
-interface FAQItem {
+export interface FAQItem {
   question: string;
   answer: string;
 }
 
-interface FAQProps extends LocaleAndTranslations {}
+interface FAQProps extends LocaleAndTranslations {
+  customFaqs?: FAQItem[];
+  title?: string;
+  subtitle?: string;
+}
 
-const FAQ = ({ locale, translations }: FAQProps) => {
+const FAQ = ({
+  locale,
+  translations,
+  customFaqs,
+  title,
+  subtitle,
+}: FAQProps) => {
   const translate = getTranslate(translations, locale);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -93,14 +103,15 @@ const FAQ = ({ locale, translations }: FAQProps) => {
     },
   ];
 
-  const faqs = locale === "hi" ? faqsHindi : faqsEnglish;
+  const defaultFaqs = locale === "hi" ? faqsHindi : faqsEnglish;
+  const faqs = customFaqs || defaultFaqs;
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-transparent via-accent/20 to-transparent py-20">
+    <div className="relative bg-gradient-to-b from-transparent via-accent/20 to-transparent py-16 md:py-20">
       <div className="pointer-events-none absolute inset-0 z-[-2] bg-[radial-gradient(circle_at_80%_30%,rgba(251,146,60,0.07)_0%,transparent_60%)]" />
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
         <motion.div
@@ -109,10 +120,11 @@ const FAQ = ({ locale, translations }: FAQProps) => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">
-            {translate("Frequently Asked Questions")}
+            {title || translate("Frequently Asked Questions")}
           </h2>
           <p className="mb-12 text-center text-lg text-foreground/70 md:text-xl">
-            {translate("Everything you need to know about the Bhagavad Gita")}
+            {subtitle ||
+              translate("Everything you need to know about the Bhagavad Gita")}
           </p>
 
           <div className="space-y-4">

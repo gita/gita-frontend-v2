@@ -97,12 +97,12 @@ const Footer = (props: Props) => {
                 </LinkWithLocale>
               </li>
               <li>
-                <LinkWithLocale
+                <Link
                   href="/gitagpt"
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
                   {translate("Gita AI")}
-                </LinkWithLocale>
+                </Link>
               </li>
               <li>
                 <LinkWithLocale
@@ -139,6 +139,14 @@ const Footer = (props: Props) => {
               </li>
               <li>
                 <LinkWithLocale
+                  href="/mahabharata-characters"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {translate("Characters")}
+                </LinkWithLocale>
+              </li>
+              <li>
+                <LinkWithLocale
                   href="/acknowledgements"
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
@@ -147,22 +155,12 @@ const Footer = (props: Props) => {
               </li>
               <li>
                 <a
-                  href="https://radhakrishna.net/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground transition-colors hover:text-primary"
-                >
-                  {translate("Blog")}
-                </a>
-              </li>
-              <li>
-                <a
                   href="https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
-                  API
+                  {translate("API")}
                 </a>
               </li>
             </ul>
@@ -188,6 +186,14 @@ const Footer = (props: Props) => {
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
                   {translate("Terms")}
+                </LinkWithLocale>
+              </li>
+              <li>
+                <LinkWithLocale
+                  href="/copyright"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {translate("Copyright")}
                 </LinkWithLocale>
               </li>
               <li>
