@@ -99,4 +99,3 @@ export function MissionSection({
     </section>
   );
 }
-

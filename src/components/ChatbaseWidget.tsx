@@ -19,7 +19,7 @@ export default function ChatbaseWidget() {
 
   useEffect(() => {
     // Add custom CSS to make chatbot less intrusive on mobile
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       /* Make chatbot button smaller on mobile */
       @media (max-width: 640px) {

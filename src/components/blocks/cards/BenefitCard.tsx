@@ -32,9 +32,7 @@ export function BenefitCard({
           <div className="mb-3 inline-flex size-12 items-center justify-center rounded-lg bg-prakash-primary/10 text-prakash-primary dark:bg-nisha-primary/10 dark:text-nisha-primary">
             {icon}
           </div>
-          <CardTitle className="font-newsreader text-xl">
-            {title}
-          </CardTitle>
+          <CardTitle className="font-newsreader text-xl">{title}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="font-merriweather leading-relaxed text-muted-foreground">
@@ -45,4 +43,3 @@ export function BenefitCard({
     </motion.div>
   );
 }
-

@@ -216,8 +216,8 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                     document.cookie = "locale=en";
                     // Remove /hi from the end of the path
                     const currentPath = window.location.pathname;
-                    const newPath = currentPath.endsWith("/hi") 
-                      ? currentPath.slice(0, -3) 
+                    const newPath = currentPath.endsWith("/hi")
+                      ? currentPath.slice(0, -3)
                       : currentPath.replace("/hi/", "/");
                     window.location.href = newPath || "/";
                   }
@@ -237,11 +237,12 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                     document.cookie = "locale=hi";
                     // Append /hi to the end of the path (not beginning)
                     const currentPath = window.location.pathname;
-                    const newPath = currentPath === "/" 
-                      ? "/hi" 
-                      : currentPath.endsWith("/") 
-                        ? `${currentPath}hi`
-                        : `${currentPath}/hi`;
+                    const newPath =
+                      currentPath === "/"
+                        ? "/hi"
+                        : currentPath.endsWith("/")
+                          ? `${currentPath}hi`
+                          : `${currentPath}/hi`;
                     window.location.href = newPath;
                   }
                 }}

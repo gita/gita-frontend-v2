@@ -13,5 +13,7 @@ export { ChaptersOverviewSection } from "./chapters-overview-section";
 export { WhatIsGitaSection } from "./what-is-gita-section";
 export { EnhancedCharacterSection } from "./enhanced-character-section";
 export { FamilyTreeSection } from "./FamilyTreeSection";
-export type { LegalContentSection, LegalContentPageProps } from "./legal-content-page";
-
+export type {
+  LegalContentSection,
+  LegalContentPageProps,
+} from "./legal-content-page";

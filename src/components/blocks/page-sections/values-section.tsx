@@ -26,7 +26,9 @@ export function ValuesSection({
   className = "",
 }: ValuesSectionProps) {
   return (
-    <section className={`bg-adhyayan-bg py-16 dark:bg-nisha-bg/50 md:py-20 ${className}`}>
+    <section
+      className={`bg-adhyayan-bg py-16 dark:bg-nisha-bg/50 md:py-20 ${className}`}
+    >
       <div className="container mx-auto max-w-7xl px-4">
         <SectionHeader
           subtitle={subtitle}
@@ -59,4 +61,3 @@ export function ValuesSection({
     </section>
   );
 }
-

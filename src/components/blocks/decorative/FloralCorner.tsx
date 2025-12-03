@@ -42,7 +42,7 @@ export function FloralCorner({
         const angle = (i * 60 * Math.PI) / 180;
         const x = 60 + 30 * Math.cos(angle);
         const y = 60 + 30 * Math.sin(angle);
-        
+
         return (
           <ellipse
             key={i}
@@ -56,19 +56,28 @@ export function FloralCorner({
           />
         );
       })}
-      
+
       {/* Center */}
       <circle cx="60" cy="60" r="12" fill="currentColor" opacity="0.35" />
-      
+
       {/* Decorative dots */}
       {[...Array(6)].map((_, i) => {
         const angle = (i * 60 * Math.PI) / 180;
         const x = 60 + 45 * Math.cos(angle);
         const y = 60 + 45 * Math.sin(angle);
-        
-        return <circle key={`dot-${i}`} cx={x} cy={y} r="3" fill="currentColor" opacity="0.3" />;
+
+        return (
+          <circle
+            key={`dot-${i}`}
+            cx={x}
+            cy={y}
+            r="3"
+            fill="currentColor"
+            opacity="0.3"
+          />
+        );
       })}
-      
+
       {/* Leaves/stems */}
       <path
         d="M 10 10 Q 30 30, 45 45"
@@ -104,4 +113,3 @@ export function FloralCorner({
     </motion.div>
   );
 }
-

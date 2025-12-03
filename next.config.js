@@ -12,6 +12,7 @@ module.exports = withPlausibleProxy()({
   reactCompiler: true,
 
   turbopack: {
+    root: __dirname,
     rules: {
       "*.svg": {
         loaders: ["@svgr/webpack"],

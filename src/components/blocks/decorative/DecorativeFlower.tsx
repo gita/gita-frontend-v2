@@ -44,7 +44,9 @@ export function DecorativeFlower({
 
   if (!animate) {
     return (
-      <div className={`pointer-events-none absolute ${positionClasses[position]} ${className}`}>
+      <div
+        className={`pointer-events-none absolute ${positionClasses[position]} ${className}`}
+      >
         {FlowerImage}
       </div>
     );
@@ -61,4 +63,3 @@ export function DecorativeFlower({
     </motion.div>
   );
 }
-

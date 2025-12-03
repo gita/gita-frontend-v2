@@ -17,7 +17,13 @@ interface FAQProps extends LocaleAndTranslations {
   subtitle?: string;
 }
 
-const FAQ = ({ locale, translations, customFaqs, title, subtitle }: FAQProps) => {
+const FAQ = ({
+  locale,
+  translations,
+  customFaqs,
+  title,
+  subtitle,
+}: FAQProps) => {
   const translate = getTranslate(translations, locale);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -117,7 +123,8 @@ const FAQ = ({ locale, translations, customFaqs, title, subtitle }: FAQProps) =>
             {title || translate("Frequently Asked Questions")}
           </h2>
           <p className="mb-12 text-center text-lg text-foreground/70 md:text-xl">
-            {subtitle || translate("Everything you need to know about the Bhagavad Gita")}
+            {subtitle ||
+              translate("Everything you need to know about the Bhagavad Gita")}
           </p>
 
           <div className="space-y-4">

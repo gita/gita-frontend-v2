@@ -23,7 +23,7 @@ export function LegalContentPage({
   className = "",
 }: LegalContentPageProps): React.ReactNode {
   const hasHeader = title || subtitle || lastUpdated;
-  
+
   return (
     <section className={`relative -mt-4 py-8 md:py-10 ${className}`}>
       <div className="container mx-auto max-w-4xl px-4">
@@ -34,7 +34,9 @@ export function LegalContentPage({
                 {title}
               </h1>
             )}
-            {subtitle && <p className="mb-2 text-lg text-muted-foreground">{subtitle}</p>}
+            {subtitle && (
+              <p className="mb-2 text-lg text-muted-foreground">{subtitle}</p>
+            )}
             {lastUpdated && (
               <p className="mb-8 text-center text-sm text-muted-foreground">
                 Last updated: {lastUpdated}
@@ -71,4 +73,3 @@ export function LegalContentPage({
     </section>
   );
 }
-

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart,Swords, Users2 } from "lucide-react";
+import { Heart, Swords, Users2 } from "lucide-react";
 import Image from "next/image";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -37,11 +37,7 @@ export function EpicStorySection({
   return (
     <section className={`relative overflow-hidden py-16 md:py-20 ${className}`}>
       <div className="container relative z-10 mx-auto max-w-7xl px-4">
-        <SectionHeader
-          subtitle={subtitle}
-          title={title}
-          align="center"
-        />
+        <SectionHeader subtitle={subtitle} title={title} align="center" />
 
         <div className="mx-auto max-w-5xl">
           <motion.p
@@ -95,4 +91,3 @@ export function EpicStorySection({
     </section>
   );
 }
-

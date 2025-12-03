@@ -130,13 +130,10 @@ export function EnhancedCharacterSection({
             variant="outline"
             className="border-2 hover:border-prakash-primary hover:bg-prakash-primary/10 dark:hover:border-nisha-primary dark:hover:bg-nisha-primary/10"
           >
-            <Link href={localizedLink(ctaLink)}>
-              {ctaText}
-            </Link>
+            <Link href={localizedLink(ctaLink)}>{ctaText}</Link>
           </Button>
         </motion.div>
       </div>
     </section>
   );
 }
-

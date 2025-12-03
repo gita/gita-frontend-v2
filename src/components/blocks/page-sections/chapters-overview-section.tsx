@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, Brain,Heart } from "lucide-react";
+import { BookOpen, Brain, Heart } from "lucide-react";
 import Link from "next/link";
 
 import { ChapterGroupCard } from "../cards";
@@ -83,9 +83,7 @@ export function ChaptersOverviewSection({
               size="lg"
               className="bg-prakash-primary text-white hover:bg-prakash-primary/90 dark:bg-nisha-primary dark:hover:bg-nisha-primary/90"
             >
-              <Link href={localizedLink(ctaLink)}>
-                {ctaText}
-              </Link>
+              <Link href={localizedLink(ctaLink)}>{ctaText}</Link>
             </Button>
           </div>
         )}
@@ -93,4 +91,3 @@ export function ChaptersOverviewSection({
     </section>
   );
 }
-

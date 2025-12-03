@@ -23,10 +23,31 @@ export function VedicPattern({
         return (
           <svg width={size} height={size} viewBox="0 0 200 200" fill="none">
             {/* Outer circle */}
-            <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-            <circle cx="100" cy="100" r="75" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-            <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-            
+            <circle
+              cx="100"
+              cy="100"
+              r="90"
+              stroke="currentColor"
+              strokeWidth="1"
+              opacity="0.3"
+            />
+            <circle
+              cx="100"
+              cy="100"
+              r="75"
+              stroke="currentColor"
+              strokeWidth="1"
+              opacity="0.4"
+            />
+            <circle
+              cx="100"
+              cy="100"
+              r="60"
+              stroke="currentColor"
+              strokeWidth="1"
+              opacity="0.5"
+            />
+
             {/* Petals */}
             {[...Array(8)].map((_, i) => {
               const angle = (i * 45 * Math.PI) / 180;
@@ -34,7 +55,7 @@ export function VedicPattern({
               const y1 = Math.round((100 + 60 * Math.sin(angle)) * 100) / 100;
               const x2 = Math.round((100 + 90 * Math.cos(angle)) * 100) / 100;
               const y2 = Math.round((100 + 90 * Math.sin(angle)) * 100) / 100;
-              
+
               return (
                 <g key={i}>
                   <line
@@ -46,25 +67,46 @@ export function VedicPattern({
                     strokeWidth="1.5"
                     opacity="0.5"
                   />
-                  <circle cx={x2} cy={y2} r="8" fill="currentColor" opacity="0.3" />
+                  <circle
+                    cx={x2}
+                    cy={y2}
+                    r="8"
+                    fill="currentColor"
+                    opacity="0.3"
+                  />
                 </g>
               );
             })}
-            
+
             {/* Inner design */}
             {[...Array(12)].map((_, i) => {
               const angle = (i * 30 * Math.PI) / 180;
               const x = Math.round((100 + 45 * Math.cos(angle)) * 100) / 100;
               const y = Math.round((100 + 45 * Math.sin(angle)) * 100) / 100;
-              return <circle key={i} cx={x} cy={y} r="3" fill="currentColor" opacity="0.4" />;
+              return (
+                <circle
+                  key={i}
+                  cx={x}
+                  cy={y}
+                  r="3"
+                  fill="currentColor"
+                  opacity="0.4"
+                />
+              );
             })}
-            
+
             {/* Center */}
-            <circle cx="100" cy="100" r="15" fill="currentColor" opacity="0.4" />
+            <circle
+              cx="100"
+              cy="100"
+              r="15"
+              fill="currentColor"
+              opacity="0.4"
+            />
             <circle cx="100" cy="100" r="8" fill="currentColor" opacity="0.6" />
           </svg>
         );
-      
+
       case "lotus":
         return (
           <svg width={size} height={size} viewBox="0 0 200 200" fill="none">
@@ -73,7 +115,7 @@ export function VedicPattern({
               const angle = (i * 45 * Math.PI) / 180;
               const x = Math.round((100 + 50 * Math.cos(angle)) * 100) / 100;
               const y = Math.round((100 + 50 * Math.sin(angle)) * 100) / 100;
-              
+
               return (
                 <ellipse
                   key={i}
@@ -87,10 +129,16 @@ export function VedicPattern({
                 />
               );
             })}
-            <circle cx="100" cy="100" r="20" fill="currentColor" opacity="0.4" />
+            <circle
+              cx="100"
+              cy="100"
+              r="20"
+              fill="currentColor"
+              opacity="0.4"
+            />
           </svg>
         );
-      
+
       case "om":
         return (
           <svg width={size} height={size} viewBox="0 0 200 200" fill="none">
@@ -102,7 +150,15 @@ export function VedicPattern({
               fill="none"
               opacity="0.4"
             />
-            <circle cx="100" cy="120" r="30" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.3" />
+            <circle
+              cx="100"
+              cy="120"
+              r="30"
+              stroke="currentColor"
+              strokeWidth="2"
+              fill="none"
+              opacity="0.3"
+            />
             <path
               d="M 100 150 Q 120 170, 100 180 Q 80 170, 100 150"
               fill="currentColor"
@@ -110,7 +166,7 @@ export function VedicPattern({
             />
           </svg>
         );
-      
+
       case "dots":
         return (
           <svg width={size} height={size} viewBox="0 0 200 200" fill="none">
@@ -129,7 +185,7 @@ export function VedicPattern({
                     opacity="0.3"
                   />
                 );
-              })
+              }),
             )}
           </svg>
         );
@@ -160,4 +216,3 @@ export function VedicPattern({
     </motion.div>
   );
 }
-

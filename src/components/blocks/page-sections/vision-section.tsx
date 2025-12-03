@@ -62,4 +62,3 @@ export function VisionSection({
     </section>
   );
 }
-

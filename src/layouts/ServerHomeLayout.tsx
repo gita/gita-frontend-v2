@@ -18,7 +18,11 @@ export default async function ServerHomeLayout({
   const chapters = await getAllChapters(locale);
 
   return (
-    <HomeLayoutClient locale={locale} translations={translations} chapters={chapters}>
+    <HomeLayoutClient
+      locale={locale}
+      translations={translations}
+      chapters={chapters}
+    >
       {children}
     </HomeLayoutClient>
   );

@@ -18,4 +18,3 @@ export function FloralDivider({ className = "" }: FloralDividerProps) {
     </div>
   );
 }
-

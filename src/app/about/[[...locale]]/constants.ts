@@ -46,7 +46,9 @@ export const getJsonLdTwo = (isHindi: boolean) => ({
   description: isHindi
     ? "भगवद गीता के बारे में संपूर्ण जानकारी - इसका इतिहास, भगवान कृष्ण और अर्जुन सहित पात्र, कर्म योग, भक्ति योग और ज्ञान योग की शिक्षाएं, और हिंदू दर्शन में महत्व। वेद व्यास, गणेश जी और महाभारत संदर्भ के बारे में जानें।"
     : "Complete information about the Bhagavad Gita - its history, characters including Lord Krishna and Arjuna, teachings on karma yoga, bhakti yoga and jnana yoga, and significance in Hindu philosophy. Learn about Ved Vyasa, Ganesh ji, and the Mahabharata context.",
-  url: isHindi ? "https://bhagavadgita.io/hi/about" : "https://bhagavadgita.io/about",
+  url: isHindi
+    ? "https://bhagavadgita.io/hi/about"
+    : "https://bhagavadgita.io/about",
   about: {
     "@type": "Book",
     name: isHindi ? "भगवद गीता" : "Bhagavad Gita",

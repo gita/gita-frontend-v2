@@ -1,4 +1,4 @@
-import { Bot,Globe, Heart, QrCode, Smartphone } from "lucide-react";
+import { Bot, Globe, Heart, QrCode, Smartphone } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import { getTranslations } from "shared/translate/server";
 import { getJsonLdFirst, getJsonLdTwo } from "./constants";
 
 import { VedicPattern } from "@/components/blocks/decorative";
-import { CTASection,PageHero } from "@/components/blocks/page-sections";
+import { CTASection, PageHero } from "@/components/blocks/page-sections";
 import {
   Card,
   CardContent,
@@ -46,10 +46,10 @@ export async function generateMetadata({
     keywords: isHindi
       ? "भगवद गीता दान, वेद व्यास फाउंडेशन दान, गीता परियोजना का समर्थन, भगवद गीता चैरिटी, आध्यात्मिक दान भारत"
       : "donate bhagavad gita, ved vyas foundation donation, support gita project, bhagavad gita charity, spiritual donation india",
-  authors: [{ name: "Ved Vyasa" }],
-  creator: "Ved Vyas Foundation",
-  publisher: "Ved Vyas Foundation",
-  openGraph: {
+    authors: [{ name: "Ved Vyasa" }],
+    creator: "Ved Vyas Foundation",
+    publisher: "Ved Vyas Foundation",
+    openGraph: {
       title: isHindi
         ? "दान करें - भगवद गीता - वेद व्यास फाउंडेशन"
         : "Donate - Bhagavad Gita - Ved Vyas Foundation",
@@ -57,33 +57,33 @@ export async function generateMetadata({
         ? "भगवद गीता परियोजना में दान करें और दुनिया भर में भगवद गीता और कृष्ण की बुद्धिमत्ता के संदेश को फैलाने के हमारे मिशन को जारी रखने में मदद करें।"
         : "Donate to the Bhagavad Gita project to help us continue our mission of spreading the message of the Bhagavad Gita and Krishna's wisdom to the world.",
       url: isHindi ? `${baseUrl}/hi/donate` : `${baseUrl}/donate`,
-    siteName: "Bhagavad Gita",
+      siteName: "Bhagavad Gita",
       images: [
         {
           url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
       ],
       locale: isHindi ? "hi_IN" : "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
       title: isHindi
         ? "दान करें - भगवद गीता - वेद व्यास फाउंडेशन"
         : "Donate - Bhagavad Gita - Ved Vyas Foundation",
       description: isHindi
         ? "भगवद गीता परियोजना में दान करें और दुनिया भर में भगवद गीता और कृष्ण की बुद्धिमत्ता के संदेश को फैलाने के हमारे मिशन को जारी रखने में मदद करें।"
         : "Donate to the Bhagavad Gita project to help us continue our mission of spreading the message of the Bhagavad Gita and Krishna's wisdom to the world.",
-    images: [
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-    ],
-    site: "@ShriKrishna",
-  },
-  alternates: {
+      images: [
+        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      ],
+      site: "@ShriKrishna",
+    },
+    alternates: {
       canonical: isHindi ? `${baseUrl}/hi/donate` : `${baseUrl}/donate`,
       languages: {
         "x-default": `${baseUrl}/donate`,
@@ -116,7 +116,7 @@ export default async function Donate(props: ParamsWithLocale) {
       icon: <Globe className="size-6" />,
       title: translate("Bhagavad Gita Website"),
       description: translate(
-        "Free, ad-free access to all 700 verses with translations and commentaries"
+        "Free, ad-free access to all 700 verses with translations and commentaries",
       ),
       link: "/",
     },
@@ -124,7 +124,7 @@ export default async function Donate(props: ParamsWithLocale) {
       icon: <Smartphone className="size-6" />,
       title: translate("Mobile Apps"),
       description: translate(
-        "iOS and Android apps bringing the Gita to your fingertips"
+        "iOS and Android apps bringing the Gita to your fingertips",
       ),
       link: "/app",
     },
@@ -132,7 +132,7 @@ export default async function Donate(props: ParamsWithLocale) {
       icon: <Bot className="size-6" />,
       title: translate("GitaGPT AI Chatbot"),
       description: translate(
-        "AI-powered spiritual guidance based on the Bhagavad Gita"
+        "AI-powered spiritual guidance based on the Bhagavad Gita",
       ),
       link: "/gitagpt",
     },
@@ -155,7 +155,7 @@ export default async function Donate(props: ParamsWithLocale) {
             badge={translate("Support")}
             title={translate("Donate")}
             subtitle={translate(
-              "Support the digital revival of ancient wisdom. Help us make the Bhagavad Gita accessible to seekers worldwide, free and ad-free."
+              "Support the digital revival of ancient wisdom. Help us make the Bhagavad Gita accessible to seekers worldwide, free and ad-free.",
             )}
             locale={locale}
           />
@@ -178,7 +178,11 @@ export default async function Donate(props: ParamsWithLocale) {
               {supportedResources.map((resource, index) => (
                 <Link
                   key={index}
-                  href={resource.link === "/gitagpt" ? "/gitagpt" : localizedLink(resource.link)}
+                  href={
+                    resource.link === "/gitagpt"
+                      ? "/gitagpt"
+                      : localizedLink(resource.link)
+                  }
                   className="group block"
                 >
                   <Card className="h-full overflow-hidden border-2 transition-all hover:border-prakash-primary hover:shadow-xl dark:hover:border-nisha-primary">
@@ -248,7 +252,7 @@ export default async function Donate(props: ParamsWithLocale) {
         <CTASection
           title={translate("Thank You for Your Support")}
           description={translate(
-            "Your contribution helps preserve and share the timeless wisdom of the Bhagavad Gita with seekers around the world."
+            "Your contribution helps preserve and share the timeless wisdom of the Bhagavad Gita with seekers around the world.",
           )}
           primaryButtonText={translate("Read the Gita")}
           primaryButtonLink="/"

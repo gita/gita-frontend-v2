@@ -1,8 +1,19 @@
 "use client";
 
-import { useMemo,useState } from "react";
-import { AnimatePresence,motion } from "framer-motion";
-import { BookOpen, ChevronDown, ChevronRight, Crown, Heart, Shield, Sparkles, Star, Sword, Users } from "lucide-react";
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  BookOpen,
+  ChevronDown,
+  ChevronRight,
+  Crown,
+  Heart,
+  Shield,
+  Sparkles,
+  Star,
+  Sword,
+  Users,
+} from "lucide-react";
 
 import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
@@ -27,17 +38,20 @@ interface FamilyMember {
 }
 
 // --- Color Styles ---
-  const colorStyles = {
-  purple: "bg-gradient-to-br from-purple-50 to-purple-100 text-purple-900 border-purple-300 dark:from-purple-900/50 dark:to-purple-800/50 dark:text-purple-100 dark:border-purple-600",
+const colorStyles = {
+  purple:
+    "bg-gradient-to-br from-purple-50 to-purple-100 text-purple-900 border-purple-300 dark:from-purple-900/50 dark:to-purple-800/50 dark:text-purple-100 dark:border-purple-600",
   red: "bg-gradient-to-br from-red-50 to-red-100 text-red-900 border-red-300 dark:from-red-900/50 dark:to-red-800/50 dark:text-red-100 dark:border-red-600",
   blue: "bg-gradient-to-br from-blue-50 to-blue-100 text-blue-900 border-blue-300 dark:from-blue-900/50 dark:to-blue-800/50 dark:text-blue-100 dark:border-blue-600",
   pink: "bg-gradient-to-br from-pink-50 to-pink-100 text-pink-900 border-pink-300 dark:from-pink-900/50 dark:to-pink-800/50 dark:text-pink-100 dark:border-pink-600",
   cyan: "bg-gradient-to-br from-cyan-50 to-cyan-100 text-cyan-900 border-cyan-300 dark:from-cyan-900/50 dark:to-cyan-800/50 dark:text-cyan-100 dark:border-cyan-600",
-  amber: "bg-gradient-to-br from-amber-50 to-amber-100 text-amber-900 border-amber-300 dark:from-amber-900/50 dark:to-amber-800/50 dark:text-amber-100 dark:border-amber-600",
+  amber:
+    "bg-gradient-to-br from-amber-50 to-amber-100 text-amber-900 border-amber-300 dark:from-amber-900/50 dark:to-amber-800/50 dark:text-amber-100 dark:border-amber-600",
 };
 
 const badgeStyles = {
-  purple: "bg-purple-200 text-purple-900 dark:bg-purple-800 dark:text-purple-100",
+  purple:
+    "bg-purple-200 text-purple-900 dark:bg-purple-800 dark:text-purple-100",
   red: "bg-red-200 text-red-900 dark:bg-red-800 dark:text-red-100",
   blue: "bg-blue-200 text-blue-900 dark:bg-blue-800 dark:text-blue-100",
   pink: "bg-pink-200 text-pink-900 dark:bg-pink-800 dark:text-pink-100",
@@ -97,7 +111,11 @@ const completeTree: FamilyMember = {
           color: "red",
           icon: <Crown className="size-5" />,
           note: "Son of Ambika via Niyoga by Vyasa. King of Hastinapura.",
-          spouse: { name: "Gandhari", title: "Princess of Gandhara", color: "red" },
+          spouse: {
+            name: "Gandhari",
+            title: "Princess of Gandhara",
+            color: "red",
+          },
           children: [
             {
               name: "Duryodhana",
@@ -119,7 +137,11 @@ const completeTree: FamilyMember = {
               name: "Dussala",
               title: "Only Daughter",
               color: "pink",
-              spouse: { name: "Jayadratha", title: "King of Sindhu", color: "red" },
+              spouse: {
+                name: "Jayadratha",
+                title: "King of Sindhu",
+                color: "red",
+              },
             },
           ],
         },
@@ -130,8 +152,16 @@ const completeTree: FamilyMember = {
           icon: <Crown className="size-5" />,
           note: "Son of Ambalika via Niyoga by Vyasa. His sons were born through divine boons.",
           spouse: [
-            { name: "Kunti", title: "Princess of Kunti (Wife 1)", color: "blue" },
-            { name: "Madri", title: "Princess of Madra (Wife 2)", color: "blue" },
+            {
+              name: "Kunti",
+              title: "Princess of Kunti (Wife 1)",
+              color: "blue",
+            },
+            {
+              name: "Madri",
+              title: "Princess of Madra (Wife 2)",
+              color: "blue",
+            },
           ],
           children: [
             // Karna - Eldest son of Kunti
@@ -152,9 +182,18 @@ const completeTree: FamilyMember = {
               color: "blue",
               icon: <Crown className="size-5" />,
               note: "Eldest Pandava. Son of Kunti & Dharma (God of Righteousness).",
-              spouse: { name: "Draupadi", title: "Common wife of 5 Pandavas", color: "pink", icon: <Heart className="size-5" /> },
+              spouse: {
+                name: "Draupadi",
+                title: "Common wife of 5 Pandavas",
+                color: "pink",
+                icon: <Heart className="size-5" />,
+              },
               children: [
-                { name: "Prativindhya", title: "Son from Draupadi", color: "blue" },
+                {
+                  name: "Prativindhya",
+                  title: "Son from Draupadi",
+                  color: "blue",
+                },
               ],
             },
             {
@@ -169,13 +208,18 @@ const completeTree: FamilyMember = {
               ],
               children: [
                 { name: "Sutasoma", title: "Son from Draupadi", color: "blue" },
-                { 
-                  name: "Ghatotkacha", 
-                  title: "Son from Hidimbi", 
+                {
+                  name: "Ghatotkacha",
+                  title: "Son from Hidimbi",
                   color: "amber",
-          note: "Brave warrior with divine powers. Sacrificed himself in the great war.",
+                  note: "Brave warrior with divine powers. Sacrificed himself in the great war.",
                   children: [
-                    { name: "Barbarik", title: "Greatest warrior", color: "amber", note: "Could end war in 1 minute" },
+                    {
+                      name: "Barbarik",
+                      title: "Greatest warrior",
+                      color: "amber",
+                      note: "Could end war in 1 minute",
+                    },
                   ],
                 },
               ],
@@ -190,32 +234,53 @@ const completeTree: FamilyMember = {
                 { name: "Draupadi", title: "Common wife", color: "pink" },
                 { name: "Subhadra", title: "Sister of Krishna", color: "cyan" },
                 { name: "Ulupi", title: "Naga princess", color: "amber" },
-                { name: "Chitrangada", title: "Princess of Manipur", color: "purple" },
+                {
+                  name: "Chitrangada",
+                  title: "Princess of Manipur",
+                  color: "purple",
+                },
               ],
               children: [
-                { name: "Shrutakarma", title: "Son from Draupadi", color: "blue" },
-                { 
-                  name: "Abhimanyu", 
-                  title: "Son from Subhadra", 
+                {
+                  name: "Shrutakarma",
+                  title: "Son from Draupadi",
+                  color: "blue",
+                },
+                {
+                  name: "Abhimanyu",
+                  title: "Son from Subhadra",
                   color: "blue",
                   icon: <Sword className="size-5" />,
                   note: "Brave warrior who knew the secrets of Chakravyuha. Attained martyrdom at a young age.",
-                  spouse: { name: "Uttara", title: "Princess of Matsya", color: "blue" },
+                  spouse: {
+                    name: "Uttara",
+                    title: "Princess of Matsya",
+                    color: "blue",
+                  },
                   children: [
-                    { 
-                      name: "Parikshit", 
-                      title: "King of Kuru Dynasty", 
+                    {
+                      name: "Parikshit",
+                      title: "King of Kuru Dynasty",
                       color: "blue",
                       icon: <Crown className="size-5" />,
                       note: "Born after war. Continued the Kuru lineage.",
                       children: [
-                        { name: "Janamejaya", title: "Performed Sarpa Satra", color: "blue", icon: <Crown className="size-5" /> },
+                        {
+                          name: "Janamejaya",
+                          title: "Performed Sarpa Satra",
+                          color: "blue",
+                          icon: <Crown className="size-5" />,
+                        },
                       ],
                     },
                   ],
                 },
                 { name: "Iravan", title: "Son from Ulupi", color: "amber" },
-                { name: "Babruvahana", title: "Son from Chitrangada", color: "purple" },
+                {
+                  name: "Babruvahana",
+                  title: "Son from Chitrangada",
+                  color: "purple",
+                },
               ],
             },
             // Sons of Madri (via divine boons)
@@ -226,7 +291,11 @@ const completeTree: FamilyMember = {
               note: "Fourth Pandava. Son of Madri & Ashwini Kumaras. Master of horses & swords.",
               spouse: { name: "Draupadi", title: "Common wife", color: "pink" },
               children: [
-                { name: "Shatanika", title: "Son from Draupadi", color: "blue" },
+                {
+                  name: "Shatanika",
+                  title: "Son from Draupadi",
+                  color: "blue",
+                },
               ],
             },
             {
@@ -236,7 +305,11 @@ const completeTree: FamilyMember = {
               note: "Youngest Pandava. Son of Madri & Ashwini Kumaras. Master astrologer.",
               spouse: { name: "Draupadi", title: "Common wife", color: "pink" },
               children: [
-                { name: "Shrutasena", title: "Son from Draupadi", color: "blue" },
+                {
+                  name: "Shrutasena",
+                  title: "Son from Draupadi",
+                  color: "blue",
+                },
               ],
             },
           ],
@@ -257,28 +330,48 @@ const completeTree: FamilyMember = {
 // --- Components ---
 
 // Simple wrapper - will use context for translations
-const MemberCard = ({ member, isSpouse = false, tr }: { member: FamilyMember; isSpouse?: boolean; tr?: (text: string) => string }) => {
+const MemberCard = ({
+  member,
+  isSpouse = false,
+  tr,
+}: {
+  member: FamilyMember;
+  isSpouse?: boolean;
+  tr?: (text: string) => string;
+}) => {
   const translate = tr || ((text: string) => text);
   return (
     <div
       className={cn(
-        "flex items-center gap-2.5 rounded-xl border-2 px-3 py-2 font-medium shadow-sm transition-all hover:shadow-md min-w-[160px] sm:min-w-0",
+        "flex min-w-[160px] items-center gap-2.5 rounded-xl border-2 px-3 py-2 font-medium shadow-sm transition-all hover:shadow-md sm:min-w-0",
         colorStyles[member.color],
-        isSpouse && "border-dashed"
+        isSpouse && "border-dashed",
       )}
     >
       {member.icon && <span className="shrink-0">{member.icon}</span>}
       <div className="min-w-0 flex-1">
-        <div className="truncate text-sm font-bold sm:text-base">{translate(member.name)}</div>
+        <div className="truncate text-sm font-bold sm:text-base">
+          {translate(member.name)}
+        </div>
         {member.title && (
-          <div className="truncate text-xs opacity-80 sm:text-sm">{translate(member.title)}</div>
+          <div className="truncate text-xs opacity-80 sm:text-sm">
+            {translate(member.title)}
+          </div>
         )}
       </div>
     </div>
   );
 };
 
-const FamilyNode = ({ member, level = 0, tr }: { member: FamilyMember; level?: number; tr?: (text: string) => string }) => {
+const FamilyNode = ({
+  member,
+  level = 0,
+  tr,
+}: {
+  member: FamilyMember;
+  level?: number;
+  tr?: (text: string) => string;
+}) => {
   const [isOpen, setIsOpen] = useState(level < 2);
   const hasChildren = member.children && member.children.length > 0;
   const hasSpouse = member.spouse;
@@ -286,22 +379,32 @@ const FamilyNode = ({ member, level = 0, tr }: { member: FamilyMember; level?: n
   return (
     <div className="w-full">
       {/* Member Header */}
-    <div
-      className={cn(
-          "flex items-start gap-3 p-3 rounded-xl transition-all",
+      <div
+        className={cn(
+          "flex items-start gap-3 rounded-xl p-3 transition-all",
           hasChildren && "cursor-pointer",
-          hasChildren && !isOpen && "bg-muted/40 hover:bg-muted/70 border-2 border-dashed border-muted-foreground/20",
-          hasChildren && isOpen && "hover:bg-muted/30"
+          hasChildren &&
+            !isOpen &&
+            "border-2 border-dashed border-muted-foreground/20 bg-muted/40 hover:bg-muted/70",
+          hasChildren && isOpen && "hover:bg-muted/30",
         )}
         onClick={() => hasChildren && setIsOpen(!isOpen)}
       >
         {/* Expand/Collapse Icon */}
         {hasChildren ? (
-          <div className={cn(
-            "mt-2.5 shrink-0 rounded-full p-1 transition-colors",
-            isOpen ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"
-          )}>
-            {isOpen ? <ChevronDown className="size-5" /> : <ChevronRight className="size-5" />}
+          <div
+            className={cn(
+              "mt-2.5 shrink-0 rounded-full p-1 transition-colors",
+              isOpen
+                ? "bg-primary/10 text-primary"
+                : "bg-muted text-muted-foreground",
+            )}
+          >
+            {isOpen ? (
+              <ChevronDown className="size-5" />
+            ) : (
+              <ChevronRight className="size-5" />
+            )}
           </div>
         ) : (
           <div className="w-7 shrink-0" />
@@ -311,11 +414,13 @@ const FamilyNode = ({ member, level = 0, tr }: { member: FamilyMember; level?: n
         <div className="min-w-0 flex-1">
           <div className="scrollbar-thin flex items-center gap-2 overflow-x-auto pb-2">
             <MemberCard member={member} tr={tr} />
-            
+
             {/* Spouse(s) */}
             {hasSpouse && (
               <>
-                <span className="shrink-0 px-2 text-sm font-semibold text-muted-foreground">+</span>
+                <span className="shrink-0 px-2 text-sm font-semibold text-muted-foreground">
+                  +
+                </span>
                 {Array.isArray(member.spouse) ? (
                   member.spouse.map((s, i) => (
                     <MemberCard key={i} member={s} isSpouse tr={tr} />
@@ -325,15 +430,16 @@ const FamilyNode = ({ member, level = 0, tr }: { member: FamilyMember; level?: n
                 )}
               </>
             )}
-            
+
             {/* Expandable hint */}
             {hasChildren && !isOpen && (
               <span className="ml-2 shrink-0 animate-pulse rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                {member.children!.length} {member.children!.length === 1 ? '▼' : '▼'}
-      </span>
+                {member.children!.length}{" "}
+                {member.children!.length === 1 ? "▼" : "▼"}
+              </span>
             )}
           </div>
-          
+
           {/* Note */}
           {member.note && tr && (
             <p className="ml-1 mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -370,15 +476,15 @@ const FamilyNode = ({ member, level = 0, tr }: { member: FamilyMember; level?: n
   );
 };
 
-const GenerationSection = ({ 
-  title, 
-  members, 
+const GenerationSection = ({
+  title,
+  members,
   badge,
   defaultOpen = true,
   tr,
-}: { 
-  title: string; 
-  members: FamilyMember[]; 
+}: {
+  title: string;
+  members: FamilyMember[];
   badge?: string;
   defaultOpen?: boolean;
   tr?: (text: string) => string;
@@ -392,21 +498,31 @@ const GenerationSection = ({
         className="flex w-full items-center justify-between p-5 text-left transition-colors hover:bg-muted/50"
       >
         <div className="flex items-center gap-4">
-          <h3 className="font-newsreader text-xl font-bold md:text-2xl">{title}</h3>
+          <h3 className="font-newsreader text-xl font-bold md:text-2xl">
+            {title}
+          </h3>
           {badge && (
             <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
               {badge}
-        </span>
-      )}
+            </span>
+          )}
         </div>
-        <div className={cn(
-          "rounded-full p-2 transition-colors",
-          isOpen ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"
-        )}>
-          {isOpen ? <ChevronDown className="size-6" /> : <ChevronRight className="size-6" />}
+        <div
+          className={cn(
+            "rounded-full p-2 transition-colors",
+            isOpen
+              ? "bg-primary/10 text-primary"
+              : "bg-muted text-muted-foreground",
+          )}
+        >
+          {isOpen ? (
+            <ChevronDown className="size-6" />
+          ) : (
+            <ChevronRight className="size-6" />
+          )}
         </div>
       </button>
-      
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -436,10 +552,13 @@ export function FamilyTreeSection({
 }: FamilyTreeSectionProps) {
   // Translation helper
   const t = (en: string, hi: string) => (locale === "hi" ? hi : en);
-  
+
   // Translation lookup for family tree names/titles
   const tr = (text: string) => {
-    if (locale === "hi" && hiTranslations[text as keyof typeof hiTranslations]) {
+    if (
+      locale === "hi" &&
+      hiTranslations[text as keyof typeof hiTranslations]
+    ) {
       return hiTranslations[text as keyof typeof hiTranslations];
     }
     return text;
@@ -462,31 +581,55 @@ export function FamilyTreeSection({
         {/* Legend */}
         <div className="mb-8 flex flex-wrap justify-center gap-x-4 gap-y-3 px-2 text-sm">
           <div className="flex items-center gap-2">
-            <div className={cn("size-4 shrink-0 rounded-md", badgeStyles.purple)} />
-            <span className="whitespace-nowrap font-medium">{t("Kuru Ancestors", "कुरु पूर्वज")}</span>
-                </div>
+            <div
+              className={cn("size-4 shrink-0 rounded-md", badgeStyles.purple)}
+            />
+            <span className="whitespace-nowrap font-medium">
+              {t("Kuru Ancestors", "कुरु पूर्वज")}
+            </span>
+          </div>
           <div className="flex items-center gap-2">
-            <div className={cn("size-4 shrink-0 rounded-md", badgeStyles.blue)} />
-            <span className="whitespace-nowrap font-medium">{t("Pandavas", "पांडव")}</span>
-              </div>
+            <div
+              className={cn("size-4 shrink-0 rounded-md", badgeStyles.blue)}
+            />
+            <span className="whitespace-nowrap font-medium">
+              {t("Pandavas", "पांडव")}
+            </span>
+          </div>
           <div className="flex items-center gap-2">
-            <div className={cn("size-4 shrink-0 rounded-md", badgeStyles.red)} />
-            <span className="whitespace-nowrap font-medium">{t("Kauravas", "कौरव")}</span>
-                </div>
+            <div
+              className={cn("size-4 shrink-0 rounded-md", badgeStyles.red)}
+            />
+            <span className="whitespace-nowrap font-medium">
+              {t("Kauravas", "कौरव")}
+            </span>
+          </div>
           <div className="flex items-center gap-2">
-            <div className={cn("size-4 shrink-0 rounded-md", badgeStyles.cyan)} />
-            <span className="whitespace-nowrap font-medium">{t("Divine", "दिव्य")}</span>
-              </div>
+            <div
+              className={cn("size-4 shrink-0 rounded-md", badgeStyles.cyan)}
+            />
+            <span className="whitespace-nowrap font-medium">
+              {t("Divine", "दिव्य")}
+            </span>
+          </div>
           <div className="flex items-center gap-2">
-            <div className={cn("size-4 shrink-0 rounded-md", badgeStyles.pink)} />
-            <span className="whitespace-nowrap font-medium">{t("Queens", "रानियाँ")}</span>
-                  </div>
+            <div
+              className={cn("size-4 shrink-0 rounded-md", badgeStyles.pink)}
+            />
+            <span className="whitespace-nowrap font-medium">
+              {t("Queens", "रानियाँ")}
+            </span>
+          </div>
           <div className="flex items-center gap-2">
-            <div className={cn("size-4 shrink-0 rounded-md", badgeStyles.amber)} />
-            <span className="whitespace-nowrap font-medium">{t("Others", "अन्य")}</span>
-                        </div>
-                      </div>
-                      
+            <div
+              className={cn("size-4 shrink-0 rounded-md", badgeStyles.amber)}
+            />
+            <span className="whitespace-nowrap font-medium">
+              {t("Others", "अन्य")}
+            </span>
+          </div>
+        </div>
+
         {/* Family Tree */}
         <div className="space-y-6">
           <GenerationSection
@@ -496,11 +639,12 @@ export function FamilyTreeSection({
             tr={tr}
           />
         </div>
-        
+
         <p className="mt-8 text-center text-sm text-muted-foreground">
-          💡 {t(
+          💡{" "}
+          {t(
             "Click on highlighted rows to expand/collapse. Dashed borders indicate spouses.",
-            "विस्तार/संक्षिप्त करने के लिए हाइलाइट की गई पंक्तियों पर क्लिक करें। धराशायी सीमाएं जीवनसाथी को दर्शाती हैं।"
+            "विस्तार/संक्षिप्त करने के लिए हाइलाइट की गई पंक्तियों पर क्लिक करें। धराशायी सीमाएं जीवनसाथी को दर्शाती हैं।",
           )}
         </p>
       </div>

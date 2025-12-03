@@ -1,4 +1,4 @@
-import { ArrowRight,Sparkle } from "lucide-react";
+import { ArrowRight, Sparkle } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -58,7 +58,9 @@ export function PageHero({
             {title}
           </h1>
 
-          <p className={`font-merriweather text-lg text-muted-foreground md:text-xl ${hasButtons ? 'mb-6' : ''}`}>
+          <p
+            className={`font-merriweather text-lg text-muted-foreground md:text-xl ${hasButtons ? "mb-6" : ""}`}
+          >
             {subtitle}
           </p>
 
@@ -77,7 +79,12 @@ export function PageHero({
               )}
 
               {secondaryButtonText && secondaryButtonLink && (
-                <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                >
                   <Link href={localizedLink(secondaryButtonLink)}>
                     {secondaryButtonText} <ArrowRight className="ml-1 size-4" />
                   </Link>
@@ -90,4 +97,3 @@ export function PageHero({
     </section>
   );
 }
-

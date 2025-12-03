@@ -42,7 +42,7 @@ export function EnhancedHero({
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-25">
         <VedicPattern variant="mandala" size={600} opacity={0.6} animate />
       </div>
-      
+
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-prakash-primary/10 to-transparent dark:from-nisha-primary/10 dark:to-transparent"></div>
 
       <div className="container relative z-10 mx-auto max-w-7xl px-4">
@@ -74,7 +74,7 @@ export function EnhancedHero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className={`font-merriweather text-lg text-muted-foreground md:text-xl lg:text-2xl ${hasButtons ? 'mb-8' : ''}`}
+            className={`font-merriweather text-lg text-muted-foreground md:text-xl lg:text-2xl ${hasButtons ? "mb-8" : ""}`}
           >
             {subtitle}
           </motion.p>
@@ -112,4 +112,3 @@ export function EnhancedHero({
     </section>
   );
 }
-

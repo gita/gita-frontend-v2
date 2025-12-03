@@ -4,10 +4,10 @@ import { paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
-import { jsonLdFirst, jsonLdTwo,quotes } from "./constants";
+import { jsonLdFirst, jsonLdTwo, quotes } from "./constants";
 
 import { VedicPattern } from "@/components/blocks/decorative";
-import { CTASection,PageHero } from "@/components/blocks/page-sections";
+import { CTASection, PageHero } from "@/components/blocks/page-sections";
 import { Card, CardContent } from "@/components/ui/card";
 
 // Force static generation for better SEO
@@ -81,7 +81,7 @@ async function Quotes(props: ParamsWithLocale) {
             badge={translate("Divine Wisdom")}
             title={translate("Bhagavad Gita Quotes By Lord Krishna")}
             subtitle={translate(
-              "100+ inspiring quotes by Lord Krishna on life, karma, dharma & spiritual liberation"
+              "100+ inspiring quotes by Lord Krishna on life, karma, dharma & spiritual liberation",
             )}
             primaryButtonText={translate("Read Full Gita")}
             primaryButtonLink="/"
@@ -95,7 +95,6 @@ async function Quotes(props: ParamsWithLocale) {
             <VedicPattern variant="mandala" size={300} opacity={0.5} />
           </div>
           <div className="container mx-auto max-w-7xl px-4">
-
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {quotesArray.map((quote, index) => (
                 <Card
@@ -126,7 +125,7 @@ async function Quotes(props: ParamsWithLocale) {
         <CTASection
           title={translate("Read the Complete Bhagavad Gita")}
           description={translate(
-            "700 verses with commentaries from 20+ scholars in Hindi & English"
+            "700 verses with commentaries from 20+ scholars in Hindi & English",
           )}
           primaryButtonText={translate("Start Reading")}
           primaryButtonLink="/"

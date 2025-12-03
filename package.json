@@ -118,6 +118,7 @@
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.2.6",
     "babel-plugin-react-compiler": "^1.0.0",
+    "baseline-browser-mapping": "^2.8.32",
     "dotenv": "^17.2.3",
     "eslint": "^8.57.0",
     "eslint-config-next": "^16.0.5",

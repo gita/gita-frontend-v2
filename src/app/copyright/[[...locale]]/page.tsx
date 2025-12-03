@@ -96,12 +96,12 @@ export default async function Copyright(props: ParamsWithLocale) {
         <>
           <p className="mb-4">
             {translate(
-              "BhagavadGita.io is a non-profit initiative operated by the Ved Vyas Foundation. Our mission is to make the sacred wisdom of the Bhagavad Gita freely accessible to seekers worldwide, transcending barriers of language, geography, and economic circumstance."
+              "BhagavadGita.io is a non-profit initiative operated by the Ved Vyas Foundation. Our mission is to make the sacred wisdom of the Bhagavad Gita freely accessible to seekers worldwide, transcending barriers of language, geography, and economic circumstance.",
             )}
           </p>
           <p>
             {translate(
-              "We believe that spiritual knowledge should be available to all who seek it. All content on this platform is provided free of charge, and we do not seek to profit from the distribution of these sacred teachings."
+              "We believe that spiritual knowledge should be available to all who seek it. All content on this platform is provided free of charge, and we do not seek to profit from the distribution of these sacred teachings.",
             )}
           </p>
         </>
@@ -116,7 +116,7 @@ export default async function Copyright(props: ParamsWithLocale) {
           </h3>
           <p className="mb-4">
             {translate(
-              "The original Sanskrit verses of the Bhagavad Gita are ancient sacred texts in the public domain. These verses may be freely used, reproduced, and distributed by anyone."
+              "The original Sanskrit verses of the Bhagavad Gita are ancient sacred texts in the public domain. These verses may be freely used, reproduced, and distributed by anyone.",
             )}
           </p>
 
@@ -125,7 +125,7 @@ export default async function Copyright(props: ParamsWithLocale) {
           </h3>
           <p className="mb-4">
             {translate(
-              "All translations and commentaries featured on BhagavadGita.io have been used with explicit permission from their respective authors, publishers, and organizations. Copyrights to these works remain with their original creators."
+              "All translations and commentaries featured on BhagavadGita.io have been used with explicit permission from their respective authors, publishers, and organizations. Copyrights to these works remain with their original creators.",
             )}
           </p>
 
@@ -134,15 +134,13 @@ export default async function Copyright(props: ParamsWithLocale) {
           </h3>
           <p className="mb-4">
             {translate(
-              "You are welcome to download, read, and use the content from this site for:"
+              "You are welcome to download, read, and use the content from this site for:",
             )}
           </p>
           <ul className="mb-4 ml-8 list-disc space-y-2">
             <li>{translate("Personal study and spiritual practice")}</li>
             <li>
-              {translate(
-                "Educational purposes in classrooms and study groups"
-              )}
+              {translate("Educational purposes in classrooms and study groups")}
             </li>
             <li>
               {translate("Non-commercial religious or spiritual teaching")}
@@ -155,29 +153,27 @@ export default async function Copyright(props: ParamsWithLocale) {
           </h3>
           <p>
             {translate(
-              "The content may NOT be used for commercial purposes. This means you cannot:"
+              "The content may NOT be used for commercial purposes. This means you cannot:",
             )}
           </p>
           <ul className="mb-4 ml-8 list-disc space-y-2">
             <li>
               {translate(
-                "Sell or bundle the content with products or services"
+                "Sell or bundle the content with products or services",
               )}
             </li>
             <li>
               {translate(
-                "Charge fees for access, including shipping or handling"
+                "Charge fees for access, including shipping or handling",
               )}
             </li>
             <li>
               {translate(
-                "Use the content in commercial applications or websites"
+                "Use the content in commercial applications or websites",
               )}
             </li>
             <li>
-              {translate(
-                "Reproduce the content in commercial publications"
-              )}
+              {translate("Reproduce the content in commercial publications")}
             </li>
           </ul>
         </>
@@ -189,21 +185,21 @@ export default async function Copyright(props: ParamsWithLocale) {
         <>
           <p className="mb-4">
             {translate(
-              "When using content from BhagavadGita.io, please provide appropriate attribution. A simple citation format is:"
+              "When using content from BhagavadGita.io, please provide appropriate attribution. A simple citation format is:",
             )}
           </p>
           <div className="mb-4 rounded-lg bg-adhyayan-bg p-4 dark:bg-nisha-bg/50">
             <p className="font-mono text-sm">
-              {translate("Source")}: BhagavadGita.io - {translate("The Bhagavad Gita Online")}
-              <br />
-              [{translate("Translation by Author Name, if applicable")}]
+              {translate("Source")}: BhagavadGita.io -{" "}
+              {translate("The Bhagavad Gita Online")}
+              <br />[{translate("Translation by Author Name, if applicable")}]
               <br />
               URL: https://bhagavadgita.io
             </p>
           </div>
           <p>
             {translate(
-              "Proper attribution helps others discover these teachings and supports our mission to spread this wisdom."
+              "Proper attribution helps others discover these teachings and supports our mission to spread this wisdom.",
             )}
           </p>
         </>
@@ -215,7 +211,7 @@ export default async function Copyright(props: ParamsWithLocale) {
         <>
           <p className="mb-4">
             {translate(
-              "We provide a free API for developers who wish to integrate Bhagavad Gita content into their non-commercial applications. When using our API:"
+              "We provide a free API for developers who wish to integrate Bhagavad Gita content into their non-commercial applications. When using our API:",
             )}
           </p>
           <ul className="mb-4 ml-8 list-disc space-y-2">
@@ -226,7 +222,7 @@ export default async function Copyright(props: ParamsWithLocale) {
           </ul>
           <p>
             {translate(
-              "For API documentation and access, please visit our developer portal or contact us at"
+              "For API documentation and access, please visit our developer portal or contact us at",
             )}{" "}
             <a
               href="mailto:api@bhagavadgita.io"
@@ -244,10 +240,12 @@ export default async function Copyright(props: ParamsWithLocale) {
         <>
           <p className="mb-4">
             {translate(
-              "We are deeply grateful to the organizations and individuals who have granted us permission to feature their translations and commentaries. For a complete list of contributors and their works, please visit our"
+              "We are deeply grateful to the organizations and individuals who have granted us permission to feature their translations and commentaries. For a complete list of contributors and their works, please visit our",
             )}{" "}
             <Link
-              href={locale === "hi" ? "/hi/acknowledgements" : "/acknowledgements"}
+              href={
+                locale === "hi" ? "/hi/acknowledgements" : "/acknowledgements"
+              }
               className="text-prakash-primary hover:underline dark:text-nisha-primary"
             >
               {translate("Acknowledgements page")}
@@ -256,7 +254,7 @@ export default async function Copyright(props: ParamsWithLocale) {
           </p>
           <p>
             {translate(
-              "To acquire individual copies of any featured works, please contact the respective organizations directly. Contact information is available on our Acknowledgements page."
+              "To acquire individual copies of any featured works, please contact the respective organizations directly. Contact information is available on our Acknowledgements page.",
             )}
           </p>
         </>
@@ -268,17 +266,13 @@ export default async function Copyright(props: ParamsWithLocale) {
         <>
           <p className="mb-4">
             {translate(
-              "As a non-profit initiative, we rely on the generosity of supporters to maintain and improve this platform. If you find value in our work, please consider:"
+              "As a non-profit initiative, we rely on the generosity of supporters to maintain and improve this platform. If you find value in our work, please consider:",
             )}
           </p>
           <ul className="mb-4 ml-8 list-disc space-y-2">
-            <li>
-              {translate("Making a donation to support our operations")}
-            </li>
+            <li>{translate("Making a donation to support our operations")}</li>
             <li>{translate("Sharing our website with others")}</li>
-            <li>
-              {translate("Contributing translations or improvements")}
-            </li>
+            <li>{translate("Contributing translations or improvements")}</li>
             <li>{translate("Volunteering your time and expertise")}</li>
           </ul>
           <p>
@@ -300,7 +294,7 @@ export default async function Copyright(props: ParamsWithLocale) {
         <div className="rounded-lg bg-prakash-primary/5 p-5 dark:bg-nisha-primary/5">
           <p className="mb-4">
             {translate(
-              "We respect the intellectual property rights of all content creators. If you believe that content on BhagavadGita.io infringes your copyright, or if you are a rights holder and would like your content removed, please contact us immediately."
+              "We respect the intellectual property rights of all content creators. If you believe that content on BhagavadGita.io infringes your copyright, or if you are a rights holder and would like your content removed, please contact us immediately.",
             )}
           </p>
           <p className="mb-2">
@@ -314,7 +308,7 @@ export default async function Copyright(props: ParamsWithLocale) {
           </p>
           <p className="text-sm text-muted-foreground">
             {translate(
-              "Please provide: (1) identification of the copyrighted work, (2) the location of the infringing material on our site, (3) your contact information, and (4) a statement of good faith belief that the use is not authorized."
+              "Please provide: (1) identification of the copyrighted work, (2) the location of the infringing material on our site, (3) your contact information, and (4) a statement of good faith belief that the use is not authorized.",
             )}
           </p>
         </div>
@@ -329,7 +323,7 @@ export default async function Copyright(props: ParamsWithLocale) {
           badge={translate("Legal")}
           title={translate("Copyright & Attribution")}
           subtitle={translate(
-            "Understanding how to use and share the sacred teachings responsibly"
+            "Understanding how to use and share the sacred teachings responsibly",
           )}
           locale={locale}
         />
@@ -342,4 +336,3 @@ export default async function Copyright(props: ParamsWithLocale) {
     </>
   );
 }
-

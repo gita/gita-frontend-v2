@@ -1,4 +1,4 @@
-import { ExternalLink,Heart } from "lucide-react";
+import { ExternalLink, Heart } from "lucide-react";
 import { Metadata } from "next";
 
 import { paramsToLocale } from "shared/functions";
@@ -8,7 +8,7 @@ import { getTranslations } from "shared/translate/server";
 import { getJsonLdFirst, getJsonLdTwo } from "./constants";
 
 import { VedicPattern } from "@/components/blocks/decorative";
-import { CTASection,PageHero } from "@/components/blocks/page-sections";
+import { CTASection, PageHero } from "@/components/blocks/page-sections";
 import {
   Card,
   CardContent,
@@ -107,57 +107,79 @@ export default async function Acknowledgement(props: ParamsWithLocale) {
   const contributors = [
     {
       name: isHindi ? "गीता प्रेस, गोरखपुर" : "Gita Press, Gorakhpur",
-      description: translate("Since 1923, Gita Press has been one of the world's largest publishers of Hindu religious texts. Their unwavering commitment to making spiritual literature accessible and affordable has touched millions of lives across generations, spreading the timeless wisdom of the Bhagavad Gita throughout India and beyond."),
-      location: "Govind Bhawan Karyalaya, Gitapress, Gorakhpur 273005, Uttar Pradesh, India",
+      description: translate(
+        "Since 1923, Gita Press has been one of the world's largest publishers of Hindu religious texts. Their unwavering commitment to making spiritual literature accessible and affordable has touched millions of lives across generations, spreading the timeless wisdom of the Bhagavad Gita throughout India and beyond.",
+      ),
+      location:
+        "Govind Bhawan Karyalaya, Gitapress, Gorakhpur 273005, Uttar Pradesh, India",
       website: "https://www.gitapress.org/",
       work: translate(
-        "Srimad Bhagavad Gita: with Hindi translation of Sankarabhashya translated by Sri Harikrishandas Goenka (1998) and Srimad Bhagavad Gita: Sadhaka Sanjivani (Hindi Commentary) by Swami Ramsukhdas (1995)"
+        "Srimad Bhagavad Gita: with Hindi translation of Sankarabhashya translated by Sri Harikrishandas Goenka (1998) and Srimad Bhagavad Gita: Sadhaka Sanjivani (Hindi Commentary) by Swami Ramsukhdas (1995)",
       ),
     },
     {
       name: isHindi ? "अद्वैत आश्रम" : "Advaita Ashrama",
-      description: translate("The publication house of the Ramakrishna Order, Advaita Ashrama has been spreading the message of Vedanta since 1909. Their scholarly publications maintain the highest standards of authenticity and clarity, making profound philosophical truths accessible to seekers worldwide."),
+      description: translate(
+        "The publication house of the Ramakrishna Order, Advaita Ashrama has been spreading the message of Vedanta since 1909. Their scholarly publications maintain the highest standards of authenticity and clarity, making profound philosophical truths accessible to seekers worldwide.",
+      ),
       location: "5 Dehi Entally Road, Calcutta, India",
       contact: "advaita@giascl01.vsnl.net.in",
       website: "https://www.advaitaashrama.org/",
       work: translate(
-        "Commentary on Bhagavad Gita by Sankaracarya, translated by Swami Gambhirananda (Published in 1995)"
+        "Commentary on Bhagavad Gita by Sankaracarya, translated by Swami Gambhirananda (Published in 1995)",
       ),
     },
     {
-      name: isHindi ? "केंद्रीय चिन्मय मिशन ट्रस्ट" : "Central Chinmaya Mission Trust",
-      description: translate("Founded by Swami Chinmayananda in 1953, the Chinmaya Mission has been transforming lives through Vedantic wisdom for over seven decades. Their teachings make ancient philosophy accessible to modern minds, bridging traditional knowledge with contemporary understanding."),
-      location: "Sandeepany Sadhanalaya, Saki Vihar Road, Mumbai 400 072, India",
+      name: isHindi
+        ? "केंद्रीय चिन्मय मिशन ट्रस्ट"
+        : "Central Chinmaya Mission Trust",
+      description: translate(
+        "Founded by Swami Chinmayananda in 1953, the Chinmaya Mission has been transforming lives through Vedantic wisdom for over seven decades. Their teachings make ancient philosophy accessible to modern minds, bridging traditional knowledge with contemporary understanding.",
+      ),
+      location:
+        "Sandeepany Sadhanalaya, Saki Vihar Road, Mumbai 400 072, India",
       contact: "chinmaya@bom2.vsnl.net.in",
       website: "https://www.chinmayamission.com/",
       work: translate(
-        "Srimad Bhagavad Gita translated by Swami Tejomayananda (1993) [Hindi translation of The Holy Geeta by Swami Chinmayananda]"
+        "Srimad Bhagavad Gita translated by Swami Tejomayananda (1993) [Hindi translation of The Holy Geeta by Swami Chinmayananda]",
       ),
     },
     {
       name: isHindi ? "दिव्य जीवन सोसायटी" : "Divine Life Society",
-      description: translate("Established by Swami Sivananda in 1936 in the sacred Himalayas, the Divine Life Society continues to spread the universal message of truth, love, and service. Swami Sivananda was a prolific author and spiritual giant whose teachings combine deep wisdom with practical guidance."),
-      location: "P.O. Shivanandanagar 249192, District Tehri-Garhwal, Uttar Pradesh, Himalayas, India",
+      description: translate(
+        "Established by Swami Sivananda in 1936 in the sacred Himalayas, the Divine Life Society continues to spread the universal message of truth, love, and service. Swami Sivananda was a prolific author and spiritual giant whose teachings combine deep wisdom with practical guidance.",
+      ),
+      location:
+        "P.O. Shivanandanagar 249192, District Tehri-Garhwal, Uttar Pradesh, Himalayas, India",
       website: "https://www.dlshq.org/",
       work: translate(
-        "The Bhagavad Gita by Swami Sivananda (1995, The Divine Life Society, Shivanandanagar)"
+        "The Bhagavad Gita by Swami Sivananda (1995, The Divine Life Society, Shivanandanagar)",
       ),
     },
     {
-      name: isHindi ? "श्री वेंकटेश्वर विश्वविद्यालय, तिरुपति" : "Sri Venkateswara University, Tirupati",
-      description: translate("The Oriental Research Institute at Sri Venkateswara University is a renowned center for Indological research. Their scholarly work preserves and promotes India's rich literary and philosophical heritage, making rare texts and commentaries available to researchers and spiritual seekers."),
-      location: "Oriental Research Institute, Sri Venkateswara University, Tirupati 517502, Andhra Pradesh, India",
+      name: isHindi
+        ? "श्री वेंकटेश्वर विश्वविद्यालय, तिरुपति"
+        : "Sri Venkateswara University, Tirupati",
+      description: translate(
+        "The Oriental Research Institute at Sri Venkateswara University is a renowned center for Indological research. Their scholarly work preserves and promotes India's rich literary and philosophical heritage, making rare texts and commentaries available to researchers and spiritual seekers.",
+      ),
+      location:
+        "Oriental Research Institute, Sri Venkateswara University, Tirupati 517502, Andhra Pradesh, India",
       website: "https://www.svuniversity.edu.in/",
       work: translate(
-        "Srimad Bhagavad Gita with Gitarthasangraha of Abhinavagupta Part 1 & 2. Translation by Dr. S Sankaranarayan (1985)"
+        "Srimad Bhagavad Gita with Gitarthasangraha of Abhinavagupta Part 1 & 2. Translation by Dr. S Sankaranarayan (1985)",
       ),
     },
     {
-      name: isHindi ? "गीता सुपरसाइट आईआईटी कानपुर टीम" : "Gita Supersite IITK Team",
-      description: translate("The brilliant team at IIT Kanpur created Gita Supersite, a pioneering digital platform that brought together translations and commentaries from multiple scholars in one comprehensive resource. Their groundbreaking work in digitizing classical Gita commentaries has been invaluable."),
+      name: isHindi
+        ? "गीता सुपरसाइट आईआईटी कानपुर टीम"
+        : "Gita Supersite IITK Team",
+      description: translate(
+        "The brilliant team at IIT Kanpur created Gita Supersite, a pioneering digital platform that brought together translations and commentaries from multiple scholars in one comprehensive resource. Their groundbreaking work in digitizing classical Gita commentaries has been invaluable.",
+      ),
       website: "https://gitasupersite.iitk.ac.in/",
       work: translate(
-        "Special thanks to the team at Gita Supersite by IIT Kanpur for their hard work in collating various translations and commentaries of the Bhagavad Gita in one comprehensive platform."
+        "Special thanks to the team at Gita Supersite by IIT Kanpur for their hard work in collating various translations and commentaries of the Bhagavad Gita in one comprehensive platform.",
       ),
     },
   ];
@@ -184,7 +206,7 @@ export default async function Acknowledgement(props: ParamsWithLocale) {
             badge={translate("Gratitude")}
             title={translate("Acknowledgements")}
             subtitle={translate(
-              "Honoring the scholars, translators, and organizations who preserve and share the wisdom of the Bhagavad Gita"
+              "Honoring the scholars, translators, and organizations who preserve and share the wisdom of the Bhagavad Gita",
             )}
             locale={locale}
           />
@@ -198,7 +220,7 @@ export default async function Acknowledgement(props: ParamsWithLocale) {
           <div className="container mx-auto max-w-7xl px-4">
             <p className="mb-8 text-center text-sm text-muted-foreground">
               {translate(
-                "All copyrights are retained by the respective organizations."
+                "All copyrights are retained by the respective organizations.",
               )}
             </p>
 
@@ -226,7 +248,7 @@ export default async function Acknowledgement(props: ParamsWithLocale) {
                           {contributor.description}
                         </p>
                       )}
-                      
+
                       <div className="flex flex-col gap-2 border-t pt-3">
                         {contributor.website && (
                           <p className="text-sm text-foreground/70">
@@ -279,7 +301,7 @@ export default async function Acknowledgement(props: ParamsWithLocale) {
         <CTASection
           title={translate("Support Our Mission")}
           description={translate(
-            "Help us continue making the Bhagavad Gita accessible to seekers worldwide"
+            "Help us continue making the Bhagavad Gita accessible to seekers worldwide",
           )}
           primaryButtonText={translate("Donate Now")}
           primaryButtonLink="/donate"
