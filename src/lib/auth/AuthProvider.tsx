@@ -70,8 +70,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signInWithGoogle = useCallback(async () => {
     setIsLoading(true);
     try {
+      // Explicitly get the current origin from window.location
+      // This ensures we use the actual domain in production
       const redirectUrl =
-        typeof window !== "undefined" ? window.location.origin : "";
+        typeof window !== "undefined"
+          ? `${window.location.protocol}//${window.location.host}`
+          : "";
 
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
@@ -81,6 +85,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             access_type: "offline",
             prompt: "consent",
           },
+          skipBrowserRedirect: false,
         },
       });
 
@@ -97,13 +102,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signInWithApple = useCallback(async () => {
     setIsLoading(true);
     try {
+      // Explicitly get the current origin from window.location
       const redirectUrl =
-        typeof window !== "undefined" ? window.location.origin : "";
+        typeof window !== "undefined"
+          ? `${window.location.protocol}//${window.location.host}`
+          : "";
 
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "apple",
         options: {
           redirectTo: redirectUrl,
+          skipBrowserRedirect: false,
         },
       });
 
