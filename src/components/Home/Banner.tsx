@@ -261,7 +261,7 @@ const Banner = (props: LocaleAndTranslations) => {
                   size="lg"
                   variant="outline"
                   asChild
-                  className="w-full border-2 border-white/30 bg-white/95 px-8 text-black shadow-xl backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white sm:w-[200px]"
+                  className="w-full border-2 border-transparent bg-white px-8 text-black shadow-xl transition-all duration-200 hover:bg-gray-100 sm:w-[200px]"
                 >
                   <LinkWithLocale href={"/about"}>
                     {translate("Learn more")}

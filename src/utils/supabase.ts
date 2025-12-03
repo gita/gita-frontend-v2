@@ -14,7 +14,6 @@ export const supabase = createClient(supabaseUrl, supabaseKey || "", {
     autoRefreshToken: true,
     detectSessionInUrl: true,
     flowType: "pkce", // Use PKCE flow for better security
-    storage:
-      typeof window !== "undefined" ? window.localStorage : undefined,
+    storage: typeof window !== "undefined" ? window.localStorage : undefined,
   },
 });

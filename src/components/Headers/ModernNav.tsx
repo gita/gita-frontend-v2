@@ -122,16 +122,21 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                   ) : (
                     <div className="space-y-3">
                       <div className="flex items-center gap-3 rounded-lg bg-muted p-3">
-                        {(user.user_metadata?.avatar_url || user.user_metadata?.picture) ? (
+                        {user.user_metadata?.avatar_url ||
+                        user.user_metadata?.picture ? (
                           <img
-                            src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                            src={
+                              user.user_metadata.avatar_url ||
+                              user.user_metadata.picture
+                            }
                             alt="Avatar"
                             className="size-10 rounded-full object-cover"
                             referrerPolicy="no-referrer"
                           />
                         ) : (
                           <div className="flex size-10 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
-                            {(user.user_metadata?.full_name?.[0] ||
+                            {(
+                              user.user_metadata?.full_name?.[0] ||
                               user.email?.[0] ||
                               "U"
                             ).toUpperCase()}
@@ -335,16 +340,21 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="gap-2 px-2">
-                  {(user.user_metadata?.avatar_url || user.user_metadata?.picture) ? (
+                  {user.user_metadata?.avatar_url ||
+                  user.user_metadata?.picture ? (
                     <img
-                      src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                      src={
+                        user.user_metadata.avatar_url ||
+                        user.user_metadata.picture
+                      }
                       alt="Avatar"
                       className="size-7 rounded-full object-cover"
                       referrerPolicy="no-referrer"
                     />
                   ) : (
                     <div className="flex size-7 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
-                      {(user.user_metadata?.full_name?.[0] ||
+                      {(
+                        user.user_metadata?.full_name?.[0] ||
                         user.email?.[0] ||
                         "U"
                       ).toUpperCase()}
@@ -356,8 +366,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
               <DropdownMenuContent align="end" className="w-56">
                 <div className="px-2 py-1.5">
                   <p className="text-sm font-medium">
-                    {user.user_metadata?.full_name ||
-                      user.email?.split("@")[0]}
+                    {user.user_metadata?.full_name || user.email?.split("@")[0]}
                   </p>
                   <p className="truncate text-xs text-muted-foreground">
                     {user.email}

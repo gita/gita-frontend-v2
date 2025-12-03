@@ -258,9 +258,13 @@ export default function IndexHeader({ locale, translate }: Props) {
                   {({ open }) => (
                     <>
                       <Popover.Button className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-white dark:hover:bg-zinc-700">
-                        {(user.user_metadata?.avatar_url || user.user_metadata?.picture) ? (
+                        {user.user_metadata?.avatar_url ||
+                        user.user_metadata?.picture ? (
                           <img
-                            src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                            src={
+                              user.user_metadata.avatar_url ||
+                              user.user_metadata.picture
+                            }
                             alt="Avatar"
                             className="size-6 rounded-full object-cover"
                             referrerPolicy="no-referrer"
@@ -480,9 +484,13 @@ export default function IndexHeader({ locale, translate }: Props) {
                         ) : (
                           <div className="px-3">
                             <div className="mb-3 flex items-center gap-3 rounded-lg bg-gray-50 p-3 dark:bg-zinc-800">
-                              {(user.user_metadata?.avatar_url || user.user_metadata?.picture) ? (
+                              {user.user_metadata?.avatar_url ||
+                              user.user_metadata?.picture ? (
                                 <img
-                                  src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                                  src={
+                                    user.user_metadata.avatar_url ||
+                                    user.user_metadata.picture
+                                  }
                                   alt="Avatar"
                                   className="size-10 rounded-full object-cover"
                                   referrerPolicy="no-referrer"
@@ -500,8 +508,8 @@ export default function IndexHeader({ locale, translate }: Props) {
                                 </p>
                               </div>
                             </div>
-                        <button
-                          type="button"
+                            <button
+                              type="button"
                               onClick={() => signOut()}
                               className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-zinc-600 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
                             >
@@ -518,8 +526,8 @@ export default function IndexHeader({ locale, translate }: Props) {
                                   d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                                 />
                               </svg>
-                            {translate("Sign Out")}
-                        </button>
+                              {translate("Sign Out")}
+                            </button>
                           </div>
                         )}
                       </div>

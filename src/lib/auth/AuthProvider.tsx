@@ -52,11 +52,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const error = params.get("error");
-      
+
       if (error) {
         console.error("[Auth] OAuth Error:", error);
         // Clean up URL
-        window.history.replaceState({}, document.title, window.location.pathname);
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname,
+        );
       }
     }
 
@@ -145,4 +149,3 @@ export function useAuth() {
   }
   return context;
 }
-
