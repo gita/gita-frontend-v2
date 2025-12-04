@@ -17,7 +17,7 @@ const RAG_CHUNK_COUNT = 5; // Number of relevant chunks to retrieve from vector 
  * Features:
  * - RAG: Retrieves relevant Gita content from Supabase pgvector
  * - Streaming: Uses AI SDK's streamText for real-time responses
- * - Rate Limiting: 5/day for anonymous, 10/day for authenticated users
+ * - Rate Limiting: 2/day for anonymous, 10/day for authenticated users (disabled in development)
  * - Krishna Personality: Speaks as Lord Krishna with divine wisdom
  * - AI Gateway: Uses Vercel AI Gateway for unified model access
  */
@@ -34,11 +34,13 @@ export async function POST(req: Request) {
     let isAuthenticated = false;
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    // Use service role key for server-side auth validation
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-    if (authHeader?.startsWith("Bearer ") && supabaseUrl && supabaseAnonKey) {
+    if (authHeader?.startsWith("Bearer ") && supabaseUrl && supabaseServiceKey) {
       const token = authHeader.substring(7);
-      const supabase = createClient(supabaseUrl, supabaseAnonKey);
+      // Service role client can validate any user's token
+      const supabase = createClient(supabaseUrl, supabaseServiceKey);
       const {
         data: { user },
       } = await supabase.auth.getUser(token);
@@ -49,42 +51,40 @@ export async function POST(req: Request) {
       }
     }
 
-    // Rate limit check - DISABLED FOR TESTING
-    // TODO: Re-enable before production
+    // Rate limit check - ENABLED (disabled in development)
+    const isDevelopment = process.env.NEXT_PUBLIC_NODE_ENV === "development";
     const identifier = isAuthenticated && userId ? userId : ip;
     const rateLimitResult = await checkRateLimit(identifier, isAuthenticated);
 
-    // Skip rate limit enforcement during testing
-    /*
-    if (!rateLimitResult.success) {
-      return new Response(
-        JSON.stringify({
-          error: "Rate limit exceeded",
-          message: isAuthenticated
-            ? "You have reached your daily limit of 10 messages. Please try again tomorrow."
-            : "You have reached the daily limit of 5 messages. Sign in for more messages, or try again tomorrow.",
-          remaining: rateLimitResult.remaining,
-          reset: rateLimitResult.reset.toISOString(),
-        }),
-        {
+    // Enforce rate limits (skip in development)
+    if (!isDevelopment && !rateLimitResult.success) {
+      const errorMessage = isAuthenticated
+        ? "You have reached your daily limit of 10 messages. Your limit will reset tomorrow."
+        : "You have reached the daily limit of 2 messages. Sign in to get 10 messages per day, or try again tomorrow.";
+      
+      // Return plain text error for AI SDK compatibility
+      return new Response(errorMessage, {
           status: 429,
           headers: {
-            "Content-Type": "application/json",
+          "Content-Type": "text/plain",
             ...getRateLimitHeaders(rateLimitResult),
           },
+      });
         }
-      );
+    
+    // Log rate limit bypass in development
+    if (isDevelopment) {
+      console.log("🔓 Rate limiting disabled in development mode");
     }
-    */
 
     // Parse request body - UI messages from the client
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     if (!messages || messages.length === 0) {
-      return new Response(
-        JSON.stringify({ error: "Messages are required" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return new Response("Please provide a message to continue the conversation.", {
+        status: 400,
+        headers: { "Content-Type": "text/plain" },
+      });
     }
 
     // Get the last user message for RAG retrieval
@@ -141,15 +141,9 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Chat API error:", error);
 
-    return new Response(
-      JSON.stringify({
-        error: "Internal server error",
-        message: "An error occurred while processing your request.",
-      }),
-      {
+    return new Response("An error occurred while processing your request. Please try again.", {
         status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+      headers: { "Content-Type": "text/plain" },
+    });
   }
 }

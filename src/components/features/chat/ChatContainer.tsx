@@ -206,8 +206,7 @@ export function ChatContainer({
           placeholder="Ask Krishna a question..."
         />
         <p className="mt-2 text-center text-xs text-muted-foreground">
-          GitaGPT provides guidance based on the Bhagavad Gita. Always reflect
-          and consult with a guru for deeper understanding.
+          AI can make mistakes. Verify responses and consult a guru for deeper understanding.
         </p>
       </div>
     </div>

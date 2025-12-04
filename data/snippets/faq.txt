@@ -9,7 +9,7 @@ The app is completely free with no ads or in-app purchases.
 Q: Is GitaGPT available 24/7?
 A: Yes, GitaGPT is available anytime you need spiritual guidance. However, there are usage limits:
 - Logged-in users: 10 messages per day
-- Guest users: 5 messages per day
+- Guest users: 2 messages per day
 These limits reset every 24 hours.
 
 ---

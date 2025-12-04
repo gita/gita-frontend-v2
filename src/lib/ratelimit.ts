@@ -3,7 +3,7 @@ import { Redis } from "@upstash/redis";
 
 /**
  * Rate limiting for GitaGPT chat
- * - Anonymous users: 5 messages per day (by IP)
+ * - Anonymous users: 2 messages per day (by IP)
  * - Authenticated users: 10 messages per day (by user ID)
  */
 
@@ -24,14 +24,14 @@ function getRedis(): Redis {
 }
 
 /**
- * Rate limit for anonymous users (5 messages per day)
+ * Rate limit for anonymous users (2 messages per day)
  * Identified by IP address
  */
 export function getAnonRateLimit(): Ratelimit {
   if (!anonRateLimitInstance) {
     anonRateLimitInstance = new Ratelimit({
       redis: getRedis(),
-      limiter: Ratelimit.fixedWindow(5, "1 d"),
+      limiter: Ratelimit.fixedWindow(2, "1 d"),
       prefix: "gitagpt:anon",
       analytics: true,
     });
@@ -77,7 +77,7 @@ export async function checkRateLimit(
     return {
       success: result.success,
       remaining: result.remaining,
-      limit: isAuthenticated ? 10 : 5,
+      limit: isAuthenticated ? 10 : 2,
       reset: new Date(result.reset),
     };
   } catch (error) {
@@ -85,8 +85,8 @@ export async function checkRateLimit(
     // If rate limiting fails, allow the request but log the error
     return {
       success: true,
-      remaining: isAuthenticated ? 10 : 5,
-      limit: isAuthenticated ? 10 : 5,
+      remaining: isAuthenticated ? 10 : 2,
+      limit: isAuthenticated ? 10 : 2,
       reset: new Date(Date.now() + 86400000), // 24 hours from now
     };
   }
@@ -105,5 +105,51 @@ export function getRateLimitHeaders(result: {
     "X-RateLimit-Remaining": result.remaining.toString(),
     "X-RateLimit-Reset": result.reset.toISOString(),
   };
+}
+
+/**
+ * Get current rate limit status WITHOUT consuming a credit
+ * Use this for proactive rate limit display on the main page
+ * @param identifier - IP address for anon, user ID for authenticated
+ * @param isAuthenticated - Whether the user is logged in
+ * @returns Object with remaining messages and reset time
+ */
+export async function getRateLimitStatus(
+  identifier: string,
+  isAuthenticated: boolean
+): Promise<{
+  remaining: number;
+  limit: number;
+  reset: Date;
+  isLimited: boolean;
+}> {
+  const limit = isAuthenticated ? 10 : 2;
+  
+  try {
+    const ratelimit = isAuthenticated ? getAuthRateLimit() : getAnonRateLimit();
+    
+    // getRemaining() checks without consuming a credit
+    const result = await ratelimit.getRemaining(identifier);
+    
+    // Ensure remaining is within valid bounds
+    const remaining = Math.max(0, Math.min(result.remaining, limit));
+    
+    return {
+      remaining,
+      limit,
+      reset: new Date(result.reset),
+      isLimited: remaining <= 0,
+    };
+  } catch (error) {
+    console.error("Rate limit status check failed:", error);
+    // On error, return safe defaults - don't block users
+    // Avoid slow Redis operations that could cause timeouts
+    return {
+      remaining: limit,
+      limit,
+      reset: new Date(Date.now() + 86400000),
+      isLimited: false,
+    };
+  }
 }
 

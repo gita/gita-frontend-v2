@@ -39,11 +39,13 @@ npm run ingest:chapter -- 5  # Re-index Chapter 5
 
 # Testing
 npx tsx scripts/test-rag-system.ts  # Automated tests
-npm run dev                         # Manual testing
+npm run dev                         # Manual testing (rate limiting disabled)
 
 # Deployment
 vercel deploy
 ```
+
+**💡 Development Mode:** Rate limiting is automatically disabled when `NEXT_PUBLIC_NODE_ENV=development`
 
 ---
 

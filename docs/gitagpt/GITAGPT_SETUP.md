@@ -112,8 +112,9 @@ Expected: ~15,000-25,000 vectors depending on content.
 3. Copy the REST URL and Token to your `.env.local`
 
 Rate limits:
-- Anonymous users: 5 messages/day
+- Anonymous users: 2 messages/day
 - Authenticated users: 10 messages/day
+- **Note:** Rate limiting is automatically disabled when `NEXT_PUBLIC_NODE_ENV=development` for local testing
 
 ## Step 4: Test the Chat
 

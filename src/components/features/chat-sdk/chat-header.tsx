@@ -149,16 +149,46 @@ export function ChatHeader({ showExpandButton, onExpandSidebar }: ChatHeaderProp
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="User menu">
-                  <User className="size-5" />
-                </Button>
+                <button className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-opacity hover:opacity-80" aria-label="User menu">
+                  {user.user_metadata?.avatar_url || user.user_metadata?.picture ? (
+                    <img
+                      src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                      alt="Avatar"
+                      className="size-9 rounded-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="flex size-9 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
+                      {(user.user_metadata?.full_name?.[0] || user.email?.[0] || "U").toUpperCase()}
+                    </div>
+                  )}
+                </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem disabled>
-                  {user.email}
-                </DropdownMenuItem>
+              <DropdownMenuContent align="end" className="w-56">
+                <div className="flex items-center gap-3 p-2">
+                  {user.user_metadata?.avatar_url || user.user_metadata?.picture ? (
+                    <img
+                      src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                      alt="Avatar"
+                      className="size-10 rounded-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="flex size-10 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
+                      {(user.user_metadata?.full_name?.[0] || user.email?.[0] || "U").toUpperCase()}
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium">
+                      {user.user_metadata?.full_name || user.email?.split("@")[0]}
+                    </p>
+                    <p className="truncate text-xs text-muted-foreground">
+                      {user.email}
+                    </p>
+                  </div>
+                </div>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleSignOut}>
+                <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
                   Sign out
                 </DropdownMenuItem>
               </DropdownMenuContent>

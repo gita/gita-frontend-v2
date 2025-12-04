@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { MessageSquare } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -8,17 +9,57 @@ interface UsageDisplayProps {
   used: number;
   limit: number;
   isAuthenticated: boolean;
+  resetTime?: Date | null;
+  onSignInClick?: () => void;
   className?: string;
+}
+
+function useCountdown(targetDate: Date | null | undefined) {
+  const [timeLeft, setTimeLeft] = useState("");
+
+  useEffect(() => {
+    if (!targetDate) return;
+
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      const target = new Date(targetDate).getTime();
+      const difference = target - now;
+
+      if (difference <= 0) {
+        return "now";
+      }
+
+      const hours = Math.floor(difference / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+      if (hours > 0) {
+        return `${hours}h ${minutes}m`;
+      }
+      return `${minutes}m`;
+    };
+
+    setTimeLeft(calculateTimeLeft());
+
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 60000); // Update every minute
+
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  return timeLeft;
 }
 
 export function UsageDisplay({
   used,
   limit,
   isAuthenticated,
+  resetTime,
+  onSignInClick,
   className,
 }: UsageDisplayProps) {
   const percentage = (used / limit) * 100;
-  const isNearLimit = percentage >= 80;
+  const countdown = useCountdown(resetTime);
 
   return (
     <div className={cn("space-y-2", className)}>
@@ -29,21 +70,13 @@ export function UsageDisplay({
             <MessageSquare className="size-3" />
             <span>Messages Today</span>
           </div>
-          <span
-            className={cn(
-              "font-medium",
-              isNearLimit ? "text-destructive" : "text-sidebar-foreground"
-            )}
-          >
+          <span className="font-medium text-sidebar-foreground">
             {used} / {limit}
           </span>
         </div>
-        <div className="bg-sidebar-accent h-1.5 w-full overflow-hidden rounded-full">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-primary/20">
           <div
-            className={cn(
-              "h-full transition-all duration-300",
-              isNearLimit ? "bg-destructive" : "bg-sidebar-primary"
-            )}
+            className="h-full bg-primary transition-all duration-300"
             style={{ width: `${Math.min(percentage, 100)}%` }}
           />
         </div>
@@ -52,12 +85,19 @@ export function UsageDisplay({
       {/* Status Message */}
       {!isAuthenticated && used >= limit && (
         <p className="text-xs text-destructive">
-          Daily limit reached. Sign in for more messages.
+          Daily limit reached.{" "}
+          <button
+            onClick={onSignInClick}
+            className="font-medium underline underline-offset-2 hover:text-destructive/80"
+          >
+            Sign in
+          </button>{" "}
+          for more messages.
         </p>
       )}
       {isAuthenticated && used >= limit && (
         <p className="text-xs text-destructive">
-          Daily limit reached. Resets at midnight.
+          Limit reached. Resets in {countdown || "24h"}.
         </p>
       )}
     </div>
