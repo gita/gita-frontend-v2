@@ -1,0 +1,24 @@
+Q: How do I download the Bhagavad Gita app?
+A: You can download the Bhagavad Gita app from:
+- Google Play Store: https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita
+- Apple App Store: https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635
+The app is completely free with no ads or in-app purchases.
+
+---
+
+Q: Is GitaGPT available 24/7?
+A: Yes, GitaGPT is available anytime you need spiritual guidance. However, there are usage limits:
+- Logged-in users: 10 messages per day
+- Guest users: 5 messages per day
+These limits reset every 24 hours.
+
+---
+
+Q: Can GitaGPT answer questions in Hindi?
+A: Yes, GitaGPT understands and can respond in both Hindi and English. The chatbot is trained on Hindi verses and commentaries as well.
+
+---
+
+Q: Who provides the commentary in GitaGPT?
+A: GitaGPT primarily uses commentaries from Swami Mukundananda, a renowned spiritual teacher. His detailed explanations help make the Gita's wisdom accessible to modern readers.
+

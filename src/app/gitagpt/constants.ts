@@ -44,3 +44,4 @@ export const getJsonLdTwo = (locale: string) => ({
     },
   ],
 });
+

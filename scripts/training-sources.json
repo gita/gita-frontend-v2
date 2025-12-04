@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-12-04T06:22:18.125Z",
+  "sources": {
+    "gita_json": {
+      "enabled": true,
+      "data_path": "/Users/radhakrishna/Documents/gita-flutter-2.0/assets/data",
+      "source_repo": "https://github.com/gita/gita-flutter-2.0",
+      "authors": [
+        {
+          "id": 22,
+          "name": "Swami Mukundananda",
+          "language": "en",
+          "last_trained": null
+        }
+      ],
+      "chapters": {
+        "included": "all",
+        "last_trained": null
+      }
+    },
+    "website_pages": {
+      "enabled": true,
+      "urls": [
+        "https://bhagavadgita.io/",
+        "https://bhagavadgita.io/hi",
+        "https://bhagavadgita.io/bhagavad-gita-quotes",
+        "https://bhagavadgita.io/bhagavad-gita-quotes/hi",
+        "https://bhagavadgita.io/about",
+        "https://bhagavadgita.io/about/hi",
+        "https://bhagavadgita.io/donate",
+        "https://bhagavadgita.io/donate/hi",
+        "https://bhagavadgita.io/mahabharata-characters",
+        "https://bhagavadgita.io/mahabharata-characters/hi",
+        "https://bhagavadgita.io/acknowledgements",
+        "https://bhagavadgita.io/acknowledgements/hi",
+        "https://bhagavadgita.io/copyright",
+        "https://bhagavadgita.io/copyright/hi",
+        "https://bhagavadgita.io/terms-of-service",
+        "https://bhagavadgita.io/terms-of-service/hi",
+        "https://bhagavadgita.io/privacy-policy",
+        "https://bhagavadgita.io/privacy-policy/hi"
+      ],
+      "training_metadata": {
+        "last_batch_trained": "2025-12-04T06:10:40.979Z",
+        "total_pages_trained": 18,
+        "notes": "Auto-extracts title, description, and og:image from page metadata"
+      },
+      "selectors": {
+        "title": "h1, .page-title",
+        "content": "main, article, .content",
+        "exclude": [
+          "nav",
+          "footer",
+          ".sidebar",
+          "header",
+          ".cookie-banner"
+        ]
+      }
+    },
+    "custom_snippets": {
+      "enabled": true,
+      "folder": "./data/snippets",
+      "notes": "Add .txt or .md files with Q&A pairs, facts, or any custom content",
+      "format_guide": {
+        "single_file": "qa-pairs.txt with Q: and A: format",
+        "multiple_files": "One topic per file, filename becomes the title",
+        "example": "faq.txt, glossary.txt, teaching-points.txt"
+      },
+      "training_metadata": {
+        "last_batch_trained": null,
+        "total_files_trained": 0
+      }
+    }
+  },
+  "training_history": [
+    {
+      "timestamp": "2025-12-04T06:02:43.474Z",
+      "source_type": "website",
+      "records_added": 9,
+      "records_updated": 0,
+      "records_deleted": 0,
+      "details": {
+        "update_mode": "append",
+        "gita_enabled": false,
+        "website_enabled": true
+      }
+    },
+    {
+      "timestamp": "2025-12-04T06:10:40.979Z",
+      "source_type": "website",
+      "records_added": 0,
+      "records_updated": 0,
+      "records_deleted": 0,
+      "details": {
+        "update_mode": "append",
+        "gita_enabled": false,
+        "website_enabled": true
+      }
+    },
+    {
+      "timestamp": "2025-12-04T06:22:18.125Z",
+      "source_type": "custom",
+      "records_added": 1,
+      "records_updated": 0,
+      "records_deleted": 0,
+      "details": {
+        "update_mode": "append",
+        "gita_enabled": false,
+        "website_enabled": false
+      }
+    }
+  ]
+}
