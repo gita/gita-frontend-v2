@@ -221,28 +221,39 @@ export function Chat({ chatId }: ChatProps) {
       // Only after successful send, create/commit the chat
       if (isNewChat) {
         const title = message.slice(0, 50) + (message.length > 50 ? "..." : "");
-        const newChat = await createChat(title);
-        const newChatId = newChat.id;
-        
-        setActiveChatId(newChatId);
-        titleUpdatedRef.current = true;
-        
-        // Save user message to persistence
-        addMessage(newChatId, {
-          role: "user",
-          content: message,
-        });
-        syncedMessageCountRef.current += 1;
-        
-        // Update URL without full page reload
-        window.history.pushState({}, '', `/gitagpt/chat/${newChatId}`);
+        try {
+          const newChat = await createChat(title);
+          const newChatId = newChat.id;
+          
+          setActiveChatId(newChatId);
+          titleUpdatedRef.current = true;
+          
+          // Save user message to persistence
+          addMessage(newChatId, {
+            role: "user",
+            content: message,
+          });
+          syncedMessageCountRef.current += 1;
+          
+          // Update URL without full page reload
+          window.history.pushState({}, '', `/gitagpt/chat/${newChatId}`);
+        } catch {
+          // Chat persistence failed (e.g., not authenticated yet)
+          // Continue without persisting - the message was already sent
+          console.warn("Could not persist chat - continuing without saving");
+        }
       } else if (activeChatId) {
         // Existing chat - save user message
-        addMessage(activeChatId, {
-          role: "user",
-          content: message,
-        });
-        syncedMessageCountRef.current += 1;
+        try {
+          addMessage(activeChatId, {
+            role: "user",
+            content: message,
+          });
+          syncedMessageCountRef.current += 1;
+        } catch {
+          // Message persistence failed
+          console.warn("Could not persist message - continuing without saving");
+        }
       }
       // Refresh rate limit status after successful send
       refreshRateLimit();
