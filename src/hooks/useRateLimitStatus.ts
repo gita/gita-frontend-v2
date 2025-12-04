@@ -49,7 +49,16 @@ export function useRateLimitStatus() {
         headers["Authorization"] = `Bearer ${session.access_token}`;
       }
 
-      const response = await fetch("/api/chat/status", { headers });
+      // Add timeout to prevent hanging
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+      const response = await fetch("/api/chat/status", { 
+        headers,
+        signal: controller.signal,
+      });
+      
+      clearTimeout(timeoutId);
       
       if (!response.ok) {
         throw new Error("Failed to fetch rate limit status");
@@ -58,9 +67,12 @@ export function useRateLimitStatus() {
       const data: RateLimitStatus = await response.json();
       setStatus(data);
     } catch (err) {
-      console.error("Error fetching rate limit status:", err);
+      // Don't log abort errors
+      if (err instanceof Error && err.name !== "AbortError") {
+        console.error("Error fetching rate limit status:", err);
+      }
       setError(err instanceof Error ? err.message : "Unknown error");
-      // Set default status on error
+      // Set default status on error - don't block users
       setStatus({
         remaining: 2,
         limit: 2,
@@ -100,8 +112,9 @@ export function useRateLimitStatus() {
     isLoading,
     error,
     refresh,
+    // Default to not limited to avoid blocking users on first load
     isLimited: status?.isLimited ?? false,
-    remaining: status?.remaining ?? 0,
+    remaining: status?.remaining ?? 2,
     limit: status?.limit ?? 2,
     resetTime: status?.reset ? new Date(status.reset) : null,
   };

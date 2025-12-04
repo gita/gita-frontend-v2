@@ -4,13 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { AlertTriangle } from "lucide-react";
-import { usePathname } from "next/navigation";
-
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 import { Messages } from "./messages";
 import { MultimodalInput } from "./multimodal-input";
-import { WelcomeModal } from "./welcome-modal";
 
 import { AuthModal } from "@/components/AuthModal";
 import { useChatPersistence } from "@/hooks/useChatPersistence";
@@ -29,7 +27,7 @@ export function Chat({ chatId }: ChatProps) {
   const { isLoading: chatsLoading, getChat, createChat, addMessage, updateChatTitle } = useChatPersistence();
   
   // Proactive rate limit status check
-  const { isLimited: isProactivelyLimited, remaining, limit, refresh: refreshRateLimit } = useRateLimitStatus();
+  const { isLimited: isProactivelyLimited, refresh: refreshRateLimit } = useRateLimitStatus();
 
   // Track the active chat ID for this session (may be created mid-conversation)
   const [activeChatId, setActiveChatId] = useState<string | null>(chatId ?? null);
@@ -85,7 +83,7 @@ export function Chat({ chatId }: ChatProps) {
       try {
         const parsed = JSON.parse(cleanedStr);
         return parsed.error || parsed.message || cleanedStr;
-      } catch (e) {
+      } catch {
         // If parsing fails, return as is
         return cleanedStr;
       }
@@ -446,9 +444,6 @@ export function Chat({ chatId }: ChatProps) {
           </div>
         </div>
 
-        {/* Welcome Modal for first-time visitors */}
-        <WelcomeModal onSignUp={() => setAuthModalOpen(true)} />
-        
         {/* Auth Modal */}
         <AuthModal 
           isOpen={authModalOpen} 
