@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect,useState } from "react";
-import { Moon, PanelLeft, Plus,Sun, User } from "lucide-react";
+import { Moon, PanelLeft, Plus, Sun } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 

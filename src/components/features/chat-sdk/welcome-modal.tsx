@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Bookmark, BookOpen, MessageSquare, NotebookPen, Sparkles } from "lucide-react";
-import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import {
