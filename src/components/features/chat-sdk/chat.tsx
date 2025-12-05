@@ -188,16 +188,16 @@ export function Chat({ chatId }: ChatProps) {
     }
   }, [messages.length, status, activeChatId, addMessage, updateChatTitle]);
 
-  // Track previous auth state to detect login
+  // Track previous auth state to detect login/logout
   const wasAuthenticatedRef = useRef<boolean>(!!user);
   
-  // Clear chat when user logs in (to avoid mixing anonymous and authenticated chats)
+  // Clear chat when user logs in or out (to avoid mixing auth states)
   useEffect(() => {
     const isNowAuthenticated = !!user;
     const wasAuthenticated = wasAuthenticatedRef.current;
     
-    // User just logged in - clear the chat and start fresh
-    if (isNowAuthenticated && !wasAuthenticated) {
+    // Auth state changed (login or logout) - clear the chat and start fresh
+    if (isNowAuthenticated !== wasAuthenticated) {
       setActiveChatId(null);
       setMessages([]);
       clearError();
