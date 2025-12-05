@@ -619,7 +619,39 @@ const token =
 
 ---
 
-## Decision 23: Training Tracker System
+## Decision 23: OAuth Redirect Handling
+
+### Decision: localStorage-based return path for OAuth flows
+
+**Problem**: When users sign in via Google/Apple OAuth from GitaGPT, they were being redirected to the homepage instead of back to the chat.
+
+**Solution**: Store the current path in `localStorage` before OAuth redirect, then restore it after.
+
+**Implementation**:
+
+```typescript
+// Before OAuth
+localStorage.setItem("authReturnPath", window.location.pathname);
+
+// After OAuth (in AuthProvider useEffect)
+const returnPath = localStorage.getItem("authReturnPath");
+if (returnPath && window.location.pathname !== returnPath) {
+  localStorage.removeItem("authReturnPath");
+  window.location.href = returnPath;
+}
+```
+
+**Why localStorage (not URL state)**:
+
+1. **OAuth constraint** - Can't pass custom state through OAuth redirect
+2. **Simple** - No server-side session needed
+3. **Reliable** - Survives the OAuth redirect round-trip
+
+**Outcome**: ✅ Users return to exactly where they were before signing in
+
+---
+
+## Decision 24: Training Tracker System
 
 ### Decision: JSON file with URLs and timestamps
 
