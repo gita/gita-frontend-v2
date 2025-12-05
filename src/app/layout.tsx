@@ -4,12 +4,6 @@ import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import { headers } from "next/headers";
 import Script from "next/script";
 
-// TopLoader removed - NProgress causes hydration errors on gitagpt routes
-// and conflicts with React 19's commit phase.
-// import TopLoader from "components/Headers/TopLoader";
-// ChatbaseWidget removed - its DOM manipulation (removing parent elements)
-// was breaking client-side navigation to gitagpt routes.
-// import ChatbaseWidget from "components/ChatbaseWidget";
 import { PreloadResources } from "./preload-resources";
 import Providers from "./providers";
 

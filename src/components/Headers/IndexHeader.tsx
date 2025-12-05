@@ -13,6 +13,7 @@ import {
   MagnifyingGlassIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { AuthModal } from "components/AuthModal";
@@ -151,9 +152,15 @@ export default function IndexHeader({ locale, translate }: Props) {
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <LinkWithLocale
                 href="/"
-                className="text-3xl font-bold focus:outline-none dark:text-white"
+                className="flex items-center gap-2.5 text-3xl font-bold focus:outline-none dark:text-white"
               >
                 <span className="sr-only">{translate("Workflow")}</span>
+                <Image
+                  src="/bhagavad-gita.png"
+                  height={32}
+                  width={26}
+                  alt="Bhagavad Gita"
+                />
                 {translate("Bhagavad Gita")}
               </LinkWithLocale>
             </div>
