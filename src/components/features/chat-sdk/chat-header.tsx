@@ -183,7 +183,7 @@ export function ChatHeader({ showExpandButton, onExpandSidebar }: ChatHeaderProp
                       {user.user_metadata?.full_name || user.email?.split("@")[0]}
                     </p>
                     <p className="truncate text-xs text-muted-foreground">
-                      {user.email}
+                  {user.email}
                     </p>
                   </div>
                 </div>

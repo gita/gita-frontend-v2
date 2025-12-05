@@ -54,7 +54,7 @@ export function Chat({ chatId }: ChatProps) {
         const token = accessTokenRef.current;
         if (token) {
           return { Authorization: `Bearer ${token}` };
-        }
+          }
         return {};
       },
     });
@@ -118,7 +118,6 @@ export function Chat({ chatId }: ChatProps) {
       pendingMessageHandledRef.current = false;
       
       const chat = getChat(chatId);
-      console.log("Loading chat:", chatId, "Found:", !!chat, "Messages:", chat?.messages?.length);
       
       if (chat?.messages && chat.messages.length > 0) {
         const formattedMessages = chat.messages.map((msg) => ({
@@ -251,21 +250,21 @@ export function Chat({ chatId }: ChatProps) {
       if (isNewChat) {
         const title = message.slice(0, 50) + (message.length > 50 ? "..." : "");
         try {
-          const newChat = await createChat(title);
-          const newChatId = newChat.id;
-          
-          setActiveChatId(newChatId);
-          titleUpdatedRef.current = true;
-          
-          // Save user message to persistence
-          addMessage(newChatId, {
-            role: "user",
-            content: message,
-          });
-          syncedMessageCountRef.current += 1;
-          
-          // Update URL without full page reload
-          window.history.pushState({}, '', `/gitagpt/chat/${newChatId}`);
+        const newChat = await createChat(title);
+        const newChatId = newChat.id;
+        
+        setActiveChatId(newChatId);
+        titleUpdatedRef.current = true;
+        
+        // Save user message to persistence
+        addMessage(newChatId, {
+          role: "user",
+          content: message,
+        });
+        syncedMessageCountRef.current += 1;
+        
+        // Update URL without full page reload
+        window.history.pushState({}, '', `/gitagpt/chat/${newChatId}`);
         } catch {
           // Chat persistence failed (e.g., not authenticated yet)
           // Continue without persisting - the message was already sent
@@ -274,11 +273,11 @@ export function Chat({ chatId }: ChatProps) {
       } else if (activeChatId) {
         // Existing chat - save user message
         try {
-          addMessage(activeChatId, {
-            role: "user",
-            content: message,
-          });
-          syncedMessageCountRef.current += 1;
+        addMessage(activeChatId, {
+          role: "user",
+          content: message,
+        });
+        syncedMessageCountRef.current += 1;
         } catch {
           // Message persistence failed
           console.warn("Could not persist message - continuing without saving");
@@ -483,7 +482,7 @@ export function Chat({ chatId }: ChatProps) {
             </p>
           </div>
         </div>
-
+        
         {/* Auth Modal */}
         <AuthModal 
           isOpen={authModalOpen} 
