@@ -173,7 +173,12 @@ export function useLocalChats() {
       const freshChats = loadChatsFromStorage();
       const chat = freshChats.find((c: Chat) => c.id === chatId);
 
-      console.log("[LocalChats] addMessage called:", { chatId, role: message.role, content: message.content.substring(0, 50), chatFound: !!chat });
+      console.log("[LocalChats] addMessage called:", {
+        chatId,
+        role: message.role,
+        content: message.content.substring(0, 50),
+        chatFound: !!chat,
+      });
 
       if (!chat) {
         console.warn("[LocalChats] Chat not found:", chatId);
@@ -182,7 +187,8 @@ export function useLocalChats() {
 
       // Check if message already exists (prevent duplicates)
       const messageExists = chat.messages.some(
-        (m: ChatMessage) => m.role === message.role && m.content === message.content,
+        (m: ChatMessage) =>
+          m.role === message.role && m.content === message.content,
       );
       if (messageExists) {
         console.log("[LocalChats] Message already exists, skipping");
@@ -201,13 +207,19 @@ export function useLocalChats() {
             messages: [...c.messages, newMessage],
             updatedAt: new Date(),
           };
-          console.log("[LocalChats] Updated chat:", { chatId, messagesCount: updatedChat.messages.length });
+          console.log("[LocalChats] Updated chat:", {
+            chatId,
+            messagesCount: updatedChat.messages.length,
+          });
           return updatedChat;
         }
         return c;
       });
 
-      console.log("[LocalChats] Saving chats to localStorage, total chats:", updatedChats.length);
+      console.log(
+        "[LocalChats] Saving chats to localStorage, total chats:",
+        updatedChats.length,
+      );
       saveChats(updatedChats);
     },
     [loadChatsFromStorage, saveChats],

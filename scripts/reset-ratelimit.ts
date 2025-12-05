@@ -63,7 +63,9 @@ async function resetRateLimits(target?: string) {
       console.log("⚠️  FLUSHING entire Redis database...\n");
       await redis.flushall();
       console.log("✅ Redis flushed successfully!");
-      console.log("\n💡 Tip: Restart your dev server to clear in-memory cache.");
+      console.log(
+        "\n💡 Tip: Restart your dev server to clear in-memory cache.",
+      );
       return;
     } else if (!target || target === "all") {
       // Reset all rate limits
@@ -92,13 +94,15 @@ async function resetRateLimits(target?: string) {
 
     if (totalDeleted === 0) {
       console.log("\n⚠️  No rate limit keys found to delete.");
-      console.log("💡 Tip: Try 'npx tsx scripts/reset-ratelimit.ts flush' for a complete reset.");
+      console.log(
+        "💡 Tip: Try 'npx tsx scripts/reset-ratelimit.ts flush' for a complete reset.",
+      );
     } else {
       console.log(
         `\n✅ Successfully deleted ${totalDeleted} rate limit key(s).`,
       );
     }
-    
+
     console.log("\n💡 Tip: Restart your dev server to clear in-memory cache.");
   } catch (error) {
     console.error("\n❌ Error:", error);
