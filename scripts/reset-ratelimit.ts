@@ -3,6 +3,7 @@
  *
  * Usage:
  *   npx tsx scripts/reset-ratelimit.ts              # Reset all rate limits
+ *   npx tsx scripts/reset-ratelimit.ts flush        # ⚠️ FLUSH entire Redis (most reliable)
  *   npx tsx scripts/reset-ratelimit.ts anon         # Reset anonymous only
  *   npx tsx scripts/reset-ratelimit.ts auth         # Reset authenticated only
  *   npx tsx scripts/reset-ratelimit.ts 127.0.0.1    # Reset specific IP
@@ -57,7 +58,14 @@ async function resetRateLimits(target?: string) {
   try {
     let totalDeleted = 0;
 
-    if (!target || target === "all") {
+    if (target === "flush") {
+      // Nuclear option - flush entire Redis database
+      console.log("⚠️  FLUSHING entire Redis database...\n");
+      await redis.flushall();
+      console.log("✅ Redis flushed successfully!");
+      console.log("\n💡 Tip: Restart your dev server to clear in-memory cache.");
+      return;
+    } else if (!target || target === "all") {
       // Reset all rate limits
       console.log("Resetting ALL rate limits...\n");
 
@@ -84,11 +92,14 @@ async function resetRateLimits(target?: string) {
 
     if (totalDeleted === 0) {
       console.log("\n⚠️  No rate limit keys found to delete.");
+      console.log("💡 Tip: Try 'npx tsx scripts/reset-ratelimit.ts flush' for a complete reset.");
     } else {
       console.log(
         `\n✅ Successfully deleted ${totalDeleted} rate limit key(s).`,
       );
     }
+    
+    console.log("\n💡 Tip: Restart your dev server to clear in-memory cache.");
   } catch (error) {
     console.error("\n❌ Error:", error);
     process.exit(1);
