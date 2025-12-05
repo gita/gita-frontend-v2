@@ -15,7 +15,12 @@ export default function Providers({ children }: { children: ReactNode }) {
   const store = useStore(undefined);
 
   return (
-    <PlausibleProvider domain="bhagavadgita.io" trackOutboundLinks>
+    <PlausibleProvider
+      domain="bhagavadgita.io"
+      trackOutboundLinks
+      trackLocalhost={false}
+      enabled={true}
+    >
       <CookiesProvider>
         <Provider store={store}>
           <ThemeProvider attribute="class" enableSystem={false}>
