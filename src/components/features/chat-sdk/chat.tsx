@@ -5,7 +5,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { AlertTriangle } from "lucide-react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { Messages } from "./messages";
 import { MultimodalInput } from "./multimodal-input";
@@ -22,6 +22,7 @@ interface ChatProps {
 export function Chat({ chatId }: ChatProps) {
   const { user, session } = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
   const [inputValue, setInputValue] = useState("");
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const { isLoading: chatsLoading, getChat, createChat, addMessage, updateChatTitle } = useChatPersistence();
@@ -204,10 +205,15 @@ export function Chat({ chatId }: ChatProps) {
       syncedMessageCountRef.current = 0;
       titleUpdatedRef.current = false;
       lastLoadedChatIdRef.current = null;
+      
+      // Navigate to main page to avoid loading old chat from URL
+      if (!isMainPage) {
+        router.push("/gitagpt");
+      }
     }
     
     wasAuthenticatedRef.current = isNowAuthenticated;
-  }, [user, setMessages, clearError]);
+  }, [user, setMessages, clearError, isMainPage, router]);
 
   // Reset state when navigating to main page (for new chat)
   useEffect(() => {
