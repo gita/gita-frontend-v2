@@ -319,9 +319,9 @@ if (query.match(/verse\s*(\d+)\.(\d+)/i)) {
 
 ---
 
-## Decision 11: Rate Limiting (Temporarily Disabled)
+## Decision 11: Rate Limiting with Upstash Redis
 
-### Decision: Upstash Redis, but disabled for testing
+### Decision: Upstash Redis with development bypass
 
 **Why Upstash Redis**:
 
@@ -330,22 +330,81 @@ if (query.match(/verse\s*(\d+)\.(\d+)/i)) {
 3. **Vercel KV compatible** - Can use either naming convention
 4. **FREE tier** - 10K requests/day
 
-**Why Disabled**:
+**Rate Limits (Production)**:
 
-- Testing phase - Don't want limits interfering
-- Will enable for production launch
-- Code is ready, just commented out
+- Anonymous: 2 messages/day (by IP address)
+- Authenticated: 10 messages/day (by user ID)
+- Development: Disabled when `NEXT_PUBLIC_NODE_ENV=development`
 
-**Limits Planned**:
+**Key Implementation Details**:
 
-- Anonymous: 5 messages/day
-- Authenticated: 10 messages/day
+1. **Singleton pattern** - Rate limiter instances cached in memory
+2. **Lazy initialization** - Created on first use
+3. **Service role key** - API routes use `SUPABASE_SERVICE_ROLE_KEY` to validate auth tokens (not anon key)
+4. **Status API** - `/api/chat/status` returns remaining messages without consuming credits
 
-**Outcome**: ✅ Ready to enable when launching to users
+**Reset Script**:
+
+```bash
+npx tsx scripts/reset-ratelimit.ts flush  # Most reliable
+```
+
+**Important**: After resetting, restart dev server to clear in-memory cache.
+
+**Outcome**: ✅ Production-ready with easy testing workflow
 
 ---
 
-## Decision 12: Single Author (Swami Mukundananda) Only
+## Decision 12: Chat Persistence (Hybrid Local + Supabase)
+
+### Decision: localStorage for anonymous, Supabase for authenticated
+
+**Options Considered**:
+
+1. Supabase only (require sign-in)
+2. localStorage only (no cloud sync)
+3. Hybrid (localStorage for anon, Supabase for auth)
+
+**Choice**: **Hybrid approach** (Option 3)
+
+**Why**:
+
+1. **Anonymous experience** - Users can try without signing in
+2. **Cloud persistence** - Signed-in users get chat history across devices
+3. **Clean separation** - No need to migrate local chats to cloud
+4. **Simple UX** - Chat clears on login/logout (fresh start)
+
+**Implementation**:
+
+- `useLocalChats.ts` - localStorage with JSON serialization
+- `useSupabaseChats.ts` - Supabase with JSONB `messages` column
+- `useChatPersistence.ts` - Unified hook that switches based on auth state
+
+**Database Schema**:
+
+```sql
+-- chats table (Supabase)
+create table chats (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id),
+  messages jsonb default '[]',
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+```
+
+**Key Decisions**:
+
+1. **JSONB column** - Messages stored as array in `chats` table (not separate table)
+2. **Write queue** - Serializes concurrent writes to prevent race conditions
+3. **No migration** - Local chats don't transfer to cloud (simpler UX)
+4. **Chat clearing** - On auth state change, clear chat to prevent confusion
+
+**Outcome**: ✅ Best of both worlds - try before sign-in, persist after
+
+---
+
+## Decision 14: Single Author (Swami Mukundananda) Only
 
 ### Decision: English version from Swami Mukundananda only
 
@@ -367,7 +426,7 @@ if (query.match(/verse\s*(\d+)\.(\d+)/i)) {
 
 ---
 
-## Decision 13: Streaming Responses
+## Decision 15: Streaming Responses
 
 ### Decision: Server-Sent Events (SSE) streaming
 
@@ -394,7 +453,7 @@ return result.toUIMessageStreamResponse();
 
 ---
 
-## Decision 14: Krishna Personality Prompt
+## Decision 16: Krishna Personality Prompt
 
 ### Decision: Conversational, compassionate guru (not formal/structured)
 
@@ -422,7 +481,7 @@ return result.toUIMessageStreamResponse();
 
 ---
 
-## Decision 15: 5 Chunks (Not 3 or 7)
+## Decision 17: 5 Chunks (Not 3 or 7)
 
 ### Decision: Retrieve 5 final chunks, 15-25 candidates for reranking
 
@@ -452,7 +511,7 @@ return result.toUIMessageStreamResponse();
 
 ---
 
-## Decision 16: Temperature = 0 (Consistent Responses)
+## Decision 18: Temperature = 0 (Consistent Responses)
 
 ### Decision: Zero temperature for deterministic outputs
 
@@ -473,7 +532,7 @@ return result.toUIMessageStreamResponse();
 
 ---
 
-## Decision 17: No Prompt Compression (For Now)
+## Decision 19: No Prompt Compression (For Now)
 
 ### Decision: Skip LLMLingua and similar compression
 
@@ -495,7 +554,7 @@ return result.toUIMessageStreamResponse();
 
 ---
 
-## Decision 18: Markdown Rendering in ChatMessage
+## Decision 20: Markdown Rendering in ChatMessage
 
 ### Decision: ReactMarkdown with custom styling
 
@@ -517,7 +576,7 @@ return result.toUIMessageStreamResponse();
 
 ---
 
-## Decision 19: Upstash Redis vs Vercel KV
+## Decision 21: Upstash Redis vs Vercel KV
 
 ### Decision: Support both (same underlying service)
 
@@ -540,7 +599,7 @@ const token =
 
 ---
 
-## Decision 20: Test-Driven Development
+## Decision 22: Test-Driven Development
 
 ### Decision: Build automated test suite early
 
@@ -560,7 +619,7 @@ const token =
 
 ---
 
-## Decision 21: Training Tracker System
+## Decision 23: Training Tracker System
 
 ### Decision: JSON file with URLs and timestamps
 

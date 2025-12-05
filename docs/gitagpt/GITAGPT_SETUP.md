@@ -114,9 +114,33 @@ Expected: ~15,000-25,000 vectors depending on content.
 
 Rate limits:
 
-- Anonymous users: 2 messages/day
-- Authenticated users: 10 messages/day
+- Anonymous users: 2 messages/day (by IP address)
+- Authenticated users: 10 messages/day (by user ID)
 - **Note:** Rate limiting is automatically disabled when `NEXT_PUBLIC_NODE_ENV=development` for local testing
+
+### Resetting Rate Limits
+
+For testing, you can reset rate limits using:
+
+```bash
+# Reset all rate limits (pattern-based)
+npx tsx scripts/reset-ratelimit.ts
+
+# ⚠️ Flush entire Redis database (most reliable)
+npx tsx scripts/reset-ratelimit.ts flush
+
+# Reset anonymous only
+npx tsx scripts/reset-ratelimit.ts anon
+
+# Reset authenticated only
+npx tsx scripts/reset-ratelimit.ts auth
+
+# Reset specific IP or user ID
+npx tsx scripts/reset-ratelimit.ts 127.0.0.1
+npx tsx scripts/reset-ratelimit.ts user-uuid-here
+```
+
+**Important:** After resetting, restart your dev server to clear in-memory cached rate limit instances
 
 ## Step 4: Test the Chat
 
@@ -128,18 +152,33 @@ Rate limits:
 
 ```
 src/
-├── app/api/chat/route.ts          # Chat API with RAG
-├── components/features/chat/
-│   ├── ChatContainer.tsx          # Main chat logic (useChat hook)
-│   ├── ChatInput.tsx              # Input component
-│   ├── ChatMessage.tsx            # Message bubble
-│   ├── ChatPage.tsx               # Full-page layout
-│   └── ChatWidget.tsx             # Floating widget
-└── lib/
-    ├── ai/
-    │   ├── prompts.ts             # Krishna personality
-    │   └── retrieval.ts           # Vector search
-    └── ratelimit.ts               # Upstash rate limiting
+├── app/
+│   ├── api/chat/
+│   │   ├── route.ts               # Chat API with RAG
+│   │   └── status/route.ts        # Rate limit status API
+│   └── gitagpt/                   # Full-screen chat UI
+├── components/features/chat-sdk/
+│   ├── chat.tsx                   # Main chat logic (useChat hook)
+│   ├── multimodal-input.tsx       # Input component
+│   ├── message.tsx                # Message bubble
+│   ├── sidebar.tsx                # Chat history sidebar
+│   ├── sidebar-footer.tsx         # Usage display
+│   └── usage-display.tsx          # Rate limit progress bar
+├── hooks/
+│   ├── useLocalChats.ts           # localStorage persistence (anonymous)
+│   ├── useSupabaseChats.ts        # Supabase persistence (authenticated)
+│   ├── useChatPersistence.ts      # Unified persistence hook
+│   ├── useRateLimitStatus.ts      # Rate limit display hook
+│   └── useCountdown.ts            # Reset timer countdown
+├── lib/
+│   ├── ai/
+│   │   ├── prompts.ts             # Krishna personality
+│   │   └── retrieval.ts           # Vector search
+│   ├── auth/
+│   │   └── AuthProvider.tsx       # Supabase auth context
+│   └── ratelimit.ts               # Upstash rate limiting
+└── scripts/
+    └── reset-ratelimit.ts         # Rate limit reset script
 ```
 
 ## Flutter Integration
@@ -205,10 +244,22 @@ Edit `src/lib/ai/prompts.ts` to adjust how Krishna responds.
 
 ## Troubleshooting
 
-### "Rate limit exceeded"
+### "Rate limit exceeded" / 429 errors
 
-- Check Upstash Redis connection
-- Verify environment variables are set
+1. **Reset rate limits:**
+   ```bash
+   npx tsx scripts/reset-ratelimit.ts flush
+   ```
+2. **Restart dev server** to clear in-memory cache
+3. **Verify environment variables** are set correctly:
+   - `KV_REST_API_URL` (or `UPSTASH_REDIS_REST_URL`)
+   - `KV_REST_API_TOKEN` (or `UPSTASH_REDIS_REST_TOKEN`)
+4. **For development:** Set `NEXT_PUBLIC_NODE_ENV=development` in `.env.local` to disable rate limits entirely
+
+### Rate limit not updating after sign-in
+
+- Ensure `SUPABASE_SERVICE_ROLE_KEY` is set (used for token validation in API routes)
+- The service role key has higher permissions than the anon key for validating auth tokens
 
 ### "Error retrieving context"
 

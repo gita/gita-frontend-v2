@@ -42,13 +42,21 @@ npm run ingest:chapter -- 5  # Re-index Chapter 5
 
 # Testing
 npx tsx scripts/test-rag-system.ts  # Automated tests
-npm run dev                         # Manual testing (rate limiting disabled)
+npm run dev                         # Manual testing
+
+# Rate Limit Management
+npx tsx scripts/reset-ratelimit.ts         # Reset all rate limits
+npx tsx scripts/reset-ratelimit.ts flush   # ⚠️ Flush entire Redis (most reliable)
+npx tsx scripts/reset-ratelimit.ts anon    # Reset anonymous only
+npx tsx scripts/reset-ratelimit.ts auth    # Reset authenticated only
 
 # Deployment
 vercel deploy
 ```
 
 **💡 Development Mode:** Rate limiting is automatically disabled when `NEXT_PUBLIC_NODE_ENV=development`
+
+**💡 After resetting rate limits:** Restart your dev server to clear in-memory cache
 
 ---
 

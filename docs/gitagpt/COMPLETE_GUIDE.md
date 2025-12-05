@@ -334,29 +334,45 @@ The two armies had gathered on the battlefield...
 ```
 src/
 ├── app/
-│   ├── api/chat/route.ts           # RAG + streaming endpoint
-│   └── gitagpt/[[...locale]]/
+│   ├── api/chat/
+│   │   ├── route.ts                # RAG + streaming endpoint
+│   │   └── status/route.ts         # Rate limit status API
+│   └── gitagpt/
+│       ├── layout.tsx              # Chat layout with sidebar
 │       └── page.tsx                # Full-screen chat UI
-├── components/features/chat/
-│   ├── ChatContainer.tsx           # useChat hook
-│   ├── ChatMessage.tsx             # Markdown rendering
-│   ├── ChatInput.tsx               # Input field
-│   └── ChatPage.tsx                # Full page layout
+├── components/features/chat-sdk/
+│   ├── chat.tsx                    # Main chat logic (useChat hook)
+│   ├── message.tsx                 # Markdown rendering
+│   ├── multimodal-input.tsx        # Input field
+│   ├── sidebar.tsx                 # Chat history sidebar
+│   ├── sidebar-footer.tsx          # Usage display wrapper
+│   ├── usage-display.tsx           # Rate limit progress bar
+│   └── chat-header.tsx             # Header with auth controls
+├── hooks/
+│   ├── useLocalChats.ts            # localStorage persistence (anon)
+│   ├── useSupabaseChats.ts         # Supabase persistence (auth)
+│   ├── useChatPersistence.ts       # Unified persistence switcher
+│   ├── useRateLimitStatus.ts       # Client-side rate limit status
+│   └── useCountdown.ts             # Timer countdown hook
 ├── lib/
 │   ├── ai/
 │   │   ├── retrieval.ts            # Main RAG pipeline
 │   │   ├── reranker.ts             # Jina + keyword
 │   │   ├── query-analysis.ts       # Query intelligence
 │   │   └── prompts.ts              # Krishna personality
-│   └── ratelimit.ts                # Upstash Redis
+│   ├── auth/
+│   │   └── AuthProvider.tsx        # Supabase auth context
+│   └── ratelimit.ts                # Upstash Redis rate limiting
 
 supabase/migrations/
 ├── 001_pgvector_setup.sql          # Vector DB + HNSW index
-└── 003_hybrid_search.sql           # BM25 hybrid search
+├── 003_hybrid_search.sql           # BM25 hybrid search
+└── 004_chat_history.sql            # Chat persistence tables
 
 scripts/
 ├── ingest-gita-content.ts          # Content ingestion
-└── test-rag-system.ts              # Automated tests
+├── test-rag-system.ts              # Automated tests
+└── reset-ratelimit.ts              # Rate limit reset utility
 ```
 
 ---
@@ -439,9 +455,36 @@ data: {"type":"text","value":" karma"}
 
 ### Rate Limits
 
-- Anonymous: 5 messages/day (currently disabled for testing)
-- Authenticated: 10 messages/day
+- Anonymous: 2 messages/day (by IP address)
+- Authenticated: 10 messages/day (by user ID)
 - Tracked via Upstash Redis
+- Resets daily at midnight (user's local timezone calculated from Redis)
+
+**Rate Limit Status API:**
+
+```
+GET /api/chat/status
+Authorization: Bearer <supabase-jwt>  // Optional
+```
+
+Returns:
+
+```json
+{
+  "remaining": 8,
+  "limit": 10,
+  "reset": "2024-01-02T00:00:00.000Z",
+  "isLimited": false,
+  "isAuthenticated": true
+}
+```
+
+### Chat Persistence
+
+- **Anonymous users:** Chats stored in `localStorage` (browser-only)
+- **Authenticated users:** Chats stored in Supabase `chats` table with `messages` JSONB column
+- Sidebar shows chat history, auto-updates when messages are sent
+- Chat clears on login/logout to switch between persistence layers
 
 ---
 
