@@ -70,7 +70,7 @@ export function UsageDisplay({
             <MessageSquare className="size-3" />
             <span>Messages Today</span>
           </div>
-          <span className="font-medium text-sidebar-foreground">
+          <span className="text-sidebar-foreground font-medium">
             {used} / {limit}
           </span>
         </div>

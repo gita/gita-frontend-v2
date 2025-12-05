@@ -234,7 +234,6 @@ export function Chat({ chatId }: ChatProps) {
     else if (chatId && chatId !== activeChatId) {
       setActiveChatId(chatId);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMainPage, chatId, error]); // activeChatId and setMessages are stable
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

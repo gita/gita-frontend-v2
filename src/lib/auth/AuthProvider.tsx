@@ -10,8 +10,9 @@ import {
 } from "react";
 import { Session, User } from "@supabase/supabase-js";
 
-import { triggerRateLimitRefresh } from "@/hooks/useRateLimitStatus";
 import { supabase } from "utils/supabase";
+
+import { triggerRateLimitRefresh } from "@/hooks/useRateLimitStatus";
 
 interface AuthContextType {
   user: User | null;
