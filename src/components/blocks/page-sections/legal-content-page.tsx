@@ -61,7 +61,7 @@ export function LegalContentPage({
                       {section.title}
                     </h2>
                   )}
-                  <div className="prose font-merriweather dark:prose-invert prose-headings:font-newsreader prose-p:text-foreground/90 max-w-none leading-relaxed">
+                  <div className="font-merriweather prose-headings:font-newsreader prose max-w-none leading-relaxed dark:prose-invert prose-p:text-foreground/90">
                     {section.content}
                   </div>
                 </div>

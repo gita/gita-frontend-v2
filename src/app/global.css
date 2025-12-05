@@ -33,6 +33,14 @@
     --adhyayan-bg: 46.15 22.81% 88.82%;
     --sanskrit-text: 35 36% 21%;
     --commentary-text: 0 0% 37%;
+
+    /* Sidebar theme colors (prakash/light mode) */
+    --sidebar-background: 48 33.33% 97.06%;
+    --sidebar-foreground: 48 19.61% 20%;
+    --sidebar-primary: 15.11 55.56% 52.35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 46.15 22.81% 88.82%;
+    --sidebar-border: 50 7.5% 84.31%;
   }
 
   .dark {
@@ -55,6 +63,14 @@
     --border: 60 5.08% 23.14%;
     --input: 52.5 5.13% 30.59%;
     --ring: 210 74.8% 49.8%;
+
+    /* Sidebar theme colors (nisha/dark mode) */
+    --sidebar-background: 60 2.7% 14.51%;
+    --sidebar-foreground: 46.15 9.77% 73.92%;
+    --sidebar-primary: 14.77 63.11% 59.61%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 48 10.64% 9.22%;
+    --sidebar-border: 60 5.08% 23.14%;
   }
 }
 

@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 
-import { paramsToLocale } from "shared/functions";
-
 import { getJsonLdTwo, jsonLdFirst } from "./constants";
 
-// Force static generation for better SEO
-export const dynamic = "force-static";
+import { Chat } from "@/components/features/chat-sdk";
 
-// Pre-generate both English and Hindi versions
-export async function generateStaticParams() {
-  return [{ locale: ["en"] }, { locale: ["hi"] }];
-}
+// Force dynamic rendering for chat functionality
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title:
@@ -55,11 +50,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function GitagptPage(props: ParamsWithLocale) {
-  const { params: paramsPromise } = props;
-  const params = await paramsPromise;
-  const locale = paramsToLocale(params);
-  const jsonLdSecond = getJsonLdTwo(locale);
+export default function GitagptPage() {
+  const jsonLdSecond = getJsonLdTwo("en");
 
   return (
     <>
@@ -71,17 +63,7 @@ export default async function GitagptPage(props: ParamsWithLocale) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSecond) }}
       />
-      {["en", "hi"].includes(locale) && (
-        <div style={{ height: "100vh", width: "100vw" }}>
-          <iframe
-            src="https://www.chatbase.co/chatbot-iframe/FUopn1I5lRD_dEopmyuQk"
-            width="100%"
-            style={{ height: "100%", minHeight: "700px" }}
-            frameBorder="0"
-            title="GitaGPT"
-          />
-        </div>
-      )}
+      <Chat />
     </>
   );
 }

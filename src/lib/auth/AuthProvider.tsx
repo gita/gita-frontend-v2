@@ -12,6 +12,8 @@ import { Session, User } from "@supabase/supabase-js";
 
 import { supabase } from "utils/supabase";
 
+import { triggerRateLimitRefresh } from "@/hooks/useRateLimitStatus";
+
 interface AuthContextType {
   user: User | null;
   session: Session | null;
@@ -29,6 +31,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Helper to handle post-OAuth redirect
+    const handleReturnRedirect = (session: Session | null) => {
+      if (!session) return;
+
+      const returnPath = localStorage.getItem("authReturnPath");
+      if (
+        returnPath &&
+        returnPath !== "/" &&
+        returnPath !== window.location.pathname
+      ) {
+        localStorage.removeItem("authReturnPath");
+        window.location.href = returnPath;
+      }
+    };
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
@@ -37,6 +54,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(session);
       setUser(session?.user ?? null);
       setIsLoading(false);
+
+      // Check for return redirect on initial load (handles OAuth callback)
+      handleReturnRedirect(session);
     });
 
     // Listen for auth changes
@@ -46,6 +66,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(session);
       setUser(session?.user ?? null);
       setIsLoading(false);
+
+      // Handle redirect after OAuth sign-in
+      if (event === "SIGNED_IN" && session) {
+        handleReturnRedirect(session);
+        // Refresh rate limit status with new auth state
+        setTimeout(() => triggerRateLimitRefresh(), 100);
+      }
+
+      // Also refresh when signed out
+      if (event === "SIGNED_OUT") {
+        triggerRateLimitRefresh();
+      }
     });
 
     // Check for OAuth errors in URL and clean up
@@ -70,12 +102,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signInWithGoogle = useCallback(async () => {
     setIsLoading(true);
     try {
-      // Explicitly get the current origin from window.location
-      // This ensures we use the actual domain in production
+      // Store current path to redirect back after OAuth
+      if (typeof window !== "undefined") {
+        localStorage.setItem("authReturnPath", window.location.pathname);
+      }
+
       const redirectUrl =
-        typeof window !== "undefined"
-          ? `${window.location.protocol}//${window.location.host}`
-          : "";
+        typeof window !== "undefined" ? window.location.origin : "";
 
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
@@ -102,11 +135,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signInWithApple = useCallback(async () => {
     setIsLoading(true);
     try {
-      // Explicitly get the current origin from window.location
+      // Store current path to redirect back after OAuth
+      if (typeof window !== "undefined") {
+        localStorage.setItem("authReturnPath", window.location.pathname);
+      }
+
       const redirectUrl =
-        typeof window !== "undefined"
-          ? `${window.location.protocol}//${window.location.host}`
-          : "";
+        typeof window !== "undefined" ? window.location.origin : "";
 
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "apple",
