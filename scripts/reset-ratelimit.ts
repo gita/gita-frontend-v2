@@ -1,6 +1,6 @@
 /**
  * Reset GitaGPT Rate Limits
- * 
+ *
  * Usage:
  *   npx tsx scripts/reset-ratelimit.ts              # Reset all rate limits
  *   npx tsx scripts/reset-ratelimit.ts anon         # Reset anonymous only
@@ -16,11 +16,14 @@ import { config } from "dotenv";
 config({ path: ".env.local" });
 
 const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+const token =
+  process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
 if (!url || !token) {
   console.error("❌ Missing Redis environment variables!");
-  console.error("   Required: KV_REST_API_URL and KV_REST_API_TOKEN (or UPSTASH_REDIS_REST_*)");
+  console.error(
+    "   Required: KV_REST_API_URL and KV_REST_API_TOKEN (or UPSTASH_REDIS_REST_*)",
+  );
   console.error("   Make sure these are set in your .env.local file");
   process.exit(1);
 }
@@ -32,7 +35,10 @@ async function deleteKeysByPattern(pattern: string): Promise<number> {
   let deletedCount = 0;
 
   do {
-    const [nextCursor, keys] = await redis.scan(cursor, { match: pattern, count: 100 });
+    const [nextCursor, keys] = await redis.scan(cursor, {
+      match: pattern,
+      count: 100,
+    });
     cursor = Number(nextCursor);
 
     if (keys.length > 0) {
@@ -54,25 +60,22 @@ async function resetRateLimits(target?: string) {
     if (!target || target === "all") {
       // Reset all rate limits
       console.log("Resetting ALL rate limits...\n");
-      
+
       console.log("Anonymous limits (gitagpt:anon:*):");
       totalDeleted += await deleteKeysByPattern("gitagpt:anon:*");
-      
+
       console.log("\nAuthenticated limits (gitagpt:auth:*):");
       totalDeleted += await deleteKeysByPattern("gitagpt:auth:*");
-      
     } else if (target === "anon") {
       console.log("Resetting anonymous rate limits...\n");
       totalDeleted = await deleteKeysByPattern("gitagpt:anon:*");
-      
     } else if (target === "auth") {
       console.log("Resetting authenticated rate limits...\n");
       totalDeleted = await deleteKeysByPattern("gitagpt:auth:*");
-      
     } else {
       // Specific identifier (IP or user ID)
       console.log(`Resetting rate limit for: ${target}\n`);
-      
+
       // Try both prefixes
       const anonDeleted = await deleteKeysByPattern(`gitagpt:anon:${target}*`);
       const authDeleted = await deleteKeysByPattern(`gitagpt:auth:${target}*`);
@@ -82,9 +85,10 @@ async function resetRateLimits(target?: string) {
     if (totalDeleted === 0) {
       console.log("\n⚠️  No rate limit keys found to delete.");
     } else {
-      console.log(`\n✅ Successfully deleted ${totalDeleted} rate limit key(s).`);
+      console.log(
+        `\n✅ Successfully deleted ${totalDeleted} rate limit key(s).`,
+      );
     }
-    
   } catch (error) {
     console.error("\n❌ Error:", error);
     process.exit(1);
@@ -94,4 +98,3 @@ async function resetRateLimits(target?: string) {
 // Run with command line argument
 const target = process.argv[2];
 resetRateLimits(target);
-

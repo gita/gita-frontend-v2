@@ -11,7 +11,7 @@ import { useAuth } from "@/lib/auth/AuthProvider";
  */
 export function useChatPersistence() {
   const { user } = useAuth();
-  
+
   const localChats = useLocalChats();
   const supabaseChats = useSupabaseChats(user?.id ?? null);
 
@@ -22,4 +22,3 @@ export function useChatPersistence() {
 
   return localChats;
 }
-

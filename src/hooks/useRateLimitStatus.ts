@@ -53,13 +53,13 @@ export function useRateLimitStatus() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-      const response = await fetch("/api/chat/status", { 
+      const response = await fetch("/api/chat/status", {
         headers,
         signal: controller.signal,
       });
-      
+
       clearTimeout(timeoutId);
-      
+
       if (!response.ok) {
         throw new Error("Failed to fetch rate limit status");
       }
@@ -119,4 +119,3 @@ export function useRateLimitStatus() {
     resetTime: status?.reset ? new Date(status.reset) : null,
   };
 }
-

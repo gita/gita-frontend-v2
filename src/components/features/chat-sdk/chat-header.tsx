@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { Moon, PanelLeft, Plus, Sun } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -29,7 +29,10 @@ interface ChatHeaderProps {
   onExpandSidebar?: () => void;
 }
 
-export function ChatHeader({ showExpandButton, onExpandSidebar }: ChatHeaderProps) {
+export function ChatHeader({
+  showExpandButton,
+  onExpandSidebar,
+}: ChatHeaderProps) {
   const [isDark, setIsDark] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const { user, signOut } = useAuth();
@@ -66,7 +69,7 @@ export function ChatHeader({ showExpandButton, onExpandSidebar }: ChatHeaderProp
         {/* Left: Sidebar Toggle + New Chat (when collapsed) + Title */}
         <div className="flex items-center gap-2">
           <SidebarToggle />
-          
+
           {/* Show expand and new chat buttons when sidebar is collapsed */}
           {showExpandButton && (
             <>
@@ -85,7 +88,7 @@ export function ChatHeader({ showExpandButton, onExpandSidebar }: ChatHeaderProp
                   <p>Open sidebar</p>
                 </TooltipContent>
               </Tooltip>
-              
+
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
@@ -103,9 +106,9 @@ export function ChatHeader({ showExpandButton, onExpandSidebar }: ChatHeaderProp
               </Tooltip>
             </>
           )}
-          
-          <Link 
-            href="/gitagpt" 
+
+          <Link
+            href="/gitagpt"
             className="ml-1 text-lg font-semibold transition-opacity hover:opacity-80"
           >
             GitaGPT
@@ -116,10 +119,16 @@ export function ChatHeader({ showExpandButton, onExpandSidebar }: ChatHeaderProp
         <div className="flex items-center gap-2">
           {/* Quick Links - Hidden on mobile */}
           <div className="hidden items-center gap-1 text-sm md:flex">
-            <Link href="/about" className="rounded-md px-3 py-1.5 transition-colors hover:bg-muted">
+            <Link
+              href="/about"
+              className="rounded-md px-3 py-1.5 transition-colors hover:bg-muted"
+            >
               About
             </Link>
-            <Link href="/donate" className="rounded-md px-3 py-1.5 transition-colors hover:bg-muted">
+            <Link
+              href="/donate"
+              className="rounded-md px-3 py-1.5 transition-colors hover:bg-muted"
+            >
               Donate
             </Link>
           </div>
@@ -149,62 +158,85 @@ export function ChatHeader({ showExpandButton, onExpandSidebar }: ChatHeaderProp
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-opacity hover:opacity-80" aria-label="User menu">
-                  {user.user_metadata?.avatar_url || user.user_metadata?.picture ? (
+                <button
+                  className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-opacity hover:opacity-80"
+                  aria-label="User menu"
+                >
+                  {user.user_metadata?.avatar_url ||
+                  user.user_metadata?.picture ? (
                     <img
-                      src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                      src={
+                        user.user_metadata.avatar_url ||
+                        user.user_metadata.picture
+                      }
                       alt="Avatar"
                       className="size-9 rounded-full object-cover"
                       referrerPolicy="no-referrer"
                     />
                   ) : (
                     <div className="flex size-9 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
-                      {(user.user_metadata?.full_name?.[0] || user.email?.[0] || "U").toUpperCase()}
+                      {(
+                        user.user_metadata?.full_name?.[0] ||
+                        user.email?.[0] ||
+                        "U"
+                      ).toUpperCase()}
                     </div>
                   )}
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
                 <div className="flex items-center gap-3 p-2">
-                  {user.user_metadata?.avatar_url || user.user_metadata?.picture ? (
+                  {user.user_metadata?.avatar_url ||
+                  user.user_metadata?.picture ? (
                     <img
-                      src={user.user_metadata.avatar_url || user.user_metadata.picture}
+                      src={
+                        user.user_metadata.avatar_url ||
+                        user.user_metadata.picture
+                      }
                       alt="Avatar"
                       className="size-10 rounded-full object-cover"
                       referrerPolicy="no-referrer"
                     />
                   ) : (
                     <div className="flex size-10 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
-                      {(user.user_metadata?.full_name?.[0] || user.email?.[0] || "U").toUpperCase()}
+                      {(
+                        user.user_metadata?.full_name?.[0] ||
+                        user.email?.[0] ||
+                        "U"
+                      ).toUpperCase()}
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">
-                      {user.user_metadata?.full_name || user.email?.split("@")[0]}
+                      {user.user_metadata?.full_name ||
+                        user.email?.split("@")[0]}
                     </p>
                     <p className="truncate text-xs text-muted-foreground">
-                  {user.email}
+                      {user.email}
                     </p>
                   </div>
                 </div>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
+                <DropdownMenuItem
+                  onClick={handleSignOut}
+                  className="cursor-pointer"
+                >
                   Sign out
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <div className="flex items-center gap-2">
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setAuthModalOpen(true)}
                 className="hidden sm:inline-flex"
               >
                 Sign in
               </Button>
-              <Button 
-                size="sm" 
+              <Button
+                size="sm"
                 onClick={() => setAuthModalOpen(true)}
                 className="bg-primary hover:bg-primary/90"
               >
@@ -216,10 +248,10 @@ export function ChatHeader({ showExpandButton, onExpandSidebar }: ChatHeaderProp
       </header>
 
       {/* Auth Modal */}
-      <AuthModal 
-        isOpen={authModalOpen} 
-        onClose={() => setAuthModalOpen(false)} 
-        translate={(key) => key || ""} 
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        translate={(key) => key || ""}
       />
     </TooltipProvider>
   );

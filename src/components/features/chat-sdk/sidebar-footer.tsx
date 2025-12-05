@@ -35,13 +35,22 @@ export function SidebarFooter() {
 
         {/* Quick Links */}
         <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-          <Link href="/about" className="hover:text-sidebar-primary transition-colors">
+          <Link
+            href="/about"
+            className="hover:text-sidebar-primary transition-colors"
+          >
             About
           </Link>
-          <Link href="/donate" className="hover:text-sidebar-primary transition-colors">
+          <Link
+            href="/donate"
+            className="hover:text-sidebar-primary transition-colors"
+          >
             Donate
           </Link>
-          <Link href="/privacy-policy" className="hover:text-sidebar-primary transition-colors">
+          <Link
+            href="/privacy-policy"
+            className="hover:text-sidebar-primary transition-colors"
+          >
             Privacy
           </Link>
         </div>
@@ -56,4 +65,3 @@ export function SidebarFooter() {
     </>
   );
 }
-

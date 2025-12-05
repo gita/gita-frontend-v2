@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect,useState } from "react";
-import { AnimatePresence,motion } from "framer-motion";
-import { MessageCircle, Minimize2,X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { MessageCircle, Minimize2, X } from "lucide-react";
 
 import { ChatContainer } from "./ChatContainer";
 
@@ -91,7 +91,7 @@ export function ChatWidget({
             className={cn(
               "fixed bottom-4 z-50 flex w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border bg-background shadow-2xl sm:bottom-6 sm:w-[400px]",
               positionClasses,
-              isMinimized ? "h-auto" : "h-[min(600px,calc(100vh-6rem))]"
+              isMinimized ? "h-auto" : "h-[min(600px,calc(100vh-6rem))]",
             )}
           >
             {/* Header */}
@@ -136,7 +136,7 @@ export function ChatWidget({
                 className="flex-1"
                 onRateLimitReached={(remaining, reset) => {
                   console.log(
-                    `Rate limit reached. Remaining: ${remaining}, Reset: ${reset}`
+                    `Rate limit reached. Remaining: ${remaining}, Reset: ${reset}`,
                   );
                 }}
               />
@@ -147,4 +147,3 @@ export function ChatWidget({
     </>
   );
 }
-

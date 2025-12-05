@@ -1,6 +1,6 @@
 /**
  * Training Tracker - Keep records of what's trained and when
- * 
+ *
  * Features:
  * - Read URLs from training-sources.json
  * - Track last training date for each source
@@ -77,7 +77,9 @@ const TRAINING_SOURCES_FILE = path.join(__dirname, "training-sources.json");
  */
 export function loadTrainingSources(): TrainingSources {
   if (!fs.existsSync(TRAINING_SOURCES_FILE)) {
-    throw new Error(`Training sources file not found: ${TRAINING_SOURCES_FILE}`);
+    throw new Error(
+      `Training sources file not found: ${TRAINING_SOURCES_FILE}`,
+    );
   }
 
   const content = fs.readFileSync(TRAINING_SOURCES_FILE, "utf-8");
@@ -92,7 +94,7 @@ export function saveTrainingSources(config: TrainingSources): void {
   fs.writeFileSync(
     TRAINING_SOURCES_FILE,
     JSON.stringify(config, null, 2),
-    "utf-8"
+    "utf-8",
   );
 }
 
@@ -113,7 +115,7 @@ export function getEnabledWebsiteURLs(config: TrainingSources): string[] {
 export function updateTrainingTimestamp(
   config: TrainingSources,
   sourceType: "gita_json" | "website" | "custom",
-  identifier?: string // URL or file path
+  identifier?: string, // URL or file path
 ): TrainingSources {
   const now = new Date().toISOString();
 
@@ -124,14 +126,14 @@ export function updateTrainingTimestamp(
     });
   } else if (sourceType === "website" && identifier) {
     const urlSource = config.sources.website_pages.urls.find(
-      (u) => u.url === identifier
+      (u) => u.url === identifier,
     );
     if (urlSource) {
       urlSource.last_trained = now;
     }
   } else if (sourceType === "custom" && identifier) {
     const fileSource = config.sources.custom_files.files.find(
-      (f) => f.path === identifier
+      (f) => f.path === identifier,
     );
     if (fileSource) {
       fileSource.last_trained = now;
@@ -146,7 +148,7 @@ export function updateTrainingTimestamp(
  */
 export function addTrainingHistory(
   config: TrainingSources,
-  entry: Omit<TrainingHistory, "timestamp">
+  entry: Omit<TrainingHistory, "timestamp">,
 ): TrainingSources {
   config.training_history.push({
     timestamp: new Date().toISOString(),
@@ -166,7 +168,7 @@ export function addTrainingHistory(
  */
 export function getStaleWebsiteSources(
   config: TrainingSources,
-  daysThreshold: number = 30
+  daysThreshold: number = 30,
 ): string[] {
   if (!config.sources.website_pages.training_metadata?.last_batch_trained) {
     return config.sources.website_pages.urls; // Never trained = all stale
@@ -174,7 +176,9 @@ export function getStaleWebsiteSources(
 
   const now = Date.now();
   const threshold = daysThreshold * 24 * 60 * 60 * 1000;
-  const lastTrained = new Date(config.sources.website_pages.training_metadata.last_batch_trained).getTime();
+  const lastTrained = new Date(
+    config.sources.website_pages.training_metadata.last_batch_trained,
+  ).getTime();
 
   if (now - lastTrained > threshold) {
     return config.sources.website_pages.urls; // All stale
@@ -196,20 +200,26 @@ export function displayTrainingStatus(config: TrainingSources): void {
   console.log(`   Data Path: ${config.sources.gita_json.data_path}`);
   console.log(`   Chapters: ${config.sources.gita_json.chapters.included}`);
   console.log(
-    `   Last Trained: ${config.sources.gita_json.chapters.last_trained || "Never"}`
+    `   Last Trained: ${config.sources.gita_json.chapters.last_trained || "Never"}`,
   );
 
   // Website pages
   console.log("\n🌐 Website Pages:");
-  console.log(`   Enabled: ${config.sources.website_pages.enabled ? "✅" : "❌"}`);
-  console.log(`   Configured URLs: ${config.sources.website_pages.urls.length}`);
-  
-  const lastBatch = config.sources.website_pages.training_metadata?.last_batch_trained;
-  const totalTrained = config.sources.website_pages.training_metadata?.total_pages_trained || 0;
-  
+  console.log(
+    `   Enabled: ${config.sources.website_pages.enabled ? "✅" : "❌"}`,
+  );
+  console.log(
+    `   Configured URLs: ${config.sources.website_pages.urls.length}`,
+  );
+
+  const lastBatch =
+    config.sources.website_pages.training_metadata?.last_batch_trained;
+  const totalTrained =
+    config.sources.website_pages.training_metadata?.total_pages_trained || 0;
+
   if (lastBatch) {
     const daysSince = Math.floor(
-      (Date.now() - new Date(lastBatch).getTime()) / (24 * 60 * 60 * 1000)
+      (Date.now() - new Date(lastBatch).getTime()) / (24 * 60 * 60 * 1000),
     );
     const indicator = daysSince > 30 ? "⚠️" : "✅";
     console.log(`   Last Batch: ${indicator} ${daysSince} days ago`);
@@ -235,7 +245,7 @@ export function displayTrainingStatus(config: TrainingSources): void {
       const date = new Date(entry.timestamp).toLocaleString();
       console.log(`   ${date} | ${entry.source_type}`);
       console.log(
-        `     Added: ${entry.records_added}, Updated: ${entry.records_updated}, Deleted: ${entry.records_deleted}`
+        `     Added: ${entry.records_added}, Updated: ${entry.records_updated}, Deleted: ${entry.records_deleted}`,
       );
     });
   }
@@ -250,8 +260,9 @@ export function checkStaleSources(config: TrainingSources): void {
   const stale = getStaleWebsiteSources(config, 30);
 
   if (stale.length > 0) {
-    console.log(`\n⚠️  Stale Website Sources (${stale.length} URLs >30 days old or never trained)`);
+    console.log(
+      `\n⚠️  Stale Website Sources (${stale.length} URLs >30 days old or never trained)`,
+    );
     console.log("   💡 Re-train with: npm run ingest:web\n");
   }
 }
-

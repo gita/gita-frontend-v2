@@ -84,4 +84,3 @@ export function MultimodalInput({
     </form>
   );
 }
-

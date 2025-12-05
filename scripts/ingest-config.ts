@@ -1,6 +1,6 @@
 /**
  * GitaGPT Ingestion Configuration
- * 
+ *
  * Flexible configuration for indexing content from multiple sources:
  * - JSON files (Gita verses from Flutter app)
  * - Website pages (scraping)
@@ -13,20 +13,21 @@
 
 /**
  * Default path to Gita JSON data from Flutter app
- * 
+ *
  * Structure expected:
  * - DATA_PATH/common/common_en.json (Sanskrit, transliteration, word meanings)
  * - DATA_PATH/authors/author_22_en.json (Swami Mukundananda translation & commentary)
  * - DATA_PATH/chapters/chapter_en.json (Chapter summaries)
- * 
+ *
  * Source: https://github.com/gita/gita-flutter-2.0
  * Location: assets/data/
  */
-export const DATA_PATH = "/Users/radhakrishna/Documents/gita-flutter-2.0/assets/data";
+export const DATA_PATH =
+  "/Users/radhakrishna/Documents/gita-flutter-2.0/assets/data";
 
 /**
  * Update this path if you have the data in a different location:
- * 
+ *
  * Examples:
  * export const DATA_PATH = "./data/gita";  // Relative to project root
  * export const DATA_PATH = "/custom/path/to/gita-data";  // Absolute path
@@ -46,7 +47,7 @@ export interface IngestConfig {
       chapters: number[] | "all"; // Specific chapters or "all"
       verses: number[] | "all"; // Specific verses or "all"
     };
-    
+
     website_pages: {
       enabled: boolean;
       urls: string[]; // List of URLs to scrape and index
@@ -56,19 +57,19 @@ export interface IngestConfig {
         exclude?: string[]; // CSS selectors to exclude (nav, footer, etc.)
       };
     };
-    
+
     custom_content: {
       enabled: boolean;
       files: string[]; // Paths to custom text/markdown files
     };
   };
-  
+
   // Update strategy
   update_mode: "append" | "replace" | "merge";
   // - append: Add new content, keep existing
   // - replace: Delete existing matching records, add new
   // - merge: Update existing records if found, add if not
-  
+
   // What to replace (only used if update_mode = "replace" or "merge")
   replace_filters?: {
     chapters?: number[]; // Replace specific chapters
@@ -76,14 +77,14 @@ export interface IngestConfig {
     types?: ("verse_complete" | "chapter_info" | "page_content")[]; // Replace specific content types
     urls?: string[]; // Replace specific URLs (for website pages)
   };
-  
+
   // Chunking settings
   chunking: {
     optimal_size: number; // 3000 chars recommended
     max_size: number; // 6000 chars max
     overlap: number; // 200 chars overlap
   };
-  
+
   // Processing settings
   batch_size: number; // Number of embeddings to process at once (10 recommended)
   delay_ms: number; // Delay between batches to avoid rate limits (200ms recommended)
@@ -181,7 +182,9 @@ export const WEBSITE_PAGES_CONFIG: IngestConfig = {
 /**
  * Replace specific chapter (e.g., re-index Chapter 2 with new translation)
  */
-export const REPLACE_CHAPTER_CONFIG = (chapterNumber: number): IngestConfig => ({
+export const REPLACE_CHAPTER_CONFIG = (
+  chapterNumber: number,
+): IngestConfig => ({
   ...FULL_GITA_CONFIG,
   sources: {
     ...FULL_GITA_CONFIG.sources,
@@ -245,4 +248,3 @@ export const DEFAULT_CONFIG = {
 // export const DEFAULT_CONFIG = CHAPTER_1_CONFIG;
 // export const DEFAULT_CONFIG = WEBSITE_PAGES_CONFIG;
 // export const DEFAULT_CONFIG = REPLACE_CHAPTER_CONFIG(2);
-

@@ -25,14 +25,23 @@ export function Chat({ chatId }: ChatProps) {
   const router = useRouter();
   const [inputValue, setInputValue] = useState("");
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const { isLoading: chatsLoading, getChat, createChat, addMessage, updateChatTitle } = useChatPersistence();
-  
+  const {
+    isLoading: chatsLoading,
+    getChat,
+    createChat,
+    addMessage,
+    updateChatTitle,
+  } = useChatPersistence();
+
   // Proactive rate limit status check
-  const { isLimited: isProactivelyLimited, refresh: refreshRateLimit } = useRateLimitStatus();
+  const { isLimited: isProactivelyLimited, refresh: refreshRateLimit } =
+    useRateLimitStatus();
 
   // Track the active chat ID for this session (may be created mid-conversation)
-  const [activeChatId, setActiveChatId] = useState<string | null>(chatId ?? null);
-  
+  const [activeChatId, setActiveChatId] = useState<string | null>(
+    chatId ?? null,
+  );
+
   // Check if we're on the main gitagpt page (not a chat page)
   const isMainPage = pathname === "/gitagpt" || pathname === "/gitagpt/";
 
@@ -55,7 +64,7 @@ export function Chat({ chatId }: ChatProps) {
         const token = accessTokenRef.current;
         if (token) {
           return { Authorization: `Bearer ${token}` };
-          }
+        }
         return {};
       },
     });
@@ -77,18 +86,18 @@ export function Chat({ chatId }: ChatProps) {
   // Parse error message to get clean text
   const getErrorMessage = (): string => {
     if (!error) return "";
-    
+
     // For Error objects, String() gives us the message
     // Error.toString() returns "Error: <message>" or just the message
     const errorStr = String(error);
-    
+
     // Remove "Error: " prefix if present
-    const cleanedStr = errorStr.startsWith("Error: ") 
-      ? errorStr.substring(7) 
+    const cleanedStr = errorStr.startsWith("Error: ")
+      ? errorStr.substring(7)
       : errorStr;
-    
+
     // Check if it's a JSON string
-    if (cleanedStr.startsWith('{') || cleanedStr.startsWith('{"error"')) {
+    if (cleanedStr.startsWith("{") || cleanedStr.startsWith('{"error"')) {
       try {
         const parsed = JSON.parse(cleanedStr);
         return parsed.error || parsed.message || cleanedStr;
@@ -97,29 +106,31 @@ export function Chat({ chatId }: ChatProps) {
         return cleanedStr;
       }
     }
-    
+
     return cleanedStr;
   };
 
   const errorMessage = getErrorMessage();
-  const isRateLimitError = errorMessage.toLowerCase().includes("daily limit") || errorMessage.toLowerCase().includes("rate limit");
+  const isRateLimitError =
+    errorMessage.toLowerCase().includes("daily limit") ||
+    errorMessage.toLowerCase().includes("rate limit");
 
   // Load existing messages when chat is opened (only for chats loaded from persistence)
   useEffect(() => {
     // Wait for chats to finish loading
     if (chatsLoading) return;
-    
+
     // Only load from persistence if chatId is from URL (not created mid-conversation)
     if (!chatId) return;
-    
+
     // If chatId changed, reset state and load messages
     if (chatId !== lastLoadedChatIdRef.current) {
       syncedMessageCountRef.current = 0;
       titleUpdatedRef.current = false;
       pendingMessageHandledRef.current = false;
-      
+
       const chat = getChat(chatId);
-      
+
       if (chat?.messages && chat.messages.length > 0) {
         const formattedMessages = chat.messages.map((msg) => ({
           id: msg.id,
@@ -132,7 +143,7 @@ export function Chat({ chatId }: ChatProps) {
       } else {
         setMessages([]);
       }
-      
+
       lastLoadedChatIdRef.current = chatId;
     }
   }, [chatId, chatsLoading, getChat, setMessages]);
@@ -140,29 +151,31 @@ export function Chat({ chatId }: ChatProps) {
   const isLoading = status === "streaming" || status === "submitted";
   const isReady = status === "ready";
 
-
   // Sync assistant messages with persistence (only when streaming completes)
   // User messages are saved immediately in handleSubmit
   useEffect(() => {
     const currentChatId = activeChatId;
     if (!currentChatId || status !== "ready" || messages.length === 0) return;
-    
+
     // Only sync messages we haven't synced yet
     const newMessagesCount = messages.length - syncedMessageCountRef.current;
     if (newMessagesCount <= 0) return;
 
     // Get new messages to sync (only assistant messages - user messages saved in handleSubmit)
     const newMessages = messages.slice(syncedMessageCountRef.current);
-    
+
     // Save each new ASSISTANT message (user messages already saved)
     newMessages.forEach((msg) => {
       if (msg.role !== "assistant") return; // Skip user messages - already saved
-      
-      const content = msg.parts
-        ?.filter((p): p is { type: "text"; text: string } => p.type === "text")
-        .map((p) => p.text)
-        .join("") || "";
-      
+
+      const content =
+        msg.parts
+          ?.filter(
+            (p): p is { type: "text"; text: string } => p.type === "text",
+          )
+          .map((p) => p.text)
+          .join("") || "";
+
       if (content) {
         addMessage(currentChatId, {
           role: "assistant",
@@ -178,10 +191,13 @@ export function Chat({ chatId }: ChatProps) {
     if (!titleUpdatedRef.current) {
       const firstUserMessage = messages.find((m) => m.role === "user");
       if (firstUserMessage) {
-        const content = firstUserMessage.parts
-          ?.filter((p): p is { type: "text"; text: string } => p.type === "text")
-          .map((p) => p.text)
-          .join("") || "";
+        const content =
+          firstUserMessage.parts
+            ?.filter(
+              (p): p is { type: "text"; text: string } => p.type === "text",
+            )
+            .map((p) => p.text)
+            .join("") || "";
         const title = content.slice(0, 50) + (content.length > 50 ? "..." : "");
         updateChatTitle(currentChatId, title);
         titleUpdatedRef.current = true;
@@ -189,29 +205,38 @@ export function Chat({ chatId }: ChatProps) {
     }
   }, [messages.length, status, activeChatId, addMessage, updateChatTitle]);
 
-  // Track previous auth state to detect login/logout
-  const wasAuthenticatedRef = useRef<boolean>(!!user);
-  
+  // Track previous auth state to detect login/logout (skip initial load)
+  const wasAuthenticatedRef = useRef<boolean | null>(null);
+  const isInitialMountRef = useRef(true);
+
   // Clear chat when user logs in or out (to avoid mixing auth states)
   useEffect(() => {
     const isNowAuthenticated = !!user;
-    const wasAuthenticated = wasAuthenticatedRef.current;
     
-    // Auth state changed (login or logout) - clear the chat and start fresh
-    if (isNowAuthenticated !== wasAuthenticated) {
+    // Skip on initial mount - we don't want to redirect when page first loads
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false;
+      wasAuthenticatedRef.current = isNowAuthenticated;
+      return;
+    }
+    
+    const wasAuthenticated = wasAuthenticatedRef.current;
+
+    // Auth state actually changed (login or logout) - clear the chat and start fresh
+    if (wasAuthenticated !== null && isNowAuthenticated !== wasAuthenticated) {
       setActiveChatId(null);
       setMessages([]);
       clearError();
       syncedMessageCountRef.current = 0;
       titleUpdatedRef.current = false;
       lastLoadedChatIdRef.current = null;
-      
+
       // Navigate to main page to avoid loading old chat from URL
       if (!isMainPage) {
         router.push("/gitagpt");
       }
     }
-    
+
     wasAuthenticatedRef.current = isNowAuthenticated;
   }, [user, setMessages, clearError, isMainPage, router]);
 
@@ -250,26 +275,26 @@ export function Chat({ chatId }: ChatProps) {
       // Send message to AI FIRST - before creating any chat
       // This way, if rate limit hits, no chat is created
       await sendMessage({ text: message });
-      
+
       // Only after successful send, create/commit the chat
       if (isNewChat) {
         const title = message.slice(0, 50) + (message.length > 50 ? "..." : "");
         try {
-        const newChat = await createChat(title);
-        const newChatId = newChat.id;
-        
-        setActiveChatId(newChatId);
-        titleUpdatedRef.current = true;
-        
-        // Save user message to persistence
-        addMessage(newChatId, {
-          role: "user",
-          content: message,
-        });
-        syncedMessageCountRef.current += 1;
-        
-        // Update URL without full page reload
-        window.history.pushState({}, '', `/gitagpt/chat/${newChatId}`);
+          const newChat = await createChat(title);
+          const newChatId = newChat.id;
+
+          setActiveChatId(newChatId);
+          titleUpdatedRef.current = true;
+
+          // Save user message to persistence
+          addMessage(newChatId, {
+            role: "user",
+            content: message,
+          });
+          syncedMessageCountRef.current += 1;
+
+          // Update URL without full page reload
+          window.history.pushState({}, "", `/gitagpt/chat/${newChatId}`);
         } catch {
           // Chat persistence failed (e.g., not authenticated yet)
           // Continue without persisting - the message was already sent
@@ -278,11 +303,11 @@ export function Chat({ chatId }: ChatProps) {
       } else if (activeChatId) {
         // Existing chat - save user message
         try {
-        addMessage(activeChatId, {
-          role: "user",
-          content: message,
-        });
-        syncedMessageCountRef.current += 1;
+          addMessage(activeChatId, {
+            role: "user",
+            content: message,
+          });
+          syncedMessageCountRef.current += 1;
         } catch {
           // Message persistence failed
           console.warn("Could not persist message - continuing without saving");
@@ -294,7 +319,7 @@ export function Chat({ chatId }: ChatProps) {
       console.error("Error sending message:", err);
       // Restore the input value on error
       setInputValue(message);
-      
+
       // Remove the user message that was optimistically added by useChat
       // This prevents showing the failed message in the chat
       setMessages((prev) => {
@@ -302,18 +327,21 @@ export function Chat({ chatId }: ChatProps) {
         const lastUserIdx = prev.findLastIndex((m) => m.role === "user");
         if (lastUserIdx !== -1) {
           const lastUserMsg = prev[lastUserIdx];
-          const lastUserText = lastUserMsg.parts
-            ?.filter((p): p is { type: "text"; text: string } => p.type === "text")
-            .map((p) => p.text)
-            .join("") || "";
-          
+          const lastUserText =
+            lastUserMsg.parts
+              ?.filter(
+                (p): p is { type: "text"; text: string } => p.type === "text",
+              )
+              .map((p) => p.text)
+              .join("") || "";
+
           if (lastUserText === message) {
             return prev.filter((_, idx) => idx !== lastUserIdx);
           }
         }
         return prev;
       });
-      
+
       // If this was a new chat that failed, no chat was created
       // Error will be displayed on the welcome screen
       // Also refresh rate limit status to get accurate remaining count
@@ -348,7 +376,8 @@ export function Chat({ chatId }: ChatProps) {
                   Radhey Radhey! Welcome to GitaGPT
                 </h1>
                 <p className="text-base text-muted-foreground md:text-lg">
-                  Ask me any question about life, dharma, karma, or the path to self-realization.
+                  Ask me any question about life, dharma, karma, or the path to
+                  self-realization.
                 </p>
               </div>
 
@@ -402,10 +431,13 @@ export function Chat({ chatId }: ChatProps) {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-destructive">
-                        {isRateLimitError ? "Daily Limit Reached" : "An Error Occurred"}
+                        {isRateLimitError
+                          ? "Daily Limit Reached"
+                          : "An Error Occurred"}
                       </h3>
                       <p className="mt-1 text-sm text-destructive/90">
-                        {errorMessage || "Something went wrong. Please try again."}
+                        {errorMessage ||
+                          "Something went wrong. Please try again."}
                       </p>
                       {isRateLimitError && !user && (
                         <div className="mt-3 flex flex-wrap gap-2">
@@ -455,7 +487,11 @@ export function Chat({ chatId }: ChatProps) {
                   onSubmit={handleSubmit}
                   onStop={stop}
                   isLoading={isLoading}
-                  disabled={(!isReady && !isLoading) || (isRateLimitError && !!error) || isProactivelyLimited}
+                  disabled={
+                    (!isReady && !isLoading) ||
+                    (isRateLimitError && !!error) ||
+                    isProactivelyLimited
+                  }
                   placeholder="Ask Krishna a question..."
                 />
               </div>
@@ -479,20 +515,21 @@ export function Chat({ chatId }: ChatProps) {
               </div>
             </div>
           </div>
-          
+
           {/* Disclaimer at bottom */}
           <div className="bg-background px-4 py-3">
             <p className="text-center text-xs text-muted-foreground">
-              AI can make mistakes. Verify responses and consult a guru for deeper understanding.
+              AI can make mistakes. Verify responses and consult a guru for
+              deeper understanding.
             </p>
           </div>
         </div>
-        
+
         {/* Auth Modal */}
-        <AuthModal 
-          isOpen={authModalOpen} 
-          onClose={() => setAuthModalOpen(false)} 
-          translate={(key) => key || ""} 
+        <AuthModal
+          isOpen={authModalOpen}
+          onClose={() => setAuthModalOpen(false)}
+          translate={(key) => key || ""}
         />
       </>
     );
@@ -501,106 +538,109 @@ export function Chat({ chatId }: ChatProps) {
   // Chat view
   return (
     <>
-    <div className="flex h-full flex-col">
-      {/* Messages */}
-      <Messages messages={messages} isLoading={isLoading} />
+      <div className="flex h-full flex-col">
+        {/* Messages */}
+        <Messages messages={messages} isLoading={isLoading} />
 
-      {/* Error message */}
-      {error && (
-        <div className="bg-background px-4 pb-3">
-          <div className="mx-auto max-w-3xl">
-            <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4">
-              <div className="flex items-start gap-3">
-                <div className="shrink-0">
-                  <svg
-                    className="size-5 text-destructive"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                    />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-destructive">
-                    {isRateLimitError ? "Daily Limit Reached" : "An Error Occurred"}
-                  </h3>
-                  <p className="mt-1 text-sm text-destructive/90">
-                    {errorMessage || "Something went wrong. Please try again."}
-                  </p>
-                  {isRateLimitError && !user && (
-                    <div className="mt-3 flex flex-wrap gap-2">
+        {/* Error message */}
+        {error && (
+          <div className="bg-background px-4 pb-3">
+            <div className="mx-auto max-w-3xl">
+              <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4">
+                <div className="flex items-start gap-3">
+                  <div className="shrink-0">
+                    <svg
+                      className="size-5 text-destructive"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-destructive">
+                      {isRateLimitError
+                        ? "Daily Limit Reached"
+                        : "An Error Occurred"}
+                    </h3>
+                    <p className="mt-1 text-sm text-destructive/90">
+                      {errorMessage ||
+                        "Something went wrong. Please try again."}
+                    </p>
+                    {isRateLimitError && !user && (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <button
+                          onClick={() => setAuthModalOpen(true)}
+                          className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                        >
+                          Sign up for more messages
+                        </button>
+                        <button
+                          type="button"
+                          onClick={clearError}
+                          className="inline-flex items-center rounded-md border border-destructive/30 bg-background px-3 py-1.5 text-sm font-medium text-destructive hover:bg-destructive/5"
+                        >
+                          Dismiss
+                        </button>
+                      </div>
+                    )}
+                    {isRateLimitError && user && (
                       <button
-                        onClick={() => setAuthModalOpen(true)}
-                        className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                        type="button"
+                        onClick={clearError}
+                        className="mt-3 inline-flex items-center rounded-md border border-destructive/30 bg-background px-3 py-1.5 text-sm font-medium text-destructive hover:bg-destructive/5"
                       >
-                        Sign up for more messages
+                        Dismiss
                       </button>
-          <button
-            type="button"
-            onClick={clearError}
-                        className="inline-flex items-center rounded-md border border-destructive/30 bg-background px-3 py-1.5 text-sm font-medium text-destructive hover:bg-destructive/5"
-          >
-            Dismiss
-          </button>
-                    </div>
-                  )}
-                  {isRateLimitError && user && (
-                    <button
-                      type="button"
-                      onClick={clearError}
-                      className="mt-3 inline-flex items-center rounded-md border border-destructive/30 bg-background px-3 py-1.5 text-sm font-medium text-destructive hover:bg-destructive/5"
-                    >
-                      Dismiss
-                    </button>
-                  )}
-                  {!isRateLimitError && (
-                    <button
-                      type="button"
-                      onClick={clearError}
-                      className="mt-3 text-sm font-medium text-destructive underline hover:no-underline"
-                    >
-                      Dismiss
-                    </button>
-                  )}
+                    )}
+                    {!isRateLimitError && (
+                      <button
+                        type="button"
+                        onClick={clearError}
+                        className="mt-3 text-sm font-medium text-destructive underline hover:no-underline"
+                      >
+                        Dismiss
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Input - floating style like ChatGPT */}
-      <div className="bg-gradient-to-t from-background via-background to-transparent px-4 pb-4 pt-6">
-        <div className="mx-auto max-w-3xl">
-          <MultimodalInput
-            value={inputValue}
-            onChange={setInputValue}
-            onSubmit={handleSubmit}
-            onStop={stop}
-            isLoading={isLoading}
-            disabled={!isReady && !isLoading}
-          />
-          {/* Disclaimer at bottom */}
-          <p className="mt-2 text-center text-xs text-muted-foreground">
-            AI can make mistakes. Verify responses and consult a guru for deeper understanding.
-          </p>
+        {/* Input - floating style like ChatGPT */}
+        <div className="bg-gradient-to-t from-background via-background to-transparent px-4 pb-4 pt-6">
+          <div className="mx-auto max-w-3xl">
+            <MultimodalInput
+              value={inputValue}
+              onChange={setInputValue}
+              onSubmit={handleSubmit}
+              onStop={stop}
+              isLoading={isLoading}
+              disabled={!isReady && !isLoading}
+            />
+            {/* Disclaimer at bottom */}
+            <p className="mt-2 text-center text-xs text-muted-foreground">
+              AI can make mistakes. Verify responses and consult a guru for
+              deeper understanding.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
-    {/* Auth Modal */}
-    <AuthModal 
-      isOpen={authModalOpen} 
-      onClose={() => setAuthModalOpen(false)} 
-      translate={(key) => key || ""} 
-    />
-  </>
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        translate={(key) => key || ""}
+      />
+    </>
   );
 }
-

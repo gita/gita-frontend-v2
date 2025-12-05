@@ -12,19 +12,19 @@ Custom AI chatbot for Bhagavad Gita with Retrieval-Augmented Generation (RAG), r
 
 ### Tech Stack
 
-| Component | Technology | Why |
-|-----------|------------|-----|
-| **Framework** | Next.js 15 | App Router, streaming |
-| **AI SDK** | Vercel AI SDK v5 | `useChat`, `streamText` |
-| **LLM** | GPT-5.1-instant | Fast, streaming, consistent |
-| **Gateway** | Vercel AI Gateway | Unified API, monitoring |
-| **Embeddings** | text-embedding-3-small | Best price/performance |
-| **Vector DB** | Supabase pgvector | Already integrated |
-| **Index** | HNSW | 15-28x faster than IVFFlat |
-| **Hybrid Search** | PostgreSQL FTS (BM25) | Keyword matching |
-| **Reranking** | Jina Reranker v2 | FREE tier, multilingual |
-| **Rate Limiting** | Upstash Redis | Serverless, fast |
-| **UI** | Custom components | Full control |
+| Component         | Technology             | Why                         |
+| ----------------- | ---------------------- | --------------------------- |
+| **Framework**     | Next.js 15             | App Router, streaming       |
+| **AI SDK**        | Vercel AI SDK v5       | `useChat`, `streamText`     |
+| **LLM**           | GPT-5.1-instant        | Fast, streaming, consistent |
+| **Gateway**       | Vercel AI Gateway      | Unified API, monitoring     |
+| **Embeddings**    | text-embedding-3-small | Best price/performance      |
+| **Vector DB**     | Supabase pgvector      | Already integrated          |
+| **Index**         | HNSW                   | 15-28x faster than IVFFlat  |
+| **Hybrid Search** | PostgreSQL FTS (BM25)  | Keyword matching            |
+| **Reranking**     | Jina Reranker v2       | FREE tier, multilingual     |
+| **Rate Limiting** | Upstash Redis          | Serverless, fast            |
+| **UI**            | Custom components      | Full control                |
 
 ---
 
@@ -33,28 +33,28 @@ Custom AI chatbot for Bhagavad Gita with Retrieval-Augmented Generation (RAG), r
 ```
 1. Query Analysis
    ↓ Detect: complexity, type, keywords
-   
+
 2. Route Selection
    ↓ Verse ref? → Metadata filter
    ↓ Keywords? → Hybrid search
    ↓ Semantic → Vector search
-   
+
 3. Retrieval (Adaptive)
    ↓ Simple: 15 candidates
    ↓ Moderate: 20 candidates
    ↓ Complex: 25 candidates
-   
+
 4. Reranking
    ↓ Jina API (or keyword fallback)
    ↓ Returns top 5 chunks
-   
+
 5. Threshold Filtering
    ↓ 0.15-0.30 based on query
    ↓ Keeps minimum 2 results
-   
+
 6. Context Formatting
    ↓ Sanskrit + Translation + Commentary
-   
+
 7. LLM Generation
    ↓ GPT-5.1-instant with Krishna personality
    ↓ Streams response to UI
@@ -76,12 +76,14 @@ Custom AI chatbot for Bhagavad Gita with Retrieval-Augmented Generation (RAG), r
 Run in Supabase SQL Editor:
 
 **Migration 1**: `supabase/migrations/001_pgvector_setup.sql`
+
 - Enables pgvector extension
 - Creates `gita_embeddings` table
 - Creates HNSW index (fast vector search)
 - Creates `match_gita_content` function
 
 **Migration 2**: `supabase/migrations/003_hybrid_search.sql`
+
 - Adds full-text search (BM25)
 - Creates `hybrid_search_gita` function
 - Enables keyword matching
@@ -113,6 +115,7 @@ npm install
 ```
 
 Key packages:
+
 - `ai` - Vercel AI SDK core
 - `@ai-sdk/gateway` - AI Gateway integration
 - `@ai-sdk/react` - useChat hook
@@ -133,6 +136,7 @@ npm run ingest:gita
 ```
 
 **What it does**:
+
 - Reads JSON data from Flutter app
 - Combines Sanskrit + transliteration + meanings + translation + commentary
 - Chunks long commentaries (3000 chars optimal, 6000 max)
@@ -140,6 +144,7 @@ npm run ingest:gita
 - Stores in Supabase with metadata
 
 **Expected output**:
+
 - 18 chapter summaries
 - ~791 verse chunks
 - **Total: ~809 records**
@@ -162,16 +167,19 @@ npm run dev
 ### Query Analysis
 
 **Complexity Detection**:
+
 - Simple: ≤6 words, single concept ("What is karma?")
 - Moderate: 7-20 words, multiple concepts
 - Complex: >20 words, philosophical depth
 
 **Type Detection**:
+
 - Factual: Starts with What/Who/Which/When/Where, verse refs
 - Analytical: Why/How/Explain/Compare
 - Exploratory: Tell me about, discuss
 
 **Dynamic Thresholds**:
+
 ```
 Simple + Factual: 0.30 (precise)
 Simple + Exploratory: 0.18 (greetings)
@@ -183,12 +191,14 @@ Complex + Exploratory: 0.15 (cast wide)
 **Weights**: 30% keyword + 70% semantic
 
 **Keyword Patterns Detected**:
+
 - Sanskrit terms: dharma-kshetra, kurukshetra
 - Devanagari: धर्मक्षेत्रे (3+ chars)
 - Names: Krishna, Arjuna, Dhritarashtra
 - Proper nouns: Panchajanya, Gandiva
 
 **When Activated**:
+
 ```typescript
 if (query.match(/dharma-kshetra|sanskrit|[अ-ह]{3,}/)) {
   // Use hybrid search
@@ -204,6 +214,7 @@ if (query.match(/dharma-kshetra|sanskrit|[अ-ह]{3,}/)) {
 **Model**: `jina-reranker-v2-base-multilingual`
 
 **Features**:
+
 - Supports 100+ languages (including Sanskrit!)
 - 2-3ms latency
 - FREE tier: 10,000 searches/month
@@ -211,6 +222,7 @@ if (query.match(/dharma-kshetra|sanskrit|[अ-ह]{3,}/)) {
 **Fallback**: If Jina fails or no API key, uses simple keyword reranking
 
 **Process**:
+
 1. Retrieve 15-25 candidates
 2. Send to Jina API with query
 3. Jina returns top 5 with relevance scores
@@ -273,14 +285,15 @@ The two armies had gathered on the battlefield...
 
 ### Query Times
 
-| Query Type | Time | Components |
-|------------|------|------------|
-| Metadata filter | <50ms | Direct DB lookup |
-| Hybrid search | 100-200ms | BM25 + Vector + Jina |
-| Semantic search | 80-150ms | Vector + Jina |
-| Full response | 2-4s | Includes LLM streaming |
+| Query Type      | Time      | Components             |
+| --------------- | --------- | ---------------------- |
+| Metadata filter | <50ms     | Direct DB lookup       |
+| Hybrid search   | 100-200ms | BM25 + Vector + Jina   |
+| Semantic search | 80-150ms  | Vector + Jina          |
+| Full response   | 2-4s      | Includes LLM streaming |
 
 ### With HNSW Index:
+
 - Vector search: **15-28x faster** than IVFFlat
 - 1000 verses: <100ms queries
 - Scales to 10,000+ verses
@@ -290,22 +303,24 @@ The two armies had gathered on the battlefield...
 ## Cost Breakdown
 
 ### Development (One-time):
+
 - Setup: FREE
 - Testing: ~$5 in API credits
 
 ### Production (Monthly, 1000 users):
 
-| Service | Usage | Cost |
-|---------|-------|------|
-| Supabase | 50MB DB | $0 (free tier) |
-| Jina Reranker | 10K searches | $0 (free tier) |
-| OpenAI Embeddings | 100 queries/day | $5 |
-| GPT-5.1-instant | 100 queries/day | $10 |
-| Upstash Redis | 10K requests | $0 (free tier) |
-| Vercel Hosting | Next.js app | $0 (free tier) |
-| **TOTAL** | - | **$15/mo** |
+| Service           | Usage           | Cost           |
+| ----------------- | --------------- | -------------- |
+| Supabase          | 50MB DB         | $0 (free tier) |
+| Jina Reranker     | 10K searches    | $0 (free tier) |
+| OpenAI Embeddings | 100 queries/day | $5             |
+| GPT-5.1-instant   | 100 queries/day | $10            |
+| Upstash Redis     | 10K requests    | $0 (free tier) |
+| Vercel Hosting    | Next.js app     | $0 (free tier) |
+| **TOTAL**         | -               | **$15/mo**     |
 
 ### Scaling (10,000 users):
+
 - Jina: Still FREE (10K searches/month)
 - Embeddings: $50/mo
 - LLM: $100/mo
@@ -351,6 +366,7 @@ scripts/
 ### For Your Own Laptop
 
 **1. Clone & Install**
+
 ```bash
 git clone <repo>
 cd bg-frontend
@@ -358,21 +374,25 @@ npm install
 ```
 
 **2. Setup Supabase**
+
 - Create project at https://supabase.com
 - Copy URL and service role key
 - Run both SQL migrations (001 and 003)
 
 **3. Setup Vercel AI Gateway**
+
 - Go to https://vercel.com → AI Gateway
 - Create API key
 - Add to `.env.local`
 
 **4. Optional: Setup Jina (FREE)**
+
 - Sign up at https://jina.ai
 - Get API key
 - Add to `.env.local`
 
 **5. Ingest Content**
+
 ```bash
 # Point to your Gita JSON data
 # Edit DATA_PATH in scripts/ingest-gita-content.ts
@@ -380,6 +400,7 @@ npm run ingest:gita
 ```
 
 **6. Run**
+
 ```bash
 npm run dev
 # → http://localhost:3000/gitagpt
@@ -392,15 +413,17 @@ npm run dev
 ### POST /api/chat
 
 **Request**:
+
 ```typescript
 {
   messages: [
-    { role: "user", parts: [{ type: "text", text: "What is karma?" }] }
-  ]
+    { role: "user", parts: [{ type: "text", text: "What is karma?" }] },
+  ];
 }
 ```
 
 **Headers**:
+
 ```
 Authorization: Bearer <supabase-jwt>  // Optional for auth
 ```
@@ -431,6 +454,7 @@ npx tsx scripts/test-rag-system.ts
 ```
 
 **Tests 10 query types**:
+
 - Verse references
 - Keywords (Sanskrit, names)
 - Characters
@@ -466,6 +490,7 @@ After each query, look for:
 ### No Logs?
 
 If you don't see detailed logs, check:
+
 - `src/lib/ai/retrieval.ts` - Has `console.log` statements
 - `src/app/api/chat/route.ts` - Has debug logging
 - Terminal is running `npm run dev`
@@ -477,6 +502,7 @@ If you don't see detailed logs, check:
 ### No Results for Query
 
 **Check**:
+
 1. Data ingested? `SELECT COUNT(*) FROM gita_embeddings;`
 2. Migrations applied? Check Supabase for `hybrid_search_gita` function
 3. Thresholds too high? Lower in `query-analysis.ts`
@@ -484,6 +510,7 @@ If you don't see detailed logs, check:
 ### Slow Queries
 
 **Check**:
+
 1. HNSW index exists? `\d gita_embeddings` in psql
 2. Should see `gita_embeddings_embedding_idx USING hnsw`
 3. If IVFFlat, re-run 001 migration
@@ -491,6 +518,7 @@ If you don't see detailed logs, check:
 ### Jina Not Working
 
 **Check**:
+
 1. API key set? `echo $JINA_API_KEY`
 2. Look for: `⚠️ JINA_API_KEY not found, using simple keyword reranking`
 3. Restart dev server after adding key
@@ -517,6 +545,7 @@ npm start
 ```
 
 **Requirements**:
+
 - Node.js 18+
 - PostgreSQL access (Supabase or local)
 - Redis access (Upstash or local)
@@ -530,6 +559,7 @@ npm start
 **YES** - They serve different purposes:
 
 **001_pgvector_setup.sql**:
+
 - ✅ Enable pgvector extension
 - ✅ Create `gita_embeddings` table
 - ✅ Create **HNSW index** for vector search
@@ -537,6 +567,7 @@ npm start
 - ✅ Set up RLS policies
 
 **003_hybrid_search.sql**:
+
 - ✅ Add `content_tsv` column (for BM25)
 - ✅ Create GIN index (for keyword search)
 - ✅ Create `hybrid_search_gita` function (BM25 + Vector)
@@ -549,36 +580,40 @@ npm start
 ## Libraries & Dependencies
 
 ### Core AI
+
 ```json
 {
-  "ai": "^3.2.33",                    // Vercel AI SDK
-  "@ai-sdk/gateway": "^0.1.1",       // AI Gateway
-  "@ai-sdk/react": "^0.1.1",         // useChat hook
+  "ai": "^3.2.33", // Vercel AI SDK
+  "@ai-sdk/gateway": "^0.1.1", // AI Gateway
+  "@ai-sdk/react": "^0.1.1" // useChat hook
 }
 ```
 
 ### Database
+
 ```json
 {
-  "@supabase/supabase-js": "latest", // Supabase client
+  "@supabase/supabase-js": "latest" // Supabase client
 }
 ```
 
 ### Rate Limiting
+
 ```json
 {
-  "@upstash/ratelimit": "^1.1.1",    // Rate limiter
-  "@upstash/redis": "^1.32.0",       // Redis client
+  "@upstash/ratelimit": "^1.1.1", // Rate limiter
+  "@upstash/redis": "^1.32.0" // Redis client
 }
 ```
 
 ### Utils
+
 ```json
 {
-  "dotenv": "^16.4.5",               // Env loading
-  "tsx": "^4.16.2",                  // TS executor
-  "react-markdown": "latest",         // Markdown rendering
-  "remark-gfm": "latest",            // GitHub Flavored Markdown
+  "dotenv": "^16.4.5", // Env loading
+  "tsx": "^4.16.2", // TS executor
+  "react-markdown": "latest", // Markdown rendering
+  "remark-gfm": "latest", // GitHub Flavored Markdown
   "@tailwindcss/typography": "^0.5.13" // Prose styling
 }
 ```
@@ -593,17 +628,20 @@ npm start
 
 ```typescript
 // Update this path for your setup:
-export const DATA_PATH = "/Users/radhakrishna/Documents/gita-flutter-2.0/assets/data";
+export const DATA_PATH =
+  "/Users/radhakrishna/Documents/gita-flutter-2.0/assets/data";
 ```
 
 **Source**: https://github.com/gita/gita-flutter-2.0 (assets/data/)
 
 **Files Used**:
+
 - `common/common_en.json` - Sanskrit, transliteration, word meanings
 - `authors/author_22_en.json` - Swami Mukundananda's translation & commentary
 - `chapters/chapter_en.json` - Chapter summaries
 
 **Not Used** (Future):
+
 - `verses_en.json` - Direct verse access
 - `verses_hi.json` - Hindi translations
 - Other authors (1-21)
@@ -617,6 +655,7 @@ Want to build similar RAG for other texts? Here's the process:
 ### Step 1: Prepare Data
 
 Convert your content to JSON:
+
 ```json
 {
   "chapters": [
@@ -639,6 +678,7 @@ Convert your content to JSON:
 ### Step 2: Modify Ingestion Script
 
 Update `scripts/ingest-gita-content.ts`:
+
 - Change `DATA_PATH` to your files
 - Modify `buildVerseContent` for your format
 - Adjust chunking if needed
@@ -646,6 +686,7 @@ Update `scripts/ingest-gita-content.ts`:
 ### Step 3: Update Prompt
 
 Edit `src/lib/ai/prompts.ts`:
+
 - Replace Krishna personality with your domain
 - Adjust tone, constraints, etc.
 
@@ -661,17 +702,17 @@ npm run ingest:gita
 
 ## Comparison: Custom vs Chatbase
 
-| Feature | Chatbase | GitaGPT Custom |
-|---------|----------|----------------|
-| **Control** | ❌ Limited | ✅ Full code access |
-| **Cost** | $40-500/mo | $15/mo |
-| **Data** | Cloud only | Own database |
-| **RAG** | Black box | Full transparency |
-| **Customization** | UI themes | Everything |
-| **API** | Their endpoint | Your endpoint |
-| **Vendor Lock-in** | ✅ Yes | ❌ No |
-| **Quality** | ~85% | **80-95%** |
-| **Reranking** | Cohere | Jina (FREE) |
+| Feature            | Chatbase       | GitaGPT Custom      |
+| ------------------ | -------------- | ------------------- |
+| **Control**        | ❌ Limited     | ✅ Full code access |
+| **Cost**           | $40-500/mo     | $15/mo              |
+| **Data**           | Cloud only     | Own database        |
+| **RAG**            | Black box      | Full transparency   |
+| **Customization**  | UI themes      | Everything          |
+| **API**            | Their endpoint | Your endpoint       |
+| **Vendor Lock-in** | ✅ Yes         | ❌ No               |
+| **Quality**        | ~85%           | **80-95%**          |
+| **Reranking**      | Cohere         | Jina (FREE)         |
 
 **Savings**: $25-485/month + full control
 
@@ -699,4 +740,3 @@ npm run ingest:gita
 ---
 
 Radhey Radhey! 🙏
-

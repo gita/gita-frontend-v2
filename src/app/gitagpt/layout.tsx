@@ -23,13 +23,11 @@ export default function GitagptLayout({
 
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
-        <ChatHeader 
+        <ChatHeader
           showExpandButton={sidebarCollapsed}
           onExpandSidebar={() => setSidebarCollapsed(false)}
         />
-        <main className="flex-1 overflow-hidden">
-          {children}
-        </main>
+        <main className="flex-1 overflow-hidden">{children}</main>
       </div>
     </div>
   );

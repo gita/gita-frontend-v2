@@ -1,6 +1,6 @@
 /**
  * Custom text snippet processor for GitaGPT
- * 
+ *
  * Processes text files from scripts/snippets/ folder
  * Supports: Q&A pairs, custom info, FAQs, guides
  */
@@ -27,7 +27,9 @@ function detectLanguage(text: string): string {
   // Check for Hindi/Devanagari characters
   const devanagariChars = text.match(/[\u0900-\u097F]/g);
   const totalChars = text.replace(/\s/g, "").length;
-  const devanagariRatio = devanagariChars ? devanagariChars.length / totalChars : 0;
+  const devanagariRatio = devanagariChars
+    ? devanagariChars.length / totalChars
+    : 0;
 
   // If > 30% Devanagari, it's Hindi
   return devanagariRatio > 0.3 ? "hi" : "en";
@@ -36,9 +38,7 @@ function detectLanguage(text: string): string {
 /**
  * Process a single snippet file
  */
-export function processSnippetFile(
-  filePath: string
-): ProcessedSnippet | null {
+export function processSnippetFile(filePath: string): ProcessedSnippet | null {
   try {
     const content = fs.readFileSync(filePath, "utf-8").trim();
 
@@ -73,9 +73,7 @@ export function processSnippetFile(
 /**
  * Process all snippet files in a directory
  */
-export function processSnippetDirectory(
-  dirPath: string
-): ProcessedSnippet[] {
+export function processSnippetDirectory(dirPath: string): ProcessedSnippet[] {
   const snippets: ProcessedSnippet[] = [];
 
   if (!fs.existsSync(dirPath)) {
@@ -87,7 +85,7 @@ export function processSnippetDirectory(
 
   const files = fs.readdirSync(dirPath);
   const txtFiles = files.filter(
-    (f) => f.endsWith(".txt") && !f.startsWith(".")
+    (f) => f.endsWith(".txt") && !f.startsWith("."),
   );
 
   if (txtFiles.length === 0) {
@@ -114,13 +112,15 @@ export function processSnippetDirectory(
 export function chunkSnippet(
   snippet: ProcessedSnippet,
   maxSize: number = 3500,
-  overlap: number = 150
+  overlap: number = 150,
 ): ProcessedSnippet[] {
   if (snippet.content.length <= maxSize) {
     return [snippet];
   }
 
-  console.log(`   ⚠️  Snippet too large (${snippet.content.length} chars), chunking...`);
+  console.log(
+    `   ⚠️  Snippet too large (${snippet.content.length} chars), chunking...`,
+  );
 
   const chunks: ProcessedSnippet[] = [];
   const sections = snippet.content.split(/\n---\n/); // Split on Q&A separators
@@ -128,7 +128,10 @@ export function chunkSnippet(
   let chunkIndex = 0;
 
   for (const section of sections) {
-    if (currentChunk.length + section.length > maxSize && currentChunk.length > 0) {
+    if (
+      currentChunk.length + section.length > maxSize &&
+      currentChunk.length > 0
+    ) {
       // Save current chunk
       chunks.push({
         content: currentChunk,
@@ -155,7 +158,10 @@ export function chunkSnippet(
       content: currentChunk,
       metadata: {
         ...snippet.metadata,
-        snippet_id: chunkIndex > 0 ? `${snippet.metadata.snippet_id}-part${chunkIndex + 1}` : snippet.metadata.snippet_id,
+        snippet_id:
+          chunkIndex > 0
+            ? `${snippet.metadata.snippet_id}-part${chunkIndex + 1}`
+            : snippet.metadata.snippet_id,
         is_chunked: chunkIndex > 0,
         chunk_index: chunkIndex,
         total_chunks: chunkIndex + 1,

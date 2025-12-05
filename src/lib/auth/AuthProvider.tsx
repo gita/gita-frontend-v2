@@ -34,9 +34,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Helper to handle post-OAuth redirect
     const handleReturnRedirect = (session: Session | null) => {
       if (!session) return;
-      
+
       const returnPath = localStorage.getItem("authReturnPath");
-      if (returnPath && returnPath !== "/" && returnPath !== window.location.pathname) {
+      if (
+        returnPath &&
+        returnPath !== "/" &&
+        returnPath !== window.location.pathname
+      ) {
         localStorage.removeItem("authReturnPath");
         window.location.href = returnPath;
       }
@@ -50,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(session);
       setUser(session?.user ?? null);
       setIsLoading(false);
-      
+
       // Check for return redirect on initial load (handles OAuth callback)
       handleReturnRedirect(session);
     });
@@ -69,7 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // Refresh rate limit status with new auth state
         setTimeout(() => triggerRateLimitRefresh(), 100);
       }
-      
+
       // Also refresh when signed out
       if (event === "SIGNED_OUT") {
         triggerRateLimitRefresh();

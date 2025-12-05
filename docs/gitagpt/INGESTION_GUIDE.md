@@ -20,6 +20,7 @@ npm run ingest:status
 ```
 
 **Shows**:
+
 - Last training date for each source
 - Stale sources (>30 days old)
 - Training history
@@ -32,6 +33,7 @@ npm run ingest:gita
 ```
 
 **What it does**:
+
 - Indexes all 18 chapters (~809 records)
 - Swami Mukundananda English version
 - Takes 5-10 minutes
@@ -39,6 +41,7 @@ npm run ingest:gita
 ### 2. Website Pages
 
 **Add URLs** in `scripts/training-sources.json`:
+
 ```json
 {
   "sources": {
@@ -64,6 +67,7 @@ npm run ingest:gita
 ```
 
 **Then run**:
+
 ```bash
 # Configure to use website pages
 # Edit scripts/ingest-config.ts:
@@ -83,6 +87,7 @@ npm run ingest:chapter -- 5  # Re-index Chapter 5
 ```
 
 **What it does**:
+
 - Deletes all existing Chapter X records
 - Re-ingests fresh data
 - Useful after updating commentary
@@ -103,9 +108,10 @@ npm run ingest:chapter -- 5  # Re-index Chapter 5
 6. **REPLACE_WEBSITE_CONFIG(urls)** - Re-scrape specific URLs
 
 **Switch presets**:
+
 ```typescript
 // In ingest-config.ts:
-export const DEFAULT_CONFIG = FULL_GITA_CONFIG;  // Current
+export const DEFAULT_CONFIG = FULL_GITA_CONFIG; // Current
 // export const DEFAULT_CONFIG = WEBSITE_PAGES_CONFIG;  // Switch to this
 ```
 
@@ -114,14 +120,17 @@ export const DEFAULT_CONFIG = FULL_GITA_CONFIG;  // Current
 ## Update Modes
 
 ### Append (Default)
+
 ```typescript
-update_mode: "append"
+update_mode: "append";
 ```
+
 - Adds new content only
 - Keeps all existing records
 - **Use for**: Initial ingestion, adding new chapters
 
 ### Replace
+
 ```typescript
 update_mode: "replace",
 replace_filters: {
@@ -130,14 +139,17 @@ replace_filters: {
   types: ["page_content"],  // Delete all pages
 }
 ```
+
 - Deletes matching records first
 - Then adds new content
 - **Use for**: Re-indexing after updates, fixing errors
 
 ### Merge (Future)
+
 ```typescript
-update_mode: "merge"
+update_mode: "merge";
 ```
+
 - Updates existing if found (by chapter/verse)
 - Adds new if not found
 - **Use for**: Smart updates without duplicates
@@ -149,15 +161,17 @@ update_mode: "merge"
 ### Basic Usage
 
 1. **Configure URLs** in `ingest-config.ts`:
+
 ```typescript
 urls: [
   "https://bhagavadgita.io/about",
   "https://bhagavadgita.io/faq",
   "https://bhagavadgita.io/introduction",
-]
+];
 ```
 
 2. **Run**:
+
 ```bash
 npm run ingest:web
 ```
@@ -165,6 +179,7 @@ npm run ingest:web
 ### Advanced Selectors
 
 **Customize content extraction**:
+
 ```typescript
 selectors: {
   title: "h1.main-title",        // Page title selector
@@ -182,6 +197,7 @@ selectors: {
 ### What Gets Scraped
 
 **For each URL**:
+
 ```typescript
 {
   url: "https://bhagavadgita.io/about",
@@ -217,6 +233,7 @@ npm run ingest:gita
 ```
 
 **Or use config**:
+
 ```typescript
 import { REPLACE_CHAPTER_CONFIG } from "./ingest-config";
 
@@ -231,13 +248,12 @@ await ingest(config);
 ```typescript
 import { REPLACE_WEBSITE_CONFIG } from "./ingest-config";
 
-const config = REPLACE_WEBSITE_CONFIG([
-  "https://bhagavadgita.io/faq"
-]);
+const config = REPLACE_WEBSITE_CONFIG(["https://bhagavadgita.io/faq"]);
 await ingest(config);
 ```
 
 **What happens**:
+
 1. Deletes records where `metadata.url = "https://bhagavadgita.io/faq"`
 2. Re-scrapes the URL
 3. Adds fresh content
@@ -252,16 +268,13 @@ await ingest(config);
 // ingest-config.ts
 export const DEFAULT_CONFIG = {
   sources: {
-    gita_json: { enabled: false },  // Don't touch verses
+    gita_json: { enabled: false }, // Don't touch verses
     website_pages: {
       enabled: true,
-      urls: [
-        "https://bhagavadgita.io/about",
-        "https://bhagavadgita.io/faq",
-      ]
+      urls: ["https://bhagavadgita.io/about", "https://bhagavadgita.io/faq"],
     },
   },
-  update_mode: "append",  // Just add, don't delete
+  update_mode: "append", // Just add, don't delete
 };
 ```
 
@@ -288,17 +301,17 @@ export const DEFAULT_CONFIG = {
   sources: {
     gita_json: {
       enabled: true,
-      chapters: [10, 11, 12],  // Only these chapters
+      chapters: [10, 11, 12], // Only these chapters
     },
     website_pages: {
       enabled: true,
-      urls: ["https://bhagavadgita.io/about"]
+      urls: ["https://bhagavadgita.io/about"],
     },
   },
   update_mode: "replace",
   replace_filters: {
-    chapters: [10, 11, 12],  // Delete these first
-    urls: ["https://bhagavadgita.io/about"]  // Delete this page
+    chapters: [10, 11, 12], // Delete these first
+    urls: ["https://bhagavadgita.io/about"], // Delete this page
   },
 };
 ```
@@ -318,15 +331,15 @@ TRUNCATE gita_embeddings;
 
 ```sql
 -- Delete Chapter 5
-DELETE FROM gita_embeddings 
+DELETE FROM gita_embeddings
 WHERE metadata->>'chapter' = '5';
 
 -- Delete all website pages
-DELETE FROM gita_embeddings 
+DELETE FROM gita_embeddings
 WHERE metadata->>'type' = 'page_content';
 
 -- Delete specific author
-DELETE FROM gita_embeddings 
+DELETE FROM gita_embeddings
 WHERE metadata->>'author_id' = '22';
 ```
 
@@ -348,6 +361,7 @@ scripts/
 ## Common Workflows
 
 ### Workflow 1: Initial Setup
+
 ```bash
 # 1. Index all Gita verses
 npm run ingest:gita
@@ -358,6 +372,7 @@ npm run ingest:web
 ```
 
 ### Workflow 2: Update Commentary
+
 ```bash
 # 1. Get updated JSON file with new commentary
 # 2. Delete old chapter
@@ -369,6 +384,7 @@ npm run ingest:gita
 ```
 
 ### Workflow 3: Refresh Website Content
+
 ```bash
 # Edit ingest-config.ts:
 export const DEFAULT_CONFIG = REPLACE_WEBSITE_CONFIG([
@@ -392,16 +408,18 @@ npm install cheerio
 ### Website Scraping Fails
 
 **Check**:
+
 1. URL is accessible (CORS, auth, etc.)
 2. Content selectors are correct
 3. Page has loaded (not SPA needing JS)
 
 **Debug**:
+
 ```typescript
 const page = await scrapePage(url, {
-  content: "body"  // Try simplest selector first
+  content: "body", // Try simplest selector first
 });
-console.log(page?.content.substring(0, 500));  // Check what was extracted
+console.log(page?.content.substring(0, 500)); // Check what was extracted
 ```
 
 ### Duplicate Records
@@ -414,10 +432,10 @@ TRUNCATE gita_embeddings;
 npm run ingest:gita
 
 # Option B: Delete specific duplicates
-DELETE FROM gita_embeddings 
+DELETE FROM gita_embeddings
 WHERE id NOT IN (
-  SELECT MIN(id) 
-  FROM gita_embeddings 
+  SELECT MIN(id)
+  FROM gita_embeddings
   GROUP BY metadata->>'chapter', metadata->>'verse', metadata->>'author_id'
 );
 ```
@@ -427,6 +445,7 @@ WHERE id NOT IN (
 ## Future Enhancements
 
 ### Planned:
+
 - [ ] YouTube video transcripts
 - [ ] PDF document ingestion
 - [ ] Google Docs integration
@@ -437,4 +456,3 @@ WHERE id NOT IN (
 ---
 
 Radhey Radhey! 🙏
-

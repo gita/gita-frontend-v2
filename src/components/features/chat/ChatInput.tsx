@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, type KeyboardEvent,useEffect, useRef } from "react";
+import { type FormEvent, type KeyboardEvent, useEffect, useRef } from "react";
 import { Send, Square } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -57,7 +57,7 @@ export function ChatInput({
       onSubmit={onSubmit}
       className={cn(
         "relative flex items-end gap-2 rounded-2xl border bg-background p-2 shadow-sm transition-shadow focus-within:shadow-md",
-        className
+        className,
       )}
     >
       <textarea
@@ -69,7 +69,7 @@ export function ChatInput({
         disabled={disabled || isLoading}
         rows={1}
         className={cn(
-          "max-h-[200px] min-h-[44px] flex-1 resize-none bg-transparent px-3 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          "max-h-[200px] min-h-[44px] flex-1 resize-none bg-transparent px-3 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
         )}
       />
 
@@ -98,4 +98,3 @@ export function ChatInput({
     </form>
   );
 }
-

@@ -5,10 +5,10 @@ import { getRateLimitHeaders, getRateLimitStatus } from "@/lib/ratelimit";
 
 /**
  * GET /api/chat/status
- * 
+ *
  * Returns the current rate limit status WITHOUT consuming a credit.
  * Used to proactively show rate limit warnings on the main page.
- * 
+ *
  * Response:
  * {
  *   remaining: number,    // Messages left today
@@ -22,7 +22,7 @@ export async function GET() {
   try {
     // Check if rate limiting is disabled in development
     const isDevelopment = process.env.NEXT_PUBLIC_NODE_ENV === "development";
-    
+
     if (isDevelopment) {
       return Response.json({
         remaining: 999,
@@ -48,13 +48,19 @@ export async function GET() {
     // Use service role key for server-side auth validation
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-    if (authHeader?.startsWith("Bearer ") && supabaseUrl && supabaseServiceKey) {
+    if (
+      authHeader?.startsWith("Bearer ") &&
+      supabaseUrl &&
+      supabaseServiceKey
+    ) {
       const token = authHeader.substring(7);
       // Service role client can validate any user's token
       const supabase = createClient(supabaseUrl, supabaseServiceKey);
-      
+
       try {
-        const { data: { user } } = await supabase.auth.getUser(token);
+        const {
+          data: { user },
+        } = await supabase.auth.getUser(token);
 
         if (user) {
           userId = user.id;
@@ -79,11 +85,11 @@ export async function GET() {
       },
       {
         headers: getRateLimitHeaders(status),
-      }
+      },
     );
   } catch (error) {
     console.error("Rate limit status API error:", error);
-    
+
     // Return safe defaults on error
     return Response.json(
       {
@@ -94,8 +100,7 @@ export async function GET() {
         isAuthenticated: false,
         error: "Failed to check rate limit status",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
-

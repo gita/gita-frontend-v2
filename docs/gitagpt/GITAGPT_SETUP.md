@@ -56,8 +56,8 @@ create table if not exists gita_embeddings (
 );
 
 -- Create index for fast similarity search (IVFFlat)
-create index if not exists gita_embeddings_embedding_idx 
-on gita_embeddings 
+create index if not exists gita_embeddings_embedding_idx
+on gita_embeddings
 using ivfflat (embedding vector_cosine_ops)
 with (lists = 100);
 
@@ -99,6 +99,7 @@ npm run ingest:gita
 ```
 
 This processes:
+
 - Translations from all authors
 - Commentaries (chunked for long texts)
 - Sanskrit verses with transliteration
@@ -112,6 +113,7 @@ Expected: ~15,000-25,000 vectors depending on content.
 3. Copy the REST URL and Token to your `.env.local`
 
 Rate limits:
+
 - Anonymous users: 2 messages/day
 - Authenticated users: 10 messages/day
 - **Note:** Rate limiting is automatically disabled when `NEXT_PUBLIC_NODE_ENV=development` for local testing
@@ -153,15 +155,15 @@ Future<Stream<String>> sendMessage(List<Map<String, String>> messages) async {
     'POST',
     Uri.parse('https://bhagavadgita.io/api/chat'),
   );
-  
+
   request.headers['Content-Type'] = 'application/json';
   // Add auth header if user is logged in
   // request.headers['Authorization'] = 'Bearer $token';
-  
+
   request.body = jsonEncode({'messages': messages});
-  
+
   final response = await http.Client().send(request);
-  
+
   return response.stream
     .transform(utf8.decoder)
     .transform(const LineSplitter());
@@ -178,7 +180,7 @@ In `src/app/api/chat/route.ts`:
 import { gateway } from "@ai-sdk/gateway";
 
 const result = streamText({
-  model: gateway("openai/gpt-5"),     // OpenAI GPT-5 via AI Gateway
+  model: gateway("openai/gpt-5"), // OpenAI GPT-5 via AI Gateway
   // model: gateway("xai/grok-3"),    // Alternative: xAI Grok
   // model: gateway("anthropic/claude-sonnet-4"), // Alternative: Claude
   // ...
@@ -204,15 +206,17 @@ Edit `src/lib/ai/prompts.ts` to adjust how Krishna responds.
 ## Troubleshooting
 
 ### "Rate limit exceeded"
+
 - Check Upstash Redis connection
 - Verify environment variables are set
 
 ### "Error retrieving context"
+
 - Ensure pgvector extension is enabled in Supabase
 - Run the ingestion script
 - Check `match_gita_content` function exists
 
 ### Chat not streaming
+
 - Ensure `OPENAI_API_KEY` or `AI_GATEWAY_API_KEY` is set
 - Check browser console for errors
-

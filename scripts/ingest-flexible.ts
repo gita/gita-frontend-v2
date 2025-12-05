@@ -1,11 +1,11 @@
 /**
  * Flexible GitaGPT Content Ingestion Script
- * 
+ *
  * Supports multiple data sources:
  * - JSON files (Gita verses)
  * - Website pages (scraping)
  * - Custom content
- * 
+ *
  * Update modes:
  * - append: Add new content only
  * - replace: Delete matching records, then add new
@@ -32,7 +32,7 @@ import {
   saveTrainingSources,
   updateTrainingTimestamp,
 } from "./training-tracker";
-import { chunkScrapedPage,scrapePages } from "./web-scraper";
+import { chunkScrapedPage, scrapePages } from "./web-scraper";
 
 // Initialize Supabase
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -44,7 +44,7 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
  */
 async function checkExistingContent(
   type: "gita" | "website" | "snippet",
-  identifier: string
+  identifier: string,
 ): Promise<boolean> {
   try {
     if (type === "website") {
@@ -53,7 +53,7 @@ async function checkExistingContent(
         .select("id")
         .eq("metadata->>url", identifier)
         .limit(1);
-      
+
       return (data?.length || 0) > 0;
     } else if (type === "snippet") {
       const { data } = await supabase
@@ -61,13 +61,13 @@ async function checkExistingContent(
         .select("id")
         .eq("metadata->>file_path", identifier)
         .limit(1);
-      
+
       return (data?.length || 0) > 0;
     }
   } catch (error) {
     console.error("Error checking existing content:", error);
   }
-  
+
   return false;
 }
 
@@ -93,7 +93,7 @@ async function deleteExisting(config: IngestConfig): Promise<number> {
         .from("gita_embeddings")
         .delete({ count: "exact" })
         .eq("metadata->>chapter", String(chapter));
-      
+
       if (!error && count) {
         console.log(`   Deleted ${count} records from Chapter ${chapter}`);
       }
@@ -106,7 +106,7 @@ async function deleteExisting(config: IngestConfig): Promise<number> {
         .from("gita_embeddings")
         .delete({ count: "exact" })
         .eq("metadata->>author_id", String(authorId));
-      
+
       if (!error && count) {
         console.log(`   Deleted ${count} records from Author ${authorId}`);
       }
@@ -119,7 +119,7 @@ async function deleteExisting(config: IngestConfig): Promise<number> {
         .from("gita_embeddings")
         .delete({ count: "exact" })
         .eq("metadata->>type", type);
-      
+
       if (!error && count) {
         console.log(`   Deleted ${count} records of type "${type}"`);
       }
@@ -132,7 +132,7 @@ async function deleteExisting(config: IngestConfig): Promise<number> {
         .from("gita_embeddings")
         .delete({ count: "exact" })
         .eq("metadata->>url", url);
-      
+
       if (!error && count) {
         console.log(`   Deleted ${count} records from URL "${url}"`);
       }
@@ -158,21 +158,21 @@ async function generateEmbedding(text: string): Promise<number[]> {
  */
 async function processWebsitePages(
   config: IngestConfig,
-  trainingSources?: any
+  trainingSources?: any,
 ): Promise<any[]> {
   if (!config.sources.website_pages.enabled) {
     return [];
   }
 
   console.log("\n🌐 Processing website pages...");
-  
+
   // Get URLs from training-sources.json if available
   let urls = config.sources.website_pages.urls;
   if (trainingSources) {
     urls = getEnabledWebsiteURLs(trainingSources);
     console.log(`   Loaded ${urls.length} URLs from training-sources.json`);
   }
-  
+
   const { selectors } = config.sources.website_pages;
 
   const pages = await scrapePages(urls, selectors, 1000);
@@ -185,7 +185,7 @@ async function processWebsitePages(
       page,
       config.chunking.optimal_size,
       config.chunking.max_size,
-      config.chunking.overlap
+      config.chunking.overlap,
     );
 
     chunks.push(...pageChunks);
@@ -215,9 +215,15 @@ async function ingest(config: IngestConfig = DEFAULT_CONFIG) {
 
   console.log("\n📋 Configuration:");
   console.log(`   Update Mode: ${config.update_mode}`);
-  console.log(`   Gita JSON: ${config.sources.gita_json.enabled ? '✅' : '❌'}`);
-  console.log(`   Website Pages: ${config.sources.website_pages.enabled ? '✅' : '❌'}`);
-  console.log(`   Custom Content: ${config.sources.custom_content.enabled ? '✅' : '❌'}`);
+  console.log(
+    `   Gita JSON: ${config.sources.gita_json.enabled ? "✅" : "❌"}`,
+  );
+  console.log(
+    `   Website Pages: ${config.sources.website_pages.enabled ? "✅" : "❌"}`,
+  );
+  console.log(
+    `   Custom Content: ${config.sources.custom_content.enabled ? "✅" : "❌"}`,
+  );
 
   // Step 1: Check what's already in database
   console.log("\n🔍 Checking existing content...");
@@ -228,12 +234,12 @@ async function ingest(config: IngestConfig = DEFAULT_CONFIG) {
   const existingUrls = new Set(
     existingRecords
       ?.filter((r) => r.metadata?.url)
-      .map((r) => r.metadata.url) || []
+      .map((r) => r.metadata.url) || [],
   );
   const existingSnippets = new Set(
     existingRecords
       ?.filter((r) => r.metadata?.type === "custom_snippet")
-      .map((r) => r.metadata.snippet_id) || []
+      .map((r) => r.metadata.snippet_id) || [],
   );
 
   console.log(`   Found ${existingUrls.size} existing website pages`);
@@ -260,13 +266,13 @@ async function ingest(config: IngestConfig = DEFAULT_CONFIG) {
   if (config.sources.website_pages.enabled) {
     const webChunks = await processWebsitePages(config, trainingSources);
     console.log(`   Total chunks created: ${webChunks.length}`);
-    
+
     // Check for duplicates if in append mode
     if (config.update_mode === "append") {
       console.log(`\n   🔍 Checking for duplicates...`);
       const uniqueUrls = new Set<string>();
       const newChunks = [];
-      
+
       for (const chunk of webChunks) {
         const url = chunk.metadata.url;
         if (!uniqueUrls.has(url)) {
@@ -279,8 +285,10 @@ async function ingest(config: IngestConfig = DEFAULT_CONFIG) {
           }
         }
       }
-      
-      console.log(`   ✅ ${newChunks.length}/${webChunks.length} new chunks (skipped ${webChunks.length - newChunks.length} duplicates)`);
+
+      console.log(
+        `   ✅ ${newChunks.length}/${webChunks.length} new chunks (skipped ${webChunks.length - newChunks.length} duplicates)`,
+      );
       allRecords.push(...newChunks);
       addedCount += newChunks.length;
     } else {
@@ -292,27 +300,34 @@ async function ingest(config: IngestConfig = DEFAULT_CONFIG) {
   // Step 4: Process custom snippets (if enabled)
   if (config.sources.custom_content.enabled) {
     console.log("\n📄 Processing custom snippets...");
-    
-    const { processSnippetDirectory, chunkSnippet } = await import("./snippet-processor");
-    const snippetsDir = trainingSources?.sources.custom_snippets?.snippets_directory || path.join(__dirname, "..", "data", "snippets");
-    
+
+    const { processSnippetDirectory, chunkSnippet } =
+      await import("./snippet-processor");
+    const snippetsDir =
+      trainingSources?.sources.custom_snippets?.snippets_directory ||
+      path.join(__dirname, "..", "data", "snippets");
+
     const rawSnippets = processSnippetDirectory(snippetsDir);
-    
+
     // Filter out already-trained snippets
-    const newSnippets = rawSnippets.filter(s => !existingSnippets.has(s.metadata.snippet_id));
-    
+    const newSnippets = rawSnippets.filter(
+      (s) => !existingSnippets.has(s.metadata.snippet_id),
+    );
+
     if (rawSnippets.length > newSnippets.length) {
       skippedCount += rawSnippets.length - newSnippets.length;
-      console.log(`   ⏭️  Skipped ${rawSnippets.length - newSnippets.length} already-trained snippets`);
+      console.log(
+        `   ⏭️  Skipped ${rawSnippets.length - newSnippets.length} already-trained snippets`,
+      );
     }
-    
+
     // Chunk large snippets
     const allSnippetChunks: any[] = [];
     for (const snippet of newSnippets) {
       const chunks = chunkSnippet(snippet);
       allSnippetChunks.push(...chunks);
     }
-    
+
     console.log(`   Total snippet chunks: ${allSnippetChunks.length}`);
     allRecords.push(...allSnippetChunks);
     addedCount += allSnippetChunks.length;
@@ -320,17 +335,19 @@ async function ingest(config: IngestConfig = DEFAULT_CONFIG) {
 
   // Step 5: Generate embeddings and insert
   if (allRecords.length > 0) {
-    console.log(`\n🔢 Generating embeddings for ${allRecords.length} records...`);
+    console.log(
+      `\n🔢 Generating embeddings for ${allRecords.length} records...`,
+    );
 
     for (let i = 0; i < allRecords.length; i += config.batch_size) {
       const batch = allRecords.slice(i, i + config.batch_size);
-      
+
       const embeddingsBatch = await Promise.all(
         batch.map(async (record) => ({
           content: record.content,
           embedding: await generateEmbedding(record.content),
           metadata: record.metadata,
-        }))
+        })),
       );
 
       const { error } = await supabase
@@ -340,7 +357,9 @@ async function ingest(config: IngestConfig = DEFAULT_CONFIG) {
       if (error) {
         console.error(`   ❌ Error batch ${i / config.batch_size + 1}:`, error);
       } else {
-        console.log(`   ✅ Batch ${i / config.batch_size + 1}: ${i + batch.length}/${allRecords.length}`);
+        console.log(
+          `   ✅ Batch ${i / config.batch_size + 1}: ${i + batch.length}/${allRecords.length}`,
+        );
       }
 
       // Delay to avoid rate limits
@@ -372,8 +391,9 @@ async function ingest(config: IngestConfig = DEFAULT_CONFIG) {
           total_pages_trained: 0,
         };
       }
-      trainingSources.sources.website_pages.training_metadata.last_batch_trained = new Date().toISOString();
-      trainingSources.sources.website_pages.training_metadata.total_pages_trained = 
+      trainingSources.sources.website_pages.training_metadata.last_batch_trained =
+        new Date().toISOString();
+      trainingSources.sources.website_pages.training_metadata.total_pages_trained =
         trainingSources.sources.website_pages.urls.length;
     }
 
@@ -382,8 +402,8 @@ async function ingest(config: IngestConfig = DEFAULT_CONFIG) {
       source_type: config.sources.gita_json.enabled
         ? "gita_json"
         : config.sources.website_pages.enabled
-        ? "website"
-        : "custom",
+          ? "website"
+          : "custom",
       records_added: addedCount,
       records_updated: updatedCount,
       records_deleted: deletedCount,
@@ -408,4 +428,3 @@ if (require.main === module) {
 }
 
 export { ingest };
-

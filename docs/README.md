@@ -5,6 +5,7 @@
 Production-ready RAG chatbot for Bhagavad Gita with streaming, reranking, and hybrid search.
 
 **Quick Links**:
+
 - [Complete Guide](gitagpt/COMPLETE_GUIDE.md) - Architecture, setup, algorithms
 - [Ingestion Guide](gitagpt/INGESTION_GUIDE.md) - Data sources, website scraping
 - [Setup Guide](gitagpt/GITAGPT_SETUP.md) - Environment variables, deployment
@@ -56,24 +57,26 @@ npm run dev
 
 **8/10 queries passing (80%)** with full Bhagavad Gita
 
-| Query Type | Accuracy |
-|------------|----------|
-| Verse references | 100% |
-| Keywords (Sanskrit) | 90% |
-| Characters | 100% |
-| Philosophical | 70% |
-| Chapter summaries | 100% |
+| Query Type          | Accuracy |
+| ------------------- | -------- |
+| Verse references    | 100%     |
+| Keywords (Sanskrit) | 90%      |
+| Characters          | 100%     |
+| Philosophical       | 70%      |
+| Chapter summaries   | 100%     |
 
 ---
 
 ## Cost
 
 **$0/month** - All free tiers:
+
 - Supabase (vector DB)
 - Jina (reranking, 10K/month)
 - PostgreSQL (HNSW + BM25)
 
 Only pay for:
+
 - OpenAI embeddings (~$5/mo)
 - GPT-5.1-instant (~$10/mo)
 
@@ -85,11 +88,10 @@ Only pay for:
 
 ```
 Query → Analysis → Route (Metadata/Hybrid/Semantic) →
-Retrieve (15-25 candidates) → Jina Rerank → 
+Retrieve (15-25 candidates) → Jina Rerank →
 Threshold Filter → GPT-5.1-instant → Stream Response
 ```
 
 ---
 
 Radhey Radhey! 🙏
-

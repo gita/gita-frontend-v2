@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
-import type { Chat,ChatMessage } from "./useLocalChats";
+import type { Chat, ChatMessage } from "./useLocalChats";
 
 /**
  * Hook for managing chat history in Supabase for authenticated users
@@ -44,7 +44,7 @@ export function useSupabaseChats(userId: string | null) {
               content,
               created_at
             )
-          `
+          `,
           )
           .eq("user_id", userId)
           .order("updated_at", { ascending: false });
@@ -65,7 +65,7 @@ export function useSupabaseChats(userId: string | null) {
             }))
             .sort(
               (a: ChatMessage, b: ChatMessage) =>
-                a.createdAt.getTime() - b.createdAt.getTime()
+                a.createdAt.getTime() - b.createdAt.getTime(),
             ),
         }));
 
@@ -114,7 +114,7 @@ export function useSupabaseChats(userId: string | null) {
         throw error;
       }
     },
-    [userId, supabase]
+    [userId, supabase],
   );
 
   // Get a specific chat by ID
@@ -122,15 +122,12 @@ export function useSupabaseChats(userId: string | null) {
     (chatId: string) => {
       return chats.find((chat) => chat.id === chatId);
     },
-    [chats]
+    [chats],
   );
 
   // Add a message to a chat
   const addMessage = useCallback(
-    async (
-      chatId: string,
-      message: Omit<ChatMessage, "id" | "createdAt">
-    ) => {
+    async (chatId: string, message: Omit<ChatMessage, "id" | "createdAt">) => {
       if (!userId || !supabase) {
         throw new Error("User not authenticated");
       }
@@ -165,7 +162,7 @@ export function useSupabaseChats(userId: string | null) {
               };
             }
             return chat;
-          })
+          }),
         );
 
         // Update chat's updated_at timestamp
@@ -178,7 +175,7 @@ export function useSupabaseChats(userId: string | null) {
         throw error;
       }
     },
-    [userId, supabase]
+    [userId, supabase],
   );
 
   // Update chat title
@@ -201,15 +198,15 @@ export function useSupabaseChats(userId: string | null) {
           prev.map((chat) =>
             chat.id === chatId
               ? { ...chat, title, updatedAt: new Date() }
-              : chat
-          )
+              : chat,
+          ),
         );
       } catch (error) {
         console.error("Error updating chat title:", error);
         throw error;
       }
     },
-    [userId, supabase]
+    [userId, supabase],
   );
 
   // Delete a chat
@@ -234,7 +231,7 @@ export function useSupabaseChats(userId: string | null) {
         throw error;
       }
     },
-    [userId, supabase]
+    [userId, supabase],
   );
 
   // Clear all chats
@@ -269,4 +266,3 @@ export function useSupabaseChats(userId: string | null) {
     clearAllChats,
   };
 }
-

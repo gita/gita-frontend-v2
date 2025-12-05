@@ -50,6 +50,7 @@ Moksha: Liberation from the cycle of birth and death. The ultimate goal of spiri
 ## File Naming
 
 Use descriptive names:
+
 - `faq-general.txt`
 - `faq-app.txt`
 - `glossary-terms.txt`
@@ -74,6 +75,7 @@ npm run ingest:status
 ## What Gets Indexed
 
 Each snippet becomes:
+
 ```typescript
 {
   content: "Q: ... A: ...",
@@ -96,4 +98,3 @@ Each snippet becomes:
 ---
 
 Radhey Radhey! 🙏
-

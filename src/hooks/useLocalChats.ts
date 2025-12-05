@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef,useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface ChatMessage {
   id: string;
@@ -28,7 +28,7 @@ const MAX_CONTENT_LENGTH = 5000; // Limit content length per message
 export function useLocalChats() {
   const [chats, setChats] = useState<Chat[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // Use ref to avoid stale closures in callbacks
   const chatsRef = useRef<Chat[]>([]);
   chatsRef.current = chats;
@@ -93,24 +93,27 @@ export function useLocalChats() {
   const saveChats = useCallback((updatedChats: Chat[]) => {
     try {
       // Truncate content to prevent quota issues
-      const optimizedChats = updatedChats.map(chat => ({
+      const optimizedChats = updatedChats.map((chat) => ({
         ...chat,
-        messages: chat.messages.slice(-MAX_MESSAGES_PER_CHAT).map(msg => ({
+        messages: chat.messages.slice(-MAX_MESSAGES_PER_CHAT).map((msg) => ({
           ...msg,
           content: msg.content.slice(0, MAX_CONTENT_LENGTH),
         })),
       }));
-      
+
       localStorage.setItem(STORAGE_KEY, JSON.stringify(optimizedChats));
       setChats(optimizedChats);
-      
+
       // Dispatch custom event to sync other instances in same tab
       window.dispatchEvent(new CustomEvent("gitagpt-chats-updated"));
     } catch (error) {
       // If quota exceeded, remove oldest chats and try again
-      if (error instanceof Error && error.name === 'QuotaExceededError') {
+      if (error instanceof Error && error.name === "QuotaExceededError") {
         console.warn("localStorage quota exceeded, removing old chats...");
-        const reducedChats = updatedChats.slice(0, Math.floor(updatedChats.length / 2));
+        const reducedChats = updatedChats.slice(
+          0,
+          Math.floor(updatedChats.length / 2),
+        );
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(reducedChats));
           setChats(reducedChats);
@@ -150,25 +153,28 @@ export function useLocalChats() {
       saveChats(updatedChats);
       return newChat;
     },
-    [saveChats]
+    [saveChats],
   );
 
   // Get a specific chat by ID - depends on chats to trigger re-renders
-  const getChat = useCallback((chatId: string) => {
-    return chats.find((chat) => chat.id === chatId);
-  }, [chats]);
+  const getChat = useCallback(
+    (chatId: string) => {
+      return chats.find((chat) => chat.id === chatId);
+    },
+    [chats],
+  );
 
   // Add a message to a chat (stable reference - no infinite loop)
   const addMessage = useCallback(
     (chatId: string, message: Omit<ChatMessage, "id" | "createdAt">) => {
       const currentChats = chatsRef.current;
       const chat = currentChats.find((c) => c.id === chatId);
-      
+
       if (!chat) return;
 
       // Check if message already exists (prevent duplicates)
       const messageExists = chat.messages.some(
-        (m) => m.role === message.role && m.content === message.content
+        (m) => m.role === message.role && m.content === message.content,
       );
       if (messageExists) return;
 
@@ -190,7 +196,7 @@ export function useLocalChats() {
 
       saveChats(updatedChats);
     },
-    [saveChats]
+    [saveChats],
   );
 
   // Update chat title (stable reference)
@@ -198,25 +204,27 @@ export function useLocalChats() {
     (chatId: string, title: string) => {
       const currentChats = chatsRef.current;
       const chat = currentChats.find((c) => c.id === chatId);
-      
+
       // Don't update if title is the same
       if (!chat || chat.title === title) return;
 
       const updatedChats = currentChats.map((c) =>
-        c.id === chatId ? { ...c, title, updatedAt: new Date() } : c
+        c.id === chatId ? { ...c, title, updatedAt: new Date() } : c,
       );
       saveChats(updatedChats);
     },
-    [saveChats]
+    [saveChats],
   );
 
   // Delete a chat
   const deleteChat = useCallback(
     (chatId: string) => {
-      const updatedChats = chatsRef.current.filter((chat) => chat.id !== chatId);
+      const updatedChats = chatsRef.current.filter(
+        (chat) => chat.id !== chatId,
+      );
       saveChats(updatedChats);
     },
-    [saveChats]
+    [saveChats],
   );
 
   // Clear all chats

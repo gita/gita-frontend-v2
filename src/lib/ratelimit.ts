@@ -14,10 +14,13 @@ let authRateLimitInstance: Ratelimit | null = null;
 function getRedis(): Redis {
   // Vercel KV uses KV_REST_API_* naming convention
   const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  const token =
+    process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
   if (!url || !token) {
-    throw new Error("Missing Upstash Redis environment variables (KV_REST_API_URL and KV_REST_API_TOKEN)");
+    throw new Error(
+      "Missing Upstash Redis environment variables (KV_REST_API_URL and KV_REST_API_TOKEN)",
+    );
   }
 
   return new Redis({ url, token });
@@ -63,7 +66,7 @@ export function getAuthRateLimit(): Ratelimit {
  */
 export async function checkRateLimit(
   identifier: string,
-  isAuthenticated: boolean
+  isAuthenticated: boolean,
 ): Promise<{
   success: boolean;
   remaining: number;
@@ -116,7 +119,7 @@ export function getRateLimitHeaders(result: {
  */
 export async function getRateLimitStatus(
   identifier: string,
-  isAuthenticated: boolean
+  isAuthenticated: boolean,
 ): Promise<{
   remaining: number;
   limit: number;
@@ -124,16 +127,16 @@ export async function getRateLimitStatus(
   isLimited: boolean;
 }> {
   const limit = isAuthenticated ? 10 : 2;
-  
+
   try {
     const ratelimit = isAuthenticated ? getAuthRateLimit() : getAnonRateLimit();
-    
+
     // getRemaining() checks without consuming a credit
     const result = await ratelimit.getRemaining(identifier);
-    
+
     // Ensure remaining is within valid bounds
     const remaining = Math.max(0, Math.min(result.remaining, limit));
-    
+
     return {
       remaining,
       limit,
@@ -152,4 +155,3 @@ export async function getRateLimitStatus(
     };
   }
 }
-

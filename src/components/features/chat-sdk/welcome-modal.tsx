@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Bookmark, BookOpen, MessageSquare, NotebookPen, Sparkles } from "lucide-react";
+import {
+  Bookmark,
+  BookOpen,
+  MessageSquare,
+  NotebookPen,
+  Sparkles,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -96,11 +102,7 @@ export function WelcomeModal({ onSignUp }: WelcomeModalProps) {
           >
             Sign Up
           </Button>
-          <Button
-            onClick={handleMaybeLater}
-            variant="ghost"
-            className="w-full"
-          >
+          <Button onClick={handleMaybeLater} variant="ghost" className="w-full">
             Maybe later
           </Button>
         </div>
@@ -108,4 +110,3 @@ export function WelcomeModal({ onSignUp }: WelcomeModalProps) {
     </Dialog>
   );
 }
-

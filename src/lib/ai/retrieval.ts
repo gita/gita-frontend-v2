@@ -3,7 +3,7 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { embed } from "ai";
 
 import { analyzeQuery, getRetrievalCount } from "./query-analysis";
-import { jinaRerank,simpleKeywordRerank } from "./reranker";
+import { jinaRerank, simpleKeywordRerank } from "./reranker";
 
 // Lazy initialization of Supabase client
 let supabase: SupabaseClient | null = null;
@@ -70,28 +70,31 @@ export async function generateEmbedding(text: string): Promise<number[]> {
 export async function searchGitaContent(
   query: string,
   matchCount: number = 5,
-  useReranking: boolean = true
+  useReranking: boolean = true,
 ): Promise<RetrievedContent[]> {
   try {
     const client = getSupabaseClient();
 
     // Analyze query for adaptive retrieval
     const analysis = analyzeQuery(query);
-    console.log(`📊 Query Analysis: ${analysis.complexity}/${analysis.queryType}, threshold=${analysis.similarityThreshold.toFixed(2)}`);
+    console.log(
+      `📊 Query Analysis: ${analysis.complexity}/${analysis.queryType}, threshold=${analysis.similarityThreshold.toFixed(2)}`,
+    );
 
     // Check if query explicitly mentions a verse number (e.g., "verse 1.1", "BG 2.3")
-    const chapterVerseMatch = query.match(/(?:verse|bg|BG)\s*(\d+)\.(\d+)/i) || 
-                              query.match(/(\d+)\.(\d+)/);
-    
+    const chapterVerseMatch =
+      query.match(/(?:verse|bg|BG)\s*(\d+)\.(\d+)/i) ||
+      query.match(/(\d+)\.(\d+)/);
+
     let results: RetrievedContent[] = [];
 
     if (chapterVerseMatch) {
       // Query mentions specific verse - use metadata filtering
       const chapter = parseInt(chapterVerseMatch[1]);
       const verse = chapterVerseMatch[2];
-      
+
       console.log(`🎯 Metadata filter: Chapter ${chapter}, Verse ${verse}`);
-      
+
       // Query with metadata filter (JSONB operators)
       const { data: filteredData, error: filterError } = await client
         .from("gita_embeddings")
@@ -103,7 +106,9 @@ export async function searchGitaContent(
         console.error("❌ Metadata filter error:", filterError);
         // Fall back to vector search below
       } else if (filteredData && filteredData.length > 0) {
-        console.log(`✅ Found ${filteredData.length} exact matches via metadata filter`);
+        console.log(
+          `✅ Found ${filteredData.length} exact matches via metadata filter`,
+        );
         // Convert to RetrievedContent format with perfect similarity
         const metadataResults = filteredData.map((item: any) => ({
           id: item.id,
@@ -111,13 +116,15 @@ export async function searchGitaContent(
           metadata: item.metadata,
           similarity: 1.0, // Perfect match via metadata
         }));
-        
+
         // Still log for debugging
         console.log("\n" + "=".repeat(80));
         console.log(`🔍 RAG Query: "${query}"`);
-        console.log(`📊 Found ${metadataResults.length} chunks (via metadata filter)`);
+        console.log(
+          `📊 Found ${metadataResults.length} chunks (via metadata filter)`,
+        );
         console.log("=".repeat(80) + "\n");
-        
+
         return metadataResults.slice(0, matchCount);
       }
     }
@@ -126,7 +133,7 @@ export async function searchGitaContent(
     const queryEmbedding = await generateEmbedding(query);
 
     // Retrieve more candidates based on query complexity
-    const retrievalCount = useReranking 
+    const retrievalCount = useReranking
       ? getRetrievalCount(analysis.complexity, matchCount)
       : matchCount;
 
@@ -145,7 +152,7 @@ export async function searchGitaContent(
 
     // Deduplicate based on content+metadata
     const seen = new Set<string>();
-    results = results.filter(item => {
+    results = results.filter((item) => {
       const key = `${item.metadata.chapter}-${item.metadata.verse}-${item.metadata.author_id}-${item.content.substring(0, 100)}`;
       if (seen.has(key)) return false;
       seen.add(key);
@@ -156,19 +163,26 @@ export async function searchGitaContent(
     if (useReranking && results.length > 0) {
       // Try Jina first (falls back to simple keyword if not configured)
       results = await jinaRerank(query, results, matchCount);
-      console.log(`\n🔄 Reranking: Retrieved ${retrievalCount}, deduplicated, returning top ${matchCount}`);
+      console.log(
+        `\n🔄 Reranking: Retrieved ${retrievalCount}, deduplicated, returning top ${matchCount}`,
+      );
     }
 
     // Apply similarity threshold filtering (adaptive based on query)
     // BUT: Always keep at least 1 result (for greetings, edge cases)
     const beforeThreshold = results.length;
-    const filteredResults = results.filter(r => r.similarity >= analysis.similarityThreshold);
-    
+    const filteredResults = results.filter(
+      (r) => r.similarity >= analysis.similarityThreshold,
+    );
+
     // If threshold removed everything, keep top 2 results anyway
-    results = filteredResults.length > 0 ? filteredResults : results.slice(0, 2);
-    
+    results =
+      filteredResults.length > 0 ? filteredResults : results.slice(0, 2);
+
     if (results.length < beforeThreshold) {
-      console.log(`🎯 Threshold filter: ${beforeThreshold} → ${results.length} (removed ${beforeThreshold - results.length} low-confidence matches)`);
+      console.log(
+        `🎯 Threshold filter: ${beforeThreshold} → ${results.length} (removed ${beforeThreshold - results.length} low-confidence matches)`,
+      );
     }
 
     console.log("\n" + "=".repeat(80));
@@ -183,7 +197,9 @@ export async function searchGitaContent(
         console.log(`   Verse: ${item.metadata?.verse || "N/A"}`);
         console.log(`   Author: ${item.metadata?.author || "N/A"}`);
         console.log(`   Type: ${item.metadata?.type || "N/A"}`);
-        console.log(`   Similarity: ${((item.similarity || 0) * 100).toFixed(1)}%`);
+        console.log(
+          `   Similarity: ${((item.similarity || 0) * 100).toFixed(1)}%`,
+        );
         if (item.rerankScore) {
           console.log(`   Rerank Score: ${item.rerankScore.toFixed(2)}`);
         }
@@ -214,36 +230,37 @@ export async function searchGitaContent(
 function reassembleChunks(content: RetrievedContent[]): RetrievedContent[] {
   // Group items by their verse identity (chapter + verse + author)
   const groups = new Map<string, RetrievedContent[]>();
-  
+
   for (const item of content) {
     const meta = item.metadata;
     const key = `${meta.chapter}-${meta.verse}-${meta.author_id}`;
-    
+
     if (!groups.has(key)) {
       groups.set(key, []);
     }
     groups.get(key)!.push(item);
   }
-  
+
   // Reassemble chunks within each group
   const reassembled: RetrievedContent[] = [];
-  
+
   for (const [, items] of groups) {
     if (items.length === 1 || !items[0].metadata.is_chunked) {
       // Not chunked, add as-is
       reassembled.push(items[0]);
     } else {
       // Sort chunks by chunk_index
-      items.sort((a, b) => 
-        (a.metadata.chunk_index || 0) - (b.metadata.chunk_index || 0)
+      items.sort(
+        (a, b) => (a.metadata.chunk_index || 0) - (b.metadata.chunk_index || 0),
       );
-      
+
       // Merge content from all chunks
-      const mergedContent = items.map(item => item.content).join("\n\n");
-      
+      const mergedContent = items.map((item) => item.content).join("\n\n");
+
       // Use the first chunk's metadata, but remove chunking info
-      const { is_chunked, chunk_index, total_chunks, ...cleanMetadata } = items[0].metadata;
-      
+      const { is_chunked, chunk_index, total_chunks, ...cleanMetadata } =
+        items[0].metadata;
+
       reassembled.push({
         id: items[0].id,
         content: mergedContent,
@@ -252,7 +269,7 @@ function reassembleChunks(content: RetrievedContent[]): RetrievedContent[] {
       });
     }
   }
-  
+
   return reassembled;
 }
 
@@ -301,7 +318,7 @@ export async function hybridSearchGitaContent(
   query: string,
   matchCount: number = 5,
   bm25Weight: number = 0.3,
-  vectorWeight: number = 0.7
+  vectorWeight: number = 0.7,
 ): Promise<RetrievedContent[]> {
   try {
     const client = getSupabaseClient();
@@ -316,14 +333,19 @@ export async function hybridSearchGitaContent(
     });
 
     if (error) {
-      console.error("❌ Hybrid search error, falling back to vector search:", error);
+      console.error(
+        "❌ Hybrid search error, falling back to vector search:",
+        error,
+      );
       // Fallback to pure vector search
       return await searchGitaContent(query, matchCount, false);
     }
 
-    console.log(`🔀 Hybrid search: BM25 (${bm25Weight * 100}%) + Vector (${vectorWeight * 100}%)`);
-    
-    return (data as any[]).map(item => ({
+    console.log(
+      `🔀 Hybrid search: BM25 (${bm25Weight * 100}%) + Vector (${vectorWeight * 100}%)`,
+    );
+
+    return (data as any[]).map((item) => ({
       id: item.id,
       content: item.content,
       metadata: item.metadata,
@@ -343,15 +365,15 @@ export async function hybridSearchGitaContent(
  */
 function shouldUseHybridSearch(query: string): boolean {
   const keywordPatterns = [
-    /dharma[-\s]?kshetra/i,    // dharma-kshetra, dharma kshetra
-    /kurukshetra/i,             // Kurukshetra
-    /sanskrit|devanagari/i,     // Sanskrit content
-    /[अ-ह]{3,}/,                 // Sanskrit Devanagari text (3+ chars)
+    /dharma[-\s]?kshetra/i, // dharma-kshetra, dharma kshetra
+    /kurukshetra/i, // Kurukshetra
+    /sanskrit|devanagari/i, // Sanskrit content
+    /[अ-ह]{3,}/, // Sanskrit Devanagari text (3+ chars)
     /\b(krishna|arjuna|sanjaya|dhritarashtra)\b/i, // Character names
-    /\b(panchajanya|devadatta|gandiva|conch)\b/i,  // Proper nouns
+    /\b(panchajanya|devadatta|gandiva|conch)\b/i, // Proper nouns
   ];
-  
-  return keywordPatterns.some(pattern => pattern.test(query));
+
+  return keywordPatterns.some((pattern) => pattern.test(query));
 }
 
 /**
@@ -360,11 +382,11 @@ function shouldUseHybridSearch(query: string): boolean {
  */
 export async function getRelevantContext(
   query: string,
-  matchCount: number = 5
+  matchCount: number = 5,
 ): Promise<string> {
   // Choose search strategy based on query characteristics
   let results: RetrievedContent[];
-  
+
   if (shouldUseHybridSearch(query)) {
     // Keyword-heavy query → Hybrid search (BM25 + Vector)
     results = await hybridSearchGitaContent(query, matchCount, 0.3, 0.7);
@@ -372,6 +394,6 @@ export async function getRelevantContext(
     // Semantic query → Pure vector search
     results = await searchGitaContent(query, matchCount);
   }
-  
+
   return formatRetrievedContent(results);
 }

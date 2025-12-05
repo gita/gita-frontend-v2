@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
  */
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -15,10 +15,7 @@ export async function GET(
     const authHeader = headersList.get("authorization");
 
     if (!authHeader?.startsWith("Bearer ")) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const token = authHeader.substring(7);
@@ -28,24 +25,28 @@ export async function GET(
     if (!supabaseUrl || !supabaseAnonKey) {
       return NextResponse.json(
         { error: "Server configuration error" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
-    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser(token);
 
     if (userError || !user) {
       return NextResponse.json(
         { error: "Invalid authentication token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
     // Fetch chat with messages
     const { data: chat, error: chatError } = await supabase
       .from("chats")
-      .select(`
+      .select(
+        `
         id,
         title,
         created_at,
@@ -56,17 +57,15 @@ export async function GET(
           content,
           created_at
         )
-      `)
+      `,
+      )
       .eq("id", id)
       .eq("user_id", user.id)
       .single();
 
     if (chatError) {
       console.error("Error fetching chat:", chatError);
-      return NextResponse.json(
-        { error: "Chat not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Chat not found" }, { status: 404 });
     }
 
     return NextResponse.json({ chat });
@@ -74,7 +73,7 @@ export async function GET(
     console.error("GET /api/chats/[id] error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -84,7 +83,7 @@ export async function GET(
  */
 export async function PATCH(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -92,10 +91,7 @@ export async function PATCH(
     const authHeader = headersList.get("authorization");
 
     if (!authHeader?.startsWith("Bearer ")) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const token = authHeader.substring(7);
@@ -105,17 +101,20 @@ export async function PATCH(
     if (!supabaseUrl || !supabaseAnonKey) {
       return NextResponse.json(
         { error: "Server configuration error" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
-    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser(token);
 
     if (userError || !user) {
       return NextResponse.json(
         { error: "Invalid authentication token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -123,10 +122,7 @@ export async function PATCH(
     const { title } = body;
 
     if (!title) {
-      return NextResponse.json(
-        { error: "Title is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Title is required" }, { status: 400 });
     }
 
     // Update chat title
@@ -145,7 +141,7 @@ export async function PATCH(
       console.error("Error updating chat:", updateError);
       return NextResponse.json(
         { error: "Failed to update chat" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -154,7 +150,7 @@ export async function PATCH(
     console.error("PATCH /api/chats/[id] error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -164,7 +160,7 @@ export async function PATCH(
  */
 export async function DELETE(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -172,10 +168,7 @@ export async function DELETE(
     const authHeader = headersList.get("authorization");
 
     if (!authHeader?.startsWith("Bearer ")) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const token = authHeader.substring(7);
@@ -185,17 +178,20 @@ export async function DELETE(
     if (!supabaseUrl || !supabaseAnonKey) {
       return NextResponse.json(
         { error: "Server configuration error" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
-    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser(token);
 
     if (userError || !user) {
       return NextResponse.json(
         { error: "Invalid authentication token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -210,7 +206,7 @@ export async function DELETE(
       console.error("Error deleting chat:", deleteError);
       return NextResponse.json(
         { error: "Failed to delete chat" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -219,8 +215,7 @@ export async function DELETE(
     console.error("DELETE /api/chats/[id] error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
-

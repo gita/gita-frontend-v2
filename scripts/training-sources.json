@@ -49,13 +49,7 @@
       "selectors": {
         "title": "h1, .page-title",
         "content": "main, article, .content",
-        "exclude": [
-          "nav",
-          "footer",
-          ".sidebar",
-          "header",
-          ".cookie-banner"
-        ]
+        "exclude": ["nav", "footer", ".sidebar", "header", ".cookie-banner"]
       }
     },
     "custom_snippets": {

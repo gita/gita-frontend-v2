@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { MessageSquare, PanelLeftClose,Plus, Trash2 } from "lucide-react";
+import { MessageSquare, PanelLeftClose, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname,useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { SidebarFooter } from "./sidebar-footer";
 
@@ -41,7 +41,7 @@ export function Sidebar({ className, onCollapse }: SidebarProps) {
   const handleDeleteChat = async (chatId: string, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (confirm("Delete this conversation?")) {
       setDeletingId(chatId);
       try {
@@ -60,8 +60,8 @@ export function Sidebar({ className, onCollapse }: SidebarProps) {
     <TooltipProvider delayDuration={0}>
       <div
         className={cn(
-          "flex h-full w-64 flex-col border-r bg-sidebar-background",
-          className
+          "bg-sidebar-background flex h-full w-64 flex-col border-r",
+          className,
         )}
       >
         {/* Header - Logo + Collapse Button */}
@@ -130,9 +130,9 @@ export function Sidebar({ className, onCollapse }: SidebarProps) {
                   key={chat.id}
                   href={`/gitagpt/chat/${chat.id}`}
                   className={cn(
-                    "group flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent",
+                    "hover:bg-sidebar-accent group flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
                     currentChatId === chat.id &&
-                      "bg-sidebar-accent text-sidebar-primary font-medium"
+                      "bg-sidebar-accent text-sidebar-primary font-medium",
                   )}
                 >
                   <MessageSquare className="size-4 shrink-0" />

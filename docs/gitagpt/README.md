@@ -3,10 +3,12 @@
 ## 📚 Documentation Index
 
 ### Quick Start
+
 - **[Complete Guide](COMPLETE_GUIDE.md)** - Everything you need (architecture, setup, deployment)
 - **[Ingestion Guide](INGESTION_GUIDE.md)** - Data sources (JSON, websites, selective updates)
 
 ### Technical Details
+
 - **[Setup Guide](GITAGPT_SETUP.md)** - Environment variables, database setup
 - **[Hybrid Search & Reranking](HYBRID_SEARCH_RERANKING.md)** - Advanced RAG techniques (578 lines)
 
@@ -19,6 +21,7 @@
 **Data**: 809 records (18 chapters, all Bhagavad Gita verses)
 
 **Tech Stack**:
+
 - Supabase (pgvector + HNSW)
 - Vercel AI SDK v5
 - GPT-5.1-instant
@@ -34,7 +37,7 @@
 ```bash
 # Data ingestion
 npm run ingest:gita          # All 18 chapters
-npm run ingest:web           # Website pages  
+npm run ingest:web           # Website pages
 npm run ingest:chapter -- 5  # Re-index Chapter 5
 
 # Testing
@@ -62,10 +65,7 @@ export const DATA_PATH = "/your/path/to/gita-data";
 ### Website URLs
 
 ```typescript
-urls: [
-  "https://bhagavadgita.io/about",
-  "https://bhagavadgita.io/faq",
-]
+urls: ["https://bhagavadgita.io/about", "https://bhagavadgita.io/faq"];
 ```
 
 ---

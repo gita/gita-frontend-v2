@@ -12,4 +12,3 @@ export { Chat as ChatPage } from "../chat-sdk/chat";
 
 // Keep ChatWidget for floating widget on other pages
 export { ChatWidget } from "./ChatWidget";
-

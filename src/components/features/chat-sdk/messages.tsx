@@ -28,7 +28,9 @@ function getMessageText(message: UIMessage): string {
   }
 
   return message.parts
-    .filter((part): part is { type: "text"; text: string } => part.type === "text")
+    .filter(
+      (part): part is { type: "text"; text: string } => part.type === "text",
+    )
     .map((part) => part.text)
     .join("");
 }
@@ -67,8 +69,8 @@ export function Messages({ messages, isLoading }: MessagesProps) {
   }, [isLoading, scrollToBottom, showScrollButton]);
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className="relative flex-1 overflow-y-auto"
       onScroll={handleScroll}
     >
@@ -83,11 +85,13 @@ export function Messages({ messages, isLoading }: MessagesProps) {
         ))}
 
         {/* Loading indicator - show when loading and last message is from user (waiting for AI) */}
-        {isLoading && messages.length > 0 && messages[messages.length - 1]?.role === "user" && (
-          <div className="group">
-            <Message role="assistant" content="" isLoading />
-          </div>
-        )}
+        {isLoading &&
+          messages.length > 0 &&
+          messages[messages.length - 1]?.role === "user" && (
+            <div className="group">
+              <Message role="assistant" content="" isLoading />
+            </div>
+          )}
 
         {/* Invisible element to scroll to */}
         <div ref={bottomRef} />

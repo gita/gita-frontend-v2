@@ -1,6 +1,6 @@
 /**
  * Web scraper for indexing website pages into GitaGPT RAG
- * 
+ *
  * Features:
  * - Scrapes HTML content from URLs
  * - Extracts main content (removes nav, footer, ads)
@@ -35,11 +35,11 @@ export interface ScrapeOptions {
  */
 export async function scrapePage(
   url: string,
-  options: ScrapeOptions = {}
+  options: ScrapeOptions = {},
 ): Promise<ScrapedPage | null> {
   try {
     console.log(`\n🌐 Scraping: ${url}`);
-    
+
     const response = await fetch(url);
     if (!response.ok) {
       console.error(`   ❌ Failed to fetch: ${response.status}`);
@@ -50,27 +50,27 @@ export async function scrapePage(
     const $ = cheerio.load(html);
 
     // Extract metadata from page
-    const title = 
-      $('meta[property="og:title"]').attr('content') ||
-      $('meta[name="twitter:title"]').attr('content') ||
-      $('title').text() ||
-      $('h1').first().text() ||
+    const title =
+      $('meta[property="og:title"]').attr("content") ||
+      $('meta[name="twitter:title"]').attr("content") ||
+      $("title").text() ||
+      $("h1").first().text() ||
       new URL(url).pathname;
 
     const description =
-      $('meta[property="og:description"]').attr('content') ||
-      $('meta[name="description"]').attr('content') ||
-      $('meta[name="twitter:description"]').attr('content') ||
+      $('meta[property="og:description"]').attr("content") ||
+      $('meta[name="description"]').attr("content") ||
+      $('meta[name="twitter:description"]').attr("content") ||
       "";
 
     const ogImage =
-      $('meta[property="og:image"]').attr('content') ||
-      $('meta[name="twitter:image"]').attr('content') ||
+      $('meta[property="og:image"]').attr("content") ||
+      $('meta[name="twitter:image"]').attr("content") ||
       "";
 
     const language =
-      $('html').attr('lang') ||
-      $('meta[property="og:locale"]').attr('content') ||
+      $("html").attr("lang") ||
+      $('meta[property="og:locale"]').attr("content") ||
       "en";
 
     console.log(`   📄 Title: ${title.substring(0, 60)}...`);
@@ -88,7 +88,7 @@ export async function scrapePage(
       ".cookie-banner",
       "iframe",
     ];
-    
+
     excludeSelectors.forEach((selector) => {
       $(selector).remove();
     });
@@ -99,7 +99,7 @@ export async function scrapePage(
 
     // Convert to clean text
     let content = "";
-    
+
     // Extract headings and paragraphs with structure
     contentHtml.find("h1, h2, h3, p, li").each((i, elem) => {
       const text = $(elem).text().trim();
@@ -150,7 +150,7 @@ export async function scrapePage(
 export async function scrapePages(
   urls: string[],
   options: ScrapeOptions = {},
-  delayMs: number = 1000
+  delayMs: number = 1000,
 ): Promise<ScrapedPage[]> {
   const pages: ScrapedPage[] = [];
 
@@ -178,12 +178,12 @@ export function chunkScrapedPage(
   page: ScrapedPage,
   optimalSize: number = 2000,
   maxSize: number = 3500, // Reduced to stay well below 8192 token limit
-  overlap: number = 150
+  overlap: number = 150,
 ): Array<{ content: string; metadata: any }> {
   const chunks: Array<{ content: string; metadata: any }> = [];
-  
+
   const header = `# ${page.title}\n\nSource: ${page.url}\n\n`;
-  
+
   // If page is small enough, return as single chunk
   if (header.length + page.content.length <= maxSize) {
     chunks.push({
@@ -199,7 +199,9 @@ export function chunkScrapedPage(
     return chunks;
   }
 
-  console.log(`   ⚠️  Page too large (${page.content.length} chars), chunking...`);
+  console.log(
+    `   ⚠️  Page too large (${page.content.length} chars), chunking...`,
+  );
 
   // Split into sentences
   const sentences = page.content.split(/(?<=[.!?।])\s+/); // Include Hindi sentence ender।
@@ -208,7 +210,10 @@ export function chunkScrapedPage(
 
   for (const sentence of sentences) {
     // Check if adding sentence would exceed maxSize
-    if (currentChunk.length + sentence.length > maxSize && currentChunk.length > header.length) {
+    if (
+      currentChunk.length + sentence.length > maxSize &&
+      currentChunk.length > header.length
+    ) {
       // Save current chunk
       chunks.push({
         content: currentChunk,
@@ -256,4 +261,3 @@ export function chunkScrapedPage(
 
   return chunks;
 }
-

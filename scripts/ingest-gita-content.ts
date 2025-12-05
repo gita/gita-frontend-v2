@@ -87,7 +87,7 @@ interface EmbeddingRecord {
 // Initialize clients
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
 /**
@@ -112,42 +112,47 @@ function chunkText(text: string): string[] {
   }
 
   const chunks: string[] = [];
-  
+
   // Split by sentences (English, Hindi, Sanskrit)
   const sentences = text.split(/(?<=[.!?।॥])\s+/);
-  
+
   let currentChunk = "";
   let overlapBuffer = ""; // Store last sentences for overlap
-  
+
   for (let i = 0; i < sentences.length; i++) {
     const sentence = sentences[i];
     const potentialChunk = currentChunk + (currentChunk ? " " : "") + sentence;
-    
+
     // Check if adding this sentence would exceed optimal size
     if (potentialChunk.length > OPTIMAL_CHUNK_CHARS && currentChunk) {
       // Check if current chunk would exceed MAX_CHUNK_CHARS
       if (currentChunk.length > MAX_CHUNK_CHARS) {
-        console.warn(`Warning: Chunk exceeds MAX_CHUNK_CHARS (${currentChunk.length} chars). Consider reducing OPTIMAL_CHUNK_CHARS.`);
+        console.warn(
+          `Warning: Chunk exceeds MAX_CHUNK_CHARS (${currentChunk.length} chars). Consider reducing OPTIMAL_CHUNK_CHARS.`,
+        );
       }
-      
+
       chunks.push(currentChunk.trim());
-      
+
       // Create overlap: take last ~200 chars from current chunk
-      const overlapStart = Math.max(0, currentChunk.length - CHUNK_OVERLAP_CHARS);
+      const overlapStart = Math.max(
+        0,
+        currentChunk.length - CHUNK_OVERLAP_CHARS,
+      );
       overlapBuffer = currentChunk.substring(overlapStart).trim();
-      
+
       // Start new chunk with overlap
       currentChunk = overlapBuffer + " " + sentence;
     } else {
       currentChunk = potentialChunk;
     }
   }
-  
+
   // Add final chunk
   if (currentChunk.trim()) {
     chunks.push(currentChunk.trim());
   }
-  
+
   return chunks;
 }
 
@@ -167,7 +172,7 @@ function buildVerseContent(
   authorName: string,
   common?: VerseCommon,
   translation?: string,
-  commentary?: string | null
+  commentary?: string | null,
 ): string {
   let content = `# BG ${chapterNum}.${verseNum}\n\n`;
 
@@ -204,20 +209,20 @@ function buildVerseContent(
  */
 async function processMukundanandaEnglish(
   authorFilePath: string,
-  commonFilePath: string
+  commonFilePath: string,
 ): Promise<EmbeddingRecord[]> {
   const records: EmbeddingRecord[] = [];
 
   try {
     const authorData = JSON.parse(
-      fs.readFileSync(authorFilePath, "utf-8")
+      fs.readFileSync(authorFilePath, "utf-8"),
     ) as AuthorData;
     const commonData = JSON.parse(
-      fs.readFileSync(commonFilePath, "utf-8")
+      fs.readFileSync(commonFilePath, "utf-8"),
     ) as CommonData;
 
     console.log(
-      `  Processing: ${authorData.author_name} (ID: ${authorData.author_id}) with common data [${authorData.language_code}]`
+      `  Processing: ${authorData.author_name} (ID: ${authorData.author_id}) with common data [${authorData.language_code}]`,
     );
 
     for (const chapter of authorData.chapters) {
@@ -228,18 +233,22 @@ async function processMukundanandaEnglish(
 
       // Find corresponding chapter in common data
       const commonChapter = commonData.chapters.find(
-        (c) => parseInt(c.chapter_number) === chapter.chapter_number
+        (c) => parseInt(c.chapter_number) === chapter.chapter_number,
       );
 
       for (const verse of chapter.verses) {
         // Skip verses beyond test limit in TEST_MODE (only if limit is set)
-        if (TEST_MODE && TEST_MAX_VERSES !== null && parseInt(verse.verse_number) > TEST_MAX_VERSES) {
+        if (
+          TEST_MODE &&
+          TEST_MAX_VERSES !== null &&
+          parseInt(verse.verse_number) > TEST_MAX_VERSES
+        ) {
           continue;
         }
 
         // Find corresponding verse in common data
         const commonVerse = commonChapter?.verses.find(
-          (v) => v.verse_number === verse.verse_number
+          (v) => v.verse_number === verse.verse_number,
         );
 
         // Build comprehensive content
@@ -249,7 +258,7 @@ async function processMukundanandaEnglish(
           authorData.author_name,
           commonVerse,
           verse.translation,
-          verse.commentary
+          verse.commentary,
         );
 
         // Chunk if necessary using smart chunking with overlap
@@ -257,7 +266,9 @@ async function processMukundanandaEnglish(
         const isChunked = chunks.length > 1;
 
         for (let i = 0; i < chunks.length; i++) {
-          const chunkLabel = isChunked ? ` (Part ${i + 1}/${chunks.length})` : "";
+          const chunkLabel = isChunked
+            ? ` (Part ${i + 1}/${chunks.length})`
+            : "";
 
           records.push({
             content: chunks[i],
@@ -279,7 +290,7 @@ async function processMukundanandaEnglish(
 
           if (chunkLabel) {
             console.log(
-              `    Chapter ${chapter.chapter_number}, Verse ${verse.verse_number}${chunkLabel} (${chunks[i].length} chars)`
+              `    Chapter ${chapter.chapter_number}, Verse ${verse.verse_number}${chunkLabel} (${chunks[i].length} chars)`,
             );
           }
         }
@@ -297,16 +308,18 @@ async function processMukundanandaEnglish(
  */
 async function indexChapterInfo(): Promise<EmbeddingRecord[]> {
   const records: EmbeddingRecord[] = [];
-  
+
   try {
     const chaptersFile = path.join(DATA_PATH, "chapters.json");
     if (!fs.existsSync(chaptersFile)) {
-      console.warn("  Warning: chapters.json not found. Skipping chapter indexing.");
+      console.warn(
+        "  Warning: chapters.json not found. Skipping chapter indexing.",
+      );
       return records;
     }
 
     const chaptersData = JSON.parse(fs.readFileSync(chaptersFile, "utf-8"));
-    
+
     for (const chapter of chaptersData) {
       if (TEST_MODE && chapter.chapter_number > TEST_MAX_CHAPTERS) {
         continue;
@@ -316,9 +329,9 @@ async function indexChapterInfo(): Promise<EmbeddingRecord[]> {
       const chapterContent = `
 # Chapter ${chapter.chapter_number}: ${chapter.name.en}
 
-${chapter.oneliner?.en || ''}
+${chapter.oneliner?.en || ""}
 
-${chapter.description?.en || ''}
+${chapter.description?.en || ""}
 
 Verses: ${chapter.verses_count}
       `.trim();
@@ -430,10 +443,12 @@ async function main() {
   // 3. TODO: Index additional pages (website content)
   // This can be expanded to index pages like:
   // - Chapter introductions from the website
-  // - Author biographies  
+  // - Author biographies
   // - Glossary terms
   // - FAQs about the Gita
-  console.log("\n3️⃣ Additional page indexing: Not yet implemented (future enhancement)")
+  console.log(
+    "\n3️⃣ Additional page indexing: Not yet implemented (future enhancement)",
+  );
 
   console.log(`\nTotal records to process: ${allRecords.length}`);
 
@@ -445,7 +460,7 @@ async function main() {
         content: record.content,
         embedding: await generateEmbedding(record.content),
         metadata: record.metadata,
-      }))
+      })),
     );
 
     const { error } = await supabase
@@ -453,13 +468,10 @@ async function main() {
       .insert(embeddingsBatch);
 
     if (error) {
-      console.error(
-        `  Error inserting batch ${i / BATCH_SIZE + 1}:`,
-        error
-      );
+      console.error(`  Error inserting batch ${i / BATCH_SIZE + 1}:`, error);
     } else {
       console.log(
-        `  Processed batch ${i / BATCH_SIZE + 1}: ${i + batch.length}/${allRecords.length}`
+        `  Processed batch ${i / BATCH_SIZE + 1}: ${i + batch.length}/${allRecords.length}`,
       );
     }
     // Add a small delay to avoid hitting rate limits

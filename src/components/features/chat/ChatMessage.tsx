@@ -19,7 +19,7 @@ export function ChatMessage({ role, content, isLoading }: ChatMessageProps) {
     <div
       className={cn(
         "flex gap-3 px-4 py-6",
-        isAssistant ? "bg-muted/50" : "bg-background"
+        isAssistant ? "bg-muted/50" : "bg-background",
       )}
     >
       <Avatar className="size-8 shrink-0">
@@ -62,7 +62,9 @@ export function ChatMessage({ role, content, isLoading }: ChatMessageProps) {
                   <strong className="font-semibold">{children}</strong>
                 ),
                 // Ensure list items render properly
-                ul: ({ children }) => <ul className="my-2 list-disc space-y-1 pl-5">{children}</ul>,
+                ul: ({ children }) => (
+                  <ul className="my-2 list-disc space-y-1 pl-5">{children}</ul>
+                ),
                 li: ({ children }) => <li className="ml-2">{children}</li>,
                 // Style code blocks
                 code: ({ className, children, ...props }) => {
@@ -115,4 +117,3 @@ export function ChatMessage({ role, content, isLoading }: ChatMessageProps) {
     </div>
   );
 }
-

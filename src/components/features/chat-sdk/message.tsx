@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { Check,Copy } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 import Image from "next/image";
 import remarkGfm from "remark-gfm";
 
@@ -82,34 +82,55 @@ export function Message({ role, content, isLoading }: MessageProps) {
                           </blockquote>
                         ),
                         // Style code blocks
-                        code: ({ node, className, children, ...props }: any) => {
-                          const isInline = !className?.includes('language-');
+                        code: ({
+                          node,
+                          className,
+                          children,
+                          ...props
+                        }: any) => {
+                          const isInline = !className?.includes("language-");
                           return isInline ? (
-                            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm" {...props}>
+                            <code
+                              className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm"
+                              {...props}
+                            >
                               {children}
                             </code>
                           ) : (
-                            <code className="block overflow-x-auto rounded-lg bg-muted p-4 font-mono text-sm" {...props}>
+                            <code
+                              className="block overflow-x-auto rounded-lg bg-muted p-4 font-mono text-sm"
+                              {...props}
+                            >
                               {children}
                             </code>
                           );
                         },
                         // Style lists
                         ul: ({ children }) => (
-                          <ul className="my-4 list-disc space-y-2 pl-6">{children}</ul>
+                          <ul className="my-4 list-disc space-y-2 pl-6">
+                            {children}
+                          </ul>
                         ),
                         ol: ({ children }) => (
-                          <ol className="my-4 list-decimal space-y-2 pl-6">{children}</ol>
+                          <ol className="my-4 list-decimal space-y-2 pl-6">
+                            {children}
+                          </ol>
                         ),
                         // Style headings
                         h1: ({ children }) => (
-                          <h1 className="mb-3 mt-6 text-xl font-semibold">{children}</h1>
+                          <h1 className="mb-3 mt-6 text-xl font-semibold">
+                            {children}
+                          </h1>
                         ),
                         h2: ({ children }) => (
-                          <h2 className="mb-2 mt-5 text-lg font-semibold">{children}</h2>
+                          <h2 className="mb-2 mt-5 text-lg font-semibold">
+                            {children}
+                          </h2>
                         ),
                         h3: ({ children }) => (
-                          <h3 className="mb-2 mt-4 text-base font-semibold">{children}</h3>
+                          <h3 className="mb-2 mt-4 text-base font-semibold">
+                            {children}
+                          </h3>
                         ),
                         // Style strong/bold
                         strong: ({ children }) => (

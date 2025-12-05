@@ -6,7 +6,12 @@ import { Menu } from "lucide-react";
 import { Sidebar } from "./sidebar";
 
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export function SidebarToggle() {
   // Prevent hydration mismatch by delaying Sheet render until client
@@ -51,4 +56,3 @@ export function SidebarToggle() {
     </Sheet>
   );
 }
-

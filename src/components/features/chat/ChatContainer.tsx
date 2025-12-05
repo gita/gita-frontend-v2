@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo,useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 
@@ -46,7 +46,9 @@ function getMessageText(message: UIMessage): string {
   }
 
   return message.parts
-    .filter((part): part is { type: "text"; text: string } => part.type === "text")
+    .filter(
+      (part): part is { type: "text"; text: string } => part.type === "text",
+    )
     .map((part) => part.text)
     .join("");
 }
@@ -74,32 +76,25 @@ export function ChatContainer({
     });
   }, [api, authToken]);
 
-  const {
-    messages,
-    sendMessage,
-    status,
-    stop,
-    error,
-    regenerate,
-    clearError,
-  } = useChat({
-    transport,
-    onError: (err: Error) => {
-      // Check for rate limit error
-      if (err.message.includes("429") || err.message.includes("Rate limit")) {
-        try {
-          const errorData = JSON.parse(err.message);
-          onRateLimitReached?.(
-            errorData.remaining ?? 0,
-            new Date(errorData.reset)
-          );
-        } catch {
-          onRateLimitReached?.(0, new Date());
+  const { messages, sendMessage, status, stop, error, regenerate, clearError } =
+    useChat({
+      transport,
+      onError: (err: Error) => {
+        // Check for rate limit error
+        if (err.message.includes("429") || err.message.includes("Rate limit")) {
+          try {
+            const errorData = JSON.parse(err.message);
+            onRateLimitReached?.(
+              errorData.remaining ?? 0,
+              new Date(errorData.reset),
+            );
+          } catch {
+            onRateLimitReached?.(0, new Date());
+          }
         }
-      }
-      onError?.(err);
-    },
-  });
+        onError?.(err);
+      },
+    });
 
   const isLoading = status === "streaming" || status === "submitted";
   const isReady = status === "ready";
@@ -178,7 +173,9 @@ export function ChatContainer({
           {error && (
             <div className="mx-4 my-2 rounded-lg border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
               <p className="font-medium">An error occurred</p>
-              <p className="text-muted-foreground">Something went wrong. Please try again.</p>
+              <p className="text-muted-foreground">
+                Something went wrong. Please try again.
+              </p>
               <button
                 type="button"
                 onClick={() => {
@@ -206,7 +203,8 @@ export function ChatContainer({
           placeholder="Ask Krishna a question..."
         />
         <p className="mt-2 text-center text-xs text-muted-foreground">
-          AI can make mistakes. Verify responses and consult a guru for deeper understanding.
+          AI can make mistakes. Verify responses and consult a guru for deeper
+          understanding.
         </p>
       </div>
     </div>

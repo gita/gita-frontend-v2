@@ -66,4 +66,3 @@ ${retrievedContent}
 
 Now, with this sacred knowledge, guide the seeker with wisdom and love.`;
 }
-
