@@ -1,28 +1,21 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
 
 import type { Chat, ChatMessage } from "./useLocalChats";
+import { supabase } from "@/utils/supabase";
 
 /**
  * Hook for managing chat history in Supabase for authenticated users
+ * Uses the shared Supabase client which has the user's authenticated session
  */
 export function useSupabaseChats(userId: string | null) {
   const [chats, setChats] = useState<Chat[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  const supabase =
-    supabaseUrl && supabaseAnonKey
-      ? createClient(supabaseUrl, supabaseAnonKey)
-      : null;
-
   // Load chats from Supabase
   useEffect(() => {
-    if (!userId || !supabase) {
+    if (!userId) {
       setIsLoading(false);
       return;
     }
@@ -78,12 +71,12 @@ export function useSupabaseChats(userId: string | null) {
     };
 
     loadChats();
-  }, [userId, supabase]);
+  }, [userId]);
 
   // Create a new chat
   const createChat = useCallback(
     async (title: string = "New conversation") => {
-      if (!userId || !supabase) {
+      if (!userId) {
         throw new Error("User not authenticated");
       }
 
@@ -114,7 +107,7 @@ export function useSupabaseChats(userId: string | null) {
         throw error;
       }
     },
-    [userId, supabase],
+    [userId],
   );
 
   // Get a specific chat by ID
@@ -128,7 +121,7 @@ export function useSupabaseChats(userId: string | null) {
   // Add a message to a chat
   const addMessage = useCallback(
     async (chatId: string, message: Omit<ChatMessage, "id" | "createdAt">) => {
-      if (!userId || !supabase) {
+      if (!userId) {
         throw new Error("User not authenticated");
       }
 
@@ -175,13 +168,13 @@ export function useSupabaseChats(userId: string | null) {
         throw error;
       }
     },
-    [userId, supabase],
+    [userId],
   );
 
   // Update chat title
   const updateChatTitle = useCallback(
     async (chatId: string, title: string) => {
-      if (!userId || !supabase) {
+      if (!userId) {
         throw new Error("User not authenticated");
       }
 
@@ -206,13 +199,13 @@ export function useSupabaseChats(userId: string | null) {
         throw error;
       }
     },
-    [userId, supabase],
+    [userId],
   );
 
   // Delete a chat
   const deleteChat = useCallback(
     async (chatId: string) => {
-      if (!userId || !supabase) {
+      if (!userId) {
         throw new Error("User not authenticated");
       }
 
@@ -231,12 +224,12 @@ export function useSupabaseChats(userId: string | null) {
         throw error;
       }
     },
-    [userId, supabase],
+    [userId],
   );
 
   // Clear all chats
   const clearAllChats = useCallback(async () => {
-    if (!userId || !supabase) {
+    if (!userId) {
       throw new Error("User not authenticated");
     }
 
@@ -253,7 +246,7 @@ export function useSupabaseChats(userId: string | null) {
       console.error("Error clearing all chats:", error);
       throw error;
     }
-  }, [userId, supabase]);
+  }, [userId]);
 
   return {
     chats,
