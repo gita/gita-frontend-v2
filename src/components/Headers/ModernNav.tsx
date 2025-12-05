@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import {
-  BookOpen,
   ChevronDown,
   LogOut,
   Menu,
@@ -11,6 +10,7 @@ import {
   Sun,
   User,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { AuthModal } from "components/AuthModal";
@@ -168,8 +168,13 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
           </Sheet>
 
           {/* Logo */}
-          <LinkWithLocale href="/" className="flex items-center gap-2">
-            <BookOpen className="size-6 text-primary" />
+          <LinkWithLocale href="/" className="flex items-center gap-2.5">
+            <Image
+              src="/bhagavad-gita.png"
+              height={28}
+              width={23}
+              alt="Bhagavad Gita"
+            />
             <span className="font-inter text-xl font-bold">
               {translate("Bhagavad Gita")}
             </span>
