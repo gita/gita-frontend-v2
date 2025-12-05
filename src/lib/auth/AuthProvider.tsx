@@ -10,6 +10,7 @@ import {
 } from "react";
 import { Session, User } from "@supabase/supabase-js";
 
+import { triggerRateLimitRefresh } from "@/hooks/useRateLimitStatus";
 import { supabase } from "utils/supabase";
 
 interface AuthContextType {
@@ -64,6 +65,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Handle redirect after OAuth sign-in
       if (event === "SIGNED_IN" && session) {
         handleReturnRedirect(session);
+        // Refresh rate limit status with new auth state
+        setTimeout(() => triggerRateLimitRefresh(), 100);
+      }
+      
+      // Also refresh when signed out
+      if (event === "SIGNED_OUT") {
+        triggerRateLimitRefresh();
       }
     });
 

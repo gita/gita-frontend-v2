@@ -41,17 +41,25 @@ export function Chat({ chatId }: ChatProps) {
   const pendingMessageHandledRef = useRef(false);
   const lastLoadedChatIdRef = useRef<string | null>(null);
 
-  // Create transport with auth headers (use access_token for proper auth)
+  // Create a stable reference to the current access token
+  const accessTokenRef = useRef<string | undefined>(session?.access_token);
+  accessTokenRef.current = session?.access_token;
+
+  // Create transport with auth headers - uses ref to always get fresh token
   const transport = useMemo(() => {
     return new DefaultChatTransport({
       api: "/api/chat",
-      headers: session?.access_token
-        ? {
-            Authorization: `Bearer ${session.access_token}`,
-          }
-        : undefined,
+      // Use a function to dynamically get headers at request time
+      headers: (): Record<string, string> => {
+        const token = accessTokenRef.current;
+        if (token) {
+          return { Authorization: `Bearer ${token}` };
+        }
+        return {};
+      },
     });
-  }, [session?.access_token]);
+    // Empty deps - transport is stable, headers are dynamic via ref
+  }, []);
 
   const {
     messages,
