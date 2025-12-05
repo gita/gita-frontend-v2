@@ -4,9 +4,12 @@ import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import { headers } from "next/headers";
 import Script from "next/script";
 
-import ChatbaseWidget from "components/ChatbaseWidget";
-import TopLoader from "components/Headers/TopLoader";
-
+// TopLoader removed - NProgress causes hydration errors on gitagpt routes
+// and conflicts with React 19's commit phase.
+// import TopLoader from "components/Headers/TopLoader";
+// ChatbaseWidget removed - its DOM manipulation (removing parent elements)
+// was breaking client-side navigation to gitagpt routes.
+// import ChatbaseWidget from "components/ChatbaseWidget";
 import { PreloadResources } from "./preload-resources";
 import Providers from "./providers";
 
@@ -70,10 +73,6 @@ export default async function RootLayout({
   const requestUrl = headersList.get("x-invoke-path") || "";
   const htmlLang = requestUrl.includes("/hi") ? "hi" : "en";
 
-  // Log for debugging
-  console.log("[RootLayout] Request URL:", requestUrl);
-  console.log("[RootLayout] Using HTML lang:", htmlLang);
-
   return (
     <html
       lang={htmlLang}
@@ -88,8 +87,6 @@ export default async function RootLayout({
       <body>
         <Providers>
           <PreloadResources />
-          <TopLoader />
-          <ChatbaseWidget />
           {children}
         </Providers>
       </body>
