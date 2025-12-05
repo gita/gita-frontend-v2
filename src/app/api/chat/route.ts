@@ -36,8 +36,6 @@ export async function POST(req: Request) {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     // Use service role key for server-side auth validation
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    
-    console.log("[Chat API] Auth check - hasAuthHeader:", !!authHeader, "hasServiceKey:", !!supabaseServiceKey);
 
     if (authHeader?.startsWith("Bearer ") && supabaseUrl && supabaseServiceKey) {
       const token = authHeader.substring(7);
@@ -45,18 +43,13 @@ export async function POST(req: Request) {
       const supabase = createClient(supabaseUrl, supabaseServiceKey);
       const {
         data: { user },
-        error,
       } = await supabase.auth.getUser(token);
-      
-      console.log("[Chat API] Token validation - user:", user?.id, "error:", error?.message);
 
       if (user) {
         userId = user.id;
         isAuthenticated = true;
       }
     }
-    
-    console.log("[Chat API] Final auth state - isAuthenticated:", isAuthenticated, "identifier:", isAuthenticated && userId ? userId : ip);
 
     // Rate limit check - ENABLED (disabled in development)
     const isDevelopment = process.env.NEXT_PUBLIC_NODE_ENV === "development";
