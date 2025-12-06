@@ -1,26 +1,33 @@
-import { headers } from "next/headers";
-
 import Verse from "components/Verse";
-import { classNames } from "shared/functions";
 
 type Props = {
   verseData: GitaVerse;
+  chapterName: string;
 } & LocaleAndTranslations;
 
-export default function VersePage({ verseData, translations, locale }: Props) {
+export default function VersePage({
+  verseData,
+  chapterName,
+  translations,
+  locale,
+}: Props) {
   return (
-    <div
-      className={classNames(
-        "font-inter dark:bg-dark-bg",
-        // `bg-${styles.backgroundColor}`,
-      )}
-    >
+    <>
       {verseData && (
-        <Verse verse={verseData} translations={translations} locale={locale} />
+        <Verse
+          verse={verseData}
+          chapterName={chapterName}
+          translations={translations}
+          locale={locale}
+        />
       )}
       {!verseData && (
-        <h1 className="p-5 text-center">This verse was not found</h1>
+        <div className="flex min-h-[50vh] items-center justify-center bg-prakash-bg font-inter dark:bg-nisha-bg">
+          <h1 className="text-center text-xl text-muted-foreground">
+            This verse was not found
+          </h1>
+        </div>
       )}
-    </div>
+    </>
   );
 }

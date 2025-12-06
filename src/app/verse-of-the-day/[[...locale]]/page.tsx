@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { headers } from "next/headers";
 
 import NotFound from "components/NotFound";
+import { getChapterData } from "lib/getChapterData";
 import { getDailyVerse } from "lib/getDailyVerse";
 import { paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
@@ -79,9 +79,16 @@ const Page = async ({ params: paramsPromise }: ParamsWithLocale) => {
     return <NotFound hint="Daily verse not found" />;
   }
 
+  // Fetch chapter data for chapter name
+  const chapterData = await getChapterData(locale, dailyVerse.chapter_number);
+  const chapterName =
+    chapterData?.gita_chapters_by_pk?.name_translated ||
+    `Chapter ${dailyVerse.chapter_number}`;
+
   return (
     <VerseOfTheDay
       dailyVerse={dailyVerse}
+      chapterName={chapterName}
       translations={await getTranslations(locale)}
       locale={locale}
     />

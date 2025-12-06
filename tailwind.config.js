@@ -15,6 +15,7 @@ module.exports = {
         inter: ['"Inter"', "sans-serif"],
         dev: ["Noto Sans Devanagari", "sans-serif"],
         serif: ['"Georgia"', '"Times New Roman"', "serif"],
+        crimson: ['"Crimson Pro"', "Georgia", "serif"],
       },
       fontSize: {
         intro: ["30px", "45px"],
@@ -62,6 +63,25 @@ module.exports = {
         "adhyayan-bg": "hsl(var(--adhyayan-bg))",
         "sanskrit-text": "hsl(var(--sanskrit-text))",
         "commentary-text": "hsl(var(--commentary-text))",
+        // Verse page design colors
+        verse: {
+          "dark-text": "var(--verse-dark-text)",
+          "medium-text": "var(--verse-medium-text)",
+          "muted-text": "var(--verse-muted-text)",
+          "light-text": "var(--verse-light-text)",
+          "grey-text": "var(--verse-grey-text)",
+          "warm-brown": "var(--verse-warm-brown)",
+          "dash-color": "var(--verse-dash-color)",
+          "divider-dots": "var(--verse-divider-dots)",
+          "banner-bg": "var(--verse-banner-bg)",
+          border: "var(--verse-border)",
+          "light-border": "var(--verse-light-border)",
+          "progress-bg": "var(--verse-progress-bg)",
+          "progress-fill": "var(--verse-progress-fill)",
+          "progress-handle": "var(--verse-progress-handle)",
+          "verse-count": "var(--verse-verse-count)",
+          "card-bg": "var(--verse-card-bg)",
+        },
         // Legacy colors (keeping for backward compatibility during migration)
         "my-orange": "#F57903",
         "lead-text": "#FEDF89",

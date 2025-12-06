@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 
 import NotFound from "components/NotFound";
+import { getChapterData } from "lib/getChapterData";
 import { getVerseData } from "lib/getVerseData";
 import { getLanguageSettings, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
@@ -159,18 +160,25 @@ const Verse = async ({ params: paramsPromise }: Props) => {
     commentaryAuthorId: parseInt(headersList.get("x-settings-c") || ""),
   });
 
-  const verseData = await getVerseData(
-    Number(chapterNumber) || 1,
-    Number(verseNumber) || 1,
-    languageSettings.commentaryAuthor.id,
-    languageSettings.translationAuthor.id,
-  );
+  // Fetch verse and chapter data in parallel
+  const [verseData, chapterData] = await Promise.all([
+    getVerseData(
+      Number(chapterNumber) || 1,
+      Number(verseNumber) || 1,
+      languageSettings.commentaryAuthor.id,
+      languageSettings.translationAuthor.id,
+    ),
+    getChapterData(locale, Number(chapterNumber) || 1),
+  ]);
 
   if (!verseData) {
     return <NotFound hint={`Verse ${verseNumber} not found`} />;
   }
 
   const translations = await getTranslations(locale);
+  const chapterName =
+    chapterData?.gita_chapters_by_pk?.name_translated ||
+    `Chapter ${chapterNumber}`;
 
   return (
     <article>
@@ -182,6 +190,7 @@ const Verse = async ({ params: paramsPromise }: Props) => {
       />
       <VersePage
         verseData={verseData}
+        chapterName={chapterName}
         translations={translations}
         locale={locale}
       />

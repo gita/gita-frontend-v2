@@ -1,9 +1,7 @@
-import { classNames } from "shared/functions";
-import { getTranslate } from "shared/translate";
+"use client";
 
-import useMyStyles from "../../hooks/useMyStyles";
-import splitIntoParagraphs from "../../utils/splitIntoParagraphs";
-import { Skeleton } from "../Skeleton";
+import { getTranslate } from "shared/translate";
+import splitIntoParagraphs from "utils/splitIntoParagraphs";
 
 type Props = {
   commentaryData: GitaLanguage[] | undefined;
@@ -14,42 +12,30 @@ export default function Commentary({
   translations,
   locale,
 }: Props) {
-  const styles = useMyStyles();
   const translate = getTranslate(translations, locale);
-
   const paragraphs = splitIntoParagraphs(commentaryData);
 
   return (
-    <div className="mt-16">
-      <h2
-        className={classNames(
-          "font-extrabold dark:text-gray-50",
-          styles.fontSize.heading,
-        )}
-      >
+    <section className="mb-12">
+      <h2 className="mb-5 text-left font-crimson text-[13px] font-semibold uppercase tracking-[1.5px] text-verse-grey-text transition-colors dark:text-verse-grey-text">
         {translate("Commentary")}
       </h2>
       {paragraphs?.[0] ? (
-        paragraphs.map((paragraph) => (
-          <p
-            key={paragraph}
-            className={classNames(
-              "mx-auto mt-6 whitespace-pre-wrap text-justify dark:text-gray-50",
-              styles.fontSize.para,
-            )}
-          >
-            {paragraph}
-          </p>
-        ))
+        <div className="space-y-5">
+          {paragraphs.map((paragraph, index) => (
+            <p
+              key={index}
+              className="text-left font-crimson text-lg font-normal leading-[1.95] text-verse-medium-text transition-colors dark:text-verse-medium-text"
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
       ) : (
-        <>
-          <Skeleton width="w-full" height="h-5" margin="my-3" />
-          <Skeleton width="w-full" height="h-5" margin="my-3" />
-          <Skeleton width="w-full" height="h-5" margin="my-3" />
-          <Skeleton width="w-full" height="h-5" margin="my-3" />
-          <Skeleton width="w-4/5" height="h-5" margin="my-3" />
-        </>
+        <p className="text-center font-crimson text-muted-foreground">
+          {translate("Commentary is not available for this verse")}
+        </p>
       )}
-    </div>
+    </section>
   );
 }

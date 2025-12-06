@@ -1,25 +1,27 @@
 "use client";
 
 import Verse from "components/Verse";
-import useMyStyles from "hooks/useMyStyles";
-import { classNames } from "shared/functions";
 
 type Props = {
   dailyVerse: GitaVerse;
+  chapterName: string;
 } & LocaleAndTranslations;
 
-const VerseOfTheDay = ({ dailyVerse, translations, locale }: Props) => {
-  const styles = useMyStyles();
-
+const VerseOfTheDay = ({
+  dailyVerse,
+  chapterName,
+  translations,
+  locale,
+}: Props) => {
   return (
-    <div
-      className={classNames(
-        "font-inter dark:bg-dark-bg",
-        `bg-${styles.backgroundColor}`,
-      )}
-    >
+    <div className="font-inter">
       {dailyVerse && (
-        <Verse verse={dailyVerse} translations={translations} locale={locale} />
+        <Verse
+          verse={dailyVerse}
+          chapterName={chapterName}
+          translations={translations}
+          locale={locale}
+        />
       )}
     </div>
   );

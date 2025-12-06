@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,6 +35,24 @@
     --adhyayan-bg: 46.15 22.81% 88.82%;
     --sanskrit-text: 35 36% 21%;
     --commentary-text: 0 0% 37%;
+
+    /* Verse page design colors - Light mode */
+    --verse-dark-text: #2d2a26;
+    --verse-medium-text: #4a4643;
+    --verse-muted-text: #5c5650;
+    --verse-light-text: #6b645b;
+    --verse-grey-text: #9c958c;
+    --verse-warm-brown: #996b4a;
+    --verse-dash-color: #c4bbb0;
+    --verse-divider-dots: #b8afa5;
+    --verse-banner-bg: #f5f0ea;
+    --verse-border: #ddd6cc;
+    --verse-light-border: #ebe6df;
+    --verse-progress-bg: #e5e0d8;
+    --verse-progress-fill: #9c958c;
+    --verse-progress-handle: #6b645b;
+    --verse-verse-count: #a9a29a;
+    --verse-card-bg: #fff;
 
     /* Sidebar theme colors (prakash/light mode) */
     --sidebar-background: 48 33.33% 97.06%;
@@ -71,6 +91,24 @@
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 48 10.64% 9.22%;
     --sidebar-border: 60 5.08% 23.14%;
+
+    /* Verse page design colors - Dark mode */
+    --verse-dark-text: #f5f0ea;
+    --verse-medium-text: #d4ccc2;
+    --verse-muted-text: #b8afa5;
+    --verse-light-text: #9c958c;
+    --verse-grey-text: #7a746c;
+    --verse-warm-brown: #c4926a;
+    --verse-dash-color: #6b645b;
+    --verse-divider-dots: #5c5650;
+    --verse-banner-bg: #343433;
+    --verse-border: #4a4643;
+    --verse-light-border: #3d3a36;
+    --verse-progress-bg: #3d3a36;
+    --verse-progress-fill: #7a746c;
+    --verse-progress-handle: #9c958c;
+    --verse-verse-count: #6b645b;
+    --verse-card-bg: #252322;
   }
 }
 

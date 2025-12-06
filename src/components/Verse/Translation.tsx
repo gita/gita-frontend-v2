@@ -1,5 +1,5 @@
-import useMyStyles from "hooks/useMyStyles";
-import { classNames } from "shared/functions";
+"use client";
+
 import { getTranslate } from "shared/translate";
 
 type Props = {
@@ -11,31 +11,24 @@ export default function Translation({
   translations,
   locale,
 }: Props) {
-  const styles = useMyStyles();
   const translate = getTranslate(translations, locale);
 
   return (
-    <div>
-      <h2
-        className={classNames(
-          "font-extrabold dark:text-gray-50",
-          styles.fontSize.heading,
-        )}
-      >
+    <section className="mb-10">
+      <h2 className="mb-5 text-left font-crimson text-[13px] font-semibold uppercase tracking-[1.5px] text-verse-grey-text transition-colors dark:text-verse-grey-text">
         {translate("Translation")}
       </h2>
       {translationData && translationData[0]?.description ? (
-        <p
-          className={classNames(
-            "mx-auto mt-6 text-justify dark:text-gray-50",
-            styles.fontSize.para,
-          )}
-        >
+        <p className="text-left font-crimson text-lg font-medium leading-[1.9] text-verse-dark-text transition-colors dark:text-verse-dark-text">
           {translationData[0].description}
         </p>
       ) : (
-        <p>Selected translation option is not available for this verse</p>
+        <p className="text-center font-crimson text-muted-foreground">
+          {translate(
+            "Selected translation option is not available for this verse",
+          )}
+        </p>
       )}
-    </div>
+    </section>
   );
 }
