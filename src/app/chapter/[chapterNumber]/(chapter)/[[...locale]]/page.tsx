@@ -17,6 +17,7 @@ type Props = {
 };
 
 // Pre-generate all 18 chapters for both English and Hindi
+// Only 36 pages total - good for SEO and fast builds
 export async function generateStaticParams() {
   const chapters = Array.from({ length: 18 }, (_, i) => i + 1);
 

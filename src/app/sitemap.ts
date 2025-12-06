@@ -58,36 +58,37 @@ async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]);
 
-  // Get verse data for each chapter
-  const verseRoutes = [];
-  for (const chapter of chapterNumbers) {
-    const chapterData = await getChapterData(
-      "en",
-      chapter,
-      defaultTranslationAuthorId,
-    );
-    if (!chapterData) continue;
+  // Verse routes disabled for faster builds
+  // Can be re-enabled later - verses are still accessible, just not in sitemap
+  // const verseRoutes = [];
+  // for (const chapter of chapterNumbers) {
+  //   const chapterData = await getChapterData(
+  //     "en",
+  //     chapter,
+  //     defaultTranslationAuthorId,
+  //   );
+  //   if (!chapterData) continue;
+  //
+  //   const verses = chapterData.gita_verses;
+  //   for (const verse of verses) {
+  //     // Add individual verse routes in both languages
+  //     verseRoutes.push({
+  //       url: `${BASE_URL}/chapter/${chapter}/verse/${verse.verse_number}`,
+  //       lastModified: new Date(),
+  //       changeFrequency: "monthly" as const,
+  //       priority: 0.6,
+  //     });
+  //     verseRoutes.push({
+  //       url: `${BASE_URL}/chapter/${chapter}/verse/${verse.verse_number}/hi`,
+  //       lastModified: new Date(),
+  //       changeFrequency: "monthly" as const,
+  //       priority: 0.6,
+  //     });
+  //   }
+  // }
 
-    const verses = chapterData.gita_verses;
-    for (const verse of verses) {
-      // Add individual verse routes in both languages
-      verseRoutes.push({
-        url: `${BASE_URL}/chapter/${chapter}/verse/${verse.verse_number}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-      });
-      verseRoutes.push({
-        url: `${BASE_URL}/chapter/${chapter}/verse/${verse.verse_number}/hi`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-      });
-    }
-  }
-
-  // Combine all routes
-  return [...staticRoutes, ...chapterRoutes, ...verseRoutes];
+  // Combine all routes (verse routes disabled for now)
+  return [...staticRoutes, ...chapterRoutes];
 }
 
 export default sitemap;
