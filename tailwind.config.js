@@ -14,6 +14,7 @@ module.exports = {
       fontFamily: {
         inter: ['"Inter"', "sans-serif"],
         dev: ["Noto Sans Devanagari", "sans-serif"],
+        serif: ['"Georgia"', '"Times New Roman"', "serif"],
       },
       fontSize: {
         intro: ["30px", "45px"],

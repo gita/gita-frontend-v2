@@ -60,19 +60,48 @@ export async function GET() {
       try {
         const {
           data: { user },
+          error: authError,
         } = await supabase.auth.getUser(token);
+
+        if (authError) {
+          console.warn(
+            "[Status API] Auth validation failed:",
+            authError.message,
+          );
+        }
 
         if (user) {
           userId = user.id;
           isAuthenticated = true;
+          console.log(
+            "[Status API] Authenticated user:",
+            userId.substring(0, 8) + "...",
+          );
         }
-      } catch {
+      } catch (error) {
         // Token validation failed - treat as anonymous
+        console.warn("[Status API] Token validation error:", error);
+      }
+    } else {
+      // Log why auth check was skipped
+      if (!supabaseUrl) {
+        console.warn("[Status API] Missing NEXT_PUBLIC_SUPABASE_URL");
+      }
+      if (!supabaseServiceKey) {
+        console.warn("[Status API] Missing SUPABASE_SERVICE_ROLE_KEY");
+      }
+      if (authHeader && !authHeader.startsWith("Bearer ")) {
+        console.warn("[Status API] Invalid auth header format");
       }
     }
 
     // Get rate limit status (without consuming)
     const identifier = isAuthenticated && userId ? userId : ip;
+    console.log("[Status API] Rate limit check:", {
+      isAuthenticated,
+      identifier: identifier.substring(0, 12) + "...",
+      limit: isAuthenticated ? 10 : 2,
+    });
     const status = await getRateLimitStatus(identifier, isAuthenticated);
 
     return Response.json(

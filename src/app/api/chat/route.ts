@@ -47,17 +47,42 @@ export async function POST(req: Request) {
       const supabase = createClient(supabaseUrl, supabaseServiceKey);
       const {
         data: { user },
+        error: authError,
       } = await supabase.auth.getUser(token);
+
+      if (authError) {
+        console.warn("[Chat API] Auth validation failed:", authError.message);
+      }
 
       if (user) {
         userId = user.id;
         isAuthenticated = true;
+        console.log(
+          "[Chat API] Authenticated user:",
+          userId.substring(0, 8) + "...",
+        );
+      }
+    } else {
+      // Log why auth check was skipped
+      if (!supabaseUrl) {
+        console.warn("[Chat API] Missing NEXT_PUBLIC_SUPABASE_URL");
+      }
+      if (!supabaseServiceKey) {
+        console.warn("[Chat API] Missing SUPABASE_SERVICE_ROLE_KEY");
+      }
+      if (authHeader && !authHeader.startsWith("Bearer ")) {
+        console.warn("[Chat API] Invalid auth header format");
       }
     }
 
     // Rate limit check - ENABLED (disabled in development)
     const isDevelopment = process.env.NEXT_PUBLIC_NODE_ENV === "development";
     const identifier = isAuthenticated && userId ? userId : ip;
+    console.log("[Chat API] Rate limit check:", {
+      isAuthenticated,
+      identifier: identifier.substring(0, 12) + "...",
+      limit: isAuthenticated ? 10 : 2,
+    });
     const rateLimitResult = await checkRateLimit(identifier, isAuthenticated);
 
     // Enforce rate limits (skip in development)

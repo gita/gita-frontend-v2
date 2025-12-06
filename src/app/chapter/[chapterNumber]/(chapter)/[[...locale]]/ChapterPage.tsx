@@ -1,19 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import {
-  BarsArrowDownIcon,
-  BarsArrowUpIcon,
-  ChevronDownIcon,
-} from "@heroicons/react/24/solid";
+import { ChevronLeft, ChevronRight, List } from "lucide-react";
 
-import PageNavigator from "components/Chapter/PageNavigator";
-import VerseList from "components/Chapter/VerseList";
-import VerseNavigator from "components/Chapter/VerseNavigator";
-import { SvgChapterBackground } from "components/svgs";
-import useMyStyles from "hooks/useMyStyles";
-import { classNames } from "shared/functions";
+import LinkWithLocale from "components/LinkWithLocale";
 import { getTranslate } from "shared/translate";
+
+import { ChapterHero } from "@/components/Chapter/ChapterHero";
+import { ChapterSidebar } from "@/components/Chapter/ChapterSidebar";
+import { VerseListSection } from "@/components/Chapter/VerseListSection";
+import { VerseQuickNav } from "@/components/Chapter/VerseQuickNav";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type Props = {
   chapterData: GitaChapterData;
@@ -28,130 +38,182 @@ export default function ChapterPage({
     chapter_number,
     chapter_summary,
     name_translated,
+    name_meaning,
     verses_count,
   },
   versesData,
   translations,
   locale,
 }: Props) {
-  const [viewNavigation, setViewNavigation] = useState(false);
-  const [verseId, setVerseId] = useState(0);
-  const [isAscSorted, setIsAscSorted] = useState(true);
-  const styles = useMyStyles();
-
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const translate = getTranslate(translations, locale);
 
-  const filteredVerses = versesData?.filter((verse) => {
-    if (!verseId) return true;
-    return verse.verse_number === verseId;
-  });
+  const prevChapter = chapter_number > 1 ? chapter_number - 1 : null;
+  const nextChapter = chapter_number < 18 ? chapter_number + 1 : null;
 
-  const sortedVerses = isAscSorted
-    ? filteredVerses
-    : filteredVerses?.slice(0).reverse();
+  // Map chapter numbers to appropriate images
+  const chapterImages: Record<number, string> = {
+    1: "/art/bg_arjuna_lanscape_v2.webp",
+    2: "/art/bg_krishnaji_portrait_chariot.webp",
+    3: "/art/bg_krishnaji_landscape.webp",
+    4: "/art/bg_krishnaji_portrait.webp",
+    5: "/art/bg_krishnaji_portrait_rays.webp",
+    6: "/art/bg_ganeshji_landscape.webp",
+    7: "/art/bg_krishnaji.webp",
+    8: "/art/bg_vedvyasji.webp",
+    9: "/art/bg_bheeshmaji_landscape.webp",
+    10: "/art/bg_dronaji_landscape.webp",
+    11: "/art/bg_karnaji_landscape.webp",
+    12: "/art/bg_yuddhistirji_portrait.webp",
+    13: "/art/bg_bheemji_landscape.webp",
+    14: "/art/bg_nakulji_landscape.webp",
+    15: "/art/bg_sahadevji_landscape.webp",
+    16: "/art/bg_duryodhanji_landscape.webp",
+    17: "/art/bg_sanjayaji_landscape.webp",
+    18: "/art/bg_dhritarashtraji_landscape.webp",
+  };
 
   return (
-    <div onClick={() => viewNavigation && setViewNavigation(false)}>
-      <div className="absolute inset-x-0 mx-auto max-w-5xl text-center font-inter">
-        <SvgChapterBackground className="relative inset-x-0 bottom-0 m-auto w-full rounded-full text-gray-300 text-opacity-25 dark:text-black dark:text-opacity-25 lg:top-12 lg:w-min" />
-      </div>
+    <div className="min-h-screen bg-prakash-bg font-inter dark:bg-nisha-bg">
+      <div className="flex min-h-[calc(100vh-4rem)] w-full pb-24">
+        {/* Main Content Area */}
+        <div className="min-w-0 flex-1 px-4 pb-24 pt-4 md:px-8">
+          <div className="mx-auto max-w-4xl">
+            {/* Breadcrumb Navigation */}
+            <LinkWithLocale
+              href="/"
+              className="mb-3 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-prakash-primary dark:hover:text-nisha-primary"
+            >
+              <ChevronLeft className="size-4" />
+              <span>{translate("All Chapters")}</span>
+            </LinkWithLocale>
 
-      <PageNavigator currentChapter={chapter_number} />
+            {/* Chapter Content */}
+            <div className="space-y-8">
+              {/* Chapter Hero */}
+              <ChapterHero
+                chapterNumber={chapter_number}
+                chapterName={name_translated}
+                chapterNameMeaning={name_meaning}
+                chapterSummary={chapter_summary}
+                verseCount={verses_count}
+                translate={translate}
+              />
 
-      <section className="relative mx-auto max-w-5xl px-4 py-24 text-center font-inter sm:px-6">
-        <h3
-          className={classNames(
-            "font-medium uppercase text-my-orange",
-            styles.fontSize.subHeading2,
-          )}
-        >
-          {translate("Chapter")} {chapter_number}
-        </h3>
-        <h1
-          className={classNames(
-            "my-8 font-extrabold dark:text-white",
-            styles.fontSize.heading,
-          )}
-        >
-          {name_translated}
-        </h1>
-        <p
-          className={classNames(
-            "mt-3 text-left dark:text-white",
-            styles.fontSize.para,
-            styles.lineHeight,
-          )}
-        >
-          {chapter_summary}
-        </p>
-      </section>
-
-      <div className="mx-auto max-w-5xl px-4 text-center font-inter sm:px-6">
-        <div className="flex items-center justify-between border-y border-gray-200 py-6">
-          <div
-            className={classNames(
-              "font-extrabold dark:text-white",
-              styles.fontSize.para,
-            )}
-          >
-            {verses_count} {translate("Verses")}
-          </div>
-          <div className="relative mt-1 flex rounded-md shadow-sm">
-            <div className="relative flex grow items-stretch focus-within:z-10">
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
-              <input
-                type="text"
-                name="verse-id"
-                id="verse-id"
-                value={verseId ? verseId : ""}
-                className={classNames(
-                  "block w-full rounded-none rounded-l-md border border-gray-300 pl-2 focus:border-my-orange focus:ring-my-orange",
-                  styles.fontSize.para,
-                )}
-                placeholder={translate("Go To Verse")}
-                onClick={() => setViewNavigation(!viewNavigation)}
-                onChange={() => {}}
+              {/* Verse List */}
+              <VerseListSection
+                verses={versesData}
+                chapterNumber={chapter_number}
+                translate={translate}
               />
             </div>
-            <VerseNavigator
-              verseCount={verses_count}
-              currentVerse={verseId}
-              chapterNumber={chapter_number}
-              viewNavigation={viewNavigation}
-              setViewNavigation={setViewNavigation}
-              setVerseId={setVerseId}
-            />
-            <button
-              type="button"
-              className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 p-1 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:text-gray-50 dark:hover:bg-dark-bg"
-              onClick={() => setIsAscSorted(!isAscSorted)}
-            >
-              {isAscSorted ? (
-                <BarsArrowDownIcon
-                  className="size-5 text-gray-400 dark:text-gray-50"
-                  aria-hidden="true"
-                />
-              ) : (
-                <BarsArrowUpIcon
-                  className="size-5 text-gray-400 dark:text-gray-50"
-                  aria-hidden="true"
-                />
-              )}
-              <span className={styles.fontSize.para}>{translate("Sort")}</span>
+          </div>
 
-              <ChevronDownIcon
-                className="size-5 text-gray-400 dark:text-gray-50"
-                aria-hidden="true"
-              />
-            </button>
+          {/* Floating Action Button for Mobile Verse Grid */}
+          <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <SheetTrigger asChild>
+                  <Button
+                    size="icon"
+                    className="fixed bottom-6 right-6 z-50 size-14 rounded-full bg-prakash-primary shadow-lg hover:bg-prakash-primary/90 dark:bg-nisha-primary dark:hover:bg-nisha-primary/90 lg:hidden"
+                    aria-label="Open verse navigation"
+                  >
+                    <List className="size-6" />
+                  </Button>
+                </SheetTrigger>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{translate("Navigation")}</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <SheetContent
+              side="bottom"
+              className="h-[85vh] rounded-t-2xl px-0 pb-0 pt-2"
+            >
+              {/* Drag Handle */}
+              <div className="flex justify-center pb-2">
+                <div className="h-1.5 w-12 rounded-full bg-muted" />
+              </div>
+
+              <SheetHeader className="space-y-3 border-b px-6 pb-4 pt-2 text-left">
+                <SheetTitle className="text-lg font-semibold">
+                  {translate("Chapter")} {chapter_number}: {name_translated}
+                </SheetTitle>
+
+                {/* Chapter Navigation Buttons */}
+                <div className="flex items-center gap-3">
+                  <LinkWithLocale
+                    href={prevChapter ? `/chapter/${prevChapter}` : "#"}
+                    prefetch={false}
+                    className={`flex-1 ${!prevChapter && "pointer-events-none opacity-50"}`}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <Button
+                      variant="outline"
+                      size="default"
+                      disabled={!prevChapter}
+                      className="h-10 w-full gap-2"
+                    >
+                      <ChevronLeft className="size-4" />
+                      <span className="text-sm">{translate("Previous")}</span>
+                    </Button>
+                  </LinkWithLocale>
+
+                  <LinkWithLocale
+                    href={nextChapter ? `/chapter/${nextChapter}` : "#"}
+                    prefetch={false}
+                    className={`flex-1 ${!nextChapter && "pointer-events-none opacity-50"}`}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <Button
+                      variant="outline"
+                      size="default"
+                      disabled={!nextChapter}
+                      className="h-10 w-full gap-2"
+                    >
+                      <span className="text-sm">{translate("Next")}</span>
+                      <ChevronRight className="size-4" />
+                    </Button>
+                  </LinkWithLocale>
+                </div>
+              </SheetHeader>
+
+              {/* Verses Section */}
+              <div className="flex h-[calc(85vh-12rem)] flex-1 flex-col overflow-hidden">
+                <div className="border-b bg-muted/20 px-6 py-3">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    {translate("Verses")}
+                  </h3>
+                </div>
+
+                <ScrollArea className="flex-1">
+                  <VerseQuickNav
+                    verses={versesData}
+                    translate={translate}
+                    showHeader={false}
+                    className="p-4"
+                  />
+                </ScrollArea>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+
+        {/* Desktop Sidebar - Sticky on Right Edge */}
+        <div className="hidden w-[400px] shrink-0 lg:block">
+          <div className="sticky top-16 h-[calc(100vh-4rem)] border-l bg-background/50 backdrop-blur-sm">
+            <ChapterSidebar
+              currentChapter={chapter_number}
+              chapterName={name_translated}
+              verses={versesData}
+              translate={translate}
+              className="h-full border-none bg-transparent"
+              heroImage={chapterImages[chapter_number] || chapterImages[1]}
+            />
           </div>
         </div>
-      </div>
-
-      <div className="mx-auto mb-16 max-w-5xl px-4 py-8 font-inter sm:px-6">
-        {sortedVerses?.map((verse) => (
-          <VerseList key={verse.id} verseData={verse} translate={translate} />
-        ))}
       </div>
     </div>
   );
