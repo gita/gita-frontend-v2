@@ -44,6 +44,7 @@ export const getChapterData = (
             : gitaChapter.chapter_summary_hindi!,
         name_translated:
           locale === "en" ? gitaChapter.name_translated! : gitaChapter.name!,
+        name_meaning: gitaChapter.name_meaning!,
         verses_count: gitaChapter.verses_count!,
       },
       gita_verses: gitaVerses.map((gitaVerse) => ({

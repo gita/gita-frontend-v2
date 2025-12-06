@@ -54,6 +54,7 @@ interface GitaChapterData {
   chapter_summary: string;
   chapter_number: number;
   name_translated: string;
+  name_meaning: string;
   verses_count: number;
 }
 
