@@ -29,7 +29,7 @@ export function ChapterHero({
         <VedicPattern variant="mandala" size={500} opacity={0.3} />
       </div>
 
-      <div className="relative z-10 px-4 py-10 md:py-12">
+      <div className="relative z-10 px-4 pb-10 pt-4 md:pb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
