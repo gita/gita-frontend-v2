@@ -34,8 +34,43 @@ export function Chat({ chatId }: ChatProps) {
   } = useChatPersistence();
 
   // Proactive rate limit status check
-  const { isLimited: isProactivelyLimited, refresh: refreshRateLimit } =
-    useRateLimitStatus();
+  const {
+    isLimited: isProactivelyLimited,
+    refresh: refreshRateLimit,
+    resetTime,
+  } = useRateLimitStatus();
+
+  // Calculate countdown for rate limit reset
+  const [countdown, setCountdown] = useState("");
+  useEffect(() => {
+    if (!resetTime) return;
+
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      const target = new Date(resetTime).getTime();
+      const difference = target - now;
+
+      if (difference <= 0) {
+        return "now";
+      }
+
+      const hours = Math.floor(difference / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+      if (hours > 0) {
+        return `${hours}h ${minutes}m`;
+      }
+      return `${minutes}m`;
+    };
+
+    setCountdown(calculateTimeLeft());
+
+    const timer = setInterval(() => {
+      setCountdown(calculateTimeLeft());
+    }, 60000); // Update every minute
+
+    return () => clearInterval(timer);
+  }, [resetTime]);
 
   // Track the active chat ID for this session (may be created mid-conversation)
   const [activeChatId, setActiveChatId] = useState<string | null>(
@@ -535,7 +570,7 @@ export function Chat({ chatId }: ChatProps) {
                       </h3>
                       <p className="mt-1 text-sm text-amber-700/90 dark:text-amber-400/90">
                         {user
-                          ? "You've used all your messages for today. Your limit will reset tomorrow."
+                          ? `You've used all your messages for today. Resets in ${countdown || "24h"}.`
                           : "You've reached the free daily limit of 2 messages. Sign in to get 10 messages per day!"}
                       </p>
                       {!user && (
@@ -711,8 +746,10 @@ export function Chat({ chatId }: ChatProps) {
                         : "An Error Occurred"}
                     </h3>
                     <p className="mt-1 text-sm text-destructive/90">
-                      {errorMessage ||
-                        "Something went wrong. Please try again."}
+                      {isRateLimitError && user
+                        ? `You've used all your messages for today. Resets in ${countdown || "24h"}.`
+                        : errorMessage ||
+                          "Something went wrong. Please try again."}
                     </p>
                     {isRateLimitError && !user && (
                       <div className="mt-3 flex flex-wrap gap-2">

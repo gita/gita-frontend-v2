@@ -82,7 +82,7 @@ export default function ChapterPage({
             {/* Breadcrumb Navigation */}
             <LinkWithLocale
               href="/"
-              className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-prakash-primary dark:hover:text-nisha-primary"
+              className="mb-3 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-prakash-primary dark:hover:text-nisha-primary"
             >
               <ChevronLeft className="size-4" />
               <span>{translate("All Chapters")}</span>

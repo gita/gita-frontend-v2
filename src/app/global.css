@@ -145,3 +145,9 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Reading experience utilities */
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
