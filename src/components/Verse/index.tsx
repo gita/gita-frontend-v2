@@ -179,17 +179,17 @@ function WordMeanings({ wordMeanings, translate }: WordMeaningsProps) {
         {meanings.map((item, index) => (
           <div
             key={index}
-            className="flex items-baseline gap-1 text-[15px] leading-relaxed"
+            className="flex items-baseline gap-2 text-[15px] leading-relaxed"
           >
-            <span className="font-crimson italic text-verse-warm-brown transition-colors dark:text-verse-warm-brown">
+            <span className="min-w-[140px] font-crimson italic text-verse-warm-brown transition-colors dark:text-verse-warm-brown">
               {item.sanskrit}
             </span>
             {item.meaning && (
               <>
-                <span className="text-verse-dash-color transition-colors dark:text-verse-dash-color">
+                <span className="shrink-0 text-verse-dash-color transition-colors dark:text-verse-dash-color">
                   —
                 </span>
-                <span className="text-[#3D3936] transition-colors dark:text-verse-dark-text">
+                <span className="flex-1 text-[#3D3936] transition-colors dark:text-verse-dark-text">
                   {item.meaning}
                 </span>
               </>
