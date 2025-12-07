@@ -30,9 +30,14 @@ const SectionHeading = ({ children }: { children: React.ReactNode }) => (
 interface AudioPlayerProps {
   chapterNumber: number;
   verseNumber: string; // Can be "4" or "4-6"
+  sanskritAudio?: string; // Optional audio URL from data
 }
 
-function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
+function InlineAudioPlayer({
+  chapterNumber,
+  verseNumber,
+  sanskritAudio,
+}: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -51,8 +56,16 @@ function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
     return [parseInt(verseStr, 10)];
   }, [verseNumber]);
 
-  const currentVerseNum = verseNumbers[currentTrackIndex];
-  const audioSrc = `https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${currentVerseNum}.mp3`;
+  // Determine audio source
+  const audioSrc = useMemo(() => {
+    // If sanskritAudio is provided, use it (could be combined or single)
+    if (sanskritAudio) {
+      return sanskritAudio;
+    }
+    // Fall back to old URL pattern for individual verses
+    const currentVerseNum = verseNumbers[currentTrackIndex];
+    return `https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${currentVerseNum}.mp3`;
+  }, [sanskritAudio, chapterNumber, verseNumbers, currentTrackIndex]);
 
   // Calculate total duration and cumulative time
   const totalDuration = trackDurations.reduce((sum, d) => sum + d, 0);
@@ -79,7 +92,14 @@ function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
   };
 
   const handleEnded = () => {
-    // If there are more verses in the range, play the next one
+    // If we have sanskritAudio (combined file), just stop playing
+    if (sanskritAudio) {
+      setIsPlaying(false);
+      setCurrentTime(0);
+      return;
+    }
+
+    // Otherwise, if there are more verses in the range, play the next one
     if (currentTrackIndex < verseNumbers.length - 1) {
       setCurrentTrackIndex((prev) => prev + 1);
       setCurrentTime(0);
@@ -151,23 +171,42 @@ function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
       setIsDurationsLoaded(false);
       const durations: number[] = [];
 
-      for (let i = 0; i < verseNumbers.length; i++) {
-        if (isCancelled) return;
-
+      // If we have sanskritAudio (combined file for range), just load that one
+      if (sanskritAudio) {
         const audio = new Audio();
-        audio.src = `https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${verseNumbers[i]}.mp3`;
+        audio.src = sanskritAudio;
 
         await new Promise<void>((resolve) => {
           audio.addEventListener("loadedmetadata", () => {
-            durations[i] = audio.duration;
+            durations[0] = audio.duration;
             resolve();
           });
           audio.addEventListener("error", () => {
-            durations[i] = 0; // Fallback if audio fails to load
+            durations[0] = 0; // Fallback if audio fails to load
             resolve();
           });
           audio.load();
         });
+      } else {
+        // Fall back to loading individual verse files
+        for (let i = 0; i < verseNumbers.length; i++) {
+          if (isCancelled) return;
+
+          const audio = new Audio();
+          audio.src = `https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${verseNumbers[i]}.mp3`;
+
+          await new Promise<void>((resolve) => {
+            audio.addEventListener("loadedmetadata", () => {
+              durations[i] = audio.duration;
+              resolve();
+            });
+            audio.addEventListener("error", () => {
+              durations[i] = 0; // Fallback if audio fails to load
+              resolve();
+            });
+            audio.load();
+          });
+        }
       }
 
       if (!isCancelled) {
@@ -181,7 +220,7 @@ function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
     return () => {
       isCancelled = true;
     };
-  }, [verseNumbers, chapterNumber]);
+  }, [verseNumbers, chapterNumber, sanskritAudio]);
 
   // Auto-play next track when currentTrackIndex changes
   useEffect(() => {
@@ -350,6 +389,7 @@ const Verse = ({
     text,
     transliteration,
     word_meanings,
+    sanskrit_audio,
     gita_translations,
     gita_commentaries,
   } = verse;
@@ -401,6 +441,7 @@ const Verse = ({
         <InlineAudioPlayer
           chapterNumber={chapter_number}
           verseNumber={verse_number}
+          sanskritAudio={sanskrit_audio}
         />
 
         {/* Word Meanings */}

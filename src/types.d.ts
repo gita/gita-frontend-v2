@@ -28,6 +28,7 @@ interface GitaVerse {
   text: string;
   transliteration: string;
   word_meanings: string;
+  sanskrit_audio?: string; // Audio URL from Swami Mukundananda's data
   gita_chapter: {
     verses_count: number;
   };

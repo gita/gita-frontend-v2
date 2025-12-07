@@ -104,6 +104,7 @@ export async function queryVerseData(
     text: commonVerse.sanskrit_text,
     transliteration: commonVerse.transliteration,
     word_meanings: commonVerse.word_meanings, // word_meanings is already a string in v4 data
+    sanskrit_audio: commonVerse.sanskrit_audio, // Audio URL from Swami Mukundananda's data
     gita_chapter: {
       verses_count: chapter?.verses_count || 0,
     },
