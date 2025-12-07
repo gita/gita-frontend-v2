@@ -34,22 +34,20 @@ export function ChapterHero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="space-y-4"
+          className="space-y-6"
         >
-          <div className="space-y-2">
-            <h1 className="font-serif text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+          {/* Title Banner */}
+          <div className="rounded-lg bg-verse-banner-bg px-6 py-5 text-center transition-colors dark:bg-verse-banner-bg">
+            <h1 className="font-crimson text-xl font-semibold tracking-[0.3px] text-verse-muted-text transition-colors dark:text-verse-muted-text">
               {translate("Chapter")} {chapterNumber}: {chapterName}
             </h1>
-            <p className="font-serif text-lg italic text-muted-foreground">
-              {chapterNameMeaning}
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <BookOpen className="size-4" />
-            <span>
+            <p className="mt-2 font-crimson text-[15px] italic text-verse-light-text transition-colors dark:text-verse-light-text">
+              {chapterNameMeaning}{" "}
+              <span className="text-verse-grey-text dark:text-verse-grey-text">
+                •
+              </span>{" "}
               {verseCount} {translate("Verses")}
-            </span>
+            </p>
           </div>
 
           <p className="text-justify font-serif text-lg leading-loose text-foreground/90">

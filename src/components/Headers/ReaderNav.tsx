@@ -12,6 +12,7 @@ import {
   Type,
   User,
 } from "lucide-react";
+import Image from "next/image";
 
 import { AuthModal } from "components/AuthModal";
 import LinkWithLocale from "components/LinkWithLocale";
@@ -102,8 +103,13 @@ export function ReaderNav({
             </Tooltip>
           )}
 
-          <LinkWithLocale href="/" className="flex items-center gap-2">
-            <BookOpen className="size-6 text-primary" />
+          <LinkWithLocale href="/" className="flex items-center gap-2.5">
+            <Image
+              src="/bhagavad-gita.png"
+              height={28}
+              width={23}
+              alt="Bhagavad Gita"
+            />
             <span className="hidden font-inter text-xl font-bold sm:inline-block">
               {translate("Bhagavad Gita")}
             </span>

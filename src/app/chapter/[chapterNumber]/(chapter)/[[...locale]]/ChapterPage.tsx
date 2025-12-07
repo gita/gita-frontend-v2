@@ -80,13 +80,20 @@ export default function ChapterPage({
         <div className="min-w-0 flex-1 px-4 pb-24 pt-4 md:px-8">
           <div className="mx-auto max-w-4xl">
             {/* Breadcrumb Navigation */}
-            <LinkWithLocale
-              href="/"
-              className="mb-3 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-prakash-primary dark:hover:text-nisha-primary"
-            >
-              <ChevronLeft className="size-4" />
-              <span>{translate("All Chapters")}</span>
-            </LinkWithLocale>
+            <nav className="mb-6 flex items-center gap-2 px-4 text-[13px]">
+              <LinkWithLocale
+                href="/"
+                className="text-verse-grey-text transition-colors hover:text-prakash-primary dark:text-verse-grey-text dark:hover:text-nisha-primary"
+              >
+                {translate("Chapters")}
+              </LinkWithLocale>
+              <span className="text-verse-grey-text transition-colors dark:text-verse-grey-text">
+                ›
+              </span>
+              <span className="text-verse-light-text transition-colors dark:text-verse-light-text">
+                {translate("Chapter")} {chapter_number}
+              </span>
+            </nav>
 
             {/* Chapter Content */}
             <div className="space-y-8">

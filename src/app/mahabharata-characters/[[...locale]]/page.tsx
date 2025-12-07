@@ -459,7 +459,7 @@ export default async function MahabharataCharacters(props: ParamsWithLocale) {
   const neutralCharacters = characters.filter((c) => c.side === "neutral");
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-prakash-bg font-inter dark:bg-nisha-bg">
+    <div className="relative min-h-screen overflow-hidden bg-prakash-bg font-crimson dark:bg-nisha-bg">
       <PageHero
         badge={translate("Epic Characters")}
         title={translate("Characters of the Mahabharata")}

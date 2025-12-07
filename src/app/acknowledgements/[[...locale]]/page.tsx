@@ -199,7 +199,7 @@ export default async function Acknowledgement(props: ParamsWithLocale) {
         }}
       />
 
-      <div className="relative min-h-screen overflow-hidden bg-prakash-bg font-inter dark:bg-nisha-bg">
+      <div className="relative min-h-screen overflow-hidden bg-prakash-bg font-crimson dark:bg-nisha-bg">
         {/* Hero */}
         <div className="pb-0">
           <PageHero
