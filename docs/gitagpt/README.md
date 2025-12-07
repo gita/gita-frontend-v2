@@ -24,11 +24,22 @@
 
 - Supabase (pgvector + HNSW)
 - Vercel AI SDK v5
-- GPT-5.1-instant
+- GPT-5.1-instant (main LLM, query rewriting)
+- gpt-5-mini (conversation memory, summarization)
+- gpt-5-nano (chat titles)
 - Jina Reranker v2 (FREE)
 - PostgreSQL FTS (BM25)
 
-**Cost**: $0/month (all free tiers)
+**Key Features**:
+
+- ✅ RAG with hybrid search (BM25 + Vector)
+- ✅ Query rewriting for follow-up questions (smart heuristics)
+- ✅ Conversation memory (remembers user's name, topics)
+- ✅ LLM-generated chat titles (async, non-blocking)
+- ✅ Sliding window for long conversations
+- ✅ Auto-focus input for seamless UX
+
+**Cost**: ~$0.15/month (mostly free tiers)
 
 ---
 
@@ -57,6 +68,19 @@ vercel deploy
 **💡 Development Mode:** Rate limiting is automatically disabled when `NEXT_PUBLIC_NODE_ENV=development`
 
 **💡 After resetting rate limits:** Restart your dev server to clear in-memory cache
+
+---
+
+## Feature Toggles
+
+Control features via environment variables:
+
+```env
+DISABLE_QUERY_REWRITING=true      # Disable query contextualization
+ENABLE_CONVERSATION_MEMORY=true   # Enable memory extraction (disabled by default - adds latency)
+```
+
+**Note**: Conversation memory is **disabled by default** because it adds 15-25 seconds latency per message. Query rewriting captures most of the context value without the overhead.
 
 ---
 

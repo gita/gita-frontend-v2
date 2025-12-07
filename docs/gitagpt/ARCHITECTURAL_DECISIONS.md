@@ -2,6 +2,8 @@
 
 This document captures the key technical decisions made during GitaGPT development and the reasoning behind them.
 
+**Last Updated**: December 7, 2025
+
 ---
 
 ## Decision 1: Custom Shadcn Components vs AI Elements
@@ -739,6 +741,282 @@ if (returnPath && window.location.pathname !== returnPath) {
 
 ---
 
+## Decision 25: Query Rewriting for Conversational RAG
+
+### Decision: LLM-based query contextualization with heuristic pre-filtering
+
+**Problem**: Follow-up questions like "tell me more" or "what does that mean?" failed to retrieve relevant content because RAG only used the literal user query without conversation context.
+
+**Solution**: Rewrite queries to be standalone using gpt-5-mini before RAG retrieval.
+
+**Implementation** (`src/lib/ai/query-rewriter.ts`):
+
+```typescript
+// Example transformation:
+// History: "What is karma yoga?" → AI explains...
+// User: "How do I practice it?"
+// → Rewritten: "How do I practice karma yoga according to the Bhagavad Gita?"
+```
+
+**Why gpt-5-mini (not GPT-4o)**:
+
+1. **Faster** - Lower latency for simple reformulation task
+2. **Cheaper** - Minimal token usage (~200 tokens per rewrite)
+3. **Sufficient** - Query rewriting doesn't need advanced reasoning
+4. **Cost**: ~$0.03/month for 1000 queries
+
+**Heuristic Pre-filtering**:
+
+To avoid unnecessary LLM calls, we check if the query likely needs rewriting:
+
+```typescript
+// Triggers rewriting:
+- Pronouns: "it", "that", "this", "they"
+- Follow-ups: "tell me more", "explain more", "what about"
+- Short questions: < 4 words with question words
+```
+
+**Configuration**:
+
+- `QUERY_REWRITE_HISTORY = 6` - Use last 3 exchanges for context
+- `DISABLE_QUERY_REWRITING=true` - Env var to disable for testing
+
+**Outcome**: ✅ Follow-up questions now retrieve relevant content
+
+---
+
+## Decision 26: Sliding Window for Conversation History
+
+### Decision: Keep last 10 messages (5 exchanges) for LLM context
+
+**Problem**: Full conversation history causes:
+
+1. Token costs growing linearly with conversation length
+2. Potential context window overflow
+3. Older, less relevant context diluting responses
+
+**Solution**: Sliding window that keeps only recent messages.
+
+**Implementation** (`src/app/api/chat/route.ts`):
+
+```typescript
+const MAX_HISTORY_MESSAGES = 10;
+const truncatedMessages =
+  messages.length > MAX_HISTORY_MESSAGES
+    ? messages.slice(-MAX_HISTORY_MESSAGES)
+    : messages;
+```
+
+**Why 10 messages (5 exchanges)**:
+
+1. **Sufficient context** - Most follow-ups reference recent messages
+2. **Token efficient** - ~2000-4000 tokens vs potentially unlimited
+3. **Industry standard** - RAG community recommends 5-10 messages
+4. **Query rewriting compensates** - Older context is captured in rewritten queries
+
+**Alternatives Considered**:
+
+| Approach               | Pros                  | Cons                      | Chosen |
+| ---------------------- | --------------------- | ------------------------- | ------ |
+| Full history           | Complete context      | Unbounded costs, overflow | ❌     |
+| Sliding window         | Simple, predictable   | Loses old context         | ✅     |
+| Hierarchical summary   | Preserves all context | Complex, adds latency     | Future |
+| Token-based truncation | Precise control       | May cut mid-conversation  | ❌     |
+
+**Combined with Query Rewriting**:
+
+The sliding window + query rewriting combination provides:
+
+1. **Recent context** via sliding window (last 5 exchanges)
+2. **Relevant retrieval** via rewritten queries (captures intent from full history)
+
+**Outcome**: ✅ Bounded token costs, no context overflow, good UX
+
+---
+
+## Decision 27: Conversation Memory (Facts + Summarization)
+
+### Decision: Extract key facts + summarize older messages when sliding window kicks in
+
+**Problem**: Simple sliding window loses important information like user's name mentioned early in the conversation.
+
+**Example**:
+
+```
+Message 1: "My name is Arjun"
+Message 2-15: [conversation continues]
+Message 16: "What should I do?"
+→ With simple sliding window, we've lost the user's name!
+```
+
+**Solution**: Hybrid memory system (`src/lib/ai/conversation-memory.ts`)
+
+**Three Components**:
+
+1. **Memory Extraction**: Use gpt-5-mini to extract key facts
+   - User's name
+   - Topics discussed
+   - Preferences/interests
+   - Key facts
+
+2. **Summarization**: Summarize older messages being dropped
+   - Captures what was discussed
+   - Preserves context without full messages
+
+3. **Sliding Window**: Keep last 10 messages for recent context
+
+**Implementation**:
+
+```typescript
+// When messages > MAX_HISTORY_MESSAGES
+const { memoryContext, recentMessages } = await processConversationMemory(
+  messages,
+  MAX_HISTORY_MESSAGES,
+);
+
+// Memory context gets injected into system prompt
+const systemPrompt = buildSystemPrompt(ragContext, memoryContext);
+```
+
+**Heuristic Optimization**:
+
+Memory extraction only runs when it detects extractable content:
+
+```typescript
+// Triggers memory extraction:
+(-"my name is", "I am", "call me" - "I like", "I prefer", "interested in");
+```
+
+**Cost**:
+
+- Memory extraction: ~$0.02/month (only when needed)
+- Summarization: ~$0.05/month (only for long conversations)
+- **Total overhead**: ~$0.07/month for 1000 queries
+
+**Disable for Testing**:
+
+```env
+DISABLE_CONVERSATION_MEMORY=true
+```
+
+**Outcome**: ✅ Remembers user's name and key facts across long conversations
+
+---
+
+## Decision 28: LLM-Generated Chat Titles
+
+### Decision: Generate short, meaningful titles using gpt-5-nano
+
+**Problem**: Chat titles were the first 50 characters of the first message, often getting cut off in the sidebar UI.
+
+**Before**: "what is the meaning of dhrista..." (truncated, unclear)
+**After**: "Dhrishti Meaning" (concise, meaningful)
+
+**Solution**: API endpoint that generates 2-5 word titles (`src/app/api/chat/title/route.ts`)
+
+**Why gpt-5-nano**:
+
+1. **Cheapest model** - Perfect for simple task
+2. **Fast** - ~50-100ms latency
+3. **Sufficient** - Title generation doesn't need advanced reasoning
+4. **Cost**: ~$0.005/month for 1000 chats
+
+**Implementation**:
+
+```typescript
+// Non-blocking title generation
+fetch("/api/chat/title", {
+  method: "POST",
+  body: JSON.stringify({ message: firstMessage }),
+})
+  .then((res) => res.json())
+  .then((data) => updateChatTitle(chatId, data.title));
+```
+
+**UX Flow**:
+
+1. User sends first message
+2. Temporary truncated title shown immediately
+3. LLM generates better title in background (~100ms)
+4. Sidebar updates with new title
+
+**Examples**:
+
+| User Message                       | Generated Title        |
+| ---------------------------------- | ---------------------- |
+| "What is karma yoga?"              | "Karma Yoga Meaning"   |
+| "Explain verse 2.47"               | "Verse 2.47 Explained" |
+| "radhey radhey"                    | "Greeting"             |
+| "Tell me about Arjuna's confusion" | "Arjuna's Dilemma"     |
+
+**Bonus**: Added tooltip on sidebar chat items to show full title on hover.
+
+**Outcome**: ✅ Clean, meaningful chat titles that fit in sidebar
+
+---
+
+## Decision 18: Query Rewriting Performance Optimization (Dec 2024)
+
+### Decision: gpt-5.1-instant with smart heuristics
+
+**Problem**: Query rewriting was taking 8+ seconds (using gpt-5-mini), creating a 14.7s total response time for follow-up questions.
+
+**Choice**: **gpt-5.1-instant + Smart heuristics**
+
+**Implementation**:
+
+1. **Faster Model**: `gpt-5-mini` → `gpt-5.1-instant` (4-6x faster)
+2. **Smart Heuristics**: Skip standalone questions like "What is Radha?"
+3. **Token Limit**: `maxTokens: 100` for concise rewrites
+
+**Results**:
+
+- Response time: 14.7s → 4.1s (3.6x faster)
+- Most queries skip rewriting (0s overhead)
+- When triggered: only ~1-2s added
+
+**Outcome**: ✅ 3.6x faster responses, maintained RAG accuracy
+
+---
+
+## Decision 19: Auto-Focus Input for Seamless UX (Dec 2024)
+
+### Decision: React forwardRef with multiple focus triggers
+
+**Problem**: Users had to click input after each message, breaking conversation flow.
+
+**Choice**: **Multi-trigger auto-focus**
+
+**Implementation**:
+
+- Initial page load: Auto-focus immediately
+- After submit: 50ms delay (ensures state updates)
+- After AI response: 100ms delay (ensures DOM stability)
+- Used `forwardRef` + `useImperativeHandle` pattern
+
+**Outcome**: ✅ ChatGPT-like seamless conversation flow
+
+---
+
+## Decision 20: Title Generation Optimization (Dec 2024)
+
+### Decision: Add timeout and token limits
+
+**Problem**: Title generation could hang indefinitely, no safeguards.
+
+**Choice**: **5-second timeout + 20 token limit**
+
+**Implementation**:
+
+```typescript
+abortSignal: AbortSignal.timeout(5000),
+maxTokens: 20
+```
+
+**Outcome**: ✅ Safer, more predictable title generation
+
+---
+
 ## Future Considerations
 
 ### Potential Improvements
@@ -749,6 +1027,7 @@ if (returnPath && window.location.pathname !== returnPath) {
 4. **Fine-tuned embeddings** - Train on Gita-specific queries (+20-30% accuracy)
 5. **Knowledge graphs** - For complex relationship queries
 6. **Memory** - Remember user preferences across sessions
+7. **Hierarchical summarization** - For very long conversations (v2)
 
 ### When to Upgrade
 

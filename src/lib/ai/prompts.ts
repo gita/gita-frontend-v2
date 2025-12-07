@@ -47,22 +47,37 @@ Bad (too formal/robotic):
 You're a warm, knowledgeable guide - not a formal scholar or textbook. Make the Gita's wisdom feel accessible, relevant, and engaging.`;
 
 /**
- * Builds the context-enhanced system prompt with retrieved content
+ * Builds the context-enhanced system prompt with retrieved content and memory
+ *
+ * @param retrievedContent - RAG context from vector search
+ * @param memoryContext - Conversation memory (user name, topics, summary of older messages)
  */
-export function buildSystemPrompt(retrievedContent: string): string {
-  if (!retrievedContent.trim()) {
-    return KRISHNA_SYSTEM_PROMPT;
+export function buildSystemPrompt(
+  retrievedContent: string,
+  memoryContext?: string,
+): string {
+  const parts: string[] = [KRISHNA_SYSTEM_PROMPT];
+
+  // Add conversation memory if present (user name, preferences, older conversation summary)
+  if (memoryContext?.trim()) {
+    parts.push(memoryContext);
+    parts.push(
+      "**Important**: Use this memory to personalize your response. If you know the user's name, use it occasionally.",
+    );
   }
 
-  return `${KRISHNA_SYSTEM_PROMPT}
-
-## Relevant Context from the Bhagavad Gita
+  // Add RAG context if present
+  if (retrievedContent?.trim()) {
+    parts.push(`## Relevant Context from the Bhagavad Gita
 
 Use the following verses, translations, and commentaries to inform your response:
 
-${retrievedContent}
+${retrievedContent}`);
+  }
 
----
+  parts.push(
+    "---\n\nNow, with this sacred knowledge, guide the seeker with wisdom and love.",
+  );
 
-Now, with this sacred knowledge, guide the seeker with wisdom and love.`;
+  return parts.join("\n\n");
 }

@@ -3,13 +3,26 @@ import { createClient } from "@supabase/supabase-js";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
 import { headers } from "next/headers";
 
+import {
+  isConversationMemoryEnabled,
+  processConversationMemory,
+} from "@/lib/ai/conversation-memory";
 import { buildSystemPrompt } from "@/lib/ai/prompts";
+import {
+  contextualizeQuery,
+  isQueryRewritingEnabled,
+} from "@/lib/ai/query-rewriter";
 import { getRelevantContext } from "@/lib/ai/retrieval";
 import { checkRateLimit, getRateLimitHeaders } from "@/lib/ratelimit";
 
 // Configuration
 export const maxDuration = 30; // Allow streaming responses up to 30 seconds
 const RAG_CHUNK_COUNT = 5; // Number of relevant chunks to retrieve from vector DB (Chatbase uses 7)
+
+// Conversation history management
+// NOTE: These are MESSAGE PAIRS (exchanges), so 20 messages = 10 user-assistant exchanges
+const MAX_HISTORY_MESSAGES = 20; // Keep last 20 messages (10 exchanges) for LLM context
+const QUERY_REWRITE_HISTORY = 6; // Use last 6 messages (3 exchanges) for query rewriting
 
 /**
  * GitaGPT Chat API Route
@@ -129,11 +142,33 @@ export async function POST(req: Request) {
         .map((p) => p.text)
         .join(" ") ?? "";
 
-    // Retrieve relevant context from Supabase pgvector
-    let relevantContext = "";
-    if (userQuery) {
+    // ===========================================
+    // QUERY REWRITING: Contextualize follow-up questions
+    // ===========================================
+    // Transform questions like "tell me more" into standalone queries
+    // that include context from previous conversation
+    let retrievalQuery = userQuery;
+    if (userQuery && isQueryRewritingEnabled()) {
       try {
-        relevantContext = await getRelevantContext(userQuery, RAG_CHUNK_COUNT);
+        retrievalQuery = await contextualizeQuery(userQuery, messages, {
+          maxHistoryMessages: QUERY_REWRITE_HISTORY,
+          debug: true,
+        });
+      } catch (error) {
+        console.error("❌ Query rewriting failed, using original:", error);
+        retrievalQuery = userQuery;
+      }
+    }
+
+    // Retrieve relevant context from Supabase pgvector
+    // Uses the rewritten query for better retrieval on follow-up questions
+    let relevantContext = "";
+    if (retrievalQuery) {
+      try {
+        relevantContext = await getRelevantContext(
+          retrievalQuery,
+          RAG_CHUNK_COUNT,
+        );
 
         if (relevantContext) {
           console.log("\n" + "🎯".repeat(40));
@@ -148,15 +183,59 @@ export async function POST(req: Request) {
       }
     }
 
-    // Build system prompt with Krishna's personality and context
-    const systemPrompt = buildSystemPrompt(relevantContext);
+    // ===========================================
+    // CONVERSATION MEMORY: Remember key facts + summarize older messages
+    // ===========================================
+    // When conversation exceeds sliding window:
+    // 1. Extract key facts (user name, preferences, topics)
+    // 2. Summarize older messages that would be dropped
+    // 3. Inject memory into system prompt
+    // This ensures we don't lose important info like user's name
+    let memoryContext = "";
+    let recentMessages = messages;
+
+    if (
+      isConversationMemoryEnabled() &&
+      messages.length > MAX_HISTORY_MESSAGES
+    ) {
+      try {
+        const memoryResult = await processConversationMemory(
+          messages,
+          MAX_HISTORY_MESSAGES,
+          true, // debug
+        );
+        memoryContext = memoryResult.memoryContext;
+        recentMessages = memoryResult.recentMessages;
+
+        if (memoryResult.wasProcessed) {
+          console.log(
+            `🧠 Memory processed: ${messages.length} → ${recentMessages.length} messages + memory context`,
+          );
+        }
+      } catch (error) {
+        console.error(
+          "❌ Memory processing failed, using simple window:",
+          error,
+        );
+        recentMessages = messages.slice(-MAX_HISTORY_MESSAGES);
+      }
+    } else if (messages.length > MAX_HISTORY_MESSAGES) {
+      // Fallback to simple sliding window if memory is disabled
+      recentMessages = messages.slice(-MAX_HISTORY_MESSAGES);
+      console.log(
+        `📏 Sliding window: ${messages.length} → ${recentMessages.length} messages`,
+      );
+    }
+
+    // Build system prompt with Krishna's personality, context, and memory
+    const systemPrompt = buildSystemPrompt(relevantContext, memoryContext);
 
     // Stream the response using AI SDK with Vercel AI Gateway
     // Using OpenAI GPT-5.1-instant with no reasoning mode for faster responses
     const result = streamText({
       model: gateway("openai/gpt-5.1-instant"),
       system: systemPrompt,
-      messages: convertToModelMessages(messages),
+      messages: convertToModelMessages(recentMessages),
     });
 
     // Return UI message stream response with rate limit headers
