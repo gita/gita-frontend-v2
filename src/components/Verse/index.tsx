@@ -204,9 +204,18 @@ function WordMeanings({ wordMeanings, translate }: WordMeaningsProps) {
 type Props = {
   verse: GitaVerse;
   chapterName: string;
+  nextVerseNumber?: string;
+  prevVerseNumber?: string;
 } & LocaleAndTranslations;
 
-const Verse = ({ verse, chapterName, translations, locale }: Props) => {
+const Verse = ({
+  verse,
+  chapterName,
+  translations,
+  locale,
+  nextVerseNumber,
+  prevVerseNumber,
+}: Props) => {
   const {
     gita_chapter,
     prev_chapter_verses_count,
@@ -221,8 +230,11 @@ const Verse = ({ verse, chapterName, translations, locale }: Props) => {
 
   const translate = getTranslate(translations, locale);
 
+  // Parse verse number for navigation logic (handles ranges like "4-6")
+  const firstVerseNum = parseInt(verse_number.toString().split("-")[0], 10);
+
   // Determine if we can go to previous (not on chapter 1, verse 1)
-  const canGoPrev = !(chapter_number === 1 && verse_number === 1);
+  const canGoPrev = !(chapter_number === 1 && firstVerseNum === 1);
 
   return (
     <div className="min-h-screen bg-prakash-bg font-crimson dark:bg-nisha-bg">
@@ -262,7 +274,7 @@ const Verse = ({ verse, chapterName, translations, locale }: Props) => {
         {/* Audio Player */}
         <InlineAudioPlayer
           chapterNumber={chapter_number}
-          verseNumber={verse_number}
+          verseNumber={firstVerseNum}
         />
 
         {/* Word Meanings */}
@@ -298,6 +310,8 @@ const Verse = ({ verse, chapterName, translations, locale }: Props) => {
           canGoPrev={canGoPrev}
           translate={translate}
           className="mt-12"
+          nextVerseNumber={nextVerseNumber}
+          prevVerseNumber={prevVerseNumber}
         />
       </div>
     </div>

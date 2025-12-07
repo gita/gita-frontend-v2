@@ -22,7 +22,7 @@ interface GitaLanguage {
 }
 
 interface GitaVerse {
-  verse_number: number;
+  verse_number: string; // String to support ranges like "4-6"
   chapter_number: number;
   id: number;
   text: string;

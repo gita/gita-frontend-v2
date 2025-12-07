@@ -1,78 +1,30 @@
-import { query, resolved } from "gqty-client";
+/**
+ * Get verse data from static JSON files
+ * Replaces the previous GraphQL implementation
+ */
 
-interface GitaVerseIds {
-  gita_verses: { chapter_number: number; verse_number: number }[];
-}
+import { queryAllVerseIds, queryVerseData } from "./data";
 
-export const getVerseId = () =>
-  resolved(() =>
-    query.gita_verses().map((gitaVerse) => ({
-      chapter_number: gitaVerse.chapter_number!,
-      verse_number: gitaVerse.verse_number!,
-    })),
-  );
+/**
+ * Get all verse IDs for static generation
+ */
+export const getVerseId = () => queryAllVerseIds();
 
+/**
+ * Get verse data including sanskrit text, transliteration, translations, and commentaries
+ * @param verseNumber - Can be a number or string (e.g., "4-6" for ranges)
+ */
 export const getVerseData = (
   chapterNumber: number,
-  verseNumber: number,
+  verseNumber: string,
   commentariesAuthorId: number,
   translationsAuthorId: number,
+  locale: string = "en",
 ): Promise<GitaVerse | null> =>
-  resolved(() => {
-    const [gitaVerse] = query.gita_verses({
-      where: {
-        chapter_number: {
-          _eq: chapterNumber,
-        },
-        verse_number: {
-          _eq: verseNumber,
-        },
-      },
-    });
-
-    const [prevChapter] = query.gita_chapters({
-      where: {
-        chapter_number: {
-          _eq: chapterNumber - 1 || 18,
-        },
-      },
-    });
-
-    if (!gitaVerse) {
-      return null;
-    }
-
-    return {
-      chapter_number: gitaVerse.chapter_number!,
-      id: gitaVerse.id!,
-      text: gitaVerse.text!,
-      transliteration: gitaVerse.transliteration!,
-      verse_number: gitaVerse.verse_number!,
-      word_meanings: gitaVerse.word_meanings!,
-      gita_chapter: {
-        verses_count:
-          gitaVerse.gita_chapter?.gita_verses_aggregate().aggregate?.count() ||
-          0,
-      },
-      prev_chapter_verses_count:
-        prevChapter.gita_verses_aggregate().aggregate?.count() || 0,
-      gita_commentaries: gitaVerse
-        .gita_commentaries({
-          where: {
-            author_id: {
-              _eq: commentariesAuthorId,
-            },
-          },
-        })
-        .map(({ description }) => ({ description: description! })),
-      gita_translations: gitaVerse
-        .gita_translations({
-          where: {
-            author_id: {
-              _eq: translationsAuthorId,
-            },
-          },
-        })
-        .map(({ description }) => ({ description: description! })),
-    };
-  });
+  queryVerseData(
+    chapterNumber,
+    verseNumber,
+    commentariesAuthorId,
+    translationsAuthorId,
+    locale,
+  );

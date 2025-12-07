@@ -180,7 +180,10 @@ function AudioPlayer({
                   <LinkWithLocale
                     href={getPrevPageHref(
                       currentVerse.chapter_number,
-                      currentVerse.verse_number,
+                      parseInt(
+                        String(currentVerse.verse_number).split("-")[0],
+                        10,
+                      ),
                       currentVerse.prev_chapter_verses_count,
                     )}
                     className={`hover:cursor-pointer hover:brightness-90 dark:hover:brightness-50 ${
@@ -207,7 +210,10 @@ function AudioPlayer({
                   <LinkWithLocale
                     href={getNextPageHref(
                       currentVerse.chapter_number,
-                      currentVerse.verse_number,
+                      parseInt(
+                        String(currentVerse.verse_number).split("-")[0],
+                        10,
+                      ),
                       currentVerse.gita_chapter.verses_count,
                     )}
                     className={`hover:cursor-pointer hover:brightness-90 dark:hover:brightness-50 ${

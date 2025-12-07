@@ -1,5 +1,11 @@
-import { gita_translations_bool_exp, query, resolved } from "gqty-client";
+/**
+ * Get verse of the day from static JSON files
+ * Uses day of year to deterministically select a verse
+ */
+
 import { getDefaultsForLocale } from "shared/functions";
+
+import { loadChapters, queryVerseData } from "./data";
 
 const msInDay = 24 * 60 * 60 * 1000;
 const dayOfYear = (date: Date) =>
@@ -7,57 +13,42 @@ const dayOfYear = (date: Date) =>
     Date.UTC(date.getFullYear(), 0, 0)) /
   msInDay;
 
-const getWhereGitaAuthor = (
+/**
+ * Get the verse of the day based on current date
+ * Cycles through all 700 verses using day of year
+ */
+export const getDailyVerse = async (
   locale: Locale,
-): {
-  where: gita_translations_bool_exp;
-} => {
+): Promise<GitaVerse | null> => {
   const defaultsForLocale = getDefaultsForLocale(locale);
-  return {
-    where: {
-      author_id: {
-        _eq: defaultsForLocale.translationAuthorId,
-      },
-    },
-  };
-};
+  const chapters = await loadChapters();
 
-export const getDailyVerse = (locale: Locale): Promise<GitaVerse | null> =>
-  resolved(() => {
-    const gitaVerse =
-      query.gita_verses_by_pk({
-        id: dayOfYear(new Date()),
-      }) ||
-      query.gita_verses({
-        limit: 1,
-      })?.[0];
+  // Calculate total verses and get verse index based on day of year
+  const totalVerses = chapters.reduce((sum, ch) => sum + ch.verses_count, 0);
+  const verseIndex = (dayOfYear(new Date()) % totalVerses) + 1;
 
-    if (!gitaVerse) {
-      return null;
+  // Find the chapter and verse number for this index
+  let runningTotal = 0;
+  for (const chapter of chapters) {
+    if (runningTotal + chapter.verses_count >= verseIndex) {
+      const verseNumber = String(verseIndex - runningTotal);
+      return queryVerseData(
+        chapter.chapter_number,
+        verseNumber,
+        defaultsForLocale.commentaryAuthorId,
+        defaultsForLocale.translationAuthorId,
+        locale,
+      );
     }
+    runningTotal += chapter.verses_count;
+  }
 
-    const whereGitaAuthor = getWhereGitaAuthor(locale);
-
-    return {
-      id: gitaVerse.id!,
-      chapter_number: gitaVerse.chapter_number!,
-      verse_number: gitaVerse.verse_number!,
-      text: gitaVerse.text!,
-      transliteration: gitaVerse.transliteration!,
-      word_meanings: gitaVerse.word_meanings!,
-      gita_translations: gitaVerse
-        .gita_translations(whereGitaAuthor)
-        .map((gitaTranslation) => ({
-          description: gitaTranslation.description!,
-        })),
-      gita_commentaries: gitaVerse
-        .gita_commentaries(whereGitaAuthor)
-        .map((gitaTranslation) => ({
-          description: gitaTranslation.description!,
-        })),
-      gita_chapter: {
-        verses_count: gitaVerse.gita_chapter?.verses_count || 0,
-      },
-      prev_chapter_verses_count: 0,
-    };
-  });
+  // Fallback to first verse
+  return queryVerseData(
+    1,
+    "1",
+    defaultsForLocale.commentaryAuthorId,
+    defaultsForLocale.translationAuthorId,
+    locale,
+  );
+};

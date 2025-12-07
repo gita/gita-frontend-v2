@@ -1,7 +1,10 @@
 import { Metadata } from "next";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 import NotFound from "components/NotFound";
+import { loadChapters } from "lib/data";
+import { findVerseRange } from "lib/data/loaders";
 import { getChapterData } from "lib/getChapterData";
 import { getVerseData } from "lib/getVerseData";
 import { getLanguageSettings, paramsToLocale } from "shared/functions";
@@ -18,43 +21,39 @@ type Props = {
   }>;
 };
 
-// Generate verses dynamically for faster builds
-// Static generation can be re-enabled later for production optimization
-export const dynamic = "force-dynamic";
+// Generate all verse pages at build time for optimal SEO and performance
+// This creates actual verses from data (including ranges like "4-6") × 2 languages
+export async function generateStaticParams() {
+  const verseIds = await (await import("lib/getVerseData")).getVerseId();
+  const params: Array<{
+    chapterNumber: string;
+    verseNumber: string;
+    locale: string[];
+  }> = [];
 
-// Pre-generate popular verses (Chapters 1-6) for better SEO (disabled for now)
-// Other verses are generated on-demand and cached forever
-// export async function generateStaticParams() {
-//   const verseCounts = [47, 72, 43, 42, 29, 47]; // Verse counts for chapters 1-6
-//   const verses: Array<{
-//     chapterNumber: string;
-//     verseNumber: string;
-//     locale: string[];
-//   }> = [];
-//
-//   // Generate all verses for chapters 1-6 in both languages
-//   for (let chapter = 1; chapter <= 6; chapter++) {
-//     for (let verse = 1; verse <= verseCounts[chapter - 1]; verse++) {
-//       verses.push(
-//         {
-//           chapterNumber: String(chapter),
-//           verseNumber: String(verse),
-//           locale: [],
-//         }, // English
-//         {
-//           chapterNumber: String(chapter),
-//           verseNumber: String(verse),
-//           locale: ["hi"],
-//         }, // Hindi
-//       );
-//     }
-//   }
-//
-//   return verses;
-// }
+  for (const verse of verseIds) {
+    // English version (default)
+    params.push({
+      chapterNumber: String(verse.chapter_number),
+      verseNumber: verse.verse_number, // Can be "4" or "4-6"
+      locale: [],
+    });
+    // Hindi version
+    params.push({
+      chapterNumber: String(verse.chapter_number),
+      verseNumber: verse.verse_number, // Can be "4" or "4-6"
+      locale: ["hi"],
+    });
+  }
+
+  return params;
+}
 
 // Bhagavad Gita verses never change - cache forever once generated
-// export const revalidate = false;
+export const revalidate = false;
+
+// Return 404 for paths not generated at build time
+export const dynamicParams = false;
 
 export async function generateMetadata({
   params: paramsPromise,
@@ -68,9 +67,10 @@ export async function generateMetadata({
 
   const verseData = await getVerseData(
     Number(chapterNumber) || 1,
-    Number(verseNumber) || 1,
-    1, // default commentary author
-    1, // default translation author
+    verseNumber, // Keep as string to support ranges like "4-6"
+    isHindi ? 1 : 16, // default commentary author (Ramsukhdas for Hindi, Sivananda for English)
+    isHindi ? 1 : 16, // default translation author
+    locale,
   );
 
   if (!verseData) {
@@ -161,17 +161,39 @@ const Verse = async ({ params: paramsPromise }: Props) => {
   });
 
   // Fetch verse and chapter data in parallel
-  const [verseData, chapterData] = await Promise.all([
+  const [verseData, chapterData, commonVerses] = await Promise.all([
     getVerseData(
       Number(chapterNumber) || 1,
-      Number(verseNumber) || 1,
+      verseNumber, // Keep as string to support ranges like "4-6"
       languageSettings.commentaryAuthor.id,
       languageSettings.translationAuthor.id,
+      locale,
     ),
     getChapterData(locale, Number(chapterNumber) || 1),
+    // Get all verses for navigation
+    (async () => {
+      const { getCommonVersesForChapter } = await import("lib/data/loaders");
+      return getCommonVersesForChapter(
+        Number(chapterNumber) || 1,
+        locale === "hi" ? "hi" : "en",
+      );
+    })(),
   ]);
 
+  // If verse not found, check if it's part of a range and redirect
   if (!verseData) {
+    const verseRange = await findVerseRange(
+      Number(chapterNumber) || 1,
+      verseNumber,
+      locale,
+    );
+
+    if (verseRange) {
+      // Verse is part of a range, redirect to the range URL
+      const localePrefix = locale === "hi" ? "/hi" : "";
+      redirect(`/chapter/${chapterNumber}/verse/${verseRange}${localePrefix}`);
+    }
+
     return <NotFound hint={`Verse ${verseNumber} not found`} />;
   }
 
@@ -179,6 +201,29 @@ const Verse = async ({ params: paramsPromise }: Props) => {
   const chapterName =
     chapterData?.gita_chapters_by_pk?.name_translated ||
     `Chapter ${chapterNumber}`;
+
+  // Helper to parse verse number for sorting
+  const parseVerseForSort = (verseStr: string): number => {
+    const match = verseStr.match(/^(\d+)/);
+    return match ? parseInt(match[1], 10) : 0;
+  };
+
+  // Sort verses by their first number to ensure correct order
+  const sortedVerses = [...commonVerses].sort(
+    (a, b) =>
+      parseVerseForSort(a.verse_number) - parseVerseForSort(b.verse_number),
+  );
+
+  // Find next and previous verse numbers from the actual data
+  const currentIndex = sortedVerses.findIndex(
+    (v) => v.verse_number === verseNumber,
+  );
+  const nextVerseNumber =
+    currentIndex >= 0 && currentIndex < sortedVerses.length - 1
+      ? sortedVerses[currentIndex + 1]?.verse_number
+      : undefined;
+  const prevVerseNumber =
+    currentIndex > 0 ? sortedVerses[currentIndex - 1]?.verse_number : undefined;
 
   return (
     <article>
@@ -193,6 +238,8 @@ const Verse = async ({ params: paramsPromise }: Props) => {
         chapterName={chapterName}
         translations={translations}
         locale={locale}
+        nextVerseNumber={nextVerseNumber}
+        prevVerseNumber={prevVerseNumber}
       />
     </article>
   );

@@ -9,15 +9,29 @@ import { getNextPageHref, getPrevPageHref } from "../Chapter/functions";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+// Helper function to parse verse number (handles ranges like "4-6")
+function parseVerseNumber(verseStr: string): number {
+  const match = verseStr.match(/^(\d+)/);
+  return match ? parseInt(match[1], 10) : 1;
+}
+
+// Helper function to get the last verse in a range
+function getLastVerseInRange(verseStr: string): number {
+  const match = verseStr.match(/(\d+)$/);
+  return match ? parseInt(match[1], 10) : parseVerseNumber(verseStr);
+}
+
 interface VerseNavigationProps {
   currentChapter: number;
-  currentVerse: number;
+  currentVerse: string; // Changed to string to support ranges like "4-6"
   totalVerses: number;
   totalChapters: number;
   prevChapterTotalVerses?: number;
   canGoPrev: boolean;
   translate: Translate;
   className?: string;
+  nextVerseNumber?: string; // Actual next verse number from data (could be a range like "4-6")
+  prevVerseNumber?: string; // Actual previous verse number from data
 }
 
 export function VerseNavigation({
@@ -29,23 +43,36 @@ export function VerseNavigation({
   canGoPrev,
   translate,
   className = "",
+  nextVerseNumber: nextVerseFromData,
+  prevVerseNumber: prevVerseFromData,
 }: VerseNavigationProps) {
+  // Parse verse number for navigation logic
+  const currentVerseNum = parseVerseNumber(currentVerse);
+  const lastVerseInRange = getLastVerseInRange(currentVerse);
+
   const prevHref = getPrevPageHref(
     currentChapter,
-    currentVerse,
+    currentVerseNum,
     prevChapterTotalVerses,
   );
-  const nextHref = getNextPageHref(currentChapter, currentVerse, totalVerses);
+  const nextHref = getNextPageHref(
+    currentChapter,
+    lastVerseInRange,
+    totalVerses,
+  );
 
   // Determine if at chapter boundaries
-  const isFirstVerseInChapter = currentVerse === 1;
-  const isLastVerseInChapter = currentVerse === totalVerses;
+  const isFirstVerseInChapter = currentVerseNum === 1;
+  const isLastVerseInChapter =
+    !nextVerseFromData || lastVerseInRange === totalVerses;
   const isLastChapter = currentChapter === totalChapters;
 
-  // Calculate next verse/chapter info for display
-  const nextVerseNumber = isLastVerseInChapter
+  // Calculate next verse/chapter info for display - use actual verse number from data
+  const nextVerseDisplay = isLastVerseInChapter
     ? `${currentChapter + 1 > totalChapters ? 1 : currentChapter + 1}.1`
-    : `${currentChapter}.${currentVerse + 1}`;
+    : nextVerseFromData
+      ? `${currentChapter}.${nextVerseFromData}`
+      : `${currentChapter}.${lastVerseInRange + 1}`;
 
   // Labels for prev button
   const prevLabel = isFirstVerseInChapter
@@ -88,7 +115,7 @@ export function VerseNavigation({
               aria-label="Next verse"
             >
               <span className="text-sm">
-                {translate("Verse")} {nextVerseNumber}
+                {translate("Verse")} {nextVerseDisplay}
               </span>
               <ChevronRight className="size-4" />
             </Button>

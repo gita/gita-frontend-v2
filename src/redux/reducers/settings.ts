@@ -2,7 +2,7 @@ import { EDIT_SETTINGS } from "redux/constants";
 import { SettingsState } from "redux/types";
 
 const initialVerse: GitaVerse = {
-  verse_number: 1,
+  verse_number: "1",
   chapter_number: 1,
   id: 1,
   text: "",
