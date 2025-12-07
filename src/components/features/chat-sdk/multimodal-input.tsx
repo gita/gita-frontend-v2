@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { ArrowUp, Square } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -15,16 +15,33 @@ interface MultimodalInputProps {
   placeholder?: string;
 }
 
-export function MultimodalInput({
-  value,
-  onChange,
-  onSubmit,
-  onStop,
-  isLoading,
-  disabled,
-  placeholder = "Ask Krishna a question...",
-}: MultimodalInputProps) {
+export interface MultimodalInputRef {
+  focus: () => void;
+}
+
+export const MultimodalInput = forwardRef<
+  MultimodalInputRef,
+  MultimodalInputProps
+>(function MultimodalInput(
+  {
+    value,
+    onChange,
+    onSubmit,
+    onStop,
+    isLoading,
+    disabled,
+    placeholder = "Ask Krishna a question...",
+  },
+  ref,
+) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Expose focus method to parent component
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      textareaRef.current?.focus();
+    },
+  }));
 
   // Auto-resize textarea
   useEffect(() => {
@@ -33,6 +50,21 @@ export function MultimodalInput({
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   }, [value]);
+
+  // Auto-focus when component mounts (initial page load)
+  useEffect(() => {
+    textareaRef.current?.focus();
+  }, []);
+
+  // Auto-focus when loading completes (AI response done)
+  useEffect(() => {
+    if (!isLoading && !disabled) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        textareaRef.current?.focus();
+      }, 100);
+    }
+  }, [isLoading, disabled]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -83,4 +115,4 @@ export function MultimodalInput({
       </div>
     </form>
   );
-}
+});

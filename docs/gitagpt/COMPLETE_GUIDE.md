@@ -31,31 +31,41 @@ Custom AI chatbot for Bhagavad Gita with Retrieval-Augmented Generation (RAG), r
 ## RAG Pipeline
 
 ```
-1. Query Analysis
+1. Query Rewriting (OPTIMIZED)
+   ↓ Smart heuristics skip unnecessary rewrites
+   ↓ "Tell me more" → "Tell me more about karma yoga"
+   ↓ Uses gpt-5.1-instant for speed (~1-2s)
+   ↓ Standalone questions bypass rewriting
+
+2. Query Analysis
    ↓ Detect: complexity, type, keywords
 
-2. Route Selection
+3. Route Selection
    ↓ Verse ref? → Metadata filter
    ↓ Keywords? → Hybrid search
    ↓ Semantic → Vector search
 
-3. Retrieval (Adaptive)
+4. Retrieval (Adaptive)
    ↓ Simple: 15 candidates
    ↓ Moderate: 20 candidates
    ↓ Complex: 25 candidates
 
-4. Reranking
+5. Reranking
    ↓ Jina API (or keyword fallback)
    ↓ Returns top 5 chunks
 
-5. Threshold Filtering
+6. Threshold Filtering
    ↓ 0.15-0.30 based on query
    ↓ Keeps minimum 2 results
 
-6. Context Formatting
+7. Context Formatting
    ↓ Sanskrit + Translation + Commentary
 
-7. LLM Generation
+8. Sliding Window (NEW)
+   ↓ Limit conversation history to last 10 messages
+   ↓ Controls token costs in long conversations
+
+9. LLM Generation
    ↓ GPT-5.1-instant with Krishna personality
    ↓ Streams response to UI
 ```
@@ -159,6 +169,107 @@ npx tsx scripts/test-rag-system.ts
 npm run dev
 # → http://localhost:3000/gitagpt
 ```
+
+---
+
+## Conversation Management
+
+### Query Rewriting
+
+**Purpose**: Transform follow-up questions into standalone queries for better RAG retrieval.
+
+**Problem Solved**:
+
+```
+User: "What is karma yoga?"
+AI: [explains karma yoga]
+User: "How do I practice it?"  ← "it" refers to karma yoga
+```
+
+Without rewriting, RAG searches for "How do I practice it?" and fails. With rewriting:
+
+```
+Rewritten: "How do I practice karma yoga according to the Bhagavad Gita?"
+```
+
+**Implementation**:
+
+- Model: gpt-5-mini (fast, cheap)
+- History used: Last 6 messages (3 exchanges)
+- Heuristic pre-filter: Only rewrites queries with pronouns/follow-up phrases
+- Cost: ~$0.03/month for 1000 queries
+- Latency: ~100-200ms
+
+**Disable for Testing**:
+
+```env
+DISABLE_QUERY_REWRITING=true
+```
+
+### Sliding Window
+
+**Purpose**: Limit conversation history sent to LLM to control costs and context window.
+
+**Configuration**:
+
+- `MAX_HISTORY_MESSAGES = 20` (10 user-assistant exchanges)
+- Query rewriting captures context from dropped messages
+
+### Conversation Memory (Optional)
+
+**Purpose**: Remember key facts like user's name across long conversations.
+
+**Status**: ⚠️ **DISABLED by default** - adds 15-25 seconds latency per message
+
+**Why disabled**: Memory extraction runs on every message (no caching yet), making responses very slow.
+
+**To enable** (not recommended for production):
+
+```env
+ENABLE_CONVERSATION_MEMORY=true
+```
+
+**Future improvement**: Store memory in database per chat, only re-extract when older messages change.
+
+**Token Savings with Sliding Window**:
+
+| Conversation Length | Without Window | With Window (20 msgs) | Savings |
+| ------------------- | -------------- | --------------------- | ------- |
+| 20 messages         | ~8K tokens     | ~8K tokens            | 0%      |
+| 30 messages         | ~12K tokens    | ~8K tokens            | 33%     |
+| 50 messages         | ~20K tokens    | ~8K tokens            | 60%     |
+
+### LLM-Generated Chat Titles
+
+**Purpose**: Generate short, meaningful titles for chats instead of truncated first messages.
+
+**Before vs After**:
+
+| Before (truncated)                    | After (LLM-generated) |
+| ------------------------------------- | --------------------- |
+| "what is the meaning of dhrista..."   | "Dhrishti Meaning"    |
+| "tell me about arjuna's confusion..." | "Arjuna's Dilemma"    |
+| "how to meditate according to git..." | "Meditation in Gita"  |
+
+**How It Works**:
+
+1. User sends first message
+2. Temporary title shown immediately (truncated)
+3. Background API call to `/api/chat/title`
+4. gpt-5-nano generates 2-5 word title
+5. Title updates in sidebar
+
+**API Endpoint**: `POST /api/chat/title`
+
+```typescript
+// Request
+{ "message": "What is karma yoga?" }
+
+// Response
+{ "title": "Karma Yoga Meaning" }
+```
+
+**Cost**: ~$0.005/month for 1000 chats (uses gpt-5-nano)
 
 ---
 
@@ -285,12 +396,13 @@ The two armies had gathered on the battlefield...
 
 ### Query Times
 
-| Query Type      | Time      | Components             |
-| --------------- | --------- | ---------------------- |
-| Metadata filter | <50ms     | Direct DB lookup       |
-| Hybrid search   | 100-200ms | BM25 + Vector + Jina   |
-| Semantic search | 80-150ms  | Vector + Jina          |
-| Full response   | 2-4s      | Includes LLM streaming |
+| Query Type      | Time      | Components                       |
+| --------------- | --------- | -------------------------------- |
+| Metadata filter | <50ms     | Direct DB lookup                 |
+| Hybrid search   | 100-200ms | BM25 + Vector + Jina             |
+| Semantic search | 80-150ms  | Vector + Jina                    |
+| Query rewriting | ~1-2s     | gpt-5.1-instant (when triggered) |
+| Full response   | 3-6s      | Includes LLM streaming           |
 
 ### With HNSW Index:
 
@@ -354,11 +466,17 @@ src/
 │   ├── useChatPersistence.ts       # Unified persistence switcher
 │   ├── useRateLimitStatus.ts       # Client-side rate limit status
 │   └── useCountdown.ts             # Timer countdown hook
+│   ├── api/chat/
+│   │   ├── route.ts                # RAG + streaming endpoint
+│   │   ├── status/route.ts         # Rate limit status API
+│   │   └── title/route.ts          # LLM chat title generation
 ├── lib/
 │   ├── ai/
 │   │   ├── retrieval.ts            # Main RAG pipeline
 │   │   ├── reranker.ts             # Jina + keyword
 │   │   ├── query-analysis.ts       # Query intelligence
+│   │   ├── query-rewriter.ts       # Conversational query contextualization
+│   │   ├── conversation-memory.ts  # Long-term memory (facts + summarization)
 │   │   └── prompts.ts              # Krishna personality
 │   ├── auth/
 │   │   └── AuthProvider.tsx        # Supabase auth context

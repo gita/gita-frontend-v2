@@ -136,7 +136,14 @@ export function Sidebar({ className, onCollapse }: SidebarProps) {
                   )}
                 >
                   <MessageSquare className="size-4 shrink-0" />
-                  <span className="flex-1 truncate">{chat.title}</span>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="flex-1 truncate">{chat.title}</span>
+                    </TooltipTrigger>
+                    <TooltipContent side="right" className="max-w-[250px]">
+                      <p className="break-words">{chat.title}</p>
+                    </TooltipContent>
+                  </Tooltip>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button

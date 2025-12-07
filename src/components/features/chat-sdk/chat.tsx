@@ -8,7 +8,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
 import { Messages } from "./messages";
-import { MultimodalInput } from "./multimodal-input";
+import { MultimodalInput, type MultimodalInputRef } from "./multimodal-input";
 
 import { AuthModal } from "@/components/AuthModal";
 import { useChatPersistence } from "@/hooks/useChatPersistence";
@@ -90,6 +90,8 @@ export function Chat({ chatId }: ChatProps) {
     chatId: string;
     content: string;
   } | null>(null);
+  // Ref for focusing the input after sending a message
+  const inputRef = useRef<MultimodalInputRef>(null);
 
   // Create a stable reference to the current access token
   const accessTokenRef = useRef<string | undefined>(session?.access_token);
@@ -321,8 +323,9 @@ export function Chat({ chatId }: ChatProps) {
 
     syncMessages();
 
-    // Auto-generate title from first user message (only once)
+    // Auto-generate title from first user message using LLM (only once)
     if (!titleUpdatedRef.current) {
+      console.log("[Chat] Checking if title should be generated");
       const firstUserMessage = messages.find((m) => m.role === "user");
       if (firstUserMessage) {
         const content =
@@ -332,10 +335,41 @@ export function Chat({ chatId }: ChatProps) {
             )
             .map((p) => p.text)
             .join("") || "";
-        const title = content.slice(0, 50) + (content.length > 50 ? "..." : "");
-        updateChatTitle(currentChatId, title);
+
+        console.log(
+          "[Chat] Generating title for first message:",
+          content.slice(0, 50),
+        );
+
+        // Set a temporary title immediately (will be replaced by LLM title)
+        const tempTitle =
+          content.slice(0, 30) + (content.length > 30 ? "..." : "");
+        updateChatTitle(currentChatId, tempTitle);
         titleUpdatedRef.current = true;
+
+        console.log("[Chat] Calling title generation API...");
+        // Generate a better title using LLM (async, non-blocking)
+        fetch("/api/chat/title", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: content }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.title) {
+              console.log("[Chat] LLM-generated title:", data.title);
+              updateChatTitle(currentChatId, data.title);
+            }
+          })
+          .catch((err) => {
+            console.error("[Chat] Failed to generate title:", err);
+            // Keep the temporary title
+          });
+      } else {
+        console.log("[Chat] No user message found for title generation");
       }
+    } else {
+      console.log("[Chat] Title already updated, skipping");
     }
   }, [messages.length, status, activeChatId, addMessage, updateChatTitle]);
 
@@ -407,6 +441,12 @@ export function Chat({ chatId }: ChatProps) {
 
     const message = inputValue;
     setInputValue("");
+
+    // Focus input after clearing (allows immediate follow-up typing)
+    // Small delay to ensure state update completes
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 50);
 
     // Track if this is a new chat being created
     const isNewChat = !activeChatId;
@@ -481,7 +521,8 @@ export function Chat({ chatId }: ChatProps) {
 
           // NOW set activeChatId - this triggers sync effect which will save assistant message
           setActiveChatId(newChatId);
-          titleUpdatedRef.current = true;
+          // Note: titleUpdatedRef is intentionally NOT set here
+          // The title generation logic in the sync effect will handle it
 
           // Update URL without full page reload
           window.history.pushState({}, "", `/gitagpt/chat/${newChatId}`);
@@ -658,6 +699,7 @@ export function Chat({ chatId }: ChatProps) {
               {/* Center Input */}
               <div className="w-full">
                 <MultimodalInput
+                  ref={inputRef}
                   value={inputValue}
                   onChange={setInputValue}
                   onSubmit={handleSubmit}
@@ -797,6 +839,7 @@ export function Chat({ chatId }: ChatProps) {
         <div className="bg-gradient-to-t from-background via-background to-transparent px-4 pb-4 pt-6">
           <div className="mx-auto max-w-3xl">
             <MultimodalInput
+              ref={inputRef}
               value={inputValue}
               onChange={setInputValue}
               onSubmit={handleSubmit}
