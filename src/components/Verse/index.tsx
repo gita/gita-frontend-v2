@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 
 import { getTranslate } from "shared/translate";
@@ -29,16 +29,37 @@ const SectionHeading = ({ children }: { children: React.ReactNode }) => (
 // Inline Audio Player component
 interface AudioPlayerProps {
   chapterNumber: number;
-  verseNumber: number;
+  verseNumber: string; // Can be "4" or "4-6"
 }
 
 function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [trackDurations, setTrackDurations] = useState<number[]>([]);
+  const [isDurationsLoaded, setIsDurationsLoaded] = useState(false);
+  const pendingSeekTime = useRef<number | null>(null);
 
-  const audioSrc = `https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${verseNumber}.mp3`;
+  // Parse verse number to get all verses in range - memoized to prevent re-computation
+  const verseNumbers = useMemo(() => {
+    const verseStr = verseNumber.toString();
+    if (verseStr.includes("-")) {
+      const [start, end] = verseStr.split("-").map(Number);
+      return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    }
+    return [parseInt(verseStr, 10)];
+  }, [verseNumber]);
+
+  const currentVerseNum = verseNumbers[currentTrackIndex];
+  const audioSrc = `https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${currentVerseNum}.mp3`;
+
+  // Calculate total duration and cumulative time
+  const totalDuration = trackDurations.reduce((sum, d) => sum + d, 0);
+  const elapsedFromPreviousTracks = trackDurations
+    .slice(0, currentTrackIndex)
+    .reduce((sum, d) => sum + d, 0);
+  const totalCurrentTime = elapsedFromPreviousTracks + currentTime;
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -57,24 +78,51 @@ function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
     }
   };
 
-  const handleLoadedMetadata = () => {
-    if (audioRef.current) {
-      setDuration(audioRef.current.duration);
+  const handleEnded = () => {
+    // If there are more verses in the range, play the next one
+    if (currentTrackIndex < verseNumbers.length - 1) {
+      setCurrentTrackIndex((prev) => prev + 1);
+      setCurrentTime(0);
+      // Audio will auto-play next track due to useEffect
+    } else {
+      // All tracks finished
+      setIsPlaying(false);
+      setCurrentTime(0);
+      setCurrentTrackIndex(0); // Reset to first track
     }
   };
 
-  const handleEnded = () => {
-    setIsPlaying(false);
-    setCurrentTime(0);
-  };
-
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!audioRef.current || !duration) return;
+    if (!totalDuration) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
-    const newTime = (clickX / rect.width) * duration;
-    audioRef.current.currentTime = newTime;
-    setCurrentTime(newTime);
+    const seekToTotalTime = (clickX / rect.width) * totalDuration;
+
+    // Find which track this time falls into
+    let accumulatedTime = 0;
+    let targetTrackIndex = 0;
+    let targetTrackTime = 0;
+
+    for (let i = 0; i < trackDurations.length; i++) {
+      if (seekToTotalTime <= accumulatedTime + trackDurations[i]) {
+        targetTrackIndex = i;
+        targetTrackTime = seekToTotalTime - accumulatedTime;
+        break;
+      }
+      accumulatedTime += trackDurations[i];
+    }
+
+    // If seeking to a different track, update track index and store pending seek time
+    if (targetTrackIndex !== currentTrackIndex) {
+      pendingSeekTime.current = targetTrackTime;
+      setCurrentTrackIndex(targetTrackIndex);
+      setCurrentTime(0);
+      // Will seek after track loads via handleLoadedMetadata
+    } else if (audioRef.current) {
+      // Same track, just seek
+      audioRef.current.currentTime = targetTrackTime;
+      setCurrentTime(targetTrackTime);
+    }
   };
 
   const formatTime = (time: number) => {
@@ -83,14 +131,86 @@ function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  const progress = duration ? (currentTime / duration) * 100 : 0;
+  const progress = totalDuration ? (totalCurrentTime / totalDuration) * 100 : 0;
 
   // Reset audio when verse changes
   useEffect(() => {
     setIsPlaying(false);
     setCurrentTime(0);
-    setDuration(0);
+    setCurrentTrackIndex(0);
+    setTrackDurations([]);
+    setIsDurationsLoaded(false);
+    pendingSeekTime.current = null;
   }, [chapterNumber, verseNumber]);
+
+  // Preload all verse durations when component mounts
+  useEffect(() => {
+    let isCancelled = false;
+
+    const preloadDurations = async () => {
+      setIsDurationsLoaded(false);
+      const durations: number[] = [];
+
+      for (let i = 0; i < verseNumbers.length; i++) {
+        if (isCancelled) return;
+
+        const audio = new Audio();
+        audio.src = `https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${verseNumbers[i]}.mp3`;
+
+        await new Promise<void>((resolve) => {
+          audio.addEventListener("loadedmetadata", () => {
+            durations[i] = audio.duration;
+            resolve();
+          });
+          audio.addEventListener("error", () => {
+            durations[i] = 0; // Fallback if audio fails to load
+            resolve();
+          });
+          audio.load();
+        });
+      }
+
+      if (!isCancelled) {
+        setTrackDurations(durations);
+        setIsDurationsLoaded(true);
+      }
+    };
+
+    preloadDurations();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [verseNumbers, chapterNumber]);
+
+  // Auto-play next track when currentTrackIndex changes
+  useEffect(() => {
+    if (currentTrackIndex > 0 && isPlaying && audioRef.current) {
+      // Small delay to ensure audio element is ready
+      const timer = setTimeout(() => {
+        audioRef.current?.play();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [currentTrackIndex, isPlaying]);
+
+  // Handle pending seek when track changes
+  useEffect(() => {
+    if (pendingSeekTime.current !== null && audioRef.current) {
+      const handleCanPlay = () => {
+        if (audioRef.current && pendingSeekTime.current !== null) {
+          audioRef.current.currentTime = pendingSeekTime.current;
+          setCurrentTime(pendingSeekTime.current);
+          pendingSeekTime.current = null;
+        }
+      };
+
+      audioRef.current.addEventListener("canplay", handleCanPlay);
+      return () => {
+        audioRef.current?.removeEventListener("canplay", handleCanPlay);
+      };
+    }
+  }, [currentTrackIndex]);
 
   return (
     <div className="mb-[52px] flex justify-center">
@@ -98,13 +218,13 @@ function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
         ref={audioRef}
         src={audioSrc}
         onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleEnded}
       />
       <div className="inline-flex items-center gap-3 rounded-full border border-verse-border bg-verse-card-bg px-5 py-2.5 transition-colors dark:border-verse-border dark:bg-verse-card-bg">
         <button
           onClick={togglePlay}
-          className="flex size-6 items-center justify-center text-verse-light-text transition-colors hover:text-prakash-primary dark:text-verse-light-text dark:hover:text-nisha-primary"
+          disabled={!isDurationsLoaded}
+          className="flex size-6 items-center justify-center text-verse-light-text transition-colors hover:text-prakash-primary disabled:cursor-not-allowed disabled:opacity-50 dark:text-verse-light-text dark:hover:text-nisha-primary"
           aria-label={isPlaying ? "Pause" : "Play"}
         >
           {isPlaying ? (
@@ -131,7 +251,13 @@ function InlineAudioPlayer({ chapterNumber, verseNumber }: AudioPlayerProps) {
 
         {/* Time display */}
         <span className="min-w-[60px] text-xs text-verse-grey-text transition-colors dark:text-verse-grey-text">
-          {formatTime(currentTime)} / {formatTime(duration || 0)}
+          {isDurationsLoaded ? (
+            <>
+              {formatTime(totalCurrentTime)} / {formatTime(totalDuration)}
+            </>
+          ) : (
+            <>0:00 / --:--</>
+          )}
         </span>
       </div>
     </div>
@@ -274,7 +400,7 @@ const Verse = ({
         {/* Audio Player */}
         <InlineAudioPlayer
           chapterNumber={chapter_number}
-          verseNumber={firstVerseNum}
+          verseNumber={verse_number}
         />
 
         {/* Word Meanings */}

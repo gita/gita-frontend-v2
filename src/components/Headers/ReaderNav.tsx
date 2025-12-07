@@ -215,6 +215,7 @@ export function ReaderNav({
                     variant="ghost"
                     className="gap-2 px-2"
                     aria-label="Change language"
+                    suppressHydrationWarning
                   >
                     <img
                       alt={`Flag for ${locale} locale`}
@@ -291,7 +292,11 @@ export function ReaderNav({
           ) : (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="gap-2 px-2">
+                <Button
+                  variant="ghost"
+                  className="gap-2 px-2"
+                  suppressHydrationWarning
+                >
                   {user.user_metadata?.avatar_url ||
                   user.user_metadata?.picture ? (
                     <img
