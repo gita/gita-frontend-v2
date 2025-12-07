@@ -1,17 +1,12 @@
-import { query, resolved } from "gqty-client";
+/**
+ * Get all chapters from static JSON files
+ * Replaces the previous GraphQL implementation
+ */
 
-export const getAllChapters = (locale: Locale) =>
-  resolved(() => {
-    const gitaChapters = query.gita_chapters();
-    return gitaChapters.map((gitaChapter) => ({
-      id: gitaChapter.id!,
-      chapter_number: gitaChapter.chapter_number!,
-      chapter_summary:
-        locale === "en"
-          ? gitaChapter.chapter_summary!
-          : gitaChapter.chapter_summary_hindi!,
-      name_translated:
-        locale === "en" ? gitaChapter.name_translated! : gitaChapter.name!,
-      verses_count: gitaChapter.verses_count!,
-    }));
-  });
+import { queryAllChapters } from "./data";
+
+/**
+ * Get all chapters with summaries and verse counts
+ */
+export const getAllChapters = (locale: Locale): Promise<TChapter[]> =>
+  queryAllChapters(locale);

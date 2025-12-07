@@ -15,7 +15,7 @@ interface ChapterSidebarProps {
   currentChapter: number;
   chapterName: string;
   verses: {
-    verse_number: number;
+    verse_number: string; // Changed to string to support ranges like "4-6"
     chapter_number: number;
   }[];
   currentVerse?: number;

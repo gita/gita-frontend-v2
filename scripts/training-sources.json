@@ -54,7 +54,7 @@
     },
     "custom_snippets": {
       "enabled": true,
-      "folder": "./data/snippets",
+      "snippets_directory": "./data/snippets",
       "notes": "Add .txt or .md files with Q&A pairs, facts, or any custom content",
       "format_guide": {
         "single_file": "qa-pairs.txt with Q: and A: format",

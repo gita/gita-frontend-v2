@@ -4,7 +4,7 @@ import LinkWithLocale from "components/LinkWithLocale";
 
 interface VerseHeroProps {
   chapterNumber: number;
-  verseNumber: number;
+  verseNumber: string; // Changed to string to support ranges like "4-6"
   chapterName: string;
   translate: Translate;
 }

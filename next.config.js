@@ -1,4 +1,59 @@
 const { withPlausibleProxy } = require("next-plausible");
+const fs = require("fs");
+const path = require("path");
+
+// Generate redirects for verses that are part of ranges
+function generateVerseRedirects() {
+  const redirects = [];
+  const dataPath = path.join(__dirname, "data", "common");
+
+  try {
+    // Read English common data to find all verse ranges
+    const commonEnPath = path.join(dataPath, "common_en.json");
+    if (!fs.existsSync(commonEnPath)) return redirects;
+
+    const commonData = JSON.parse(fs.readFileSync(commonEnPath, "utf8"));
+
+    // For each chapter, find verse ranges and create redirects
+    commonData.chapters.forEach((chapter) => {
+      const chapterNum = chapter.chapter_number;
+
+      chapter.verses.forEach((verse) => {
+        if (!verse || !verse.verse_number) return;
+
+        // Check if this is a range (e.g., "4-6")
+        const rangeMatch = verse.verse_number.match(/^(\d+)-(\d+)$/);
+        if (rangeMatch) {
+          const rangeStart = parseInt(rangeMatch[1], 10);
+          const rangeEnd = parseInt(rangeMatch[2], 10);
+
+          // Create redirects for each individual verse in the range
+          for (let v = rangeStart; v <= rangeEnd; v++) {
+            // English version
+            redirects.push({
+              source: `/chapter/${chapterNum}/verse/${v}`,
+              destination: `/chapter/${chapterNum}/verse/${verse.verse_number}`,
+              permanent: true,
+            });
+
+            // Hindi version
+            redirects.push({
+              source: `/chapter/${chapterNum}/verse/${v}/hi`,
+              destination: `/chapter/${chapterNum}/verse/${verse.verse_number}/hi`,
+              permanent: true,
+            });
+          }
+        }
+      });
+    });
+
+    console.log(`✅ Generated ${redirects.length} verse range redirects`);
+  } catch (error) {
+    console.error("Error generating verse redirects:", error);
+  }
+
+  return redirects;
+}
 
 module.exports = withPlausibleProxy()({
   webpack(config) {
@@ -41,6 +96,10 @@ module.exports = withPlausibleProxy()({
         },
       ],
     };
+  },
+  // Redirect individual verses to their ranges
+  async redirects() {
+    return generateVerseRedirects();
   },
 });
 

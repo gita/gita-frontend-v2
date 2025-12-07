@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 interface VerseQuickNavProps {
   verses: {
-    verse_number: number;
+    verse_number: string; // Changed to string to support ranges like "4-6"
     chapter_number: number;
   }[];
   currentVerse?: number;
@@ -33,7 +33,9 @@ export function VerseQuickNav({
       )}
       <div className="grid grid-cols-5 gap-2">
         {verses.map((verse) => {
-          const isActive = currentVerse === verse.verse_number;
+          // Compare numeric first verse with currentVerse
+          const firstVerseNum = parseInt(verse.verse_number.split("-")[0], 10);
+          const isActive = currentVerse === firstVerseNum;
 
           return (
             <LinkWithLocale

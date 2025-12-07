@@ -21,7 +21,7 @@
   },
   {
     "id": 5,
-    "name": "Sri Madhvacharya",
+    "name": "Sri Madhavacharya",
     "language": "Sanskrit"
   },
   {
@@ -41,17 +41,17 @@
   },
   {
     "id": 9,
-    "name": "Sri Vedanta Deshika Charya Venkatanatha",
+    "name": "Sri Vedantadeshikacharya Venkatanatha",
     "language": "Sanskrit"
   },
   {
     "id": 10,
-    "name": "Sri Abhinavagupta",
+    "name": "Sri Abhinavgupta",
     "language": "Sanskrit"
   },
   {
     "id": 11,
-    "name": "Sri Jayatirtha",
+    "name": "Sri Jayatritha",
     "language": "Sanskrit"
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "id": 13,
-    "name": "Sri Purushottam Ji",
+    "name": "Sri Purushottamji",
     "language": "Sanskrit"
   },
   {
@@ -77,6 +77,11 @@
   {
     "id": 16,
     "name": "Swami Sivananda",
+    "language": "English"
+  },
+  {
+    "id": 22,
+    "name": "Swami Mukundananda",
     "language": "English"
   }
 ]

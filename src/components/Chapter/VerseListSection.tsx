@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 
 interface VerseListSectionProps {
   verses: Array<{
-    verse_number: number;
+    verse_number: string; // Changed to string to support ranges like "4-6"
     chapter_number: number;
     gita_translations: Array<{ description: string }>;
   }>;

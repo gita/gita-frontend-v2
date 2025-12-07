@@ -4,7 +4,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "gqty:generate-schema": "gqty generate",
     "find:unused": "npx next-unused",
     "prettier": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -59,7 +58,6 @@
     "encoding": "^0.1.13",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "framer-motion": "^12.23.24",
-    "graphql": "^16.0.1",
     "lodash": "^4.17.21",
     "lucide-react": "^0.555.0",
     "next": "16.0.7",
@@ -131,7 +129,6 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.1",
-    "@gqty/cli": "3.3.0",
     "@netlify/plugin-nextjs": "^5.15.1",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/typography": "^0.5.19",

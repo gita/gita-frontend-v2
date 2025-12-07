@@ -7,7 +7,7 @@ import LinkWithLocale from "components/LinkWithLocale";
 import { cn } from "@/lib/utils";
 
 interface VerseListItemProps {
-  verseNumber: number;
+  verseNumber: string; // Changed to string to support ranges like "4-6"
   chapterNumber: number;
   translation: string;
   translate: Translate;

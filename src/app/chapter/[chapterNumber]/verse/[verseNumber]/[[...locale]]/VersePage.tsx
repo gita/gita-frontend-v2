@@ -3,6 +3,8 @@ import Verse from "components/Verse";
 type Props = {
   verseData: GitaVerse;
   chapterName: string;
+  nextVerseNumber?: string;
+  prevVerseNumber?: string;
 } & LocaleAndTranslations;
 
 export default function VersePage({
@@ -10,6 +12,8 @@ export default function VersePage({
   chapterName,
   translations,
   locale,
+  nextVerseNumber,
+  prevVerseNumber,
 }: Props) {
   return (
     <>
@@ -19,6 +23,8 @@ export default function VersePage({
           chapterName={chapterName}
           translations={translations}
           locale={locale}
+          nextVerseNumber={nextVerseNumber}
+          prevVerseNumber={prevVerseNumber}
         />
       )}
       {!verseData && (

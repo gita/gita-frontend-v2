@@ -1,14 +1,42 @@
 [
   {
     "id": 1,
-    "language": "english"
+    "code": "en",
+    "language": "English"
   },
   {
     "id": 2,
-    "language": "hindi"
+    "code": "hi",
+    "language": "Hindi"
   },
   {
     "id": 3,
-    "language": "sanskrit"
+    "code": "sa",
+    "language": "Sanskrit"
+  },
+  {
+    "id": 4,
+    "code": "gu",
+    "language": "Gujarati"
+  },
+  {
+    "id": 5,
+    "code": "te",
+    "language": "Telugu"
+  },
+  {
+    "id": 6,
+    "code": "ta",
+    "language": "Tamil"
+  },
+  {
+    "id": 7,
+    "code": "or",
+    "language": "Odia"
+  },
+  {
+    "id": 8,
+    "code": "es",
+    "language": "Spanish"
   }
 ]

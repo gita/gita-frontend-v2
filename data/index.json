@@ -1,0 +1,334 @@
+{
+  "languages": [
+    {
+      "code": "en",
+      "name": "English"
+    },
+    {
+      "code": "hi",
+      "name": "Hindi"
+    },
+    {
+      "code": "gu",
+      "name": "Gujarati"
+    },
+    {
+      "code": "te",
+      "name": "Telugu"
+    },
+    {
+      "code": "ta",
+      "name": "Tamil"
+    },
+    {
+      "code": "or",
+      "name": "Odia"
+    },
+    {
+      "code": "es",
+      "name": "Spanish"
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "name": "Swami Ramsukhdas",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Gita Press",
+      "languages": [
+        {
+          "code": "hi",
+          "content": ["commentary", "translation"]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Swami Chinmayananda",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Chinmaya Mission",
+      "languages": [
+        {
+          "code": "hi",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Sri Anandgiri",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Disciple of Shankaracharya",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Sri Dhanpati",
+      "sampradaya": "Vedanta",
+      "affiliation": "Scholar",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Sri Madhavacharya",
+      "sampradaya": "Dvaita Vedanta",
+      "affiliation": "Founder of Dvaita",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Sri Neelkanth",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Scholar",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Sri Ramanujacharya",
+      "sampradaya": "Vishishtadvaita",
+      "affiliation": "Sri Vaishnavism",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Sri Sridhara Swami",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Bhagavata Commentator",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Sri Vedantadeshikacharya Venkatanatha",
+      "sampradaya": "Vishishtadvaita",
+      "affiliation": "Sri Vaishnavism",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Sri Abhinavgupta",
+      "sampradaya": "Kashmir Shaivism",
+      "affiliation": "Trika School",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Sri Jayatritha",
+      "sampradaya": "Dvaita Vedanta",
+      "affiliation": "Disciple of Madhvacharya",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Sri Madhusudan Saraswati",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Bhakti Synthesis",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Sri Purushottamji",
+      "sampradaya": "Vedanta",
+      "affiliation": "Scholar",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Sri Shankaracharya",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Dashanami Sampradaya",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Sri Vallabhacharya",
+      "sampradaya": "Shuddhadvaita",
+      "affiliation": "Pushtimarg",
+      "languages": [
+        {
+          "code": "sa",
+          "content": ["commentary"]
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Swami Sivananda",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Divine Life Society",
+      "languages": [
+        {
+          "code": "en",
+          "content": ["commentary", "translation"]
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Swami Tejomayananda",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Chinmaya Mission",
+      "languages": [
+        {
+          "code": "hi",
+          "content": ["translation"]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Swami Adidevananda",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Ramakrishna Mission",
+      "languages": [
+        {
+          "code": "en",
+          "content": ["translation"]
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Swami Gambirananda",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Ramakrishna Mission",
+      "languages": [
+        {
+          "code": "en",
+          "content": ["translation"]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Dr. S. Sankaranarayan",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Scholar",
+      "languages": [
+        {
+          "code": "en",
+          "content": ["translation"]
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Shri Purohit Swami",
+      "sampradaya": "Advaita Vedanta",
+      "affiliation": "Disciple of Hamsa",
+      "languages": [
+        {
+          "code": "en",
+          "content": ["translation"]
+        }
+      ]
+    }
+  ],
+  "language_authors": {
+    "en": {
+      "translation_authors": ["16", "18", "19", "20", "21", "22"],
+      "commentary_authors": ["16", "22"]
+    },
+    "hi": {
+      "translation_authors": ["1", "17", "22"],
+      "commentary_authors": ["1", "2", "22"]
+    },
+    "sa": {
+      "translation_authors": [],
+      "commentary_authors": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ]
+    },
+    "gu": {
+      "translation_authors": ["22"],
+      "commentary_authors": ["22"]
+    },
+    "te": {
+      "translation_authors": ["22"],
+      "commentary_authors": ["22"]
+    },
+    "ta": {
+      "translation_authors": ["22"],
+      "commentary_authors": ["22"]
+    },
+    "or": {
+      "translation_authors": ["22"],
+      "commentary_authors": ["22"]
+    },
+    "es": {
+      "translation_authors": ["22"],
+      "commentary_authors": ["22"]
+    }
+  }
+}
