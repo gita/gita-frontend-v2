@@ -415,7 +415,7 @@ export default async function About(props: ParamsWithLocale) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
       />
 
-      <div className="relative min-h-screen overflow-hidden bg-prakash-bg font-inter dark:bg-nisha-bg">
+      <div className="relative min-h-screen overflow-hidden bg-prakash-bg font-crimson dark:bg-nisha-bg">
         <EnhancedHero
           badge={translate("Sacred Scripture")}
           title={translate("The Bhagavad Gita")}

@@ -19,7 +19,7 @@ async function HomePage({
   };
 
   return (
-    <div className="min-h-screen bg-prakash-bg font-inter dark:bg-nisha-bg">
+    <div className="min-h-screen bg-prakash-bg font-crimson dark:bg-nisha-bg">
       <main>
         <HomeLayout {...translationProps} chapters={chapters}>
           <div className="relative">

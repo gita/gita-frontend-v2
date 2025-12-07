@@ -12,10 +12,33 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        inter: ['"Inter"', "sans-serif"],
-        dev: ["Noto Sans Devanagari", "sans-serif"],
-        serif: ['"Georgia"', '"Times New Roman"', "serif"],
-        crimson: ['"Crimson Pro"', "Georgia", "serif"],
+        // Latin/English fonts
+        inter: ["var(--font-inter)", "sans-serif"],
+        crimson: ["var(--font-crimson)", "Georgia", "serif"],
+
+        // Sanskrit font (for classical verses)
+        sanskrit: [
+          "var(--font-sanskrit)",
+          "var(--font-devanagari-serif)",
+          "serif",
+        ],
+
+        // Devanagari fonts (Hindi, Sanskrit, Marathi)
+        "devanagari-serif": ["var(--font-devanagari-serif)", "serif"],
+        "devanagari-sans": ["var(--font-devanagari-sans)", "sans-serif"],
+
+        // Tamil fonts
+        "tamil-serif": ["var(--font-tamil-serif)", "serif"],
+
+        // Telugu fonts
+        "telugu-serif": ["var(--font-telugu-serif)", "serif"],
+
+        // Gujarati fonts
+        "gujarati-serif": ["var(--font-gujarati-serif)", "serif"],
+
+        // Legacy aliases (for backward compatibility)
+        dev: ["var(--font-devanagari-sans)", "sans-serif"],
+        serif: ["Georgia", "Times New Roman", "serif"],
       },
       fontSize: {
         intro: ["30px", "45px"],

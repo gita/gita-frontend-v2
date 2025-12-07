@@ -238,7 +238,10 @@ const Verse = ({ verse, chapterName, translations, locale }: Props) => {
         {/* Sanskrit Verse (Devanagari) */}
         {text && (
           <section className="mb-8 text-center">
-            <p className="whitespace-pre-line font-crimson text-2xl font-semibold leading-loose text-prakash-primary transition-colors dark:text-nisha-primary">
+            <p
+              lang="sa"
+              className="sanskrit-verse whitespace-pre-line text-2xl leading-loose text-prakash-primary transition-colors dark:text-nisha-primary"
+            >
               {text
                 .split("\n")
                 .filter((line) => line.trim() !== "")
@@ -250,7 +253,7 @@ const Verse = ({ verse, chapterName, translations, locale }: Props) => {
         {/* Transliteration */}
         {transliteration && (
           <section className="mb-6 text-center">
-            <p className="whitespace-pre-line font-crimson text-base font-normal italic leading-[1.9] text-verse-light-text transition-colors dark:text-verse-light-text">
+            <p className="transliteration whitespace-pre-line text-base leading-[1.9] text-verse-light-text transition-colors dark:text-verse-light-text">
               {transliteration}
             </p>
           </section>

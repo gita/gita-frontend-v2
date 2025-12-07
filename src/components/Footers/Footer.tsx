@@ -42,8 +42,13 @@ const Footer = (props: Props) => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Column 1: Logo + Tagline + Social */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <BookOpen className="size-6 text-primary" />
+            <div className="flex items-center gap-2.5">
+              <Image
+                src="/bhagavad-gita.png"
+                height={28}
+                width={23}
+                alt="Bhagavad Gita"
+              />
               <span className="text-xl font-bold">
                 {translate("Bhagavad Gita")}
               </span>

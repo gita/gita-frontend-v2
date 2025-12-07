@@ -149,7 +149,7 @@ export default async function Donate(props: ParamsWithLocale) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTwo) }}
       />
 
-      <div className="relative min-h-screen overflow-hidden bg-prakash-bg font-inter dark:bg-nisha-bg">
+      <div className="relative min-h-screen overflow-hidden bg-prakash-bg font-crimson dark:bg-nisha-bg">
         <div className="pb-0">
           <PageHero
             badge={translate("Support")}

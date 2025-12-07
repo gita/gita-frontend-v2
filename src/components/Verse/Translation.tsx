@@ -19,7 +19,10 @@ export default function Translation({
         {translate("Translation")}
       </h2>
       {translationData && translationData[0]?.description ? (
-        <p className="text-left font-crimson text-lg font-medium leading-[1.9] text-verse-dark-text transition-colors dark:text-verse-dark-text">
+        <p
+          lang={locale}
+          className="translation text-left text-lg leading-[1.9] text-verse-dark-text transition-colors dark:text-verse-dark-text"
+        >
           {translationData[0].description}
         </p>
       ) : (

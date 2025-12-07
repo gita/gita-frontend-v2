@@ -25,7 +25,8 @@ export default function Commentary({
           {paragraphs.map((paragraph, index) => (
             <p
               key={index}
-              className="text-left font-crimson text-lg font-normal leading-[1.95] text-verse-medium-text transition-colors dark:text-verse-medium-text"
+              lang={locale}
+              className="commentary text-left text-lg leading-[1.95] text-verse-medium-text transition-colors dark:text-verse-medium-text"
             >
               {paragraph}
             </p>
