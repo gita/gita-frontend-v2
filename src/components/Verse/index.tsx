@@ -46,16 +46,6 @@ function InlineAudioPlayer({
   const [isDurationsLoaded, setIsDurationsLoaded] = useState(false);
   const pendingSeekTime = useRef<number | null>(null);
 
-  // Debug: Log sanskrit_audio to verify it's being received
-  useEffect(() => {
-    console.log("🎵 Audio Player Debug:", {
-      chapterNumber,
-      verseNumber,
-      sanskritAudio,
-      hasSanskritAudio: !!sanskritAudio,
-    });
-  }, [chapterNumber, verseNumber, sanskritAudio]);
-
   // Parse verse number to get all verses in range - memoized to prevent re-computation
   const verseNumbers = useMemo(() => {
     const verseStr = verseNumber.toString();
@@ -70,14 +60,11 @@ function InlineAudioPlayer({
   const audioSrc = useMemo(() => {
     // If sanskritAudio is provided, use it (could be combined or single)
     if (sanskritAudio) {
-      console.log("✅ Using sanskrit_audio from data:", sanskritAudio);
       return sanskritAudio;
     }
     // Fall back to old URL pattern for individual verses
     const currentVerseNum = verseNumbers[currentTrackIndex];
-    const fallbackUrl = `https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${currentVerseNum}.mp3`;
-    console.log("⚠️ Falling back to old URL pattern:", fallbackUrl);
-    return fallbackUrl;
+    return `https://gita.github.io/gita/data/verse_recitation/${chapterNumber}/${currentVerseNum}.mp3`;
   }, [sanskritAudio, chapterNumber, verseNumbers, currentTrackIndex]);
 
   // Calculate total duration and cumulative time
