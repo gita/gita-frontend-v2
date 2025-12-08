@@ -202,28 +202,17 @@ const Verse = async ({ params: paramsPromise }: Props) => {
     chapterData?.gita_chapters_by_pk?.name_translated ||
     `Chapter ${chapterNumber}`;
 
-  // Helper to parse verse number for sorting
-  const parseVerseForSort = (verseStr: string): number => {
-    const match = verseStr.match(/^(\d+)/);
-    return match ? parseInt(match[1], 10) : 0;
-  };
-
-  // Sort verses by their first number to ensure correct order
-  const sortedVerses = [...commonVerses].sort(
-    (a, b) =>
-      parseVerseForSort(a.verse_number) - parseVerseForSort(b.verse_number),
-  );
-
+  // Note: Verses are already sorted in the JSON files
   // Find next and previous verse numbers from the actual data
-  const currentIndex = sortedVerses.findIndex(
+  const currentIndex = commonVerses.findIndex(
     (v) => v.verse_number === verseNumber,
   );
   const nextVerseNumber =
-    currentIndex >= 0 && currentIndex < sortedVerses.length - 1
-      ? sortedVerses[currentIndex + 1]?.verse_number
+    currentIndex >= 0 && currentIndex < commonVerses.length - 1
+      ? commonVerses[currentIndex + 1]?.verse_number
       : undefined;
   const prevVerseNumber =
-    currentIndex > 0 ? sortedVerses[currentIndex - 1]?.verse_number : undefined;
+    currentIndex > 0 ? commonVerses[currentIndex - 1]?.verse_number : undefined;
 
   return (
     <article>
