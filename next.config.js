@@ -1,4 +1,3 @@
-const { withPlausibleProxy } = require("next-plausible");
 const fs = require("fs");
 const path = require("path");
 
@@ -55,7 +54,7 @@ function generateVerseRedirects() {
   return redirects;
 }
 
-module.exports = withPlausibleProxy()({
+module.exports = {
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -101,7 +100,7 @@ module.exports = withPlausibleProxy()({
   async redirects() {
     return generateVerseRedirects();
   },
-});
+};
 
 // Injected content via Sentry wizard below
 
