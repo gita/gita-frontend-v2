@@ -8,18 +8,21 @@ const BASE_URL = "https://bhagavadgita.io";
 const LOCALES = ["", "hi"] as const; // "" = English (default), "hi" = Hindi
 
 // Static routes to include in sitemap
+// Note: Auth pages (/login, /signup) and user-specific pages (/bookmark, /notes) are excluded
 const STATIC_PATHS = [
   "",
   "/about",
-  "/privacy-policy",
-  "/terms-of-service",
-  "/gitagpt",
-  "/verse-of-the-day",
-  "/bhagavad-gita-quotes",
-  "/donate",
   "/acknowledgements",
+  "/bhagavad-gita-quotes",
+  "/copyright",
+  "/donate",
+  "/gitagpt",
   "/mahabharata-characters",
+  "/privacy-policy",
   "/search",
+  "/terms-of-service",
+  "/verse-of-the-day",
+  "/verse-parallel",
 ] as const;
 
 /**
