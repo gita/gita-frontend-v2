@@ -225,10 +225,10 @@ export default async function Copyright(props: ParamsWithLocale) {
               "For API documentation and access, please visit our developer portal or contact us at",
             )}{" "}
             <a
-              href="mailto:api@bhagavadgita.com"
+              href="mailto:contact@bhagavadgita.io"
               className="text-prakash-primary hover:underline dark:text-nisha-primary"
             >
-              api@bhagavadgita.com
+              contact@bhagavadgita.io
             </a>
           </p>
         </>
@@ -300,10 +300,10 @@ export default async function Copyright(props: ParamsWithLocale) {
           <p className="mb-2">
             <strong>{translate("Email")}:</strong>{" "}
             <a
-              href="mailto:contact@bhagavadgita.com"
+              href="mailto:contact@bhagavadgita.io"
               className="text-prakash-primary hover:underline dark:text-nisha-primary"
             >
-              contact@bhagavadgita.com
+              contact@bhagavadgita.io
             </a>
           </p>
           <p className="text-sm text-muted-foreground">

@@ -321,10 +321,10 @@ export default async function TermsOfService(props: ParamsWithLocale) {
           <p>
             {translate("By email")}:{" "}
             <a
-              href="mailto:contact@bhagavadgita.com"
+              href="mailto:contact@bhagavadgita.io"
               className="text-prakash-primary hover:underline dark:text-nisha-primary"
             >
-              contact@bhagavadgita.com
+              contact@bhagavadgita.io
             </a>
           </p>
         </>

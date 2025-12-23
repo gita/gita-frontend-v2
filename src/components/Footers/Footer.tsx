@@ -203,7 +203,7 @@ const Footer = (props: Props) => {
               </li>
               <li>
                 <a
-                  href="mailto:admin@bhagavadgita.com"
+                  href="mailto:contact@bhagavadgita.io"
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
                   {translate("Contact Us")}
