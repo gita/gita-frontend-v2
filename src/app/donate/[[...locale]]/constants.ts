@@ -4,8 +4,8 @@ export function getJsonLdFirst(isHindi: boolean) {
     "@type": "Organization",
     "@id": "#organization",
     name: "Bhagavad Gita",
-    url: "https://bhagavadgita.io",
-    logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
+    url: "https://bhagavadgita.com",
+    logo: "https://bhagavadgita.com/static/images/radhakrishna.png",
   };
 }
 
@@ -18,7 +18,7 @@ export function getJsonLdTwo(isHindi: boolean) {
         "@type": "ListItem",
         position: 1,
         item: {
-          "@id": "https://bhagavadgita.io",
+          "@id": "https://bhagavadgita.com",
           name: isHindi ? "होम" : "Home",
         },
       },
@@ -27,8 +27,8 @@ export function getJsonLdTwo(isHindi: boolean) {
         position: 2,
         item: {
           "@id": isHindi
-            ? "https://bhagavadgita.io/hi/donate"
-            : "https://bhagavadgita.io/donate",
+            ? "https://bhagavadgita.com/hi/donate"
+            : "https://bhagavadgita.com/donate",
           name: isHindi
             ? "दान - भगवद गीता - वेद व्यास फाउंडेशन"
             : "Donate - Bhagavad Gita - Ved Vyas Foundation",

@@ -30,10 +30,10 @@ export const metadata: Metadata = {
     title: "Bhagavad Gita Quotes by Lord Krishna - Hindi & English",
     description:
       "100+ Bhagavad Gita quotes by Lord Krishna in Hindi & English. Profound wisdom on karma, dharma, life, yoga, and spirituality. Read, share & inspire.",
-    url: "https://bhagavadgita.io/bhagavad-gita-quotes",
+    url: "https://bhagavadgita.com/bhagavad-gita-quotes",
     siteName: "Bhagavad Gita",
     images:
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     locale: "en_US",
     type: "website",
   },
@@ -43,12 +43,12 @@ export const metadata: Metadata = {
     description:
       "100+ Bhagavad Gita quotes by Lord Krishna in Hindi & English. Profound wisdom on karma, dharma, life, yoga, and spirituality. Read, share & inspire.",
     images: [
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],
     site: "@ShriKrishna",
   },
   alternates: {
-    canonical: "https://bhagavadgita.io/bhagavad-gita-quotes",
+    canonical: "https://bhagavadgita.com/bhagavad-gita-quotes",
   },
 };
 

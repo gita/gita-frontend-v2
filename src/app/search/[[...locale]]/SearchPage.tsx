@@ -30,7 +30,7 @@ export default function SearchPage({
   useEffect(() => {
     setIsSearchLoading(true);
     const fetchData = async () => {
-      fetch(`https://api.bhagavadgita.io/v2/search?query=${query}`, {
+      fetch(`https://api.bhagavadgita.com/v2/search?query=${query}`, {
         method: "GET",
         headers: {
           accept: "application/json",

@@ -50,13 +50,13 @@ export const metadata: Metadata = {
     title: "Mahabharata Characters - Key Figures in the Bhagavad Gita",
     description:
       "Explore the main characters of the Mahabharata featured in the Bhagavad Gita - Lord Krishna, Arjuna, Bhishma, Dronacharya, Yudhishthir, and more.",
-    url: "https://bhagavadgita.io/mahabharata-characters",
+    url: "https://bhagavadgita.com/mahabharata-characters",
     siteName: "Bhagavad Gita",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
         height: 1080,
         width: 1920,
       },
@@ -68,12 +68,12 @@ export const metadata: Metadata = {
     description:
       "Explore the main characters of the Mahabharata featured in the Bhagavad Gita.",
     images: [
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],
     site: "@ShriKrishna",
   },
   alternates: {
-    canonical: "https://bhagavadgita.io/mahabharata-characters",
+    canonical: "https://bhagavadgita.com/mahabharata-characters",
   },
 };
 

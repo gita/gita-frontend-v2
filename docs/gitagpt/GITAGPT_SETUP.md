@@ -192,7 +192,7 @@ import 'package:http/http.dart' as http;
 Future<Stream<String>> sendMessage(List<Map<String, String>> messages) async {
   final request = http.Request(
     'POST',
-    Uri.parse('https://bhagavadgita.io/api/chat'),
+    Uri.parse('https://bhagavadgita.com/api/chat'),
   );
 
   request.headers['Content-Type'] = 'application/json';

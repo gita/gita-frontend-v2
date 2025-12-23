@@ -39,7 +39,7 @@ export async function generateMetadata({
   const { chapterNumber } = params;
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
-  const baseUrl = "https://bhagavadgita.io";
+  const baseUrl = "https://bhagavadgita.com";
   const chapterUrl = `${baseUrl}/chapter/${chapterNumber}`;
 
   const chapterData = await getChapterData(locale, Number(chapterNumber) || 1);
@@ -80,9 +80,9 @@ export async function generateMetadata({
       description: chapterDescription,
       images: [
         {
-          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -93,7 +93,7 @@ export async function generateMetadata({
       title,
       description: chapterDescription,
       images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
       site: "@ShriKrishna",
     },

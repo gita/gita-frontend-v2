@@ -212,8 +212,8 @@ export const jsonLdFirst = {
   "@type": "Organization",
   "@id": "#organization",
   name: "Bhagavad Gita",
-  url: "https://bhagavadgita.io",
-  logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
+  url: "https://bhagavadgita.com",
+  logo: "https://bhagavadgita.com/static/images/radhakrishna.png",
 };
 
 export const jsonLdTwo = {
@@ -224,7 +224,7 @@ export const jsonLdTwo = {
       "@type": "ListItem",
       position: 1,
       item: {
-        "@id": "https://bhagavadgita.io",
+        "@id": "https://bhagavadgita.com",
         name: "Home",
       },
     },
@@ -232,7 +232,7 @@ export const jsonLdTwo = {
       "@type": "ListItem",
       position: 2,
       item: {
-        "@id": "https://bhagavadgita.io/bhagavad-gita-quotes",
+        "@id": "https://bhagavadgita.com/bhagavad-gita-quotes",
         name: "Bhagavad Gita Quotes",
       },
     },

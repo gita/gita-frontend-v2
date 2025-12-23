@@ -28,7 +28,7 @@ export const getJsonLdFirst = (isHindi: boolean) => ({
     name: isHindi ? "वेद व्यास फाउंडेशन" : "Ved Vyas Foundation",
     logo: {
       "@type": "ImageObject",
-      url: "https://bhagavadgita.io/static/images/radhakrishna.png",
+      url: "https://bhagavadgita.com/static/images/radhakrishna.png",
     },
   },
   datePublished: "2020-01-01",
@@ -47,8 +47,8 @@ export const getJsonLdTwo = (isHindi: boolean) => ({
     ? "भगवद गीता के बारे में संपूर्ण जानकारी - इसका इतिहास, भगवान कृष्ण और अर्जुन सहित पात्र, कर्म योग, भक्ति योग और ज्ञान योग की शिक्षाएं, और हिंदू दर्शन में महत्व। वेद व्यास, गणेश जी और महाभारत संदर्भ के बारे में जानें।"
     : "Complete information about the Bhagavad Gita - its history, characters including Lord Krishna and Arjuna, teachings on karma yoga, bhakti yoga and jnana yoga, and significance in Hindu philosophy. Learn about Ved Vyasa, Ganesh ji, and the Mahabharata context.",
   url: isHindi
-    ? "https://bhagavadgita.io/hi/about"
-    : "https://bhagavadgita.io/about",
+    ? "https://bhagavadgita.com/hi/about"
+    : "https://bhagavadgita.com/about",
   about: {
     "@type": "Book",
     name: isHindi ? "भगवद गीता" : "Bhagavad Gita",

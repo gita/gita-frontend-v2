@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
-      url: "https://bhagavadgita.io/verse-of-the-day",
+      url: "https://bhagavadgita.com/verse-of-the-day",
       siteName: "Bhagavad Gita",
       locale: "en_US",
       type: "article",
@@ -39,9 +39,9 @@ export async function generateMetadata(): Promise<Metadata> {
         "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
       images: [
         {
-          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -53,19 +53,19 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
       images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
       site: "@ShriKrishna",
     },
     alternates: {
       languages: {
-        en: "https://bhagavadgita.io/verse-of-the-day",
-        "en-US": "https://bhagavadgita.io/verse-of-the-day",
-        "en-GB": "https://bhagavadgita.io/verse-of-the-day",
-        "en-IN": "https://bhagavadgita.io/verse-of-the-day",
-        hi: "https://bhagavadgita.io/verse-of-the-day/hi",
+        en: "https://bhagavadgita.com/verse-of-the-day",
+        "en-US": "https://bhagavadgita.com/verse-of-the-day",
+        "en-GB": "https://bhagavadgita.com/verse-of-the-day",
+        "en-IN": "https://bhagavadgita.com/verse-of-the-day",
+        hi: "https://bhagavadgita.com/verse-of-the-day/hi",
       },
-      canonical: "https://bhagavadgita.io/verse-of-the-day",
+      canonical: "https://bhagavadgita.com/verse-of-the-day",
     },
   };
 }

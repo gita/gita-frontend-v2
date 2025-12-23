@@ -48,7 +48,7 @@ export async function generateMetadata({
   const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
-  const baseUrl = "https://bhagavadgita.io";
+  const baseUrl = "https://bhagavadgita.com";
 
   return {
     title: isHindi
@@ -75,9 +75,9 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -92,7 +92,7 @@ export async function generateMetadata({
         ? "भगवद गीता की खोज करें: भगवान कृष्ण से अर्जुन को कालातीत ज्ञान के 700 श्लोक। महाभारत संदर्भ, वेद व्यास और प्रमुख पात्रों के बारे में जानें।"
         : "Discover the Bhagavad Gita: 700 verses of timeless wisdom from Lord Krishna to Arjuna. Learn about the Mahabharata context, Ved Vyasa, and key characters.",
       images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
       site: "@ShriKrishna",
     },

@@ -11,6 +11,6 @@ Disallow: /join-from-invite
 Disallow: /unconfirmed
 
 # Host
-Host: https://bhagavadgita.io
+Host: https://bhagavadgita.com
 
-Sitemap: https://bhagavadgita.io/sitemap.xml
+Sitemap: https://bhagavadgita.com/sitemap.xml

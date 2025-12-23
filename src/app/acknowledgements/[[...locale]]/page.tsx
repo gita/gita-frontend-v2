@@ -32,7 +32,7 @@ export async function generateMetadata({
   const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
-  const baseUrl = "https://bhagavadgita.io";
+  const baseUrl = "https://bhagavadgita.com";
 
   return {
     title: isHindi
@@ -60,9 +60,9 @@ export async function generateMetadata({
       siteName: "Bhagavad Gita",
       images: [
         {
-          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -79,7 +79,7 @@ export async function generateMetadata({
         ? "हम उन सम्मानित संगठनों के प्रति अपनी कृतज्ञता व्यक्त करते हैं।"
         : "We extend our heartfelt gratitude to esteemed organizations and individuals for allowing us to feature their invaluable Bhagavad Gita translations and commentaries.",
       images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
       site: "@ShriKrishna",
     },
