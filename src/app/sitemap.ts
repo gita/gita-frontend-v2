@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { loadChapters, loadCommonData } from "lib/data";
 
-const BASE_URL = "https://bhagavadgita.io";
+const BASE_URL = "https://bhagavadgita.com";
 
 // Supported locales for sitemap generation
 const LOCALES = ["", "hi"] as const; // "" = English (default), "hi" = Hindi

@@ -154,8 +154,8 @@ export const WEBSITE_PAGES_CONFIG: IngestConfig = {
     website_pages: {
       enabled: true,
       urls: [
-        "https://bhagavadgita.io/",
-        "https://bhagavadgita.io/about",
+        "https://bhagavadgita.com/",
+        "https://bhagavadgita.com/about",
         // Add more URLs as needed
       ],
       selectors: {

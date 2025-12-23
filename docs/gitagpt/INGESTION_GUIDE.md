@@ -49,13 +49,13 @@ npm run ingest:gita
       "enabled": true,
       "urls": [
         {
-          "url": "https://bhagavadgita.io/about",
+          "url": "https://bhagavadgita.com/about",
           "title": "About Bhagavad Gita",
           "enabled": true,
           "last_trained": null
         },
         {
-          "url": "https://bhagavadgita.io/faq",
+          "url": "https://bhagavadgita.com/faq",
           "title": "FAQ",
           "enabled": true,
           "last_trained": null
@@ -164,9 +164,9 @@ update_mode: "merge";
 
 ```typescript
 urls: [
-  "https://bhagavadgita.io/about",
-  "https://bhagavadgita.io/faq",
-  "https://bhagavadgita.io/introduction",
+  "https://bhagavadgita.com/about",
+  "https://bhagavadgita.com/faq",
+  "https://bhagavadgita.com/introduction",
 ];
 ```
 
@@ -200,7 +200,7 @@ selectors: {
 
 ```typescript
 {
-  url: "https://bhagavadgita.io/about",
+  url: "https://bhagavadgita.com/about",
   title: "About Bhagavad Gita",
   content: "# About\n\nThe Bhagavad Gita...",
   metadata: {
@@ -248,13 +248,13 @@ await ingest(config);
 ```typescript
 import { REPLACE_WEBSITE_CONFIG } from "./ingest-config";
 
-const config = REPLACE_WEBSITE_CONFIG(["https://bhagavadgita.io/faq"]);
+const config = REPLACE_WEBSITE_CONFIG(["https://bhagavadgita.com/faq"]);
 await ingest(config);
 ```
 
 **What happens**:
 
-1. Deletes records where `metadata.url = "https://bhagavadgita.io/faq"`
+1. Deletes records where `metadata.url = "https://bhagavadgita.com/faq"`
 2. Re-scrapes the URL
 3. Adds fresh content
 
@@ -271,7 +271,7 @@ export const DEFAULT_CONFIG = {
     gita_json: { enabled: false }, // Don't touch verses
     website_pages: {
       enabled: true,
-      urls: ["https://bhagavadgita.io/about", "https://bhagavadgita.io/faq"],
+      urls: ["https://bhagavadgita.com/about", "https://bhagavadgita.com/faq"],
     },
   },
   update_mode: "append", // Just add, don't delete
@@ -305,13 +305,13 @@ export const DEFAULT_CONFIG = {
     },
     website_pages: {
       enabled: true,
-      urls: ["https://bhagavadgita.io/about"],
+      urls: ["https://bhagavadgita.com/about"],
     },
   },
   update_mode: "replace",
   replace_filters: {
     chapters: [10, 11, 12], // Delete these first
-    urls: ["https://bhagavadgita.io/about"], // Delete this page
+    urls: ["https://bhagavadgita.com/about"], // Delete this page
   },
 };
 ```
@@ -388,7 +388,7 @@ npm run ingest:gita
 ```bash
 # Edit ingest-config.ts:
 export const DEFAULT_CONFIG = REPLACE_WEBSITE_CONFIG([
-  "https://bhagavadgita.io/faq"
+  "https://bhagavadgita.com/faq"
 ]);
 
 # Run

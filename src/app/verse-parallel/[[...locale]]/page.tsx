@@ -23,15 +23,15 @@ export const metadata: Metadata = {
     title: "Bhagavad Gita Parallel Translation - Compare Multiple Translations",
     description:
       "Read Bhagavad Gita verses with parallel translations from multiple authors side by side. Compare different interpretations and commentaries.",
-    url: "https://bhagavadgita.io/verse-parallel",
+    url: "https://bhagavadgita.com/verse-parallel",
     siteName: "Bhagavad Gita",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
         secureUrl:
-          "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
         height: 1080,
         width: 1920,
       },
@@ -43,12 +43,12 @@ export const metadata: Metadata = {
     description:
       "Compare multiple Bhagavad Gita translations side by side from various authors and commentaries.",
     images: [
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],
     site: "@ShriKrishna",
   },
   alternates: {
-    canonical: "https://bhagavadgita.io/verse-parallel",
+    canonical: "https://bhagavadgita.com/verse-parallel",
   },
 };
 

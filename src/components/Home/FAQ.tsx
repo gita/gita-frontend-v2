@@ -46,12 +46,12 @@ const FAQ = ({
     {
       question: "Is the Bhagavad Gita available with commentaries?",
       answer:
-        "Yes, BhagavadGita.io provides the complete Bhagavad Gita with authentic commentaries from 20+ revered scholars including Adi Shankaracharya, Ramanujacharya, Madhvacharya, Swami Sivananda, and many other traditional and modern commentators. Multiple translations are available in Hindi, English, and Sanskrit.",
+        "Yes, BhagavadGita.com provides the complete Bhagavad Gita with authentic commentaries from 20+ revered scholars including Adi Shankaracharya, Ramanujacharya, Madhvacharya, Swami Sivananda, and many other traditional and modern commentators. Multiple translations are available in Hindi, English, and Sanskrit.",
     },
     {
       question: "Can I read Bhagavad Gita in Hindi and English?",
       answer:
-        "Yes, BhagavadGita.io offers complete Bhagavad Gita in both Hindi and English languages. You can read all 700 verses with translations, transliterations, and word-by-word meanings in both languages along with Sanskrit originals.",
+        "Yes, BhagavadGita.com offers complete Bhagavad Gita in both Hindi and English languages. You can read all 700 verses with translations, transliterations, and word-by-word meanings in both languages along with Sanskrit originals.",
     },
     {
       question: "What is the main message of the Bhagavad Gita?",
@@ -84,12 +84,12 @@ const FAQ = ({
     {
       question: "क्या भगवद गीता टीका के साथ उपलब्ध है?",
       answer:
-        "हाँ, BhagavadGita.io पर भगवद गीता 20+ प्रामाणिक आचार्यों की टीका के साथ उपलब्ध है जिनमें आदि शंकराचार्य, रामानुजाचार्य, माधवाचार्य, स्वामी शिवानंद आदि शामिल हैं। हिंदी, अंग्रेजी और संस्कृत में अनुवाद उपलब्ध हैं।",
+        "हाँ, BhagavadGita.com पर भगवद गीता 20+ प्रामाणिक आचार्यों की टीका के साथ उपलब्ध है जिनमें आदि शंकराचार्य, रामानुजाचार्य, माधवाचार्य, स्वामी शिवानंद आदि शामिल हैं। हिंदी, अंग्रेजी और संस्कृत में अनुवाद उपलब्ध हैं।",
     },
     {
       question: "क्या भगवद गीता हिंदी और अंग्रेजी में पढ़ सकते हैं?",
       answer:
-        "हाँ, BhagavadGita.io पर संपूर्ण भगवद गीता हिंदी और अंग्रेजी दोनों भाषाओं में उपलब्ध है। आप सभी 700 श्लोक संस्कृत, हिंदी और अंग्रेजी अनुवाद, शब्दार्थ और टीका के साथ पढ़ सकते हैं।",
+        "हाँ, BhagavadGita.com पर संपूर्ण भगवद गीता हिंदी और अंग्रेजी दोनों भाषाओं में उपलब्ध है। आप सभी 700 श्लोक संस्कृत, हिंदी और अंग्रेजी अनुवाद, शब्दार्थ और टीका के साथ पढ़ सकते हैं।",
     },
     {
       question: "भगवद गीता का मुख्य संदेश क्या है?",

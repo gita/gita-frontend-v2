@@ -24,19 +24,19 @@ export async function generateMetadata({
   const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
-  const baseUrl = "https://bhagavadgita.io";
+  const baseUrl = "https://bhagavadgita.com";
 
   return {
     title: isHindi
-      ? "सेवा की शर्तें - BhagavadGita.io"
-      : "Terms of Service - BhagavadGita.io",
+      ? "सेवा की शर्तें - BhagavadGita.com"
+      : "Terms of Service - BhagavadGita.com",
     description: isHindi
       ? "हमारे प्लेटफ़ॉर्म का उपयोग करने के लिए आवश्यक दिशानिर्देश। उपयोगकर्ता जिम्मेदारियों, सामग्री उपयोग, कॉपीराइट नीतियों और सेवा शर्तों के बारे में पढ़ें।"
       : "Essential guidelines for using our platform. Read about user responsibilities, content usage, copyright policies, and service terms.",
     openGraph: {
       title: isHindi
-        ? "सेवा की शर्तें - BhagavadGita.io"
-        : "Terms of Service - BhagavadGita.io",
+        ? "सेवा की शर्तें - BhagavadGita.com"
+        : "Terms of Service - BhagavadGita.com",
       description: isHindi
         ? "हमारे प्लेटफ़ॉर्म का उपयोग करने के लिए आवश्यक दिशानिर्देश।"
         : "Essential guidelines for using our platform. Read about user responsibilities, content usage, copyright policies, and service terms.",
@@ -48,9 +48,9 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -59,13 +59,13 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: isHindi
-        ? "सेवा की शर्तें - BhagavadGita.io"
-        : "Terms of Service - BhagavadGita.io",
+        ? "सेवा की शर्तें - BhagavadGita.com"
+        : "Terms of Service - BhagavadGita.com",
       description: isHindi
         ? "हमारे प्लेटफ़ॉर्म का उपयोग करने के लिए आवश्यक दिशानिर्देश।"
         : "Essential guidelines for using our platform. Read about user responsibilities, content usage, copyright policies, and service terms.",
       images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
       site: "@ShriKrishna",
     },
@@ -95,7 +95,7 @@ export default async function TermsOfService(props: ParamsWithLocale) {
         <>
           <p className="mb-4">
             {translate(
-              'Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the BhagavadGita.io website (the "Service") operated by Ved Vyas Foundation ("us", "we", or "our").',
+              'Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the BhagavadGita.com website (the "Service") operated by Ved Vyas Foundation ("us", "we", or "our").',
             )}
           </p>
           <p className="mb-4">
@@ -129,7 +129,7 @@ export default async function TermsOfService(props: ParamsWithLocale) {
           </h3>
           <p className="mb-4">
             {translate(
-              "We have a few simple rules for accounts on BhagavadGita.io's Service:",
+              "We have a few simple rules for accounts on BhagavadGita.com's Service:",
             )}
           </p>
           <ul className="mb-4 ml-8 list-disc space-y-2">
@@ -196,7 +196,7 @@ export default async function TermsOfService(props: ParamsWithLocale) {
           </h3>
           <p className="mb-4">
             {translate(
-              "While using BhagavadGita.io, you agree that you will not under any circumstances:",
+              "While using BhagavadGita.com, you agree that you will not under any circumstances:",
             )}
           </p>
           <ul className="mb-4 ml-8 list-disc space-y-2">
@@ -207,7 +207,7 @@ export default async function TermsOfService(props: ParamsWithLocale) {
             </li>
             <li>
               {translate(
-                "Attempt to disrupt or tamper with BhagavadGita.io's servers in ways that could harm our Website or Service, to place undue burden on BhagavadGita.io's servers through automated means, or to access BhagavadGita.io's Service in ways that exceed your authorization.",
+                "Attempt to disrupt or tamper with BhagavadGita.com's servers in ways that could harm our Website or Service, to place undue burden on BhagavadGita.com's servers through automated means, or to access BhagavadGita.com's Service in ways that exceed your authorization.",
               )}
             </li>
           </ul>
@@ -221,17 +221,17 @@ export default async function TermsOfService(props: ParamsWithLocale) {
           <ul className="mb-4 ml-8 list-disc space-y-2">
             <li>
               {translate(
-                "Researchers may scrape public, non-personal information from BhagavadGita.io for research purposes, only if any publications resulting from that research are open access.",
+                "Researchers may scrape public, non-personal information from BhagavadGita.com for research purposes, only if any publications resulting from that research are open access.",
               )}
             </li>
             <li>
               {translate(
-                "Archivists may scrape BhagavadGita.io for public data for archival purposes.",
+                "Archivists may scrape BhagavadGita.com for public data for archival purposes.",
               )}
             </li>
             <li>
               {translate(
-                "You may not scrape BhagavadGita.io for spamming purposes.",
+                "You may not scrape BhagavadGita.com for spamming purposes.",
               )}
             </li>
           </ul>
@@ -247,7 +247,7 @@ export default async function TermsOfService(props: ParamsWithLocale) {
           </h3>
           <p className="mb-4">
             {translate(
-              "Abuse or excessively frequent requests to BhagavadGita.io via the API may result in the temporary or permanent suspension of your account's access to the API. BhagavadGita.io, in our sole discretion, will determine abuse or excessive usage of the API.",
+              "Abuse or excessively frequent requests to BhagavadGita.com via the API may result in the temporary or permanent suspension of your account's access to the API. BhagavadGita.com, in our sole discretion, will determine abuse or excessive usage of the API.",
             )}
           </p>
           <p className="mb-4">

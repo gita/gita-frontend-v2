@@ -25,19 +25,19 @@ export async function generateMetadata({
   const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
-  const baseUrl = "https://bhagavadgita.io";
+  const baseUrl = "https://bhagavadgita.com";
 
   return {
     title: isHindi
-      ? "गोपनीयता नीति - BhagavadGita.io"
-      : "Privacy Policy - BhagavadGita.io",
+      ? "गोपनीयता नीति - BhagavadGita.com"
+      : "Privacy Policy - BhagavadGita.com",
     description: isHindi
       ? "जानें कि हम आपके डेटा की सुरक्षा कैसे करते हैं, आपकी गोपनीयता सुनिश्चित करते हैं और सुरक्षा बनाए रखते हैं। डेटा संग्रह, उपयोग, कुकीज़ और आपके अधिकारों के बारे में पढ़ें।"
       : "Learn how we protect your data, ensure your privacy, and maintain security. Read about data collection, usage, cookies, and your rights.",
     openGraph: {
       title: isHindi
-        ? "गोपनीयता नीति - BhagavadGita.io"
-        : "Privacy Policy - BhagavadGita.io",
+        ? "गोपनीयता नीति - BhagavadGita.com"
+        : "Privacy Policy - BhagavadGita.com",
       description: isHindi
         ? "जानें कि हम आपके डेटा की सुरक्षा कैसे करते हैं और आपकी गोपनीयता सुनिश्चित करते हैं।"
         : "Learn how we protect your data, ensure your privacy, and maintain security. Read about data collection, usage, cookies, and your rights.",
@@ -49,9 +49,9 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -60,13 +60,13 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: isHindi
-        ? "गोपनीयता नीति - BhagavadGita.io"
-        : "Privacy Policy - BhagavadGita.io",
+        ? "गोपनीयता नीति - BhagavadGita.com"
+        : "Privacy Policy - BhagavadGita.com",
       description: isHindi
         ? "जानें कि हम आपके डेटा की सुरक्षा कैसे करते हैं।"
         : "Learn how we protect your data, ensure your privacy, and maintain security. Read about data collection, usage, cookies, and your rights.",
       images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
       site: "@ShriKrishna",
     },
@@ -154,14 +154,14 @@ export default async function PrivacyPolicy(props: ParamsWithLocale) {
             </li>
             <li>
               <strong>{translate("Website")}</strong>{" "}
-              {translate("refers to BhagavadGita.io, accessible from")}{" "}
+              {translate("refers to BhagavadGita.com, accessible from")}{" "}
               <a
-                href="https://bhagavadgita.io"
+                href="https://bhagavadgita.com"
                 rel="external nofollow noopener noreferrer"
                 target="_blank"
                 className="text-prakash-primary hover:underline dark:text-nisha-primary"
               >
-                https://bhagavadgita.io
+                https://bhagavadgita.com
               </a>
             </li>
           </ul>

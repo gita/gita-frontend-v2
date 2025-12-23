@@ -101,7 +101,7 @@ const FooterBar = () => {
           </div>
           */}
           <div className="mt-4 text-gray-400 md:mt-0">
-            © 2021 BhagavadGita.io.
+            © 2021 BhagavadGita.com.
           </div>
 
           <div className="mt-4 md:mt-0">App Icon</div>

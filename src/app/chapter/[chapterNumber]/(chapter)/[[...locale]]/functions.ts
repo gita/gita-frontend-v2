@@ -6,7 +6,7 @@ export const getJsonLd = (chapterNumber: string, nameTranslated?: string) => ({
       "@type": "ListItem",
       position: 1,
       item: {
-        "@id": "https://bhagavadgita.io",
+        "@id": "https://bhagavadgita.com",
         name: "Home",
       },
     },
@@ -14,10 +14,10 @@ export const getJsonLd = (chapterNumber: string, nameTranslated?: string) => ({
       "@type": "ListItem",
       position: 2,
       item: {
-        "@id": `https://bhagavadgita.io/chapter/${chapterNumber}`,
+        "@id": `https://bhagavadgita.com/chapter/${chapterNumber}`,
         name: `Bhagavad Gita Chapter ${chapterNumber} - ${nameTranslated}`,
         image:
-          "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       },
     },
   ],

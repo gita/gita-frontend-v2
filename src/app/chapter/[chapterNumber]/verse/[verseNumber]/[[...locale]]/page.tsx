@@ -62,7 +62,7 @@ export async function generateMetadata({
   const { verseNumber, chapterNumber, locale: localeParams } = params;
   const locale = paramsToLocale({ locale: localeParams });
   const isHindi = locale === "hi";
-  const baseUrl = "https://bhagavadgita.io";
+  const baseUrl = "https://bhagavadgita.com";
   const verseUrl = `${baseUrl}/chapter/${chapterNumber}/verse/${verseNumber}`;
 
   const verseData = await getVerseData(
@@ -117,9 +117,9 @@ export async function generateMetadata({
       description,
       images: [
         {
-          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -130,7 +130,7 @@ export async function generateMetadata({
       title,
       description,
       images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
       site: "@ShriKrishna",
     },

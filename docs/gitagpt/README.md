@@ -97,7 +97,7 @@ export const DATA_PATH = "/your/path/to/gita-data";
 ### Website URLs
 
 ```typescript
-urls: ["https://bhagavadgita.io/about", "https://bhagavadgita.io/faq"];
+urls: ["https://bhagavadgita.com/about", "https://bhagavadgita.com/faq"];
 ```
 
 ---

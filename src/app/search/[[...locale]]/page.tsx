@@ -29,15 +29,15 @@ export const metadata: Metadata = {
     title: "Search Bhagavad Gita - Find Verses, Chapters & Teachings",
     description:
       "Search the complete Bhagavad Gita text. Find specific verses, chapters, keywords, and teachings from Lord Krishna in multiple languages.",
-    url: "https://bhagavadgita.io/search",
+    url: "https://bhagavadgita.com/search",
     siteName: "Bhagavad Gita",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
         secureUrl:
-          "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
         height: 1080,
         width: 1920,
       },
@@ -49,12 +49,12 @@ export const metadata: Metadata = {
     description:
       "Search the complete Bhagavad Gita text. Find verses, chapters, and Krishna's teachings in Sanskrit, English, and Hindi.",
     images: [
-      "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
     ],
     site: "@ShriKrishna",
   },
   alternates: {
-    canonical: "https://bhagavadgita.io/search",
+    canonical: "https://bhagavadgita.com/search",
   },
 };
 

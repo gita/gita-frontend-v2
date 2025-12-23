@@ -2,7 +2,7 @@
 
 <p align="center">
 
-<a href="https://bhagavadgita.io">
+<a href="https://bhagavadgita.com">
 
 <img src="https://raw.githubusercontent.com/gita/bhagavad-gita-api/main/.github/gita.png" alt="Logo" width="300">
 

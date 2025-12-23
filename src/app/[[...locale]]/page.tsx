@@ -22,7 +22,7 @@ export async function generateMetadata({
   const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
-  const baseUrl = "https://bhagavadgita.io";
+  const baseUrl = "https://bhagavadgita.com";
 
   return {
     title: isHindi
@@ -58,7 +58,7 @@ export async function generateMetadata({
       url: isHindi ? `${baseUrl}/hi` : baseUrl,
       siteName: "Bhagavad Gita",
       images:
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
     },
@@ -71,7 +71,7 @@ export async function generateMetadata({
         ? "भगवद गीता - श्री कृष्ण और अर्जुन का पवित्र संवाद। 700 श्लोक, 18 अध्याय, 20+ आचार्यों की प्रामाणिक टीका। हिंदी-अंग्रेजी-संस्कृत अनुवाद, ऑडियो और गीता सार।"
         : "Bhagavad Gita - Sacred dialogue of Lord Krishna & Arjuna. 700 verses, 18 chapters with authentic commentaries from 20+ revered scholars. Hindi & English translations, audio, Gita Saar.",
       images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
       site: "@ShriKrishna",
     },
@@ -109,15 +109,15 @@ export default async function Home({
     "@type": "Organization",
     "@id": "#organization",
     name: isHindi ? "वेद व्यास फाउंडेशन" : "Ved Vyas Foundation",
-    alternateName: "BhagavadGita.io",
-    url: "https://bhagavadgita.io",
+    alternateName: "BhagavadGita.com",
+    url: "https://bhagavadgita.com",
     sameAs: [
       "https://www.facebook.com/iiRadhaKrishnaii/",
       "https://www.linkedin.com/company/bhagavadgita/",
       "https://www.pinterest.com/iiradhakrishnaii/",
       "https://twitter.com/ShriKrishna",
     ],
-    logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
+    logo: "https://bhagavadgita.com/static/images/radhakrishna.png",
     description: isHindi
       ? "भगवद गीता 20+ प्रामाणिक विद्वानों की टीका, अनुवाद और ऑडियो के साथ"
       : "Bhagavad Gita with commentaries, translations & audio from 20+ revered scholars",
@@ -138,22 +138,22 @@ export default async function Home({
       "Gita",
       "The Bhagavad Gita",
     ],
-    url: "https://bhagavadgita.io",
+    url: "https://bhagavadgita.com",
     publisher: {
       "@type": "Organization",
       name: isHindi ? "वेद व्यास फाउंडेशन" : "Ved Vyas Foundation",
-      alternateName: "BhagavadGita.io",
-      logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
+      alternateName: "BhagavadGita.com",
+      logo: "https://bhagavadgita.com/static/images/radhakrishna.png",
     },
     image: {
       "@type": "ImageObject",
-      url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       width: 1553,
       height: 660,
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://bhagavadgita.io",
+      "@id": "https://bhagavadgita.com",
     },
     about: {
       "@type": "Thing",
@@ -164,7 +164,7 @@ export default async function Home({
     },
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://bhagavadgita.io/search?query={search_term_string}",
+      target: "https://bhagavadgita.com/search?query={search_term_string}",
       "query-input": "required name=search_term_string",
     },
     description: isHindi
@@ -181,7 +181,7 @@ export default async function Home({
         "@type": "ListItem",
         position: 1,
         item: {
-          "@id": "https://bhagavadgita.io",
+          "@id": "https://bhagavadgita.com",
           name: "Home",
         },
       },
@@ -248,7 +248,7 @@ export default async function Home({
             name: "Is the Bhagavad Gita available with commentaries?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes, BhagavadGita.io provides the complete Bhagavad Gita with authentic commentaries from 20+ revered scholars including Adi Shankaracharya, Ramanujacharya, Madhvacharya, Swami Sivananda, and many other traditional and modern commentators. Multiple translations are available in Hindi, English, and Sanskrit.",
+              text: "Yes, BhagavadGita.com provides the complete Bhagavad Gita with authentic commentaries from 20+ revered scholars including Adi Shankaracharya, Ramanujacharya, Madhvacharya, Swami Sivananda, and many other traditional and modern commentators. Multiple translations are available in Hindi, English, and Sanskrit.",
             },
           },
         ],

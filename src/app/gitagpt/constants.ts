@@ -3,8 +3,8 @@ export const jsonLdFirst = {
   "@type": "Organization",
   "@id": "#organization",
   name: "Bhagavad Gita",
-  url: "https://bhagavadgita.io",
-  logo: "https://bhagavadgita.io/static/images/radhakrishna.png",
+  url: "https://bhagavadgita.com",
+  logo: "https://bhagavadgita.com/static/images/radhakrishna.png",
   sameAs: [
     "https://www.facebook.com/iiRadhaKrishnaii/",
     "https://www.linkedin.com/company/bhagavadgita/",
@@ -23,8 +23,8 @@ export const getJsonLdTwo = (locale: string) => ({
       item: {
         "@id":
           locale === "hi"
-            ? "https://bhagavadgita.io/hi"
-            : "https://bhagavadgita.io",
+            ? "https://bhagavadgita.com/hi"
+            : "https://bhagavadgita.com",
         name: locale === "hi" ? "होम" : "Home",
       },
     },
@@ -34,8 +34,8 @@ export const getJsonLdTwo = (locale: string) => ({
       item: {
         "@id":
           locale === "hi"
-            ? "https://bhagavadgita.io/gitagpt/hi"
-            : "https://bhagavadgita.io/gitagpt",
+            ? "https://bhagavadgita.com/gitagpt/hi"
+            : "https://bhagavadgita.com/gitagpt",
         name:
           locale === "hi"
             ? "Bhagavad Gita AI - Gita GPT - Ask Krishna"

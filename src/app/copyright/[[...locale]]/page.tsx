@@ -25,12 +25,12 @@ export async function generateMetadata({
   const params = await paramsPromise;
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
-  const baseUrl = "https://bhagavadgita.io";
+  const baseUrl = "https://bhagavadgita.com";
 
   return {
     title: isHindi
-      ? "कॉपीराइट और अट्रिब्यूशन - BhagavadGita.io"
-      : "Copyright & Attribution - BhagavadGita.io",
+      ? "कॉपीराइट और अट्रिब्यूशन - BhagavadGita.com"
+      : "Copyright & Attribution - BhagavadGita.com",
     description: isHindi
       ? "कॉपीराइट नीतियों, सामग्री उपयोग दिशानिर्देशों, अट्रिब्यूशन आवश्यकताओं और भगवद गीता सामग्री का जिम्मेदारी से उपयोग करने के बारे में जानें।"
       : "Learn about copyright policies, content usage guidelines, attribution requirements, and how to use Bhagavad Gita content responsibly.",
@@ -39,8 +39,8 @@ export async function generateMetadata({
       : "bhagavad gita copyright, content attribution, fair use, public domain, bhagavad gita license",
     openGraph: {
       title: isHindi
-        ? "कॉपीराइट और अट्रिब्यूशन - BhagavadGita.io"
-        : "Copyright & Attribution - BhagavadGita.io",
+        ? "कॉपीराइट और अट्रिब्यूशन - BhagavadGita.com"
+        : "Copyright & Attribution - BhagavadGita.com",
       description: isHindi
         ? "कॉपीराइट नीतियों और सामग्री उपयोग दिशानिर्देशों के बारे में जानें।"
         : "Learn about copyright policies, content usage guidelines, attribution requirements, and how to use Bhagavad Gita content responsibly.",
@@ -50,9 +50,9 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           secureUrl:
-            "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
           height: 1080,
           width: 1920,
         },
@@ -61,13 +61,13 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: isHindi
-        ? "कॉपीराइट और अट्रिब्यूशन - BhagavadGita.io"
-        : "Copyright & Attribution - BhagavadGita.io",
+        ? "कॉपीराइट और अट्रिब्यूशन - BhagavadGita.com"
+        : "Copyright & Attribution - BhagavadGita.com",
       description: isHindi
         ? "कॉपीराइट नीतियों के बारे में जानें।"
         : "Learn about copyright policies, content usage guidelines, attribution requirements, and how to use Bhagavad Gita content responsibly.",
       images: [
-        "https://bhagavadgita.io/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       ],
       site: "@ShriKrishna",
     },
@@ -96,7 +96,7 @@ export default async function Copyright(props: ParamsWithLocale) {
         <>
           <p className="mb-4">
             {translate(
-              "BhagavadGita.io is a non-profit initiative operated by the Ved Vyas Foundation. Our mission is to make the sacred wisdom of the Bhagavad Gita freely accessible to seekers worldwide, transcending barriers of language, geography, and economic circumstance.",
+              "BhagavadGita.com is a non-profit initiative operated by the Ved Vyas Foundation. Our mission is to make the sacred wisdom of the Bhagavad Gita freely accessible to seekers worldwide, transcending barriers of language, geography, and economic circumstance.",
             )}
           </p>
           <p>
@@ -125,7 +125,7 @@ export default async function Copyright(props: ParamsWithLocale) {
           </h3>
           <p className="mb-4">
             {translate(
-              "All translations and commentaries featured on BhagavadGita.io have been used with explicit permission from their respective authors, publishers, and organizations. Copyrights to these works remain with their original creators.",
+              "All translations and commentaries featured on BhagavadGita.com have been used with explicit permission from their respective authors, publishers, and organizations. Copyrights to these works remain with their original creators.",
             )}
           </p>
 
@@ -185,16 +185,16 @@ export default async function Copyright(props: ParamsWithLocale) {
         <>
           <p className="mb-4">
             {translate(
-              "When using content from BhagavadGita.io, please provide appropriate attribution. A simple citation format is:",
+              "When using content from BhagavadGita.com, please provide appropriate attribution. A simple citation format is:",
             )}
           </p>
           <div className="mb-4 rounded-lg bg-adhyayan-bg p-4 dark:bg-nisha-bg/50">
             <p className="font-mono text-sm">
-              {translate("Source")}: BhagavadGita.io -{" "}
+              {translate("Source")}: BhagavadGita.com -{" "}
               {translate("The Bhagavad Gita Online")}
               <br />[{translate("Translation by Author Name, if applicable")}]
               <br />
-              URL: https://bhagavadgita.io
+              URL: https://bhagavadgita.com
             </p>
           </div>
           <p>
@@ -225,10 +225,10 @@ export default async function Copyright(props: ParamsWithLocale) {
               "For API documentation and access, please visit our developer portal or contact us at",
             )}{" "}
             <a
-              href="mailto:api@bhagavadgita.io"
+              href="mailto:contact@bhagavadgita.io"
               className="text-prakash-primary hover:underline dark:text-nisha-primary"
             >
-              api@bhagavadgita.io
+              contact@bhagavadgita.io
             </a>
           </p>
         </>
@@ -294,7 +294,7 @@ export default async function Copyright(props: ParamsWithLocale) {
         <div className="rounded-lg bg-prakash-primary/5 p-5 dark:bg-nisha-primary/5">
           <p className="mb-4">
             {translate(
-              "We respect the intellectual property rights of all content creators. If you believe that content on BhagavadGita.io infringes your copyright, or if you are a rights holder and would like your content removed, please contact us immediately.",
+              "We respect the intellectual property rights of all content creators. If you believe that content on BhagavadGita.com infringes your copyright, or if you are a rights holder and would like your content removed, please contact us immediately.",
             )}
           </p>
           <p className="mb-2">
