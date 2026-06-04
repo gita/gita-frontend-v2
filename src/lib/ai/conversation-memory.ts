@@ -14,7 +14,7 @@
  * - Recent: Sliding window of last N messages
  */
 
-import { gateway } from "@ai-sdk/gateway";
+import { openai } from "@ai-sdk/openai";
 import { generateText, type UIMessage } from "ai";
 
 /**
@@ -143,7 +143,7 @@ export async function extractMemory(
     const startTime = Date.now();
 
     const result = await generateText({
-      model: gateway("openai/gpt-5-mini"),
+      model: openai.chat("gpt-5.4-mini"),
       system: MEMORY_EXTRACTION_PROMPT,
       prompt: `Conversation:\n${conversationText}\n\nExtract memory as JSON:`,
       temperature: 0,
@@ -208,7 +208,7 @@ export async function summarizeOlderMessages(
     const startTime = Date.now();
 
     const result = await generateText({
-      model: gateway("openai/gpt-5-mini"),
+      model: openai.chat("gpt-5.4-mini"),
       system: SUMMARIZATION_PROMPT,
       prompt: `Conversation to summarize:\n${conversationText}`,
       temperature: 0,

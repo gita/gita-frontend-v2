@@ -8,7 +8,7 @@
  * Inspired by LangChain's Conversational RAG pattern and community best practices.
  */
 
-import { gateway } from "@ai-sdk/gateway";
+import { openai } from "@ai-sdk/openai";
 import { generateText, type UIMessage } from "ai";
 
 /**
@@ -189,7 +189,7 @@ export async function contextualizeQuery(
     const startTime = Date.now();
 
     const result = await generateText({
-      model: gateway("openai/gpt-5.1-instant"),
+      model: openai.chat("gpt-5.4-mini"),
       system: CONTEXTUALIZE_SYSTEM_PROMPT,
       prompt: `Chat History:
 ${historyText}

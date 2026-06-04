@@ -1,4 +1,4 @@
-import { gateway } from "@ai-sdk/gateway";
+import { openai } from "@ai-sdk/openai";
 import { createClient } from "@supabase/supabase-js";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
 import { headers } from "next/headers";
@@ -232,7 +232,7 @@ export async function POST(req: Request) {
 
     // Stream the response using AI SDK with Vercel AI Gateway
     const result = streamText({
-      model: gateway("openai/gpt-5.4-mini"),
+      model: openai.chat("gpt-5.4-mini"),
       system: systemPrompt,
       messages: convertToModelMessages(recentMessages),
     });

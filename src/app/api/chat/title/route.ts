@@ -1,4 +1,4 @@
-import { gateway } from "@ai-sdk/gateway";
+import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
 /**
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     console.log("[Title API] Generating title with LLM...");
     // Generate a concise title using LLM with timeout
     const result = await generateText({
-      model: gateway("openai/gpt-5-nano"),
+      model: openai.chat("gpt-5.4-nano"),
       system: `Generate a very short title (2-5 words max) for this chat message.
 Rules:
 - Maximum 5 words, ideally 2-3 words

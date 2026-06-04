@@ -1,4 +1,4 @@
-import { gateway } from "@ai-sdk/gateway";
+import { openai } from "@ai-sdk/openai";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { embed } from "ai";
 
@@ -54,7 +54,7 @@ export interface RetrievedContent {
  */
 export async function generateEmbedding(text: string): Promise<number[]> {
   const { embedding } = await embed({
-    model: gateway.textEmbeddingModel("openai/text-embedding-3-small"),
+    model: openai.textEmbeddingModel("text-embedding-3-small"),
     value: text,
   });
 
