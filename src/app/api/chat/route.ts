@@ -231,9 +231,8 @@ export async function POST(req: Request) {
     const systemPrompt = buildSystemPrompt(relevantContext, memoryContext);
 
     // Stream the response using AI SDK with Vercel AI Gateway
-    // Using OpenAI GPT-5.1-instant with no reasoning mode for faster responses
     const result = streamText({
-      model: gateway("openai/gpt-5.1-instant"),
+      model: gateway("openai/gpt-5.4-mini"),
       system: systemPrompt,
       messages: convertToModelMessages(recentMessages),
     });
