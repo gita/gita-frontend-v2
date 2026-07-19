@@ -103,7 +103,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                   {translate("Donate")}
                 </LinkWithLocale>
                 <LinkWithLocale
-                  href="/app"
+                  href="/bhagavad-gita-app"
                   className="text-lg font-medium transition-colors hover:text-primary"
                 >
                   {translate("App")}
@@ -169,12 +169,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
 
           {/* Logo */}
           <LinkWithLocale href="/" className="flex items-center gap-2.5">
-            <Image
-              src="/bhagavad-gita.png"
-              height={28}
-              width={23}
-              alt="Bhagavad Gita"
-            />
+            <Image src="/bhagavad-gita.png" height={28} width={23} alt="" />
             <span className="font-inter text-xl font-bold">
               {translate("Bhagavad Gita")}
             </span>

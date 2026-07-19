@@ -126,7 +126,7 @@ export default async function Donate(props: ParamsWithLocale) {
       description: translate(
         "iOS and Android apps bringing the Gita to your fingertips",
       ),
-      link: "/app",
+      link: "/bhagavad-gita-app",
     },
     {
       icon: <Bot className="size-6" />,

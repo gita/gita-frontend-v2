@@ -43,12 +43,7 @@ const Footer = (props: Props) => {
           {/* Column 1: Logo + Tagline + Social */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <Image
-                src="/bhagavad-gita.png"
-                height={28}
-                width={23}
-                alt="Bhagavad Gita"
-              />
+              <Image src="/bhagavad-gita.png" height={28} width={23} alt="" />
               <span className="text-xl font-bold">
                 {translate("Bhagavad Gita")}
               </span>
@@ -95,7 +90,7 @@ const Footer = (props: Props) => {
             <ul className="space-y-2 text-sm">
               <li>
                 <LinkWithLocale
-                  href="/app"
+                  href="/bhagavad-gita-app"
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
                   {translate("Mobile App")}

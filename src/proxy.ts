@@ -8,13 +8,14 @@ export default function middleware(req: NextRequest) {
   console.log("[Middleware] Processing request for path:", pathname);
 
   // Skip middleware for static files and API routes
-  if (
-    pathname.startsWith("/app") ||
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api")
-  ) {
+  if (pathname.startsWith("/_next") || pathname.startsWith("/api")) {
     console.log("[Middleware] Skipping middleware for static/api path");
     return NextResponse.next();
+  }
+
+  // Preserve the old app URL while serving the new landing page through Next.js.
+  if (pathname === "/app" || pathname.startsWith("/app/")) {
+    return NextResponse.redirect(new URL("/bhagavad-gita-app", req.url), 301);
   }
 
   // Handle trailing slashes
@@ -70,8 +71,12 @@ export default function middleware(req: NextRequest) {
     return NextResponse.redirect(updatedUrl);
   }
 
-  // Create response with headers
-  const response = NextResponse.next();
+  // Forward locale context to server components and expose it to crawlers.
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set("x-html-lang", locale);
+  const response = NextResponse.next({
+    request: { headers: requestHeaders },
+  });
 
   // Set locale headers
   response.headers.set("x-settings-l", locale);
@@ -79,6 +84,7 @@ export default function middleware(req: NextRequest) {
   response.headers.set("x-settings-c", String(commentaryAuthor.id));
   response.headers.set("x-locale", locale);
   response.headers.set("x-html-lang", locale);
+  response.headers.set("Content-Language", locale);
 
   console.log("[Middleware] Set headers:", {
     "x-settings-l": locale,
@@ -99,9 +105,8 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - app (old static app)
      * - public files (images, etc)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico|app|.*\\..*).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)",
   ],
 };

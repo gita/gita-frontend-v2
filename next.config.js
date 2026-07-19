@@ -81,21 +81,6 @@ module.exports = {
     // Enable optimized package imports (Next.js 14+)
     optimizePackageImports: ["@headlessui/react", "lodash", "react-player"],
   },
-  // Serve old static app from /app route
-  async rewrites() {
-    return {
-      beforeFiles: [
-        {
-          source: "/app",
-          destination: "/app/index.html",
-        },
-        {
-          source: "/app/:path*",
-          destination: "/app/:path*",
-        },
-      ],
-    };
-  },
   // Redirect individual verses to their ranges
   async redirects() {
     return generateVerseRedirects();

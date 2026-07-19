@@ -88,12 +88,11 @@ const notoSerifGujarati = Noto_Serif_Gujarati({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   themeColor: "#ffffff",
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bhagavadgita.com"),
   manifest: "/favicon/site.webmanifest",
   icons: {
     icon: [
@@ -127,7 +126,9 @@ export default async function RootLayout({
 }) {
   const headersList = await headers();
   const requestUrl = headersList.get("x-invoke-path") || "";
-  const htmlLang = requestUrl.includes("/hi") ? "hi" : "en";
+  const htmlLang =
+    headersList.get("x-html-lang") ||
+    (requestUrl.includes("/hi") ? "hi" : "en");
 
   return (
     <html

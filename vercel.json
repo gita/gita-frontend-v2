@@ -1,12 +1,37 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
     {
       "source": "/app",
-      "destination": "/app/index.html"
+      "destination": "https://bhagavadgita.com/bhagavad-gita-app",
+      "statusCode": 301
     },
     {
-      "source": "/app/(.*)",
-      "destination": "/app/$1"
+      "source": "/app/:path*",
+      "destination": "https://bhagavadgita.com/bhagavad-gita-app",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "bhagavadgita.io"
+        }
+      ],
+      "destination": "https://bhagavadgita.com/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.bhagavadgita.io"
+        }
+      ],
+      "destination": "https://bhagavadgita.com/:path*",
+      "statusCode": 301
     }
   ]
 }
