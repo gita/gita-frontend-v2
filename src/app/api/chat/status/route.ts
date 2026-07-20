@@ -1,6 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
 import { headers } from "next/headers";
 
+import {
+  buildDeviceCookie,
+  resolveRateLimitIdentity,
+} from "@/lib/rate-limit-identity";
 import { getRateLimitHeaders, getRateLimitStatus } from "@/lib/ratelimit";
 
 /**
@@ -36,8 +40,6 @@ export async function GET() {
 
     // Get request headers for IP and auth
     const headersList = await headers();
-    const forwardedFor = headersList.get("x-forwarded-for");
-    const ip = forwardedFor?.split(",")[0] ?? "unknown";
     const authHeader = headersList.get("authorization");
 
     // Check if user is authenticated
@@ -95,14 +97,30 @@ export async function GET() {
       }
     }
 
-    // Get rate limit status (without consuming)
-    const identifier = isAuthenticated && userId ? userId : ip;
+    // Get rate limit status (without consuming). Uses the same identity as
+    // /api/chat so the banner and the endpoint can never disagree.
+    const identity = await resolveRateLimitIdentity(
+      isAuthenticated ? userId : null,
+    );
     console.log("[Status API] Rate limit check:", {
-      isAuthenticated,
-      identifier: identifier.substring(0, 12) + "...",
-      limit: isAuthenticated ? 10 : 2,
+      isAuthenticated: identity.isAuthenticated,
+      source: identity.source,
+      limit: identity.isAuthenticated ? 10 : 2,
     });
-    const status = await getRateLimitStatus(identifier, isAuthenticated);
+    const status = await getRateLimitStatus(
+      identity.identifier,
+      identity.isAuthenticated,
+    );
+
+    const responseHeaders = new Headers(
+      getRateLimitHeaders(status) as Record<string, string>,
+    );
+    if (identity.deviceIdToSet) {
+      responseHeaders.append(
+        "Set-Cookie",
+        buildDeviceCookie(identity.deviceIdToSet),
+      );
+    }
 
     return Response.json(
       {
@@ -110,11 +128,9 @@ export async function GET() {
         limit: status.limit,
         reset: status.reset.toISOString(),
         isLimited: status.isLimited,
-        isAuthenticated,
+        isAuthenticated: identity.isAuthenticated,
       },
-      {
-        headers: getRateLimitHeaders(status),
-      },
+      { headers: responseHeaders },
     );
   } catch (error) {
     console.error("Rate limit status API error:", error);
