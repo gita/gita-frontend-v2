@@ -14,6 +14,10 @@ import { AuthModal } from "@/components/AuthModal";
 import { useChatPersistence } from "@/hooks/useChatPersistence";
 import { useRateLimitStatus } from "@/hooks/useRateLimitStatus";
 import { useAuth } from "@/lib/auth/AuthProvider";
+import {
+  ANON_DAILY_LIMIT,
+  AUTH_DAILY_LIMIT,
+} from "@/lib/rate-limit-config";
 
 interface ChatProps {
   chatId?: string;
@@ -612,7 +616,7 @@ export function Chat({ chatId }: ChatProps) {
                       <p className="mt-1 text-sm text-amber-700/90 dark:text-amber-400/90">
                         {user
                           ? `You've used all your messages for today. Resets in ${countdown || "24h"}.`
-                          : "You've reached the free daily limit of 2 messages. Sign in to get 10 messages per day!"}
+                          : `You've reached the free daily limit of ${ANON_DAILY_LIMIT} messages. Sign in to get ${AUTH_DAILY_LIMIT} messages per day!`}
                       </p>
                       {!user && (
                         <button

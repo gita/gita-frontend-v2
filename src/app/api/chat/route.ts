@@ -13,6 +13,11 @@ import {
   isQueryRewritingEnabled,
 } from "@/lib/ai/query-rewriter";
 import { getRelevantContext } from "@/lib/ai/retrieval";
+import { ANON_DAILY_LIMIT, AUTH_DAILY_LIMIT } from "@/lib/rate-limit-config";
+import {
+  buildDeviceCookie,
+  resolveRateLimitIdentity,
+} from "@/lib/rate-limit-identity";
 import { checkRateLimit, getRateLimitHeaders } from "@/lib/ratelimit";
 
 // Configuration
@@ -38,8 +43,6 @@ export async function POST(req: Request) {
   try {
     // Get request headers for IP and auth
     const headersList = await headers();
-    const forwardedFor = headersList.get("x-forwarded-for");
-    const ip = forwardedFor?.split(",")[0] ?? "unknown";
     const authHeader = headersList.get("authorization");
 
     // Check if user is authenticated
@@ -90,27 +93,39 @@ export async function POST(req: Request) {
 
     // Rate limit check - ENABLED (disabled in development)
     const isDevelopment = process.env.NEXT_PUBLIC_NODE_ENV === "development";
-    const identifier = isAuthenticated && userId ? userId : ip;
+    const identity = await resolveRateLimitIdentity(
+      isAuthenticated ? userId : null,
+    );
     console.log("[Chat API] Rate limit check:", {
-      isAuthenticated,
-      identifier: identifier.substring(0, 12) + "...",
-      limit: isAuthenticated ? 10 : 2,
+      isAuthenticated: identity.isAuthenticated,
+      source: identity.source,
+      limit: identity.isAuthenticated ? AUTH_DAILY_LIMIT : ANON_DAILY_LIMIT,
     });
-    const rateLimitResult = await checkRateLimit(identifier, isAuthenticated);
+    const rateLimitResult = await checkRateLimit(
+      identity.identifier,
+      identity.isAuthenticated,
+    );
 
     // Enforce rate limits (skip in development)
     if (!isDevelopment && !rateLimitResult.success) {
-      const errorMessage = isAuthenticated
-        ? "You have reached your daily limit of 10 messages. Your limit will reset tomorrow."
-        : "You have reached the daily limit of 2 messages. Sign in to get 10 messages per day, or try again tomorrow.";
+      const errorMessage = identity.isAuthenticated
+        ? `You have reached your daily limit of ${AUTH_DAILY_LIMIT} messages. Your limit will reset tomorrow.`
+        : `You have reached the daily limit of ${ANON_DAILY_LIMIT} messages. Sign in to get ${AUTH_DAILY_LIMIT} messages per day, or try again tomorrow.`;
 
       // Return plain text error for AI SDK compatibility
+      const limitedHeaders = new Headers({
+        "Content-Type": "text/plain",
+        ...getRateLimitHeaders(rateLimitResult),
+      });
+      if (identity.deviceIdToSet) {
+        limitedHeaders.append(
+          "Set-Cookie",
+          buildDeviceCookie(identity.deviceIdToSet),
+        );
+      }
       return new Response(errorMessage, {
         status: 429,
-        headers: {
-          "Content-Type": "text/plain",
-          ...getRateLimitHeaders(rateLimitResult),
-        },
+        headers: limitedHeaders,
       });
     }
 
@@ -245,6 +260,12 @@ export async function POST(req: Request) {
     Object.entries(rateLimitHeaders).forEach(([key, value]) => {
       response.headers.set(key, value);
     });
+    if (identity.deviceIdToSet) {
+      response.headers.append(
+        "Set-Cookie",
+        buildDeviceCookie(identity.deviceIdToSet),
+      );
+    }
 
     return response;
   } catch (error) {

@@ -9,11 +9,13 @@ Status key: `todo` · `in progress` · `blocked` · `done`
 
 ## 1. Finish the .io → .com domain migration
 
-**Status:** todo
-**Branch:** `fix/domain-migration-cleanup`
+**Status:** done — nothing to change
 
-The domain moved from bhagavadgita.io to bhagavadgita.com, but nine references to the old
-domain are still in the codebase:
+Verified on 2026-07-20. Every remaining `bhagavadgita.io` reference is the `contact@` mailto,
+which stays. There are no web URLs on the old domain left, `vercel.json` and `robots.txt` are
+clean, and both the apex and www of the old domain 301 to `.com`. Commit `77a0677` had already
+completed the migration; the count below was miscounted as URLs when it was the email address
+in four files:
 
 - `src/app/privacy-policy/[[...locale]]/page.tsx`
 - `src/app/terms-of-service/[[...locale]]/page.tsx`
@@ -45,7 +47,7 @@ whatever authority `/app` has accumulated.
 
 **This is the product landing page, not the comparison page.** The GTM notes are clear that
 these are two different intents and both should exist. This page explains our app and converts.
-A separate `/best-bhagavad-gita-apps/` page (item 11) compares multiple real apps, including
+A separate `/best-bhagavad-gita-apps/` page (item 12) compares multiple real apps, including
 competitors, and cannot honestly declare us the winner in every category. Don't merge them.
 Target keywords here: "Bhagavad Gita app", "Bhagavad Gita app download", "Gita AI app",
 "Bhagavad Gita app for Android", "Bhagavad Gita app for iPhone".
@@ -112,39 +114,86 @@ allowed in robots.txt.
 
 ## 4. Fix GitaGPT rate limiting
 
-**Status:** todo
-**Branch:** `fix/gitagpt-rate-limit`
+**Status:** done — PR #300
 
-Opening GitaGPT on mobile after months of no use immediately returns "daily limit reached",
-and logging in doesn't clear it. Something in the limiter is wrong — likely the counter isn't
-scoped or reset correctly, or the authenticated path still reads the anonymous IP/device key.
+Not a counter that failed to reset. Anonymous traffic was keyed on the caller's IP at 2
+messages a day, and Indian mobile carriers put very large numbers of subscribers behind a
+small pool of public addresses, so two strangers on the same carrier IP exhausted the bucket
+for everyone on it. Two further defects in the same lines: `?? "unknown"` pooled every request
+without an `x-forwarded-for` header into one global bucket, and the first entry of that header
+is client-controlled, so the limit was both over-blocking real users and trivially bypassable.
 
-Reproduce on mobile, trace the limit check, and fix both the anonymous reset window and the
-logged-in bypass or higher tier.
-
----
-
-## 5. Verse of the Day emails
-
-**Status:** todo
-**Branch:** `feat/verse-of-the-day-emails`
-
-We collect name and email for a shloka-of-the-day subscription. First find out:
-
-- how many subscribers are in the Supabase table
-- whether anything is actually sending. Best guess: nothing is.
-- what email service, if any, is already wired up
-
-Then build it properly. Resend or Loops are both reasonable — pick based on what fits a daily
-send with a template plus an unsubscribe flow. Needs a scheduled job (Vercel cron), a decent
-HTML template using our brand, one-click unsubscribe, and basic delivery logging.
-
-If people have been subscribing for months with nothing sent, the first send should acknowledge
-that rather than pretend it's routine.
+Anonymous traffic is now keyed on a per-device cookie via `src/lib/rate-limit-identity.ts`,
+shared by `/api/chat` and `/api/chat/status` so the banner and the endpoint cannot disagree.
+The anonymous allowance went from 2 to 5; signed-in stays at 10. Limits are centralised in
+`src/lib/rate-limit-config.ts`.
 
 ---
 
-## 6. Smart mobile app install prompt
+## 5. Fix the newsletter capture, then build Verse of the Day emails
+
+**Status:** todo
+**Branch:** `fix/newsletter-capture`
+
+**The subscription form has never saved anything.** Confirmed against production on
+2026-07-20:
+
+```
+GET /rest/v1/newsletter_subscriptions
+404  {"code":"42P01","message":"relation \"public.newsletter_subscriptions\" does not exist"}
+```
+
+Seven plausible table names all return 404, and no migration in `supabase/migrations/` ever
+created one. The three migrations present are pgvector, hybrid search and chat history.
+
+It fails silently, and the user is told it worked. `src/lib/subscribeUser.ts` catches its own
+error and returns `null` rather than throwing, so the `catch` in
+`src/components/Home/Newsletter.tsx:87` never runs. Execution continues to
+`setModalVisible(true)` and returns `isSuccess: true`. Everyone who ever submitted that form
+saw a confirmation and nothing was stored.
+
+So this item is not "we collected emails but never sent them". It is "we collected nothing and
+said we did". Order of work:
+
+1. Create the table with a migration, with a unique constraint on email.
+2. Make `subscribeUser` propagate failures so the form can show a real error. A silent
+   `return null` on a write path is the actual bug here, and it will hide the next one too.
+3. Only then build the send: Resend or Loops, a Vercel cron, a branded template, one-click
+   unsubscribe, delivery logging.
+
+Note we do already hold roughly 36,000 emails in Supabase auth from people who signed up for
+Gita GPT. Those are not newsletter subscribers and must not be treated as opted in, but they
+are the reason item 6 below matters.
+
+---
+
+## 6. Signup attribution and funnel instrumentation
+
+**Status:** todo
+**Branch:** `feat/signup-attribution`
+
+We have about 36,000 users in Supabase auth and no way to tell where any of them came from.
+The Gita GPT limit banner is a sign-in prompt, so a large share of them probably hit the
+anonymous wall and signed up there, but that is an assumption we cannot currently check.
+
+Capture, at minimum:
+
+- signup source: Gita GPT limit wall, Gita GPT page, newsletter form, direct, or another page
+- the page path the signup happened on
+- whether the user had hit the rate limit immediately before signing up
+- newsletter opt-in as an explicit separate flag, not inferred from having an account
+
+Without this we cannot say whether the anonymous allowance is converting, which is the open
+question behind item 4's limit change (2/day to 5/day). The limits live in
+`src/lib/rate-limit-config.ts` and are trivial to tune once there is data to tune against.
+
+Also worth verifying end to end while in here: that Gita GPT conversations persist correctly,
+that the newsletter path works once item 5 lands, and that each has enough context recorded to
+tell what is working.
+
+---
+
+## 7. Smart mobile app install prompt
 
 **Status:** todo
 **Branch:** `feat/mobile-app-install-prompt`
@@ -169,7 +218,7 @@ Requirements:
 
 ---
 
-## 7. Bring back the translation and commentary picker
+## 8. Bring back the translation and commentary picker
 
 **Status:** todo
 **Branch:** `feat/author-picker-and-pages`
@@ -200,7 +249,7 @@ pages carrying real E-E-A-T signals.
 
 ---
 
-## 8. Add Swami Mukundananda's translation and commentary to the website
+## 9. Add Swami Mukundananda's translation and commentary to the website
 
 **Status:** todo
 **Branch:** `feat/mukundananda-content`
@@ -219,7 +268,7 @@ Two constraints:
 
 ---
 
-## 9. Ship the updated iOS app
+## 10. Ship the updated iOS app
 
 **Status:** in progress — outside this repo
 **Repo:** `bhagavad-gita-app-2.0`
@@ -256,7 +305,7 @@ Traffic split the plan is aiming for:
 
 ---
 
-## 10. Life-guidance pages
+## 11. Life-guidance pages
 
 **Status:** todo
 **Branch:** `feat/guidance-pages`
@@ -277,7 +326,7 @@ what the Gita doesn't claim, a prompt to explore it through Gita AI, related rea
 
 ---
 
-## 11. Recommendation and comparison pages
+## 12. Recommendation and comparison pages
 
 **Status:** todo
 **Branch:** `feat/comparison-pages`
@@ -304,7 +353,7 @@ any of it as fact.
 
 ---
 
-## 12. Trust and methodology pages
+## 13. Trust and methodology pages
 
 **Status:** todo
 **Branch:** `feat/editorial-standards`
@@ -319,7 +368,7 @@ get submitted, and how the recommendation pages were tested.
 
 ---
 
-## 13. Chapter and verse page enrichment
+## 14. Chapter and verse page enrichment
 
 **Status:** todo
 **Branch:** `feat/chapter-verse-enrichment`
@@ -339,7 +388,7 @@ double as internal-linking hubs.
 
 ---
 
-## 14. AI visibility benchmark
+## 15. AI visibility benchmark
 
 **Status:** todo
 **Branch:** n/a — measurement, not code
@@ -350,7 +399,7 @@ Copilot. The full prompt list is in `notes/gtm-plan.md` — 15 app-discovery, 11
 website-discovery, 10 translation-and-study, 14 life-guidance, 13 scripture-facts.
 
 Record which brands appear, which sources get cited, and why. This is the measurement loop for
-items 10 through 13.
+items 11 through 14.
 
 **Crawler policy to settle first.** Review robots/CDN rules for Googlebot, Bingbot,
 OAI-SearchBot, GPTBot, ChatGPT-User, and the Perplexity and Anthropic crawlers. OpenAI
@@ -360,7 +409,7 @@ data, not a default.
 
 ---
 
-## 15. OpenBenchmarks collaboration
+## 16. OpenBenchmarks collaboration
 
 **Status:** blocked — commercial terms unresolved
 **Branch:** n/a — mostly off-domain
@@ -397,8 +446,8 @@ discovering mid-build:
    document, so it probably wins, but that's a call to make explicitly.
 3. **Overlapping "best app for X" page sets** exist on both domains — 14 URLs on ours, 8 on
    theirs. Canonicalization, differentiation and cross-linking are all unspecified.
-4. **Two different 100-item AI sets** are floating around and shouldn't be conflated. Item 14 is
-   a _visibility_ benchmark (do LLMs mention us). Item 15's is a _reliability_ benchmark (does
+4. **Two different 100-item AI sets** are floating around and shouldn't be conflated. Item 15 is
+   a _visibility_ benchmark (do LLMs mention us). Item 16's is a _reliability_ benchmark (does
    Gita AI cite verses correctly). Different purposes, both worth doing.
 
 ---
