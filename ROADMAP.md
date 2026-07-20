@@ -401,34 +401,148 @@ what the Gita doesn't claim, a prompt to explore it through Gita AI, related rea
 
 ---
 
-## 12. Recommendation and comparison pages
+## 12. One comparison page, not a cluster
 
-**Status:** todo
-**Branch:** `feat/comparison-pages`
+**Status:** todo — next up
+**Branch:** `feat/best-bhagavad-gita-apps`
 
-Ranked #1 in the plan's own top-ten list. Pages under Layer 5: `/best-bhagavad-gita-apps/`,
-plus beginner, Hindi, Android, iPhone, free, with-audio, with-commentary and with-AI variants,
-then `/best-bhagavad-gita-websites/`, `/best-bhagavad-gita-translations/`,
-`/best-bhagavad-gita-commentaries/`.
+### What the citation data says
 
-The credibility rule runs through all of them: we cannot win every category. The plan's own
-draft table hands "best video experience" to Bhagavad Gita For All and "best for ISKCON
-readers" to Bhagavad-gita As It Is. Several rows are still marked "based on real testing" —
-those need actual testing before they're filled in.
+Writesonic citation analysis, 2026-07-20, window 2025-12-01 to 2026-07-21. Citations are
+counted as distinct AI answers containing the URL, across ChatGPT, Google AI Overviews, Google
+AI Mode, Perplexity, Gemini, Grok and Copilot.
 
-Every comparison page carries: tested date, reviewer name, devices tested, app version, store
-rating and review count, pricing, ads or subscriptions, offline capability, languages,
-commentary tradition, audio, search, AI features, privacy, pros and cons, screenshots,
-ownership disclosure, update history.
+| Domain | Citing answers |
+| ------ | -------------- |
+| srimadgita.com | **365** |
+| google.com | 309 |
+| **bhagavadgita.com** | **192** |
+| youtube.com | 136 |
+| apple.com | 116 |
+| holy-bhagavad-gita.org | 86 |
 
-SrimadGita is the closest competitor here and has this whole layer built already. The notes'
-verdict: don't imitate the format, build the trustworthy version of it. Also worth noting that
-SrimadGita's claimed ratings and feature lists need independent verification before we treat
-any of it as fact.
+They out-cite us **1.9 to 1** from a DR 0.2 domain with 281 backlinks against our 24,026. And
+the pages doing it are precisely the ones with zero Google traffic:
+
+| Their page | Citing answers | Google traffic |
+| ---------- | -------------- | -------------- |
+| `/app` | 142 | 7/mo |
+| `/bhagavad-gita-app-comparison` | 111 | 3/mo |
+| `/compare/gita-apps-comparison` | 83 | 0 |
+| `/best-bhagavad-gita-app` | 72 | 0 |
+
+Those four total 408 answers, more than **twice our entire domain**. This is an AI-retrieval
+play, not a search play, and it works.
+
+### Correction to an earlier read
+
+An earlier note here called their `/aeo/` folders "a total failure". That was true of Google
+traffic and **wrong** about citations. `/aeo/` plus `/aeo-questions/` produce **106 citing
+answers, 29% of their total**. But `/aeo-batch2/`, the 531-page machine-generated batch,
+produces **1**. So roughly 25 hand-targeted pages work and 531 generated ones do not, which
+sharpens rather than softens the content-quality rule at the top of this file.
+
+Their `/compare/vs-*` named-competitor pages get almost nothing: 1 citation across all of them.
+
+### Do not copy their structure — it cannibalises
+
+Three of their four app pages are one intent split three ways:
+
+```
+/bhagavad-gita-app-comparison   "Best Bhagavad Gita Apps 2025: Complete Comparison"
+/compare/gita-apps-comparison   "Best Bhagavad Gita Apps 2025: Comprehensive"
+/best-bhagavad-gita-app         "Best Bhagavad Gita App 2025"
+```
+
+Near-identical titles on separate URLs. It may be surviving because AI assistants have no
+duplicate-consolidation step, but in Google terms these compete with each other, waste crawl
+budget, and sit squarely in scaled-content-abuse territory. All three still say "2025" in
+mid-2026, so nobody is maintaining them either.
+
+**We ship two URLs with two genuinely different jobs:**
+
+| URL | Intent | Status |
+| --- | ------ | ------ |
+| `/bhagavad-gita-app` | Our app. Explains and converts. | done, item 2 |
+| `/best-bhagavad-gita-apps` | Which app should I use? Compares all of them, us included. | this item |
+
+Sub-intents (best free, best in Hindi, best for beginners, best with audio, best offline, best
+with commentary) become **anchored sections on the one page**, not separate URLs.
+
+**On splitting off a Hindi page later.** This is the obvious candidate and it is deliberately
+deferred rather than refused. Hindi is already our strongest cluster: 9 tracked Hindi prompts
+averaging **58.7%** against a 32.6% site average, with "Which Bhagavad Gita app has Hindi
+translation and meaning?" and "Recommend a Bhagavad Gita app for Hindi-speaking users" both at
+85.7%. A Hindi page would be consolidating a strength rather than fixing a weakness, which makes
+it far less urgent than it looks.
+
+Split only when the data says the sub-intent has outgrown its section: it holds a distinct
+keyword and prompt cluster of its own, the section is long enough to stand alone, and it would
+not simply restate the parent. Until then a `#hindi` anchor does the job without putting two of
+our own URLs in competition, which is precisely the mistake documented above.
+
+### What goes on it
+
+The benchmark from the old item 16 lives here rather than as a separate property. A comparison
+table on our own page, openly authored by us, is more honest than a nominally independent
+benchmark we would be funding and appearing in.
+
+- A comparison matrix across the real competitor set: our app, Bhagavad Gita For All, ISKCON's
+  Bhagavad-gita As It Is, Gita Press, Vedabase, Gita Supersite, JKYog, Holy Bhagavad Gita
+- Per-row evidence: tested date, reviewer, device, app version, store rating and review count,
+  price, ads, offline support, languages, commentary tradition, audio, AI features, account
+  requirement
+- **Named winners by category, and we do not win them all.** Our honest claim is being the only
+  genuinely free, ad-free, non-profit option. Others beat us on video, on ISKCON commentary, on
+  Sanskrit depth. Saying so is what makes the rest of the page credible.
+- Every claim verified against the live store listing or the app itself, with the check date
+  recorded
+
+### The bar this page has to clear
+
+The content-quality rule at the top of this file applies in full. No year in the title unless
+we commit to maintaining it. No unverifiable superlatives. No fabricated ratings or user
+counts, which their pages are full of and which is the specific thing we can beat them on.
 
 ---
 
-## 13. Trust and methodology pages
+## 13. One comparison page for websites
+
+**Status:** todo — after item 12
+**Branch:** `feat/best-bhagavad-gita-websites`
+
+Separate from item 12, and genuinely a separate intent rather than a slice of the same one.
+Someone asking which *app* to install and someone asking which *site* to read on want different
+answers, and the candidate sets barely overlap: Vedabase, Gita Supersite, Holy Bhagavad Gita and
+Gita Press are websites first, and two of them have no app at all.
+
+The demand is real and we already do well here. Of 108 tracked prompts, **24 are website-intent
+and they average 45.8% visibility against a 32.6% site average**:
+
+| Visibility | Prompt |
+| ---------- | ------ |
+| **100%** | Which Bhagavad Gita website has the best mobile experience? |
+| 85.7% | Which Bhagavad Gita website has no ads or popups? |
+| 71.4% | Which website explains every Bhagavad Gita verse? |
+| 71.4% | What is the best free website for the Bhagavad Gita? |
+| 57.1% | What is the best Bhagavad Gita website? |
+| 57.1% | Compare the best websites for reading the Bhagavad Gita. |
+| 42.9% | Which Bhagavad Gita website has word-by-word meanings? |
+| 28.6% | Which website has the best Bhagavad Gita commentaries? |
+
+`/best-bhagavad-gita-websites`, judged on criteria that only make sense for the web: completeness
+of the text, how many translations and commentaries are reachable, word-by-word meanings, search,
+mobile reading experience, ads and popups, whether anything sits behind a login, page speed, and
+whether the source edition is stated.
+
+Same rules as item 12. We do not win every row. Gita Supersite beats us on academic apparatus and
+Vedabase on the Prabhupada corpus, and saying so is what makes the rest credible. Reuse the rubric
+adjusted for the web, and reuse the competitor facts already verified for item 12 rather than
+researching them twice.
+
+---
+
+## 14. Trust and methodology pages
 
 **Status:** todo
 **Branch:** `feat/editorial-standards`
@@ -443,7 +557,7 @@ get submitted, and how the recommendation pages were tested.
 
 ---
 
-## 14. Chapter and verse page enrichment
+## 15. Chapter and verse page enrichment
 
 **Status:** todo
 **Branch:** `feat/chapter-verse-enrichment`
@@ -463,7 +577,7 @@ double as internal-linking hubs.
 
 ---
 
-## 15. AI visibility benchmark and competitor citation analysis
+## 16. AI visibility benchmark and competitor citation analysis
 
 **Status:** todo
 **Branch:** n/a — measurement, not code
@@ -484,8 +598,32 @@ built for retrieval rather than search, so citation data is the only way to know
 worked. Their robots.txt names and allows thirteen AI crawlers explicitly, which suggests they
 think it does.
 
-Note the MCP dropped mid-session on 2026-07-20 and needs reconnecting before this can run. The
-108-prompt export taken earlier is preserved in the session tool-results directory.
+**First run completed 2026-07-20.** Full findings are recorded in item 12. Two results about us
+that shape everything below:
+
+**We are a Google-only brand.** 63% of our citations come from Google AI Mode and AI Overviews.
+Outside Google we barely register.
+
+| Platform | srimadgita | us | |
+| -------- | ---------- | -- | --- |
+| Google AI Mode | 70 | **74** | we win, narrowly |
+| Google AI Overviews | **66** | 47 | 1.4x |
+| Perplexity | **72** | 18 | **4.0x** |
+| Microsoft Copilot | **60** | 11 | **5.5x** |
+| Grok | **67** | 21 | **3.2x** |
+| ChatGPT | **19** | 13 | 1.5x |
+| Gemini | **11** | 8 | 1.4x |
+
+**Our scripture is invisible.** The entire 700-verse corpus has **6 citations**. Our
+`/acknowledgements`, `/copyright` and `/privacy-policy` pages together have 12. Our legal pages
+out-cite our scripture twice over. Verse URLs are structurally under-retrieved: they answer
+"what does 2.47 say" but nothing asks that. What gets cited is question-shaped and
+intent-shaped URLs.
+
+Our most-cited page is `/app` with 76, the URL redirected to `/bhagavad-gita-app` in item 2.
+The 301 preserves it; deleting it would have cost our single strongest citation asset.
+
+Re-run monthly. The 23-prompt gap list is in item 12.
 
 **Crawler policy to settle first.** Review robots/CDN rules for Googlebot, Bingbot,
 OAI-SearchBot, GPTBot, ChatGPT-User, and the Perplexity and Anthropic crawlers. OpenAI
@@ -495,28 +633,16 @@ data, not a default.
 
 ---
 
-## 16. OpenBenchmarks collaboration
+## 17. OpenBenchmarks collaboration
 
-**Status:** blocked — commercial terms unresolved
-**Branch:** n/a — mostly off-domain
+**Status:** folded into item 12
 
-A third party (openbenchmarks.com) has proposed collaborating on an independent benchmark of
-Bhagavad Gita apps, websites, and AI assistants. The memo's recommendation is to engage.
+The benchmark does not need to be a separate property. The comparison matrix belongs on
+`/best-bhagavad-gita-apps`, where it earns citations for us rather than for someone else's
+domain, and where authorship is stated plainly instead of being nominally independent while we
+fund it. The original memo is preserved in `notes/gtm-open-benchmarks.md` if the third-party
+route is ever revisited.
 
-Three benchmarks proposed: apps (10–15 of them across six scoring categories), websites, and a
-Gita AI reliability benchmark pitting Gita AI against ChatGPT, Gemini, Claude and Perplexity on
-whether they cite verses correctly. That third one is described as the most valuable output.
-
-**The independence constraint is the whole point.** We'd sponsor the category; they own
-methodology, testing, scoring and publication. We can supply domain knowledge and help define
-user needs, but if we control the scoring it reads as sponsored content dressed as research and
-does us no good with either competitors or LLMs. The memo accepts up front that we may not win
-every category, and argues that improves credibility.
-
-**Blocked on:** funding and independence terms, defining the competitor set, and recruiting two
-to four qualified Sanskrit or Gita reviewers.
-
----
 
 ## Conflicts to resolve before starting the GTM items
 
