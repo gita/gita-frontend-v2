@@ -403,8 +403,25 @@ what the Gita doesn't claim, a prompt to explore it through Gita AI, related rea
 
 ## 12. One comparison page, not a cluster
 
-**Status:** todo — next up
+**Status:** in review — PR #308
 **Branch:** `feat/best-bhagavad-gita-apps`
+**Page:** `/best-bhagavad-gita-apps`, English only, `/hi` redirects to it
+
+Built from `notes/app-comparison-facts.md`, the sheet fact-checked before a word of the page was
+written. No figure appears on the page that is not in that sheet.
+
+Two conditions the page is holding to, both worth re-checking on any future edit:
+
+- **The disclosure sits above the comparison table, not beneath it.** We publish the app ranked
+  first and built the app ranked second. Ordering categories by reader intent is defensible only
+  while the reader learns that before they read the ordering. If that block ever moves down the
+  page, the ordering has to change with it.
+- **We take 5 of 15 categories and are connected to a 6th.** Verified in the built HTML: 15
+  category headings, 5 ownership badges, plus Song of God from the related organisation. If that
+  count creeps up on a later edit, something has gone wrong.
+
+The methodology says plainly that these were not bench-tested on a phone. That is an upgrade
+waiting on the device screenshots, not a permanent limitation.
 
 ### What the citation data says
 
