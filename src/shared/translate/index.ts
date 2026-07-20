@@ -37,6 +37,12 @@ export const getTranslate = (
       });
     }
 
-    return literal;
+    // Fall back to the interpolated source string, not the raw key. Returning
+    // `literal` shipped uninterpolated lodash templates to the page: every
+    // Hindi verse heading read "Chapter <%= chapter %>, Verse <%= verse %>"
+    // because that key is missing from hi.json. `translated` is the same string
+    // with the options applied, so a missing translation degrades to readable
+    // English instead of a broken placeholder.
+    return translated;
   };
 };

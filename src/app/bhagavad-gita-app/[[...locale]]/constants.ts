@@ -144,7 +144,7 @@ export function getJsonLdOrganization() {
 
 export function getJsonLdSoftwareApplication(isHindi: boolean) {
   const url = isHindi
-    ? "https://bhagavadgita.com/hi/bhagavad-gita-app"
+    ? "https://bhagavadgita.com/bhagavad-gita-app/hi"
     : "https://bhagavadgita.com/bhagavad-gita-app";
 
   return {
@@ -231,7 +231,7 @@ export function getJsonLdBreadcrumb(isHindi: boolean) {
         position: 2,
         item: {
           "@id": isHindi
-            ? "https://bhagavadgita.com/hi/bhagavad-gita-app"
+            ? "https://bhagavadgita.com/bhagavad-gita-app/hi"
             : "https://bhagavadgita.com/bhagavad-gita-app",
           name: isHindi ? "भगवद गीता ऐप" : "Bhagavad Gita App",
         },

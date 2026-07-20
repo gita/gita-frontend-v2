@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import Bookmarkcard from "components/BookmarkCard";
 
 const Bookmark = () => {

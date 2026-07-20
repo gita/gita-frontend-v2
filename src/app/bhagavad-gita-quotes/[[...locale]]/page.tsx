@@ -1,6 +1,7 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -18,40 +19,63 @@ export async function generateStaticParams() {
   return [{ locale: ["en"] }, { locale: ["hi"] }];
 }
 
-export const metadata: Metadata = {
-  title: "Bhagavad Gita Quotes by Lord Krishna - Hindi & English",
-  description:
-    "100+ Bhagavad Gita quotes by Lord Krishna in Hindi & English. Profound wisdom on karma, dharma, life, yoga, and spirituality. Read, share & inspire.",
-  keywords:
-    "bhagavad gita quotes, krishna quotes, gita quotes in hindi, bhagavad gita sayings, spiritual quotes, dharma quotes, karma quotes",
-  authors: [{ name: "Ved Vyasa" }],
-  publisher: "Ved Vyas Foundation",
-  openGraph: {
-    title: "Bhagavad Gita Quotes by Lord Krishna - Hindi & English",
-    description:
-      "100+ Bhagavad Gita quotes by Lord Krishna in Hindi & English. Profound wisdom on karma, dharma, life, yoga, and spirituality. Read, share & inspire.",
-    url: "https://bhagavadgita.com/bhagavad-gita-quotes",
-    siteName: "Bhagavad Gita",
-    images:
-      "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Bhagavad Gita Quotes by Lord Krishna - Hindi & English",
-    description:
-      "100+ Bhagavad Gita quotes by Lord Krishna in Hindi & English. Profound wisdom on karma, dharma, life, yoga, and spirituality. Read, share & inspire.",
-    images: [
-      "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-    ],
-    site: "@ShriKrishna",
-  },
-  alternates: {
-    canonical: "https://bhagavadgita.com/bhagavad-gita-quotes",
-  },
-};
+// Locale-aware so the Hindi page stops canonicalising to the English URL.
+// A static metadata export cannot see the locale segment, which is why both
+// locales were previously claiming the same canonical.
+export async function generateMetadata({
+  params: paramsPromise,
+}: ParamsWithLocale): Promise<Metadata> {
+  const params = await paramsPromise;
+  const locale = paramsToLocale(params);
+  const isHindi = locale === "hi";
+  const baseUrl = "https://bhagavadgita.com";
+  const path = "/bhagavad-gita-quotes";
+  const url = isHindi ? `${baseUrl}${path}/hi` : `${baseUrl}${path}`;
 
+  const title = isHindi
+    ? "भगवद गीता उद्धरण - श्री कृष्ण के अनमोल वचन"
+    : "Bhagavad Gita Quotes by Lord Krishna - Hindi & English";
+  const description = isHindi
+    ? "श्री कृष्ण के 100+ भगवद गीता उद्धरण हिंदी और अंग्रेजी में। कर्म, धर्म, जीवन, योग और अध्यात्म पर गहन ज्ञान। पढ़ें और साझा करें।"
+    : "100+ Bhagavad Gita quotes by Lord Krishna in Hindi & English. Profound wisdom on karma, dharma, life, yoga, and spirituality. Read, share & inspire.";
+
+  return {
+    title,
+    description,
+    keywords: isHindi
+      ? "भगवद गीता उद्धरण, कृष्ण के वचन, गीता के श्लोक हिंदी में, गीता सुविचार, कर्म पर श्लोक, धर्म पर श्लोक"
+      : "bhagavad gita quotes, krishna quotes, gita quotes in hindi, bhagavad gita sayings, spiritual quotes, dharma quotes, karma quotes",
+    authors: [{ name: "Ved Vyasa" }],
+    publisher: "Ved Vyas Foundation",
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "Bhagavad Gita",
+      images:
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      locale: isHindi ? "hi_IN" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [
+        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      ],
+      site: "@ShriKrishna",
+    },
+    alternates: {
+      canonical: url,
+      languages: {
+        "x-default": `${baseUrl}${path}`,
+        en: `${baseUrl}${path}`,
+        hi: `${baseUrl}${path}/hi`,
+      },
+    },
+  };
+}
 async function Quotes(props: ParamsWithLocale) {
   const { params: paramsPromise } = props;
   const params = await paramsPromise;

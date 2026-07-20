@@ -9,6 +9,10 @@ const LOCALES = ["", "hi"] as const; // "" = English (default), "hi" = Hindi
 
 // Static routes to include in sitemap
 // Note: Auth pages (/login, /signup) and user-specific pages (/bookmark, /notes) are excluded
+// Paths without a [[...locale]] segment. Emitting an /hi variant for these
+// produces a URL that does not exist.
+const ENGLISH_ONLY_PATHS = new Set<string>(["/gitagpt"]);
+
 const STATIC_PATHS = [
   "",
   "/about",
@@ -20,7 +24,6 @@ const STATIC_PATHS = [
   "/gitagpt",
   "/mahabharata-characters",
   "/privacy-policy",
-  "/search",
   "/terms-of-service",
   "/verse-of-the-day",
   "/verse-parallel",
@@ -31,7 +34,9 @@ const STATIC_PATHS = [
  */
 function generateStaticRoutes(): MetadataRoute.Sitemap {
   return STATIC_PATHS.flatMap((path) =>
-    LOCALES.map((locale) => ({
+    LOCALES.filter(
+      (locale) => !locale || !ENGLISH_ONLY_PATHS.has(path),
+    ).map((locale) => ({
       url: locale ? `${BASE_URL}${path}/${locale}` : `${BASE_URL}${path}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,

@@ -9,8 +9,9 @@ import {
 } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -46,7 +47,7 @@ export async function generateMetadata({
   const isHindi = locale === "hi";
   const baseUrl = "https://bhagavadgita.com";
   const url = isHindi
-    ? `${baseUrl}/hi/bhagavad-gita-app`
+    ? `${baseUrl}/bhagavad-gita-app/hi`
     : `${baseUrl}/bhagavad-gita-app`;
 
   return {
@@ -101,7 +102,7 @@ export async function generateMetadata({
       languages: {
         "x-default": `${baseUrl}/bhagavad-gita-app`,
         en: `${baseUrl}/bhagavad-gita-app`,
-        hi: `${baseUrl}/hi/bhagavad-gita-app`,
+        hi: `${baseUrl}/bhagavad-gita-app/hi`,
       },
     },
   };
@@ -145,6 +146,7 @@ function StoreButtons({ label }: { label: string }) {
 export default async function BhagavadGitaApp(props: ParamsWithLocale) {
   const { params: paramsPromise } = props;
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
   const translate = getTranslate(translations, locale);
@@ -430,7 +432,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
               ].map((item) => (
                 <li
                   key={item}
-                  className="font-merriweather rounded-2xl border bg-card px-6 py-6 text-center text-lg font-semibold"
+                  className="font-merriweather rounded-2xl border bg-card p-6 text-center text-lg font-semibold"
                 >
                   {item}
                 </li>

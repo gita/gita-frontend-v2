@@ -1,7 +1,8 @@
 import { ExternalLink, Heart } from "lucide-react";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -55,7 +56,7 @@ export async function generateMetadata({
         ? "हम उन सम्मानित संगठनों और व्यक्तियों के प्रति अपनी हार्दिक कृतज्ञता व्यक्त करते हैं जिन्होंने हमें अपने अमूल्य भगवद गीता अनुवाद और टीकाओं को प्रदर्शित करने की अनुमति दी है।"
         : "We extend our heartfelt gratitude to esteemed organizations and individuals for allowing us to feature their invaluable Bhagavad Gita translations and commentaries.",
       url: isHindi
-        ? `${baseUrl}/hi/acknowledgements`
+        ? `${baseUrl}/acknowledgements/hi`
         : `${baseUrl}/acknowledgements`,
       siteName: "Bhagavad Gita",
       images: [
@@ -85,12 +86,12 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: isHindi
-        ? `${baseUrl}/hi/acknowledgements`
+        ? `${baseUrl}/acknowledgements/hi`
         : `${baseUrl}/acknowledgements`,
       languages: {
         "x-default": `${baseUrl}/acknowledgements`,
         en: `${baseUrl}/acknowledgements`,
-        hi: `${baseUrl}/hi/acknowledgements`,
+        hi: `${baseUrl}/acknowledgements/hi`,
       },
     },
   };
@@ -99,6 +100,7 @@ export async function generateMetadata({
 export default async function Acknowledgement(props: ParamsWithLocale) {
   const { params: paramsPromise } = props;
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
   const translate = getTranslate(translations, locale);

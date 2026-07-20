@@ -12,8 +12,9 @@ import {
 import { ArrowRight } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -69,7 +70,7 @@ export async function generateMetadata({
       description: isHindi
         ? "भगवद गीता की खोज करें: भगवान कृष्ण से अर्जुन को कालातीत ज्ञान के 700 श्लोक। महाभारत संदर्भ, वेद व्यास, गणेश जी और प्रमुख पात्रों के बारे में जानें।"
         : "Discover the Bhagavad Gita: 700 verses of timeless wisdom from Lord Krishna to Arjuna. Learn about the Mahabharata context, Ved Vyasa, Ganesh ji, and key characters.",
-      url: isHindi ? `${baseUrl}/hi/about` : `${baseUrl}/about`,
+      url: isHindi ? `${baseUrl}/about/hi` : `${baseUrl}/about`,
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
@@ -97,11 +98,11 @@ export async function generateMetadata({
       site: "@ShriKrishna",
     },
     alternates: {
-      canonical: isHindi ? `${baseUrl}/hi/about` : `${baseUrl}/about`,
+      canonical: isHindi ? `${baseUrl}/about/hi` : `${baseUrl}/about`,
       languages: {
         "x-default": `${baseUrl}/about`,
         en: `${baseUrl}/about`,
-        hi: `${baseUrl}/hi/about`,
+        hi: `${baseUrl}/about/hi`,
       },
     },
   };
@@ -110,6 +111,7 @@ export async function generateMetadata({
 export default async function About(props: ParamsWithLocale) {
   const { params: paramsPromise } = props;
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
   const translate = getTranslate(translations, locale);

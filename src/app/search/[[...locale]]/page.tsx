@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -66,6 +67,7 @@ export default async function Search({
   params: paramsPromise,
 }: ParamsWithLocale) {
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
 

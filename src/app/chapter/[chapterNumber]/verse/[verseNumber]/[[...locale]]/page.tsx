@@ -1,17 +1,17 @@
 import { Metadata } from "next";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import NotFound from "components/NotFound";
 import { loadChapters } from "lib/data";
 import { findVerseRange } from "lib/data/loaders";
 import { getChapterData } from "lib/getChapterData";
 import { getVerseData } from "lib/getVerseData";
-import { getLanguageSettings, paramsToLocale } from "shared/functions";
+import { getLanguageSettings, isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import VersePage from "./VersePage";
-import { getJsonLd } from "./functions";
+import { getJsonLd, getVerseCreativeWorkJsonLd } from "./functions";
 
 type Props = {
   params: Promise<{
@@ -194,7 +194,9 @@ const Verse = async ({ params: paramsPromise }: Props) => {
       redirect(`/chapter/${chapterNumber}/verse/${verseRange}${localePrefix}`);
     }
 
-    return <NotFound hint={`Verse ${verseNumber} not found`} />;
+    // A real 404, not a 200 carrying a "not found" message. The soft-404
+    // shipped no <title> and no canonical, which is the worst of both.
+    notFound();
   }
 
   const translations = await getTranslations(locale);
@@ -231,6 +233,19 @@ const Verse = async ({ params: paramsPromise }: Props) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(getJsonLd(chapterNumber, verseNumber)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getVerseCreativeWorkJsonLd({
+              chapterNumber,
+              verseNumber,
+              chapterName,
+              locale,
+            }),
+          ),
         }}
       />
       <VersePage

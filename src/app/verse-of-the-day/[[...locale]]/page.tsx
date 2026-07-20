@@ -1,9 +1,10 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import NotFound from "components/NotFound";
 import { getChapterData } from "lib/getChapterData";
 import { getDailyVerse } from "lib/getDailyVerse";
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import VerseOfTheDay from "./VerseOfTheDay";
@@ -16,9 +17,16 @@ export async function generateStaticParams() {
 // Revalidate daily to show fresh verse
 export const revalidate = 86400; // 24 hours
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params: paramsPromise,
+}: ParamsWithLocale): Promise<Metadata> {
+  const params = await paramsPromise;
+  const isHindi = paramsToLocale(params) === "hi";
+
   return {
-    title: "Bhagavad Gita Verse of the Day - Daily Wisdom in Hindi & English",
+    title: isHindi
+      ? "भगवद गीता आज का श्लोक - प्रतिदिन का ज्ञान"
+      : "Bhagavad Gita Verse of the Day - Daily Wisdom in Hindi & English",
     description:
       "Daily Bhagavad Gita verse with translation & commentary. Get fresh spiritual wisdom from Lord Krishna's teachings every day. Free in Hindi & English.",
     keywords:
@@ -27,7 +35,9 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
-      url: "https://bhagavadgita.com/verse-of-the-day",
+      url: isHindi
+        ? "https://bhagavadgita.com/verse-of-the-day/hi"
+        : "https://bhagavadgita.com/verse-of-the-day",
       siteName: "Bhagavad Gita",
       locale: "en_US",
       type: "article",
@@ -59,13 +69,14 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       languages: {
+        "x-default": "https://bhagavadgita.com/verse-of-the-day",
         en: "https://bhagavadgita.com/verse-of-the-day",
-        "en-US": "https://bhagavadgita.com/verse-of-the-day",
-        "en-GB": "https://bhagavadgita.com/verse-of-the-day",
-        "en-IN": "https://bhagavadgita.com/verse-of-the-day",
         hi: "https://bhagavadgita.com/verse-of-the-day/hi",
       },
-      canonical: "https://bhagavadgita.com/verse-of-the-day",
+      // Was hardcoded to the English URL, so the Hindi page canonicalised away.
+      canonical: isHindi
+        ? "https://bhagavadgita.com/verse-of-the-day/hi"
+        : "https://bhagavadgita.com/verse-of-the-day",
     },
   };
 }

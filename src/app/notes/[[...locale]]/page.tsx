@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 
 import NotesCard from "components/NotesCard";
 import { Note } from "components/NotesCard/types";
