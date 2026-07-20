@@ -36,8 +36,8 @@ Also worth checking while we're in here:
 
 ## 2. Rebuild the app landing page at /bhagavad-gita-app
 
-**Status:** todo
-**Branch:** `feat/app-landing-page`
+**Status:** done — branch `feat/bhagavad-gita-app-page`
+**Superseded branch:** `feat/app-landing-page` (Codex attempt, kept for copy reference only)
 
 **URL decision:** the new page lives at `/bhagavad-gita-app`. `/app` 301s to it. The longer
 slug matches the head term we're going after, and the redirect keeps every existing link and
@@ -45,60 +45,44 @@ whatever authority `/app` has accumulated.
 
 **This is the product landing page, not the comparison page.** The GTM notes are clear that
 these are two different intents and both should exist. This page explains our app and converts.
-A separate `/best-bhagavad-gita-apps/` page (item 8) compares multiple real apps, including
+A separate `/best-bhagavad-gita-apps/` page (item 11) compares multiple real apps, including
 competitors, and cannot honestly declare us the winner in every category. Don't merge them.
 Target keywords here: "Bhagavad Gita app", "Bhagavad Gita app download", "Gita AI app",
 "Bhagavad Gita app for Android", "Bhagavad Gita app for iPhone".
 
-Today `/app` is a static dump in `public/app/` — a 29KB `index.html` with jQuery, a 253KB
-stylesheet and a 72KB carousel script. The middleware skips `/app` entirely
-(`src/proxy.ts:12`), so it never touches Next.js. The page doesn't render properly and
-crawlers get nothing useful out of it.
+**What was wrong.** `/app` was a static dump in `public/app/` — 5.4MB of jQuery, a 253KB
+stylesheet and a 72KB carousel script, with the middleware skipping `/app` entirely so Next.js
+never touched it. It had **no `<h1>`**, 354 words, its main heading was an `<h2>` reading
+"Bhagavad Gita - Simplied." (typo shipped to production and visible in Google's snippet), and
+its two richest blocks were JS-dependent carousels, so without JavaScript the page was roughly
+150 words. It also had no App Store link at all while ranking #5–6 for iPhone queries.
 
-Replace it with a real Next.js route at `src/app/bhagavad-gita-app/[[...locale]]/page.tsx`.
+**Where we were.** SERP research across 20 Google result pages put bhagavadgita.com/app in a
+consistent 4–8 band, never top 3, on every commercial query, and absent entirely from "gita
+app" and "bhagavad gita app in hindi". srimadgita.com outranked us on 100% of overlapping
+queries with a cluster of five URLs, and owns the answer box and the knowledge-panel
+description link. Notably, `thegita.app` beats us with 406 words, no schema, no meta
+description and no FAQ, which says the problem was ours rather than the competition's strength.
 
-**Research first.** Before writing a line of copy, search Google for "bhagavad gita app" and
-related terms, and look at what's ranking:
+**What shipped.** A static-rendered Next.js route at
+`src/app/bhagavad-gita-app/[[...locale]]/page.tsx` with an `<h1>`, an extractable opening
+answer paragraph, a features grid, a Gita GPT section, eight current Play Store screenshots,
+an at-a-glance facts table, nine FAQs as native `<details>` so answers are in the HTML with no
+JavaScript, and `MobileApplication` + `AggregateRating` + `FAQPage` + `BreadcrumbList` JSON-LD.
+`/app` 301s to it, `public/app/` is deleted, internal links and the sitemap are updated.
 
-- how the top pages are structured (section order, what they lead with)
-- what they cover that we don't
-- what People Also Ask surfaces — those become our FAQ
-- keyword coverage: "bhagavad gita app", "best bhagavad gita app", "free bhagavad gita app",
-  "bhagavad gita app with audio", "gita app in hindi", "srimad bhagavad gita app"
+**Facts checked before writing.** The Codex attempt claimed "7 translations and 16
+commentaries" four times. That came from `commentaries.json` and `translation.json` in the app
+repo, which are **referenced nowhere in `lib/`**. The app ships one translation and one
+commentary per verse, Swami Mukundananda's, in seven languages. See items 7 and 8.
 
-The `writesonic-marketing` repo has a `.env` with SERP API, Ahrefs and other keys we can use
-for the keyword and SERP research.
+**Still open on this page:**
 
-**Design.** Use our existing brand kit, colors, typography (`docs/FONT_SYSTEM.md`) and button
-styles. We're on shadcn/ui — pull in whatever additional components the page needs rather
-than hand-rolling.
-
-**Assets.** High-resolution screenshots from the Play Store listing
-(https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita). The same
-screens may already exist locally in `~/Documents/Bhagavad-Gita-App/Bhagavad Gita App Screens`
-or in the `bhagavad-gita-app-2.0` repo — check there first, they'll be higher quality than
-anything scraped.
-
-**Content requirements:**
-
-- Store buttons for both Google Play and the App Store, above the fold
-- Feature sections built around what the app actually does
-- FAQ section driven by People Also Ask, with FAQPage schema
-- Real, human-sounding copy. No em dashes, no "unlock", "elevate", "seamless", "dive into",
-  no rule-of-three padding. Run it through `/humanizer` or `/stop-slop` before shipping.
-- Consider drafting with Codex (GPT 5.6) and editing down — it writes decent long-form.
-
-**Technical requirements:**
-
-- Server-rendered so both Google and LLM crawlers get full HTML with no JS execution
-- SoftwareApplication + FAQPage structured data
-- Proper title, description, canonical, OG and Twitter tags
-- Fast: `next/image` for screenshots, no jQuery, no 253KB stylesheet
-- Remove `/app` from the middleware skip list (`src/proxy.ts:12`) and delete `public/app/` once
-  the new page is live
-- Add the `/app` → `/bhagavad-gita-app` 301 in `vercel.json`, and update the internal links in
-  `Footer.tsx:98`, `ModernNav.tsx:106` and `donate/page.tsx:129`
-- Add the new URL to `sitemap.ts`
+- Hindi body copy falls back to English. Metadata and the FAQ are properly translated; the rest
+  needs a pass through `hi.json`.
+- `STORE_STATS` in `constants.ts` hardcodes the rating, review count and download count. It
+  feeds both the visible copy and the schema, so it only needs updating in one place, but it
+  does need updating periodically.
 
 ---
 
@@ -185,6 +169,67 @@ Requirements:
 
 ---
 
+## 7. Bring back the translation and commentary picker
+
+**Status:** todo
+**Branch:** `feat/author-picker-and-pages`
+
+The website already holds **21 authors** of translations and commentaries. `data/index.json`
+lists them and the full text sits in `data/authors/*.json`: Shankaracharya, Ramanujacharya,
+Madhvacharya, Chinmayananda, Sivananda, Ramsukhdas, Abhinavgupta, Vallabhacharya,
+Madhusudan Saraswati, Tejomayananda, Gambirananda, Adidevananda and others.
+
+**None of it is reachable.** The default is hardcoded to author 16, Swami Sivananda, for both
+translation and commentary (`src/shared/constants.ts:4-5`). The picker component
+`src/components/AuthorSettings.tsx` still exists and is imported by
+`src/components/Headers/PageHeader.tsx`, but `PageHeader` is imported nowhere. It was switched
+off during the redesign and never switched back on. The cookies (`bgTranslationAuthorId`,
+`bgCommentaryAuthorId`) and the query layer (`src/lib/data/queries.ts`) still work.
+
+Two parts to this:
+
+1. **Restore the picker** so readers can choose their source again.
+2. **Give each author their own indexable pages**, which is the bigger prize. Every
+   translation and every commentary should be its own URL that can rank on its own. People
+   search for "Shankaracharya Gita commentary" and "Sivananda Bhagavad Gita translation" as
+   named queries, and right now we serve none of them despite holding the text.
+
+Needs a proper SEO and AEO plan before building: URL structure, how author pages relate to
+verse pages, canonicalisation so we don't cannibalise the main verse routes, and author bio
+pages carrying real E-E-A-T signals.
+
+---
+
+## 8. Add Swami Mukundananda's translation and commentary to the website
+
+**Status:** todo
+**Branch:** `feat/mukundananda-content`
+
+The Android app carries Swami Mukundananda's translation and commentary, added with his
+permission. The website never got them, and he is **not** among the 21 authors currently in
+`data/`. So the app and the site disagree about what you can read.
+
+Two constraints:
+
+- Permission is already granted, but the website version needs to be **rephrased so it does
+  not duplicate holybhagavadgita.org**, Swamiji's own site. Publishing the identical text
+  would put two properties in competition for the same passages, and we would lose.
+- Whatever we add has to slot into the multi-author model from item 7, not become a second
+  hardcoded default.
+
+---
+
+## 9. Ship the updated iOS app
+
+**Status:** in progress — outside this repo
+**Repo:** `bhagavad-gita-app-2.0`
+
+The current App Store build is behind the Android release. Publishing has been the blocker.
+Tracked here because the app landing page links to both stores and describes one product, so
+the two builds need to stay level.
+
+---
+
 # GTM track
 
 Source: `notes/gtm-plan.md` and `notes/gtm-open-benchmarks.md`
@@ -211,7 +256,7 @@ Traffic split the plan is aiming for:
 
 ---
 
-## 7. Life-guidance pages
+## 10. Life-guidance pages
 
 **Status:** todo
 **Branch:** `feat/guidance-pages`
@@ -232,7 +277,7 @@ what the Gita doesn't claim, a prompt to explore it through Gita AI, related rea
 
 ---
 
-## 8. Recommendation and comparison pages
+## 11. Recommendation and comparison pages
 
 **Status:** todo
 **Branch:** `feat/comparison-pages`
@@ -259,7 +304,7 @@ any of it as fact.
 
 ---
 
-## 9. Trust and methodology pages
+## 12. Trust and methodology pages
 
 **Status:** todo
 **Branch:** `feat/editorial-standards`
@@ -274,7 +319,7 @@ get submitted, and how the recommendation pages were tested.
 
 ---
 
-## 10. Chapter and verse page enrichment
+## 13. Chapter and verse page enrichment
 
 **Status:** todo
 **Branch:** `feat/chapter-verse-enrichment`
@@ -294,7 +339,7 @@ double as internal-linking hubs.
 
 ---
 
-## 11. AI visibility benchmark
+## 14. AI visibility benchmark
 
 **Status:** todo
 **Branch:** n/a — measurement, not code
@@ -305,7 +350,7 @@ Copilot. The full prompt list is in `notes/gtm-plan.md` — 15 app-discovery, 11
 website-discovery, 10 translation-and-study, 14 life-guidance, 13 scripture-facts.
 
 Record which brands appear, which sources get cited, and why. This is the measurement loop for
-items 7 through 10.
+items 10 through 13.
 
 **Crawler policy to settle first.** Review robots/CDN rules for Googlebot, Bingbot,
 OAI-SearchBot, GPTBot, ChatGPT-User, and the Perplexity and Anthropic crawlers. OpenAI
@@ -315,7 +360,7 @@ data, not a default.
 
 ---
 
-## 12. OpenBenchmarks collaboration
+## 15. OpenBenchmarks collaboration
 
 **Status:** blocked — commercial terms unresolved
 **Branch:** n/a — mostly off-domain
@@ -352,8 +397,8 @@ discovering mid-build:
    document, so it probably wins, but that's a call to make explicitly.
 3. **Overlapping "best app for X" page sets** exist on both domains — 14 URLs on ours, 8 on
    theirs. Canonicalization, differentiation and cross-linking are all unspecified.
-4. **Two different 100-item AI sets** are floating around and shouldn't be conflated. Item 11 is
-   a _visibility_ benchmark (do LLMs mention us). Item 12's is a _reliability_ benchmark (does
+4. **Two different 100-item AI sets** are floating around and shouldn't be conflated. Item 14 is
+   a _visibility_ benchmark (do LLMs mention us). Item 15's is a _reliability_ benchmark (does
    Gita AI cite verses correctly). Different purposes, both worth doing.
 
 ---

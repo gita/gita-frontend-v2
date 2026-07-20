@@ -13,6 +13,7 @@ const STATIC_PATHS = [
   "",
   "/about",
   "/acknowledgements",
+  "/bhagavad-gita-app",
   "/bhagavad-gita-quotes",
   "/copyright",
   "/donate",

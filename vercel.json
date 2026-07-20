@@ -1,12 +1,19 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/app",
-      "destination": "/app/index.html"
+      "destination": "/bhagavad-gita-app",
+      "permanent": true
+    },
+    {
+      "source": "/hi/app",
+      "destination": "/hi/bhagavad-gita-app",
+      "permanent": true
     },
     {
       "source": "/app/(.*)",
-      "destination": "/app/$1"
+      "destination": "/bhagavad-gita-app",
+      "permanent": true
     }
   ]
 }
