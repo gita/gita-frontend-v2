@@ -132,8 +132,8 @@ The anonymous allowance went from 2 to 5; signed-in stays at 10. Limits are cent
 
 ## 5. Fix the newsletter capture, then build Verse of the Day emails
 
-**Status:** todo
-**Branch:** `fix/newsletter-capture`
+**Status:** in progress — PR for items 5 and 6 open
+**Branch:** `fix/newsletter-and-attribution`
 
 **The subscription form has never saved anything.** Confirmed against production on
 2026-07-20:
@@ -145,6 +145,11 @@ GET /rest/v1/newsletter_subscriptions
 
 Seven plausible table names all return 404, and no migration in `supabase/migrations/` ever
 created one. The three migrations present are pgvector, hybrid search and chat history.
+
+There were two independent faults, either of which alone would have lost every
+submission. `subscribeUser` read `NEXT_PUBLIC_SUPABASE_ANON_KEY`, which has never existed in
+this project (the key is `NEXT_PUBLIC_SUPABASE_KEY`), so it returned before reaching the
+database. And the table did not exist anyway.
 
 It fails silently, and the user is told it worked. `src/lib/subscribeUser.ts` catches its own
 error and returns `null` rather than throwing, so the `catch` in
@@ -169,8 +174,8 @@ are the reason item 6 below matters.
 
 ## 6. Signup attribution and funnel instrumentation
 
-**Status:** todo
-**Branch:** `feat/signup-attribution`
+**Status:** in progress — same PR as item 5
+**Branch:** `fix/newsletter-and-attribution`
 
 We have about 36,000 users in Supabase auth and no way to tell where any of them came from.
 The Gita GPT limit banner is a sign-in prompt, so a large share of them probably hit the

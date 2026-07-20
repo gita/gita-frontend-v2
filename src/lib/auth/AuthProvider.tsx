@@ -13,6 +13,7 @@ import { Session, User } from "@supabase/supabase-js";
 import { supabase } from "utils/supabase";
 
 import { triggerRateLimitRefresh } from "@/hooks/useRateLimitStatus";
+import { recordSignup } from "@/lib/record-signup";
 
 interface AuthContextType {
   user: User | null;
@@ -57,6 +58,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       // Check for return redirect on initial load (handles OAuth callback)
       handleReturnRedirect(session);
+
+      // Record where this signup came from, if the auth modal left an intent.
+      if (session?.user) void recordSignup(session.user);
     });
 
     // Listen for auth changes
@@ -66,6 +70,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(session);
       setUser(session?.user ?? null);
       setIsLoading(false);
+
+      if (event === "SIGNED_IN" && session?.user) {
+        void recordSignup(session.user);
+      }
 
       // Handle redirect after OAuth sign-in
       if (event === "SIGNED_IN" && session) {

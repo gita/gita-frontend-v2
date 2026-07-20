@@ -390,6 +390,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         translate={translate}
+        source="nav"
       />
     </header>
   );

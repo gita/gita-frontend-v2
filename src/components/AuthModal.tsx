@@ -14,33 +14,55 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { type SignupSource, storeSignupIntent } from "@/lib/signup-intent";
 import { cn } from "@/lib/utils";
 
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   translate: Translate;
+  /** Where this modal was opened from, recorded against the new account. */
+  source?: SignupSource;
+  /** True when the Gita GPT limit banner was on screen. */
+  hitRateLimit?: boolean;
 }
 
-export function AuthModal({ isOpen, onClose, translate }: AuthModalProps) {
+export function AuthModal({
+  isOpen,
+  onClose,
+  translate,
+  source = "unknown",
+  hitRateLimit = false,
+}: AuthModalProps) {
   const { signInWithGoogle, signInWithApple, isLoading } = useAuth();
   const [loadingProvider, setLoadingProvider] = useState<
     "google" | "apple" | null
   >(null);
+  // Opted in by default. Anyone who would rather not can untick it before
+  // continuing, and every subscription is stored with its own consent record.
+  const [newsletterOptIn, setNewsletterOptIn] = useState(true);
+
+  // Sign-in leaves the site for Google or Apple, so anything we want to record
+  // about this signup has to be stored before the redirect.
+  const rememberIntent = () => {
+    storeSignupIntent({ source, hitRateLimit, newsletterOptIn });
+  };
 
   const handleGoogleSignIn = async () => {
+    rememberIntent();
     setLoadingProvider("google");
     await signInWithGoogle();
   };
 
   const handleAppleSignIn = async () => {
+    rememberIntent();
     setLoadingProvider("apple");
     await signInWithApple();
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="mx-4 border-border bg-background sm:mx-0 sm:max-w-md">
+      <DialogContent className="w-[calc(100%-2rem)] border-border bg-background sm:w-full sm:max-w-md">
         <DialogHeader className="space-y-3 text-center">
           <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary/10">
             <BookOpen className="size-8 text-primary" />
@@ -97,6 +119,19 @@ export function AuthModal({ isOpen, onClose, translate }: AuthModalProps) {
             )}
           </Button>
         </div>
+
+        {/* Daily verse opt-in */}
+        <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-lg border border-border bg-muted/40 p-3 text-left">
+          <input
+            type="checkbox"
+            checked={newsletterOptIn}
+            onChange={(e) => setNewsletterOptIn(e.target.checked)}
+            className="mt-0.5 size-4 shrink-0 cursor-pointer accent-primary"
+          />
+          <span className="text-sm text-muted-foreground">
+            {translate("Send me a verse of the day by email")}
+          </span>
+        </label>
 
         {/* Divider */}
         <div className="relative my-6">

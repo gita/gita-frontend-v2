@@ -252,6 +252,7 @@ export function ChatHeader({
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         translate={(key) => key || ""}
+        source="gitagpt"
       />
     </TooltipProvider>
   );
