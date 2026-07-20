@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -44,7 +45,7 @@ export async function generateMetadata({
       description: isHindi
         ? "कॉपीराइट नीतियों और सामग्री उपयोग दिशानिर्देशों के बारे में जानें।"
         : "Learn about copyright policies, content usage guidelines, attribution requirements, and how to use Bhagavad Gita content responsibly.",
-      url: isHindi ? `${baseUrl}/hi/copyright` : `${baseUrl}/copyright`,
+      url: isHindi ? `${baseUrl}/copyright/hi` : `${baseUrl}/copyright`,
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
@@ -72,11 +73,11 @@ export async function generateMetadata({
       site: "@ShriKrishna",
     },
     alternates: {
-      canonical: isHindi ? `${baseUrl}/hi/copyright` : `${baseUrl}/copyright`,
+      canonical: isHindi ? `${baseUrl}/copyright/hi` : `${baseUrl}/copyright`,
       languages: {
         "x-default": `${baseUrl}/copyright`,
         en: `${baseUrl}/copyright`,
-        hi: `${baseUrl}/hi/copyright`,
+        hi: `${baseUrl}/copyright/hi`,
       },
     },
   };
@@ -85,6 +86,7 @@ export async function generateMetadata({
 export default async function Copyright(props: ParamsWithLocale) {
   const { params: paramsPromise } = props;
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
   const translate = getTranslate(translations, locale);

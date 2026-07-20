@@ -27,7 +27,7 @@ export function getJsonLdTwo(isHindi: boolean) {
         position: 2,
         item: {
           "@id": isHindi
-            ? "https://bhagavadgita.com/hi/acknowledgements"
+            ? "https://bhagavadgita.com/acknowledgements/hi"
             : "https://bhagavadgita.com/acknowledgements",
           name: isHindi
             ? "स्वीकृतियां - BhagavadGita.com"

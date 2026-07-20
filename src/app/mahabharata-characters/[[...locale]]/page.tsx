@@ -10,8 +10,9 @@ import {
 } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -40,7 +41,7 @@ export async function generateStaticParams() {
   return [{ locale: ["en"] }, { locale: ["hi"] }];
 }
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Mahabharata Characters - Key Figures in the Bhagavad Gita",
   description:
     "Explore the main characters of the Mahabharata featured in the Bhagavad Gita - Lord Krishna, Arjuna, Bhishma, Dronacharya, Yudhishthir, and more. Learn their stories and significance.",
@@ -74,8 +75,38 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://bhagavadgita.com/mahabharata-characters",
+    languages: {
+      "x-default": "https://bhagavadgita.com/mahabharata-characters",
+      en: "https://bhagavadgita.com/mahabharata-characters",
+      hi: "https://bhagavadgita.com/mahabharata-characters/hi",
+    },
   },
 };
+
+// The Hindi variant is served at /mahabharata-characters/hi and needs its own
+// canonical, which a static metadata export cannot provide. Overridden here.
+export async function generateMetadata({
+  params: paramsPromise,
+}: ParamsWithLocale): Promise<Metadata> {
+  const params = await paramsPromise;
+  const isHindi = paramsToLocale(params) === "hi";
+  const base = "https://bhagavadgita.com/mahabharata-characters";
+
+  return {
+    ...baseMetadata,
+    title: isHindi
+      ? "महाभारत के पात्र - भगवद गीता के प्रमुख चरित्र"
+      : (baseMetadata.title as string),
+    alternates: {
+      canonical: isHindi ? `${base}/hi` : base,
+      languages: {
+        "x-default": base,
+        en: base,
+        hi: `${base}/hi`,
+      },
+    },
+  };
+}
 
 interface Character {
   name: string;
@@ -92,6 +123,7 @@ interface Character {
 export default async function MahabharataCharacters(props: ParamsWithLocale) {
   const { params: paramsPromise } = props;
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
   const translate = getTranslate(translations, locale);

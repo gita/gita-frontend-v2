@@ -27,7 +27,7 @@ export function getJsonLdTwo(isHindi: boolean) {
         position: 2,
         item: {
           "@id": isHindi
-            ? "https://bhagavadgita.com/hi/donate"
+            ? "https://bhagavadgita.com/donate/hi"
             : "https://bhagavadgita.com/donate",
           name: isHindi
             ? "दान - भगवद गीता - वेद व्यास फाउंडेशन"

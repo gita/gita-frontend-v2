@@ -1,7 +1,8 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { getAllChapters } from "lib/getAllChapters";
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 
 import HomePage from "./HomePage";
 
@@ -100,6 +101,7 @@ export default async function Home({
   params: paramsPromise,
 }: ParamsWithLocale) {
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const isHindi = locale === "hi";
   const chapters = await getAllChapters(locale);

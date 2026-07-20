@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -42,7 +43,7 @@ export async function generateMetadata({
         ? "जानें कि हम आपके डेटा की सुरक्षा कैसे करते हैं और आपकी गोपनीयता सुनिश्चित करते हैं।"
         : "Learn how we protect your data, ensure your privacy, and maintain security. Read about data collection, usage, cookies, and your rights.",
       url: isHindi
-        ? `${baseUrl}/hi/privacy-policy`
+        ? `${baseUrl}/privacy-policy/hi`
         : `${baseUrl}/privacy-policy`,
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
@@ -72,12 +73,12 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: isHindi
-        ? `${baseUrl}/hi/privacy-policy`
+        ? `${baseUrl}/privacy-policy/hi`
         : `${baseUrl}/privacy-policy`,
       languages: {
         "x-default": `${baseUrl}/privacy-policy`,
         en: `${baseUrl}/privacy-policy`,
-        hi: `${baseUrl}/hi/privacy-policy`,
+        hi: `${baseUrl}/privacy-policy/hi`,
       },
     },
   };
@@ -86,6 +87,7 @@ export async function generateMetadata({
 export default async function PrivacyPolicy(props: ParamsWithLocale) {
   const { params: paramsPromise } = props;
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
   const translate = getTranslate(translations, locale);

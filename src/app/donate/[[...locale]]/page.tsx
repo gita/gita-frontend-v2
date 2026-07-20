@@ -2,8 +2,9 @@ import { Bot, Globe, Heart, QrCode, Smartphone } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -56,7 +57,7 @@ export async function generateMetadata({
       description: isHindi
         ? "भगवद गीता परियोजना में दान करें और दुनिया भर में भगवद गीता और कृष्ण की बुद्धिमत्ता के संदेश को फैलाने के हमारे मिशन को जारी रखने में मदद करें।"
         : "Donate to the Bhagavad Gita project to help us continue our mission of spreading the message of the Bhagavad Gita and Krishna's wisdom to the world.",
-      url: isHindi ? `${baseUrl}/hi/donate` : `${baseUrl}/donate`,
+      url: isHindi ? `${baseUrl}/donate/hi` : `${baseUrl}/donate`,
       siteName: "Bhagavad Gita",
       images: [
         {
@@ -84,11 +85,11 @@ export async function generateMetadata({
       site: "@ShriKrishna",
     },
     alternates: {
-      canonical: isHindi ? `${baseUrl}/hi/donate` : `${baseUrl}/donate`,
+      canonical: isHindi ? `${baseUrl}/donate/hi` : `${baseUrl}/donate`,
       languages: {
         "x-default": `${baseUrl}/donate`,
         en: `${baseUrl}/donate`,
-        hi: `${baseUrl}/hi/donate`,
+        hi: `${baseUrl}/donate/hi`,
       },
     },
   };
@@ -97,6 +98,7 @@ export async function generateMetadata({
 export default async function Donate(props: ParamsWithLocale) {
   const { params: paramsPromise } = props;
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
   const translate = getTranslate(translations, locale);

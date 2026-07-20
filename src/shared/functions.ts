@@ -92,6 +92,25 @@ export const isLocale = (value: unknown): value is Locale =>
 export const deprecated_headerToLocale = (headerLocale: string) =>
   isLocale(headerLocale) ? headerLocale : defaultLocale;
 
+/**
+ * True when the optional catch-all segment is something we actually serve.
+ *
+ * `[[...locale]]` matches anything, so without this check `/total-nonsense`
+ * rendered the homepage with a 200. That turned every mistyped or stale link on
+ * the web into an indexable duplicate of the homepage.
+ *
+ * Valid shapes are: absent (the English route), empty, or exactly one supported
+ * locale segment.
+ */
+export const isValidLocaleSegment = (localeFromParams: {
+  locale?: string[];
+}): boolean => {
+  const segments = localeFromParams?.locale;
+  if (!segments || segments.length === 0) return true;
+  if (segments.length > 1) return false;
+  return isLocale(segments[0]);
+};
+
 export const paramsToLocale = (localeFromParams: { locale?: string[] }) => {
   const paramsLocale = Array.isArray(localeFromParams?.locale)
     ? localeFromParams.locale[0]

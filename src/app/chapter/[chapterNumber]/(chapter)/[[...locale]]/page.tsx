@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import { headers } from "next/headers";
+import { notFound } from "next/navigation";
 
 import NotFound from "components/NotFound";
 import { getChapterData } from "lib/getChapterData";
-import { getLanguageSettings, paramsToLocale } from "shared/functions";
+import { getLanguageSettings, isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import ChapterPage from "./ChapterPage";
@@ -113,6 +114,7 @@ export async function generateMetadata({
 
 export default async function Chapter({ params: paramsPromise }: Props) {
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const headersList = await headers();
   const locale = paramsToLocale(params);
   const languageSettings = getLanguageSettings(locale, {
@@ -129,7 +131,9 @@ export default async function Chapter({ params: paramsPromise }: Props) {
   );
 
   if (!chapterData) {
-    return <NotFound hint={`Chapter ${chapterNumber} not found`} />;
+    // A real 404, not a 200 carrying a "not found" message. The soft-404
+    // shipped no <title> and no canonical, which is the worst of both.
+    notFound();
   }
 
   const translations = await getTranslations(locale);

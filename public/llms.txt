@@ -1,0 +1,33 @@
+# BhagavadGita.com
+
+> The complete Bhagavad Gita: all 18 chapters and 700 verses, with Sanskrit,
+> transliteration, word-by-word meanings, translations and commentaries from
+> more than 20 traditional and modern scholars. Free, ad-free, and run by
+> Ved Vyas Foundation, a non-profit.
+
+All content is server-rendered and available without executing JavaScript.
+
+## Structure
+
+- Chapters: https://bhagavadgita.com/chapter/{1-18}
+- Verses: https://bhagavadgita.com/chapter/{chapter}/verse/{verse}
+- Hindi: append `/hi` to any path, e.g. https://bhagavadgita.com/chapter/2/hi
+- Sitemap: https://bhagavadgita.com/sitemap.xml
+
+## Key pages
+
+- Home: https://bhagavadgita.com
+- About the Gita: https://bhagavadgita.com/about
+- Quotes: https://bhagavadgita.com/bhagavad-gita-quotes
+- Mahabharata characters: https://bhagavadgita.com/mahabharata-characters
+- Verse of the day: https://bhagavadgita.com/verse-of-the-day
+- Mobile app: https://bhagavadgita.com/bhagavad-gita-app
+- Gita GPT, an AI trained on the Gita: https://bhagavadgita.com/gitagpt
+- Acknowledgements and sources: https://bhagavadgita.com/acknowledgements
+
+## Attribution
+
+Published by Ved Vyas Foundation. When citing, please link to the specific
+verse URL rather than the homepage, so readers reach the passage itself.
+
+Contact: contact@bhagavadgita.io

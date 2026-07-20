@@ -7,6 +7,53 @@ Status key: `todo` · `in progress` · `blocked` · `done`
 
 ---
 
+## Content quality: the standing rule
+
+**We do not publish at scale for its own sake.** Every page ships because it is worth reading,
+or it does not ship.
+
+This is not squeamishness, it is what the competitive research showed. srimadgita.com has 5,620
+URLs and **53 of them get any traffic at all** — a 0.9% hit rate. Their `/aeo/` and
+`/aeo-batch2/` folders hold roughly 531 machine-generated pages with **zero ranking keywords and
+zero traffic**, and the slugs are truncated mid-word
+(`...arjunas-despair-in-one-`, `...classical-vs-mode`), which tells you nobody read them before
+publishing. Their 3,505 mechanically translated verse URLs across five languages produce
+approximately nothing. Meanwhile **one** carefully targeted page,
+`/hi/questions/sabse-important-shlok`, carries 57% of their entire traffic.
+
+Volume did not create their win. One good page did. And the volume carries real risk: Google's
+scaled-content-abuse policy targets exactly this pattern, mass publication in a short window is
+a recognised spam signal, and their backlink profile is a bought PBN (`buybacklinks.agency`,
+`pbnseolinks.shop` and around twenty more) which is why their Domain Rating sits at 0.2 despite
+the traffic. Their July spike may well not survive the next core update.
+
+**Borrow their strategy, never their execution.** Worth taking: the flat `/questions/` folder
+rather than a blog, "top N / best / famous" curation framing, named-competitor comparison pages
+built for AI retrieval, concept `X vs Y` pages, and an explicit AI-crawler allow-list. Not worth
+taking: batch generation, bought links, mechanical translation, and publishing thousands of
+pages nobody proofread.
+
+**Before any content work starts, research the current guidance.** Google shipped several core
+updates through 2025 and 2026 with tightened positions on thin content, scaled content abuse and
+AI-generated material. Read the current state rather than working from memory, and follow the
+practitioners who track it closely: Lily Ray, Kevin Indig, Michael King, Aleyda Solis. This
+research is a prerequisite for items 11 through 15, not an optional extra.
+
+**Every page we publish must clear this bar:**
+
+- A named author or reviewer, and a real editorial pass by a person
+- Verified primary-source citations, chapter and verse, for every scriptural claim
+- Something that could not be produced by a model with no access to our data: our translations,
+  our commentary set, our audio, our reading data, a genuine editorial judgment
+- A clean, permanent, keyword-appropriate URL decided before writing
+- Complete metadata, structured data and internal links to the verses it discusses
+- No medical claims, no unverifiable superlatives, no invented Sanskrit etymology
+
+If a page cannot clear that bar, it should not exist. Fifty pages that each deserve to rank
+will beat five thousand that do not, and they will still be there after the next core update.
+
+---
+
 ## 1. Finish the .io → .com domain migration
 
 **Status:** done — nothing to change
@@ -90,25 +137,42 @@ commentary per verse, Swami Mukundananda's, in seven languages. See items 7 and 
 
 ## 3. Audit indexability across the whole site
 
-**Status:** todo
-**Branch:** `fix/seo-indexability-audit`
+**Status:** done — see the fix PR
 
-Confirm every public page is indexable by Google and readable by LLM crawlers. Specifically
-verify these are in the sitemap, not noindexed, not blocked in robots.txt, and server-rendered:
+Audited live on 2026-07-20. Two things were already right and worth recording: **robots.txt
+blocks no AI crawler** (`User-Agent: *` with an empty `Disallow:` allows GPTBot, OAI-SearchBot,
+ClaudeBot, PerplexityBot, Google-Extended, CCBot, Applebot-Extended and Bingbot, all confirmed
+returning 200 under their real user agents), and **content is genuinely server-rendered** —
+`/chapter/2` ships 2,526 words with no JavaScript, `/chapter/2/hi` 2,918.
 
-- `/acknowledgements`
-- `/mahabharata-characters`
-- `/about`
-- `/bhagavad-gita-quotes`
-- `/donate`
-- `/gitagpt`
-- chapter and verse routes
-- `/verse-of-the-day`, `/verse-parallel`, `/translations`
+What was broken, and is now fixed:
 
-Check for each: canonical correctness, hreflang for the Hindi locale routes, real HTML in the
-initial response (view source, not devtools), and no client-only rendering of primary content.
-Then confirm coverage in Search Console and see whether GPTBot / ClaudeBot / PerplexityBot are
-allowed in robots.txt.
+1. **Every unknown URL returned 200 with the full homepage.** No `not-found.tsx` existed and the
+   root `[[...locale]]` catch-all swallowed everything, so any mistyped link anywhere on the web
+   minted an indexable homepage clone.
+2. **All seven Hindi marketing pages canonicalised to URLs that do not exist.** Routing serves
+   `/about/hi`; the canonicals pointed at `/hi/about`, which fell into the catch-all above. Every
+   Hindi marketing page was being consolidated into the homepage.
+3. **~672 Hindi verse pages shipped an uninterpolated template as their `<h1>`** — literally
+   `Chapter <%= chapter %>, Verse <%= verse %>`. One line in the translate helper returned the
+   raw key instead of the interpolated string whenever a translation was missing.
+4. `/gitagpt/hi` was in the sitemap but served the English homepage.
+5. `/chapter/99` and invalid verses were titleless soft-404s.
+6. Quotes, characters and verse-of-the-day pointed their Hindi canonical at the English URL.
+7. Chapter and verse pages carried breadcrumbs only, no `CreativeWork` or `isPartOf: Book`.
+8. No `llms.txt`; the path served 172KB of homepage HTML.
+
+Still open, deliberately deferred:
+
+- **`/verse-parallel` is 94 words with no JavaScript.** Its entire pitch is comparing
+  translations and the translations are client-loaded, so a crawler sees almost nothing.
+  Server-rendering the default verse's translation set is its own piece of work.
+- `/gitagpt` (102 words) and `/donate` (173 words) are thin, both client-heavy by nature.
+- Nothing is CDN-cacheable: every response is `private, no-cache, no-store` with
+  `x-vercel-cache: MISS`. Verse and chapter pages are static content and should be ISR'd. This
+  caps crawl rate.
+- Hindi pages are roughly 8× the byte size of English (`/chapter/2/hi` 405KB vs 187KB). Worth
+  investigating separately.
 
 ---
 
@@ -393,7 +457,7 @@ double as internal-linking hubs.
 
 ---
 
-## 15. AI visibility benchmark
+## 15. AI visibility benchmark and competitor citation analysis
 
 **Status:** todo
 **Branch:** n/a — measurement, not code
@@ -405,6 +469,17 @@ website-discovery, 10 translation-and-study, 14 life-guidance, 13 scripture-fact
 
 Record which brands appear, which sources get cited, and why. This is the measurement loop for
 items 11 through 14.
+
+**Also, once the Writesonic MCP is reconnected:** pull the top cited pages for srimadgita.com
+and the other competitors, split by platform. Which of their URLs are actually being cited in
+ChatGPT versus Google AI Overviews? Ahrefs answers what ranks in Google; it says nothing about
+what an assistant quotes. Their `/compare/vs-*` pages earn zero Google traffic and are clearly
+built for retrieval rather than search, so citation data is the only way to know whether that
+worked. Their robots.txt names and allows thirteen AI crawlers explicitly, which suggests they
+think it does.
+
+Note the MCP dropped mid-session on 2026-07-20 and needs reconnecting before this can run. The
+108-prompt export taken earlier is preserved in the session tool-results directory.
 
 **Crawler policy to settle first.** Review robots/CDN rules for Googlebot, Bingbot,
 OAI-SearchBot, GPTBot, ChatGPT-User, and the Perplexity and Anthropic crawlers. OpenAI

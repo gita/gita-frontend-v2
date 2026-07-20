@@ -1,6 +1,7 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-import { paramsToLocale } from "shared/functions";
+import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 import { getTranslate } from "shared/translate";
 import { getTranslations } from "shared/translate/server";
 
@@ -41,7 +42,7 @@ export async function generateMetadata({
         ? "हमारे प्लेटफ़ॉर्म का उपयोग करने के लिए आवश्यक दिशानिर्देश।"
         : "Essential guidelines for using our platform. Read about user responsibilities, content usage, copyright policies, and service terms.",
       url: isHindi
-        ? `${baseUrl}/hi/terms-of-service`
+        ? `${baseUrl}/terms-of-service/hi`
         : `${baseUrl}/terms-of-service`,
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
@@ -71,12 +72,12 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: isHindi
-        ? `${baseUrl}/hi/terms-of-service`
+        ? `${baseUrl}/terms-of-service/hi`
         : `${baseUrl}/terms-of-service`,
       languages: {
         "x-default": `${baseUrl}/terms-of-service`,
         en: `${baseUrl}/terms-of-service`,
-        hi: `${baseUrl}/hi/terms-of-service`,
+        hi: `${baseUrl}/terms-of-service/hi`,
       },
     },
   };
@@ -85,6 +86,7 @@ export async function generateMetadata({
 export default async function TermsOfService(props: ParamsWithLocale) {
   const { params: paramsPromise } = props;
   const params = await paramsPromise;
+  if (!isValidLocaleSegment(params)) notFound();
   const locale = paramsToLocale(params);
   const translations = await getTranslations(locale);
   const translate = getTranslate(translations, locale);
