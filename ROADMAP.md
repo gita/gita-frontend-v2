@@ -22,17 +22,8 @@ in four files:
 - `src/app/copyright/[[...locale]]/page.tsx`
 - `src/components/Footers/Footer.tsx`
 
-**Important exception:** the contact address stays `contact@bhagavadgita.io`. That mailbox is
-still live on the old domain, so leave every `mailto:` and any email string alone. Only swap
-web URLs.
-
-Also worth checking while we're in here:
-
-- canonical tags, `metadataBase`, Open Graph and Twitter URLs
-- `sitemap.ts` and `robots.txt` output
-- structured data (`@id`, `url`, `sameAs`)
-- anything hardcoded in `public/app/index.html`, `manifest.json`, and the Supabase config
-- redirects in `vercel.json` — confirm .io still 301s to .com so we don't drop link equity
+The contact address stays `contact@bhagavadgita.io`. That mailbox is still live on the old
+domain, so leave every `mailto:` alone if this is ever revisited.
 
 ---
 
@@ -130,71 +121,86 @@ The anonymous allowance went from 2 to 5; signed-in stays at 10. Limits are cent
 
 ---
 
-## 5. Fix the newsletter capture, then build Verse of the Day emails
+## 5. Verse of the Day emails
 
-**Status:** in progress — PR for items 5 and 6 open
-**Branch:** `fix/newsletter-and-attribution`
+**Status:** capture done (PR #301). Sending deferred until the list is worth sending to.
 
-**The subscription form has never saved anything.** Confirmed against production on
-2026-07-20:
+### 5a. Capture — done
 
-```
-GET /rest/v1/newsletter_subscriptions
-404  {"code":"42P01","message":"relation \"public.newsletter_subscriptions\" does not exist"}
-```
+The subscription form had never saved anything. Three independent faults, any one of which
+alone would have lost every submission:
 
-Seven plausible table names all return 404, and no migration in `supabase/migrations/` ever
-created one. The three migrations present are pgvector, hybrid search and chat history.
+1. `subscribeUser` read `NEXT_PUBLIC_SUPABASE_ANON_KEY`, which has never existed in this
+   project. It returned before reaching the database.
+2. The `newsletter_subscriptions` table did not exist and no migration ever created it.
+3. After fixing both, `.insert().select()` still failed with `42501`. PostgREST needs SELECT
+   permission to return an inserted row, and anonymous callers deliberately have none on this
+   table.
 
-There were two independent faults, either of which alone would have lost every
-submission. `subscribeUser` read `NEXT_PUBLIC_SUPABASE_ANON_KEY`, which has never existed in
-this project (the key is `NEXT_PUBLIC_SUPABASE_KEY`), so it returned before reaching the
-database. And the table did not exist anyway.
+And it failed silently: the helper caught its own error and returned `null` rather than
+throwing, so the form's `catch` never ran and everyone saw a success modal regardless.
 
-It fails silently, and the user is told it worked. `src/lib/subscribeUser.ts` catches its own
-error and returns `null` rather than throwing, so the `catch` in
-`src/components/Home/Newsletter.tsx:87` never runs. Execution continues to
-`setModalVisible(true)` and returns `isSuccess: true`. Everyone who ever submitted that form
-saw a confirmation and nothing was stored.
+Verified live on production: valid address writes a row, duplicate returns 23505 and reads as
+success, invalid and empty input are blocked client-side with zero writes.
 
-So this item is not "we collected emails but never sent them". It is "we collected nothing and
-said we did". Order of work:
+### 5b. Sending — not started
 
-1. Create the table with a migration, with a unique constraint on email.
-2. Make `subscribeUser` propagate failures so the form can show a real error. A silent
-   `return null` on a write path is the actual bug here, and it will hide the next one too.
-3. Only then build the send: Resend or Loops, a Vercel cron, a branded template, one-click
-   unsubscribe, delivery logging.
+**Provider decision: Resend, on the Broadcasts path.** Full comparison against Loops and AWS
+SES in `notes/email-provider-research.md`. Short version: Loops is disqualified because its
+transactional surface forbids marketing content and its campaign surface is not cleanly
+API-drivable; SES saves only about $1,500 a year even at 36,000 subscribers, against three to
+five days of build and permanent ownership of deliverability.
 
-Note we do already hold roughly 36,000 emails in Supabase auth from people who signed up for
-Gita GPT. Those are not newsletter subscribers and must not be treated as opted in, but they
-are the reason item 6 below matters.
+Note React Email is **not** a reason to pick Resend. It renders to plain HTML and works with
+SES too. What Resend buys is the compliance layer: RFC 8058 one-click unsubscribe, suppression,
+bounce and complaint webhooks, and a dashboard showing whether the send went out.
+
+To build:
+
+- A **welcome email on subscribe**, confirming they are on the list and setting expectations
+  for what arrives and when. This should go out the moment someone submits the form or ticks
+  the opt-in at signup, not with the first daily send.
+- The daily send itself: Vercel cron, Resend Broadcast, branded template
+- One-click unsubscribe honoured within 48 hours, writing to `unsubscribed_at`
+- Seven-language templates with per-script font stacks, tested in real Gmail, Apple Mail and
+  Outlook before launch
+- Everything behind a single `sendDailyVerse()` module so SES stays a swap rather than a rewrite
+
+Blocked on item 6b: there is not yet a list large enough to justify the work.
 
 ---
 
 ## 6. Signup attribution and funnel instrumentation
 
-**Status:** in progress — same PR as item 5
-**Branch:** `fix/newsletter-and-attribution`
+**Status:** 6a shipped in PR #301 and needs live verification. 6b not started.
 
-We have about 36,000 users in Supabase auth and no way to tell where any of them came from.
-The Gita GPT limit banner is a sign-in prompt, so a large share of them probably hit the
-anonymous wall and signed up there, but that is an assumption we cannot currently check.
+### 6a. Attribution — shipped, unverified
 
-Capture, at minimum:
+`signup_attribution` records the source, the path, and whether the Gita GPT limit banner was on
+screen at signup. All six `AuthModal` call sites pass a source; the chat surfaces distinguish
+`gitagpt_rate_limit` from plain `gitagpt`. There is no update policy on the table on purpose,
+since attribution should not be rewritable after the fact.
 
-- signup source: Gita GPT limit wall, Gita GPT page, newsletter form, direct, or another page
-- the page path the signup happened on
-- whether the user had hit the rate limit immediately before signing up
-- newsletter opt-in as an explicit separate flag, not inferred from having an account
+Still to check on production: sign up fresh from the limit banner and confirm the row records
+`signup_source = 'gitagpt_rate_limit'` with `hit_rate_limit_before_signup = true`. This is the
+number that will eventually say whether raising the anonymous allowance from 2 to 5 was right.
 
-Without this we cannot say whether the anonymous allowance is converting, which is the open
-question behind item 4's limit change (2/day to 5/day). The limits live in
-`src/lib/rate-limit-config.ts` and are trivial to tune once there is data to tune against.
+### 6b. In-app opt-in for existing users — not started
 
-Also worth verifying end to end while in here: that Gita GPT conversations persist correctly,
-that the newsletter path works once item 5 lands, and that each has enough context recorded to
-tell what is working.
+We hold roughly 36,000 authenticated users. **They must not be bulk-imported into the mailing
+list.** They authenticated with Google or Apple to use Gita GPT and were never asked about
+email, so under the DPDP Act there is no consent for this purpose. More practically, sending to
+36,000 cold addresses from a domain with no sending history would produce high bounces and a
+complaint rate well past Gmail's 0.3% threshold, throttling the domain and stopping delivery
+for the people who genuinely did opt in.
+
+Instead, ask them inside the product: a dismissible one-time prompt for signed-in users, on top
+of the signup checkbox already shipped. Zero deliverability risk, and everyone who says yes is
+genuinely engaged.
+
+Realistic conversion is 10 to 30 per cent over time, so 4,000 to 11,000 subscribers rather than
+36,000. **This is the unblocker for item 5b** — it is what turns existing users into a list
+worth building a send for.
 
 ---
 
