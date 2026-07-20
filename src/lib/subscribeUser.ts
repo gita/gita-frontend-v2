@@ -1,8 +1,8 @@
 import { supabase } from "@/utils/supabase";
 
 export type SubscribeResult =
-  | { ok: true; id: string | null; alreadySubscribed: boolean }
-  | { ok: false; reason: "duplicate" | "invalid" | "failed"; message: string };
+  | { ok: true; alreadySubscribed: boolean }
+  | { ok: false; reason: "invalid" | "failed"; message: string };
 
 /**
  * Adds someone to the daily verse list.
@@ -33,23 +33,23 @@ export const subscribeUser = async (
     };
   }
 
-  const { data, error } = await supabase
-    .from("newsletter_subscriptions")
-    .insert({
-      user_name: trimmedName,
-      user_email: trimmedEmail,
-      source: options.source ?? "homepage_form",
-      locale: options.locale ?? "en",
-      user_id: options.userId ?? null,
-    })
-    .select("id")
-    .single();
+  // Deliberately no .select() chained on. Anonymous callers can insert but
+  // cannot read this table, and PostgREST needs SELECT permission to return the
+  // inserted row, so asking for it back fails the whole write with 42501. The
+  // id was never used by the caller anyway.
+  const { error } = await supabase.from("newsletter_subscriptions").insert({
+    user_name: trimmedName,
+    user_email: trimmedEmail,
+    source: options.source ?? "homepage_form",
+    locale: options.locale ?? "en",
+    user_id: options.userId ?? null,
+  });
 
   if (error) {
     // 23505 is a unique violation, meaning this address is already on the list.
     // That is not a failure from the reader's point of view.
     if (error.code === "23505") {
-      return { ok: true, id: null, alreadySubscribed: true };
+      return { ok: true, alreadySubscribed: true };
     }
 
     console.error("[newsletter] subscribe failed:", error.code, error.message);
@@ -60,5 +60,5 @@ export const subscribeUser = async (
     };
   }
 
-  return { ok: true, id: data?.id ?? null, alreadySubscribed: false };
+  return { ok: true, alreadySubscribed: false };
 };
