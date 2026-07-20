@@ -41,6 +41,31 @@ readers are. Do not print a rating without saying which storefront it came from.
 | Gita Press                         | `com.gita_press`                  | Gita Press               | 4.45            | 232        | Independent                                                                             |
 | Srimad Gita                        | `com.gitachat.app.gita_chat`      | Decentralized Inc        | 4.28            | 44         | Independent. Our citation competitor                                                    |
 
+### Added after a full Play sweep
+
+A search across seven query variants surfaced 117 distinct packages. These are the ones with
+enough scale or a distinct role to belong in the comparison. All figures from Play's JSON-LD,
+India storefront, 2026-07-20.
+
+| App | Package | Author | Rating | Ratings | Installs |
+| --- | ------- | ------ | ------ | ------- | -------- |
+| Bhakti: Gita & Mantras | `com.vlv.aravali.bhakti` | Kuku Technologies | 4.07 | 30,460 | **5M+** |
+| Gita Seva: Hindu Books & Aarti | `ct.android.gitasevakotlin` | Gita Seva Trust | 4.87 | 15,751 | 1M+ |
+| Bhagavad Gita in Bangla | `in.banaka.mohit.bhagwadgita.bangla` | Banaka | 4.72 | 11,157 | 100K+ |
+| Bhagavad Gita Telugu | `telugu.bhagavadgita` | Learning Game Apps | 4.67 | 9,190 | 100K+ |
+| Bhagavad Gita in Oriya / Odia | `in.banaka.mohit.bhagwadgita.oriya` | Banaka | 4.69 | 7,154 | 100K+ |
+| Learn Geeta | `com.loginwithgoogle` | Learn Geeta, Geeta Pariwar | 4.75 | 1,555 | 100K+ |
+| Ask Krishna AI | `com.hnix.bhagavad_gita_ai` | HNIX Innovations | 4.78 | 645 | 10K+ |
+| Yatharth Geeta | `com.yatharthgeeta.user` | Swami Adgadanand | 4.83 | 542 | 10K+ |
+
+Two traps found while resolving these, both worth remembering:
+
+- **`com.learngeeta.play` is not Learn Geeta.** It is "Geeta Olympiad 2025", 5.0 from 8 ratings,
+  same publisher. The real app is `com.loginwithgoogle`, an odd id but the correct one. Always
+  confirm the returned `name` matches the app you meant.
+- **Banaka runs one app per language** — Hindi 58,560, Bangla 11,157, Oriya 7,154. Their volume is
+  a publishing strategy across several listings, not one dominant app.
+
 **iOS only, no Android listing:** BBT's official _Bhagavad-gita As It Is_, `id1080562426`, **$4.99
 one-time**, 4.9 from 556 ratings.
 
@@ -119,6 +144,27 @@ vague "we are affiliated" reads as evasive, and an overstated one is simply wron
 The credibility of this page rests on it. Srimad Gita ranks itself first in every row of its own
 table; the moment we do something equivalent without disclosure, we have written the same page
 with better typography.
+
+### The rating claim worth making
+
+Ranked by rating among apps with **1,000 or more ratings**, India storefront:
+
+| Rating | Ratings | App |
+| ------ | ------- | --- |
+| **4.93** | 1,681 | **Ours** |
+| 4.87 | 15,751 | Gita Seva |
+| 4.85 | 4,537 | Krishna Bhakti (ours) |
+| 4.81 | 1,590 | Bhagavad Gita App in Hindi |
+| 4.75 | 1,555 | Learn Geeta |
+| 4.72 | 11,157 | Bhagavad Gita in Bangla |
+| 4.66 | 58,560 | Banaka Hindi |
+
+We are the highest-rated Bhagavad Gita app on Play among those with a meaningful rating base.
+That is verifiable and it survives being checked, which is the whole standard here.
+
+Publish it with its bounds intact: **"the highest-rated Bhagavad Gita app on Google Play India
+among apps with more than 1,000 ratings"**. Dropping the storefront or the threshold turns a
+defensible fact into something a competitor can knock down, since the US storefront returns 4.78.
 
 **Categories others win, and should:**
 
