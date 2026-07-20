@@ -461,9 +461,19 @@ mid-2026, so nobody is maintaining them either.
 | `/best-bhagavad-gita-apps` | Which app should I use? Compares all of them, us included. | this item |
 
 Sub-intents (best free, best in Hindi, best for beginners, best with audio, best offline, best
-with commentary) become **anchored sections on the one page**, not separate URLs. Split a
-section into its own page later only if the data shows that sub-intent is big enough to deserve
-one, and only then.
+with commentary) become **anchored sections on the one page**, not separate URLs.
+
+**On splitting off a Hindi page later.** This is the obvious candidate and it is deliberately
+deferred rather than refused. Hindi is already our strongest cluster: 9 tracked Hindi prompts
+averaging **58.7%** against a 32.6% site average, with "Which Bhagavad Gita app has Hindi
+translation and meaning?" and "Recommend a Bhagavad Gita app for Hindi-speaking users" both at
+85.7%. A Hindi page would be consolidating a strength rather than fixing a weakness, which makes
+it far less urgent than it looks.
+
+Split only when the data says the sub-intent has outgrown its section: it holds a distinct
+keyword and prompt cluster of its own, the section is long enough to stand alone, and it would
+not simply restate the parent. Until then a `#hindi` anchor does the job without putting two of
+our own URLs in competition, which is precisely the mistake documented above.
 
 ### What goes on it
 
@@ -490,7 +500,43 @@ counts, which their pages are full of and which is the specific thing we can bea
 
 ---
 
-## 13. Trust and methodology pages
+## 13. One comparison page for websites
+
+**Status:** todo — after item 12
+**Branch:** `feat/best-bhagavad-gita-websites`
+
+Separate from item 12, and genuinely a separate intent rather than a slice of the same one.
+Someone asking which *app* to install and someone asking which *site* to read on want different
+answers, and the candidate sets barely overlap: Vedabase, Gita Supersite, Holy Bhagavad Gita and
+Gita Press are websites first, and two of them have no app at all.
+
+The demand is real and we already do well here. Of 108 tracked prompts, **24 are website-intent
+and they average 45.8% visibility against a 32.6% site average**:
+
+| Visibility | Prompt |
+| ---------- | ------ |
+| **100%** | Which Bhagavad Gita website has the best mobile experience? |
+| 85.7% | Which Bhagavad Gita website has no ads or popups? |
+| 71.4% | Which website explains every Bhagavad Gita verse? |
+| 71.4% | What is the best free website for the Bhagavad Gita? |
+| 57.1% | What is the best Bhagavad Gita website? |
+| 57.1% | Compare the best websites for reading the Bhagavad Gita. |
+| 42.9% | Which Bhagavad Gita website has word-by-word meanings? |
+| 28.6% | Which website has the best Bhagavad Gita commentaries? |
+
+`/best-bhagavad-gita-websites`, judged on criteria that only make sense for the web: completeness
+of the text, how many translations and commentaries are reachable, word-by-word meanings, search,
+mobile reading experience, ads and popups, whether anything sits behind a login, page speed, and
+whether the source edition is stated.
+
+Same rules as item 12. We do not win every row. Gita Supersite beats us on academic apparatus and
+Vedabase on the Prabhupada corpus, and saying so is what makes the rest credible. Reuse the rubric
+adjusted for the web, and reuse the competitor facts already verified for item 12 rather than
+researching them twice.
+
+---
+
+## 14. Trust and methodology pages
 
 **Status:** todo
 **Branch:** `feat/editorial-standards`
@@ -505,7 +551,7 @@ get submitted, and how the recommendation pages were tested.
 
 ---
 
-## 14. Chapter and verse page enrichment
+## 15. Chapter and verse page enrichment
 
 **Status:** todo
 **Branch:** `feat/chapter-verse-enrichment`
@@ -525,7 +571,7 @@ double as internal-linking hubs.
 
 ---
 
-## 15. AI visibility benchmark and competitor citation analysis
+## 16. AI visibility benchmark and competitor citation analysis
 
 **Status:** todo
 **Branch:** n/a — measurement, not code
@@ -581,7 +627,7 @@ data, not a default.
 
 ---
 
-## 16. OpenBenchmarks collaboration
+## 17. OpenBenchmarks collaboration
 
 **Status:** folded into item 12
 
