@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { headers } from "next/headers";
 
+import { ANON_DAILY_LIMIT, AUTH_DAILY_LIMIT } from "@/lib/rate-limit-config";
 import {
   buildDeviceCookie,
   resolveRateLimitIdentity,
@@ -105,7 +106,7 @@ export async function GET() {
     console.log("[Status API] Rate limit check:", {
       isAuthenticated: identity.isAuthenticated,
       source: identity.source,
-      limit: identity.isAuthenticated ? 10 : 2,
+      limit: identity.isAuthenticated ? AUTH_DAILY_LIMIT : ANON_DAILY_LIMIT,
     });
     const status = await getRateLimitStatus(
       identity.identifier,
@@ -138,8 +139,8 @@ export async function GET() {
     // Return safe defaults on error
     return Response.json(
       {
-        remaining: 2,
-        limit: 2,
+        remaining: ANON_DAILY_LIMIT,
+        limit: ANON_DAILY_LIMIT,
         reset: new Date(Date.now() + 86400000).toISOString(),
         isLimited: false,
         isAuthenticated: false,

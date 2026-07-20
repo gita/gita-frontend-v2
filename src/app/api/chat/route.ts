@@ -13,6 +13,7 @@ import {
   isQueryRewritingEnabled,
 } from "@/lib/ai/query-rewriter";
 import { getRelevantContext } from "@/lib/ai/retrieval";
+import { ANON_DAILY_LIMIT, AUTH_DAILY_LIMIT } from "@/lib/rate-limit-config";
 import {
   buildDeviceCookie,
   resolveRateLimitIdentity,
@@ -98,7 +99,7 @@ export async function POST(req: Request) {
     console.log("[Chat API] Rate limit check:", {
       isAuthenticated: identity.isAuthenticated,
       source: identity.source,
-      limit: identity.isAuthenticated ? 10 : 2,
+      limit: identity.isAuthenticated ? AUTH_DAILY_LIMIT : ANON_DAILY_LIMIT,
     });
     const rateLimitResult = await checkRateLimit(
       identity.identifier,
@@ -108,8 +109,8 @@ export async function POST(req: Request) {
     // Enforce rate limits (skip in development)
     if (!isDevelopment && !rateLimitResult.success) {
       const errorMessage = identity.isAuthenticated
-        ? "You have reached your daily limit of 10 messages. Your limit will reset tomorrow."
-        : "You have reached the daily limit of 2 messages. Sign in to get 10 messages per day, or try again tomorrow.";
+        ? `You have reached your daily limit of ${AUTH_DAILY_LIMIT} messages. Your limit will reset tomorrow.`
+        : `You have reached the daily limit of ${ANON_DAILY_LIMIT} messages. Sign in to get ${AUTH_DAILY_LIMIT} messages per day, or try again tomorrow.`;
 
       // Return plain text error for AI SDK compatibility
       const limitedHeaders = new Headers({

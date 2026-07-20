@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { useAuth } from "@/lib/auth/AuthProvider";
+import { ANON_DAILY_LIMIT } from "@/lib/rate-limit-config";
 
 // Custom event name for rate limit refresh
 const RATE_LIMIT_REFRESH_EVENT = "ratelimit:refresh";
@@ -74,8 +75,8 @@ export function useRateLimitStatus() {
       setError(err instanceof Error ? err.message : "Unknown error");
       // Set default status on error - don't block users
       setStatus({
-        remaining: 2,
-        limit: 2,
+        remaining: ANON_DAILY_LIMIT,
+        limit: ANON_DAILY_LIMIT,
         reset: new Date(Date.now() + 86400000).toISOString(),
         isLimited: false,
         isAuthenticated: false,
@@ -114,8 +115,8 @@ export function useRateLimitStatus() {
     refresh,
     // Default to not limited to avoid blocking users on first load
     isLimited: status?.isLimited ?? false,
-    remaining: status?.remaining ?? 2,
-    limit: status?.limit ?? 2,
+    remaining: status?.remaining ?? ANON_DAILY_LIMIT,
+    limit: status?.limit ?? ANON_DAILY_LIMIT,
     resetTime: status?.reset ? new Date(status.reset) : null,
   };
 }

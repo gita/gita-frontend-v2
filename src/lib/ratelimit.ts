@@ -1,10 +1,15 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
+import { ANON_DAILY_LIMIT, AUTH_DAILY_LIMIT } from "./rate-limit-config";
+
 /**
  * Rate limiting for GitaGPT chat
- * - Anonymous users: 2 messages per day (by IP)
+ * - Anonymous users: 5 messages per day (per device)
  * - Authenticated users: 10 messages per day (by user ID)
+ *
+ * Anonymous identity comes from `resolveRateLimitIdentity`, which keys on a
+ * per-device cookie rather than the caller's IP. See rate-limit-identity.ts.
  */
 
 // Lazy initialization of rate limiters
@@ -27,14 +32,14 @@ function getRedis(): Redis {
 }
 
 /**
- * Rate limit for anonymous users (2 messages per day)
- * Identified by IP address
+ * Rate limit for anonymous users
+ * Identified by a per-device cookie, falling back to IP on the first request
  */
 export function getAnonRateLimit(): Ratelimit {
   if (!anonRateLimitInstance) {
     anonRateLimitInstance = new Ratelimit({
       redis: getRedis(),
-      limiter: Ratelimit.fixedWindow(2, "1 d"),
+      limiter: Ratelimit.fixedWindow(ANON_DAILY_LIMIT, "1 d"),
       prefix: "gitagpt:anon",
       analytics: true,
     });
@@ -43,14 +48,14 @@ export function getAnonRateLimit(): Ratelimit {
 }
 
 /**
- * Rate limit for authenticated users (10 messages per day)
+ * Rate limit for authenticated users
  * Identified by user ID
  */
 export function getAuthRateLimit(): Ratelimit {
   if (!authRateLimitInstance) {
     authRateLimitInstance = new Ratelimit({
       redis: getRedis(),
-      limiter: Ratelimit.fixedWindow(10, "1 d"),
+      limiter: Ratelimit.fixedWindow(AUTH_DAILY_LIMIT, "1 d"),
       prefix: "gitagpt:auth",
       analytics: true,
     });
@@ -80,7 +85,7 @@ export async function checkRateLimit(
     return {
       success: result.success,
       remaining: result.remaining,
-      limit: isAuthenticated ? 10 : 2,
+      limit: isAuthenticated ? AUTH_DAILY_LIMIT : ANON_DAILY_LIMIT,
       reset: new Date(result.reset),
     };
   } catch (error) {
@@ -88,8 +93,8 @@ export async function checkRateLimit(
     // If rate limiting fails, allow the request but log the error
     return {
       success: true,
-      remaining: isAuthenticated ? 10 : 2,
-      limit: isAuthenticated ? 10 : 2,
+      remaining: isAuthenticated ? AUTH_DAILY_LIMIT : ANON_DAILY_LIMIT,
+      limit: isAuthenticated ? AUTH_DAILY_LIMIT : ANON_DAILY_LIMIT,
       reset: new Date(Date.now() + 86400000), // 24 hours from now
     };
   }
@@ -126,7 +131,7 @@ export async function getRateLimitStatus(
   reset: Date;
   isLimited: boolean;
 }> {
-  const limit = isAuthenticated ? 10 : 2;
+  const limit = isAuthenticated ? AUTH_DAILY_LIMIT : ANON_DAILY_LIMIT;
 
   try {
     const ratelimit = isAuthenticated ? getAuthRateLimit() : getAnonRateLimit();
