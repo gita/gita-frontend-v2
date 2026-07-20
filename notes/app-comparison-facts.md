@@ -66,9 +66,18 @@ each other: "75,000+ users" on the iOS page against "1M+ downloads" on the Andro
 
 ## Our app — confirmed by the founder, 2026-07-20
 
-- **Text:** Swami Mukundananda's translation and commentary, in all seven languages. Earlier
-  versions carried other authors; the current app deliberately ships one, chosen for quality and
-  accessibility rather than breadth.
+- **Text:** Swami Mukundananda's translation and commentary, in all seven languages.
+
+  Earlier versions carried other authors. Shipping one is a deliberate editorial decision, not a
+  gap, and the page should say so in those terms: it is the most in-depth commentary available to
+  us, written plainly, and it explains verses through real and often modern examples that land
+  with a younger reader in a way the older commentaries do not. A reader who wants Shankaracharya,
+  Ramanuja, Sivananda or Chinmayananda has all of them on the website, which is a fair thing to
+  point out rather than hide.
+
+  This matters for how we handle the depth category. The honest framing is that BBT wins on
+  breadth of the Prabhupada corpus, and we do not compete for "most commentaries in an app". We
+  compete on one commentary chosen for how well it teaches.
 - **Languages:** English, Hindi, Telugu, Tamil, Gujarati, Odia, Spanish
 - **Gita GPT:** 10 messages a day, free, sign-in required. Latest GPT-5 model with a custom
   retrieval system grounding answers in the Gita text, with citations. Voice input uses the
@@ -80,14 +89,17 @@ each other: "75,000+ users" on the iOS page against "1M+ downloads" on the Andro
   October 2024, which is not representative and would be misleading either way.
 - **Reciter:** not named on the page, by decision.
 
-### Still to verify on device
+### Audio — resolved
 
-- **Audio scope.** The founder states Sanskrit, translation and commentary audio all ship. The
-  January 2025 Flutter source has **byte-identical audio URLs across `gita_en.json`,
-  `gita_hindi.json` and `gita_tamil.json`** — one Sanskrit set, not seven. The live build is from
-  December 2025 and may have shipped it since. **Open a Hindi verse, play the translation audio,
-  and confirm whether it is Hindi or Sanskrit.** Do not publish a multi-language audio claim
-  until this is settled.
+Sanskrit recitation, plus translation and commentary audio, all ship. Confirmed by the founder
+on 2026-07-20.
+
+An earlier draft flagged a contradiction from the Flutter source, where the English, Hindi and
+Tamil data files carried byte-identical audio URLs. That source tree is from January 2025 and
+the live build is from December 2025, so it predates the work. The founder's account of his own
+shipping product supersedes a stale checkout. Recorded here so nobody re-opens it.
+
+### Still to verify on device
 - Offline behaviour in aeroplane mode: text yes, audio unknown
 - Whether the Hindi build is as complete as the English one
 
@@ -98,6 +110,11 @@ each other: "75,000+ users" on the iOS page against "1M+ downloads" on the Andro
 Three apps in this comparison carry Swami Mukundananda's text, and we are connected to all three:
 we publish one, we build a second for JKYog, and the third is by JKYog India's own team. That has
 to be stated plainly and near the top, not in a footnote.
+
+Be precise about the entities rather than blurring them. **Ved Vyas Foundation is a separate
+registered organisation from JKYog.** The link is that we build the Krishna Bhakti app for them
+and that both use Swami Mukundananda's text, not that they are one body. Say exactly that; a
+vague "we are affiliated" reads as evasive, and an overstated one is simply wrong.
 
 The credibility of this page rests on it. Srimad Gita ranks itself first in every row of its own
 table; the moment we do something equivalent without disclosure, we have written the same page
