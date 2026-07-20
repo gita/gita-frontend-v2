@@ -11,6 +11,7 @@ import {
   LegalContentPage,
   LegalContentSection,
 } from "@/components/blocks/page-sections";
+import { ogImageUrl } from "@/lib/og/brand";
 
 // Force static generation for better SEO
 export const dynamic = "force-static";
@@ -39,6 +40,7 @@ export async function generateMetadata({
       ? "भगवद गीता कॉपीराइट, सामग्री अट्रिब्यूशन, उचित उपयोग, सार्वजनिक डोमेन, भगवद गीता लाइसेंस"
       : "bhagavad gita copyright, content attribution, fair use, public domain, bhagavad gita license",
     openGraph: {
+      images: [ogImageUrl({ heading: "Copyright" })],
       title: isHindi
         ? "कॉपीराइट और अट्रिब्यूशन - BhagavadGita.com"
         : "Copyright & Attribution - BhagavadGita.com",
@@ -49,17 +51,9 @@ export async function generateMetadata({
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
-      images: [
-        {
-          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          height: 1080,
-          width: 1920,
-        },
-      ],
     },
     twitter: {
+      images: [ogImageUrl({ heading: "Copyright" })],
       card: "summary_large_image",
       title: isHindi
         ? "कॉपीराइट और अट्रिब्यूशन - BhagavadGita.com"
@@ -67,9 +61,6 @@ export async function generateMetadata({
       description: isHindi
         ? "कॉपीराइट नीतियों के बारे में जानें।"
         : "Learn about copyright policies, content usage guidelines, attribution requirements, and how to use Bhagavad Gita content responsibly.",
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {

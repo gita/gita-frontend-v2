@@ -18,6 +18,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
+import { ogImageUrl } from "@/lib/og/brand";
 
 // Force static generation for better SEO
 export const dynamic = "force-static";
@@ -49,6 +50,7 @@ export async function generateMetadata({
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
+      images: [ogImageUrl({ heading: "Acknowledgements", eyebrow: "Sources" })],
       title: isHindi
         ? "स्वीकृतियां - प्रदर्शित भगवद गीता अनुवाद"
         : "Acknowledgements - Featured Bhagavad Gita Translations",
@@ -59,19 +61,11 @@ export async function generateMetadata({
         ? `${baseUrl}/acknowledgements/hi`
         : `${baseUrl}/acknowledgements`,
       siteName: "Bhagavad Gita",
-      images: [
-        {
-          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          height: 1080,
-          width: 1920,
-        },
-      ],
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
     },
     twitter: {
+      images: [ogImageUrl({ heading: "Acknowledgements", eyebrow: "Sources" })],
       card: "summary_large_image",
       title: isHindi
         ? "स्वीकृतियां - प्रदर्शित भगवद गीता अनुवाद"
@@ -79,9 +73,6 @@ export async function generateMetadata({
       description: isHindi
         ? "हम उन सम्मानित संगठनों के प्रति अपनी कृतज्ञता व्यक्त करते हैं।"
         : "We extend our heartfelt gratitude to esteemed organizations and individuals for allowing us to feature their invaluable Bhagavad Gita translations and commentaries.",
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {

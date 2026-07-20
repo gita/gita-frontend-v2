@@ -10,6 +10,8 @@ import { getTranslations } from "shared/translate/server";
 import ChapterPage from "./ChapterPage";
 import { getJsonLd } from "./functions";
 
+import { ogImageUrl } from "@/lib/og/brand";
+
 type Props = {
   params: Promise<{
     chapterNumber: string;
@@ -70,6 +72,12 @@ export async function generateMetadata({
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
+      images: [ogImageUrl({
+        eyebrow: `Chapter ${chapterNumber}`,
+        heading: `Bhagavad Gita, Chapter ${chapterNumber}`,
+        subheading:
+          "Sanskrit, transliteration, word meanings, translation and commentary for every verse.",
+      })],
       url: isHindi ? `${chapterUrl}/hi` : chapterUrl,
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
@@ -79,23 +87,17 @@ export async function generateMetadata({
       section: "Bhagavad Gita",
       title,
       description: chapterDescription,
-      images: [
-        {
-          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          height: 1080,
-          width: 1920,
-        },
-      ],
     },
     twitter: {
+      images: [ogImageUrl({
+        eyebrow: `Chapter ${chapterNumber}`,
+        heading: `Bhagavad Gita, Chapter ${chapterNumber}`,
+        subheading:
+          "Sanskrit, transliteration, word meanings, translation and commentary for every verse.",
+      })],
       card: "summary_large_image",
       title,
       description: chapterDescription,
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {
