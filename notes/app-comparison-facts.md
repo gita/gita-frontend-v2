@@ -166,14 +166,47 @@ Publish it with its bounds intact: **"the highest-rated Bhagavad Gita app on Goo
 among apps with more than 1,000 ratings"**. Dropping the storefront or the threshold turns a
 defensible fact into something a competitor can knock down, since the US storefront returns 4.78.
 
-**Categories others win, and should:**
+### Category order
 
-| Category                    | Winner                    | Why                                                                                                                                                                 |
-| --------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Best for Hindi              | **Banaka**                | 58,560 ratings, 35x our review count in that market                                                                                                                 |
-| Best video teaching         | **Bhagavad Gita For All** | Genuinely strong video. Also the most heavily monetised app here: free chapter 1, then a trial, then paid, with book purchase unlocking content. Both facts stated. |
-| Best for Prabhupada readers | **BBT**                   | The only rights-holder-published edition. iOS only, $4.99.                                                                                                          |
-| Best offline                | **JKYog Song of God**     | Strongest explicit offline claim. Lightweight, English and Hindi only, no audio.                                                                                    |
+Ordered by what a reader most likely wants, not by whose app it is. Someone searching "best
+Bhagavad Gita app" is usually after a good free reader, so that leads. Two of ours sit at the top
+as a result, which is defensible **only while the disclosure sits above this table, not beneath
+it.** If the disclosure ever moves below the fold, this ordering stops being honest and must change.
+
+| #   | Category                        | Winner                                              | Basis |
+| --- | ------------------------------- | --------------------------------------------------- | ----- |
+| 1   | **Best dedicated Gita app**     | **Ours** _(disclosed)_                              | Built for one thing. 18 chapters, 700 verses, seven languages, Sanskrit plus translation and commentary audio, offline, Gita GPT, no ads and nothing paid. Highest rated on Play India among apps with 1,000+ ratings, at 4.93. |
+| 2   | **Best free, ad-free**          | **Ours** _(disclosed)_                              | No ads, no subscription, no in-app purchases, no sponsorship. Verified against the listing rather than asserted. |
+| 3   | **Best all-round devotional**   | **Krishna Bhakti** _(disclosed)_                    | 4.85 from **4,537 ratings**, 2.7x ours, 100K+ installs. Same Mukundananda text plus a virtual temple, Ask Swamiji trained on the Gita and Swamiji's other books, audiobooks, meditations, video lectures, stories, courses, challenges, bhajans and kirtans. Nothing else here attempts that breadth. |
+| 4   | **Best audio**                  | **Krishna Bhakti** _(disclosed)_                    | Verse audio alongside audiobooks, bhajans and kirtans. Widest audio library in the set. |
+| 5   | **Best AI**                     | **Ours** and **Krishna Bhakti** _(disclosed)_       | Gita GPT: 10 free messages a day, latest GPT-5 model, custom retrieval grounded in the Gita with citations, voice input. Ask Swamiji covers the wider corpus. |
+| 6   | **Best AI alternative**         | **Ask Krishna AI**                                  | 4.78 from 645 ratings. Named rather than ignored; claiming to be the only AI option would be false. |
+| 7   | **Most popular in Hindi**       | **Banaka**                                          | 58,560 ratings, 35x our review count. Popularity is verifiable. See the attribution note below for what is not. |
+| 8   | **Best for Bangla**             | **Banaka Bangla**                                   | 11,157 ratings |
+| 9   | **Best for Telugu**             | **Learning Game Apps, Bhagavad Gita Telugu**        | 9,190 ratings |
+| 10  | **Best for Odia**               | **Banaka Oriya**, with Krishna Bhakti as an option  | Banaka 7,154 ratings. Krishna Bhakti also ships Odia. |
+| 11  | **Largest scripture library**   | **Gita Seva**                                       | 15,751 ratings, 1M+ installs. Far broader than the Gita. See the sourcing note below. |
+| 12  | **Best for structured learning**| **Learn Geeta**, Geeta Pariwar                      | Course-based study with a community around it. Nothing else here offers that. Package is `com.loginwithgoogle`, not `com.learngeeta.play`. |
+| 13  | **Best video teaching**         | **Bhagavad Gita For All**                           | Genuinely strong video. Also the most heavily monetised app here: chapter 1 free, then a trial, then paid, with a book purchase unlocking content. Both stated. |
+| 14  | **Best for Prabhupada readers** | **BBT**                                             | The only rights-holder-published edition. iOS only, $4.99 one-time. |
+| 15  | **Best offline**                | **JKYog Song of God**                               | Strongest explicit offline claim in the set. Lightweight, English and Hindi only, no audio. |
+
+**We take 5 of 15 and are connected to 6.** Keep that count honest. If it creeps upward while the
+page is being written, something has gone wrong.
+
+### Ours and Krishna Bhakti — state the difference plainly
+
+They share a codebase, the same Mukundananda translation and commentary, and much of the same
+interface. A reader deserves to know which to pick rather than being sold both.
+
+- **Ours** is the dedicated Gita app. Only the Gita, seven languages, nothing else competing for
+  attention.
+- **Krishna Bhakti** is the wider devotional app. The same Gita text, plus everything above.
+
+Someone who wants only the Gita should be sent to ours. Someone who wants a whole practice should
+be sent to Krishna Bhakti. Saying that plainly costs us nothing, and it is exactly what a
+self-ranking competitor page structurally cannot do.
+
 
 ### Popularity is not quality, and only one of them is evidenced
 
