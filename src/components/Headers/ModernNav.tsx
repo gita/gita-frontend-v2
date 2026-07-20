@@ -103,7 +103,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                   {translate("Donate")}
                 </LinkWithLocale>
                 <LinkWithLocale
-                  href="/app"
+                  href="/bhagavad-gita-app"
                   className="text-lg font-medium transition-colors hover:text-primary"
                 >
                   {translate("App")}

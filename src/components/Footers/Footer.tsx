@@ -95,7 +95,7 @@ const Footer = (props: Props) => {
             <ul className="space-y-2 text-sm">
               <li>
                 <LinkWithLocale
-                  href="/app"
+                  href="/bhagavad-gita-app"
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
                   {translate("Mobile App")}

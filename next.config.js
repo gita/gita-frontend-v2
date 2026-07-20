@@ -81,24 +81,27 @@ module.exports = {
     // Enable optimized package imports (Next.js 14+)
     optimizePackageImports: ["@headlessui/react", "lodash", "react-player"],
   },
-  // Serve old static app from /app route
-  async rewrites() {
-    return {
-      beforeFiles: [
-        {
-          source: "/app",
-          destination: "/app/index.html",
-        },
-        {
-          source: "/app/:path*",
-          destination: "/app/:path*",
-        },
-      ],
-    };
-  },
-  // Redirect individual verses to their ranges
+  // Redirect individual verses to their ranges, and point the retired static
+  // /app landing page at its Next.js replacement.
   async redirects() {
-    return generateVerseRedirects();
+    return [
+      {
+        source: "/app",
+        destination: "/bhagavad-gita-app",
+        permanent: true,
+      },
+      {
+        source: "/hi/app",
+        destination: "/hi/bhagavad-gita-app",
+        permanent: true,
+      },
+      {
+        source: "/app/:path*",
+        destination: "/bhagavad-gita-app",
+        permanent: true,
+      },
+      ...generateVerseRedirects(),
+    ];
   },
 };
 

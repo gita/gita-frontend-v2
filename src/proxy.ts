@@ -8,11 +8,7 @@ export default function middleware(req: NextRequest) {
   console.log("[Middleware] Processing request for path:", pathname);
 
   // Skip middleware for static files and API routes
-  if (
-    pathname.startsWith("/app") ||
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api")
-  ) {
+  if (pathname.startsWith("/_next") || pathname.startsWith("/api")) {
     console.log("[Middleware] Skipping middleware for static/api path");
     return NextResponse.next();
   }
