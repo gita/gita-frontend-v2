@@ -50,3 +50,4 @@ X_API_KEY:"gita-api-key!"
 .sentryclirc
 .env*
 .gstack/
+supabase/.temp/

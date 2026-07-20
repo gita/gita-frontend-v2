@@ -20,7 +20,7 @@ export async function GET(
 
     const token = authHeader.substring(7);
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
     if (!supabaseUrl || !supabaseAnonKey) {
       return NextResponse.json(
@@ -96,7 +96,7 @@ export async function PATCH(
 
     const token = authHeader.substring(7);
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
     if (!supabaseUrl || !supabaseAnonKey) {
       return NextResponse.json(
@@ -173,7 +173,7 @@ export async function DELETE(
 
     const token = authHeader.substring(7);
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
     if (!supabaseUrl || !supabaseAnonKey) {
       return NextResponse.json(

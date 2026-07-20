@@ -83,20 +83,19 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
   ): Promise<SubscribeMessage> {
     e.preventDefault();
     if (name && email) {
-      try {
-        await subscribeUser(name, email);
+      // subscribeUser returns a result rather than throwing, so the outcome has
+      // to be inspected. Previously this block showed the success modal no
+      // matter what happened, which is how a broken write went unnoticed.
+      const result = await subscribeUser(name, email, {
+        source: "homepage_form",
+      });
 
-        setModalVisible(true);
-        return {
-          isSuccess: true,
-          message: "",
-        };
-      } catch {
-        return {
-          isSuccess: false,
-          message: "ERROR: Email already exists",
-        };
+      if (!result.ok) {
+        return { isSuccess: false, message: result.message };
       }
+
+      setModalVisible(true);
+      return { isSuccess: true, message: "" };
     } else
       return {
         isSuccess: false,

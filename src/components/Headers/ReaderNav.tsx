@@ -347,6 +347,7 @@ export function ReaderNav({
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         translate={translate}
+        source="nav"
       />
     </header>
   );

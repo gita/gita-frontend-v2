@@ -14,10 +14,7 @@ import { AuthModal } from "@/components/AuthModal";
 import { useChatPersistence } from "@/hooks/useChatPersistence";
 import { useRateLimitStatus } from "@/hooks/useRateLimitStatus";
 import { useAuth } from "@/lib/auth/AuthProvider";
-import {
-  ANON_DAILY_LIMIT,
-  AUTH_DAILY_LIMIT,
-} from "@/lib/rate-limit-config";
+import { ANON_DAILY_LIMIT, AUTH_DAILY_LIMIT } from "@/lib/rate-limit-config";
 
 interface ChatProps {
   chatId?: string;
@@ -752,6 +749,8 @@ export function Chat({ chatId }: ChatProps) {
           isOpen={authModalOpen}
           onClose={() => setAuthModalOpen(false)}
           translate={(key) => key || ""}
+          source={isProactivelyLimited ? "gitagpt_rate_limit" : "gitagpt"}
+          hitRateLimit={isProactivelyLimited}
         />
       </>
     );
@@ -865,6 +864,8 @@ export function Chat({ chatId }: ChatProps) {
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         translate={(key) => key || ""}
+        source={isProactivelyLimited ? "gitagpt_rate_limit" : "gitagpt"}
+        hitRateLimit={isProactivelyLimited}
       />
     </>
   );

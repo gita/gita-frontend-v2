@@ -61,6 +61,7 @@ export function SidebarFooter() {
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         translate={(key) => key || ""}
+        source="gitagpt"
       />
     </>
   );
