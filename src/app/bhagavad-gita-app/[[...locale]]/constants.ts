@@ -34,7 +34,7 @@ export function getFaqs(isHindi: boolean): Faq[] {
       {
         question: "क्या भगवद गीता ऐप पूरी तरह निःशुल्क है?",
         answer:
-          "हाँ। ऐप डाउनलोड करना और उसकी हर सुविधा उपयोग करना निःशुल्क है। कोई विज्ञापन नहीं, कोई सदस्यता नहीं, कोई भुगतान वाला संस्करण नहीं। इसे वेद व्यास फाउंडेशन चलाता है, जो एक गैर-लाभकारी संस्था है, और इसका खर्च दान से चलता है।",
+          "हाँ। ऐप डाउनलोड करना और उसकी हर सुविधा उपयोग करना निःशुल्क है। कोई विज्ञापन नहीं, कोई सदस्यता नहीं, कोई भुगतान वाला संस्करण नहीं। इसे वेद व्यास फाउंडेशन चलाता और उसका खर्च उठाता है, जो एक गैर-लाभकारी संस्था है।",
       },
       {
         question: "सबसे अच्छा भगवद गीता ऐप कौन सा है?",
@@ -82,7 +82,7 @@ export function getFaqs(isHindi: boolean): Faq[] {
     {
       question: "Is the Bhagavad Gita app completely free?",
       answer:
-        "Yes. The app is free to download and every feature inside it is free to use. There are no ads, no subscription, and no paid tier. It is run by Ved Vyas Foundation, a non-profit, and paid for by donations.",
+        "Yes. The app is free to download and every feature inside it is free to use. There are no ads, no subscription, and no paid tier. It is run and funded by Ved Vyas Foundation, a non-profit.",
     },
     {
       question: "What is the best Bhagavad Gita app?",

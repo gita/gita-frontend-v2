@@ -192,7 +192,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
       icon: <Sun className="size-6" />,
       title: translate("Built for daily reading"),
       description: translate(
-        "A verse each morning, a home screen widget, dark mode, and text you can size the way you like.",
+        "A verse of the day on your home screen or as a notification, plus dark mode and text you can size the way you like.",
       ),
     },
   ];
@@ -258,13 +258,13 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
   ];
 
   const stats = [
-    { value: STORE_STATS.downloads, label: translate("Downloads") },
+    { value: STORE_STATS.downloads, label: translate("downloads") },
     {
-      value: `${STORE_STATS.ratingValue}★`,
-      label: translate("Play Store rating"),
+      value: STORE_STATS.ratingValue,
+      label: translate("rating on Google Play"),
     },
-    { value: "700", label: translate("Verses") },
-    { value: "7", label: translate("Languages") },
+    { value: "700", label: translate("verses") },
+    { value: "7", label: translate("languages") },
   ];
 
   const gptQuestions = [
@@ -308,34 +308,27 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
           <div className="container mx-auto max-w-7xl px-4">
             <div className="grid items-center gap-12 lg:grid-cols-[1.25fr_1fr]">
               <div className="text-left">
-                <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-prakash-primary/10 px-4 py-1.5 dark:bg-nisha-primary/10">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-prakash-primary/10 px-4 py-1.5 dark:bg-nisha-primary/10">
                   <Sparkle className="size-4 text-prakash-primary dark:text-nisha-primary" />
                   <span className="text-sm font-semibold uppercase tracking-wide text-prakash-primary dark:text-nisha-primary">
                     {translate("Free forever. No ads. Non-profit.")}
                   </span>
                 </div>
 
-                <h1 className="font-newsreader mb-5 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+                {/* Emphasis comes from colour on the second clause rather than
+                    from adding another type size. */}
+                <h1 className="font-newsreader mb-6 max-w-3xl text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
                   {translate("Bhagavad Gita App")}
+                  <span className="block text-prakash-primary dark:text-nisha-primary">
+                    {translate("Free, forever.")}
+                  </span>
                 </h1>
 
-                <p className="font-newsreader mb-5 text-xl font-medium leading-snug text-foreground/90 sm:text-2xl lg:text-[1.75rem]">
-                  {translate(
-                    "Read all 700 verses, hear every Sanskrit recitation, and ask the Gita your questions.",
-                  )}
-                </p>
-
-                {/* Opening answer block. One self-contained paragraph so search
+                {/* The single supporting paragraph. Self-contained so search
                     engines and AI assistants can lift it whole. */}
-                <p className="font-merriweather mb-4 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                <p className="font-merriweather mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
                   {translate(
-                    "The Bhagavad Gita app from BhagavadGita.com is free on Android and iPhone, with no ads and nothing to pay for. It carries all 18 chapters and 700 verses in seven languages, with Sanskrit recitation, Swami Mukundananda's translation and commentary, offline reading, and Gita GPT.",
-                  )}
-                </p>
-
-                <p className="font-merriweather mb-7 text-base text-muted-foreground">
-                  {translate(
-                    "Ved Vyas Foundation keeps it free through donations.",
+                    "Read all 700 verses, hear the Sanskrit recitation of any one of them, and ask Gita GPT the questions they raise. Free on Android and iPhone in seven languages, with Swami Mukundananda's translation and commentary, offline reading, and no ads.",
                   )}
                 </p>
 
@@ -345,47 +338,50 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
                   />
                 </div>
 
-                <dl className="mt-10 grid grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-4">
-                  {stats.map((stat) => (
-                    <div key={stat.label}>
-                      <dt className="sr-only">{stat.label}</dt>
-                      <dd>
-                        <span className="font-newsreader block text-3xl font-bold leading-none text-prakash-primary dark:text-nisha-primary md:text-4xl">
-                          {stat.value}
-                        </span>
-                        <span className="font-merriweather mt-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                          {stat.label}
-                        </span>
-                      </dd>
+                {/* Social proof reads at body size so it does not compete with
+                    the headline for attention. */}
+                <dl className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+                  {stats.map((stat, index) => (
+                    <div key={stat.label} className="flex items-center gap-6">
+                      {index > 0 && (
+                        <span
+                          aria-hidden
+                          className="size-1.5 rounded-full bg-prakash-primary/40 dark:bg-nisha-primary/40"
+                        />
+                      )}
+                      <div>
+                        <dt className="sr-only">{stat.label}</dt>
+                        <dd className="font-merriweather text-base">
+                          <span className="font-bold text-foreground">
+                            {stat.value}
+                          </span>{" "}
+                          <span className="text-muted-foreground">
+                            {stat.label}
+                          </span>
+                        </dd>
+                      </div>
                     </div>
                   ))}
                 </dl>
               </div>
 
-              {/* Device, sitting inside a soft bloom and concentric rings. */}
-              <div className="relative mx-auto flex w-full max-w-[280px] items-center justify-center lg:max-w-[320px]">
+              {/* Hero artwork. The store creative is already a finished piece,
+                  so it sits on a soft bloom with no frame around it. */}
+              <div className="relative mx-auto flex w-full max-w-[300px] items-center justify-center lg:max-w-[360px]">
                 <div
                   aria-hidden
-                  className="absolute size-[130%] rounded-full bg-prakash-primary/25 blur-3xl dark:bg-nisha-primary/20"
-                />
-                <div
-                  aria-hidden
-                  className="absolute size-[112%] rounded-full border border-prakash-primary/20 dark:border-nisha-primary/20"
-                />
-                <div
-                  aria-hidden
-                  className="absolute size-[95%] rounded-full border border-prakash-primary/10 dark:border-nisha-primary/10"
+                  className="absolute size-[120%] rounded-full bg-prakash-primary/20 blur-3xl dark:bg-nisha-primary/20"
                 />
                 <Image
-                  src="/images/app/hero-device.webp"
+                  src="/images/app/verse-of-the-day.webp"
                   alt={translate(
-                    "The Bhagavad Gita app playing the Sanskrit recitation of chapter 1, verse 1",
+                    "The Bhagavad Gita app home screen showing the verse of the day",
                   )}
-                  width={700}
-                  height={1232}
+                  width={810}
+                  height={1440}
                   priority
-                  sizes="(max-width: 1024px) 280px, 320px"
-                  className="relative h-auto w-full rounded-[2rem] shadow-2xl ring-1 ring-black/5 dark:ring-white/10"
+                  sizes="(max-width: 1024px) 300px, 360px"
+                  className="relative h-auto w-full rounded-3xl"
                 />
               </div>
             </div>
@@ -393,7 +389,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
         </section>
 
         {/* Pull quote */}
-        <section className="border-y bg-adhyayan-bg py-10 dark:bg-nisha-bg/50 md:py-12">
+        <section className="bg-adhyayan-bg py-14 dark:bg-nisha-bg/50 md:py-16">
           <div className="container mx-auto max-w-4xl px-4 text-center">
             <p className="font-newsreader text-2xl font-bold leading-tight text-prakash-primary dark:text-nisha-primary md:text-4xl">
               {translate("Every verse. Every chapter. Free.")}
@@ -402,7 +398,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
         </section>
 
         {/* Why it is free */}
-        <section className="relative py-12 md:py-20">
+        <section className="relative py-20 md:py-28">
           <div className="pointer-events-none absolute bottom-10 left-10 opacity-20">
             <VedicPattern variant="lotus" size={220} opacity={0.5} />
           </div>
@@ -413,12 +409,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
               align="center"
               className="mb-8"
             />
-            <div className="font-merriweather space-y-5 text-center text-lg leading-relaxed text-muted-foreground md:text-xl">
-              <p className="font-newsreader text-xl font-medium text-foreground md:text-2xl">
-                {translate(
-                  "Every reader gets the complete app without paying.",
-                )}
-              </p>
+            <div className="font-merriweather mx-auto max-w-2xl space-y-5 text-center text-lg leading-relaxed text-muted-foreground">
               <p>
                 {translate(
                   "Most scripture apps ask for something eventually. An ad between verses, a subscription prompt around chapter three, the commentary that turns out to be the paid one.",
@@ -426,12 +417,12 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
               </p>
               <p>
                 {translate(
-                  "Ved Vyas Foundation runs this as a non-profit, paid for by donations. There is nothing to upgrade to.",
+                  "Ved Vyas Foundation runs this as a non-profit and funds it directly. There is nothing to upgrade to and nothing being sold.",
                 )}
               </p>
             </div>
 
-            <ul className="mx-auto mt-10 grid max-w-xl gap-3 sm:grid-cols-3">
+            <ul className="mx-auto mt-12 grid max-w-3xl gap-4 sm:grid-cols-3">
               {[
                 translate("No ads"),
                 translate("No subscription"),
@@ -439,7 +430,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
               ].map((item) => (
                 <li
                   key={item}
-                  className="font-merriweather rounded-lg border-2 bg-card px-4 py-4 text-center text-sm font-semibold"
+                  className="font-merriweather rounded-2xl border bg-card px-6 py-6 text-center text-lg font-semibold"
                 >
                   {item}
                 </li>
@@ -449,7 +440,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
         </section>
 
         {/* Features */}
-        <section className="relative bg-adhyayan-bg py-12 dark:bg-nisha-bg/50 md:py-20">
+        <section className="relative bg-adhyayan-bg py-20 dark:bg-nisha-bg/50 md:py-28">
           <div className="pointer-events-none absolute right-10 top-10 opacity-20">
             <VedicPattern variant="mandala" size={280} opacity={0.5} />
           </div>
@@ -462,10 +453,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
             />
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {features.map((feature) => (
-                <Card
-                  key={feature.title}
-                  className="h-full border-2 transition-shadow hover:shadow-xl"
-                >
+                <Card key={feature.title} className="h-full">
                   <CardContent className="p-7">
                     <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-prakash-primary/10 text-prakash-primary dark:bg-nisha-primary/10 dark:text-nisha-primary">
                       {feature.icon}
@@ -484,7 +472,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
         </section>
 
         {/* Gita GPT */}
-        <section className="relative py-12 md:py-20">
+        <section className="relative py-20 md:py-28">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="grid items-center gap-12 md:grid-cols-2">
               <div className="order-2 md:order-1">
@@ -494,12 +482,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
                   align="left"
                   className="mb-6"
                 />
-                <div className="font-merriweather space-y-5 text-lg leading-relaxed text-muted-foreground">
-                  <p className="font-newsreader text-xl font-medium text-foreground md:text-2xl">
-                    {translate(
-                      "Type the question that is actually on your mind.",
-                    )}
-                  </p>
+                <div className="font-merriweather max-w-xl space-y-5 text-lg leading-relaxed text-muted-foreground">
                   <p>
                     {translate(
                       "Gita GPT answers from the Bhagavad Gita and shows you the verses behind the answer. We were among the first to build an AI trained on the Gita.",
@@ -516,7 +499,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
                   {gptQuestions.map((question) => (
                     <li
                       key={question}
-                      className="font-merriweather rounded-xl border-2 bg-card px-5 py-3.5 text-base text-foreground/90"
+                      className="font-merriweather rounded-xl border bg-card px-5 py-4 text-base text-foreground/90"
                     >
                       {question}
                     </li>
@@ -524,17 +507,17 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
                 </ul>
               </div>
 
-              <div className="order-1 mx-auto w-full max-w-[260px] md:order-2 md:max-w-[300px]">
+              <div className="order-1 mx-auto w-full max-w-[280px] md:order-2 md:max-w-[340px]">
                 <Image
-                  src="/images/app/gita-gpt-device.webp"
+                  src="/images/app/gita-gpt.webp"
                   alt={translate(
                     "Gita GPT explaining detachment with reference to the Bhagavad Gita",
                   )}
-                  width={700}
-                  height={1458}
+                  width={810}
+                  height={1440}
                   loading="lazy"
-                  sizes="(max-width: 768px) 260px, 300px"
-                  className="h-auto w-full rounded-[2rem] shadow-2xl ring-1 ring-black/5 dark:ring-white/10"
+                  sizes="(max-width: 768px) 280px, 340px"
+                  className="h-auto w-full rounded-3xl"
                 />
               </div>
             </div>
@@ -544,7 +527,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
         <FloralDivider />
 
         {/* Screenshots */}
-        <section className="relative py-12 md:py-16">
+        <section className="relative py-20 md:py-28">
           <div className="container mx-auto max-w-6xl px-4">
             <SectionHeader
               subtitle={translate("SCREENSHOTS")}
@@ -570,7 +553,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
         </section>
 
         {/* Quick facts */}
-        <section className="relative bg-adhyayan-bg py-12 dark:bg-nisha-bg/50 md:py-20">
+        <section className="relative bg-adhyayan-bg py-20 dark:bg-nisha-bg/50 md:py-28">
           <div className="container mx-auto max-w-3xl px-4">
             <SectionHeader
               subtitle={translate("AT A GLANCE")}
@@ -578,7 +561,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
               align="center"
               className="mb-10"
             />
-            <Card className="border-2">
+            <Card>
               <CardContent className="p-0">
                 <dl>
                   {facts.map(([label, value], index) => (
@@ -588,10 +571,10 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
                         index !== facts.length - 1 ? "border-b" : ""
                       }`}
                     >
-                      <dt className="font-merriweather w-full text-xs font-bold uppercase tracking-widest text-prakash-primary dark:text-nisha-primary sm:w-56 sm:shrink-0">
+                      <dt className="font-merriweather w-full text-base font-semibold uppercase tracking-wide text-prakash-primary dark:text-nisha-primary sm:w-64 sm:shrink-0">
                         {label}
                       </dt>
-                      <dd className="font-merriweather text-base text-foreground/90 md:text-lg">
+                      <dd className="font-merriweather text-base text-foreground/90">
                         {value}
                       </dd>
                     </div>
@@ -604,7 +587,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
 
         {/* FAQ. Native details/summary so every answer is present in the HTML
             with no JavaScript, which is what crawlers and AI assistants read. */}
-        <section className="relative py-12 md:py-20">
+        <section className="relative py-20 md:py-28">
           <div className="pointer-events-none absolute bottom-10 right-10 opacity-20">
             <VedicPattern variant="om" size={220} opacity={0.5} />
           </div>
@@ -622,7 +605,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
                   className="group rounded-xl border bg-card px-6 py-5"
                 >
                   <summary className="flex cursor-pointer list-none items-start justify-between gap-4 marker:content-none">
-                    <h3 className="font-newsreader text-lg font-semibold leading-snug md:text-xl">
+                    <h3 className="font-newsreader text-xl font-semibold leading-snug md:text-2xl">
                       {faq.question}
                     </h3>
                     <span
@@ -642,7 +625,7 @@ export default async function BhagavadGitaApp(props: ParamsWithLocale) {
         </section>
 
         {/* Closing CTA */}
-        <section className="relative border-t bg-adhyayan-bg py-14 dark:bg-nisha-bg/50 md:py-20">
+        <section className="relative bg-adhyayan-bg py-20 dark:bg-nisha-bg/50 md:py-28">
           <div className="container mx-auto max-w-3xl px-4 text-center">
             <h2 className="font-newsreader mb-4 text-3xl font-bold leading-tight md:text-5xl">
               {translate("Keep the Gita close")}
