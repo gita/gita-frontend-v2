@@ -48,3 +48,5 @@ X_API_KEY:"gita-api-key!"
 
 # Sentry Auth Token
 .sentryclirc
+.env*
+.gstack/
