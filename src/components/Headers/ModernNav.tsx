@@ -97,16 +97,10 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                   {translate("Gita AI")}
                 </Link>
                 <LinkWithLocale
-                  href="/donate"
-                  className="text-lg font-medium transition-colors hover:text-primary"
-                >
-                  {translate("Donate")}
-                </LinkWithLocale>
-                <LinkWithLocale
                   href="/bhagavad-gita-app"
                   className="text-lg font-medium transition-colors hover:text-primary"
                 >
-                  {translate("App")}
+                  {translate("Mobile App")}
                 </LinkWithLocale>
 
                 {/* Auth Section */}
@@ -237,10 +231,10 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
             {translate("Gita AI")}
           </Link>
           <LinkWithLocale
-            href="/donate"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            href="/bhagavad-gita-app"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary"
           >
-            {translate("Donate")}
+            {translate("App")}
           </LinkWithLocale>
         </nav>
 

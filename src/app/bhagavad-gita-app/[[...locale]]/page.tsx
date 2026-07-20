@@ -51,11 +51,11 @@ export async function generateMetadata({
 
   return {
     title: isHindi
-      ? "भगवद गीता ऐप - 100% निःशुल्क, बिना विज्ञापन | Android और iPhone"
-      : "Bhagavad Gita App - 100% Free, No Ads | Android & iPhone",
+      ? "सबसे अच्छा निःशुल्क भगवद गीता ऐप - बिना विज्ञापन | Android और iPhone"
+      : "Best Free Bhagavad Gita App - No Ads | Android & iPhone",
     description: isHindi
       ? "निःशुल्क भगवद गीता ऐप डाउनलोड करें, Android और iPhone के लिए। सभी 18 अध्याय और 700 श्लोक, सात भाषाएँ, संस्कृत ऑडियो, ऑफ़लाइन पठन और Gita GPT AI। 5 लाख से अधिक डाउनलोड, 4.8 रेटिंग। कोई विज्ञापन नहीं, कोई शुल्क नहीं।"
-      : "Download the free Bhagavad Gita app for Android and iPhone. All 18 chapters and 700 verses in 7 languages, Sanskrit audio, offline reading and Gita GPT AI. 500,000+ downloads, rated 4.8. No ads, no subscription, ever.",
+      : "Looking for the best free Bhagavad Gita app? All 18 chapters and 700 verses in 7 languages, Sanskrit audio, offline reading and Gita GPT AI, on Android and iPhone. 500,000+ downloads, rated 4.8. No ads, no subscription, ever.",
     keywords: isHindi
       ? "भगवद गीता ऐप, गीता ऐप, निःशुल्क भगवद गीता ऐप, हिंदी भगवद गीता ऐप, भगवद गीता ऑडियो ऐप, गीता ऐप डाउनलोड"
       : "bhagavad gita app, best bhagavad gita app, free bhagavad gita app, bhagavad gita app in english, bhagavad gita app in hindi, bhagavad gita app with audio, bhagavad gita app for android, bhagavad gita app for iphone, gita app download, bhagavad gita mobile app",
@@ -64,8 +64,8 @@ export async function generateMetadata({
     publisher: "Ved Vyas Foundation",
     openGraph: {
       title: isHindi
-        ? "भगवद गीता ऐप - सदा निःशुल्क, बिना विज्ञापन, Gita GPT AI के साथ"
-        : "Bhagavad Gita App - Free Forever, No Ads, with Gita GPT AI",
+        ? "सबसे अच्छा निःशुल्क भगवद गीता ऐप - बिना विज्ञापन, संस्कृत ऑडियो, Gita GPT AI"
+        : "Best Free Bhagavad Gita App - No Ads, Sanskrit Audio, Gita GPT AI",
       description: isHindi
         ? "सभी 18 अध्याय और 700 श्लोक सात भाषाओं में, संस्कृत पाठ, ऑफ़लाइन पठन और Gita GPT। वेद व्यास फाउंडेशन द्वारा संचालित, एक गैर-लाभकारी संस्था।"
         : "All 18 chapters and 700 verses in seven languages, with Sanskrit recitation, offline reading and Gita GPT. Run by Ved Vyas Foundation, a non-profit.",
@@ -86,8 +86,8 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: isHindi
-        ? "भगवद गीता ऐप - सदा निःशुल्क, बिना विज्ञापन"
-        : "Bhagavad Gita App - Free Forever, No Ads",
+        ? "सबसे अच्छा निःशुल्क भगवद गीता ऐप - बिना विज्ञापन"
+        : "Best Free Bhagavad Gita App - No Ads",
       description: isHindi
         ? "सभी 18 अध्याय और 700 श्लोक सात भाषाओं में, संस्कृत पाठ, ऑफ़लाइन पठन और Gita GPT।"
         : "All 18 chapters and 700 verses in seven languages, with Sanskrit recitation, offline reading and Gita GPT.",
