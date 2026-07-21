@@ -11,11 +11,12 @@
  * once during research: same URL, 200 OK, a different app's page.
  */
 
-export const VERIFIED_ON = "2026-07-20";
-export const VERIFIED_ON_LABEL = "20 July 2026";
+export const VERIFIED_ON = "2026-07-22";
+export const VERIFIED_ON_LABEL = "22 July 2026";
 
-/** Play ratings differ by storefront. Ours is 4.93 in India and 4.78 in the US
- *  from the same rating count, so a rating without its storefront is not a fact. */
+/** Play ratings differ by storefront. Ours is 4.91 in India and 4.78 in the US
+ *  off the same 1,686 ratings, so a rating without its storefront is not a fact.
+ *  Play displays one decimal; the figures here are its underlying value to two. */
 export const STOREFRONT = "Google Play India";
 
 export type App = {
@@ -51,8 +52,8 @@ export const APPS: App[] = [
       "https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita",
     iosUrl:
       "https://apps.apple.com/us/app/bhagavad-gita-hindi-english/id1602895635",
-    rating: "4.9",
-    ratingCount: "1,681",
+    rating: "4.91",
+    ratingCount: "1,686",
     installs: "500,000+",
     price: "Free",
     ads: "None",
@@ -61,7 +62,7 @@ export const APPS: App[] = [
     verdict:
       "The most focused option here. It does one thing, which is help you read the Gita, and it carries no advertising and nothing to pay for.",
     forWhom:
-      "Anyone who wants the complete Gita and nothing competing for their attention.",
+      "Anyone who wants the complete Gita and nothing competing for their attention. On Android without reservation; on iPhone the build is four days old.",
     notForWhom:
       "Anyone wanting several commentators side by side, or a wider devotional practice.",
     pros: [
@@ -72,7 +73,7 @@ export const APPS: App[] = [
     ],
     cons: [
       "One translation and commentary, not a choice of several",
-      "The iPhone version is behind the Android one",
+      "The iPhone build only shipped on 21 July 2026 and has 9 ratings behind it, averaging 2.0 in the US and 3.0 in India",
       "Gita GPT asks you to sign in, and gives ten messages a day",
     ],
   },
@@ -83,8 +84,10 @@ export const APPS: App[] = [
     ours: "built-for-jkyog",
     playUrl:
       "https://play.google.com/store/apps/details?id=org.jkyog.radhakrishnabhakti",
+    iosUrl:
+      "https://apps.apple.com/us/app/bhagavad-gita-krishna-bhakti/id6463116386",
     rating: "4.85",
-    ratingCount: "4,537",
+    ratingCount: "4,542",
     installs: "100,000+",
     price: "Free",
     ads: "None",
@@ -97,7 +100,7 @@ export const APPS: App[] = [
     notForWhom:
       "Anyone who finds extra features distracting and only wants to read.",
     pros: [
-      "4,537 ratings, the largest review base of any app we recommend",
+      "4,542 ratings on Google Play, plus 4.93 from 732 on the App Store",
       "Audiobooks, bhajans and kirtans alongside verse audio",
       "Ask Swamiji covers the Gita and Swami Mukundananda's other books",
       "Free with no advertising",
@@ -114,7 +117,7 @@ export const APPS: App[] = [
     playUrl:
       "https://play.google.com/store/apps/details?id=in.banaka.mohit.bhagwadgita",
     rating: "4.66",
-    ratingCount: "58,560",
+    ratingCount: "58,566",
     installs: "1,000,000+",
     price: "Free",
     ads: "Contains ads, and in-app purchases",
@@ -122,12 +125,12 @@ export const APPS: App[] = [
     attribution:
       'None. The listing names no translator and says "Assuming it is out of copyright protection."',
     verdict:
-      "Comfortably the most-reviewed Hindi Gita app, with 58,560 ratings. Popularity and provenance are different things.",
+      "Comfortably the most-reviewed Hindi Gita app, with 58,566 ratings. Popularity and provenance are different things.",
     forWhom: "Hindi readers who want the option most people have chosen.",
     notForWhom:
       "Anyone who needs to know which edition they are reading and who translated it.",
     pros: [
-      "58,560 ratings, roughly 35 times our own review count",
+      "58,566 ratings, roughly 35 times our own review count",
       "Works without a connection",
       "Free to install",
     ],
@@ -144,7 +147,7 @@ export const APPS: App[] = [
     playUrl:
       "https://play.google.com/store/apps/details?id=ct.android.gitasevakotlin",
     rating: "4.87",
-    ratingCount: "15,751",
+    ratingCount: "15,762",
     installs: "1,000,000+",
     price: "Free",
     ads: "None declared",
@@ -158,7 +161,7 @@ export const APPS: App[] = [
       "Anyone who wants a purpose-built reading experience for the Gita alone.",
     pros: [
       "Far more than the Gita, spanning many scripture texts",
-      "15,751 ratings and over a million installs",
+      "15,762 ratings and over a million installs",
     ],
     cons: [
       "Library breadth rather than depth on any single text",
@@ -170,8 +173,10 @@ export const APPS: App[] = [
     name: "Bhagavad Gita For All | Video",
     developer: "Bhagavad Gita For All",
     playUrl: "https://play.google.com/store/apps/details?id=com.bgfa",
+    iosUrl:
+      "https://apps.apple.com/us/app/bhagavad-gita-for-all-video/id6504813763",
     rating: "4.49",
-    ratingCount: "9,163",
+    ratingCount: "9,174",
     installs: "1,000,000+",
     price: "Chapter 1 free, then a trial, then paid",
     ads: "None declared, but paid content",
@@ -198,16 +203,16 @@ export const APPS: App[] = [
     playUrl:
       "https://play.google.com/store/apps/details?id=in.banaka.mohit.bhagwadgita.bangla",
     rating: "4.72",
-    ratingCount: "11,157",
+    ratingCount: "11,158",
     installs: "100,000+",
     price: "Free",
     ads: "Not verified",
     languages: "Bangla",
     attribution: "None named",
-    verdict: "The most-reviewed Bangla option, with 11,157 ratings.",
+    verdict: "The most-reviewed Bangla option, with 11,158 ratings.",
     forWhom: "Bangla readers.",
     notForWhom: "Anyone needing named sources.",
-    pros: ["11,157 ratings", "Bangla text in a dedicated app"],
+    pros: ["11,158 ratings", "Bangla text in a dedicated app"],
     cons: ["No named translator", "Same publisher pattern as the Hindi app"],
   },
   {
@@ -217,16 +222,16 @@ export const APPS: App[] = [
     playUrl:
       "https://play.google.com/store/apps/details?id=telugu.bhagavadgita",
     rating: "4.67",
-    ratingCount: "9,190",
+    ratingCount: "9,189",
     installs: "100,000+",
     price: "Free",
     ads: "Not verified",
     languages: "Telugu",
     attribution: "None named",
-    verdict: "The most-reviewed dedicated Telugu option, with 9,190 ratings.",
+    verdict: "The most-reviewed dedicated Telugu option, with 9,189 ratings.",
     forWhom: "Telugu readers.",
     notForWhom: "Anyone needing named sources.",
-    pros: ["9,190 ratings", "Dedicated Telugu app"],
+    pros: ["9,189 ratings", "Dedicated Telugu app"],
     cons: ["No named translator"],
   },
   {
@@ -236,16 +241,16 @@ export const APPS: App[] = [
     playUrl:
       "https://play.google.com/store/apps/details?id=in.banaka.mohit.bhagwadgita.oriya",
     rating: "4.69",
-    ratingCount: "7,154",
+    ratingCount: "7,156",
     installs: "100,000+",
     price: "Free",
     ads: "Not verified",
     languages: "Odia",
     attribution: "None named",
-    verdict: "The most-reviewed Odia option, with 7,154 ratings.",
+    verdict: "The most-reviewed Odia option, with 7,156 ratings.",
     forWhom: "Odia readers.",
     notForWhom: "Anyone needing named sources.",
-    pros: ["7,154 ratings", "Dedicated Odia app"],
+    pros: ["7,156 ratings", "Dedicated Odia app"],
     cons: ["No named translator"],
   },
   {
@@ -254,6 +259,7 @@ export const APPS: App[] = [
     developer: "Geeta Pariwar",
     playUrl:
       "https://play.google.com/store/apps/details?id=com.loginwithgoogle",
+    iosUrl: "https://apps.apple.com/us/app/learn-geeta/id6447505100",
     rating: "4.75",
     ratingCount: "1,555",
     installs: "100,000+",
@@ -278,8 +284,8 @@ export const APPS: App[] = [
     developer: "HNIX Innovations",
     playUrl:
       "https://play.google.com/store/apps/details?id=com.hnix.bhagavad_gita_ai",
-    rating: "4.78",
-    ratingCount: "645",
+    rating: "4.79",
+    ratingCount: "646",
     installs: "10,000+",
     price: "Free to install",
     ads: "Not verified",
@@ -289,7 +295,7 @@ export const APPS: App[] = [
       "The clearest alternative if what you want is an AI to ask rather than a book to read.",
     forWhom: "People who prefer asking questions to browsing chapters.",
     notForWhom: "Anyone who wants a complete, well-attributed reading text.",
-    pros: ["Built around asking rather than reading", "4.78 from 645 ratings"],
+    pros: ["Built around asking rather than reading", "4.79 from 646 ratings"],
     cons: ["Small review base", "Not a complete reading experience"],
   },
   {
@@ -320,8 +326,8 @@ export const APPS: App[] = [
     name: "Bhagavad-gita As It Is",
     developer: "The Bhaktivedanta Book Trust",
     iosUrl: "https://apps.apple.com/us/app/id1080562426",
-    rating: "4.9",
-    ratingCount: "556",
+    rating: "4.89",
+    ratingCount: "557",
     price: "$4.99, one-time",
     ads: "None",
     languages: "English, German, French, Hungarian, Russian",
@@ -332,7 +338,7 @@ export const APPS: App[] = [
     notForWhom: "Android users, and anyone unwilling to pay.",
     pros: [
       "Published by the rights holder, with the edition stated",
-      "4.9 from 556 ratings on the App Store",
+      "4.89 from 557 ratings on the App Store",
     ],
     cons: [
       "iPhone and iPad only. There is no official Android app.",
@@ -347,12 +353,12 @@ export const ALSO_CONSIDERED = [
   {
     name: "Bhakti: Gita & Mantras",
     developer: "Kuku Technologies",
-    note: "The largest app in this space by installs, at over five million, with 30,460 ratings. It is a broad devotional audio product covering mantras and chants rather than a Bhagavad Gita reader, so ranking it against reading apps would flatter neither.",
+    note: "The largest app in this space by installs, at over five million, with 30,459 ratings. It is a broad devotional audio product covering mantras and chants rather than a Bhagavad Gita reader, so ranking it against reading apps would flatter neither.",
   },
   {
     name: "Transcend",
     developer: "The Bhaktivedanta Book Trust",
-    note: "The BBT's actual Android app, and a good one at 4.79 from 1,310 ratings. It is a library of more than 600 ebooks rather than a Gita app, so it sits here rather than in the table.",
+    note: "The BBT's actual Android app, and a good one at 4.80 from 1,312 ratings. It is a library of more than 600 ebooks rather than a Gita app, so it sits here rather than in the table.",
   },
   {
     name: "Bhagavad-gītā As It Is (unofficial)",
@@ -367,7 +373,7 @@ export const ALSO_CONSIDERED = [
   {
     name: "Srimad Gita",
     developer: "Decentralized Inc",
-    note: "Its marketing pages claim a 4.8 rating from more than 2,450 reviews and over a million downloads. The stores show 4.28 from 44 ratings on Google Play with 1,000+ installs, and 4.0 from 4 ratings on the App Store. We have not ranked it because we could not reconcile those numbers.",
+    note: "Its marketing pages claim a 4.8 rating from more than 2,450 reviews and over a million downloads. The stores show 4.28 from 44 ratings on Google Play with 1,000+ installs, and 4.0 from 4 ratings on the US App Store, 1.5 from 2 on the Indian one. We have not ranked it because we could not reconcile those numbers.",
   },
 ];
 
@@ -387,7 +393,7 @@ export const FAQS: Faq[] = [
   {
     question: "What is the best Bhagavad Gita app in Hindi?",
     answer:
-      "Banaka's Hindi app is the most popular by a wide margin, with 58,560 ratings. It names no translator, though, and its listing describes the text as assuming it is out of copyright. If knowing your source matters, our app and Krishna Bhakti both carry Swami Mukundananda's translation and commentary in Hindi, with the source named.",
+      "Banaka's Hindi app is the most popular by a wide margin, with 58,566 ratings. It names no translator, though, and its listing describes the text as assuming it is out of copyright. If knowing your source matters, our app and Krishna Bhakti both carry Swami Mukundananda's translation and commentary in Hindi, with the source named.",
   },
   {
     question: "Which Bhagavad Gita app works offline?",
@@ -412,7 +418,7 @@ export const FAQS: Faq[] = [
   {
     question: "How did you choose these apps?",
     answer:
-      "We searched Google Play across seven query variants, which surfaced 117 distinct apps, then kept the ones with enough scale or a distinct purpose to be worth comparing. Every rating, review count and install figure comes from the stores' own structured data rather than the visible page, and each was checked on 20 July 2026.",
+      "We searched Google Play across seven query variants, which surfaced 117 distinct apps, then kept the ones with enough scale or a distinct purpose to be worth comparing. Every rating, review count and install figure comes from the stores' own structured data rather than the visible page, and each was checked on 22 July 2026.",
   },
 ];
 
@@ -429,7 +435,7 @@ export const CATEGORY_WINNERS: CategoryWinner[] = [
   { category: "Best free, ad-free app", winner: "Bhagavad Gita Hindi & English", ours: "published",
     why: "No advertising, no subscription, no in-app purchases, no sponsorship." },
   { category: "Best all-round devotional app", winner: "Bhagavad Gita — Krishna Bhakti", ours: "built-for-jkyog",
-    why: "The same Gita text plus kirtans, meditations, audiobooks, courses and lectures. 4,537 ratings, the largest review base here." },
+    why: "The same Gita text plus kirtans, meditations, audiobooks, courses and lectures. 4,542 ratings, the largest review base here." },
   { category: "Best audio", winner: "Bhagavad Gita — Krishna Bhakti", ours: "built-for-jkyog",
     why: "Verse audio alongside audiobooks, bhajans and kirtans." },
   { category: "Best AI assistant", winner: "Bhagavad Gita Hindi & English", ours: "published",
@@ -437,13 +443,13 @@ export const CATEGORY_WINNERS: CategoryWinner[] = [
   { category: "Best AI alternative", winner: "Ask Krishna AI",
     why: "An independent app built entirely around asking questions rather than reading chapters." },
   { category: "Most popular in Hindi", winner: "Bhagavad-Gita in Hindi, by Banaka",
-    why: "58,560 ratings, roughly 35 times our own review count." },
+    why: "58,566 ratings, roughly 35 times our own review count." },
   { category: "Best for Bangla", winner: "Bhagavad Gita in Bangla, by Banaka",
-    why: "11,157 ratings, the most-reviewed Bangla option." },
+    why: "11,158 ratings, the most-reviewed Bangla option." },
   { category: "Best for Telugu", winner: "Bhagavad Gita Telugu, by Learning Game Apps",
-    why: "9,190 ratings, the most-reviewed dedicated Telugu option." },
+    why: "9,189 ratings, the most-reviewed dedicated Telugu option." },
   { category: "Best for Odia", winner: "Bhagavad Gita in Oriya, by Banaka",
-    why: "7,154 ratings. Krishna Bhakti also ships Odia if you want a named source." },
+    why: "7,156 ratings. Krishna Bhakti also ships Odia if you want a named source." },
   { category: "Largest scripture library", winner: "Gita Seva",
     why: "Far broader than the Gita, with over a million installs." },
   { category: "Best for structured learning", winner: "Learn Geeta, by Geeta Pariwar",

@@ -35,7 +35,7 @@ const URL = "https://bhagavadgita.com/best-bhagavad-gita-apps";
 export const metadata: Metadata = {
   title: "The Best Bhagavad Gita Apps in 2026, Compared and Checked",
   description:
-    "Every major Bhagavad Gita app compared on price, advertising, languages and who translated the text. Ratings taken from the stores' own data and checked on 20 July 2026.",
+    "Every major Bhagavad Gita app compared on price, advertising, languages and who translated the text. Ratings taken from the stores' own data and checked on 22 July 2026.",
   alternates: { canonical: URL },
   openGraph: {
     title: "The Best Bhagavad Gita Apps, Compared",
@@ -190,8 +190,10 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
             </h1>
 
             <p className="font-merriweather max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              For most people the answer is our own app, which is free, carries
-              no advertising, and covers all 700 verses in seven languages. If
+              For most people on Android the answer is our own app, which is
+              free, carries no advertising, and covers all 700 verses in seven
+              languages. Its iPhone build only arrived on 21 July 2026 and has
+              nine ratings behind it, so treat that one as new. If
               you want a wider devotional practice, Krishna Bhakti is the better
               app and the highest rated here. If you want Prabhupada&rsquo;s
               translation, buy the Bhaktivedanta Book Trust edition. Hindi,
@@ -254,7 +256,7 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
             <SectionHeader
               subtitle="Side by side"
               title="Every app compared"
-              description={`Ratings and install counts come from each store's own structured data on ${STOREFRONT}, read on ${VERIFIED_ON_LABEL}. A rating without its storefront is not a fact: the same app scores 4.93 in India and 4.78 in the United States off an identical set of ratings.`}
+              description={`Ratings and install counts come from each store's own structured data on ${STOREFRONT}, read on ${VERIFIED_ON_LABEL}. A rating without its storefront is not a fact: our own app scores 4.91 in India and 4.78 in the United States off the same 1,686 ratings. Play shows one decimal; these are its underlying values to two.`}
             />
             <div className="overflow-x-auto rounded-xl border bg-card">
               <table className="w-full min-w-[56rem] border-collapse text-left text-sm">
@@ -413,7 +415,7 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
                 <strong className="text-foreground">
                   Banaka&rsquo;s Hindi app is far more popular than ours.
                 </strong>{" "}
-                It has 58,560 ratings against our 1,681. If you are a Hindi
+                It has 58,566 ratings against our 1,686. If you are a Hindi
                 reader choosing by what other people chose, you would not choose
                 us.
               </li>
@@ -421,17 +423,23 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
                 <strong className="text-foreground">
                   Krishna Bhakti is rated higher and reviewed more.
                 </strong>{" "}
-                4.85 from 4,537 ratings, against our 4.9 from 1,681 on the
+                4.85 from 4,542 ratings, against our 4.91 from 1,686 on the
                 Indian storefront. A rating from four thousand people carries
                 more weight than the same rating from one thousand.
               </li>
               <li>
                 <strong className="text-foreground">
-                  The iPhone version lags the Android one.
+                  Our iPhone rating is bad, and we are publishing it anyway.
                 </strong>{" "}
-                A new build is with Apple for review. We are not publishing an
-                iOS rating until it ships, because the rating on the store today
-                describes a version we are replacing.
+                Version 2.2.3 reached the App Store on 21 July 2026 after a long
+                wait. It sits on nine ratings in total: 2.0 from three in the
+                United States, 3.0 from six in India. Nine people is not a
+                verdict on anything, and we are not going to pretend it is, but
+                this page criticises another app for publishing a rating its
+                store does not support, so we are not going to hide ours either.
+                On Android we would recommend our app without reservation. On
+                iPhone, it is four days old and you would be among the first to
+                find out.
               </li>
               <li>
                 <strong className="text-foreground">
