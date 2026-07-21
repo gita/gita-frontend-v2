@@ -192,8 +192,8 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
             <p className="font-merriweather max-w-2xl text-lg leading-relaxed text-muted-foreground">
               For most people on Android the answer is our own app, which is
               free, carries no advertising, and covers all 700 verses in seven
-              languages. Its iPhone build only arrived on 21 July 2026 and has
-              nine ratings behind it, so treat that one as new. If
+              languages. Its iPhone build only arrived on 21 July 2026, so
+              treat that one as new. If
               you want a wider devotional practice, Krishna Bhakti is the better
               app and the highest rated here. If you want Prabhupada&rsquo;s
               translation, buy the Bhaktivedanta Book Trust edition. Hindi,
@@ -431,15 +431,19 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
                 <strong className="text-foreground">
                   Our iPhone rating is bad, and we are publishing it anyway.
                 </strong>{" "}
-                Version 2.2.3 reached the App Store on 21 July 2026 after a long
-                wait. It sits on nine ratings in total: 2.0 from three in the
-                United States, 3.0 from six in India. Nine people is not a
-                verdict on anything, and we are not going to pretend it is, but
-                this page criticises another app for publishing a rating its
-                store does not support, so we are not going to hide ours either.
-                On Android we would recommend our app without reservation. On
-                iPhone, it is four days old and you would be among the first to
-                find out.
+                Version 2.2.3 reached the App Store on 21 July 2026. The
+                listing carries nine ratings in total: 2.0 from three in the
+                United States, 3.0 from six in India. All nine were there the
+                day before this build shipped, because Apple carries ratings
+                across versions, so they describe the app we just replaced
+                rather than the one you would install. That is a real
+                explanation and it is also the kind of explanation every
+                developer reaches for, so here is the number without it: 2.0.
+                We are publishing it because this page criticises another app
+                for advertising a rating its own store does not support, and a
+                page that does that while hiding its own is worth nothing. On
+                Android we recommend our app without reservation. On iPhone it
+                is a day old and you would be finding out with us.
               </li>
               <li>
                 <strong className="text-foreground">

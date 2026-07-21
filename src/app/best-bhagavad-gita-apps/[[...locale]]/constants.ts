@@ -62,7 +62,7 @@ export const APPS: App[] = [
     verdict:
       "The most focused option here. It does one thing, which is help you read the Gita, and it carries no advertising and nothing to pay for.",
     forWhom:
-      "Anyone who wants the complete Gita and nothing competing for their attention. On Android without reservation; on iPhone the build is four days old.",
+      "Anyone who wants the complete Gita and nothing competing for their attention. On Android without reservation; on iPhone the build is a day old.",
     notForWhom:
       "Anyone wanting several commentators side by side, or a wider devotional practice.",
     pros: [
@@ -73,7 +73,7 @@ export const APPS: App[] = [
     ],
     cons: [
       "One translation and commentary, not a choice of several",
-      "The iPhone build only shipped on 21 July 2026 and has 9 ratings behind it, averaging 2.0 in the US and 3.0 in India",
+      "The iPhone build only shipped on 21 July 2026. Its nine store ratings, 2.0 in the US and 3.0 in India, all predate it",
       "Gita GPT asks you to sign in, and gives ten messages a day",
     ],
   },
