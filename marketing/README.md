@@ -1,0 +1,89 @@
+# Marketing / GTM
+
+Working docs for growing bhagavadgita.com, the Bhagavad Gita app, and radhakrishna.com.
+
+Research date on everything here: **2026-07-25**, from a 10-agent research run. Every factual
+claim carries a source URL. Where something could not be verified it says **"could not verify"**
+rather than guessing — that rule exists because this project has already shipped one wrong figure
+scraped from a rendered page.
+
+## The docs
+
+| Doc                                                                   | What's in it                                                                                               |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [00 — Cross-property plan](00-cross-property-plan.md)                 | How radhakrishna.com, bhagavadgita.com and the app fit together. One conversion event, one social presence |
+| [01 — BGFA teardown](01-competitor-bgfa.md)                           | Bhagavad Gita For All: their real numbers, ~500 concurrent ads, celebrity costs, the QR-book trick         |
+| [02 — Creator landscape](02-creator-landscape.md)                     | ~25 target accounts to learn from and pay, real shoutout rates, YouTube and Pinterest                      |
+| [03 — Content engine](03-content-engine.md)                           | Daily social, trend-riding, newsjacking, and the reverence gate                                            |
+| [04 — Retention](04-retention-email-push.md)                          | Email and push across web, iOS and Android                                                                 |
+| [05 — Automation stack](05-automation-stack.md)                       | Tools, real costs, and the build order                                                                     |
+| [06 — Video pipeline](06-video-pipeline.md)                           | How we actually make ≥1 video/day: lock the character once, four production tracks                         |
+| [07 — Paid ads](07-paid-ads.md)                                       | Where $100–300/mo goes, the conversion-bidding budget rule, Ad Grants, free non-profit programs            |
+| [08 — Trend & creator monitoring](08-trend-and-creator-monitoring.md) | Weekly pulls via free official APIs, and why organic A/B testing is not valid                              |
+
+## Standing strategy docs
+
+Numbered docs above are the 2026-07-25 research synthesis. These are the earlier strategy work,
+still current, moved here from `notes/` so all marketing lives in one place:
+
+| Doc                                                                      | What's in it                                                                                                          |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| [gtm-plan.md](gtm-plan.md)                                               | The foundation: site architecture, GEO/AEO strategy, the prompt universe to monitor, viral GTM ideas, the 90-day plan |
+| [gtm-open-benchmarks.md](gtm-open-benchmarks.md)                         | The benchmark program (apps + websites), and why independence is the whole point                                      |
+| [ramayan-strategy.md](ramayan-strategy.md)                               | Ramayan expansion: economics and the six-month launch sequence                                                        |
+| [archive/email-provider-research.md](archive/email-provider-research.md) | **Superseded** by [04](04-retention-email-push.md). Kept for the Resend vs Loops vs SES reasoning                     |
+
+The cross-property original lives at `radhakrishna.net/docs/08-marketing-automation.md`.
+
+Still in `notes/`: `app-comparison-research.md`, which is page-source research for
+`/best-bhagavad-gita-apps` rather than marketing, and whose companion fact sheet is in open
+PR #307. Move both once that merges, if wanted.
+
+## Your six workstreams, mapped
+
+1. **Social media, ≥1 post/day, engaging not generic** → [03](03-content-engine.md) daily grid, [05](05-automation-stack.md) tooling
+2. **Email + push for web, iOS, Android** → [04](04-retention-email-push.md)
+3. **News/trends related to Gita wisdom** → [03](03-content-engine.md) newsjacking pipeline
+4. **Pinterest** → [02](02-creator-landscape.md). Still effective, but a slow-compounding traffic play, best pointed at radhakrishna.com
+5. **BGFA deep research** → [01](01-competitor-bgfa.md)
+6. **Find creator accounts to learn from and pay** → [02](02-creator-landscape.md)
+
+## The seven things worth knowing if you read nothing else
+
+1. **BGFA's reach is bought, not earned.** ~500 concurrent Meta ads across two advertiser pages,
+   plus 55 Google ads. Their lifetime Instagram engagement rate is **0.21%** against 676K
+   followers. Do not benchmark against their follower count.
+2. **Their daily posts are not what grows them.** Daily reels do ~40–50K views. A celebrity collab
+   did 9.7M. Daily cadence keeps an account alive; spectacle and collabs grow it. Budget for both.
+3. **AI-generated Krishna imagery is fine — that earlier "don't" was wrong.** Across seven
+   backlash cases, not one objected to the technology; every one objected to _how_ the deity was
+   portrayed. ISKCON itself runs AI outreach. The real risks are iconographic sloppiness
+   (generators whitewash Krishna's complexion) and visible cheapness, both controllable. Only the
+   deity-as-punchline formats stay off-limits. Full evidence in [03](03-content-engine.md).
+4. **Celebrity endorsements cost ₹5–15 Cr for A-listers**, and Cameo does not carry Indian
+   A-listers at all. The non-profit route is a gift-of-service ask to people who already post
+   about the Gita, plus mythology micro-creators.
+5. **Almost all of this is already paid for.** Higgsfield holds **5,522 credits** (~220–350
+   videos, near a year of daily posting), Remotion is **free for non-profits**, and native
+   schedulers cost nothing. The organic engine needs ~$0 incremental.
+6. **Organic A/B testing is not statistically valid** — power-law view counts, no randomisation,
+   ~50 posts per variant needed. Do outlier mining instead, and spend ~$5–10 per variant on paid
+   if you want a real causal answer in 48 hours. See [08](08-trend-and-creator-monitoring.md).
+7. **Take the Apple Ads $100 credit this week.** It bills on true cost-per-install, India's median
+   is $0.89, so it is ~110 free iOS installs with downside capped and zero engineering. See
+   [07](07-paid-ads.md).
+
+## Decisions still needed from the founder
+
+These block automation, not research:
+
+- **Sign off and publish the art policy** — traditional iconography, human review of every frame,
+  never presented as an object of worship. Cheap insurance that turns any future challenge into a
+  non-story.
+- **Who holds the go/no-go** on trend and newsjack posts, and their turnaround SLA.
+- **The real email list size** — decides the entire email architecture in [04](04-retention-email-push.md).
+- **Whether there is any budget for paid creator shoutouts** ($300–500 for a first test), and an
+  acceptable cost-per-install.
+- **Where the line sits on deaths of revered public figures** — reverent CTA-free condolence, or
+  silence entirely?
+- **Whether paid promotion of scripture conflicts with the no-sponsorship stance** at all.
