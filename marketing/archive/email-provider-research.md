@@ -1,5 +1,9 @@
 # Email provider research: Resend vs Loops vs AWS SES
 
+> **Superseded (2026-07-25)** by [`../04-retention-email-push.md`](../04-retention-email-push.md),
+> which covers push as well as email and splits the daily blast from the weekly broadcast on
+> pricing grounds. Kept for the original Resend vs Loops vs SES reasoning, which still holds.
+
 Researched 2026-07-20 for the Verse of the Day daily send (roadmap item 5b).
 
 **Decision: Resend, when we build it. Deferred until the list is large enough to be

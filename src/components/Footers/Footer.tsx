@@ -168,6 +168,16 @@ const Footer = (props: Props) => {
                   {translate("API")}
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://radhakrishna.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {translate("Radha Krishna")}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -219,7 +229,7 @@ const Footer = (props: Props) => {
             <p>
               {`© ${year} ${translate("Copyright")}: `}
               <a
-                href="https://vedvyas.org/"
+                href="https://vedvyas.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"
