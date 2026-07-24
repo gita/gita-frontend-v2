@@ -9,16 +9,17 @@ scraped from a rendered page.
 
 ## The docs
 
-| Doc                                                   | What's in it                                                                                               |
-| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [00 — Cross-property plan](00-cross-property-plan.md) | How radhakrishna.com, bhagavadgita.com and the app fit together. One conversion event, one social presence |
-| [01 — BGFA teardown](01-competitor-bgfa.md)           | Bhagavad Gita For All: their real numbers, ~500 concurrent ads, celebrity costs, the QR-book trick         |
-| [02 — Creator landscape](02-creator-landscape.md)     | ~25 target accounts to learn from and pay, real shoutout rates, YouTube and Pinterest                      |
-| [03 — Content engine](03-content-engine.md)           | Daily social, trend-riding, newsjacking, and the reverence gate                                            |
-| [04 — Retention](04-retention-email-push.md)          | Email and push across web, iOS and Android                                                                 |
-| [05 — Automation stack](05-automation-stack.md)       | Tools, real costs, and the build order                                                                     |
-| [06 — Video pipeline](06-video-pipeline.md)           | How we actually make ≥1 video/day: lock the character once, four production tracks                         |
-| [07 — Paid ads](07-paid-ads.md)                       | Where $100–300/mo goes, the conversion-bidding budget rule, Ad Grants, free non-profit programs            |
+| Doc                                                                   | What's in it                                                                                               |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [00 — Cross-property plan](00-cross-property-plan.md)                 | How radhakrishna.com, bhagavadgita.com and the app fit together. One conversion event, one social presence |
+| [01 — BGFA teardown](01-competitor-bgfa.md)                           | Bhagavad Gita For All: their real numbers, ~500 concurrent ads, celebrity costs, the QR-book trick         |
+| [02 — Creator landscape](02-creator-landscape.md)                     | ~25 target accounts to learn from and pay, real shoutout rates, YouTube and Pinterest                      |
+| [03 — Content engine](03-content-engine.md)                           | Daily social, trend-riding, newsjacking, and the reverence gate                                            |
+| [04 — Retention](04-retention-email-push.md)                          | Email and push across web, iOS and Android                                                                 |
+| [05 — Automation stack](05-automation-stack.md)                       | Tools, real costs, and the build order                                                                     |
+| [06 — Video pipeline](06-video-pipeline.md)                           | How we actually make ≥1 video/day: lock the character once, four production tracks                         |
+| [07 — Paid ads](07-paid-ads.md)                                       | Where $100–300/mo goes, the conversion-bidding budget rule, Ad Grants, free non-profit programs            |
+| [08 — Trend & creator monitoring](08-trend-and-creator-monitoring.md) | Weekly pulls via free official APIs, and why organic A/B testing is not valid                              |
 
 ## Standing strategy docs
 
@@ -47,7 +48,7 @@ PR #307. Move both once that merges, if wanted.
 5. **BGFA deep research** → [01](01-competitor-bgfa.md)
 6. **Find creator accounts to learn from and pay** → [02](02-creator-landscape.md)
 
-## The six things worth knowing if you read nothing else
+## The seven things worth knowing if you read nothing else
 
 1. **BGFA's reach is bought, not earned.** ~500 concurrent Meta ads across two advertiser pages,
    plus 55 Google ads. Their lifetime Instagram engagement rate is **0.21%** against 676K
@@ -65,7 +66,10 @@ PR #307. Move both once that merges, if wanted.
 5. **Almost all of this is already paid for.** Higgsfield holds **5,522 credits** (~220–350
    videos, near a year of daily posting), Remotion is **free for non-profits**, and native
    schedulers cost nothing. The organic engine needs ~$0 incremental.
-6. **Take the Apple Ads $100 credit this week.** It bills on true cost-per-install, India's median
+6. **Organic A/B testing is not statistically valid** — power-law view counts, no randomisation,
+   ~50 posts per variant needed. Do outlier mining instead, and spend ~$5–10 per variant on paid
+   if you want a real causal answer in 48 hours. See [08](08-trend-and-creator-monitoring.md).
+7. **Take the Apple Ads $100 credit this week.** It bills on true cost-per-install, India's median
    is $0.89, so it is ~110 free iOS installs with downside capped and zero engineering. See
    [07](07-paid-ads.md).
 

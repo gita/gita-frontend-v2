@@ -58,7 +58,7 @@ asset-generation pipeline, a scheduler, and an analytics loop.
 MONITOR  → trends + competitor top-posts (views, likes, saves, shares)
 IDEATE   → adapt winners, generate net-new angles
 CREATE   → copy + image/video, on-brand, reverent
-TEST     → A/B hook, art, format, caption, time
+TEST     → outlier-mine, not A/B: organic social cannot support valid A/B (see 08)
 MEASURE  → per-post and per-account performance
 LEARN    → winners and losers feed back into IDEATE
 ```
