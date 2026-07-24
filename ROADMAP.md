@@ -412,24 +412,24 @@ Writesonic citation analysis, 2026-07-20, window 2025-12-01 to 2026-07-21. Citat
 counted as distinct AI answers containing the URL, across ChatGPT, Google AI Overviews, Google
 AI Mode, Perplexity, Gemini, Grok and Copilot.
 
-| Domain | Citing answers |
-| ------ | -------------- |
-| srimadgita.com | **365** |
-| google.com | 309 |
-| **bhagavadgita.com** | **192** |
-| youtube.com | 136 |
-| apple.com | 116 |
-| holy-bhagavad-gita.org | 86 |
+| Domain                 | Citing answers |
+| ---------------------- | -------------- |
+| srimadgita.com         | **365**        |
+| google.com             | 309            |
+| **bhagavadgita.com**   | **192**        |
+| youtube.com            | 136            |
+| apple.com              | 116            |
+| holy-bhagavad-gita.org | 86             |
 
 They out-cite us **1.9 to 1** from a DR 0.2 domain with 281 backlinks against our 24,026. And
 the pages doing it are precisely the ones with zero Google traffic:
 
-| Their page | Citing answers | Google traffic |
-| ---------- | -------------- | -------------- |
-| `/app` | 142 | 7/mo |
-| `/bhagavad-gita-app-comparison` | 111 | 3/mo |
-| `/compare/gita-apps-comparison` | 83 | 0 |
-| `/best-bhagavad-gita-app` | 72 | 0 |
+| Their page                      | Citing answers | Google traffic |
+| ------------------------------- | -------------- | -------------- |
+| `/app`                          | 142            | 7/mo           |
+| `/bhagavad-gita-app-comparison` | 111            | 3/mo           |
+| `/compare/gita-apps-comparison` | 83             | 0              |
+| `/best-bhagavad-gita-app`       | 72             | 0              |
 
 Those four total 408 answers, more than **twice our entire domain**. This is an AI-retrieval
 play, not a search play, and it works.
@@ -461,10 +461,10 @@ mid-2026, so nobody is maintaining them either.
 
 **We ship two URLs with two genuinely different jobs:**
 
-| URL | Intent | Status |
-| --- | ------ | ------ |
-| `/bhagavad-gita-app` | Our app. Explains and converts. | done, item 2 |
-| `/best-bhagavad-gita-apps` | Which app should I use? Compares all of them, us included. | this item |
+| URL                        | Intent                                                     | Status       |
+| -------------------------- | ---------------------------------------------------------- | ------------ |
+| `/bhagavad-gita-app`       | Our app. Explains and converts.                            | done, item 2 |
+| `/best-bhagavad-gita-apps` | Which app should I use? Compares all of them, us included. | this item    |
 
 Sub-intents (best free, best in Hindi, best for beginners, best with audio, best offline, best
 with commentary) become **anchored sections on the one page**, not separate URLs.
@@ -512,23 +512,23 @@ counts, which their pages are full of and which is the specific thing we can bea
 **Branch:** `feat/best-bhagavad-gita-websites`
 
 Separate from item 12, and genuinely a separate intent rather than a slice of the same one.
-Someone asking which *app* to install and someone asking which *site* to read on want different
+Someone asking which _app_ to install and someone asking which _site_ to read on want different
 answers, and the candidate sets barely overlap: Vedabase, Gita Supersite, Holy Bhagavad Gita and
 Gita Press are websites first, and two of them have no app at all.
 
 The demand is real and we already do well here. Of 108 tracked prompts, **24 are website-intent
 and they average 45.8% visibility against a 32.6% site average**:
 
-| Visibility | Prompt |
-| ---------- | ------ |
-| **100%** | Which Bhagavad Gita website has the best mobile experience? |
-| 85.7% | Which Bhagavad Gita website has no ads or popups? |
-| 71.4% | Which website explains every Bhagavad Gita verse? |
-| 71.4% | What is the best free website for the Bhagavad Gita? |
-| 57.1% | What is the best Bhagavad Gita website? |
-| 57.1% | Compare the best websites for reading the Bhagavad Gita. |
-| 42.9% | Which Bhagavad Gita website has word-by-word meanings? |
-| 28.6% | Which website has the best Bhagavad Gita commentaries? |
+| Visibility | Prompt                                                      |
+| ---------- | ----------------------------------------------------------- |
+| **100%**   | Which Bhagavad Gita website has the best mobile experience? |
+| 85.7%      | Which Bhagavad Gita website has no ads or popups?           |
+| 71.4%      | Which website explains every Bhagavad Gita verse?           |
+| 71.4%      | What is the best free website for the Bhagavad Gita?        |
+| 57.1%      | What is the best Bhagavad Gita website?                     |
+| 57.1%      | Compare the best websites for reading the Bhagavad Gita.    |
+| 42.9%      | Which Bhagavad Gita website has word-by-word meanings?      |
+| 28.6%      | Which website has the best Bhagavad Gita commentaries?      |
 
 `/best-bhagavad-gita-websites`, judged on criteria that only make sense for the web: completeness
 of the text, how many translations and commentaries are reachable, word-by-word meanings, search,
@@ -604,15 +604,15 @@ that shape everything below:
 **We are a Google-only brand.** 63% of our citations come from Google AI Mode and AI Overviews.
 Outside Google we barely register.
 
-| Platform | srimadgita | us | |
-| -------- | ---------- | -- | --- |
-| Google AI Mode | 70 | **74** | we win, narrowly |
-| Google AI Overviews | **66** | 47 | 1.4x |
-| Perplexity | **72** | 18 | **4.0x** |
-| Microsoft Copilot | **60** | 11 | **5.5x** |
-| Grok | **67** | 21 | **3.2x** |
-| ChatGPT | **19** | 13 | 1.5x |
-| Gemini | **11** | 8 | 1.4x |
+| Platform            | srimadgita | us     |                  |
+| ------------------- | ---------- | ------ | ---------------- |
+| Google AI Mode      | 70         | **74** | we win, narrowly |
+| Google AI Overviews | **66**     | 47     | 1.4x             |
+| Perplexity          | **72**     | 18     | **4.0x**         |
+| Microsoft Copilot   | **60**     | 11     | **5.5x**         |
+| Grok                | **67**     | 21     | **3.2x**         |
+| ChatGPT             | **19**     | 13     | 1.5x             |
+| Gemini              | **11**     | 8      | 1.4x             |
 
 **Our scripture is invisible.** The entire 700-verse corpus has **6 citations**. Our
 `/acknowledgements`, `/copyright` and `/privacy-policy` pages together have 12. Our legal pages
@@ -633,6 +633,32 @@ data, not a default.
 
 ---
 
+## 18. Always-on marketing system
+
+**Status:** researched, not started
+**Docs:** [`marketing/`](marketing/README.md)
+
+Six workstreams the founder set on 2026-07-25: daily social across IG/FB/YouTube/X/Pinterest,
+email + push retention for web and both apps, news/trend-to-Gita content, Pinterest, a BGFA
+competitor teardown, and a creator target list to learn from and pay.
+
+All six are researched with sources in `marketing/`. The headline findings:
+
+- **BGFA's reach is bought.** ~500 concurrent Meta ads plus 55 Google ads, and a 0.21% lifetime
+  Instagram engagement rate against 676K followers. Their daily reels do ~40-50K views; a
+  celebrity collab did 9.7M. Daily cadence keeps an account alive, spectacle grows it.
+- **The AI-baby trend cannot be adapted literally** — it requires a synthetic face and voice on
+  its subject, and AI deity depictions have triggered removals and organised backlash. The
+  re-vessel version (Gita GPT answering, verse cited on screen) keeps the reach and the reverence.
+- **The stack runs at ~$300-360/month**, or ~$110 on free tiers. Remotion is free for non-profits.
+- **radhakrishna.com is one-way top-of-funnel** into the app install, sharing the Gita social
+  accounts rather than running its own.
+
+**Blocked on founder decisions, not research:** the deity-depiction policy, who owns the
+publish gate, the real email list size, and whether there is any budget for creator shoutouts.
+
+---
+
 ## 17. OpenBenchmarks collaboration
 
 **Status:** folded into item 12
@@ -642,7 +668,6 @@ The benchmark does not need to be a separate property. The comparison matrix bel
 domain, and where authorship is stated plainly instead of being nominally independent while we
 fund it. The original memo is preserved in `notes/gtm-open-benchmarks.md` if the third-party
 route is ever revisited.
-
 
 ## Conflicts to resolve before starting the GTM items
 
