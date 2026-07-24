@@ -100,6 +100,16 @@ module.exports = {
         destination: "/bhagavad-gita-app",
         permanent: true,
       },
+      // The app comparison page exists in English only. The header language
+      // dropdown rewrites the current path to append /hi, so without this the
+      // reader who switches to Hindi lands on a 404. Redirecting rather than
+      // rendering keeps the page at exactly one URL: a /hi copy carrying
+      // English app descriptions would be a thin duplicate of this one.
+      {
+        source: "/best-bhagavad-gita-apps/hi",
+        destination: "/best-bhagavad-gita-apps",
+        permanent: false,
+      },
       ...generateVerseRedirects(),
     ];
   },
