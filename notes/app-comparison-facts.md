@@ -65,7 +65,7 @@ Our app returns different values by storefront, from the same rating count:
 | India      | 4.9134 | **4.9**     | 1,686 |
 | US         | 4.7778 | **4.8**     | 1,686 |
 
-_Re-pulled 2026-07-22. Was 4.9285 / 1,681 on 2026-07-20._
+_Re-pulled 2026-07-25 (1,688 ratings). Was 4.9134 / 1,686 on 07-22 and 4.9285 / 1,681 on 07-20._
 
 Publish **"4.9 on Google Play"** with the India storefront noted, since that is where most of our
 readers are. Do not print a rating without saying which storefront it came from.
@@ -172,8 +172,11 @@ each other: "75,000+ users" on the iOS page against "1M+ downloads" on the Andro
   against a store showing 4.28 from 44. A page that runs that criticism and suppresses its own
   2.0 is not worth publishing.
 
-  Re-check once the new build accumulates ratings of its own. If the count climbs well past nine,
-  the "these predate the build" line has to come out.
+  **Update 2026-07-25:** the count has already moved. Apple now returns **ten** ratings — still 2.0
+  from three in the US, but India has gone from 3.0/6 to **3.29 from seven**. One new rating arrived
+  after 2.2.3 shipped, so the "all nine predate this build" line was false and has been corrected on
+  the page to "nine of the ten predate this build". Re-check again before any future edit; once new
+  ratings outnumber old ones, the predate line has to come out entirely.
 
 - **Reciter:** not named on the page, by decision.
 
