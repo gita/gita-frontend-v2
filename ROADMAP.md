@@ -281,6 +281,11 @@ well): don't interrupt on first paint. Wait until someone has shown intent — s
 chapter, read a few verses, come back a second time — then show a dismissible bar or sheet, and
 remember the dismissal.
 
+**Founder direction, 2026-07-25:** a persistent bottom-floating banner with a close button,
+carrying both store buttons, on mobile _and_ desktop. References: srimadgita.com and bible.com
+both do this well. The install is the conversion event for the whole site — everything else on
+bhagavadgita.com is top-of-funnel toward it (see `marketing/00-cross-property-plan.md`).
+
 Requirements:
 
 - platform detection for Android vs iOS, deep link if the app is installed
@@ -288,6 +293,32 @@ Requirements:
 - dismissible, and stays dismissed
 - no layout shift, no CLS penalty, no impact on crawlers
 - replace the current modal, which is dated
+
+**Worth checking first — iOS gives this away free.** Safari on iOS supports a native Smart App
+Banner via a single meta tag:
+
+```html
+<meta name="apple-itunes-app" content="app-id=1602895635">
+```
+
+It renders Apple's own banner, opens the app if installed, and users already recognise it, so it
+annoys nobody. Costs one line. Android has no equivalent, so the custom banner is really an
+Android-and-desktop problem — which simplifies the build considerably.
+
+**The annoyance question is the real design work.** Interstitials that block content are a
+[Google-documented ranking penalty](https://developers.google.com/search/docs/appearance/page-experience),
+and a bottom bar is the safe form. Things to settle before building:
+
+- **Never show it to someone who already has the app.** No reliable detection exists, so use
+  proxies: arrived via an app deep link, or has dismissed twice.
+- **Dismissal must persist properly** — localStorage, and a long window (30+ days), not a session.
+- **Frequency cap.** Once dismissed, do not re-show on the next page view.
+- **Height and safe-area.** Must not cover the reading text or fight the iOS home indicator.
+- **Measure it.** Tracked link per surface, so we learn whether it converts or just irritates.
+  This ties into the signup-attribution work from item 6.
+
+Design should follow the rules in memory (`bg-landing-page-design-rules`) — two text levels
+maximum, brand tokens, no shouting.
 
 ---
 
