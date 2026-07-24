@@ -6,6 +6,8 @@ import { isValidLocaleSegment, paramsToLocale } from "shared/functions";
 
 import HomePage from "./HomePage";
 
+import { ogImageUrl } from "@/lib/og/brand";
+
 // Pre-generate both English and Hindi versions
 export async function generateStaticParams() {
   return [
@@ -50,6 +52,7 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      images: [ogImageUrl({ eyebrow: "Home" })],
       title: isHindi
         ? "भगवद गीता हिंदी और अंग्रेजी में टीका और ऑडियो सहित"
         : "Bhagavad Gita in Hindi & English with Commentaries & Audio",
@@ -58,12 +61,11 @@ export async function generateMetadata({
         : "Bhagavad Gita - Sacred dialogue of Lord Krishna & Arjuna. 700 verses, 18 chapters with authentic commentaries from 20+ revered scholars. Hindi & English translations, audio, Gita Saar.",
       url: isHindi ? `${baseUrl}/hi` : baseUrl,
       siteName: "Bhagavad Gita",
-      images:
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
     },
     twitter: {
+      images: [ogImageUrl({ eyebrow: "Home" })],
       card: "summary_large_image",
       title: isHindi
         ? "भगवद गीता हिंदी और अंग्रेजी में टीका और ऑडियो सहित"
@@ -71,9 +73,6 @@ export async function generateMetadata({
       description: isHindi
         ? "भगवद गीता - श्री कृष्ण और अर्जुन का पवित्र संवाद। 700 श्लोक, 18 अध्याय, 20+ आचार्यों की प्रामाणिक टीका। हिंदी-अंग्रेजी-संस्कृत अनुवाद, ऑडियो और गीता सार।"
         : "Bhagavad Gita - Sacred dialogue of Lord Krishna & Arjuna. 700 verses, 18 chapters with authentic commentaries from 20+ revered scholars. Hindi & English translations, audio, Gita Saar.",
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     verification: {
@@ -149,7 +148,7 @@ export default async function Home({
     },
     image: {
       "@type": "ImageObject",
-      url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
+      url: "https://bhagavadgita.com/banner2.png",
       width: 1553,
       height: 660,
     },

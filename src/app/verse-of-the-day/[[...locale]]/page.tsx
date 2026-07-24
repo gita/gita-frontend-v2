@@ -9,6 +9,8 @@ import { getTranslations } from "shared/translate/server";
 
 import VerseOfTheDay from "./VerseOfTheDay";
 
+import { ogImageUrl } from "@/lib/og/brand";
+
 // Pre-generate for both languages
 export async function generateStaticParams() {
   return [{ locale: [] }, { locale: ["hi"] }];
@@ -35,6 +37,7 @@ export async function generateMetadata({
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
+      images: [ogImageUrl({ heading: "Bhagavad Gita Verse of the Day", eyebrow: "Daily" })],
       url: isHindi
         ? "https://bhagavadgita.com/verse-of-the-day/hi"
         : "https://bhagavadgita.com/verse-of-the-day",
@@ -47,24 +50,13 @@ export async function generateMetadata({
       title: "Bhagavad Gita - Verse of the Day",
       description:
         "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
-      images: [
-        {
-          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          height: 1080,
-          width: 1920,
-        },
-      ],
     },
     twitter: {
+      images: [ogImageUrl({ heading: "Bhagavad Gita Verse of the Day", eyebrow: "Daily" })],
       card: "summary_large_image",
       title: "Bhagavad Gita - Verse of the Day",
       description:
         "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {

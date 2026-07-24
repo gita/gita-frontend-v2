@@ -10,6 +10,7 @@ import {
   LegalContentPage,
   LegalContentSection,
 } from "@/components/blocks/page-sections";
+import { ogImageUrl } from "@/lib/og/brand";
 
 // Force static generation for better SEO
 export const dynamic = "force-static";
@@ -35,6 +36,7 @@ export async function generateMetadata({
       ? "हमारे प्लेटफ़ॉर्म का उपयोग करने के लिए आवश्यक दिशानिर्देश। उपयोगकर्ता जिम्मेदारियों, सामग्री उपयोग, कॉपीराइट नीतियों और सेवा शर्तों के बारे में पढ़ें।"
       : "Essential guidelines for using our platform. Read about user responsibilities, content usage, copyright policies, and service terms.",
     openGraph: {
+      images: [ogImageUrl({ heading: "Terms of Service" })],
       title: isHindi
         ? "सेवा की शर्तें - BhagavadGita.com"
         : "Terms of Service - BhagavadGita.com",
@@ -47,17 +49,9 @@ export async function generateMetadata({
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
-      images: [
-        {
-          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          height: 1080,
-          width: 1920,
-        },
-      ],
     },
     twitter: {
+      images: [ogImageUrl({ heading: "Terms of Service" })],
       card: "summary_large_image",
       title: isHindi
         ? "सेवा की शर्तें - BhagavadGita.com"
@@ -65,9 +59,6 @@ export async function generateMetadata({
       description: isHindi
         ? "हमारे प्लेटफ़ॉर्म का उपयोग करने के लिए आवश्यक दिशानिर्देश।"
         : "Essential guidelines for using our platform. Read about user responsibilities, content usage, copyright policies, and service terms.",
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {
