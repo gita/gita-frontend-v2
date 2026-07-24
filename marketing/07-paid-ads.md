@@ -1,101 +1,219 @@
-# 07 — Paid ads: stop buying installs, start buying readers
+# 07 — Paid ads on a non-profit budget
 
-Founder note, 2026-07-25: we already run Play Store ads, but they optimise for **installs**. That
-is the problem worth fixing before spending another rupee.
+Research date: 2026-07-25. Founder note: we already run Play Store ads, but they optimise for
+**installs**, and install numbers are not what we want.
 
-> Cross-channel CPI benchmarks (Meta vs Google vs Apple Search Ads) and the Google Ad Grants
-> question are still in research. This doc covers the change that matters most and does not depend
-> on those numbers.
+**Data-quality warning up front.** India CPI search results are heavily polluted with
+AI-generated SEO content. One vendor page reports a $2,313 CPI for March 2026 alongside $2.90 in
+December — sample noise presented as a benchmark. **Neither Google nor Meta publishes CPI
+benchmarks at all**, so every India CPI below is third-party and tiered by trustworthiness.
+Anyone quoting you a confident Books-category India CPI is guessing.
 
 ---
 
-## The problem with install campaigns
+## First, a clarification
 
-An install-optimised campaign optimises for exactly what it says. Google's ML goes and finds the
-people **most likely to tap install** — which is not the same population as people most likely to
-_read the Gita_. Cheap installs from users who open once and delete are worse than useless for a
-non-profit: they cost money, they drag retention cohorts down, and they teach the algorithm to
-find more people like them.
+**"Play Store ads" are not a separate product.** Google App campaigns serve across Search,
+YouTube, **Google Play**, Discover, the Display Network and AdMob, and **you cannot choose
+placements** — the system allocates automatically
+([Google](https://support.google.com/google-ads/answer/15400292)). Play Store search results, Play
+"You might also like", and the Play homepage are all inside App campaigns. So we are already
+running the thing; the question is only what it optimises for.
 
-We are paying for a number that does not matter to us.
+## Do this first: the Apple Ads $100 credit
 
-## The fix: optimise for an in-app action
+The single highest-return move available, and it costs nothing.
 
-Google App Campaigns can bid toward an **in-app conversion event** instead of an install. You
-define the event, fire it from the app, and Google's ML shifts to finding users likely to
-_complete that action_. That is precisely the lookalike effect described — the algorithm starts
-seeking engaged readers rather than tap-happy installers.
+- **Apple Ads Basic bills on true cost-per-install** — "pay only for installs at a cost you
+  choose", not per tap
+  ([Apple](https://ads.apple.com/app-store/help/apple-ads-basic/0001-compare-apple-ads-solutions))
+- **A one-time $100 promo credit** applies automatically for new accounts
+  ([Apple](https://ads.apple.com/app-store/help/billing/0032-apple-ads-promo-credit))
+- **India median CPI is $0.89** — from the best-sourced study found, AppTweak across ~3,500 apps,
+  50,000 campaigns, $1B spend ([AppTweak](https://www.apptweak.com/en/aso-blog/apple-ads-benchmarks)).
+  Global median $1.80, US $4.06
+- No minimum daily budget is stated anywhere in Apple's docs
 
-### Which event to pick
+**~110 free iOS installs, downside structurally capped**, zero engineering work.
 
-The event should mean "this person actually engaged with scripture", and it should fire **early
-enough to generate volume**. Candidates, roughly in order:
+**One trap:** link the **top-level** App Store Connect account. "If you link a campaign group
+instead of your top-level account, the credit won't be applied."
 
-| Event                             | Signal quality | Volume           |
-| --------------------------------- | -------------- | ---------------- |
-| `verse_read` (first verse opened) | Good           | Highest          |
-| `chapter_opened`                  | Good           | High             |
-| `audio_played`                    | Strong         | Medium           |
-| `gita_gpt_question_asked`         | **Strongest**  | Lower            |
-| `reading_plan_started`            | Strongest      | Lowest           |
-| `day_2_retained`                  | Strongest      | Lowest, and slow |
+**But do not spend beyond the free $100 here.** iOS is a small share of India, our iOS app is
+brand new with almost no ratings (which hurts Apple's conversion rate), and — checked across all
+four placements — **Apple Ads has no video upload on any placement**. Ads are built from App Store
+product-page metadata. Our cheapest competitive advantage, AI video, is worth exactly nothing on
+this channel.
 
-**Start with `verse_read` or `chapter_opened`.** They are the "read at least one word" idea, and
-crucially they clear the volume bar. `gita_gpt_question_asked` is a better _quality_ signal but
-may not fire often enough to train the model — that is the trade-off, and it is the one that
-decides whether this works.
+## The conversion-optimisation question, corrected
 
-**The volume constraint is the real risk here.** Bidding toward an event that fires only a handful
-of times a day leaves the campaign permanently in learning and performing worse than the install
-campaign it replaced. If our engaged-user volume is thin, use the broader event, or run
-install-optimised with the conversion event merely _tracked_ until volume builds.
+Your instinct is right: bid for engaged readers, not installs. **But the budget arithmetic is the
+constraint, not the volume worry I flagged earlier.**
 
-### What it requires
+Google states the rule in its own docs, twice:
 
-1. **Conversion tracking wired.** Firebase / Google Analytics for Firebase is free and the natural
-   choice for a Flutter app — check whether `gita-flutter-2.0` already has it, since that
-   determines whether this is a day of work or a week. A third-party MMP (AppsFlyer, Adjust,
-   Branch, Singular) is the alternative and costs money we do not need to spend.
-2. **The event defined and firing** on both iOS and Android, imported into Google Ads as a
-   conversion action.
-3. **Bidding switched** to target cost-per-action on that event.
-4. **iOS caveat:** ATT and SKAdNetwork make iOS in-app-event optimisation materially weaker and
-   slower than Android. Expect this to work well on Android first. Given our iOS build shipped on
-   21 July 2026 with almost no install base, **Android is where this should run anyway.**
+> **"Set your average daily budget at 50 times your target CPI, or 10 times your target CPA."**
+> — [Google](https://support.google.com/google-ads/answer/9176652)
 
-### What to expect
+So switching from installs to in-app actions **changes the budget floor**, and the docs put
+action-based campaigns at **10–15× target CPA**
+([Google](https://support.google.com/google-ads/answer/6167156)):
 
-**Cost per install will go up. That is the point.** You are paying more per install and getting a
-meaningfully better install. The metric to watch is **cost per engaged reader**, not CPI — and the
-honest version of that is retention: D1, D7, D30 on the paid cohort versus organic.
+| Optimising for         | Rule    | At our numbers | Monthly   |
+| ---------------------- | ------- | -------------- | --------- |
+| Installs, $0.20 CPI    | 50× CPI | $10/day        | **~$304** |
+| Engaged reader, $1 CPA | 10× CPA | $10/day        | **~$304** |
+| Engaged reader, $2 CPA | 10× CPA | $20/day        | **~$608** |
+| Engaged reader, $3 CPA | 10× CPA | $30/day        | **~$912** |
 
-**Do not judge it on install volume.** Volume will fall. If we measure the new campaign with the
-old metric we will conclude, wrongly, that it failed.
+**This is the thing to check before switching.** If an engaged reader costs us $1, the switch is
+budget-neutral and we should do it immediately. If they cost $3, conversion bidding needs triple
+the budget and may simply be unaffordable. **We cannot know which until we measure the baseline.**
 
-## Sequencing
+Learning period is **7–14 days**, and significant bid or budget changes restart it.
 
-1. **Instrument first.** Confirm Firebase in `gita-flutter-2.0`, define `verse_read` and
-   `chapter_opened`, verify both fire on real devices.
-2. **Run install-optimised for 2–4 weeks with the events merely tracked.** This establishes the
-   baseline — what fraction of paid installs ever read a verse — and it is the number that proves
-   or kills the whole thesis.
-3. **Then switch bidding** to the in-app action, and hold budget constant so the comparison is
-   clean.
-4. **Compare cohorts on retention**, not installs.
+### The event to pick
 
-Step 2 is the one to resist skipping. Without a baseline there is no way to show the change
-worked, and "it feels better" is not a result.
+| Event                             | Signal quality | Volume  |
+| --------------------------------- | -------------- | ------- |
+| `verse_read` (first verse opened) | Good           | Highest |
+| `chapter_opened`                  | Good           | High    |
+| `audio_played`                    | Strong         | Medium  |
+| `gita_gpt_question_asked`         | **Strongest**  | Lower   |
+| `reading_plan_started`            | Strongest      | Lowest  |
+
+**Start with `verse_read` or `chapter_opened`** — the "read at least one word" idea, and they keep
+target CPA low enough that 10× stays affordable. A stronger event means a higher CPA means a
+higher budget floor.
+
+**iOS caveat:** ATT and SKAdNetwork make iOS in-app-event optimisation materially weaker. This is
+an Android play, which is where our install base is anyway.
+
+### Sequencing
+
+1. **Instrument.** Firebase Spark is **free forever** — Analytics, Crashlytics, Remote Config,
+   A/B testing, FCM, no card required ([Firebase](https://firebase.google.com/pricing)). Confirm
+   it is in `gita-flutter-2.0`, then fire `verse_read`, `chapter_opened`, **plus a Day-1 open and
+   Day-7 return**.
+2. **Run install-optimised for 2–4 weeks with the events merely tracked.** This gives the number
+   everything else depends on: what a genuinely engaged reader actually costs us. Skip this and
+   there is no way to know whether conversion bidding is affordable, or to prove it worked.
+3. **Then decide** using the table above.
+4. **Judge every channel on cost-per-Day-7-retained-user, not CPI.** A $0.12 install that never
+   opens costs more than a $0.40 install that becomes a daily reader.
+
+## Where the $100–300/month should go
+
+**One channel, not two.** At this budget, splitting kills both.
+
+**Google App Campaigns, Android, India only, $8–10/day.**
+
+- It _is_ the Play Store surface, the highest-intent install placement available
+- **$300/month satisfies Google's own 50× rule at a $0.20 target CPI.** This only works because
+  India CPI is roughly 0.1× US — the identical campaign in a Western market would demand
+  $6,000/month
+- Install-only Android campaigns **avoid the SDK/MMP integration Meta requires**, which is real
+  engineering we do not need to spend
+- Our AI video is a genuine asset here, since YouTube is a major App campaign surface. Google
+  recommends uploading **20 images and 20 videos** across aspect ratios
+
+**Add Meta later**, when either Play search volume caps out (likely — devotional-app search demand
+is a finite pool) or the SDK is integrated. Then it becomes attractive: **Meta's learning
+threshold is ~7× cheaper than Google's** — 50 conversions per _week_ versus Google's 50 per _day_.
+Meta _creates_ demand; Google _captures_ it. For a devotional app with a large latent audience,
+Meta is probably the bigger long-run channel, it just costs more to set up.
+
+### India CPI, honestly
+
+| Channel              | India CPI               | Source quality                                     |
+| -------------------- | ----------------------- | -------------------------------------------------- |
+| Google App Campaigns | **$0.15–$0.40** Android | Weak. No methodology-disclosed India figure exists |
+| Meta                 | **$0.15–$0.85**         | Weak, and sources contradict each other            |
+| Apple Ads            | **$0.89** median        | **Good** — AppTweak, 3,500 apps, disclosed method  |
+
+Plan against $0.15–$0.40 for Android, but treat it as a planning assumption, not a fact.
+
+## Google Ad Grants: real, free, and **not** an install channel
+
+$10,000/month in free Search ads, hard-capped at $329/day, no rollover
+([Google](https://www.google.com/grants/)). Genuinely valuable — but not for what you'd hope.
+
+**It cannot drive app installs directly:**
+
+1. **App campaigns cannot be created.** Only Search and Performance Max
+   ([Google](https://support.google.com/nonprofits/answer/9841727))
+2. **You cannot link to a store listing.** "Your nonprofit must own the domain(s) your ads point
+   to" — play.google.com and apps.apple.com both fail
+3. **The redirect workaround is closed** — off-domain redirects from the final URL are disapproved
+
+**The compliant path, which Google documents itself:** its Ad Grants conversion guide names app
+downloads as a trackable outcome and blesses button-click tracking
+([Google](https://support.google.com/nonprofits/answer/9841491)). So:
+
+> Search ad → a **substantive content page on bhagavadgita.com** → store buttons → track the
+> outbound click as the conversion.
+
+Two hazards: a thin "download our app" splash page gets disapproved as "solely designed to send
+users elsewhere", and Google **explicitly bans** the obvious keywords — "cool apps", "download
+games", "Android apps" are named as non-permitted. Mission phrasing ("Bhagavad Gita reading app")
+works; generic app phrasing does not.
+
+**Attribution dies at the store hop.** You count store-button clicks; read real installs from Play
+Console separately.
+
+**The rules are strict:** 5% monthly CTR floor (two consecutive misses deactivates the account),
+$2.00 max CPC unless using smart bidding, no single-word or generic keywords, ≥2 ad groups per
+campaign, ≥1 conversion/month, full HTTPS on an owned domain.
+
+### The eligibility gate — resolve this first
+
+**India registration requires FCRA.** Verbatim: eligible orgs must be "registered under the
+Foreign Contribution Regulations Act (FCRA)"
+([Google](https://support.google.com/nonprofits/answer/3215869)). **12A/80G is not mentioned and
+does not appear to satisfy Google.**
+
+**A US 501(c)(3) with an actual IRS determination letter is decisively the easier path.** Given
+Ved Vyas Foundation's US presence, this is the question to answer before planning anything: **does
+a US entity with a determination letter exist?** If yes, apply through it. If no, and the Indian
+entity lacks live FCRA, Google for Nonprofits is closed — and with it Ad Grants, free Workspace,
+and the YouTube Nonprofit Program.
+
+Two useful clarifications: **religious organisations are eligible** (the only relevant clause is
+non-discrimination in hiring and service administration), and we should present as a **charitable
+publisher, not an educational institution** — "a school, academic institution, or university" is
+explicitly ineligible.
+
+## Free levers worth taking now
+
+| Program                               | What                             | Note                                                                                                                                                     |
+| ------------------------------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Apple Ads $100 credit**             | ~110 free iOS installs           | Link the top-level account                                                                                                                               |
+| **Apple Developer fee waiver**        | The $99/yr membership, free      | Requires no Paid Applications Agreement. India neither listed nor excluded — worth applying                                                              |
+| **Apple Featuring Nomination**        | Free editorial featuring         | Criteria include **localization quality and accessibility** — a seven-language devotional app has a genuinely strong pitch. Give 2 weeks–3 months notice |
+| **Play custom store listings**        | **Up to 50 per app, free**       | Targetable by country, **search keyword, and Google Ads ad group ID** — pairs directly with App campaigns                                                |
+| **Firebase Spark**                    | Analytics, Crashlytics, A/B, FCM | Free forever, no card                                                                                                                                    |
+| **TechSoup India / NASSCOM BiG Tech** | Adobe, AWS, Zoho, Wix            | **Explicitly accepts religious organisations.** No FCRA gate mentioned                                                                                   |
+| **Claude for Nonprofits**             | $8/user/mo, min 2 seats          | Covers "international nonprofit equivalents", no religious exclusion stated                                                                              |
+| **Azure nonprofit grant**             | $2,000/year                      | Activate within 90 days, no rollover                                                                                                                     |
+
+### Things that do not exist, despite what agencies claim
+
+- **There is no Meta nonprofit ad grant.** Meta's nonprofit hub lists tools and training only. A
+  site claiming "Meta Social Impact Ad Credits up to $10,000 annually" appears fabricated — treat
+  anyone pitching it as a red flag.
+- **Microsoft's ad grant ended December 2025** and is not accepting applicants.
+- **Google Play's $25 developer fee has no nonprofit waiver.**
+- **Slack excludes religious organisations** outright. **HubSpot's nonprofit program excludes
+  India.** OpenAI's may exclude religious orgs — unverified, check before planning around it.
 
 ## Open questions
 
-- Is Firebase already in `gita-flutter-2.0`? Determines the effort entirely.
-- What is our current daily install volume, and how many of those users read a verse? This decides
-  whether event-optimised bidding can get enough signal at all.
-- What are we spending on Play ads today, and what is the current CPI?
-- Cross-channel comparison (Meta vs Google App Campaigns vs Apple Search Ads) and whether **Google
-  Ad Grants** ($10k/month free Search for non-profits) can be used for app promotion — in research.
+- **Does a US 501(c)(3) with an IRS determination letter exist?** Blocks Ad Grants entirely.
+- Is Firebase already in `gita-flutter-2.0`?
+- Current Play ads spend, current CPI, and what fraction of paid installs ever read a verse?
+- Custom store listings — are we using any of the 50 free slots?
 
 ---
 
-**Related:** [05](05-automation-stack.md) for the organic stack; [01](01-competitor-bgfa.md) for
-what BGFA runs (~500 concurrent Meta creatives plus 55 Google ads, always-on).
+**Related:** [05](05-automation-stack.md) organic stack; [06](06-video-pipeline.md) the video
+creative that feeds these; [01](01-competitor-bgfa.md) for what BGFA runs.
