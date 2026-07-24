@@ -17,6 +17,8 @@ scraped from a rendered page.
 | [03 — Content engine](03-content-engine.md)           | Daily social, trend-riding, newsjacking, and the reverence gate                                            |
 | [04 — Retention](04-retention-email-push.md)          | Email and push across web, iOS and Android                                                                 |
 | [05 — Automation stack](05-automation-stack.md)       | Tools, real costs, and the build order                                                                     |
+| [06 — Video pipeline](06-video-pipeline.md)           | How we actually make ≥1 video/day: lock the character once, four production tracks                         |
+| [07 — Paid ads](07-paid-ads.md)                       | Stop buying installs, start buying readers. Conversion-optimised App Campaigns                             |
 
 ## Standing strategy docs
 
