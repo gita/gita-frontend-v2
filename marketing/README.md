@@ -18,9 +18,23 @@ scraped from a rendered page.
 | [04 — Retention](04-retention-email-push.md)          | Email and push across web, iOS and Android                                                                 |
 | [05 — Automation stack](05-automation-stack.md)       | Tools, real costs, and the build order                                                                     |
 
-Prior planning that still stands: [`notes/gtm-plan.md`](../notes/gtm-plan.md) (site architecture,
-GEO/AEO strategy, viral GTM ideas) and [`notes/gtm-open-benchmarks.md`](../notes/gtm-open-benchmarks.md).
+## Standing strategy docs
+
+Numbered docs above are the 2026-07-25 research synthesis. These are the earlier strategy work,
+still current, moved here from `notes/` so all marketing lives in one place:
+
+| Doc                                                                      | What's in it                                                                                                          |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| [gtm-plan.md](gtm-plan.md)                                               | The foundation: site architecture, GEO/AEO strategy, the prompt universe to monitor, viral GTM ideas, the 90-day plan |
+| [gtm-open-benchmarks.md](gtm-open-benchmarks.md)                         | The benchmark program (apps + websites), and why independence is the whole point                                      |
+| [ramayan-strategy.md](ramayan-strategy.md)                               | Ramayan expansion: economics and the six-month launch sequence                                                        |
+| [archive/email-provider-research.md](archive/email-provider-research.md) | **Superseded** by [04](04-retention-email-push.md). Kept for the Resend vs Loops vs SES reasoning                     |
+
 The cross-property original lives at `radhakrishna.net/docs/08-marketing-automation.md`.
+
+Still in `notes/`: `app-comparison-research.md`, which is page-source research for
+`/best-bhagavad-gita-apps` rather than marketing, and whose companion fact sheet is in open
+PR #307. Move both once that merges, if wanted.
 
 ## Your six workstreams, mapped
 

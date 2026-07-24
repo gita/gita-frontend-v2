@@ -210,7 +210,7 @@ success, invalid and empty input are blocked client-side with zero writes.
 ### 5b. Sending — not started
 
 **Provider decision: Resend, on the Broadcasts path.** Full comparison against Loops and AWS
-SES in `notes/email-provider-research.md`. Short version: Loops is disqualified because its
+SES in `marketing/archive/email-provider-research.md`. Short version: Loops is disqualified because its
 transactional surface forbids marketing content and its campaign surface is not cleanly
 API-drivable; SES saves only about $1,500 a year even at 36,000 subscribers, against three to
 five days of build and permanent ownership of deliverability.
@@ -356,7 +356,7 @@ the two builds need to stay level.
 
 # GTM track
 
-Source: `notes/gtm-plan.md` and `notes/gtm-open-benchmarks.md`
+Source: `marketing/gtm-plan.md` and `marketing/gtm-open-benchmarks.md`
 
 Headline target from the plan: **20,000 → 100,000 monthly organic visits**, plus app installs,
 repeat reading, branded search, and citations in AI answers.
@@ -584,7 +584,7 @@ double as internal-linking hubs.
 
 A tracked set of 100 prompts split across English and Hindi, India and US, recommendation and
 informational intent, run against Google AI Mode, ChatGPT, Gemini, Claude, Perplexity and
-Copilot. The full prompt list is in `notes/gtm-plan.md` — 15 app-discovery, 11
+Copilot. The full prompt list is in `marketing/gtm-plan.md` — 15 app-discovery, 11
 website-discovery, 10 translation-and-study, 14 life-guidance, 13 scripture-facts.
 
 Record which brands appear, which sources get cited, and why. This is the measurement loop for
@@ -666,7 +666,7 @@ publish gate, the real email list size, and whether there is any budget for crea
 The benchmark does not need to be a separate property. The comparison matrix belongs on
 `/best-bhagavad-gita-apps`, where it earns citations for us rather than for someone else's
 domain, and where authorship is stated plainly instead of being nominally independent while we
-fund it. The original memo is preserved in `notes/gtm-open-benchmarks.md` if the third-party
+fund it. The original memo is preserved in `marketing/gtm-open-benchmarks.md` if the third-party
 route is ever revisited.
 
 ## Conflicts to resolve before starting the GTM items
@@ -691,7 +691,7 @@ discovering mid-build:
 
 ## Adjacent track: the scripture portfolio (not work in this repo)
 
-Source: `notes/chatgpt-ramayan.md`
+Source: `marketing/ramayan-strategy.md`
 
 Separate from the site work above, there's a strategy note covering new exact-match-domain
 scripture properties modeled on what bhagavadgita.com has proven out. Recording it here so it
@@ -739,7 +739,7 @@ incarnations, duty compared across the two.
   one confirmed date before anything is planned around it.
 
 Full detail, including URL structures, keyword difficulty tables, backlink tiers, paid-install
-economics and the six-month launch sequence, is in `notes/chatgpt-ramayan.md`.
+economics and the six-month launch sequence, is in `marketing/ramayan-strategy.md`.
 
 ---
 
