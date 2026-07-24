@@ -95,8 +95,9 @@ Since its only job is traffic that converts to installs:
   srimadgita has 5,620 URLs and 53 with traffic.
 - **The AI never writes scripture.** Retrieval-only, verbatim by ID. See
   [03](03-content-engine.md).
-- **No AI-generated deity faces or voices.** Pending the Foundation's formal policy, this is the
-  working assumption.
+- **AI Krishna imagery is fine; sloppy AI Krishna imagery is not.** Traditional iconography,
+  human review of every frame (generators whitewash Krishna's complexion), never the punchline,
+  never a named temple murti. Full guidance in [03](03-content-engine.md).
 - **A human gate on anything quoting a verse or riding a trend**, until that policy exists and a
   named owner holds it.
 

@@ -52,10 +52,11 @@ PR #307. Move both once that merges, if wanted.
    followers. Do not benchmark against their follower count.
 2. **Their daily posts are not what grows them.** Daily reels do ~40–50K views. A celebrity collab
    did 9.7M. Daily cadence keeps an account alive; spectacle and collabs grow it. Budget for both.
-3. **The AI-baby trend cannot be done literally.** It structurally requires a synthetic face and
-   voice on its subject, and AI deity depictions have triggered removals and organised backlash.
-   The re-vessel version — Gita GPT answering a modern anxiety, verse cited on screen — keeps the
-   upside and the reverence. Full reasoning in [03](03-content-engine.md).
+3. **AI-generated Krishna imagery is fine — that earlier "don't" was wrong.** Across seven
+   backlash cases, not one objected to the technology; every one objected to _how_ the deity was
+   portrayed. ISKCON itself runs AI outreach. The real risks are iconographic sloppiness
+   (generators whitewash Krishna's complexion) and visible cheapness, both controllable. Only the
+   deity-as-punchline formats stay off-limits. Full evidence in [03](03-content-engine.md).
 4. **Celebrity endorsements cost ₹5–15 Cr for A-listers**, and Cameo does not carry Indian
    A-listers at all. The non-profit route is a gift-of-service ask to people who already post
    about the Gita, plus mythology micro-creators.
@@ -66,9 +67,9 @@ PR #307. Move both once that merges, if wanted.
 
 These block automation, not research:
 
-- **The deity-depiction policy.** Classical art only? AI-generated reverent scenes without faces?
-  Everything here assumes **no AI-generated deity faces or voices**. This is the single most
-  important call and it needs the Foundation's sign-off.
+- **Sign off and publish the art policy** — traditional iconography, human review of every frame,
+  never presented as an object of worship. Cheap insurance that turns any future challenge into a
+  non-story.
 - **Who holds the go/no-go** on trend and newsjack posts, and their turnaround SLA.
 - **The real email list size** — decides the entire email architecture in [04](04-retention-email-push.md).
 - **Whether there is any budget for paid creator shoutouts** ($300–500 for a first test), and an

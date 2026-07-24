@@ -23,47 +23,152 @@ one-off slip. It would feed an existing distrust narrative.
 
 Retrieval-only design removes the ability to hallucinate a citation, structurally.
 
-## The reverence gate
+## Depicting Krishna: the corrected position
 
-Every piece of trend-derived content passes four gates. All four, or it dies.
+**An earlier version of this doc said "no AI-generated deity faces or voices". That was wrong,
+and it was wrong in a way worth recording so we do not re-derive it.**
 
-1. **Reverence** — does this require depicting, voicing, animating, or joking about a deity?
-   **If yes, kill or re-vessel.** No exceptions.
-2. **Fit** — can it carry a real verse, or the app/Gita GPT, without being a stretch?
-3. **Feasibility** — can we ship in under 48h with assets we already hold?
-4. **Fallout** — picture the most offended devotee seeing it. If it could read as mockery, kill.
+Dedicated research on 2026-07-25 examined seven backlash cases. **Not one of them objected to the
+technology of depiction. Every single one objected to how the deity was portrayed.**
 
-### On the AI-baby trend specifically
+### Depicting Krishna is the tradition, not a departure from it
 
-You flagged the talking-AI-babies trend as an example of what to ride. **The literal version is
-the one thing we must not do**, and the reason is concrete rather than squeamish:
+Hinduism is emphatically iconic. `murti`/`pratimā` — the latter explicitly including paintings —
+are central, with anthropomorphic form the dominant mode governed by the _Shilpa Shastras_
+([Britannica](https://www.britannica.com/topic/murti)).
 
-- The format structurally requires putting a **synthetic face and voice on its subject**. Applied
-  to Krishna, that is an AI-generated deity.
-- AI depictions of Hindu deities have repeatedly triggered removals and organised backlash — Puri
-  police had **97 AI images of Jagannath deities removed**
-  ([source](https://www.dinalipi.com/97-ai-generated-misleading-images-of-jagannath-temple-deities-removed/)),
-  and both Ekta Kapoor and Harvard have drawn Hindu-group backlash over similar.
-- It reframes divine teaching as a cutesy meme, which erodes the exact authority the brand exists
-  to hold. The earlier GTM plan reached the same conclusion independently.
+The tradition has **already absorbed one mass-reproduction shock**. Raja Ravi Varma's oleographs
+were commercial, machine-printed, in a then-foreign European naturalist idiom — and they _became_
+the standard devotional vocabulary, flowing into prayer rooms, calendars, Amar Chitra Katha,
+cinema and digital imagery
+([ThePrint](https://theprint.in/ground-reports/calendar-artist-to-rs-167-cr-sale-how-raja-ravi-varma-still-defines-indias-imagination/2917079/)).
+AI is structurally the next instance of that pattern.
 
-**The move that keeps the upside:** ride the trend's _energy and audio_, re-vessel the subject.
-The format's actual appeal is "wisdom from an unexpected source". Deliver that as a **Gita GPT
-screen recording** answering a modern anxiety, with the verse cited on screen. The AI speaks. The
-scripture is quoted. No divine figure is animated. That converts your instinct into installs
-_and_ keeps the deity out of a meme template.
+Animated Krishna is **endorsed from inside the tradition**: _Little Krishna_ was an ISKCON
+Bangalore initiative built on seven years of devotee research
+([ISKCON Bangalore](https://www.iskconbangalore.org/project/little-krishna/)); _Krishna Aur Kans_
+was based on Prabhupāda's _Kṛṣṇa_ book. Where ISKCON-adjacent critics complained, it was that the
+animation looked "cartoonish" — a **dignity complaint, not a depiction complaint**.
 
-### Whitelist / blacklist
+ISKCON itself now runs AI outreach approvingly, including an official Bhakti Song Contest seeded
+with AI-generated songs
+([ISKCON News](https://iskconnews.org/bhakti-song-contest-using-ai-and-music-for-krishna-conscious-outreach/)).
 
-**Safe to adapt:** trending-audio-only reels over reverent visuals; POV framing; text-on-screen
-relatable struggle ("me at 3am overthinking" → 2.47 on action without attachment); green
-flags/red flags; typography and carousel trends; "read one shloka with me" morning routines;
-expectation vs reality; "things I wish I knew sooner"; **any question-answer trend answered by
-Gita GPT**.
+**No documented case was found of reverent, iconographically-correct AI Krishna imagery drawing
+religious backlash.** The researcher searched adversarially for one.
 
-**Never, literally:** AI or deepfake faces/voices of any deity; deity as comedic character or
-punchline; dance/lip-sync performed by a divine figure; sacred art morphed onto meme templates;
-crude or explicit audio over sacred imagery; shock, sexualised, political, or mockery formats.
+### What actually triggered each backlash
+
+| Case                               | Real trigger                                                                                                                                                  |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Puri Jagannath, 97 images          | Deities shown **literally sick** — thermometers in mouths, compresses on foreheads. Comic literalization of the esoteric _anasara_ seclusion                  |
+| Puri Jagannath, SJTA complaint     | A **fabricated ritual** — milk poured by crane, "alien to established temple rituals"                                                                         |
+| Ekta Kapoor, AI Krishna (Jul 2026) | **Visible cheapness + wrong register.** "Krishna Bhagwan Hin-English bol rhe hn", "why jail and not karagaar?" No religious body objected — a _taste_ failure |
+| Ekta Kapoor, _XXX_ (2020)          | Deities in an **erotic** drama. FIR                                                                                                                           |
+| Ash Naidoo, Durban                 | AI images of himself **hand-in-hand with deities, wearing shoes**, positioned as their equal. Sincere intent did not save it                                  |
+| Harvard (Mar 2026)                 | Krishna as a **sinister puppeteer** dangling the Pandavas. Not verified as AI at all                                                                          |
+| _Adipurush_ (2023)                 | Hanuman's _tapori_ dialogue and weak VFX. **No AI involved** — proving the trigger was never the technology                                                   |
+
+### The one real doctrinal constraint
+
+The Hindu American Foundation has published directly on this
+([HAF, Oct 2025](https://www.hinduamerican.org/blog/can-i-use-ai-generated-images-for-my-daily-prayers)),
+and its position is narrower than it first sounds:
+
+- **Not for veneration.** A worship image should interpret the deity's _dhyāna mantra_, and AI
+  "has no capacity to meditate".
+- **Decorative and commercial uses are explicitly permitted**, with attribution and iconographic
+  accuracy.
+- _"There is a real and intrinsic value in the correctness of the image, independent of sincerity
+  of devotional intent."_
+
+**HAF is not saying do not depict. It is saying do not put an AI image on the altar, and get the
+iconography right.** Daily social content sits squarely inside its permitted zone.
+
+## The actual gate
+
+### Iconographic accuracy — our number one controllable risk
+
+**AI generators systematically whitewash Krishna.** This is documented and specifically criticised
+([Outlook India](https://www.outlookindia.com/society/imagining-white-gods-colourism-in-hindu-calendar-art-and-amar-chitra-kathas-news-297487)),
+and image models carry general racial bias
+([WaPo](https://www.washingtonpost.com/technology/interactive/2023/ai-generated-images-bias-racism-sexism-stereotypes/)).
+Every frame gets human review against this checklist before publish:
+
+- **Blue/dark complexion** — never lightened
+- Peacock feather, correct flute grip, yellow _pītāmbara_
+- Correct hand and finger count, no extra limbs or digits
+- No grotesque or off-model faces
+
+This single check would have prevented most of the quality criticism levelled at devotional AI art.
+
+### Register
+
+The deity may be the **subject** of an aesthetically elevated format. The deity must never be the
+**punchline, the reactor, or the straight man**.
+
+Krishna speaking modern language is fine if the register stays elevated. **No code-mixed
+Hindi-English** — _karāgāra_, not "jail". That is exactly what got Ekta Kapoor mocked.
+
+### Named living temple deities
+
+**Avoid depicting or animating specific consecrated murtis** — Jagannath, Tirupati, Nathdwara,
+Banke Bihari. These carry a protective servitor establishment and an active police posture that
+generic Krishna iconography does not. Both Puri cases were about _that specific deity_.
+
+### Genuinely off-limits
+
+- Krishna as comedic character, punchline, reactor, or **lip-sync / "AI baby" talking-head novelty**
+- Any sexualized or romantically suggestive rendering — this, not AI, is what produces FIRs
+- **Fabricated rituals** presented as real
+- Sinister, grotesque, horror or manipulator framing
+- A human positioned as Krishna's peer; shoes or casual dress in his presence
+- Presenting AI images as **objects of worship** or as photographs of real temple deities — the one
+  place HAF draws a hard line and the one place "AI" genuinely matters
+- Doctrinally invented teachings attributed to Krishna
+
+### On the AI-baby format specifically
+
+This one stays off-limits, on narrower grounds than before. The evidence cuts both ways: the
+deity-in-luxury-car "aura farming" trend is a meme format, is enormous, and drew no documented
+backlash. But the Jagannath thermometer images were _also_ a meme format and drew police action.
+
+The difference is that they made the deity the **object of pity or the joke**. A talking-head
+lip-sync novelty derives its entire comedic charge from incongruity — from lowering its subject.
+No successful devotional precedent for it was found.
+
+**The re-vessel alternative still stands and is better anyway:** deliver "wisdom from an
+unexpected source" as a **Gita GPT screen recording** answering a modern anxiety with the verse
+cited on screen. And the founder's own suggestion — **real-life situations with human
+characters** — sidesteps the question entirely for a large share of content, is cheaper to
+generate, and matches the modern-life-tension hooks that actually perform.
+
+### Two cheap insurance policies
+
+1. **Label AI-assisted imagery.** Costs nothing, pre-empts the deception objection, and distances
+   us from the "mistaken for a real temple deity" failure mode.
+2. **Publish a one-paragraph art policy** — we follow traditional iconography, review every image,
+   and never present images as objects of worship. If challenged, this turns a controversy into a
+   non-story.
+
+### The four gates, revised
+
+1. **Register** — is the deity the subject of something elevated, or the punchline? Punchline kills it.
+2. **Iconography** — blue complexion, correct attributes, no anatomical errors, not a named temple murti.
+3. **Fit** — can it carry a real verse or the app without being a stretch?
+4. **Fallout** — picture the most offended devotee. Mockery, fabricated ritual, or visible cheapness kills it.
+
+**The honest summary: a reverent non-profit Gita brand producing daily AI Krishna content is
+operating well inside established practice. The real risks are iconographic sloppiness and visible
+cheapness — both fully controllable — not the act of depiction.**
+
+### Trend whitelist
+
+**Safe to adapt:** trending-audio reels over reverent visuals; POV framing; text-on-screen
+relatable struggle ("me at 3am overthinking" → 2.47); green flags/red flags; typography and
+carousel trends; "read one shloka with me" routines; expectation vs reality; "things I wish I knew
+sooner"; **any question-answer trend answered by Gita GPT**; **real-life scenarios with human
+characters**; cinematic reverent Krishna in the "aura farming" register minus the joke.
 
 ## Weekly trend scan — 45 minutes, Monday, all free
 
@@ -163,9 +268,9 @@ It works organically at zero media cost, drives the comment signal, and opens a 
 
 ## What must be decided before this runs hands-off
 
-- **The deity-depiction policy.** Classical art only? AI-generated reverent scenes with no faces?
-  Any AI Krishna at all? Everything above assumes **no AI-generated deity faces or voices**. This
-  needs the Foundation's explicit sign-off, and it is the single most important call here.
+- **Sign off the art policy** above (traditional iconography, human review of every frame, never
+  presented as an object of worship) and publish it. The research says depiction is fine; what
+  needs a decision is that we commit to the accuracy standard in writing.
 - **Who holds the go/no-go** when the system is always-on, and their turnaround SLA.
 - **Which translation is our public voice** for quoted verses, and whether Sanskrit +
   transliteration must always accompany the English.
