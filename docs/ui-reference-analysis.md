@@ -164,8 +164,11 @@ Christian meditation apps plus the category leader. All three are **paywalled su
 products** whose sites are pure marketing — no scripture to read. Useful only for hero craft and
 atmosphere. calm.com in particular does enormous work with one full-bleed photograph.
 
-Note: calm.com served a **bot challenge** on iPhone ("Press & Hold to confirm you are a human"),
-so that capture is of the challenge, not the site.
+**calm.com bot-blocks headless Chrome, inconsistently.** Re-tested: desktop and iPhone both
+returned _"Access to this page has been denied"_ (iPhone with a Press-&-Hold challenge), while
+**Android loaded the real page**. So `calm/android/` is genuine; the desktop fold is a capture from
+a real (non-headless) browser instead, and the iPhone capture is dropped rather than kept as a
+misleading error page.
 
 ---
 
