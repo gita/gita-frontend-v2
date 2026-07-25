@@ -1003,6 +1003,52 @@ See radhakrishna.net `docs/04-image-and-brand.md` and `docs/research/08-image-pl
 
 ---
 
+## 28. Site-wide performance pass
+
+**Status:** todo
+**Branch:** `perf/site-wide`
+
+#327 fixed the homepage, taking LCP from 11.0 s to 1.6 s, but it fixed the homepage specifically.
+Nothing else has been looked at properly, and the three causes there were all things nobody would
+have found by reading the code.
+
+Baseline measured 2026-07-25, desktop, cold context (see `docs/HANDOVER.md`):
+
+| Page         | LCP      |
+| ------------ | -------- |
+| `/`          | 1,588 ms |
+| `/chapter/2` | 2,068 ms |
+| `/hi`        | 4,336 ms |
+
+Scope:
+
+- **Every page type, not just the homepage.** Chapter, verse, verse-parallel, GitaGPT, search,
+  bookmark, notes, donate, the app page, the comparison page.
+- **Every language.** `/hi` is the slowest page measured and Hindi is a large share of traffic.
+  Tamil, Telugu, Gujarati and Odia have never been measured at all. Each pulls its own webfont,
+  and after #327 those load on demand rather than being preloaded, so the swap behaviour on a
+  slow connection needs looking at rather than assuming.
+- **Mobile and throttled, not just desktop.** Most of our traffic is mobile. The 11 s homepage
+  figure was a _fast desktop_ number, so the real-world one was worse. Measure on a Pixel/iPhone
+  profile with 4G and 4× CPU throttling.
+- **The hero image.** `bhagavad-gita-16x9-2304x1296.webp` is 617 kB with no variant between 1152w
+  and 2304w, so a 1440px viewport pulls the 2304 file. Cut intermediate widths, and serve AVIF.
+- **Caching.** The homepage responds `cache-control: private, no-cache, no-store` with
+  `x-vercel-cache: MISS`, so every visit is a fresh server render. Worth establishing which pages
+  genuinely need per-request rendering and which are being made dynamic by the locale proxy
+  without needing to be.
+- **Third-party scripts.** `p.usestyle.ai` redirects to conversion.ai and pulls 69 kB across three
+  requests plus two extra hosts on every page. Confirm it is wanted before optimising around it.
+- **Find the remaining client-fetch-on-mount sections**, the pattern that caused the homepage
+  skeleton. Anything rendering a skeleton into the HTML and filling it from a `useEffect` is a
+  candidate for server rendering.
+
+Method that worked, and should be reused: load cold with a fresh browser context, record LCP and
+resource timings, and map every font file back to its family. Do not infer payload from config —
+`next/font` preloads via an HTTP `Link:` header, so the HTML tells you nothing.
+
+---
+
 - **Anti-thin-content standard** for everything above: every important page needs at least three
   genuine human contributions — editorial judgment, verified primary sources, real examples,
   comparisons, expert review. Scaled low-value pages count against us whether or not AI wrote
