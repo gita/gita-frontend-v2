@@ -160,8 +160,15 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   const headersList = await headers();
-  const requestUrl = headersList.get("x-invoke-path") || "";
-  const htmlLang = requestUrl.includes("/hi") ? "hi" : "en";
+  // `x-invoke-path` was an internal Next header that no longer exists, so this
+  // read always came back empty and every page, including /hi, declared
+  // lang="en". Two consequences: screen readers announced Hindi in an English
+  // voice and Google saw Hindi pages as English, and the `:lang(hi)` rules in
+  // global.css never matched, so Hindi text fell back to whatever Devanagari
+  // face the device happened to have rather than the one we ship.
+  //
+  // proxy.ts already resolves the locale and sets `x-html-lang`. Read that.
+  const htmlLang = headersList.get("x-html-lang") || "en";
 
   return (
     <html
