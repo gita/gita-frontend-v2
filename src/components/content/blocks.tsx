@@ -191,7 +191,7 @@ export function CategoryWinners({ doc }: { doc: ContentDoc }) {
                 {c.winner}
                 <OursTag ours={c.ours} />
               </p>
-              <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
+              <p className="text-foreground/75 mt-1 text-sm leading-relaxed">
                 {c.why}
               </p>
             </dd>
@@ -272,7 +272,7 @@ export function ComparisonTable({ doc }: { doc: ContentDoc }) {
                   </span>
                 </th>
                 {cols.map(([label, get]) => (
-                  <td key={label} className="text-muted-foreground px-4 py-3">
+                  <td key={label} className="text-foreground/75 px-4 py-3">
                     {get(a)}
                   </td>
                 ))}
@@ -281,7 +281,7 @@ export function ComparisonTable({ doc }: { doc: ContentDoc }) {
           </tbody>
         </table>
       </div>
-      <p className="text-muted-foreground mt-3 text-sm">
+      <p className="text-foreground/70 mt-3 text-sm">
         Ratings from {doc.storefront}, read from the stores&rsquo; own
         structured data. Play shows one decimal; these are its underlying value
         to two.
@@ -319,7 +319,7 @@ export function RankedApps({ doc }: { doc: ContentDoc }) {
                   {a.name}
                   <OursTag ours={a.ours} />
                 </h3>
-                <p className="text-muted-foreground mt-0.5 text-sm">
+                <p className="text-foreground/70 mt-0.5 text-sm">
                   By {a.developer}
                   {a.installs ? ` · ${a.installs} installs` : ""}
                 </p>
@@ -351,7 +351,7 @@ export function RankedApps({ doc }: { doc: ContentDoc }) {
               ).map(([k, v]) => (
                 <div key={k} className="flex gap-2">
                   <dt className="shrink-0 font-semibold">{k}:</dt>
-                  <dd className="text-muted-foreground">{v}</dd>
+                  <dd className="text-foreground/75">{v}</dd>
                 </div>
               ))}
             </dl>
@@ -413,7 +413,7 @@ export function AlsoConsidered({ doc }: { doc: ContentDoc }) {
                 by {a.developer}
               </span>
             </p>
-            <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+            <p className="text-foreground/75 mt-1.5 text-sm leading-relaxed">
               {a.note}
             </p>
           </div>
@@ -440,7 +440,7 @@ export function FaqBlock({ doc }: { doc: ContentDoc }) {
         {doc.faq.map((f) => (
           <div key={f.question} className="p-5 md:p-6">
             <h3 className="font-crimson text-lg font-bold">{f.question}</h3>
-            <p className="text-muted-foreground mt-2 leading-relaxed">
+            <p className="text-foreground/85 mt-2 leading-relaxed">
               {f.answer}
             </p>
           </div>
@@ -462,7 +462,7 @@ export function Provenance({ doc }: { doc: ContentDoc }) {
     timeZone: "UTC",
   });
   return (
-    <section className="border-border text-muted-foreground my-14 border-t pt-8 text-sm leading-relaxed">
+    <section className="border-border text-foreground/75 my-14 border-t pt-8 text-sm leading-relaxed">
       <p>
         Every rating, review count and install figure on this page was read from
         Google Play&rsquo;s and Apple&rsquo;s own structured data on{" "}
