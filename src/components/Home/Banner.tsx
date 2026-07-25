@@ -153,6 +153,11 @@ const Banner = (props: LocaleAndTranslations) => {
             alt="Bhagavad Gita hero banner showing Lord Krishna and Arjuna"
             className="size-full object-cover"
             loading="eager"
+            // This is the LCP element on the homepage. `eager` only opts it out
+            // of lazy loading; it still queues behind everything else the parser
+            // has already requested. `fetchPriority` is what actually moves it
+            // to the front.
+            fetchPriority="high"
           />
         </picture>
       </motion.div>
