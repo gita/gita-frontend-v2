@@ -1,10 +1,15 @@
 # Design references
 
-Captured 2026-07-25 for the bhagavadgita.com UI/UX revamp — reading pages first, marketing pages
-second. Screenshots sit in `<site>/desktop/` and `<site>/mobile/`.
+**Re-captured 2026-07-25 with Playwright using real device profiles** (iPhone 15 Pro, Pixel 7,
+desktop) — proper mobile user agents, device pixel ratios and touch, not window resizing. 118
+screenshots as `<site>/<profile>/<page>-{full,fold}.jpg`; `full` is the whole page so every
+section is visible.
 
-**Type sizes, line heights and control dimensions below are read from `getComputedStyle` on the
-live pages, not eyeballed from screenshots.**
+Reproduce with [`capture.mjs`](capture.mjs). Device probe data in [`probe.json`](probe.json).
+
+**The behavioural analysis and the gap list live in
+[`../docs/ui-reference-analysis.md`](../docs/ui-reference-analysis.md).** This file keeps the
+measured type and control specs.
 
 ---
 
@@ -27,16 +32,16 @@ into the app.
 
 ### Chapter reader — measured
 
-| Property | Value |
-| --- | --- |
-| Verse text | **Inter 18px / 36px line-height** |
-| Text colour | `rgb(18,18,18)` — near-black, not pure |
-| Reading column | **480px** |
-| Chapter heading | **18px, weight 700, letter-spacing 1px**, uppercase, sans |
-| Nav items | **44px tall** (Bible 64×44, Plans 67×44, Videos 77×44) |
-| Icon buttons | **32×32**, `border-radius: 100%` |
-| Profile button | 76×40, radius 24px |
-| Dropdown triggers | 268×33, 13px text, no border radius, underline only |
+| Property          | Value                                                     |
+| ----------------- | --------------------------------------------------------- |
+| Verse text        | **Inter 18px / 36px line-height**                         |
+| Text colour       | `rgb(18,18,18)` — near-black, not pure                    |
+| Reading column    | **480px**                                                 |
+| Chapter heading   | **18px, weight 700, letter-spacing 1px**, uppercase, sans |
+| Nav items         | **44px tall** (Bible 64×44, Plans 67×44, Videos 77×44)    |
+| Icon buttons      | **32×32**, `border-radius: 100%`                          |
+| Profile button    | 76×40, radius 24px                                        |
+| Dropdown triggers | 268×33, 13px text, no border radius, underline only       |
 
 **The chapter heading is the same size as the body text.** 18px/700/uppercase with letter-spacing.
 It does not shout. Most sites would set this at 32px+; they deliberately refuse to let the
@@ -58,18 +63,18 @@ Worth copying almost exactly. Ours would swap font choice for something Devanaga
 
 ### The app CTA, by surface
 
-| Surface | Desktop | Mobile |
-| --- | --- | --- |
-| Every page | "Get the app" text link in nav | Collapsed into hamburger |
-| Verse page | Static sidebar card **with QR** | **Card removed entirely** |
-| `/app` | QR + phone mockup | **QR replaced by store badges** |
-| `/app` | Sticky bottom bar | Sticky bottom bar |
-| 404 | "Get the app" button | same |
+| Surface    | Desktop                         | Mobile                          |
+| ---------- | ------------------------------- | ------------------------------- |
+| Every page | "Get the app" text link in nav  | Collapsed into hamburger        |
+| Verse page | Static sidebar card **with QR** | **Card removed entirely**       |
+| `/app`     | QR + phone mockup               | **QR replaced by store badges** |
+| `/app`     | Sticky bottom bar               | Sticky bottom bar               |
+| 404        | "Get the app" button            | same                            |
 
 **They delete the QR on mobile rather than shrink it.** srimadgita.com keeps QR codes on mobile,
 where they cannot be scanned by the device displaying them.
 
-**Their sticky bar leads with proof, not buttons:** `20M Ratings. 4.9 ★★★★★` sits *left of* the
+**Their sticky bar leads with proof, not buttons:** `20M Ratings. 4.9 ★★★★★` sits _left of_ the
 store badges. And they only run it on `/app` — never while you are reading scripture.
 
 ### Other patterns
@@ -125,7 +130,7 @@ Non-profit, 3,000 years of Jewish texts, free. Strongest reference for **browsin
   `Getting Started (2 min)` button, a **Translations** list rendered as inline language names, and
   **Learning Schedules** (Weekly Torah Portion, Haftarah).
 - Text page chrome is minimal: title centred, bookmark and a serif **`A`** for text size.
-- A dismissible bar: *"Want to change the translation? → Go to translations"*.
+- A dismissible bar: _"Want to change the translation? → Go to translations"_.
 
 The mission-statement-in-the-sidebar is worth stealing. We are also a non-profit giving something
 away, and we barely say so on reading pages.
@@ -164,7 +169,7 @@ does — but their content model is nothing like ours.
 9. **Emotion/topic cards** — the life-situation layer, as gradient tiles.
 10. **Verse images** — shareable graphics per verse, which also feed the social engine.
 11. **Sticky app bar on mobile with social proof first** — ours reads `4.9 ★★★★★ · 500,000+
-    downloads`. Never over scripture.
+downloads`. Never over scripture.
 12. **Non-profit mission stated on reading pages**, sefaria-style.
 
 ---
@@ -179,43 +184,15 @@ Pulled from the mobile HTML:
                app-argument=youversion://bible?reference=JHN.3.16&version_id=111">
 ```
 
-They pass **`app-argument` carrying the specific verse**, so tapping the banner opens the app *at
-that verse* rather than at the home screen. Ours would be
+They pass **`app-argument` carrying the specific verse**, so tapping the banner opens the app _at
+that verse_ rather than at the home screen. Ours would be
 `app-argument=bhagavadgita://chapter/2/verse/47` alongside `app-id=1602895635`.
 
 One meta tag, rendered by Apple, deep-linked. This is the cheapest win on the whole list.
 
-## Method, and its limits
+## Gaps
 
-**Mobile screenshots were taken by resizing the browser window, not by Chrome device emulation.**
-That was a shortcut and it is worth knowing about before trusting these images.
-
-What the page actually saw during "mobile" capture:
-
-```
-ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) ...
-touch: false, maxTouchPoints: 0, dpr: 2
-```
-
-A desktop Mac with no touch. So **only CSS media queries responded** — not user-agent detection,
-not touch behaviour, not device pixel ratio.
-
-**How much that mattered, measured:** fetching both pages with a desktop UA and an iPhone UA
-returns **byte-identical HTML** (bible.com 90,100b both; quran.com 291,605b both). Both sites are
-purely CSS-responsive, so the captured layouts are correct despite the flawed method.
-
-**What is still unverified:** DPR-dependent assets, touch-only interactions (swipe between
-chapters), iOS Safari rendering quirks, and whether hallow/calm serve by UA — they were captured
-desktop-only.
-
-## Gaps in this capture
-
-- **Mobile screenshots only completed for bible.com**, and by window-resize rather than device
-  emulation (see Method above). quran.com, sefaria, hallow and calm are desktop-only.
-- **Proper device emulation could not be driven** through the browser tooling here: the screenshot
-  API captures page content only, not browser chrome, so DevTools device mode is invisible and
-  unclickable. Genuine iPhone/Android captures need either a human with DevTools open, or a
-  Playwright-style script with a real device profile.
-- Sefaria's text page had not finished loading when captured — only the chrome is visible.
-- No Mobin MCP available in this session, so everything here is direct browser capture. App-store
-  UI references are a separate exercise.
+- `quran-com/desktop/02-surah-full` failed — page too tall for one screenshot. iPhone and Android
+  captures of it succeeded.
+- calm.com's iPhone capture is a bot challenge page, not the site.
+- No Mobin MCP in this session, so app-store UI references are a separate exercise.
