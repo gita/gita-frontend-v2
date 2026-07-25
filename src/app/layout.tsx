@@ -18,7 +18,25 @@ import Providers from "./providers";
 
 import "./global.css";
 
-// Latin/English fonts
+/**
+ * Fonts.
+ *
+ * `next/font` defaults to `preload: true`, and Next emits those preloads as an
+ * HTTP `Link:` response header rather than markup — which is why they are
+ * invisible if you go looking for <link> tags in the HTML.
+ *
+ * Every family declared here is instantiated in the root layout, so every page
+ * was preloading all eight. Measured on the English homepage: 15 files, 1,045
+ * kB, of which 863 kB was Indic type on a page containing no Indic characters
+ * at all. Tiro Devanagari Sanskrit alone was 281 kB.
+ *
+ * So the Indic families opt out of preloading below. They are still declared,
+ * and `display: "swap"` still applies, so the browser fetches them the moment
+ * a glyph actually needs one — which on a Hindi page is immediately. What goes
+ * away is the guaranteed download on pages that never render that script.
+ *
+ * Inter and Crimson Pro keep preloading: they set every page, above the fold.
+ */
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -42,6 +60,7 @@ const tiroDevanagariSanskrit = Tiro_Devanagari_Sanskrit({
   variable: "--font-sanskrit",
   weight: ["400"],
   style: ["normal", "italic"],
+  preload: false,
 });
 
 // Noto Serif Devanagari - for Hindi/Marathi content and fallback
@@ -50,6 +69,7 @@ const notoSerifDevanagari = Noto_Serif_Devanagari({
   display: "swap",
   variable: "--font-devanagari-serif",
   weight: ["400", "500", "600", "700"],
+  preload: false,
 });
 
 const mukta = Mukta({
@@ -57,6 +77,7 @@ const mukta = Mukta({
   display: "swap",
   variable: "--font-devanagari-sans",
   weight: ["400", "500", "600"],
+  preload: false,
 });
 
 // Tamil fonts
@@ -65,6 +86,7 @@ const notoSerifTamil = Noto_Serif_Tamil({
   display: "swap",
   variable: "--font-tamil-serif",
   weight: ["400", "500", "600", "700"],
+  preload: false,
 });
 
 // Telugu fonts
@@ -73,6 +95,7 @@ const notoSerifTelugu = Noto_Serif_Telugu({
   display: "swap",
   variable: "--font-telugu-serif",
   weight: ["400", "500", "600", "700"],
+  preload: false,
 });
 
 // Gujarati fonts
@@ -81,6 +104,7 @@ const notoSerifGujarati = Noto_Serif_Gujarati({
   display: "swap",
   variable: "--font-gujarati-serif",
   weight: ["400", "500", "600", "700"],
+  preload: false,
 });
 
 // Next.js 14+ recommends separating viewport from metadata
@@ -136,8 +160,15 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   const headersList = await headers();
-  const requestUrl = headersList.get("x-invoke-path") || "";
-  const htmlLang = requestUrl.includes("/hi") ? "hi" : "en";
+  // `x-invoke-path` was an internal Next header that no longer exists, so this
+  // read always came back empty and every page, including /hi, declared
+  // lang="en". Two consequences: screen readers announced Hindi in an English
+  // voice and Google saw Hindi pages as English, and the `:lang(hi)` rules in
+  // global.css never matched, so Hindi text fell back to whatever Devanagari
+  // face the device happened to have rather than the one we ship.
+  //
+  // proxy.ts already resolves the locale and sets `x-html-lang`. Read that.
+  const htmlLang = headersList.get("x-html-lang") || "en";
 
   return (
     <html

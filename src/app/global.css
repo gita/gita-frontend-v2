@@ -264,32 +264,44 @@
       "calt" 1;
   }
 
-  /* Language-specific font stacks */
+  /* Language-specific font stacks.
+   *
+   * These sit on the root element, so they set the default for the whole page,
+   * and our translated pages are genuinely bilingual: /hi carries Devanagari
+   * headings next to English chapter summaries. Leading with the Indic face
+   * would therefore restyle the English too, because Noto Serif Devanagari
+   * carries Latin glyphs of its own and would win for them.
+   *
+   * Crimson Pro goes first and has no Devanagari, Tamil, Telugu or Gujarati
+   * coverage, so the browser falls through to the Indic face for exactly the
+   * characters Crimson cannot draw and for nothing else. Per-script blocks
+   * further down still name the Indic face first, which is right there — those
+   * target verse, translation and commentary text, which is all one script. */
 
   /* Devanagari (Hindi, Sanskrit, Marathi) */
   :lang(hi),
   :lang(sa),
   :lang(mr),
   .devanagari {
-    font-family: var(--font-devanagari-serif), serif;
+    font-family: var(--font-crimson), var(--font-devanagari-serif), serif;
   }
 
   /* Tamil */
   :lang(ta),
   .tamil {
-    font-family: var(--font-tamil-serif), serif;
+    font-family: var(--font-crimson), var(--font-tamil-serif), serif;
   }
 
   /* Telugu */
   :lang(te),
   .telugu {
-    font-family: var(--font-telugu-serif), serif;
+    font-family: var(--font-crimson), var(--font-telugu-serif), serif;
   }
 
   /* Gujarati */
   :lang(gu),
   .gujarati {
-    font-family: var(--font-gujarati-serif), serif;
+    font-family: var(--font-crimson), var(--font-gujarati-serif), serif;
   }
 
   /* UI elements across all languages - use sans-serif */

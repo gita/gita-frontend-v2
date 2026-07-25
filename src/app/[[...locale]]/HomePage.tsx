@@ -5,7 +5,7 @@ import Chapters from "components/Home/Chapters";
 import FAQ from "components/Home/FAQ";
 import Newsletter from "components/Home/Newsletter";
 import PopularVerses from "components/Home/PopularVerses";
-import VerseOfDayClient from "components/Home/VerseOfDayClient";
+import VerseOfDay from "components/Home/VerseOfDay";
 import HomeLayout from "layouts/HomeLayout";
 import { getTranslations } from "shared/translate/server";
 
@@ -19,12 +19,12 @@ async function HomePage({
   };
 
   return (
-    <div className="min-h-screen bg-prakash-bg font-crimson dark:bg-nisha-bg">
+    <div className="bg-prakash-bg font-crimson dark:bg-nisha-bg min-h-screen">
       <main>
         <HomeLayout {...translationProps} chapters={chapters}>
           <div className="relative">
             <Banner {...translationProps} />
-            <VerseOfDayClient {...translationProps} />
+            <VerseOfDay {...translationProps} />
           </div>
           <Chapters chapters={chapters} {...translationProps} />
           <PopularVerses {...translationProps} />
