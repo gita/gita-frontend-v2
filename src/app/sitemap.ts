@@ -11,13 +11,18 @@ const LOCALES = ["", "hi"] as const; // "" = English (default), "hi" = Hindi
 // Note: Auth pages (/login, /signup) and user-specific pages (/bookmark, /notes) are excluded
 // Paths without a [[...locale]] segment. Emitting an /hi variant for these
 // produces a URL that does not exist.
-const ENGLISH_ONLY_PATHS = new Set<string>(["/gitagpt"]);
+const ENGLISH_ONLY_PATHS = new Set<string>([
+  "/gitagpt",
+  // Comparison page is written in English only; /hi returns 404 by design.
+  "/best-bhagavad-gita-apps",
+]);
 
 const STATIC_PATHS = [
   "",
   "/about",
   "/acknowledgements",
   "/bhagavad-gita-app",
+  "/best-bhagavad-gita-apps",
   "/bhagavad-gita-quotes",
   "/copyright",
   "/donate",

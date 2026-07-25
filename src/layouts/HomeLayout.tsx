@@ -2,6 +2,7 @@
 
 import { getTranslate } from "shared/translate";
 
+import { AppInstallBar } from "../components/AppInstallBar";
 import Footer from "../components/Footers/Footer";
 import { ModernNav } from "../components/Headers/ModernNav";
 
@@ -22,6 +23,7 @@ const HomeLayoutClient = ({
       <ModernNav translate={translate} locale={locale} chapters={chapters} />
       <main className="flex-1">{children}</main>
       <Footer translate={translate} />
+      <AppInstallBar translate={translate} />
     </div>
   );
 };
