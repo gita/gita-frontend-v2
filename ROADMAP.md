@@ -775,6 +775,78 @@ From the GTM notes, not yet scheduled:
   Sanskrit glossary, the Gita's timeline within the Mahabharata, a concept graph across all 700
   verses, a "which verse discusses this" search, and an upgraded public API with proper docs,
   versioning, provenance and citation guidelines.
+
+## 24. Content system — Velite + MDX blocks
+
+**Status:** todo — next up
+**Branch:** `feat/velite-content-system`
+
+Every content page here is hand-written TSX. That does not scale past a handful of pages, and the
+`/best-bhagavad-gita-apps` page shipped in item 12 shows the cost: the content is correct but the
+page reads as unpolished because there is no block vocabulary behind it.
+
+radhakrishna.net solved this on 2026-07-25 with **Velite** — typed MDX with Zod-validated
+frontmatter and generated TS types — plus a set of reusable blocks. Port it.
+
+- Velite config with a `content` collection, `type` in frontmatter selecting the template
+- Block components: TL;DR / key-takeaways, comparison tables, FAQ, callouts, verse quote, CTA
+- **Rebuild `/best-bhagavad-gita-apps` on it.** The page is merged and live; this replaces the
+  hand-rolled version rather than starting from nothing. Every figure moves across unchanged —
+  they came from the verified fact sheet in `notes/app-comparison-facts.md`.
+- Follow the house voice and structure-for-AI rules in radhakrishna.net's
+  `docs/05-writing-and-images.md` and `docs/02-content-architecture.md`: answer-first blocks,
+  question-led headings, TL;DR on top, chunked sections.
+
+---
+
+## 25. Chapter descriptions — house voice
+
+**Status:** todo
+**Branch:** `feat/chapter-descriptions`
+
+Chapter pages carry blob paragraphs. Restructure into the house voice used on radhakrishna.net:
+shorter sentences, broken into readable units, properly structured.
+
+**Constraint: do not change the meaning.** This is a rewrite for readability and structure only.
+The scriptural content and its interpretation stay exactly as they are; if a rewrite would alter
+what a chapter is said to teach, leave it alone and flag it.
+
+---
+
+## 26. Dependency upgrade
+
+**Status:** todo
+**Branch:** `chore/deps-upgrade`
+
+The repo is on Tailwind 3 and older pins. radhakrishna.net is on Tailwind v4 (CSS-first `@theme`,
+no `tailwind.config.js`), latest Next 16.2.x, React 19.2, `tailwind-merge` v3.
+
+Per `docs/upgrade-learnings.md`: **Tailwind 3 → 4 is the biggest change and is cheapest done as a
+token pass, not late.** Doing it before the design work in items 20–22 avoids porting the same
+components twice.
+
+Note there are open Dependabot PRs (#287–#294) including `next` 16.0.7 → 16.2.3; 16.0.x had a CVE.
+Fold them into this rather than merging piecemeal.
+
+One known trap: the pre-commit hook is already broken repo-wide because
+`prettier-plugin-tailwindcss@^0.7.1` requires Tailwind v4 while the repo is on v3. **This upgrade
+fixes that** — every commit currently needs `--no-verify`.
+
+---
+
+## 27. Image generation system
+
+**Status:** todo
+**Branch:** `feat/image-generation`
+
+Port the image generation pipeline from radhakrishna.net, which is producing markedly better
+visuals than anything here. Use it for new pages, share cards, and the social pipeline in
+`marketing/06-video-pipeline.md`.
+
+See radhakrishna.net `docs/04-image-and-brand.md` and `docs/research/08-image-playbook.md`.
+
+---
+
 - **Anti-thin-content standard** for everything above: every important page needs at least three
   genuine human contributions — editorial judgment, verified primary sources, real examples,
   comparisons, expert review. Scaled low-value pages count against us whether or not AI wrote
