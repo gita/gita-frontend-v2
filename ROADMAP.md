@@ -281,6 +281,11 @@ well): don't interrupt on first paint. Wait until someone has shown intent — s
 chapter, read a few verses, come back a second time — then show a dismissible bar or sheet, and
 remember the dismissal.
 
+**Founder direction, 2026-07-25:** a persistent bottom-floating banner with a close button,
+carrying both store buttons, on mobile _and_ desktop. References: srimadgita.com and bible.com
+both do this well. The install is the conversion event for the whole site — everything else on
+bhagavadgita.com is top-of-funnel toward it (see `marketing/00-cross-property-plan.md`).
+
 Requirements:
 
 - platform detection for Android vs iOS, deep link if the app is installed
@@ -288,6 +293,32 @@ Requirements:
 - dismissible, and stays dismissed
 - no layout shift, no CLS penalty, no impact on crawlers
 - replace the current modal, which is dated
+
+**Worth checking first — iOS gives this away free.** Safari on iOS supports a native Smart App
+Banner via a single meta tag:
+
+```html
+<meta name="apple-itunes-app" content="app-id=1602895635">
+```
+
+It renders Apple's own banner, opens the app if installed, and users already recognise it, so it
+annoys nobody. Costs one line. Android has no equivalent, so the custom banner is really an
+Android-and-desktop problem — which simplifies the build considerably.
+
+**The annoyance question is the real design work.** Interstitials that block content are a
+[Google-documented ranking penalty](https://developers.google.com/search/docs/appearance/page-experience),
+and a bottom bar is the safe form. Things to settle before building:
+
+- **Never show it to someone who already has the app.** No reliable detection exists, so use
+  proxies: arrived via an app deep link, or has dismissed twice.
+- **Dismissal must persist properly** — localStorage, and a long window (30+ days), not a session.
+- **Frequency cap.** Once dismissed, do not re-show on the next page view.
+- **Height and safe-area.** Must not cover the reading text or fight the iOS home indicator.
+- **Measure it.** Tracked link per surface, so we learn whether it converts or just irritates.
+  This ties into the signup-attribution work from item 6.
+
+Design should follow the rules in memory (`bg-landing-page-design-rules`) — two text levels
+maximum, brand tokens, no shouting.
 
 ---
 
@@ -403,8 +434,25 @@ what the Gita doesn't claim, a prompt to explore it through Gita AI, related rea
 
 ## 12. One comparison page, not a cluster
 
-**Status:** todo — next up
+**Status:** in review — PR #308
 **Branch:** `feat/best-bhagavad-gita-apps`
+**Page:** `/best-bhagavad-gita-apps`, English only, `/hi` redirects to it
+
+Built from `notes/app-comparison-facts.md`, the sheet fact-checked before a word of the page was
+written. No figure appears on the page that is not in that sheet.
+
+Two conditions the page is holding to, both worth re-checking on any future edit:
+
+- **The disclosure sits above the comparison table, not beneath it.** We publish the app ranked
+  first and built the app ranked second. Ordering categories by reader intent is defensible only
+  while the reader learns that before they read the ordering. If that block ever moves down the
+  page, the ordering has to change with it.
+- **We take 5 of 15 categories and are connected to a 6th.** Verified in the built HTML: 15
+  category headings, 5 ownership badges, plus Song of God from the related organisation. If that
+  count creeps up on a later edit, something has gone wrong.
+
+The methodology says plainly that these were not bench-tested on a phone. That is an upgrade
+waiting on the device screenshots, not a permanent limitation.
 
 ### What the citation data says
 
