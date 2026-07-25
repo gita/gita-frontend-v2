@@ -1,155 +1,171 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const DISMISS_KEY = "app-install-bar-dismissed-until";
 const DISMISS_DAYS = 30;
+const SHOW_AFTER_SCROLL = 700;
 
 /**
- * Sticky app-install bar, mobile only.
+ * App-install prompt. Slim bar on mobile, corner card on desktop.
  *
- * Three decisions here came out of measuring what the leaders actually do
- * (docs/ui-reference-analysis.md), and each is deliberate:
+ * Shape follows radhakrishna.com's `app-cta.tsx`, which is a clear improvement on
+ * the first version of this component. What changed and why:
  *
- * 1. BOTH store badges show, on every device. None of bible.com, quran.com,
- *    hallow or abide branch their store CTA on user agent. iPads report desktop
- *    UAs and Android tablets are ambiguous, so sniffing risks hiding the only
- *    button that mattered. iOS detection is separately free via the Smart App
- *    Banner meta tag, which Safari renders only on iOS.
+ * - An app icon anchors it. Recognisable at a glance, and it fills the left edge
+ *   where the previous version had cramped 11px stats.
+ * - Two readable lines carrying a proposition ("free", "read and listen") rather
+ *   than a rating and a download count. The sentence does more work than the
+ *   number did.
+ * - Pill buttons instead of the official store badge images. Two badge PNGs plus
+ *   a close button in a 393px viewport left nothing legible.
+ * - It waits for engagement (700px of scroll) instead of appearing on load.
  *
- * 2. Social proof leads, buttons follow. bible.com's bar reads "20M Ratings.
- *    4.9" to the LEFT of its badges — the number does the persuading.
- *
- * 3. Dismissal lasts 30 days, not a session. A bar that returns on the next
- *    page view is the thing people actually resent.
- *
- * Rendered only under `md:hidden`: a desktop visitor cannot install anything,
- * so the bar would be pure friction there.
+ * Both platforms are always offered and the device is never sniffed. Measured
+ * across bible.com, quran.com, hallow and abide: none branch their store CTA by
+ * user agent (docs/ui-reference-analysis.md). iPads report desktop agents, and
+ * iOS is separately covered by the Smart App Banner meta tag in app/layout.tsx,
+ * which Safari renders only on iOS.
  */
 export function AppInstallBar({ translate }: { translate: Translate }) {
-  // Start hidden and reveal after the storage check, so a dismissed bar never
-  // flashes in on hydration.
-  const [visible, setVisible] = useState(false);
-  // Measured rather than hard-coded: the bar is taller on devices with a home
-  // indicator (134px on iPhone vs 116px on Pixel), and a fixed guess left the
-  // last footer row underneath it.
-  const barRef = useRef<HTMLDivElement>(null);
-  const [barHeight, setBarHeight] = useState(0);
+  const [show, setShow] = useState(false);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     try {
       const until = window.localStorage.getItem(DISMISS_KEY);
       if (until && Date.now() < Number(until)) return;
     } catch {
-      // Private mode or storage disabled — show the bar rather than fail closed.
+      // Storage blocked — show it rather than fail closed.
     }
-    setVisible(true);
+    const onScroll = () => {
+      if (window.scrollY > SHOW_AFTER_SCROLL) {
+        setShow(true);
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  function dismiss() {
-    setVisible(false);
+  function close() {
+    setClosing(true);
     try {
       window.localStorage.setItem(
         DISMISS_KEY,
         String(Date.now() + DISMISS_DAYS * 864e5),
       );
     } catch {
-      // Nothing to do; it will reappear next visit, which is acceptable.
+      // It reappears next visit, which is acceptable.
     }
+    window.setTimeout(() => setShow(false), 200);
   }
 
-  useEffect(() => {
-    if (!visible || !barRef.current) return;
-    const el = barRef.current;
-    const measure = () => setBarHeight(el.getBoundingClientRect().height);
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [visible]);
+  if (!show) return null;
 
-  if (!visible) return null;
+  const title = translate("Bhagavad Gita, free app");
+  const subtitle = translate("Read and listen, verse by verse");
 
   return (
     <>
-      {/* Spacer. The bar is fixed, so without this it sits on top of the last
-          rows of the footer and makes them unreachable on mobile. */}
+      {/* Mobile: slim sticky bar */}
       <div
-        aria-hidden
-        className="md:hidden"
-        style={{ height: barHeight || 116 }}
-      />
-      <div
-      ref={barRef}
-      // pb accounts for the iOS home indicator so the badges stay tappable.
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-border/60 bg-prakash-bg/95 backdrop-blur-sm dark:bg-nisha-bg/95 md:hidden"
-      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-      role="complementary"
-      aria-label={translate("Get the Bhagavad Gita app")}
-    >
-      <div className="flex items-center gap-3 px-4 py-2.5">
-        <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold leading-tight">
-            {translate("Read the Gita offline, free")}
-          </p>
-          <p className="text-xs leading-tight text-muted-foreground">
-            {/* Figures verified against Google Play, India storefront, 2026-07-25. */}
-            {translate("4.9 stars · 500,000+ downloads · no ads")}
-          </p>
+        className={`fixed inset-x-0 bottom-0 z-50 border-t border-border/60 bg-prakash-bg/95 p-3 shadow-[0_-6px_24px_rgba(0,0,0,0.08)] backdrop-blur transition-transform duration-200 dark:bg-nisha-bg/95 md:hidden ${
+          closing ? "translate-y-full" : "translate-y-0"
+        }`}
+        style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
+        role="complementary"
+        aria-label={title}
+      >
+        <div className="flex items-center gap-3">
+          <Image
+            src="/gita-app-icon.webp"
+            alt=""
+            width={88}
+            height={88}
+            className="size-11 shrink-0 rounded-xl shadow-sm ring-1 ring-black/5"
+          />
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-semibold leading-tight">
+              {title}
+            </p>
+            <p className="truncate text-xs leading-tight text-muted-foreground">
+              {subtitle}
+            </p>
+          </div>
+          {/* One button, so the title and subtitle are not truncated. /go/app
+              resolves the store server-side from the User-Agent. */}
+          <a
+            href="/go/app"
+            data-analytics="app-cta-mobile"
+            className="shrink-0 rounded-full bg-prakash-primary px-4 py-2 text-sm font-semibold text-white dark:bg-nisha-primary"
+          >
+            {translate("Get app")}
+          </a>
+          <button
+            type="button"
+            onClick={close}
+            aria-label={translate("Dismiss")}
+            className="-mr-1 shrink-0 p-2 text-xl leading-none text-muted-foreground"
+          >
+            <span aria-hidden>&times;</span>
+          </button>
         </div>
+      </div>
 
-        <div className="flex shrink-0 items-center gap-2">
+      {/* Desktop: compact corner card. Nobody installs an app on a laptop, so this
+          stays small and out of the way rather than spanning the page. */}
+      <div
+        className={`fixed bottom-6 right-6 z-50 hidden w-[19rem] rounded-2xl border border-border/60 bg-card p-5 shadow-xl transition-opacity duration-200 md:block ${
+          closing ? "opacity-0" : "opacity-100"
+        }`}
+        role="complementary"
+        aria-label={title}
+      >
+        <button
+          type="button"
+          onClick={close}
+          aria-label={translate("Dismiss")}
+          className="absolute right-3 top-3 text-xl leading-none text-muted-foreground hover:text-foreground"
+        >
+          <span aria-hidden>&times;</span>
+        </button>
+        <div className="flex items-center gap-3">
+          <Image
+            src="/gita-app-icon.webp"
+            alt=""
+            width={88}
+            height={88}
+            className="size-11 shrink-0 rounded-xl shadow-sm ring-1 ring-black/5"
+          />
+          <div className="min-w-0">
+            <p className="text-sm font-semibold leading-tight">{title}</p>
+            <p className="text-xs leading-tight text-muted-foreground">
+              {subtitle}
+            </p>
+          </div>
+        </div>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          {translate(
+            "Every verse in Hindi and English, with meaning and audio. Free, no ads.",
+          )}
+        </p>
+        <div className="mt-4 flex gap-2">
           <a
             href="/go/ios"
-            className="transition-transform active:scale-95"
-            aria-label={translate("Download on the App Store")}
+            data-analytics="app-cta-desktop-ios"
+            className="flex-1 rounded-full bg-prakash-primary px-4 py-2 text-center text-sm font-semibold text-white dark:bg-nisha-primary"
           >
-            <Image
-              src="/app_store.svg"
-              alt={translate("Download on the App Store")}
-              height={32}
-              width={108}
-              className="h-8 w-auto"
-            />
+            {translate("iPhone")}
           </a>
           <a
             href="/go/android"
-            className="transition-transform active:scale-95"
-            aria-label={translate("Get it on Google Play")}
+            data-analytics="app-cta-desktop-android"
+            className="flex-1 rounded-full border border-border px-4 py-2 text-center text-sm font-semibold"
           >
-            <Image
-              src="/play_store.svg"
-              alt={translate("Get it on Google Play")}
-              height={32}
-              width={108}
-              className="h-8 w-auto"
-            />
+            {translate("Android")}
           </a>
-        </div>
-
-        <button
-          type="button"
-          onClick={dismiss}
-          aria-label={translate("Dismiss")}
-          // 44px target: anything smaller is a mis-tap generator on mobile.
-          className="-mr-2 flex size-11 shrink-0 items-center justify-center text-muted-foreground"
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M4 4l8 8M12 4l-8 8"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
         </div>
       </div>
     </>
