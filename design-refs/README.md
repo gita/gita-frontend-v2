@@ -169,10 +169,53 @@ does — but their content model is nothing like ours.
 
 ---
 
+## Smart App Banner — bible.com's actual implementation
+
+Pulled from the mobile HTML:
+
+```html
+<meta name="apple-itunes-app"
+      content="app-id=282935706,
+               app-argument=youversion://bible?reference=JHN.3.16&version_id=111">
+```
+
+They pass **`app-argument` carrying the specific verse**, so tapping the banner opens the app *at
+that verse* rather than at the home screen. Ours would be
+`app-argument=bhagavadgita://chapter/2/verse/47` alongside `app-id=1602895635`.
+
+One meta tag, rendered by Apple, deep-linked. This is the cheapest win on the whole list.
+
+## Method, and its limits
+
+**Mobile screenshots were taken by resizing the browser window, not by Chrome device emulation.**
+That was a shortcut and it is worth knowing about before trusting these images.
+
+What the page actually saw during "mobile" capture:
+
+```
+ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) ...
+touch: false, maxTouchPoints: 0, dpr: 2
+```
+
+A desktop Mac with no touch. So **only CSS media queries responded** — not user-agent detection,
+not touch behaviour, not device pixel ratio.
+
+**How much that mattered, measured:** fetching both pages with a desktop UA and an iPhone UA
+returns **byte-identical HTML** (bible.com 90,100b both; quran.com 291,605b both). Both sites are
+purely CSS-responsive, so the captured layouts are correct despite the flawed method.
+
+**What is still unverified:** DPR-dependent assets, touch-only interactions (swipe between
+chapters), iOS Safari rendering quirks, and whether hallow/calm serve by UA — they were captured
+desktop-only.
+
 ## Gaps in this capture
 
-- **Mobile screenshots only completed for bible.com.** The browser stopped reflowing the viewport
-  after the first site, so quran.com, sefaria, hallow and calm are desktop-only. Worth redoing.
+- **Mobile screenshots only completed for bible.com**, and by window-resize rather than device
+  emulation (see Method above). quran.com, sefaria, hallow and calm are desktop-only.
+- **Proper device emulation could not be driven** through the browser tooling here: the screenshot
+  API captures page content only, not browser chrome, so DevTools device mode is invisible and
+  unclickable. Genuine iPhone/Android captures need either a human with DevTools open, or a
+  Playwright-style script with a real device profile.
 - Sefaria's text page had not finished loading when captured — only the chrome is visible.
 - No Mobin MCP available in this session, so everything here is direct browser capture. App-store
   UI references are a separate exercise.
