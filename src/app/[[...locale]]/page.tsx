@@ -113,7 +113,7 @@ export default async function Home({
     alternateName: "BhagavadGita.com",
     url: "https://bhagavadgita.com",
     sameAs: [
-      "https://www.facebook.com/iiRadhaKrishnaii/",
+      "https://www.facebook.com/vedvyasfoundation/",
       "https://www.linkedin.com/company/bhagavadgita/",
       "https://www.pinterest.com/iiradhakrishnaii/",
       "https://twitter.com/ShriKrishna",

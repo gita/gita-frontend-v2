@@ -118,7 +118,7 @@ export async function generateMetadata({
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "article",
-      authors: "https://www.facebook.com/radhakrishnablog/",
+      authors: "https://www.facebook.com/vedvyasfoundation/",
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
       title,

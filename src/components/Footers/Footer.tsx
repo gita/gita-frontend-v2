@@ -58,7 +58,7 @@ const Footer = (props: Props) => {
             </p>
             <div className="flex gap-4">
               <Link
-                href="https://www.facebook.com/iiRadhaKrishnaii/"
+                href="https://www.facebook.com/vedvyasfoundation/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
