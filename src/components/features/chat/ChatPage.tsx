@@ -49,19 +49,19 @@ export function ChatPage({ locale = "en", className }: ChatPageProps) {
   return (
     <div
       className={cn(
-        "flex h-[calc(100vh-64px)] flex-col bg-background",
+        "bg-background flex h-[calc(100vh-64px)] flex-col",
         className,
       )}
     >
       {/* Header */}
-      <header className="flex shrink-0 items-center justify-between border-b bg-gradient-to-r from-primary/10 to-primary/5 p-4 sm:px-6">
+      <header className="from-primary/10 to-primary/5 flex shrink-0 items-center justify-between border-b bg-linear-to-r p-4 sm:px-6">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-full bg-primary text-2xl text-primary-foreground">
+          <div className="bg-primary text-primary-foreground flex size-10 items-center justify-center rounded-full text-2xl">
             🙏
           </div>
           <div>
             <h1 className="text-xl font-bold">GitaGPT</h1>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               {locale === "hi"
                 ? "भगवद्गीता की दिव्य ज्ञान से मार्गदर्शन"
                 : "Divine guidance from the Bhagavad Gita"}
@@ -71,7 +71,7 @@ export function ChatPage({ locale = "en", className }: ChatPageProps) {
 
         {/* Rate limit indicator */}
         {rateLimitInfo && (
-          <div className="rounded-lg border border-destructive/50 bg-destructive/10 px-3 py-1.5 text-sm text-destructive">
+          <div className="border-destructive/50 bg-destructive/10 text-destructive rounded-lg border px-3 py-1.5 text-sm">
             <p className="font-medium">Daily limit reached</p>
             <p className="text-xs">
               Resets at {rateLimitInfo.reset.toLocaleTimeString()}

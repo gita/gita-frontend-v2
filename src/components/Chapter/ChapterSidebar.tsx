@@ -38,14 +38,14 @@ export function ChapterSidebar({
 
   return (
     <aside
-      className={`flex flex-col border-l border-border/40 bg-muted/10 ${className}`}
+      className={`border-border/40 bg-muted/10 flex flex-col border-l ${className}`}
       aria-label="Chapter navigation"
     >
       {/* Scrollable Header Section - Image + Navigation */}
       <div className="shrink-0">
         {/* Chapter Image */}
         {heroImage && (
-          <div className="relative aspect-[4/3] w-full overflow-hidden border-b bg-muted/20">
+          <div className="bg-muted/20 relative aspect-4/3 w-full overflow-hidden border-b">
             <Image
               src={heroImage}
               alt={`Chapter ${currentChapter} illustration`}
@@ -58,7 +58,7 @@ export function ChapterSidebar({
         )}
 
         {/* Chapter Navigation Buttons */}
-        <div className="border-b border-border/40 bg-muted/20 p-4">
+        <div className="border-border/40 bg-muted/20 border-b p-4">
           <div className="flex items-center justify-between gap-3">
             <LinkWithLocale
               href={prevChapter ? `/chapter/${prevChapter}` : "#"}
@@ -113,7 +113,7 @@ export function ChapterSidebar({
             />
           </ScrollArea>
           {/* Scroll Indicator - Fade gradient at bottom */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background/80 to-transparent" />
+          <div className="from-background/80 pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t to-transparent" />
         </div>
       </div>
     </aside>

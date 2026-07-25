@@ -1,8 +1,7 @@
 {
   "extends": [
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:tailwindcss/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

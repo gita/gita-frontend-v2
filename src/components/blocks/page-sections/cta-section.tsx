@@ -45,9 +45,9 @@ export function CTASection({
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <Card className="relative overflow-hidden border-2 bg-gradient-to-br from-white via-prakash-primary/5 to-prakash-primary/10 shadow-xl dark:from-card dark:via-nisha-primary/5 dark:to-nisha-primary/10">
+          <Card className="via-prakash-primary/5 to-prakash-primary/10 dark:from-card dark:via-nisha-primary/5 dark:to-nisha-primary/10 relative overflow-hidden border-2 bg-linear-to-br from-white shadow-xl">
             {/* Decorative pattern in background */}
-            <div className="pointer-events-none absolute right-0 top-0 opacity-10">
+            <div className="pointer-events-none absolute top-0 right-0 opacity-10">
               <VedicPattern
                 variant="mandala"
                 size={250}
@@ -62,7 +62,7 @@ export function CTASection({
               </h2>
 
               <p
-                className={`font-merriweather mx-auto max-w-2xl text-lg text-muted-foreground ${hasButtons ? "mb-8" : ""}`}
+                className={`font-merriweather text-muted-foreground mx-auto max-w-2xl text-lg ${hasButtons ? "mb-8" : ""}`}
               >
                 {description}
               </p>
@@ -73,7 +73,7 @@ export function CTASection({
                     <Button
                       asChild
                       size="lg"
-                      className="w-full bg-prakash-primary text-white hover:bg-prakash-primary/90 dark:bg-nisha-primary dark:hover:bg-nisha-primary/90 sm:w-auto"
+                      className="bg-prakash-primary hover:bg-prakash-primary/90 dark:bg-nisha-primary dark:hover:bg-nisha-primary/90 w-full text-white sm:w-auto"
                     >
                       <Link href={localizedLink(primaryButtonLink)}>
                         {primaryButtonText}

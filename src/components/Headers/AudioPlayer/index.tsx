@@ -161,10 +161,10 @@ function AudioPlayer({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-bg">
+              <div className="dark:bg-dark-bg my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-bold leading-6 text-gray-900 dark:text-gray-50"
+                  className="text-lg leading-6 font-bold text-gray-900 dark:text-gray-50"
                 >
                   {translate("BG <%= verseNumber %>", {
                     verseNumber: `${currentVerse?.chapter_number}.${currentVerse?.verse_number}`,
@@ -234,7 +234,7 @@ function AudioPlayer({
                 >
                   <div className="mb-4 h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
                     <div
-                      className="h-1.5 rounded-full bg-my-orange"
+                      className="bg-my-orange h-1.5 rounded-full"
                       style={{
                         width: `${trackProgress}%`,
                       }}
@@ -243,7 +243,7 @@ function AudioPlayer({
                 </div>
 
                 <div className="mt-4">
-                  <span className="z-0 mt-4 flex w-full rounded-md shadow-sm">
+                  <span className="z-0 mt-4 flex w-full rounded-md shadow-xs">
                     <PlaybackRateButton
                       currentRate={currentRate}
                       playbackRate={0.75}

@@ -162,11 +162,11 @@ const Banner = (props: LocaleAndTranslations) => {
         className="absolute inset-0 z-10 bg-black"
         style={{ opacity: overlayOpacity }}
       />
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-transparent to-prakash-bg dark:to-nisha-bg" />
+      <div className="to-prakash-bg dark:to-nisha-bg absolute inset-0 z-10 bg-linear-to-b from-transparent via-transparent" />
 
       {/* Animated Color Tint */}
       <motion.div
-        className="absolute inset-0 z-[5] bg-orange-700/10 mix-blend-multiply dark:bg-orange-900/20"
+        className="absolute inset-0 z-5 bg-orange-700/10 mix-blend-multiply dark:bg-orange-900/20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, delay: 0.5 }}
@@ -174,7 +174,7 @@ const Banner = (props: LocaleAndTranslations) => {
 
       {/* Content with staggered animations */}
       <motion.div
-        className="container relative z-20 mx-auto max-w-7xl px-4 py-12 text-center md:py-16 lg:py-20"
+        className="relative z-20 container mx-auto max-w-7xl px-4 py-12 text-center md:py-16 lg:py-20"
         style={{ y: isParallaxActive ? smoothContentY : 0 }}
       >
         <motion.div
@@ -187,10 +187,10 @@ const Banner = (props: LocaleAndTranslations) => {
             variants={itemVariants}
             className="font-inter text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl"
           >
-            <motion.span className="block text-white drop-shadow-xl [text-shadow:_0_2px_10px_rgb(0_0_0_/_40%)]">
+            <motion.span className="block text-white drop-shadow-xl [text-shadow:0_2px_10px_rgb(0_0_0/40%)]">
               {translate("Bhagavad Gita in")}
             </motion.span>
-            <motion.span className="mt-2 block text-white drop-shadow-xl [text-shadow:_0_2px_10px_rgb(0_0_0_/_40%)]">
+            <motion.span className="mt-2 block text-white drop-shadow-xl [text-shadow:0_2px_10px_rgb(0_0_0/40%)]">
               {translate("Hindi & English with Audio")}
             </motion.span>
           </motion.h1>
@@ -198,7 +198,7 @@ const Banner = (props: LocaleAndTranslations) => {
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="mx-auto mt-5 max-w-2xl text-lg text-white drop-shadow-xl [text-shadow:_0_2px_10px_rgb(0_0_0_/_40%)] md:text-xl"
+            className="mx-auto mt-5 max-w-2xl text-lg text-white drop-shadow-xl [text-shadow:0_2px_10px_rgb(0_0_0/40%)] md:text-xl"
           >
             {translate(
               "Read, study, and practice the eternal wisdom of Lord Krishna's Bhagavad Gita",
@@ -220,7 +220,7 @@ const Banner = (props: LocaleAndTranslations) => {
                 <Button
                   asChild
                   size="lg"
-                  className="group relative w-full overflow-hidden bg-primary px-8 text-white shadow-xl shadow-primary/30 transition-all duration-200 hover:bg-orange-700 hover:shadow-2xl hover:shadow-primary/40 sm:w-[200px]"
+                  className="group bg-primary shadow-primary/30 hover:shadow-primary/40 relative w-full overflow-hidden px-8 text-white shadow-xl transition-all duration-200 hover:bg-orange-700 hover:shadow-2xl sm:w-[200px]"
                 >
                   <LinkWithLocale href={"/chapter/1"}>
                     <span className="relative z-10 flex items-center justify-center gap-2">
@@ -239,7 +239,7 @@ const Banner = (props: LocaleAndTranslations) => {
                     </span>
                     {/* Shimmer effect on hover */}
                     <motion.div
-                      className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent"
                       whileHover={{
                         translateX: ["100%", "200%"],
                         transition: { duration: 0.6, ease: "easeInOut" },
@@ -282,7 +282,7 @@ const Banner = (props: LocaleAndTranslations) => {
       >
         <motion.button
           onClick={scrollToChapters}
-          className="group rounded-full p-2 transition-all hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="group focus:ring-primary rounded-full p-2 transition-all hover:opacity-100 focus:ring-2 focus:outline-hidden"
           aria-label="Scroll down to view chapters"
           animate={{ y: [0, 8, 0] }}
           transition={{
@@ -293,12 +293,12 @@ const Banner = (props: LocaleAndTranslations) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <ChevronDown className="size-8 text-prakash-primary drop-shadow-lg transition-colors group-hover:text-primary dark:text-nisha-primary" />
+          <ChevronDown className="text-prakash-primary group-hover:text-primary dark:text-nisha-primary size-8 drop-shadow-lg transition-colors" />
         </motion.button>
       </motion.div>
 
       {/* Bottom gradient fade for smooth transition */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[15] h-32 bg-gradient-to-t from-prakash-bg via-prakash-bg/50 to-transparent dark:from-nisha-bg dark:via-nisha-bg/50" />
+      <div className="from-prakash-bg via-prakash-bg/50 dark:from-nisha-bg dark:via-nisha-bg/50 pointer-events-none absolute inset-x-0 bottom-0 z-15 h-32 bg-linear-to-t to-transparent" />
     </div>
   );
 };

@@ -6,7 +6,7 @@ export default function AuthHeader() {
   return (
     <LinkWithLocale
       href="/"
-      className="flex items-center gap-3 text-3xl font-bold focus:outline-none"
+      className="flex items-center gap-3 text-3xl font-bold focus:outline-hidden"
     >
       <div className="flex items-center justify-center p-8 md:justify-start lg:flex-1">
         <Image

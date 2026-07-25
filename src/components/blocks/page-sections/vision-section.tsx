@@ -31,7 +31,7 @@ export function VisionSection({
               icon={<BookOpen className="size-5" />}
             />
 
-            <div className="font-merriweather space-y-6 text-muted-foreground">
+            <div className="font-merriweather text-muted-foreground space-y-6">
               {content.map((paragraph, index) => (
                 <p key={index} className="text-lg leading-relaxed">
                   {paragraph}
@@ -42,7 +42,7 @@ export function VisionSection({
 
           {blockquote && (
             <div className="relative h-[500px] overflow-hidden rounded-2xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-prakash-primary/70 to-prakash-primary/90 mix-blend-multiply dark:from-nisha-primary/70 dark:to-nisha-primary/90"></div>
+              <div className="from-prakash-primary/70 to-prakash-primary/90 dark:from-nisha-primary/70 dark:to-nisha-primary/90 absolute inset-0 bg-linear-to-r mix-blend-multiply"></div>
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${imageUrl})` }}

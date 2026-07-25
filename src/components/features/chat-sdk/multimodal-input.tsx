@@ -80,7 +80,7 @@ export const MultimodalInput = forwardRef<
 
   return (
     <form onSubmit={onSubmit} className="relative w-full">
-      <div className="relative flex min-h-12 items-center gap-2 rounded-3xl border border-border bg-background px-4 shadow-sm transition-all focus-within:border-primary focus-within:shadow-md">
+      <div className="border-border bg-background focus-within:border-primary relative flex min-h-12 items-center gap-2 rounded-3xl border px-4 shadow-xs transition-all focus-within:shadow-md">
         <textarea
           ref={textareaRef}
           value={value}
@@ -89,7 +89,7 @@ export const MultimodalInput = forwardRef<
           placeholder={placeholder}
           disabled={disabled}
           rows={1}
-          className="max-h-52 flex-1 resize-none bg-transparent py-3.5 text-base outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
+          className="placeholder:text-muted-foreground max-h-52 flex-1 resize-none bg-transparent py-3.5 text-base outline-hidden disabled:cursor-not-allowed"
         />
 
         {/* Submit/Stop Button */}
@@ -98,7 +98,7 @@ export const MultimodalInput = forwardRef<
             type="button"
             size="icon"
             onClick={onStop}
-            className="size-8 shrink-0 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 size-8 shrink-0 rounded-full"
           >
             <Square className="size-3.5 fill-current" />
           </Button>
@@ -107,7 +107,7 @@ export const MultimodalInput = forwardRef<
             type="submit"
             size="icon"
             disabled={!value.trim() || disabled}
-            className="size-8 shrink-0 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:bg-primary/30 disabled:text-primary-foreground/50"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 disabled:bg-primary/30 disabled:text-primary-foreground/50 size-8 shrink-0 rounded-full"
           >
             <ArrowUp className="size-4" />
           </Button>

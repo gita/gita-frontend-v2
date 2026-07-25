@@ -88,7 +88,7 @@ const AuthorSettings = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+                <Dialog.Panel className="dark:bg-dark-100 w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <div className="my-2 flex items-center justify-between py-2">
                     <p className="text-base text-black dark:text-white">
                       {translate("Verse Commentary Source")}
@@ -99,8 +99,8 @@ const AuthorSettings = ({
                       className={`${
                         isVerseCommentarySourceEnabled
                           ? "bg-my-orange"
-                          : "bg-gray-200 dark:bg-dark-bg"
-                      } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
+                          : "dark:bg-dark-bg bg-gray-200"
+                      } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75`}
                     >
                       <span
                         aria-hidden="true"
@@ -121,7 +121,7 @@ const AuthorSettings = ({
                       onChange={setCommentaryAuthor}
                     >
                       <div className="relative">
-                        <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                        <Listbox.Button className="dark:bg-dark-bg relative w-full cursor-default rounded-lg bg-white py-2 pr-10 pl-3 text-left shadow-md focus:outline-hidden focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                           <span className="block truncate text-black dark:text-white">
                             {translate(commentaryAuthor?.name)}&nbsp;(
                             {translate(commentaryAuthor?.language)})
@@ -139,7 +139,7 @@ const AuthorSettings = ({
                           leaveFrom="opacity-100"
                           leaveTo="opacity-0"
                         >
-                          <Listbox.Options className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                          <Listbox.Options className="focus-visible:ring-my-orange/75 dark:bg-dark-bg absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                             {commentary_authors.map((author) => (
                               <Listbox.Option
                                 key={author.id}
@@ -148,7 +148,7 @@ const AuthorSettings = ({
                                     active
                                       ? "bg-my-orange text-white"
                                       : "text-black dark:text-white"
-                                  } relative flex cursor-pointer select-none justify-between px-4 py-2`
+                                  } relative flex cursor-pointer justify-between px-4 py-2 select-none`
                                 }
                                 value={author}
                               >
@@ -172,8 +172,8 @@ const AuthorSettings = ({
                       className={`${
                         isVerseTranslationSourceEnabled
                           ? "bg-my-orange"
-                          : "bg-gray-200 dark:bg-dark-bg"
-                      } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
+                          : "dark:bg-dark-bg bg-gray-200"
+                      } relative inline-flex h-[29px] w-[49px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75`}
                     >
                       <span
                         aria-hidden="true"
@@ -192,7 +192,7 @@ const AuthorSettings = ({
                       onChange={setTranslationAuthor}
                     >
                       <div className="relative">
-                        <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                        <Listbox.Button className="dark:bg-dark-bg relative w-full cursor-default rounded-lg bg-white py-2 pr-10 pl-3 text-left shadow-md focus:outline-hidden focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                           <span className="flex justify-between text-black dark:text-white">
                             {translate(translationAuthor?.name)}&nbsp; (
                             {translate(translationAuthor?.language)})
@@ -210,7 +210,7 @@ const AuthorSettings = ({
                           leaveFrom="opacity-100"
                           leaveTo="opacity-0"
                         >
-                          <Listbox.Options className="relative z-20 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                          <Listbox.Options className="focus-visible:ring-my-orange/75 dark:bg-dark-bg relative z-20 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                             {translation_authors.map((author) => (
                               <Listbox.Option
                                 key={author.id}
@@ -219,7 +219,7 @@ const AuthorSettings = ({
                                     active
                                       ? "bg-my-orange text-white"
                                       : "text-black dark:text-white"
-                                  } relative flex cursor-pointer select-none justify-between px-4 py-2`
+                                  } relative flex cursor-pointer justify-between px-4 py-2 select-none`
                                 }
                                 value={author}
                               >
@@ -236,7 +236,7 @@ const AuthorSettings = ({
                   <div className="mt-8 flex w-full gap-5">
                     <button
                       type="button"
-                      className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
+                      className="focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-xs hover:bg-gray-50 focus:ring-2 focus:ring-offset-2 focus:outline-hidden dark:text-gray-200"
                       onClick={closeAuthorSettingsModal}
                     >
                       {translate("Cancel")}
@@ -247,8 +247,8 @@ const AuthorSettings = ({
                       onClick={() => handleSubmit()}
                       className={classNames(
                         "w-1/2 items-center border border-transparent px-6 py-3 text-center",
-                        "rounded-md bg-my-orange text-base font-medium text-white shadow-sm",
-                        "hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+                        "bg-my-orange rounded-md text-base font-medium text-white shadow-xs",
+                        "hover:bg-my-orange focus:ring-my-orange focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
                         isSubmitting && "bg-opacity-30 hover:bg-opacity-30",
                       )}
                       disabled={isSubmitting}

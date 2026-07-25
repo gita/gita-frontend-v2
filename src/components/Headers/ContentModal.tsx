@@ -62,10 +62,10 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-5/6 max-w-4xl overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+              <Dialog.Panel className="dark:bg-dark-100 w-5/6 max-w-4xl overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
                 <div className="flex">
                   <div className="flex w-full flex-col p-8 md:hidden">
-                    <p className="py-2 font-semibold text-my-orange">
+                    <p className="text-my-orange py-2 font-semibold">
                       {translate("Chapters")}
                     </p>
                     <Listbox
@@ -73,7 +73,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                       onChange={setSelectedChapter}
                     >
                       <div className="relative mt-1">
-                        <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                        <Listbox.Button className="focus-visible:ring-my-orange/75 dark:bg-dark-bg relative w-full cursor-default rounded-lg bg-white py-2 pr-10 pl-3 text-left shadow-md focus:outline-hidden focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                           <span className="block">
                             {translate("Chapter")} {selectedChapter}
                           </span>
@@ -90,7 +90,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                           leaveFrom="opacity-100"
                           leaveTo="opacity-0"
                         >
-                          <Listbox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg sm:text-sm">
+                          <Listbox.Options className="dark:bg-dark-bg mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden sm:text-sm">
                             {data.map((chapter) => (
                               <Listbox.Option
                                 key={chapter.chapterNumber}
@@ -99,7 +99,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                                     active
                                       ? "bg-amber-100 text-amber-900"
                                       : "text-gray-900"
-                                  } relative cursor-default select-none py-2 pl-10 pr-4`
+                                  } relative cursor-default py-2 pr-4 pl-10 select-none`
                                 }
                                 value={chapter.chapterNumber}
                               >
@@ -135,12 +135,12 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                         </Transition>
                       </div>
                     </Listbox>
-                    <p className="mt-2 py-2 font-semibold text-my-orange">
+                    <p className="text-my-orange mt-2 py-2 font-semibold">
                       {translate("Verses")}
                     </p>
                     <Listbox value={selectedVerse} onChange={setSelectedVerse}>
                       <div className="relative mt-1">
-                        <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-my-orange/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-dark-bg sm:text-sm">
+                        <Listbox.Button className="focus-visible:ring-my-orange/75 dark:bg-dark-bg relative w-full cursor-default rounded-lg bg-white py-2 pr-10 pl-3 text-left shadow-md focus:outline-hidden focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                           <span className="block">
                             {translate("Verse")} {selectedVerse.verseNumber}
                           </span>
@@ -157,7 +157,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                           leaveFrom="opacity-100"
                           leaveTo="opacity-0"
                         >
-                          <Listbox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-dark-bg sm:text-sm">
+                          <Listbox.Options className="dark:bg-dark-bg mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden sm:text-sm">
                             {data
                               .filter(
                                 (chapter) =>
@@ -171,7 +171,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                                       active
                                         ? "bg-amber-100 text-amber-900"
                                         : "text-gray-900 dark:text-gray-50"
-                                    } relative cursor-default select-none py-2 pl-10 pr-4`
+                                    } relative cursor-default py-2 pr-4 pl-10 select-none`
                                   }
                                   value={verse}
                                 >
@@ -209,7 +209,7 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                       </div>
                     </Listbox>
                     <button
-                      className="mx-auto mt-3 w-2/3 rounded bg-my-orange/80 px-4 py-2 font-bold text-white"
+                      className="bg-my-orange/80 mx-auto mt-3 w-2/3 rounded px-4 py-2 font-bold text-white"
                       onClick={handleSubmit}
                     >
                       Lets Go
@@ -225,13 +225,13 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                               onClick={() => {
                                 setSelectedChapter(chapter.chapterNumber);
                               }}
-                              className="group flex w-40 items-center justify-between rounded-lg bg-light-orange p-2 hover:cursor-pointer"
+                              className="group bg-light-orange flex w-40 items-center justify-between rounded-lg p-2 hover:cursor-pointer"
                               key={chapter.chapterNumber}
                             >
-                              <p className="text-base font-medium text-my-orange">
+                              <p className="text-my-orange text-base font-medium">
                                 {translate("Chapter")} {chapter.chapterNumber}
                               </p>
-                              <ArrowLongRightIcon className="h-5 w-8 text-my-orange opacity-100" />
+                              <ArrowLongRightIcon className="text-my-orange h-5 w-8 opacity-100" />
                             </button>
                           ) : (
                             <button
@@ -239,13 +239,13 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                               onClick={() => {
                                 setSelectedChapter(chapter.chapterNumber);
                               }}
-                              className="group flex w-40 items-center justify-between rounded-lg p-2 hover:cursor-pointer hover:bg-light-orange dark:hover:bg-dark-bg"
+                              className="group hover:bg-light-orange dark:hover:bg-dark-bg flex w-40 items-center justify-between rounded-lg p-2 hover:cursor-pointer"
                               key={chapter.chapterNumber}
                             >
-                              <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
+                              <p className="group-hover:text-my-orange text-base font-medium text-gray-500 dark:text-white">
                                 {translate("Chapter")} {chapter.chapterNumber}
                               </p>
-                              <ArrowLongRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                              <ArrowLongRightIcon className="text-my-orange h-5 w-8 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                             </button>
                           ),
                         )}
@@ -258,13 +258,13 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                               onClick={() => {
                                 setSelectedChapter(chapter.chapterNumber);
                               }}
-                              className="group flex w-40 items-center justify-between rounded-lg bg-light-orange p-2 hover:cursor-pointer"
+                              className="group bg-light-orange flex w-40 items-center justify-between rounded-lg p-2 hover:cursor-pointer"
                               key={chapter.chapterNumber}
                             >
-                              <p className="text-base font-medium text-my-orange">
+                              <p className="text-my-orange text-base font-medium">
                                 {translate("Chapter")} {chapter.chapterNumber}
                               </p>
-                              <ArrowLongRightIcon className="h-5 w-8 text-my-orange opacity-100" />
+                              <ArrowLongRightIcon className="text-my-orange h-5 w-8 opacity-100" />
                             </button>
                           ) : (
                             <button
@@ -272,20 +272,20 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                               onClick={() => {
                                 setSelectedChapter(chapter.chapterNumber);
                               }}
-                              className="group flex w-40 items-center justify-between rounded-lg p-2 hover:cursor-pointer hover:bg-light-orange dark:hover:bg-dark-bg"
+                              className="group hover:bg-light-orange dark:hover:bg-dark-bg flex w-40 items-center justify-between rounded-lg p-2 hover:cursor-pointer"
                               key={chapter.chapterNumber}
                             >
-                              <p className="text-base font-medium text-gray-500 group-hover:text-my-orange dark:text-white">
+                              <p className="group-hover:text-my-orange text-base font-medium text-gray-500 dark:text-white">
                                 {translate("Chapter")} {chapter.chapterNumber}
                               </p>
-                              <ArrowLongRightIcon className="h-5 w-8 text-my-orange opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                              <ArrowLongRightIcon className="text-my-orange h-5 w-8 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                             </button>
                           ),
                         )}
                       </div>
                     </div>
-                    <div className="flex h-full flex-1 flex-col justify-start bg-light-orange p-6">
-                      <p className="py-2 font-semibold text-my-orange">
+                    <div className="bg-light-orange flex h-full flex-1 flex-col justify-start p-6">
+                      <p className="text-my-orange py-2 font-semibold">
                         {translate("Chapter")} {selectedChapter}
                       </p>
                       <hr className="border-my-orange/10" />
@@ -304,14 +304,14 @@ export default function ContentModal({ translate, isOpen, close }: Props) {
                               {selectedVerse.id === verse.id ? (
                                 <div
                                   onClick={modalClose}
-                                  className="m-px flex size-10 items-center justify-center rounded bg-my-orange p-1.5 text-white hover:cursor-pointer"
+                                  className="bg-my-orange m-px flex size-10 items-center justify-center rounded p-1.5 text-white hover:cursor-pointer"
                                 >
                                   {verse.verseNumber}
                                 </div>
                               ) : (
                                 <div
                                   onClick={modalClose}
-                                  className="m-px flex size-10 items-center justify-center rounded p-1.5 text-gray-500 hover:cursor-pointer hover:bg-my-orange hover:text-white"
+                                  className="hover:bg-my-orange m-px flex size-10 items-center justify-center rounded p-1.5 text-gray-500 hover:cursor-pointer hover:text-white"
                                 >
                                   {verse.verseNumber}
                                 </div>

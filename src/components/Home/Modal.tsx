@@ -34,11 +34,11 @@ function Modal({ modalVisible, setModalVisible }: Props) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all dark:bg-dark-100 sm:w-full sm:max-w-sm">
+              <Dialog.Panel className="dark:bg-dark-100 relative overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:w-full sm:max-w-sm">
                 <div>
-                  <div className="z-50 inline-block overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all duration-200 dark:bg-dark-100 sm:mt-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle">
+                  <div className="dark:bg-dark-100 z-50 inline-block overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all duration-200 sm:mt-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle">
                     <div>
-                      <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-yellow-100 dark:bg-dark-bg">
+                      <div className="dark:bg-dark-bg mx-auto flex size-12 items-center justify-center rounded-full bg-yellow-100">
                         <svg
                           className="size-6 text-yellow-400"
                           x-description="Heroicon name: outline/check"
@@ -58,7 +58,7 @@ function Modal({ modalVisible, setModalVisible }: Props) {
                       </div>
                       <div className="mt-3 px-5 text-center sm:mt-5">
                         <p
-                          className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200"
+                          className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200"
                           id="modal-title"
                         >
                           Subscription Successful!
@@ -74,7 +74,7 @@ function Modal({ modalVisible, setModalVisible }: Props) {
                     <div className="mt-5 sm:mt-6">
                       <button
                         type="button"
-                        className="mx-auto flex w-1/3 justify-center rounded-md border border-transparent bg-my-orange px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-my-orange/75 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 sm:text-sm"
+                        className="bg-my-orange hover:bg-my-orange/75 mx-auto flex w-1/3 justify-center rounded-md border border-transparent px-4 py-2 text-base font-medium text-white shadow-xs focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:outline-hidden sm:text-sm"
                         onClick={() => setModalVisible(false)}
                       >
                         I got it

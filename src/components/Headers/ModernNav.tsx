@@ -58,7 +58,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-sm">
+    <header className="bg-background/80 sticky top-0 z-50 w-full border-b backdrop-blur-xs">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         {/* Left: Logo & Menu */}
         <div className="flex items-center gap-4">
@@ -74,31 +74,31 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
               <nav className="mt-8 flex flex-col gap-4">
                 <LinkWithLocale
                   href="/"
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="hover:text-primary text-lg font-medium transition-colors"
                 >
                   {translate("Home")}
                 </LinkWithLocale>
                 <LinkWithLocale
                   href="/bhagavad-gita-quotes"
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="hover:text-primary text-lg font-medium transition-colors"
                 >
                   {translate("Quotes")}
                 </LinkWithLocale>
                 <LinkWithLocale
                   href="/about"
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="hover:text-primary text-lg font-medium transition-colors"
                 >
                   {translate("About Gita")}
                 </LinkWithLocale>
                 <Link
                   href="/gitagpt"
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="hover:text-primary text-lg font-medium transition-colors"
                 >
                   {translate("Gita AI")}
                 </Link>
                 <LinkWithLocale
                   href="/bhagavad-gita-app"
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="hover:text-primary text-lg font-medium transition-colors"
                 >
                   {translate("Mobile App")}
                 </LinkWithLocale>
@@ -115,7 +115,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                     </Button>
                   ) : (
                     <div className="space-y-3">
-                      <div className="flex items-center gap-3 rounded-lg bg-muted p-3">
+                      <div className="bg-muted flex items-center gap-3 rounded-lg p-3">
                         {user.user_metadata?.avatar_url ||
                         user.user_metadata?.picture ? (
                           <img
@@ -128,7 +128,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                             referrerPolicy="no-referrer"
                           />
                         ) : (
-                          <div className="flex size-10 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
+                          <div className="bg-primary text-primary-foreground flex size-10 items-center justify-center rounded-full text-sm font-medium">
                             {(
                               user.user_metadata?.full_name?.[0] ||
                               user.email?.[0] ||
@@ -141,7 +141,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                             {user.user_metadata?.full_name ||
                               user.email?.split("@")[0]}
                           </p>
-                          <p className="truncate text-sm text-muted-foreground">
+                          <p className="text-muted-foreground truncate text-sm">
                             {user.email}
                           </p>
                         </div>
@@ -182,7 +182,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="flex h-auto items-center gap-1 p-0 text-sm font-medium transition-colors hover:bg-transparent hover:text-primary"
+                  className="hover:text-primary flex h-auto items-center gap-1 p-0 text-sm font-medium transition-colors hover:bg-transparent"
                 >
                   {translate("Chapters")}
                   <ChevronDown className="size-4" />
@@ -197,10 +197,10 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                         className="block cursor-pointer p-3"
                       >
                         <div>
-                          <div className="font-semibold text-primary">
+                          <div className="text-primary font-semibold">
                             {translate("Chapter")} {chapter.chapter_number}
                           </div>
-                          <div className="text-sm text-foreground">
+                          <div className="text-foreground text-sm">
                             {chapter.name_translated}
                           </div>
                         </div>
@@ -214,25 +214,25 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
 
           <LinkWithLocale
             href="/bhagavad-gita-quotes"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="hover:text-primary text-sm font-medium transition-colors"
           >
             {translate("Quotes")}
           </LinkWithLocale>
           <LinkWithLocale
             href="/about"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="hover:text-primary text-sm font-medium transition-colors"
           >
             {translate("About Gita")}
           </LinkWithLocale>
           <Link
             href="/gitagpt"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="hover:text-primary text-sm font-medium transition-colors"
           >
             {translate("Gita AI")}
           </Link>
           <LinkWithLocale
             href="/bhagavad-gita-app"
-            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary"
+            className="hover:text-primary text-sm font-medium whitespace-nowrap transition-colors"
           >
             {translate("App")}
           </LinkWithLocale>
@@ -330,7 +330,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
           {!user ? (
             <Button
               onClick={() => setAuthModalOpen(true)}
-              className="hidden gap-2 bg-primary text-primary-foreground hover:bg-primary/90 sm:flex"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 hidden gap-2 sm:flex"
             >
               <User className="size-4" />
               {translate("Sign In")}
@@ -351,7 +351,7 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    <div className="flex size-7 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                    <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-full text-xs font-medium">
                       {(
                         user.user_metadata?.full_name?.[0] ||
                         user.email?.[0] ||
@@ -367,14 +367,14 @@ export function ModernNav({ translate, locale, chapters }: ModernNavProps) {
                   <p className="text-sm font-medium">
                     {user.user_metadata?.full_name || user.email?.split("@")[0]}
                   </p>
-                  <p className="truncate text-xs text-muted-foreground">
+                  <p className="text-muted-foreground truncate text-xs">
                     {user.email}
                   </p>
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={() => signOut()}
-                  className="cursor-pointer text-destructive focus:text-destructive"
+                  className="text-destructive focus:text-destructive cursor-pointer"
                 >
                   <LogOut className="mr-2 size-4" />
                   {translate("Sign Out")}

@@ -88,7 +88,7 @@ const NotesModal = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+                <Dialog.Panel className="dark:bg-dark-100 w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <LinkWithLocale href="/notes">View Notes</LinkWithLocale>
                   <div className="my-2 flex items-center justify-between py-2">
                     <p className="text-base text-black dark:text-white">
@@ -107,7 +107,7 @@ const NotesModal = ({
                         rows={4}
                         onChange={(event) => setDescription(event.target.value)}
                         value={description}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -115,7 +115,7 @@ const NotesModal = ({
                   <div className="mt-8 flex w-full gap-5">
                     <button
                       type="button"
-                      className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
+                      className="focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-xs hover:bg-gray-50 focus:ring-2 focus:ring-offset-2 focus:outline-hidden dark:text-gray-200"
                       onClick={closeNotesSettingsModal}
                     >
                       Cancel
@@ -124,7 +124,7 @@ const NotesModal = ({
                     <button
                       type="button"
                       onClick={() => handleSubmit()}
-                      className="w-1/2 items-center rounded-md border border-transparent bg-my-orange px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2"
+                      className="bg-my-orange hover:bg-my-orange focus:ring-my-orange w-1/2 items-center rounded-md border border-transparent px-6 py-3 text-center text-base font-medium text-white shadow-xs focus:ring-2 focus:ring-offset-2 focus:outline-hidden"
                     >
                       Submit
                     </button>

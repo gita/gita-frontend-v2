@@ -56,7 +56,7 @@ export const metadata: Metadata = {
 /** Shown wherever one of our own apps appears, never only once at the bottom. */
 function OursTag({ kind }: { kind: NonNullable<App["ours"]> }) {
   return (
-    <span className="ml-2 inline-block whitespace-nowrap rounded-full border border-prakash-primary/40 px-2 py-0.5 align-middle text-xs font-semibold uppercase tracking-wide text-prakash-primary dark:border-nisha-primary/40 dark:text-nisha-primary">
+    <span className="border-prakash-primary/40 text-prakash-primary dark:border-nisha-primary/40 dark:text-nisha-primary ml-2 inline-block rounded-full border px-2 py-0.5 align-middle text-xs font-semibold tracking-wide whitespace-nowrap uppercase">
       {kind === "published" ? "Our app" : "Built by us"}
     </span>
   );
@@ -64,7 +64,7 @@ function OursTag({ kind }: { kind: NonNullable<App["ours"]> }) {
 
 function AppEntry({ app, position }: { app: App; position: number }) {
   return (
-    <article className="border-t border-border/60 py-12 first:border-t-0 first:pt-0">
+    <article className="border-border/60 border-t py-12 first:border-t-0 first:pt-0">
       <h2
         id={app.slug}
         className="font-newsreader scroll-mt-24 text-2xl font-bold tracking-tight md:text-3xl"
@@ -72,7 +72,7 @@ function AppEntry({ app, position }: { app: App; position: number }) {
         {position}. {app.name}
         {app.ours ? <OursTag kind={app.ours} /> : null}
       </h2>
-      <p className="mt-1 text-sm text-muted-foreground">
+      <p className="text-muted-foreground mt-1 text-sm">
         By {app.developer}
         {app.rating && app.ratingCount
           ? ` · ${app.rating} from ${app.ratingCount} ratings`
@@ -84,23 +84,23 @@ function AppEntry({ app, position }: { app: App; position: number }) {
         {app.verdict}
       </p>
 
-      <dl className="font-merriweather mt-6 max-w-2xl space-y-2 text-base leading-relaxed text-muted-foreground">
+      <dl className="font-merriweather text-muted-foreground mt-6 max-w-2xl space-y-2 text-base leading-relaxed">
         <div>
-          <dt className="inline font-semibold text-foreground">Get it if: </dt>
+          <dt className="text-foreground inline font-semibold">Get it if: </dt>
           <dd className="inline">{app.forWhom}</dd>
         </div>
         <div>
-          <dt className="inline font-semibold text-foreground">Skip it if: </dt>
+          <dt className="text-foreground inline font-semibold">Skip it if: </dt>
           <dd className="inline">{app.notForWhom}</dd>
         </div>
         <div>
-          <dt className="inline font-semibold text-foreground">Price: </dt>
+          <dt className="text-foreground inline font-semibold">Price: </dt>
           <dd className="inline">
             {app.price}. {app.ads === "None" ? "No advertising." : app.ads}
           </dd>
         </div>
         <div>
-          <dt className="inline font-semibold text-foreground">
+          <dt className="text-foreground inline font-semibold">
             Whose translation:{" "}
           </dt>
           <dd className="inline">{app.attribution}</dd>
@@ -109,20 +109,20 @@ function AppEntry({ app, position }: { app: App; position: number }) {
 
       <div className="mt-6 grid max-w-2xl gap-6 sm:grid-cols-2">
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-prakash-primary dark:text-nisha-primary">
+          <h3 className="text-prakash-primary dark:text-nisha-primary text-sm font-semibold tracking-wider uppercase">
             What works
           </h3>
-          <ul className="font-merriweather mt-3 space-y-2 text-base leading-relaxed text-muted-foreground">
+          <ul className="font-merriweather text-muted-foreground mt-3 space-y-2 text-base leading-relaxed">
             {app.pros.map((p) => (
               <li key={p}>{p}</li>
             ))}
           </ul>
         </div>
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          <h3 className="text-muted-foreground text-sm font-semibold tracking-wider uppercase">
             What does not
           </h3>
-          <ul className="font-merriweather mt-3 space-y-2 text-base leading-relaxed text-muted-foreground">
+          <ul className="font-merriweather text-muted-foreground mt-3 space-y-2 text-base leading-relaxed">
             {app.cons.map((c) => (
               <li key={c}>{c}</li>
             ))}
@@ -136,7 +136,7 @@ function AppEntry({ app, position }: { app: App; position: number }) {
             href={app.playUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-prakash-primary underline underline-offset-4 dark:text-nisha-primary"
+            className="text-prakash-primary dark:text-nisha-primary font-semibold underline underline-offset-4"
           >
             View on Google Play
           </a>
@@ -146,7 +146,7 @@ function AppEntry({ app, position }: { app: App; position: number }) {
             href={app.iosUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-prakash-primary underline underline-offset-4 dark:text-nisha-primary"
+            className="text-prakash-primary dark:text-nisha-primary font-semibold underline underline-offset-4"
           >
             View on the App Store
           </a>
@@ -170,35 +170,34 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
         />
       ))}
 
-      <div className="relative min-h-screen bg-prakash-bg font-crimson dark:bg-nisha-bg">
+      <div className="bg-prakash-bg font-crimson dark:bg-nisha-bg relative min-h-screen">
         {/* Hero. Three text levels only: the date badge, the heading, and one
             self-contained answer paragraph that an AI assistant can lift whole. */}
         <section className="relative overflow-hidden py-16 md:py-24">
-          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-prakash-primary/20 to-transparent dark:from-nisha-primary/20" />
+          <div className="from-prakash-primary/20 dark:from-nisha-primary/20 absolute inset-0 -z-10 bg-linear-to-b to-transparent" />
           <div className="container mx-auto max-w-7xl px-4">
-            <div className="mb-6 inline-flex items-center rounded-full bg-prakash-primary/10 px-4 py-1.5 dark:bg-nisha-primary/10">
-              <span className="text-sm font-semibold uppercase tracking-wide text-prakash-primary dark:text-nisha-primary">
+            <div className="bg-prakash-primary/10 dark:bg-nisha-primary/10 mb-6 inline-flex items-center rounded-full px-4 py-1.5">
+              <span className="text-prakash-primary dark:text-nisha-primary text-sm font-semibold tracking-wide uppercase">
                 Every figure checked {VERIFIED_ON_LABEL}
               </span>
             </div>
 
-            <h1 className="font-newsreader mb-6 max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="font-newsreader mb-6 max-w-4xl text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-6xl">
               The best Bhagavad Gita apps,
-              <span className="block text-prakash-primary dark:text-nisha-primary">
+              <span className="text-prakash-primary dark:text-nisha-primary block">
                 compared honestly.
               </span>
             </h1>
 
-            <p className="font-merriweather max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="font-merriweather text-muted-foreground max-w-2xl text-lg leading-relaxed">
               For most people on Android the answer is our own app, which is
               free, carries no advertising, and covers all 700 verses in seven
-              languages. Its iPhone build only arrived on 21 July 2026, so
-              treat that one as new. If
-              you want a wider devotional practice, Krishna Bhakti is the better
-              app and the highest rated here. If you want Prabhupada&rsquo;s
-              translation, buy the Bhaktivedanta Book Trust edition. Hindi,
-              Bangla, Telugu and Odia readers have stronger options still, and
-              they are all below.
+              languages. Its iPhone build only arrived on 21 July 2026, so treat
+              that one as new. If you want a wider devotional practice, Krishna
+              Bhakti is the better app and the highest rated here. If you want
+              Prabhupada&rsquo;s translation, buy the Bhaktivedanta Book Trust
+              edition. Hindi, Bangla, Telugu and Odia readers have stronger
+              options still, and they are all below.
             </p>
           </div>
         </section>
@@ -206,12 +205,12 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
         {/* Disclosure. This sits above every comparative claim on the page, not
             beneath it. The category ordering below is defensible only on that
             condition, because two of the winners are apps we publish. */}
-        <section className="border-y border-prakash-primary/20 bg-adhyayan-bg py-10 dark:border-nisha-primary/20 dark:bg-nisha-bg/50">
+        <section className="border-prakash-primary/20 bg-adhyayan-bg dark:border-nisha-primary/20 dark:bg-nisha-bg/50 border-y py-10">
           <div className="container mx-auto max-w-3xl px-4">
             <h2 className="font-newsreader text-xl font-bold">
               Read this first
             </h2>
-            <p className="font-merriweather mt-3 text-base leading-relaxed text-muted-foreground">
+            <p className="font-merriweather text-muted-foreground mt-3 text-base leading-relaxed">
               We are not a neutral reviewer. Ved Vyas Foundation publishes the
               first app on this list. We also built and maintain Krishna Bhakti
               for JKYog, a separate registered organisation. A third app here,
@@ -240,7 +239,7 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
                     {c.category}: {c.winner}
                     {c.ours ? <OursTag kind={c.ours} /> : null}
                   </h3>
-                  <p className="mt-1 text-base leading-relaxed text-muted-foreground">
+                  <p className="text-muted-foreground mt-1 text-base leading-relaxed">
                     {c.why}
                   </p>
                 </li>
@@ -251,21 +250,21 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
 
         {/* Comparison table. A real HTML table, scrollable inside its own box so
             the page never scrolls sideways. Columns carry evidence, not ticks. */}
-        <section className="bg-adhyayan-bg py-20 dark:bg-nisha-bg/50 md:py-28">
+        <section className="bg-adhyayan-bg dark:bg-nisha-bg/50 py-20 md:py-28">
           <div className="container mx-auto max-w-7xl px-4">
             <SectionHeader
               subtitle="Side by side"
               title="Every app compared"
               description={`Ratings and install counts come from each store's own structured data on ${STOREFRONT}, read on ${VERIFIED_ON_LABEL}. A rating without its storefront is not a fact: our own app scores 4.91 in India and 4.78 in the United States off the same 1,688 ratings. Play shows one decimal; these are its underlying values to two.`}
             />
-            <div className="overflow-x-auto rounded-xl border bg-card">
-              <table className="w-full min-w-[56rem] border-collapse text-left text-sm">
+            <div className="bg-card overflow-x-auto rounded-xl border">
+              <table className="w-full min-w-4xl border-collapse text-left text-sm">
                 <caption className="sr-only">
                   Bhagavad Gita apps compared on rating, price, advertising,
                   languages and translator
                 </caption>
                 <thead>
-                  <tr className="border-b bg-muted/40">
+                  <tr className="bg-muted/40 border-b">
                     <th scope="col" className="px-4 py-3 font-semibold">
                       App
                     </th>
@@ -304,24 +303,24 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
                         </a>
                         {app.ours ? <OursTag kind={app.ours} /> : null}
                       </th>
-                      <td className="px-4 py-3 align-top text-muted-foreground">
+                      <td className="text-muted-foreground px-4 py-3 align-top">
                         {app.rating
                           ? `${app.rating} (${app.ratingCount})`
                           : "Not published"}
                       </td>
-                      <td className="px-4 py-3 align-top text-muted-foreground">
+                      <td className="text-muted-foreground px-4 py-3 align-top">
                         {app.installs ?? "iOS only"}
                       </td>
-                      <td className="px-4 py-3 align-top text-muted-foreground">
+                      <td className="text-muted-foreground px-4 py-3 align-top">
                         {app.price}
                       </td>
-                      <td className="px-4 py-3 align-top text-muted-foreground">
+                      <td className="text-muted-foreground px-4 py-3 align-top">
                         {app.ads}
                       </td>
-                      <td className="px-4 py-3 align-top text-muted-foreground">
+                      <td className="text-muted-foreground px-4 py-3 align-top">
                         {app.languages}
                       </td>
-                      <td className="px-4 py-3 align-top text-muted-foreground">
+                      <td className="text-muted-foreground px-4 py-3 align-top">
                         {app.attribution}
                       </td>
                     </tr>
@@ -329,7 +328,7 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
                 </tbody>
               </table>
             </div>
-            <p className="font-merriweather mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground">
+            <p className="font-merriweather text-muted-foreground mt-6 max-w-3xl text-base leading-relaxed">
               The table says something the rankings do not. The two most
               installed Gita apps in India name no translator at all, and one of
               them tells you in its own listing that it is assuming the text is
@@ -345,7 +344,7 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
         <section className="py-20 md:py-28">
           <div className="container mx-auto max-w-3xl px-4">
             <SectionHeader subtitle="Method" title="How we compared these" />
-            <div className="font-merriweather space-y-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+            <div className="font-merriweather text-muted-foreground space-y-4 text-base leading-relaxed md:text-lg">
               <p>
                 We searched Google Play across seven query variants covering
                 English, Hindi and the phrasing people actually use, which
@@ -380,7 +379,7 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
         </section>
 
         {/* Ranked entries */}
-        <section className="bg-adhyayan-bg py-20 dark:bg-nisha-bg/50 md:py-28">
+        <section className="bg-adhyayan-bg dark:bg-nisha-bg/50 py-20 md:py-28">
           <div className="container mx-auto max-w-4xl px-4">
             <SectionHeader
               subtitle="In detail"
@@ -400,7 +399,7 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
               subtitle="Ours"
               title="Where our own app falls short"
             />
-            <ul className="font-merriweather space-y-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+            <ul className="font-merriweather text-muted-foreground space-y-4 text-base leading-relaxed md:text-lg">
               <li>
                 <strong className="text-foreground">
                   One commentator, not several.
@@ -431,19 +430,19 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
                 <strong className="text-foreground">
                   Our iPhone rating is bad, and we are publishing it anyway.
                 </strong>{" "}
-                Version 2.2.3 reached the App Store on 21 July 2026. The
-                listing carries ten ratings in total: 2.0 from three in the
-                United States, 3.3 from seven in India. Nine of those ten
-                predate this build, because Apple carries ratings across
-                versions, so most of what you see describes the app we just
-                replaced. That is a real explanation and it is also the kind of
-                explanation every developer reaches for, so here is the number
-                without it: 2.0 in the United States. We are publishing it
-                because this page criticises another app for advertising a
-                rating its own store does not support, and a page that does
-                that while hiding its own is worth nothing. On Android we
-                recommend our app without reservation. On iPhone it is four
-                days old and you would be finding out with us.
+                Version 2.2.3 reached the App Store on 21 July 2026. The listing
+                carries ten ratings in total: 2.0 from three in the United
+                States, 3.3 from seven in India. Nine of those ten predate this
+                build, because Apple carries ratings across versions, so most of
+                what you see describes the app we just replaced. That is a real
+                explanation and it is also the kind of explanation every
+                developer reaches for, so here is the number without it: 2.0 in
+                the United States. We are publishing it because this page
+                criticises another app for advertising a rating its own store
+                does not support, and a page that does that while hiding its own
+                is worth nothing. On Android we recommend our app without
+                reservation. On iPhone it is four days old and you would be
+                finding out with us.
               </li>
               <li>
                 <strong className="text-foreground">
@@ -465,13 +464,13 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
         </section>
 
         {/* How to choose */}
-        <section className="bg-adhyayan-bg py-20 dark:bg-nisha-bg/50 md:py-28">
+        <section className="bg-adhyayan-bg dark:bg-nisha-bg/50 py-20 md:py-28">
           <div className="container mx-auto max-w-3xl px-4">
             <SectionHeader
               subtitle="Choosing"
               title="Three questions worth answering first"
             />
-            <div className="font-merriweather space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+            <div className="font-merriweather text-muted-foreground space-y-6 text-base leading-relaxed md:text-lg">
               <p>
                 <strong className="text-foreground">
                   Whose translation do you want to read?
@@ -515,11 +514,11 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
                 <li key={a.name}>
                   <h3 className="font-newsreader text-lg font-bold">
                     {a.name}{" "}
-                    <span className="text-base font-normal text-muted-foreground">
+                    <span className="text-muted-foreground text-base font-normal">
                       by {a.developer}
                     </span>
                   </h3>
-                  <p className="mt-1 text-base leading-relaxed text-muted-foreground">
+                  <p className="text-muted-foreground mt-1 text-base leading-relaxed">
                     {a.note}
                   </p>
                 </li>
@@ -529,7 +528,7 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
         </section>
 
         {/* FAQ. Native details/summary, so every answer ships in the HTML. */}
-        <section className="bg-adhyayan-bg py-20 dark:bg-nisha-bg/50 md:py-28">
+        <section className="bg-adhyayan-bg dark:bg-nisha-bg/50 py-20 md:py-28">
           <div className="container mx-auto max-w-3xl px-4">
             <SectionHeader
               subtitle="FAQ"
@@ -541,20 +540,20 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
               {FAQS.map((faq) => (
                 <details
                   key={faq.question}
-                  className="group rounded-xl border bg-card px-6 py-5"
+                  className="group bg-card rounded-xl border px-6 py-5"
                 >
                   <summary className="flex cursor-pointer list-none items-start justify-between gap-4 marker:content-none">
-                    <h3 className="font-newsreader text-xl font-semibold leading-snug md:text-2xl">
+                    <h3 className="font-newsreader text-xl leading-snug font-semibold md:text-2xl">
                       {faq.question}
                     </h3>
                     <span
                       aria-hidden
-                      className="mt-1 shrink-0 text-xl leading-none text-muted-foreground transition-transform group-open:rotate-45"
+                      className="text-muted-foreground mt-1 shrink-0 text-xl leading-none transition-transform group-open:rotate-45"
                     >
                       +
                     </span>
                   </summary>
-                  <p className="font-merriweather mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                  <p className="font-merriweather text-muted-foreground mt-4 text-base leading-relaxed md:text-lg">
                     {faq.answer}
                   </p>
                 </details>
@@ -569,7 +568,7 @@ export default async function BestBhagavadGitaApps(props: ParamsWithLocale) {
             <h2 className="font-newsreader text-xl font-bold">
               Who wrote this, and when
             </h2>
-            <p className="font-merriweather mt-3 text-base leading-relaxed text-muted-foreground">
+            <p className="font-merriweather text-muted-foreground mt-3 text-base leading-relaxed">
               Written and maintained by the editorial team at Ved Vyas
               Foundation, the non-profit behind bhagavadgita.com. Every store
               figure on this page was last confirmed on {VERIFIED_ON_LABEL}. We

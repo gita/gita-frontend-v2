@@ -56,7 +56,7 @@ export function ChatInput({
     <form
       onSubmit={onSubmit}
       className={cn(
-        "relative flex items-end gap-2 rounded-2xl border bg-background p-2 shadow-sm transition-shadow focus-within:shadow-md",
+        "bg-background relative flex items-end gap-2 rounded-2xl border p-2 shadow-xs transition-shadow focus-within:shadow-md",
         className,
       )}
     >
@@ -69,7 +69,7 @@ export function ChatInput({
         disabled={disabled || isLoading}
         rows={1}
         className={cn(
-          "max-h-[200px] min-h-[44px] flex-1 resize-none bg-transparent px-3 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          "placeholder:text-muted-foreground max-h-[200px] min-h-[44px] flex-1 resize-none bg-transparent px-3 py-2.5 text-sm focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
         )}
       />
 

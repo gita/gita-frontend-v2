@@ -111,7 +111,7 @@ const FAQ = ({
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-transparent via-accent/20 to-transparent py-16 md:py-20">
+    <div className="via-accent/20 relative bg-linear-to-b from-transparent to-transparent py-16 md:py-20">
       <div className="pointer-events-none absolute inset-0 z-[-2] bg-[radial-gradient(circle_at_80%_30%,rgba(251,146,60,0.07)_0%,transparent_60%)]" />
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
         <motion.div
@@ -119,10 +119,10 @@ const FAQ = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="text-foreground mb-4 text-center text-3xl font-bold md:text-4xl">
             {title || translate("Frequently Asked Questions")}
           </h2>
-          <p className="mb-12 text-center text-lg text-foreground/70 md:text-xl">
+          <p className="text-foreground/70 mb-12 text-center text-lg md:text-xl">
             {subtitle ||
               translate("Everything you need to know about the Bhagavad Gita")}
           </p>
@@ -134,21 +134,21 @@ const FAQ = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="rounded-lg border-2 border-border bg-white shadow-lg transition-all hover:shadow-xl dark:bg-card"
+                className="border-border dark:bg-card rounded-lg border-2 bg-white shadow-lg transition-all hover:shadow-xl"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="flex w-full items-start justify-between p-6 text-left transition-all hover:bg-accent/30"
+                  className="hover:bg-accent/30 flex w-full items-start justify-between p-6 text-left transition-all"
                   aria-expanded={openIndex === index}
                   aria-controls={`faq-answer-${index}`}
                 >
-                  <h3 className="pr-4 text-lg font-semibold text-foreground">
+                  <h3 className="text-foreground pr-4 text-lg font-semibold">
                     {faq.question}
                   </h3>
                   <motion.span
                     animate={{ rotate: openIndex === index ? 45 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="shrink-0 text-2xl font-bold text-primary"
+                    className="text-primary shrink-0 text-2xl font-bold"
                     aria-hidden="true"
                   >
                     +
@@ -166,8 +166,8 @@ const FAQ = ({
                       id={`faq-answer-${index}`}
                       role="region"
                     >
-                      <div className="border-t border-border p-6 pt-4">
-                        <p className="text-base leading-relaxed text-foreground/90">
+                      <div className="border-border border-t p-6 pt-4">
+                        <p className="text-foreground/90 text-base leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>

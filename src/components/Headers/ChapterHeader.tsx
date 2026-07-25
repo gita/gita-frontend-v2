@@ -49,7 +49,7 @@ const ChapterHeader = (props: Props) => {
     <>
       <Disclosure
         as="nav"
-        className="bg-white font-inter shadow dark:bg-dark-100"
+        className="font-inter dark:bg-dark-100 bg-white shadow-sm"
       >
         {({ open }) => (
           <>
@@ -59,7 +59,7 @@ const ChapterHeader = (props: Props) => {
                   <div className="hidden items-center py-2 lg:flex lg:space-x-4">
                     <LinkWithLocale
                       href="/"
-                      className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-gray-900 hover:bg-nav-hover dark:text-gray-50 dark:hover:bg-dark-bg"
+                      className="hover:bg-nav-hover dark:hover:bg-dark-bg flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-gray-900 dark:text-gray-50"
                     >
                       <Image
                         className="mb-1 size-6"
@@ -75,7 +75,7 @@ const ChapterHeader = (props: Props) => {
                       onClick={openContentModal}
                       className={classNames(
                         contentModalIsOpen && "bg-nav-hover dark:bg-dark-bg",
-                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
+                        "hover:bg-nav-hover dark:hover:bg-dark-bg flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current",
                       )}
                     >
                       <Image
@@ -92,7 +92,7 @@ const ChapterHeader = (props: Props) => {
                       onClick={openSettingsModal}
                       className={classNames(
                         settingsIsOpen && "bg-nav-hover dark:bg-dark-bg",
-                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
+                        "hover:bg-nav-hover dark:hover:bg-dark-bg flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current",
                       )}
                     >
                       <Image
@@ -117,7 +117,7 @@ const ChapterHeader = (props: Props) => {
                     >
                       <button
                         type="submit"
-                        className="absolute left-3 top-0 mr-4 mt-2"
+                        className="absolute top-0 left-3 mt-2 mr-4"
                       >
                         <MagnifyingGlassIcon
                           className="size-5 text-gray-400 dark:text-gray-50"
@@ -127,7 +127,7 @@ const ChapterHeader = (props: Props) => {
                       <input
                         id="search"
                         name="search"
-                        className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:placeholder:text-gray-50 sm:text-sm"
+                        className="focus:border-my-orange focus:ring-my-orange dark:bg-dark-100 block w-full rounded-md border border-gray-300 bg-white py-2 pr-3 pl-10 leading-5 placeholder:text-gray-500 focus:ring-1 focus:outline-hidden focus:placeholder:text-gray-400 sm:text-sm dark:placeholder:text-gray-50"
                         placeholder={translate("Search")}
                         type="search"
                         value={input}
@@ -142,7 +142,7 @@ const ChapterHeader = (props: Props) => {
                 </div>
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="inline-flex items-center justify-start rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
+                  <Disclosure.Button className="focus:ring-my-orange inline-flex items-center justify-start rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:outline-hidden focus:ring-inset">
                     <span className="sr-only">
                       {translate("Open main menu")}
                     </span>
@@ -157,23 +157,23 @@ const ChapterHeader = (props: Props) => {
             </div>
 
             <Disclosure.Panel className="lg:hidden">
-              <div className="space-y-1 pb-3 pt-2">
+              <div className="space-y-1 pt-2 pb-3">
                 {/* Current: "bg-indigo-50 border-my-orange text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
                 <LinkWithLocale
                   href="/"
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Home")}
                 </LinkWithLocale>
                 <button
                   onClick={openContentModal}
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Content")}
                 </button>
                 <button
                   onClick={openSettingsModal}
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Appearance")}
                 </button>

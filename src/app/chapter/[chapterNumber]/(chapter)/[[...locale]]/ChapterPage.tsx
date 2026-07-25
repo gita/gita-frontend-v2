@@ -74,23 +74,23 @@ export default function ChapterPage({
   };
 
   return (
-    <div className="min-h-screen bg-prakash-bg font-inter dark:bg-nisha-bg">
+    <div className="bg-prakash-bg font-inter dark:bg-nisha-bg min-h-screen">
       <div className="flex min-h-[calc(100vh-4rem)] w-full pb-24">
         {/* Main Content Area */}
-        <div className="min-w-0 flex-1 px-4 pb-24 pt-4 md:px-8">
+        <div className="min-w-0 flex-1 px-4 pt-4 pb-24 md:px-8">
           <div className="mx-auto max-w-4xl">
             {/* Breadcrumb Navigation */}
             <nav className="mb-6 flex items-center gap-2 px-4 text-[13px]">
               <LinkWithLocale
                 href="/"
-                className="text-verse-grey-text transition-colors hover:text-prakash-primary dark:text-verse-grey-text dark:hover:text-nisha-primary"
+                className="text-verse-grey-text hover:text-prakash-primary dark:text-verse-grey-text dark:hover:text-nisha-primary transition-colors"
               >
                 {translate("Chapters")}
               </LinkWithLocale>
-              <span className="text-verse-grey-text transition-colors dark:text-verse-grey-text">
+              <span className="text-verse-grey-text dark:text-verse-grey-text transition-colors">
                 ›
               </span>
-              <span className="text-verse-light-text transition-colors dark:text-verse-light-text">
+              <span className="text-verse-light-text dark:text-verse-light-text transition-colors">
                 {translate("Chapter")} {chapter_number}
               </span>
             </nav>
@@ -123,7 +123,7 @@ export default function ChapterPage({
                 <SheetTrigger asChild>
                   <Button
                     size="icon"
-                    className="fixed bottom-6 right-6 z-50 size-14 rounded-full bg-prakash-primary shadow-lg hover:bg-prakash-primary/90 dark:bg-nisha-primary dark:hover:bg-nisha-primary/90 lg:hidden"
+                    className="bg-prakash-primary hover:bg-prakash-primary/90 dark:bg-nisha-primary dark:hover:bg-nisha-primary/90 fixed right-6 bottom-6 z-50 size-14 rounded-full shadow-lg lg:hidden"
                     aria-label="Open verse navigation"
                   >
                     <List className="size-6" />
@@ -137,14 +137,14 @@ export default function ChapterPage({
 
             <SheetContent
               side="bottom"
-              className="h-[85vh] rounded-t-2xl px-0 pb-0 pt-2"
+              className="h-[85vh] rounded-t-2xl px-0 pt-2 pb-0"
             >
               {/* Drag Handle */}
               <div className="flex justify-center pb-2">
-                <div className="h-1.5 w-12 rounded-full bg-muted" />
+                <div className="bg-muted h-1.5 w-12 rounded-full" />
               </div>
 
-              <SheetHeader className="space-y-3 border-b px-6 pb-4 pt-2 text-left">
+              <SheetHeader className="space-y-3 border-b px-6 pt-2 pb-4 text-left">
                 <SheetTitle className="text-lg font-semibold">
                   {translate("Chapter")} {chapter_number}: {name_translated}
                 </SheetTitle>
@@ -189,8 +189,8 @@ export default function ChapterPage({
 
               {/* Verses Section */}
               <div className="flex h-[calc(85vh-12rem)] flex-1 flex-col overflow-hidden">
-                <div className="border-b bg-muted/20 px-6 py-3">
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                <div className="bg-muted/20 border-b px-6 py-3">
+                  <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
                     {translate("Verses")}
                   </h3>
                 </div>
@@ -210,7 +210,7 @@ export default function ChapterPage({
 
         {/* Desktop Sidebar - Sticky on Right Edge */}
         <div className="hidden w-[400px] shrink-0 lg:block">
-          <div className="sticky top-16 h-[calc(100vh-4rem)] border-l bg-background/50 backdrop-blur-sm">
+          <div className="bg-background/50 sticky top-16 h-[calc(100vh-4rem)] border-l backdrop-blur-xs">
             <ChapterSidebar
               currentChapter={chapter_number}
               chapterName={name_translated}

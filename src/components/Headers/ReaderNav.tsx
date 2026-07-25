@@ -80,7 +80,7 @@ export function ReaderNav({
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-sm">
+    <header className="bg-background/80 sticky top-0 z-50 w-full border-b backdrop-blur-xs">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         {/* Left: Sidebar Toggle + Logo */}
         <div className="flex items-center gap-3">
@@ -110,7 +110,7 @@ export function ReaderNav({
               width={23}
               alt="Bhagavad Gita"
             />
-            <span className="hidden font-inter text-xl font-bold sm:inline-block">
+            <span className="font-inter hidden text-xl font-bold sm:inline-block">
               {translate("Bhagavad Gita")}
             </span>
             <span className="font-inter text-xl font-bold sm:hidden">BG</span>
@@ -283,7 +283,7 @@ export function ReaderNav({
           {!user ? (
             <Button
               onClick={() => setAuthModalOpen(true)}
-              className="hidden gap-2 bg-primary text-primary-foreground hover:bg-primary/90 sm:flex"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 hidden gap-2 sm:flex"
               size="sm"
             >
               <User className="size-4" />
@@ -309,7 +309,7 @@ export function ReaderNav({
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    <div className="flex size-7 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                    <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-full text-xs font-medium">
                       {(
                         user.user_metadata?.full_name?.[0] ||
                         user.email?.[0] ||
@@ -324,14 +324,14 @@ export function ReaderNav({
                   <p className="text-sm font-medium">
                     {user.user_metadata?.full_name || user.email?.split("@")[0]}
                   </p>
-                  <p className="truncate text-xs text-muted-foreground">
+                  <p className="text-muted-foreground truncate text-xs">
                     {user.email}
                   </p>
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={() => signOut()}
-                  className="cursor-pointer text-destructive focus:text-destructive"
+                  className="text-destructive focus:text-destructive cursor-pointer"
                 >
                   <LogOut className="mr-2 size-4" />
                   {translate("Sign Out")}

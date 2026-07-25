@@ -573,13 +573,13 @@ export function Chat({ chatId }: ChatProps) {
     return (
       <>
         <div className="flex h-full flex-col">
-          <div className="flex flex-1 flex-col items-center justify-start px-4 pb-20 pt-16 md:pt-28">
+          <div className="flex flex-1 flex-col items-center justify-start px-4 pt-16 pb-20 md:pt-28">
             <div className="w-full max-w-3xl space-y-8">
               {/* Welcome Message */}
               <div className="text-center">
                 {/* Krishna Image - Arch Shape */}
                 <div className="mb-6 flex justify-center">
-                  <div className="relative h-24 w-20 overflow-hidden rounded-t-full border-2 border-primary/20 shadow-lg md:h-28 md:w-24">
+                  <div className="border-primary/20 relative h-24 w-20 overflow-hidden rounded-t-full border-2 shadow-lg md:h-28 md:w-24">
                     <Image
                       src="/art/bg_krishnaji_portrait.webp"
                       alt="Lord Krishna"
@@ -593,7 +593,7 @@ export function Chat({ chatId }: ChatProps) {
                 <h1 className="mb-4 text-3xl font-semibold md:text-4xl">
                   Radhey Radhey! Welcome to GitaGPT
                 </h1>
-                <p className="text-base text-muted-foreground md:text-lg">
+                <p className="text-muted-foreground text-base md:text-lg">
                   Ask me any question about life, dharma, karma, or the path to
                   self-realization.
                 </p>
@@ -630,11 +630,11 @@ export function Chat({ chatId }: ChatProps) {
 
               {/* Error message on welcome screen */}
               {error && (
-                <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4">
+                <div className="border-destructive/50 bg-destructive/10 rounded-lg border p-4">
                   <div className="flex items-start gap-3">
                     <div className="shrink-0">
                       <svg
-                        className="size-5 text-destructive"
+                        className="text-destructive size-5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -648,12 +648,12 @@ export function Chat({ chatId }: ChatProps) {
                       </svg>
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-destructive">
+                      <h3 className="text-destructive font-semibold">
                         {isRateLimitError
                           ? "Daily Limit Reached"
                           : "An Error Occurred"}
                       </h3>
-                      <p className="mt-1 text-sm text-destructive/90">
+                      <p className="text-destructive/90 mt-1 text-sm">
                         {errorMessage ||
                           "Something went wrong. Please try again."}
                       </p>
@@ -661,14 +661,14 @@ export function Chat({ chatId }: ChatProps) {
                         <div className="mt-3 flex flex-wrap gap-2">
                           <button
                             onClick={() => setAuthModalOpen(true)}
-                            className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                            className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium"
                           >
                             Sign up for more messages
                           </button>
                           <button
                             type="button"
                             onClick={clearError}
-                            className="inline-flex items-center rounded-md border border-destructive/30 bg-background px-3 py-1.5 text-sm font-medium text-destructive hover:bg-destructive/5"
+                            className="border-destructive/30 bg-background text-destructive hover:bg-destructive/5 inline-flex items-center rounded-md border px-3 py-1.5 text-sm font-medium"
                           >
                             Dismiss
                           </button>
@@ -678,7 +678,7 @@ export function Chat({ chatId }: ChatProps) {
                         <button
                           type="button"
                           onClick={clearError}
-                          className="mt-3 inline-flex items-center rounded-md border border-destructive/30 bg-background px-3 py-1.5 text-sm font-medium text-destructive hover:bg-destructive/5"
+                          className="border-destructive/30 bg-background text-destructive hover:bg-destructive/5 mt-3 inline-flex items-center rounded-md border px-3 py-1.5 text-sm font-medium"
                         >
                           Dismiss
                         </button>
@@ -687,7 +687,7 @@ export function Chat({ chatId }: ChatProps) {
                         <button
                           type="button"
                           onClick={clearError}
-                          className="mt-3 text-sm font-medium text-destructive underline hover:no-underline"
+                          className="text-destructive mt-3 text-sm font-medium underline hover:no-underline"
                         >
                           Dismiss
                         </button>
@@ -726,7 +726,7 @@ export function Chat({ chatId }: ChatProps) {
                   <button
                     key={question}
                     onClick={() => setInputValue(question)}
-                    className="rounded-full border bg-background px-4 py-2 text-sm transition-colors hover:bg-muted"
+                    className="bg-background hover:bg-muted rounded-full border px-4 py-2 text-sm transition-colors"
                   >
                     {question}
                   </button>
@@ -737,7 +737,7 @@ export function Chat({ chatId }: ChatProps) {
 
           {/* Disclaimer at bottom */}
           <div className="bg-background px-4 py-3">
-            <p className="text-center text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-center text-xs">
               AI can make mistakes. Verify responses and consult a guru for
               deeper understanding.
             </p>
@@ -767,11 +767,11 @@ export function Chat({ chatId }: ChatProps) {
         {error && (
           <div className="bg-background px-4 pb-3">
             <div className="mx-auto max-w-3xl">
-              <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4">
+              <div className="border-destructive/50 bg-destructive/10 rounded-lg border p-4">
                 <div className="flex items-start gap-3">
                   <div className="shrink-0">
                     <svg
-                      className="size-5 text-destructive"
+                      className="text-destructive size-5"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -785,12 +785,12 @@ export function Chat({ chatId }: ChatProps) {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-destructive">
+                    <h3 className="text-destructive font-semibold">
                       {isRateLimitError
                         ? "Daily Limit Reached"
                         : "An Error Occurred"}
                     </h3>
-                    <p className="mt-1 text-sm text-destructive/90">
+                    <p className="text-destructive/90 mt-1 text-sm">
                       {isRateLimitError && user
                         ? `You've used all your messages for today. Resets in ${countdown || "24h"}.`
                         : errorMessage ||
@@ -800,14 +800,14 @@ export function Chat({ chatId }: ChatProps) {
                       <div className="mt-3 flex flex-wrap gap-2">
                         <button
                           onClick={() => setAuthModalOpen(true)}
-                          className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                          className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium"
                         >
                           Sign up for more messages
                         </button>
                         <button
                           type="button"
                           onClick={clearError}
-                          className="inline-flex items-center rounded-md border border-destructive/30 bg-background px-3 py-1.5 text-sm font-medium text-destructive hover:bg-destructive/5"
+                          className="border-destructive/30 bg-background text-destructive hover:bg-destructive/5 inline-flex items-center rounded-md border px-3 py-1.5 text-sm font-medium"
                         >
                           Dismiss
                         </button>
@@ -817,7 +817,7 @@ export function Chat({ chatId }: ChatProps) {
                       <button
                         type="button"
                         onClick={clearError}
-                        className="mt-3 inline-flex items-center rounded-md border border-destructive/30 bg-background px-3 py-1.5 text-sm font-medium text-destructive hover:bg-destructive/5"
+                        className="border-destructive/30 bg-background text-destructive hover:bg-destructive/5 mt-3 inline-flex items-center rounded-md border px-3 py-1.5 text-sm font-medium"
                       >
                         Dismiss
                       </button>
@@ -826,7 +826,7 @@ export function Chat({ chatId }: ChatProps) {
                       <button
                         type="button"
                         onClick={clearError}
-                        className="mt-3 text-sm font-medium text-destructive underline hover:no-underline"
+                        className="text-destructive mt-3 text-sm font-medium underline hover:no-underline"
                       >
                         Dismiss
                       </button>
@@ -839,7 +839,7 @@ export function Chat({ chatId }: ChatProps) {
         )}
 
         {/* Input - floating style like ChatGPT */}
-        <div className="bg-gradient-to-t from-background via-background to-transparent px-4 pb-4 pt-6">
+        <div className="from-background via-background bg-linear-to-t to-transparent px-4 pt-6 pb-4">
           <div className="mx-auto max-w-3xl">
             <MultimodalInput
               ref={inputRef}
@@ -851,7 +851,7 @@ export function Chat({ chatId }: ChatProps) {
               disabled={!isReady && !isLoading}
             />
             {/* Disclaimer at bottom */}
-            <p className="mt-2 text-center text-xs text-muted-foreground">
+            <p className="text-muted-foreground mt-2 text-center text-xs">
               AI can make mistakes. Verify responses and consult a guru for
               deeper understanding.
             </p>

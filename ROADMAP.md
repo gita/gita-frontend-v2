@@ -298,7 +298,7 @@ Requirements:
 Banner via a single meta tag:
 
 ```html
-<meta name="apple-itunes-app" content="app-id=1602895635">
+<meta name="apple-itunes-app" content="app-id=1602895635" />
 ```
 
 It renders Apple's own banner, opens the app if installed, and users already recognise it, so it
@@ -964,22 +964,29 @@ what a chapter is said to teach, leave it alone and flag it.
 
 ## 26. Dependency upgrade
 
-**Status:** todo
+**Status:** done (PR #316)
 **Branch:** `chore/deps-upgrade`
 
-The repo is on Tailwind 3 and older pins. radhakrishna.net is on Tailwind v4 (CSS-first `@theme`,
-no `tailwind.config.js`), latest Next 16.2.x, React 19.2, `tailwind-merge` v3.
+Tailwind 3.4.18 → 4.3.3 and Next 16.0.7 → 16.2.11, React 19.2.8. Done first, before the design
+work in items 20–22, because `docs/upgrade-learnings.md` is right that **Tailwind 3 → 4 is
+cheapest as a token pass, not late** — building the homepage and reading UI on v3 would have
+meant porting the same components twice.
 
-Per `docs/upgrade-learnings.md`: **Tailwind 3 → 4 is the biggest change and is cheapest done as a
-token pass, not late.** Doing it before the design work in items 20–22 avoids porting the same
-components twice.
+`tailwind.config.js` is gone. The theme is now CSS custom properties in an `@theme` block in
+`src/app/global.css`, so a token change is a CSS edit rather than a config edit. Every brand token
+carried across unchanged.
 
-Note there are open Dependabot PRs (#287–#294) including `next` 16.0.7 → 16.2.3; 16.0.x had a CVE.
-Fold them into this rather than merging piecemeal.
+Two things the codemod could not know about, both of which broke the build or lint:
 
-One known trap: the pre-commit hook is already broken repo-wide because
-`prettier-plugin-tailwindcss@^0.7.1` requires Tailwind v4 while the repo is on v3. **This upgrade
-fixes that** — every commit currently needs `--no-verify`.
+- `layout.tsx` and `providers.tsx` imported `tailwindcss/tailwind.css`, which v4 does not ship.
+- `eslint-plugin-tailwindcss` v3 reads `tailwindcss/resolveConfig`, which v4 no longer exports.
+  Dropped; class ordering is already enforced by `prettier-plugin-tailwindcss`.
+
+**The pre-commit hook works again.** `prettier-plugin-tailwindcss@^0.7.1` required Tailwind v4,
+which is why every commit had needed `--no-verify`.
+
+**Left over:** ESLint 8.57 → 9 with flat config, which is what `eslint-plugin-tailwindcss` v4
+needs. Separate change, separate blast radius.
 
 ---
 

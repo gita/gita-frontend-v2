@@ -15,14 +15,14 @@ function NotesCard(props: Props) {
   const { note } = props;
 
   return (
-    <div className="mt-4 flex items-baseline gap-2 border-b border-gray-300 pb-4 font-inter">
+    <div className="font-inter mt-4 flex items-baseline gap-2 border-b border-gray-300 pb-4">
       <div>
         <Image src="star.svg" alt="star icon" width={24} height={24} />
       </div>
       <div>
         <h3 className="font-bold text-black"> Verse {note.verse_id}</h3>
         <p className="mt-3 text-gray-400">{note.description}</p>
-        <p className="mt-3 border-l-2 border-my-orange pl-4">
+        <p className="border-my-orange mt-3 border-l-2 pl-4">
           Dhṛtarāṣṭra said: O Sañjaya, after my sons and the sons of Pāṇḍu
           assembled in the place of pilgrimage at Kurukṣetra, desiring to fight,
           what did they do?
@@ -31,7 +31,7 @@ function NotesCard(props: Props) {
       <div>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="flex items-center rounded-full bg-gray-100 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 focus:ring-offset-gray-100">
+            <Menu.Button className="focus:ring-my-orange flex items-center rounded-full bg-gray-100 text-gray-400 hover:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:outline-hidden">
               <span className="sr-only">Open options</span>
               <EllipsisVerticalIcon className="size-5" aria-hidden="true" />
             </Menu.Button>
@@ -46,7 +46,7 @@ function NotesCard(props: Props) {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+            <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden">
               <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (

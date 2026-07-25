@@ -30,10 +30,10 @@ export default function NotificationBanner({ message, status }: Props) {
             <span className="block sm:ml-2 sm:inline-block"></span>
           </p>
         </div>
-        <div className="absolute inset-y-0 right-0 flex items-start pr-1 pt-1 sm:items-start sm:pr-2 sm:pt-1">
+        <div className="absolute inset-y-0 right-0 flex items-start pt-1 pr-1 sm:items-start sm:pt-1 sm:pr-2">
           <button
             type="button"
-            className="flex rounded-md p-2 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white"
+            className="flex rounded-md p-2 hover:bg-indigo-500 focus:ring-2 focus:ring-white focus:outline-hidden"
           >
             <span className="sr-only">Dismiss</span>
             <svg

@@ -229,7 +229,7 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-transparent via-accent/25 to-transparent py-20">
+    <div className="via-accent/25 relative bg-linear-to-b from-transparent to-transparent py-20">
       <div className="pointer-events-none absolute inset-0 z-[-2] bg-[radial-gradient(circle_at_70%_50%,rgba(251,146,60,0.08)_0%,transparent_60%)]" />
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
@@ -238,10 +238,10 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
           transition={{ duration: 0.6 }}
         >
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
+            <h2 className="text-foreground mb-4 text-3xl font-bold md:text-4xl">
               {translate("Popular Verses")}
             </h2>
-            <p className="mx-auto max-w-3xl text-lg text-foreground/70 md:text-xl">
+            <p className="text-foreground/70 mx-auto max-w-3xl text-lg md:text-xl">
               {translate(
                 "Explore timeless wisdom from Lord Krishna on karma yoga, bhakti, dharma, and moksha",
               )}
@@ -259,7 +259,7 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
                   container.scrollBy({ left: -400, behavior: "smooth" });
                 }
               }}
-              className="absolute -left-14 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-xl ring-1 ring-gray-200 transition-all hover:scale-110 hover:bg-primary hover:text-white hover:ring-primary dark:bg-card dark:ring-gray-700 xl:block"
+              className="hover:bg-primary hover:ring-primary dark:bg-card absolute top-1/2 -left-14 z-20 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-xl ring-1 ring-gray-200 transition-all hover:scale-110 hover:text-white xl:block dark:ring-gray-700"
               aria-label="Scroll left to view previous verses"
             >
               <svg
@@ -288,7 +288,7 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
                   container.scrollBy({ left: 400, behavior: "smooth" });
                 }
               }}
-              className="absolute -right-14 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-xl ring-1 ring-gray-200 transition-all hover:scale-110 hover:bg-primary hover:text-white hover:ring-primary dark:bg-card dark:ring-gray-700 xl:block"
+              className="hover:bg-primary hover:ring-primary dark:bg-card absolute top-1/2 -right-14 z-20 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-xl ring-1 ring-gray-200 transition-all hover:scale-110 hover:text-white xl:block dark:ring-gray-700"
               aria-label="Scroll right to view more verses"
             >
               <svg
@@ -321,15 +321,15 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
                   className="group block w-[300px] shrink-0 sm:w-[340px]"
                   aria-label={`Read verse ${verse.chapter}.${verse.verse} about ${verse.category}`}
                 >
-                  <Card className="h-full border-2 bg-white transition-all duration-300 hover:border-primary/40 hover:shadow-lg dark:bg-card">
+                  <Card className="hover:border-primary/40 dark:bg-card h-full border-2 bg-white transition-all duration-300 hover:shadow-lg">
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-bold text-primary">
+                        <h3 className="text-primary text-lg font-bold">
                           {translate("Verse")} {verse.chapter}.{verse.verse}
                         </h3>
                         <Badge
                           variant="secondary"
-                          className="bg-primary/10 text-xs font-medium text-primary hover:bg-primary/20"
+                          className="bg-primary/10 text-primary hover:bg-primary/20 text-xs font-medium"
                         >
                           {verse.category}
                         </Badge>
@@ -337,11 +337,11 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
                     </CardHeader>
 
                     <CardContent className="space-y-3">
-                      <p className="line-clamp-3 text-sm leading-relaxed text-foreground/90">
+                      <p className="text-foreground/90 line-clamp-3 text-sm leading-relaxed">
                         {verse.summary}
                       </p>
 
-                      <div className="flex items-center gap-1 text-sm font-semibold text-primary">
+                      <div className="text-primary flex items-center gap-1 text-sm font-semibold">
                         {translate("Read full verse")}
                         <span
                           className="inline-block transition-transform group-hover:translate-x-1"
@@ -357,7 +357,7 @@ const PopularVerses = ({ locale, translations }: PopularVersesProps) => {
             </div>
 
             {/* Mobile scroll hint */}
-            <div className="mt-6 text-center text-sm font-medium text-foreground/60 md:hidden">
+            <div className="text-foreground/60 mt-6 text-center text-sm font-medium md:hidden">
               ← {translate("Swipe to explore more")} →
             </div>
           </div>

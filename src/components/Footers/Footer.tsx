@@ -37,7 +37,7 @@ const Footer = (props: Props) => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t bg-background/80 py-12 backdrop-blur-sm">
+    <footer className="bg-background/80 border-t py-12 backdrop-blur-xs">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Column 1: Logo + Tagline + Social */}
@@ -53,7 +53,7 @@ const Footer = (props: Props) => {
                 {translate("Bhagavad Gita")}
               </span>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               {translate("Ancient wisdom for modern life")}
             </p>
             <div className="flex gap-4">
@@ -61,7 +61,7 @@ const Footer = (props: Props) => {
                 href="https://www.facebook.com/iiRadhaKrishnaii/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-primary"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <SocialIcon name="Facebook" />
                 <span className="sr-only">Facebook</span>
@@ -70,7 +70,7 @@ const Footer = (props: Props) => {
                 href="https://twitter.com/ShriKrishna?s=20&t=92c4he0cK-nq_Bo6WOx0ZQ"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-primary"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <SocialIcon name="Twitter" />
                 <span className="sr-only">Twitter</span>
@@ -79,7 +79,7 @@ const Footer = (props: Props) => {
                 href="https://github.com/gita"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-primary"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Github className="size-5" />
                 <span className="sr-only">GitHub</span>
@@ -96,7 +96,7 @@ const Footer = (props: Props) => {
               <li>
                 <LinkWithLocale
                   href="/bhagavad-gita-app"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Mobile App")}
                 </LinkWithLocale>
@@ -104,7 +104,7 @@ const Footer = (props: Props) => {
               <li>
                 <Link
                   href="/gitagpt"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Gita AI")}
                 </Link>
@@ -112,7 +112,7 @@ const Footer = (props: Props) => {
               <li>
                 <LinkWithLocale
                   href="/bhagavad-gita-quotes"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Quotes")}
                 </LinkWithLocale>
@@ -120,7 +120,7 @@ const Footer = (props: Props) => {
               <li>
                 <LinkWithLocale
                   href="/donate"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Donate")}
                 </LinkWithLocale>
@@ -137,7 +137,7 @@ const Footer = (props: Props) => {
               <li>
                 <LinkWithLocale
                   href="/about"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("About Gita")}
                 </LinkWithLocale>
@@ -145,7 +145,7 @@ const Footer = (props: Props) => {
               <li>
                 <LinkWithLocale
                   href="/mahabharata-characters"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Characters")}
                 </LinkWithLocale>
@@ -153,7 +153,7 @@ const Footer = (props: Props) => {
               <li>
                 <LinkWithLocale
                   href="/acknowledgements"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Acknowledgements")}
                 </LinkWithLocale>
@@ -163,7 +163,7 @@ const Footer = (props: Props) => {
                   href="https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("API")}
                 </a>
@@ -173,7 +173,7 @@ const Footer = (props: Props) => {
                   href="https://radhakrishna.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Radha Krishna")}
                 </a>
@@ -190,7 +190,7 @@ const Footer = (props: Props) => {
               <li>
                 <LinkWithLocale
                   href="/privacy-policy"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Privacy")}
                 </LinkWithLocale>
@@ -198,7 +198,7 @@ const Footer = (props: Props) => {
               <li>
                 <LinkWithLocale
                   href="/terms-of-service"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Terms")}
                 </LinkWithLocale>
@@ -206,7 +206,7 @@ const Footer = (props: Props) => {
               <li>
                 <LinkWithLocale
                   href="/copyright"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Copyright")}
                 </LinkWithLocale>
@@ -214,7 +214,7 @@ const Footer = (props: Props) => {
               <li>
                 <a
                   href="mailto:contact@bhagavadgita.io"
-                  className="text-muted-foreground transition-colors hover:text-primary"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {translate("Contact Us")}
                 </a>
@@ -225,7 +225,7 @@ const Footer = (props: Props) => {
 
         {/* Bottom Section */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 md:flex-row">
-          <div className="text-center text-sm text-muted-foreground md:text-left">
+          <div className="text-muted-foreground text-center text-sm md:text-left">
             <p>
               {`© ${year} ${translate("Copyright")}: `}
               <a
