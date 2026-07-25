@@ -6,6 +6,7 @@
     "start": "next start",
     "find:unused": "npx next-unused",
     "prettier": "prettier --write .",
+    "contrast": "node scripts/contrast-audit.mjs",
     "lint": "velite && eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "velite && eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "type-check": "velite && tsc",

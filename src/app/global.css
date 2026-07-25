@@ -65,8 +65,6 @@
   --color-nisha-bg: hsl(var(--nisha-bg));
   --color-nisha-primary: hsl(var(--nisha-primary));
   --color-adhyayan-bg: hsl(var(--adhyayan-bg));
-  --color-sanskrit-text: hsl(var(--sanskrit-text));
-  --color-commentary-text: hsl(var(--commentary-text));
 
   --color-verse-dark-text: var(--verse-dark-text);
   --color-verse-medium-text: var(--verse-medium-text);
@@ -99,9 +97,21 @@
 
   --color-dark-100: #252525;
 
+  --color-gold: hsl(var(--gold));
+  --color-gold-ink: hsl(var(--gold-ink));
+  --color-gold-foreground: hsl(var(--gold-foreground));
+  --color-indigo: hsl(var(--indigo));
+  --color-indigo-foreground: hsl(var(--indigo-foreground));
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Shadows tinted with --indigo rather than black. This is the depth trick the
+     sibling sites use; a neutral shadow on a warm cream ground reads as dirt. */
+  --shadow-lift: 0 18px 40px -24px rgb(27 42 75 / 0.4);
+  --shadow-lift-lg: 0 24px 60px -28px rgb(27 42 75 / 0.5);
 
   --drop-shadow-card: 0px 8px 16px rgba(22, 34, 51, 0.08);
 
@@ -152,37 +162,85 @@
     --card-foreground: 60 2.56% 7.65%;
     --popover: 0 0% 100%;
     --popover-foreground: 50.77 19.4% 13.14%;
-    --primary: 15.11 55.56% 52.35%;
+    /* Terracotta, six points of lightness darker than it used to be. Hue and
+       saturation are untouched, so it reads as the same brand colour; the move
+       is what makes white button labels legible on it (3.90:1 -> 4.79:1) and
+       the same token legible as text on cream (3.70:1 -> 4.55:1). One value,
+       both problems, because both wanted it darker. */
+    --primary: 15.11 55.56% 46.21%;
     --primary-foreground: 0 0% 100%;
     --secondary: 46.15 22.81% 88.82%;
     --secondary-foreground: 50.77 8.5% 30%;
     --muted: 44 29.41% 90%;
-    --muted-foreground: 50 2.36% 50.2%;
+    /* Saturation raised from 2.36% to 6% to match radhakrishna.net, which runs
+       this same palette: a grey carrying a little of the ground's hue sits in
+       the page, where a neutral grey reads as switched off next to cream.
+       Lightness is solved against --muted, the darkest ground it actually sits
+       on (ui/tabs.tsx), so it clears 4.5:1 everywhere it is used rather than
+       only on the page background. */
+    --muted-foreground: 50 6% 39.55%;
     --accent: 46.15 22.81% 88.82%;
     --accent-foreground: 50.77 19.4% 13.14%;
     --destructive: 60 2.56% 7.65%;
     --destructive-foreground: 0 0% 100%;
+    /* Decorative separation only, so 1.4.11's 3:1 does not apply to it. */
     --border: 50 7.5% 84.31%;
-    --input: 50.77 7.98% 68.04%;
-    --ring: 210 74.8% 49.8%;
+    /* This one does carry 1.4.11: it is the boundary that identifies a text
+       field, and at 2.02:1 the field was hard to find on the cream ground. */
+    --input: 50.77 7.98% 53.9%;
+    /* The focus ring was a stock blue, the one colour on the site with no
+       relation to anything else on it. radhakrishna.net rings in the brand
+       colour instead, which is both quieter and unmistakably ours. */
+    --ring: 15.11 55.56% 46.21%;
     --radius: 0.5rem;
+
+    /* Accent layer, ported from radhakrishna.net (ROADMAP item 29).
+     *
+     * The base palette there is byte-identical to ours; this small set of
+     * accents is the layer that was actually missing. It is what lets an
+     * eyebrow, a hairline rule and a section divider each read as ornament
+     * rather than as another shout of the brand colour.
+     *
+     * Terracotta stays the action colour. radhakrishna.net gives prominent
+     * buttons and body links its peacock blue, and we deliberately do not: our
+     * primary is the terracotta and adding a second competing action colour
+     * would leave the reader unsure which one means "click".
+     *
+     * Two golds, because one cannot do both jobs. --gold is theirs exactly and
+     * is for ornament: hairlines, borders, faint tints, none of which carry a
+     * contrast requirement. It measures 2.82:1 on our cream, so setting 12px
+     * uppercase eyebrows in it, as radhakrishna.net does, fails WCAG AA. Gold
+     * text uses --gold-ink instead, which is the same hue and saturation taken
+     * down to 4.55:1.
+     */
+    --gold: 46 68% 42%;
+    --gold-ink: 46 68% 32%;
+    --gold-foreground: 48 30% 14%;
+    /* Deep ground for feature panels, and the tint for lifted shadows. A shadow
+       carrying a little of this reads as depth; a neutral black one reads as
+       grime, which is why ours have looked flat. */
+    --indigo: 221 47% 20%;
+    --indigo-foreground: 46 24% 92%;
 
     /* Custom theme colors */
     --prakash-bg: 48 33.33% 97.06%;
-    --prakash-primary: 15.11 55.56% 52.35%;
+    /* Kept identical to --primary. These are three names for one brand colour,
+       and letting them drift would put two slightly different terracottas on
+       the same screen. */
+    --prakash-primary: 15.11 55.56% 46.21%;
     --nisha-bg: 60 2.7% 14.51%;
     --nisha-primary: 14.77 63.11% 59.61%;
     --adhyayan-bg: 46.15 22.81% 88.82%;
-    --sanskrit-text: 35 36% 21%;
-    --commentary-text: 0 0% 37%;
 
     /* Verse page design colors - Light mode */
     --verse-dark-text: #2d2a26;
     --verse-medium-text: #4a4643;
     --verse-muted-text: #5c5650;
     --verse-light-text: #6b645b;
-    --verse-grey-text: #9c958c;
-    --verse-warm-brown: #996b4a;
+    /* Carries 13px uppercase labels on the verse pages, so it is small text and
+       owes the full 4.5:1. It was at 2.81:1. */
+    --verse-grey-text: #77716b;
+    --verse-warm-brown: #956848;
     --verse-dash-color: #c4bbb0;
     --verse-divider-dots: #b8afa5;
     --verse-banner-bg: #f5f0ea;
@@ -191,13 +249,13 @@
     --verse-progress-bg: #e5e0d8;
     --verse-progress-fill: #9c958c;
     --verse-progress-handle: #6b645b;
-    --verse-verse-count: #a9a29a;
+    --verse-verse-count: #7a7570;
     --verse-card-bg: #fff;
 
     /* Sidebar theme colors (prakash/light mode) */
     --sidebar-background: 48 33.33% 97.06%;
     --sidebar-foreground: 48 19.61% 20%;
-    --sidebar-primary: 15.11 55.56% 52.35%;
+    --sidebar-primary: 15.11 55.56% 46.21%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 46.15 22.81% 88.82%;
     --sidebar-border: 50 7.5% 84.31%;
@@ -256,12 +314,38 @@
   * {
     @apply border-border;
   }
+  /* Type roles, ported from radhakrishna.net (ROADMAP item 29).
+   *
+   * Sans for running text and UI, serif for headings and for scripture. The
+   * site used to set Crimson on the body and inherit it everywhere, so a
+   * heading and the paragraph under it were the same face at different sizes
+   * and hierarchy had to be carried by size alone. Two faces give the page a
+   * second axis to rank things on, which is most of why the sibling sites read
+   * better at identical colours.
+   *
+   * Scripture keeps the serif. A verse is not running text, and Crimson and
+   * Noto Serif Devanagari are the faces it should be read in; the .translation,
+   * .commentary, .transliteration and .sanskrit-verse rules below name their own
+   * family and are unaffected by this.
+   */
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-crimson), Georgia, serif;
+    font-family: var(--font-inter), system-ui, sans-serif;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
+  }
+
+  /* Declared once here rather than per heading: 74 of the 82 headings in the
+     components take their face by inheritance, so without this the switch above
+     would silently turn every heading sans. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-crimson), Georgia, serif;
   }
 
   /* Language-specific font stacks.
@@ -278,29 +362,48 @@
    * further down still name the Indic face first, which is right there — those
    * target verse, translation and commentary text, which is all one script. */
 
-  /* Devanagari (Hindi, Sanskrit, Marathi) */
+  /* Devanagari (Hindi, Marathi) */
   :lang(hi),
-  :lang(sa),
   :lang(mr),
   .devanagari {
-    font-family: var(--font-crimson), var(--font-devanagari-serif), serif;
+    font-family: var(--font-inter), var(--font-devanagari-sans), sans-serif;
   }
 
   /* Tamil */
   :lang(ta),
   .tamil {
-    font-family: var(--font-crimson), var(--font-tamil-serif), serif;
+    font-family: var(--font-inter), var(--font-tamil-serif), sans-serif;
   }
 
   /* Telugu */
   :lang(te),
   .telugu {
-    font-family: var(--font-crimson), var(--font-telugu-serif), serif;
+    font-family: var(--font-inter), var(--font-telugu-serif), sans-serif;
   }
 
   /* Gujarati */
   :lang(gu),
   .gujarati {
+    font-family: var(--font-inter), var(--font-gujarati-serif), sans-serif;
+  }
+
+  /* Headings keep the serif in every language, mirroring the Latin rule above.
+     Leading with Crimson is deliberate and load-bearing: our translated pages
+     are genuinely bilingual, carrying Devanagari headings beside English
+     summaries, and Crimson has no Indic coverage, so the browser falls through
+     to the Indic serif for exactly the characters Crimson cannot draw. Naming
+     the Indic face first would restyle the English too, because Noto carries
+     Latin glyphs of its own and would win for them. */
+  :is(:lang(hi), :lang(mr), .devanagari) :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-crimson), var(--font-devanagari-serif), serif;
+  }
+  :is(:lang(ta), .tamil) :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-crimson), var(--font-tamil-serif), serif;
+  }
+  :is(:lang(te), .telugu) :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-crimson), var(--font-telugu-serif), serif;
+  }
+  :is(:lang(gu), .gujarati) :is(h1, h2, h3, h4, h5, h6) {
     font-family: var(--font-crimson), var(--font-gujarati-serif), serif;
   }
 
