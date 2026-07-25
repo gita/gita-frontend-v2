@@ -26,7 +26,7 @@ export function VerseQuickNav({
     <div className={className}>
       {showHeader && (
         <div className="mb-4">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
             {translate("Verses")}
           </h3>
         </div>
@@ -45,10 +45,10 @@ export function VerseQuickNav({
             >
               <div
                 className={cn(
-                  "flex h-11 w-full items-center justify-center rounded-md border-2 text-sm font-semibold transition-all hover:scale-105 hover:border-prakash-primary hover:bg-prakash-primary/10 dark:hover:border-nisha-primary dark:hover:bg-nisha-primary/10",
+                  "hover:border-prakash-primary hover:bg-prakash-primary/10 dark:hover:border-nisha-primary dark:hover:bg-nisha-primary/10 flex h-11 w-full items-center justify-center rounded-md border-2 text-sm font-semibold transition-all hover:scale-105",
                   isActive
-                    ? "border-prakash-primary bg-prakash-primary text-white shadow-sm hover:bg-prakash-primary dark:border-nisha-primary dark:bg-nisha-primary"
-                    : "border-border/60 bg-card hover:shadow-sm",
+                    ? "border-prakash-primary bg-prakash-primary hover:bg-prakash-primary dark:border-nisha-primary dark:bg-nisha-primary text-white shadow-xs"
+                    : "border-border/60 bg-card hover:shadow-xs",
                 )}
               >
                 {verse.verse_number}

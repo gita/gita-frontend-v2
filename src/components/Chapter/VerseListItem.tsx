@@ -34,20 +34,20 @@ export function VerseListItem({
       >
         <div
           className={cn(
-            "group flex flex-col gap-4 border-b border-border/20 py-7 transition-all duration-200 sm:flex-row sm:gap-6",
-            "hover:-mx-2 hover:rounded-lg hover:border-transparent hover:bg-primary/5 hover:px-2 hover:py-7 hover:shadow-sm",
-            "focus-within:-mx-2 focus-within:rounded-lg focus-within:border-transparent focus-within:bg-primary/5 focus-within:px-2 focus-within:py-7 focus-within:shadow-sm focus-within:outline-none",
+            "group border-border/20 flex flex-col gap-4 border-b py-7 transition-all duration-200 sm:flex-row sm:gap-6",
+            "hover:bg-primary/5 hover:-mx-2 hover:rounded-lg hover:border-transparent hover:px-2 hover:py-7 hover:shadow-xs",
+            "focus-within:bg-primary/5 focus-within:-mx-2 focus-within:rounded-lg focus-within:border-transparent focus-within:px-2 focus-within:py-7 focus-within:shadow-xs focus-within:outline-hidden",
           )}
         >
           {/* Verse Number */}
           <div className="flex items-start gap-2 sm:w-28 sm:shrink-0">
-            <span className="text-base font-semibold text-primary">
+            <span className="text-primary text-base font-semibold">
               {translate("Verse")} {verseNumber}
             </span>
           </div>
 
           {/* Translation Text - Serif font for comfortable reading */}
-          <p className="flex-1 text-justify font-serif text-lg leading-loose text-foreground/90 transition-colors group-hover:text-foreground">
+          <p className="text-foreground/90 group-hover:text-foreground flex-1 text-justify font-serif text-lg leading-loose transition-colors">
             {translation}
           </p>
         </div>

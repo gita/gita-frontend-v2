@@ -37,7 +37,7 @@ export function WhatIsGitaSection({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-merriweather space-y-6 text-lg leading-relaxed text-muted-foreground"
+            className="font-merriweather text-muted-foreground space-y-6 text-lg leading-relaxed"
           >
             {paragraphs.map((para, index) => (
               <p key={index}>{para}</p>
@@ -51,7 +51,7 @@ export function WhatIsGitaSection({
             transition={{ duration: 0.5, delay: 0.2 }}
             className="relative h-[400px] overflow-hidden rounded-2xl lg:h-[500px]"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-prakash-primary/20 to-transparent dark:from-nisha-primary/20"></div>
+            <div className="from-prakash-primary/20 dark:from-nisha-primary/20 absolute inset-0 bg-linear-to-br to-transparent"></div>
             <Image
               src={imageSrc}
               alt="Bhagavad Gita - Krishna and Arjuna"

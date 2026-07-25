@@ -54,3 +54,6 @@ supabase/.temp/
 
 # Local design reference captures (large images, regenerate with design-refs/capture.mjs)
 design-refs/
+
+# Local Claude Code session logs
+.claude/

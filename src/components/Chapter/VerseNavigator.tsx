@@ -30,7 +30,7 @@ function VerseNavigator({
     <div
       className={classNames(
         fontSize === "large" ? "top-12" : "top-10",
-        `absolute mt-2 flex flex-wrap rounded border border-gray-200 bg-white p-2 shadow dark:border-dark-100 dark:bg-dark-bg ${!viewNavigation && "hidden"} ${
+        `dark:border-dark-100 dark:bg-dark-bg absolute mt-2 flex flex-wrap rounded border border-gray-200 bg-white p-2 shadow ${!viewNavigation && "hidden"} ${
           verseCount > 50
             ? "-right-1 w-[360px] md:w-[550px]"
             : "-right-1 w-[360px]"
@@ -43,7 +43,7 @@ function VerseNavigator({
           setVerseId(0);
         }}
         className={classNames(
-          `m-px flex min-w-[2.5rem] items-center justify-center rounded p-2 hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+          `hover:bg-my-orange m-px flex min-w-10 items-center justify-center rounded p-2 hover:cursor-pointer hover:text-white ${
             !currentVerse && "bg-my-orange text-white"
           }`,
           styles.fontSize.para,
@@ -64,7 +64,7 @@ function VerseNavigator({
                 setViewNavigation(false);
               }}
               className={classNames(
-                `m-px flex min-w-[2.5rem] items-center justify-center rounded p-2 hover:cursor-pointer hover:bg-my-orange hover:text-white ${
+                `hover:bg-my-orange m-px flex min-w-10 items-center justify-center rounded p-2 hover:cursor-pointer hover:text-white ${
                   index + 1 === currentVerse && "bg-my-orange text-white"
                 }`,
                 styles.fontSize.para,

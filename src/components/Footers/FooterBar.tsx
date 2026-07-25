@@ -6,7 +6,7 @@ const FooterBar = () => {
   return (
     <div>
       <>
-        <div className="mx-auto mb-4 flex max-w-7xl flex-col flex-wrap justify-between align-baseline font-inter md:flex-row">
+        <div className="font-inter mx-auto mb-4 flex max-w-7xl flex-col flex-wrap justify-between align-baseline md:flex-row">
           {/* commented out for now  until next release 
           <div className="">
             <div className="relative inline-flex align-middle w-full">
@@ -20,7 +20,7 @@ const FooterBar = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items className="origin-bottom-left absolute left-0 bottom-10 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-hidden">
                     <div className="py-1">
                       <Menu.Item>
                         {({ active }) => (
@@ -88,7 +88,7 @@ const FooterBar = () => {
                   </Menu.Items>
                 </Transition>
                 <div>
-                  <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
+                  <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-xs px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-my-orange">
                     Language
                     <ChevronUpIcon
                       className="-mr-1 ml-2 h-5 w-5"

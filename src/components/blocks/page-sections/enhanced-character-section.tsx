@@ -63,7 +63,7 @@ export function EnhancedCharacterSection({
               transition={{ duration: 0.3, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <Card className="group h-full overflow-hidden border-2 transition-all hover:border-prakash-primary hover:shadow-xl dark:hover:border-nisha-primary">
+              <Card className="group hover:border-prakash-primary dark:hover:border-nisha-primary h-full overflow-hidden border-2 transition-all hover:shadow-xl">
                 {character.imageSrc && (
                   <div className="relative h-48 overflow-hidden">
                     <Image
@@ -73,7 +73,7 @@ export function EnhancedCharacterSection({
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent"></div>
                     <div className="absolute bottom-3 left-4 text-white">
                       <h3 className="font-newsreader text-xl font-bold drop-shadow-lg">
                         {character.name}
@@ -85,12 +85,12 @@ export function EnhancedCharacterSection({
                   </div>
                 )}
                 {!character.imageSrc && (
-                  <div className="bg-gradient-to-br from-prakash-primary/10 to-prakash-primary/5 p-6 dark:from-nisha-primary/10 dark:to-nisha-primary/5">
+                  <div className="from-prakash-primary/10 to-prakash-primary/5 dark:from-nisha-primary/10 dark:to-nisha-primary/5 bg-linear-to-br p-6">
                     <div className="flex items-center gap-3">
                       <motion.div
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.5 }}
-                        className="flex size-14 items-center justify-center rounded-full bg-prakash-primary/20 text-prakash-primary dark:bg-nisha-primary/20 dark:text-nisha-primary"
+                        className="bg-prakash-primary/20 text-prakash-primary dark:bg-nisha-primary/20 dark:text-nisha-primary flex size-14 items-center justify-center rounded-full"
                       >
                         {character.icon}
                       </motion.div>
@@ -98,7 +98,7 @@ export function EnhancedCharacterSection({
                         <h3 className="font-newsreader text-xl font-bold">
                           {character.name}
                         </h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                           {character.role}
                         </p>
                       </div>
@@ -106,7 +106,7 @@ export function EnhancedCharacterSection({
                   </div>
                 )}
                 <CardContent className="p-6">
-                  <div className="font-merriweather space-y-4 text-base leading-relaxed text-muted-foreground">
+                  <div className="font-merriweather text-muted-foreground space-y-4 text-base leading-relaxed">
                     {character.description.map((para, idx) => (
                       <p key={idx}>{para}</p>
                     ))}
@@ -128,7 +128,7 @@ export function EnhancedCharacterSection({
             asChild
             size="lg"
             variant="outline"
-            className="border-2 hover:border-prakash-primary hover:bg-prakash-primary/10 dark:hover:border-nisha-primary dark:hover:bg-nisha-primary/10"
+            className="hover:border-prakash-primary hover:bg-prakash-primary/10 dark:hover:border-nisha-primary dark:hover:bg-nisha-primary/10 border-2"
           >
             <Link href={localizedLink(ctaLink)}>{ctaText}</Link>
           </Button>

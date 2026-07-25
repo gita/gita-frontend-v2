@@ -84,7 +84,7 @@ export function Sidebar({ className, onCollapse }: SidebarProps) {
                   variant="ghost"
                   size="icon"
                   onClick={onCollapse}
-                  className="size-9 rounded-lg border text-foreground hover:bg-muted"
+                  className="text-foreground hover:bg-muted size-9 rounded-lg border"
                 >
                   <PanelLeftClose className="size-5" />
                 </Button>
@@ -119,7 +119,7 @@ export function Sidebar({ className, onCollapse }: SidebarProps) {
         <ScrollArea className="flex-1 px-2">
           <div className="space-y-1 py-2">
             {chats.length === 0 ? (
-              <div className="px-3 py-8 text-center text-sm text-muted-foreground">
+              <div className="text-muted-foreground px-3 py-8 text-center text-sm">
                 No conversations yet.
                 <br />
                 Start a new chat!
@@ -141,7 +141,7 @@ export function Sidebar({ className, onCollapse }: SidebarProps) {
                       <span className="flex-1 truncate">{chat.title}</span>
                     </TooltipTrigger>
                     <TooltipContent side="right" className="max-w-[250px]">
-                      <p className="break-words">{chat.title}</p>
+                      <p className="wrap-break-word">{chat.title}</p>
                     </TooltipContent>
                   </Tooltip>
                   <Tooltip>

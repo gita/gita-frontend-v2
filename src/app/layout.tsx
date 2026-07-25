@@ -16,7 +16,6 @@ import Script from "next/script";
 import { PreloadResources } from "./preload-resources";
 import Providers from "./providers";
 
-import "tailwindcss/tailwind.css";
 import "./global.css";
 
 // Latin/English fonts

@@ -26,7 +26,7 @@ const Chapters = ({ chapters, locale, translations }: ChaptersProps) => {
   const translate = getTranslate(translations, locale);
 
   return (
-    <div className="relative bg-gradient-to-b from-transparent via-accent/20 to-transparent py-20">
+    <div className="via-accent/20 relative bg-linear-to-b from-transparent to-transparent py-20">
       <div className="pointer-events-none absolute inset-0 z-[-2] bg-[radial-gradient(circle_at_30%_20%,rgba(251,146,60,0.08)_0%,transparent_60%)]" />
       <Image
         src="/bg-verses-fixed.png"
@@ -44,7 +44,7 @@ const Chapters = ({ chapters, locale, translations }: ChaptersProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="mb-10 text-center text-3xl font-bold text-foreground md:text-left md:text-4xl">
+          <h2 className="text-foreground mb-10 text-center text-3xl font-bold md:text-left md:text-4xl">
             {translate("Chapters")}
           </h2>
           <motion.div

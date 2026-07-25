@@ -96,7 +96,7 @@ function PageHeader(props: Props) {
     <>
       <Disclosure
         as="nav"
-        className="bg-white font-inter shadow dark:bg-dark-100"
+        className="font-inter dark:bg-dark-100 bg-white shadow-sm"
       >
         {({ open }) => (
           <>
@@ -109,7 +109,7 @@ function PageHeader(props: Props) {
                     <div className="text-gray-900 dark:text-gray-50">
                       <LinkWithLocale
                         href="/"
-                        className="flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg"
+                        className="hover:bg-nav-hover dark:hover:bg-dark-bg flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current"
                       >
                         <Image
                           className="mb-1 size-6"
@@ -126,7 +126,7 @@ function PageHeader(props: Props) {
                       onClick={openContentModal}
                       className={classNames(
                         contentModalIsOpen && "bg-nav-hover dark:bg-dark-bg",
-                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
+                        "hover:bg-nav-hover dark:hover:bg-dark-bg flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current",
                       )}
                     >
                       <Image
@@ -143,7 +143,7 @@ function PageHeader(props: Props) {
                       onClick={openSettingsModal}
                       className={classNames(
                         settingsIsOpen && "bg-nav-hover dark:bg-dark-bg",
-                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
+                        "hover:bg-nav-hover dark:hover:bg-dark-bg flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current",
                       )}
                     >
                       <Image
@@ -160,7 +160,7 @@ function PageHeader(props: Props) {
                       onClick={openAuthorSettingsModal}
                       className={classNames(
                         authorSettingsIsOpen && "bg-nav-hover dark:bg-dark-bg",
-                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
+                        "hover:bg-nav-hover dark:hover:bg-dark-bg flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current",
                       )}
                     >
                       <Image
@@ -178,7 +178,7 @@ function PageHeader(props: Props) {
                       onClick={openPlayerModal}
                       className={classNames(
                         playerIsOpen && "bg-nav-hover dark:bg-dark-bg",
-                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
+                        "hover:bg-nav-hover dark:hover:bg-dark-bg flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current",
                       )}
                     >
                       <Image
@@ -196,7 +196,7 @@ function PageHeader(props: Props) {
                       onClick={toggleClass}
                       className={classNames(
                         advancedOptionsActive && "bg-nav-hover dark:bg-dark-bg",
-                        "flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current hover:bg-nav-hover dark:hover:bg-dark-bg",
+                        "hover:bg-nav-hover dark:hover:bg-dark-bg flex flex-col items-center rounded border-b-2 border-transparent p-2 text-sm font-medium text-current",
                       )}
                     >
                       <Image
@@ -223,7 +223,7 @@ function PageHeader(props: Props) {
                       >
                         <button
                           type="submit"
-                          className="absolute left-3 top-0 mr-4 mt-2"
+                          className="absolute top-0 left-3 mt-2 mr-4"
                         >
                           <MagnifyingGlassIcon
                             className="size-5 text-gray-400 dark:text-gray-50"
@@ -234,7 +234,7 @@ function PageHeader(props: Props) {
                         <input
                           id="search"
                           name="search"
-                          className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:placeholder:text-gray-50 sm:text-sm"
+                          className="focus:border-my-orange focus:ring-my-orange dark:bg-dark-100 block w-full rounded-md border border-gray-300 bg-white py-2 pr-3 pl-10 leading-5 placeholder:text-gray-500 focus:ring-1 focus:outline-hidden focus:placeholder:text-gray-400 sm:text-sm dark:placeholder:text-gray-50"
                           placeholder={translate("Search")}
                           type="search"
                           value={input}
@@ -250,7 +250,7 @@ function PageHeader(props: Props) {
                 </div>
                 <div className="flex items-center lg:hidden">
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="inline-flex items-center justify-start rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange">
+                  <Disclosure.Button className="focus:ring-my-orange inline-flex items-center justify-start rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:outline-hidden focus:ring-inset">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XMarkIcon className="block size-6" aria-hidden="true" />
@@ -263,57 +263,57 @@ function PageHeader(props: Props) {
             </div>
 
             <Disclosure.Panel className="lg:hidden">
-              <div className="space-y-1 pb-1 pt-2">
+              <div className="space-y-1 pt-2 pb-1">
                 <LinkWithLocale
                   href="/"
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Home")}
                 </LinkWithLocale>
                 <button
                   type="button"
                   onClick={openContentModal}
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Content")}
                 </button>
                 <button
                   type="button"
                   onClick={openSettingsModal}
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Appearance")}
                 </button>
                 <button
                   type="button"
                   onClick={openAuthorSettingsModal}
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Source")}
                 </button>
                 <button
                   type="button"
                   onClick={openPlayerModal}
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Play Audio")}
                 </button>
                 <button
                   type="button"
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Notes")}
                 </button>
                 <button
                   type="button"
-                  className="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
+                  className="hover:border-my-orange focus:border-my-orange block border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900"
                 >
                   {translate("Bookmark")}
                 </button>
               </div>
 
               <Disclosure>
-                <Disclosure.Button className="flex w-full justify-between border-t-2 border-gray-300 py-2 pl-3 pr-4 text-base font-medium text-black hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-900 dark:focus:text-gray-900">
+                <Disclosure.Button className="hover:border-my-orange focus:border-my-orange flex w-full justify-between border-t-2 border-gray-300 py-2 pr-4 pl-3 text-base font-medium text-black hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-900 dark:focus:text-gray-900">
                   {translate("Advanced View")}
                   <ChevronDownIcon className="ml-2 size-5 group-hover:text-black" />
                 </Disclosure.Button>
@@ -339,15 +339,15 @@ function PageHeader(props: Props) {
                       className={classNames(
                         devanagari
                           ? "bg-my-orange"
-                          : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+                          : "dark:bg-dark-bg bg-gray-200",
+                        "focus:ring-my-orange relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           devanagari ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
@@ -374,15 +374,15 @@ function PageHeader(props: Props) {
                       className={classNames(
                         verseText
                           ? "bg-my-orange"
-                          : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+                          : "dark:bg-dark-bg bg-gray-200",
+                        "focus:ring-my-orange relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           verseText ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
@@ -409,15 +409,15 @@ function PageHeader(props: Props) {
                       className={classNames(
                         synonyms
                           ? "bg-my-orange"
-                          : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+                          : "dark:bg-dark-bg bg-gray-200",
+                        "focus:ring-my-orange relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           synonyms ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
@@ -443,15 +443,15 @@ function PageHeader(props: Props) {
                       className={classNames(
                         translation
                           ? "bg-my-orange"
-                          : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+                          : "dark:bg-dark-bg bg-gray-200",
+                        "focus:ring-my-orange relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           translation ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
@@ -477,15 +477,15 @@ function PageHeader(props: Props) {
                       className={classNames(
                         purport
                           ? "bg-my-orange"
-                          : "bg-gray-200 dark:bg-dark-bg",
-                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+                          : "dark:bg-dark-bg bg-gray-200",
+                        "focus:ring-my-orange relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           purport ? "translate-x-5" : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
                         )}
                       />
                     </Switch>
@@ -567,20 +567,20 @@ const AdvancedOptions = ({
   return (
     <div className="mx-auto mt-4 max-w-full px-2 transition duration-500 ease-in-out sm:hidden lg:block lg:px-8">
       <span className="z-0 flex justify-center rounded-md">
-        <div className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
+        <div className="focus:border-my-orange focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden dark:text-gray-50">
           <Switch
             checked={devanagari}
             onChange={() => updateAdvancedSettings({ devanagari: !devanagari })}
             className={classNames(
-              devanagari ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+              devanagari ? "bg-my-orange" : "dark:bg-dark-100 bg-gray-200",
+              "focus:ring-my-orange relative mr-2 inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
             )}
           >
             <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
                 devanagari ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
@@ -616,7 +616,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="size-3 text-my-orange"
+                  className="text-my-orange size-3"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >
@@ -627,20 +627,20 @@ const AdvancedOptions = ({
           </Switch>
           {translate("Devanagari")}
         </div>
-        <div className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
+        <div className="focus:border-my-orange focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden dark:text-gray-50">
           <Switch
             checked={verseText}
             onChange={() => updateAdvancedSettings({ verseText: !verseText })}
             className={classNames(
-              verseText ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+              verseText ? "bg-my-orange" : "dark:bg-dark-100 bg-gray-200",
+              "focus:ring-my-orange relative mr-2 inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
             )}
           >
             <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
                 verseText ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
@@ -676,7 +676,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="size-3 text-my-orange"
+                  className="text-my-orange size-3"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >
@@ -687,20 +687,20 @@ const AdvancedOptions = ({
           </Switch>
           {translate("Verse Text")}
         </div>
-        <div className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
+        <div className="focus:border-my-orange focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden dark:text-gray-50">
           <Switch
             checked={synonyms}
             onChange={() => updateAdvancedSettings({ synonyms: !synonyms })}
             className={classNames(
-              synonyms ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+              synonyms ? "bg-my-orange" : "dark:bg-dark-100 bg-gray-200",
+              "focus:ring-my-orange relative mr-2 inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
             )}
           >
             <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
                 synonyms ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
@@ -736,7 +736,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="size-3 text-my-orange"
+                  className="text-my-orange size-3"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >
@@ -747,22 +747,22 @@ const AdvancedOptions = ({
           </Switch>
           {translate("Synonyms")}
         </div>
-        <div className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
+        <div className="focus:border-my-orange focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden dark:text-gray-50">
           <Switch
             checked={translation}
             onChange={() =>
               updateAdvancedSettings({ translation: !translation })
             }
             className={classNames(
-              translation ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+              translation ? "bg-my-orange" : "dark:bg-dark-100 bg-gray-200",
+              "focus:ring-my-orange relative mr-2 inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
             )}
           >
             <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
                 translation ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
@@ -798,7 +798,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="size-3 text-my-orange"
+                  className="text-my-orange size-3"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >
@@ -810,20 +810,20 @@ const AdvancedOptions = ({
           {translate("Translation")}
         </div>
 
-        <div className="relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg dark:text-gray-50">
+        <div className="focus:border-my-orange focus:ring-my-orange dark:border-dark-100 dark:bg-dark-bg relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden dark:text-gray-50">
           <Switch
             checked={purport}
             onChange={() => updateAdvancedSettings({ purport: !purport })}
             className={classNames(
-              purport ? "bg-my-orange" : "bg-gray-200 dark:bg-dark-100",
-              "relative mr-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2",
+              purport ? "bg-my-orange" : "dark:bg-dark-100 bg-gray-200",
+              "focus:ring-my-orange relative mr-2 inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
             )}
           >
             <span className="sr-only">{translate("Use setting")}</span>
             <span
               className={classNames(
                 purport ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out",
               )}
             >
               <span
@@ -859,7 +859,7 @@ const AdvancedOptions = ({
                 aria-hidden="true"
               >
                 <svg
-                  className="size-3 text-my-orange"
+                  className="text-my-orange size-3"
                   fill="currentColor"
                   viewBox="0 0 12 12"
                 >

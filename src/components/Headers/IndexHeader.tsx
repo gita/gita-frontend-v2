@@ -146,13 +146,13 @@ export default function IndexHeader({ locale, translate }: Props) {
 
   return (
     <div className="sticky top-0 z-50 w-full">
-      <Popover className="relative border-b border-border bg-background/80 font-inter backdrop-blur-sm">
+      <Popover className="border-border bg-background/80 font-inter relative border-b backdrop-blur-xs">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex items-center justify-between py-4 md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <LinkWithLocale
                 href="/"
-                className="flex items-center gap-2.5 text-3xl font-bold focus:outline-none dark:text-white"
+                className="flex items-center gap-2.5 text-3xl font-bold focus:outline-hidden dark:text-white"
               >
                 <span className="sr-only">{translate("Workflow")}</span>
                 <Image
@@ -166,7 +166,7 @@ export default function IndexHeader({ locale, translate }: Props) {
             </div>
             <div className="-my-2 -mr-2 md:hidden">
               <DarkModeToggle />
-              <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange dark:bg-dark-bg">
+              <Popover.Button className="focus:ring-my-orange dark:bg-dark-bg inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-black focus:ring-2 focus:outline-hidden focus:ring-inset">
                 <span className="sr-only">Open menu</span>
                 <Bars3Icon className="size-6" aria-hidden="true" />
               </Popover.Button>
@@ -178,7 +178,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                     <Popover.Button
                       className={classNames(
                         open ? "text-gray-900" : "text-black",
-                        "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-500 focus:outline-none dark:bg-dark-100 dark:text-white",
+                        "group dark:bg-dark-100 inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-500 focus:outline-hidden dark:text-white",
                       )}
                     >
                       <span>{translate("Chapters")}</span>
@@ -200,17 +200,17 @@ export default function IndexHeader({ locale, translate }: Props) {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-xs px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
+                      <Popover.Panel className="absolute z-10 mt-3 -ml-4 w-screen max-w-xs px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
                         <div className="overflow-hidden rounded shadow-lg ring-1 ring-black/5">
-                          <div className="relative grid gap-6 bg-white py-2 dark:bg-dark-100 sm:gap-8 sm:p-8 md:grid-cols-2">
+                          <div className="dark:bg-dark-100 relative grid gap-6 bg-white py-2 sm:gap-8 sm:p-8 md:grid-cols-2">
                             {chapters.map((chapter, index) => (
                               <LinkWithLocale
                                 href={chapter.href}
                                 key={index}
-                                className="-m-3 flex items-start rounded-lg p-1 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-bg"
+                                className="dark:hover:bg-dark-bg -m-3 flex items-start rounded-lg p-1 hover:cursor-pointer hover:bg-gray-100"
                               >
                                 <chapter.icon
-                                  className="size-6 shrink-0 text-my-orange"
+                                  className="text-my-orange size-6 shrink-0"
                                   aria-hidden="true"
                                 />
                                 <div className="ml-4">
@@ -229,25 +229,25 @@ export default function IndexHeader({ locale, translate }: Props) {
               </Popover>
               <LinkWithLocale
                 href="/bhagavad-gita-quotes"
-                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
+                className="text-base font-medium text-black hover:text-gray-500 focus:outline-hidden dark:text-white"
               >
                 {translate("Quotes")}
               </LinkWithLocale>
               <LinkWithLocale
                 href="/about"
-                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
+                className="text-base font-medium text-black hover:text-gray-500 focus:outline-hidden dark:text-white"
               >
                 {translate("About Gita")}
               </LinkWithLocale>
               <LinkWithLocale
                 href="/gitagpt"
-                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
+                className="text-base font-medium text-black hover:text-gray-500 focus:outline-hidden dark:text-white"
               >
                 {translate("Gita AI")}
               </LinkWithLocale>
               <LinkWithLocale
                 href="/donate"
-                className="text-base font-medium text-black hover:text-gray-500 focus:outline-none dark:text-white"
+                className="text-base font-medium text-black hover:text-gray-500 focus:outline-hidden dark:text-white"
               >
                 {translate("Donate")}
               </LinkWithLocale>
@@ -255,7 +255,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                 <button
                   type="button"
                   onClick={() => setAuthModalOpen(true)}
-                  className="inline-flex items-center gap-2 rounded-lg bg-my-orange px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2"
+                  className="bg-my-orange focus:ring-my-orange inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white shadow-xs transition-all hover:bg-orange-600 focus:ring-2 focus:ring-offset-2 focus:outline-hidden"
                 >
                   <UserCircleIcon className="size-5" />
                   {translate("Sign In")}
@@ -264,7 +264,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                 <Popover className="relative">
                   {({ open }) => (
                     <>
-                      <Popover.Button className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-white dark:hover:bg-zinc-700">
+                      <Popover.Button className="focus:ring-my-orange dark:bg-dark-100 flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-gray-200 focus:ring-2 focus:ring-offset-2 focus:outline-hidden dark:text-white dark:hover:bg-zinc-700">
                         {user.user_metadata?.avatar_url ||
                         user.user_metadata?.picture ? (
                           <img
@@ -277,7 +277,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                             referrerPolicy="no-referrer"
                           />
                         ) : (
-                          <UserCircleIcon className="size-6 text-my-orange" />
+                          <UserCircleIcon className="text-my-orange size-6" />
                         )}
                         <span className="max-w-24 truncate">
                           {user.user_metadata?.full_name ||
@@ -302,7 +302,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                         leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel className="absolute right-0 z-10 mt-3 w-48 origin-top-right">
-                          <div className="overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5 dark:bg-dark-100">
+                          <div className="dark:bg-dark-100 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5">
                             <div className="p-2">
                               <div className="border-b border-gray-100 px-3 py-2 dark:border-zinc-700">
                                 <p className="text-xs text-gray-500 dark:text-zinc-400">
@@ -348,7 +348,7 @@ export default function IndexHeader({ locale, translate }: Props) {
               >
                 <button
                   type="submit"
-                  className="absolute left-3 top-0 mr-4 mt-2"
+                  className="absolute top-0 left-3 mt-2 mr-4"
                 >
                   <MagnifyingGlassIcon
                     className="size-5 text-gray-400 dark:text-gray-50"
@@ -359,7 +359,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                 <input
                   id="search"
                   name="search"
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder:text-gray-500 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange focus:placeholder:text-gray-400 dark:bg-dark-100 dark:text-white dark:placeholder:text-gray-50 sm:text-sm"
+                  className="focus:border-my-orange focus:ring-my-orange dark:bg-dark-100 block w-full rounded-md border border-gray-300 bg-white py-2 pr-3 pl-10 leading-5 placeholder:text-gray-500 focus:ring-1 focus:outline-hidden focus:placeholder:text-gray-400 sm:text-sm dark:text-white dark:placeholder:text-gray-50"
                   placeholder={translate("Search")}
                   type="search"
                   value={input}
@@ -386,7 +386,7 @@ export default function IndexHeader({ locale, translate }: Props) {
             focus
             className="absolute inset-x-0 top-0 origin-top-right pb-2 transition md:hidden"
           >
-            <div className="divide-y-2 divide-gray-50 bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:divide-dark-100 dark:bg-dark-100">
+            <div className="ring-opacity-5 dark:divide-dark-100 dark:bg-dark-100 divide-y-2 divide-gray-50 bg-white shadow-lg ring-1 ring-black">
               <div className="pt-5">
                 <div className="flex items-center justify-between pr-5">
                   <button className="text-3xl font-bold" type="button">
@@ -396,7 +396,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                     >
                       <button
                         type="submit"
-                        className="absolute left-6 top-0 mr-4 mt-5"
+                        className="absolute top-0 left-6 mt-5 mr-4"
                       >
                         <svg
                           className="size-4 fill-current text-gray-600 dark:text-white"
@@ -412,7 +412,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                         </svg>
                       </button>
                       <input
-                        className="h-10 w-max rounded-lg border border-gray-300 bg-white px-8 pr-16 text-sm focus:outline-none dark:bg-dark-100 dark:text-white dark:placeholder:text-white"
+                        className="dark:bg-dark-100 h-10 w-max rounded-lg border border-gray-300 bg-white px-8 pr-16 text-sm focus:outline-hidden dark:text-white dark:placeholder:text-white"
                         type="search"
                         name="search"
                         placeholder="Search"
@@ -424,7 +424,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                     </form>
                   </button>
                   <div className="-mr-2">
-                    <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-my-orange dark:bg-dark-bg">
+                    <Popover.Button className="focus:ring-my-orange dark:bg-dark-bg inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-black focus:ring-2 focus:outline-hidden focus:ring-inset">
                       <span className="sr-only px-5">
                         {translate("Close Menu")}
                       </span>
@@ -436,12 +436,12 @@ export default function IndexHeader({ locale, translate }: Props) {
                   <nav className="grid gap-y-8">
                     <nav className="space-y-1" aria-label="Sidebar">
                       <Disclosure>
-                        <Disclosure.Button className="flex w-full justify-between px-3 py-2 text-left font-medium hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:border-my-orange focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
+                        <Disclosure.Button className="hover:border-my-orange focus:border-my-orange flex w-full justify-between px-3 py-2 text-left font-medium hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 focus:border-l-4 focus:bg-yellow-100 focus:text-gray-900 dark:text-white dark:hover:text-gray-900 dark:focus:text-gray-900">
                           {translate("Chapters")}
                           <ChevronDownIcon className="ml-2 size-5 group-hover:text-black" />
                         </Disclosure.Button>
-                        <Disclosure.Panel className="py-4 text-gray-500 dark:bg-dark-100 dark:text-white">
-                          <div className="relative grid grid-cols-2 gap-6 bg-white px-8 py-2 dark:bg-dark-100 dark:text-white sm:gap-8 sm:p-8">
+                        <Disclosure.Panel className="dark:bg-dark-100 py-4 text-gray-500 dark:text-white">
+                          <div className="dark:bg-dark-100 relative grid grid-cols-2 gap-6 bg-white px-8 py-2 sm:gap-8 sm:p-8 dark:text-white">
                             {chapters.map((item) => (
                               <a
                                 key={item.number}
@@ -449,7 +449,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                                 className="-m-3 flex items-start p-1 hover:cursor-pointer hover:rounded-md hover:bg-yellow-100 dark:hover:bg-yellow-100 dark:focus:bg-yellow-100"
                               >
                                 <item.icon
-                                  className="size-6 shrink-0 text-my-orange"
+                                  className="text-my-orange size-6 shrink-0"
                                   aria-hidden="true"
                                 />
                                 <div className="ml-4">
@@ -468,8 +468,8 @@ export default function IndexHeader({ locale, translate }: Props) {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? "border-l-4 border-my-orange bg-yellow-100 text-gray-900 dark:text-white"
-                              : "hover:border-l-4 hover:border-my-orange hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
+                              ? "border-my-orange border-l-4 bg-yellow-100 text-gray-900 dark:text-white"
+                              : "hover:border-my-orange hover:border-l-4 hover:bg-yellow-100 hover:text-gray-900 dark:hover:text-gray-900",
                             "mb-2 flex items-center px-3 py-2 font-medium",
                           )}
                           aria-current={item.current ? "page" : undefined}
@@ -483,7 +483,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                           <button
                             type="button"
                             onClick={() => setAuthModalOpen(true)}
-                            className="mx-3 flex w-[calc(100%-24px)] items-center justify-center gap-2 rounded-lg bg-my-orange px-4 py-3 font-medium text-white shadow-sm transition-all hover:bg-orange-600"
+                            className="bg-my-orange mx-3 flex w-[calc(100%-24px)] items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium text-white shadow-xs transition-all hover:bg-orange-600"
                           >
                             <UserCircleIcon className="size-5" />
                             {translate("Sign In")}
@@ -503,7 +503,7 @@ export default function IndexHeader({ locale, translate }: Props) {
                                   referrerPolicy="no-referrer"
                                 />
                               ) : (
-                                <UserCircleIcon className="size-10 text-my-orange" />
+                                <UserCircleIcon className="text-my-orange size-10" />
                               )}
                               <div className="min-w-0 flex-1">
                                 <p className="truncate font-medium text-gray-900 dark:text-white">

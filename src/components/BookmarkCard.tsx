@@ -9,7 +9,7 @@ import { classNames } from "shared/functions";
 
 const Bookmarkcard = () => {
   return (
-    <div className="mt-4 flex items-baseline gap-2 border-b border-gray-300 pb-4 font-inter">
+    <div className="font-inter mt-4 flex items-baseline gap-2 border-b border-gray-300 pb-4">
       <div>
         <Image
           src="bookmark-header.svg"
@@ -29,7 +29,7 @@ const Bookmarkcard = () => {
       <div>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="flex items-center rounded-full bg-gray-100 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 focus:ring-offset-gray-100">
+            <Menu.Button className="focus:ring-my-orange flex items-center rounded-full bg-gray-100 text-gray-400 hover:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:outline-hidden">
               <span className="sr-only">Open options</span>
               <EllipsisVerticalIcon className="size-5" aria-hidden="true" />
             </Menu.Button>
@@ -44,7 +44,7 @@ const Bookmarkcard = () => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+            <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden">
               <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (

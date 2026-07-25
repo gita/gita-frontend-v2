@@ -53,10 +53,10 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-dark-100">
+                <Dialog.Panel className="dark:bg-dark-100 w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="border-gray-200 pb-4 text-lg font-bold leading-6 text-gray-900 dark:text-gray-50"
+                    className="border-gray-200 pb-4 text-lg leading-6 font-bold text-gray-900 dark:text-gray-50"
                   >
                     {translate("Settings")}
                   </Dialog.Title>
@@ -84,7 +84,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                     </p>
                   </div>
 
-                  <span className="relative z-0 mt-4 inline-flex w-full rounded-md text-center font-bold shadow-sm">
+                  <span className="relative z-0 mt-4 inline-flex w-full rounded-md text-center font-bold shadow-xs">
                     <button
                       type="button"
                       onClick={() =>
@@ -96,7 +96,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         appearanceSettings?.fontSize === "small"
                           ? "text-my-orange"
                           : "text-gray-500 dark:text-gray-200",
-                        "align-center relative w-1/2 items-center rounded-l-md border border-gray-300 bg-white px-2 py-6 text-center text-sm font-bold hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
+                        "align-center focus:border-my-orange focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg relative w-1/2 items-center rounded-l-md border border-gray-300 bg-white px-2 py-6 text-center text-sm font-bold hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden",
                       )}
                     >
                       <h2 className="text-center">-{translate("Aa")}</h2>
@@ -112,7 +112,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         appearanceSettings?.fontSize === "large"
                           ? "text-my-orange"
                           : "text-gray-500 dark:text-gray-200",
-                        "align-center relative w-1/2 items-center rounded-r-md border border-gray-300 bg-white px-2 py-6 text-center text-sm font-bold hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
+                        "align-center focus:border-my-orange focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg relative w-1/2 items-center rounded-r-md border border-gray-300 bg-white px-2 py-6 text-center text-sm font-bold hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden",
                       )}
                     >
                       <h2 className="text-center text-xl">
@@ -122,7 +122,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                   </span>
 
                   <div className="mt-4">
-                    <span className="relative z-0 inline-flex w-full rounded-md shadow-sm">
+                    <span className="relative z-0 inline-flex w-full rounded-md shadow-xs">
                       <button
                         type="button"
                         onClick={() =>
@@ -134,7 +134,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                           appearanceSettings?.spacing === "large"
                             ? "text-my-orange"
                             : "text-gray-700 dark:text-gray-200",
-                          "relative w-1/3 items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
+                          "focus:border-my-orange focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg relative w-1/3 items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden",
                         )}
                       >
                         <Image
@@ -156,13 +156,13 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                           appearanceSettings?.spacing === "medium"
                             ? "text-my-orange"
                             : "text-gray-700 dark:text-gray-200",
-                          "relative -ml-px w-1/3 items-center border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
+                          "focus:border-my-orange focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg relative -ml-px w-1/3 items-center border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden",
                         )}
                       >
                         <Image
                           alt="text medium icon"
                           src="/text-medium.png"
-                          className="mx-auto w-4 dark:fill-current dark:text-my-orange"
+                          className="dark:text-my-orange mx-auto w-4 dark:fill-current"
                           width={16}
                           height={16}
                         />
@@ -179,7 +179,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                           appearanceSettings?.spacing === "small"
                             ? "text-my-orange"
                             : "text-gray-700 dark:text-gray-200",
-                          "relative -ml-px w-1/3 items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:border-my-orange focus:outline-none focus:ring-1 focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg",
+                          "focus:border-my-orange focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg relative -ml-px w-1/3 items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:ring-1 focus:outline-hidden",
                         )}
                       >
                         <Image
@@ -203,9 +203,9 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                       }
                       className={classNames(
                         appearanceSettings?.bg === "bg-light-bg"
-                          ? "ring-2 ring-my-orange ring-offset-2"
+                          ? "ring-my-orange ring-2 ring-offset-2"
                           : "",
-                        "inline-flex items-center rounded-full border border-transparent bg-light-bg p-5 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:ring-offset-dark-100",
+                        "bg-light-bg focus:ring-my-orange dark:ring-offset-dark-100 inline-flex items-center rounded-full border border-transparent p-5 text-white shadow-xs focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
                       )}
                     ></button>
 
@@ -220,7 +220,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                       appearanceSettings?.bg === "bg-yellow-bg"
                         ? "ring-2 ring-my-orange ring-offset-2"
                         : "",
-                      "inline-flex items-center rounded-full border border-transparent bg-yellow-bg p-5 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:ring-offset-dark-100",
+                      "inline-flex items-center rounded-full border border-transparent bg-yellow-bg p-5 text-white shadow-xs focus:outline-hidden focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:ring-offset-dark-100",
                     )}
                     ></button>*/}
 
@@ -233,9 +233,9 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                       }
                       className={classNames(
                         appearanceSettings?.bg === "bg-dark-bg"
-                          ? "ring-2 ring-my-orange ring-offset-2"
+                          ? "ring-my-orange ring-2 ring-offset-2"
                           : "",
-                        "inline-flex items-center rounded-full border border-transparent bg-dark-bg p-5 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:ring-offset-dark-100",
+                        "bg-dark-bg focus:ring-my-orange dark:ring-offset-dark-100 inline-flex items-center rounded-full border border-transparent p-5 text-white shadow-xs focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
                       )}
                     ></button>
                   </div>
@@ -243,7 +243,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                   <div className="mt-4 flex w-full gap-5">
                     <button
                       type="button"
-                      className="w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2 dark:bg-dark-100 dark:text-gray-200 dark:hover:bg-dark-bg"
+                      className="focus:ring-my-orange dark:bg-dark-100 dark:hover:bg-dark-bg w-1/2 items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-center text-base font-medium text-gray-700 shadow-xs hover:bg-gray-50 focus:ring-2 focus:ring-offset-2 focus:outline-hidden dark:text-gray-200"
                       onClick={closeSettingsModal}
                     >
                       {translate("Cancel")}
@@ -263,7 +263,7 @@ const Settings = ({ settingsIsOpen, closeSettingsModal, translate }: Props) => {
                         dispatch(editSettings(appearanceSettings));
                         closeSettingsModal();
                       }}
-                      className="w-1/2 items-center rounded-md border border-transparent bg-my-orange px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-my-orange focus:outline-none focus:ring-2 focus:ring-my-orange focus:ring-offset-2"
+                      className="bg-my-orange hover:bg-my-orange focus:ring-my-orange w-1/2 items-center rounded-md border border-transparent px-6 py-3 text-center text-base font-medium text-white shadow-xs focus:ring-2 focus:ring-offset-2 focus:outline-hidden"
                     >
                       {translate("Apply Settings")}
                     </button>

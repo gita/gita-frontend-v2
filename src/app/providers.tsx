@@ -8,8 +8,6 @@ import { ThemeProvider } from "next-themes";
 import { AuthProvider } from "lib/auth/AuthProvider";
 import { useStore } from "redux/store";
 
-import "tailwindcss/tailwind.css";
-
 export default function Providers({ children }: { children: ReactNode }) {
   const store = useStore(undefined);
 

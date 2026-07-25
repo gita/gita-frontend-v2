@@ -43,19 +43,19 @@ export function EnhancedHero({
         <VedicPattern variant="mandala" size={600} opacity={0.6} animate />
       </div>
 
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-prakash-primary/10 to-transparent dark:from-nisha-primary/10 dark:to-transparent"></div>
+      <div className="from-prakash-primary/10 dark:from-nisha-primary/10 absolute inset-0 -z-10 bg-linear-to-b to-transparent dark:to-transparent"></div>
 
-      <div className="container relative z-10 mx-auto max-w-7xl px-4">
+      <div className="relative z-10 container mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-4xl text-center">
           {badge && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="mb-4 inline-flex items-center gap-2 rounded-full bg-prakash-primary/10 px-4 py-1.5 dark:bg-nisha-primary/10"
+              className="bg-prakash-primary/10 dark:bg-nisha-primary/10 mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5"
             >
-              <Sparkle className="size-4 text-prakash-primary dark:text-nisha-primary" />
-              <span className="text-sm font-medium text-prakash-primary dark:text-nisha-primary">
+              <Sparkle className="text-prakash-primary dark:text-nisha-primary size-4" />
+              <span className="text-prakash-primary dark:text-nisha-primary text-sm font-medium">
                 {badge}
               </span>
             </motion.div>
@@ -65,7 +65,7 @@ export function EnhancedHero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-newsreader mb-6 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl"
+            className="font-newsreader mb-6 text-4xl leading-tight font-bold md:text-5xl lg:text-6xl"
           >
             {title}
           </motion.h1>
@@ -74,7 +74,7 @@ export function EnhancedHero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className={`font-merriweather text-lg text-muted-foreground md:text-xl lg:text-2xl ${hasButtons ? "mb-8" : ""}`}
+            className={`font-merriweather text-muted-foreground text-lg md:text-xl lg:text-2xl ${hasButtons ? "mb-8" : ""}`}
           >
             {subtitle}
           </motion.p>
@@ -90,7 +90,7 @@ export function EnhancedHero({
                 <Button
                   asChild
                   size="lg"
-                  className="bg-prakash-primary text-white hover:bg-prakash-primary/90 dark:bg-nisha-primary dark:hover:bg-nisha-primary/90"
+                  className="bg-prakash-primary hover:bg-prakash-primary/90 dark:bg-nisha-primary dark:hover:bg-nisha-primary/90 text-white"
                 >
                   <Link href={localizedLink(primaryButtonLink)}>
                     {primaryButtonText}

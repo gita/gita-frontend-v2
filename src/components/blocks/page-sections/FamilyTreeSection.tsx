@@ -40,13 +40,13 @@ interface FamilyMember {
 // --- Color Styles ---
 const colorStyles = {
   purple:
-    "bg-gradient-to-br from-purple-50 to-purple-100 text-purple-900 border-purple-300 dark:from-purple-900/50 dark:to-purple-800/50 dark:text-purple-100 dark:border-purple-600",
-  red: "bg-gradient-to-br from-red-50 to-red-100 text-red-900 border-red-300 dark:from-red-900/50 dark:to-red-800/50 dark:text-red-100 dark:border-red-600",
-  blue: "bg-gradient-to-br from-blue-50 to-blue-100 text-blue-900 border-blue-300 dark:from-blue-900/50 dark:to-blue-800/50 dark:text-blue-100 dark:border-blue-600",
-  pink: "bg-gradient-to-br from-pink-50 to-pink-100 text-pink-900 border-pink-300 dark:from-pink-900/50 dark:to-pink-800/50 dark:text-pink-100 dark:border-pink-600",
-  cyan: "bg-gradient-to-br from-cyan-50 to-cyan-100 text-cyan-900 border-cyan-300 dark:from-cyan-900/50 dark:to-cyan-800/50 dark:text-cyan-100 dark:border-cyan-600",
+    "bg-linear-to-br from-purple-50 to-purple-100 text-purple-900 border-purple-300 dark:from-purple-900/50 dark:to-purple-800/50 dark:text-purple-100 dark:border-purple-600",
+  red: "bg-linear-to-br from-red-50 to-red-100 text-red-900 border-red-300 dark:from-red-900/50 dark:to-red-800/50 dark:text-red-100 dark:border-red-600",
+  blue: "bg-linear-to-br from-blue-50 to-blue-100 text-blue-900 border-blue-300 dark:from-blue-900/50 dark:to-blue-800/50 dark:text-blue-100 dark:border-blue-600",
+  pink: "bg-linear-to-br from-pink-50 to-pink-100 text-pink-900 border-pink-300 dark:from-pink-900/50 dark:to-pink-800/50 dark:text-pink-100 dark:border-pink-600",
+  cyan: "bg-linear-to-br from-cyan-50 to-cyan-100 text-cyan-900 border-cyan-300 dark:from-cyan-900/50 dark:to-cyan-800/50 dark:text-cyan-100 dark:border-cyan-600",
   amber:
-    "bg-gradient-to-br from-amber-50 to-amber-100 text-amber-900 border-amber-300 dark:from-amber-900/50 dark:to-amber-800/50 dark:text-amber-100 dark:border-amber-600",
+    "bg-linear-to-br from-amber-50 to-amber-100 text-amber-900 border-amber-300 dark:from-amber-900/50 dark:to-amber-800/50 dark:text-amber-100 dark:border-amber-600",
 };
 
 const badgeStyles = {
@@ -343,7 +343,7 @@ const MemberCard = ({
   return (
     <div
       className={cn(
-        "flex min-w-[160px] items-center gap-2.5 rounded-xl border-2 px-3 py-2 font-medium shadow-sm transition-all hover:shadow-md sm:min-w-0",
+        "flex min-w-[160px] items-center gap-2.5 rounded-xl border-2 px-3 py-2 font-medium shadow-xs transition-all hover:shadow-md sm:min-w-0",
         colorStyles[member.color],
         isSpouse && "border-dashed",
       )}
@@ -385,7 +385,7 @@ const FamilyNode = ({
           hasChildren && "cursor-pointer",
           hasChildren &&
             !isOpen &&
-            "border-2 border-dashed border-muted-foreground/20 bg-muted/40 hover:bg-muted/70",
+            "border-muted-foreground/20 bg-muted/40 hover:bg-muted/70 border-2 border-dashed",
           hasChildren && isOpen && "hover:bg-muted/30",
         )}
         onClick={() => hasChildren && setIsOpen(!isOpen)}
@@ -412,13 +412,13 @@ const FamilyNode = ({
 
         {/* Member Info */}
         <div className="min-w-0 flex-1">
-          <div className="scrollbar-thin flex items-center gap-2 overflow-x-auto pb-2">
+          <div className="flex scrollbar-thin items-center gap-2 overflow-x-auto pb-2">
             <MemberCard member={member} tr={tr} />
 
             {/* Spouse(s) */}
             {hasSpouse && (
               <>
-                <span className="shrink-0 px-2 text-sm font-semibold text-muted-foreground">
+                <span className="text-muted-foreground shrink-0 px-2 text-sm font-semibold">
                   +
                 </span>
                 {Array.isArray(member.spouse) ? (
@@ -433,7 +433,7 @@ const FamilyNode = ({
 
             {/* Expandable hint */}
             {hasChildren && !isOpen && (
-              <span className="ml-2 shrink-0 animate-pulse rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <span className="bg-primary/10 text-primary ml-2 shrink-0 animate-pulse rounded-full px-3 py-1 text-xs font-semibold">
                 {member.children!.length}{" "}
                 {member.children!.length === 1 ? "▼" : "▼"}
               </span>
@@ -442,12 +442,12 @@ const FamilyNode = ({
 
           {/* Note */}
           {member.note && tr && (
-            <p className="ml-1 mt-2 text-sm leading-relaxed text-muted-foreground">
+            <p className="text-muted-foreground mt-2 ml-1 text-sm leading-relaxed">
               <span className="font-medium">ℹ️</span> {tr(member.note)}
             </p>
           )}
           {member.note && !tr && (
-            <p className="ml-1 mt-2 text-sm leading-relaxed text-muted-foreground">
+            <p className="text-muted-foreground mt-2 ml-1 text-sm leading-relaxed">
               <span className="font-medium">ℹ️</span> {member.note}
             </p>
           )}
@@ -464,7 +464,7 @@ const FamilyNode = ({
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="border-l-3 ml-8 space-y-2 border-primary/30 pl-5 pt-3">
+            <div className="border-primary/30 ml-8 space-y-2 border-l-3 pt-3 pl-5">
               {member.children!.map((child, i) => (
                 <FamilyNode key={i} member={child} level={level + 1} tr={tr} />
               ))}
@@ -492,17 +492,17 @@ const GenerationSection = ({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="overflow-hidden rounded-2xl border-2 bg-card shadow-lg">
+    <div className="bg-card overflow-hidden rounded-2xl border-2 shadow-lg">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between p-5 text-left transition-colors hover:bg-muted/50"
+        className="hover:bg-muted/50 flex w-full items-center justify-between p-5 text-left transition-colors"
       >
         <div className="flex items-center gap-4">
           <h3 className="font-newsreader text-xl font-bold md:text-2xl">
             {title}
           </h3>
           {badge && (
-            <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
+            <span className="bg-primary/10 text-primary rounded-full px-3 py-1 text-sm font-semibold">
               {badge}
             </span>
           )}
@@ -564,7 +564,7 @@ export function FamilyTreeSection({
     return text;
   };
   return (
-    <section className="relative overflow-hidden bg-background py-8 md:py-12">
+    <section className="bg-background relative overflow-hidden py-8 md:py-12">
       <div className="container mx-auto max-w-5xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -573,7 +573,7 @@ export function FamilyTreeSection({
           transition={{ duration: 0.5 }}
         >
           <SectionHeader subtitle={subtitle} title={title} align="center" />
-          <p className="font-merriweather mx-auto mb-10 max-w-3xl text-center text-base text-muted-foreground md:text-lg">
+          <p className="font-merriweather text-muted-foreground mx-auto mb-10 max-w-3xl text-center text-base md:text-lg">
             {description}
           </p>
         </motion.div>
@@ -584,7 +584,7 @@ export function FamilyTreeSection({
             <div
               className={cn("size-4 shrink-0 rounded-md", badgeStyles.purple)}
             />
-            <span className="whitespace-nowrap font-medium">
+            <span className="font-medium whitespace-nowrap">
               {t("Kuru Ancestors", "कुरु पूर्वज")}
             </span>
           </div>
@@ -592,7 +592,7 @@ export function FamilyTreeSection({
             <div
               className={cn("size-4 shrink-0 rounded-md", badgeStyles.blue)}
             />
-            <span className="whitespace-nowrap font-medium">
+            <span className="font-medium whitespace-nowrap">
               {t("Pandavas", "पांडव")}
             </span>
           </div>
@@ -600,7 +600,7 @@ export function FamilyTreeSection({
             <div
               className={cn("size-4 shrink-0 rounded-md", badgeStyles.red)}
             />
-            <span className="whitespace-nowrap font-medium">
+            <span className="font-medium whitespace-nowrap">
               {t("Kauravas", "कौरव")}
             </span>
           </div>
@@ -608,7 +608,7 @@ export function FamilyTreeSection({
             <div
               className={cn("size-4 shrink-0 rounded-md", badgeStyles.cyan)}
             />
-            <span className="whitespace-nowrap font-medium">
+            <span className="font-medium whitespace-nowrap">
               {t("Divine", "दिव्य")}
             </span>
           </div>
@@ -616,7 +616,7 @@ export function FamilyTreeSection({
             <div
               className={cn("size-4 shrink-0 rounded-md", badgeStyles.pink)}
             />
-            <span className="whitespace-nowrap font-medium">
+            <span className="font-medium whitespace-nowrap">
               {t("Queens", "रानियाँ")}
             </span>
           </div>
@@ -624,7 +624,7 @@ export function FamilyTreeSection({
             <div
               className={cn("size-4 shrink-0 rounded-md", badgeStyles.amber)}
             />
-            <span className="whitespace-nowrap font-medium">
+            <span className="font-medium whitespace-nowrap">
               {t("Others", "अन्य")}
             </span>
           </div>
@@ -640,7 +640,7 @@ export function FamilyTreeSection({
           />
         </div>
 
-        <p className="mt-8 text-center text-sm text-muted-foreground">
+        <p className="text-muted-foreground mt-8 text-center text-sm">
           💡{" "}
           {t(
             "Click on highlighted rows to expand/collapse. Dashed borders indicate spouses.",

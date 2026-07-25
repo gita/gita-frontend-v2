@@ -15,12 +15,12 @@ export function GitaPromoCard({ className }: GitaPromoCardProps) {
     <Link
       href="/"
       className={cn(
-        "group block overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-sm",
+        "group border-border bg-card hover:border-primary/50 block overflow-hidden rounded-lg border transition-all duration-300 hover:shadow-xs",
         className,
       )}
     >
       {/* Image */}
-      <div className="relative aspect-[2.5/1] w-full overflow-hidden">
+      <div className="relative aspect-2.5/1 w-full overflow-hidden">
         <Image
           src="/art/bg_krishnaji_landscape.webp"
           alt="Lord Krishna"
@@ -32,14 +32,14 @@ export function GitaPromoCard({ className }: GitaPromoCardProps) {
 
       {/* Content */}
       <div className="p-2.5">
-        <p className="text-[13px] font-medium text-foreground">
+        <p className="text-foreground text-[13px] font-medium">
           Bhagavad Gita in Hindi & English
         </p>
-        <p className="mt-0.5 text-xs text-muted-foreground">
+        <p className="text-muted-foreground mt-0.5 text-xs">
           With commentaries from 20+ scholars
         </p>
 
-        <div className="mt-2 flex items-center gap-1 text-xs font-semibold text-primary transition-colors group-hover:text-primary/80">
+        <div className="text-primary group-hover:text-primary/80 mt-2 flex items-center gap-1 text-xs font-semibold transition-colors">
           <span>Start Reading</span>
           <ArrowRight className="size-3.5" />
         </div>

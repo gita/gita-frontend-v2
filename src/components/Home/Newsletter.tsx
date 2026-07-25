@@ -117,7 +117,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-2xl bg-white shadow-xl dark:bg-card"
+          className="dark:bg-card relative overflow-hidden rounded-2xl bg-white shadow-xl"
         >
           <div className="grid md:grid-cols-2">
             {/* Left Side - Content & Form */}
@@ -127,7 +127,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="mb-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl"
+                className="text-foreground mb-3 text-2xl font-bold tracking-tight md:text-3xl"
               >
                 {translate("Shloka of the Day")}
               </motion.h3>
@@ -137,7 +137,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="mb-8 text-base text-muted-foreground md:text-lg"
+                className="text-muted-foreground mb-8 text-base md:text-lg"
               >
                 {translate(
                   "Have the eternal wisdom of the Gita delivered to your inbox each morning",
@@ -186,10 +186,10 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                     {/* Name Input */}
                     <div className="relative">
                       <User
-                        className={`pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 transition-colors ${focusedField === "name" ? "text-primary" : "text-muted-foreground"}`}
+                        className={`pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 transition-colors ${focusedField === "name" ? "text-primary" : "text-muted-foreground"}`}
                       />
                       <Input
-                        className="w-full bg-muted/50 pl-10 transition-all focus:bg-white focus:ring-2 focus:ring-primary/20 dark:bg-background dark:focus:bg-background"
+                        className="bg-muted/50 focus:ring-primary/20 dark:bg-background dark:focus:bg-background w-full pl-10 transition-all focus:bg-white focus:ring-2"
                         id="name"
                         name="name"
                         type="text"
@@ -211,10 +211,10 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                     {/* Email Input */}
                     <div className="relative">
                       <Mail
-                        className={`pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 transition-colors ${focusedField === "email" ? "text-primary" : "text-muted-foreground"}`}
+                        className={`pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 transition-colors ${focusedField === "email" ? "text-primary" : "text-muted-foreground"}`}
                       />
                       <Input
-                        className="w-full bg-muted/50 pl-10 transition-all focus:bg-white focus:ring-2 focus:ring-primary/20 dark:bg-background dark:focus:bg-background"
+                        className="bg-muted/50 focus:ring-primary/20 dark:bg-background dark:focus:bg-background w-full pl-10 transition-all focus:bg-white focus:ring-2"
                         id="email"
                         name="email"
                         type="email"
@@ -241,7 +241,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-primary px-8 py-6 text-base font-medium shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 disabled:opacity-70"
+                        className="bg-primary shadow-primary/25 hover:bg-primary/90 hover:shadow-primary/30 w-full px-8 py-6 text-base font-medium shadow-lg transition-all hover:shadow-xl disabled:opacity-70"
                         aria-label="Subscribe to daily Bhagavad Gita newsletter"
                       >
                         {isSubmitting ? (
@@ -286,7 +286,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.5 }}
-                  className="mt-6 text-sm text-muted-foreground"
+                  className="text-muted-foreground mt-6 text-sm"
                 >
                   ✨{" "}
                   {translate(
@@ -299,7 +299,7 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
             {/* Right Side - Image */}
             <div className="relative hidden md:block">
               {/* Gradient overlay for better text contrast if needed */}
-              <div className="absolute inset-0 z-10 bg-gradient-to-r from-white/60 via-white/40 to-transparent dark:from-card/60 dark:via-card/40" />
+              <div className="dark:from-card/60 dark:via-card/40 absolute inset-0 z-10 bg-linear-to-r from-white/60 via-white/40 to-transparent" />
 
               {/* Image */}
               <div className="relative h-full min-h-[400px] overflow-hidden">
@@ -325,16 +325,16 @@ const Newsletter = ({ notification, locale, translations }: Props) => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
-                  className="rounded-xl bg-white/90 p-4 text-center shadow-lg backdrop-blur-sm dark:bg-card/90"
+                  className="dark:bg-card/90 rounded-xl bg-white/90 p-4 text-center shadow-lg backdrop-blur-xs"
                 >
-                  <p className="text-sm italic text-foreground/80">
+                  <p className="text-foreground/80 text-sm italic">
                     &ldquo;
                     {translate(
                       "The mind is restless and difficult to restrain, but it is subdued by practice.",
                     )}
                     &rdquo;
                   </p>
-                  <footer className="mt-2 text-xs font-medium text-primary">
+                  <footer className="text-primary mt-2 text-xs font-medium">
                     — Bhagavad Gita 6.35
                   </footer>
                 </motion.blockquote>
