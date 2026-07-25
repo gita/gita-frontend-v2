@@ -927,24 +927,24 @@ Found only under real device emulation, so these were invisible to earlier passe
 
 ## 24. Content system — Velite + MDX blocks
 
-**Status:** todo — next up
+**Status:** done (PR #330)
 **Branch:** `feat/velite-content-system`
 
-Every content page here is hand-written TSX. That does not scale past a handful of pages, and the
-`/best-bhagavad-gita-apps` page shipped in item 12 shows the cost: the content is correct but the
-page reads as unpolished because there is no block vocabulary behind it.
+Content pages were hand-written TSX with their data in sibling `constants.ts` files. That does not
+scale, and `/best-bhagavad-gita-apps` showed the cost: correct content, but every section rendered
+as a heading followed by paragraphs at one weight and one colour, so twelve app entries came out as
+twelve indistinguishable slabs.
 
-radhakrishna.net solved this on 2026-07-25 with **Velite** — typed MDX with Zod-validated
-frontmatter and generated TS types — plus a set of reusable blocks. Port it.
+Now: `content/*.mdx`, validated at build by the Zod schema in `velite.config.ts`, composed from
+blocks in `src/components/content/blocks.tsx`. The MDX picks its own section order rather than
+inheriting a fixed template. Data blocks are bound to the document by closure in `mdx.tsx`, so
+`<RankedApps />` takes no props and the page stays a server component.
 
-- Velite config with a `content` collection, `type` in frontmatter selecting the template
-- Block components: TL;DR / key-takeaways, comparison tables, FAQ, callouts, verse quote, CTA
-- **Rebuild `/best-bhagavad-gita-apps` on it.** The page is merged and live; this replaces the
-  hand-rolled version rather than starting from nothing. Every figure moves across unchanged —
-  they came from the verified fact sheet in `notes/app-comparison-facts.md`.
-- Follow the house voice and structure-for-AI rules in radhakrishna.net's
-  `docs/05-writing-and-images.md` and `docs/02-content-architecture.md`: answer-first blocks,
-  question-led headings, TL;DR on top, chunked sections.
+`.velite` is git-ignored and generated, so `dev`, `build`, `type-check` and `lint` all run `velite`
+first. A fresh checkout has no content layer and CI checks out fresh.
+
+**Next pages to move onto it:** the remaining hand-written content pages, in traffic order. The
+block vocabulary is the reusable part; each new page should need MDX and frontmatter only.
 
 ---
 
