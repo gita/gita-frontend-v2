@@ -1,4 +1,9 @@
 ---
+# # Ads and in-app purchases come from the badges Play publishes on the listing
+# itself. Verify against the app's own page, not a carousel: our own listing
+# renders a "Similar apps" section and still carries no ads badge, which is the
+# control that shows the badge belongs to the app being viewed.
+#
 # Every figure below came from Google Play's own SoftwareApplication JSON-LD or
 # Apple's lookup API on the date in `verifiedOn`, not from a scraped page. The
 # rendered Play page carries ratings from its "similar apps" carousel and
@@ -15,7 +20,7 @@ description: "Every Bhagavad Gita app compared on price, advertising, languages 
 type: comparison
 published: 2026-07-21
 updated: 2026-07-26
-verifiedOn: 2026-07-25
+verifiedOn: 2026-07-26
 storefront: "Google Play India"
 heading: "The best Bhagavad Gita apps, compared honestly."
 standfirst: "For most people on Android the answer is our own app, which is free, carries no advertising, and covers all 700 verses in seven languages. Its iPhone build only arrived on 21 July 2026, so treat that one as new. If you want a wider devotional practice, Krishna Bhakti is the better app and the highest rated here. If you want Prabhupada's translation, buy the Bhaktivedanta Book Trust edition. Hindi, Bangla, Telugu and Odia readers have stronger options still, and they are all below."
@@ -142,7 +147,7 @@ apps:
     ratingCount: "11,156"
     installs: "100,000+"
     price: "Free"
-    ads: "Not verified"
+    ads: "Contains ads, and in-app purchases"
     languages: "Bangla"
     attribution: "None named"
     verdict: "The most-reviewed Bangla option, with 11,156 ratings."
@@ -152,6 +157,7 @@ apps:
       - "11,156 ratings"
       - "Bangla text in a dedicated app"
     cons:
+      - "Carries advertising and in-app purchases"
       - "No named translator"
       - "Same publisher pattern as the Hindi app"
   - slug: "telugu-bhagavadgita"
@@ -162,7 +168,7 @@ apps:
     ratingCount: "9,190"
     installs: "100,000+"
     price: "Free"
-    ads: "Not verified"
+    ads: "Contains ads, and in-app purchases"
     languages: "Telugu"
     attribution: "None named"
     verdict: "The most-reviewed dedicated Telugu option, with 9,190 ratings."
@@ -172,6 +178,7 @@ apps:
       - "9,190 ratings"
       - "Dedicated Telugu app"
     cons:
+      - "Carries advertising and in-app purchases"
       - "No named translator"
   - slug: "banaka-oriya"
     name: "Bhagavad Gita in Oriya / Odia"
@@ -181,7 +188,7 @@ apps:
     ratingCount: "7,159"
     installs: "100,000+"
     price: "Free"
-    ads: "Not verified"
+    ads: "Contains ads, and in-app purchases"
     languages: "Odia"
     attribution: "None named"
     verdict: "The most-reviewed Odia option, with 7,159 ratings."
@@ -191,6 +198,7 @@ apps:
       - "7,159 ratings"
       - "Dedicated Odia app"
     cons:
+      - "Carries advertising and in-app purchases"
       - "No named translator"
   - slug: "learn-geeta"
     name: "Learn Geeta"
@@ -221,7 +229,7 @@ apps:
     ratingCount: "647"
     installs: "10,000+"
     price: "Free to install"
-    ads: "Not verified"
+    ads: "In-app purchases. No ads declared"
     languages: "English"
     attribution: "Not stated"
     verdict: "The clearest alternative if what you want is an AI to ask rather than a book to read."
@@ -231,6 +239,7 @@ apps:
       - "Built around asking rather than reading"
       - "4.75 from 647 ratings"
     cons:
+      - "Has in-app purchases"
       - "Small review base"
       - "Not a complete reading experience"
   - slug: "song-of-god"
@@ -389,7 +398,7 @@ or a purpose none of the others served, and dropped the rest.
 Every rating, review count, install band and price here was read from the stores' own structured
 data rather than the rendered page, because the rendered Play listing mixes in ratings from its
 similar-apps carousel and reading those gave us a wrong number for our own app the first time
-round. Each figure was confirmed on 25 July 2026.
+round. Each figure was confirmed on 26 July 2026.
 
 We have not run these apps side by side on a phone for a fixed set of tasks. What follows is a
 comparison of what each app offers, what it costs, and what it tells you about its own sources, not
