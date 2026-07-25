@@ -6,7 +6,7 @@ export const jsonLdFirst = {
   url: "https://bhagavadgita.com",
   logo: "https://bhagavadgita.com/static/images/radhakrishna.png",
   sameAs: [
-    "https://www.facebook.com/iiRadhaKrishnaii/",
+    "https://www.facebook.com/vedvyasfoundation/",
     "https://www.linkedin.com/company/bhagavadgita/",
     "https://www.pinterest.com/iiradhakrishnaii/",
     "https://twitter.com/ShriKrishna",

@@ -4,7 +4,11 @@ import { notFound } from "next/navigation";
 
 import NotFound from "components/NotFound";
 import { getChapterData } from "lib/getChapterData";
-import { getLanguageSettings, isValidLocaleSegment, paramsToLocale } from "shared/functions";
+import {
+  getLanguageSettings,
+  isValidLocaleSegment,
+  paramsToLocale,
+} from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import ChapterPage from "./ChapterPage";
@@ -72,29 +76,33 @@ export async function generateMetadata({
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
-      images: [ogImageUrl({
-        eyebrow: `Chapter ${chapterNumber}`,
-        heading: `Bhagavad Gita, Chapter ${chapterNumber}`,
-        subheading:
-          "Sanskrit, transliteration, word meanings, translation and commentary for every verse.",
-      })],
+      images: [
+        ogImageUrl({
+          eyebrow: `Chapter ${chapterNumber}`,
+          heading: `Bhagavad Gita, Chapter ${chapterNumber}`,
+          subheading:
+            "Sanskrit, transliteration, word meanings, translation and commentary for every verse.",
+        }),
+      ],
       url: isHindi ? `${chapterUrl}/hi` : chapterUrl,
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "article",
-      authors: "https://www.facebook.com/iiRadhaKrishnaii/",
+      authors: "https://www.facebook.com/vedvyasfoundation/",
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
       title,
       description: chapterDescription,
     },
     twitter: {
-      images: [ogImageUrl({
-        eyebrow: `Chapter ${chapterNumber}`,
-        heading: `Bhagavad Gita, Chapter ${chapterNumber}`,
-        subheading:
-          "Sanskrit, transliteration, word meanings, translation and commentary for every verse.",
-      })],
+      images: [
+        ogImageUrl({
+          eyebrow: `Chapter ${chapterNumber}`,
+          heading: `Bhagavad Gita, Chapter ${chapterNumber}`,
+          subheading:
+            "Sanskrit, transliteration, word meanings, translation and commentary for every verse.",
+        }),
+      ],
       card: "summary_large_image",
       title,
       description: chapterDescription,

@@ -37,14 +37,19 @@ export async function generateMetadata({
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
-      images: [ogImageUrl({ heading: "Bhagavad Gita Verse of the Day", eyebrow: "Daily" })],
+      images: [
+        ogImageUrl({
+          heading: "Bhagavad Gita Verse of the Day",
+          eyebrow: "Daily",
+        }),
+      ],
       url: isHindi
         ? "https://bhagavadgita.com/verse-of-the-day/hi"
         : "https://bhagavadgita.com/verse-of-the-day",
       siteName: "Bhagavad Gita",
       locale: "en_US",
       type: "article",
-      authors: "https://www.facebook.com/radhakrishnablog/",
+      authors: "https://www.facebook.com/vedvyasfoundation/",
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
       title: "Bhagavad Gita - Verse of the Day",
@@ -52,7 +57,12 @@ export async function generateMetadata({
         "Daily Bhagavad Gita verse with translation & commentary. Get daily spiritual wisdom from Lord Krishna's teachings. Read in Hindi & English for daily inspiration.",
     },
     twitter: {
-      images: [ogImageUrl({ heading: "Bhagavad Gita Verse of the Day", eyebrow: "Daily" })],
+      images: [
+        ogImageUrl({
+          heading: "Bhagavad Gita Verse of the Day",
+          eyebrow: "Daily",
+        }),
+      ],
       card: "summary_large_image",
       title: "Bhagavad Gita - Verse of the Day",
       description:
