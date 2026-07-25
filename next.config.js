@@ -110,6 +110,21 @@ module.exports = {
         destination: "/best-bhagavad-gita-apps",
         permanent: false,
       },
+      // Branded install links, so store clicks are measurable in one place and
+      // the destination can change without a deploy. bible.com does the same
+      // via app.bible.com/app-ios. Not permanent: store URLs do change.
+      {
+        source: "/go/ios",
+        destination:
+          "https://apps.apple.com/app/bhagavad-gita-hindi-english/id1602895635",
+        permanent: false,
+      },
+      {
+        source: "/go/android",
+        destination:
+          "https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita",
+        permanent: false,
+      },
       ...generateVerseRedirects(),
     ];
   },

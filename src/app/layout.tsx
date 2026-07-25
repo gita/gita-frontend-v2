@@ -95,6 +95,17 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   manifest: "/favicon/site.webmanifest",
+  other: {
+    // iOS Smart App Banner. Safari renders this only on iOS, so Apple performs
+    // the device detection for us and no user-agent sniffing is needed.
+    //
+    // Deliberately NO `app-argument`: the Flutter app's deep-link handler
+    // (gita-flutter-2.0, lib/main.dart) currently only routes gitagpt and
+    // home-widget links, so a verse deep link would open the app at its home
+    // screen. Add `app-argument=gita://gita.app/chapter/N/verse/M` here once
+    // that route is handled — see ROADMAP item 19a.
+    "apple-itunes-app": "app-id=1602895635",
+  },
   icons: {
     icon: [
       { url: "/favicon/favicon-32x32.png", type: "image/png", sizes: "32x32" },
