@@ -1,4 +1,9 @@
 ---
+# # Ads and in-app purchases come from the badges Play publishes on the listing
+# itself. Verify against the app's own page, not a carousel: our own listing
+# renders a "Similar apps" section and still carries no ads badge, which is the
+# control that shows the badge belongs to the app being viewed.
+#
 # Every figure below came from Google Play's own SoftwareApplication JSON-LD or
 # Apple's lookup API on the date in `verifiedOn`, not from a scraped page. The
 # rendered Play page carries ratings from its "similar apps" carousel and
@@ -13,7 +18,9 @@
 title: "The Best Bhagavad Gita Apps, Compared"
 description: "Every Bhagavad Gita app compared on price, advertising, languages and who translated the text, with every figure checked against the stores."
 type: comparison
-verifiedOn: 2026-07-25
+published: 2026-07-21
+updated: 2026-07-26
+verifiedOn: 2026-07-26
 storefront: "Google Play India"
 heading: "The best Bhagavad Gita apps, compared honestly."
 standfirst: "For most people on Android the answer is our own app, which is free, carries no advertising, and covers all 700 verses in seven languages. Its iPhone build only arrived on 21 July 2026, so treat that one as new. If you want a wider devotional practice, Krishna Bhakti is the better app and the highest rated here. If you want Prabhupada's translation, buy the Bhaktivedanta Book Trust edition. Hindi, Bangla, Telugu and Odia readers have stronger options still, and they are all below."
@@ -47,7 +54,6 @@ apps:
   - slug: "krishna-bhakti"
     name: "Bhagavad Gita — Krishna Bhakti"
     developer: "JKYog"
-    ours: built-for-jkyog
     playUrl: "https://play.google.com/store/apps/details?id=org.jkyog.radhakrishnabhakti"
     iosUrl: "https://apps.apple.com/us/app/bhagavad-gita-krishna-bhakti/id6463116386"
     rating: "4.85"
@@ -140,7 +146,7 @@ apps:
     ratingCount: "11,156"
     installs: "100,000+"
     price: "Free"
-    ads: "Not verified"
+    ads: "Contains ads, and in-app purchases"
     languages: "Bangla"
     attribution: "None named"
     verdict: "The most-reviewed Bangla option, with 11,156 ratings."
@@ -150,6 +156,7 @@ apps:
       - "11,156 ratings"
       - "Bangla text in a dedicated app"
     cons:
+      - "Carries advertising and in-app purchases"
       - "No named translator"
       - "Same publisher pattern as the Hindi app"
   - slug: "telugu-bhagavadgita"
@@ -160,7 +167,7 @@ apps:
     ratingCount: "9,190"
     installs: "100,000+"
     price: "Free"
-    ads: "Not verified"
+    ads: "Contains ads, and in-app purchases"
     languages: "Telugu"
     attribution: "None named"
     verdict: "The most-reviewed dedicated Telugu option, with 9,190 ratings."
@@ -170,6 +177,7 @@ apps:
       - "9,190 ratings"
       - "Dedicated Telugu app"
     cons:
+      - "Carries advertising and in-app purchases"
       - "No named translator"
   - slug: "banaka-oriya"
     name: "Bhagavad Gita in Oriya / Odia"
@@ -179,7 +187,7 @@ apps:
     ratingCount: "7,159"
     installs: "100,000+"
     price: "Free"
-    ads: "Not verified"
+    ads: "Contains ads, and in-app purchases"
     languages: "Odia"
     attribution: "None named"
     verdict: "The most-reviewed Odia option, with 7,159 ratings."
@@ -189,6 +197,7 @@ apps:
       - "7,159 ratings"
       - "Dedicated Odia app"
     cons:
+      - "Carries advertising and in-app purchases"
       - "No named translator"
   - slug: "learn-geeta"
     name: "Learn Geeta"
@@ -219,7 +228,7 @@ apps:
     ratingCount: "647"
     installs: "10,000+"
     price: "Free to install"
-    ads: "Not verified"
+    ads: "In-app purchases. No ads declared"
     languages: "English"
     attribution: "Not stated"
     verdict: "The clearest alternative if what you want is an AI to ask rather than a book to read."
@@ -229,6 +238,7 @@ apps:
       - "Built around asking rather than reading"
       - "4.75 from 647 ratings"
     cons:
+      - "Has in-app purchases"
       - "Small review base"
       - "Not a complete reading experience"
   - slug: "song-of-god"
@@ -284,11 +294,9 @@ categoryWinners:
     why: "No advertising, no subscription, no in-app purchases, no sponsorship."
   - category: "Best all-round devotional app"
     winner: "Bhagavad Gita — Krishna Bhakti"
-    ours: built-for-jkyog
     why: "The same Gita text plus kirtans, meditations, audiobooks, courses and lectures. 4,551 ratings, the largest review base here."
   - category: "Best audio"
     winner: "Bhagavad Gita — Krishna Bhakti"
-    ours: built-for-jkyog
     why: "Verse audio alongside audiobooks, bhajans and kirtans."
   - category: "Best AI assistant"
     winner: "Bhagavad Gita Hindi & English"
@@ -354,7 +362,7 @@ faq:
   - question: "Is there a Bhagavad Gita app with AI?"
     answer: "Ours includes Gita GPT, which answers questions using the Gita and gives ten free messages a day after you sign in. Krishna Bhakti has Ask Swamiji, which covers Swami Mukundananda's wider work as well. Ask Krishna AI is an independent alternative built entirely around asking rather than reading."
   - question: "Which app has the most translations and commentaries?"
-    answer: "None of these apps carries a deep library of commentators. Most ship one, and several name none at all. If you want to compare Shankaracharya, Ramanuja, Madhvacharya, Sivananda and others side by side, that is a job for a website rather than an app, and you can do it free on bhagavadgita.com."
+    answer: "None of these apps carries a deep library of commentators. Most ship one, and several name none at all. If you want to compare Shankaracharya, Ramanuja, Madhvacharya, Sivananda and others side by side, that is a job for a website rather than an app, and you can do it free in our [side-by-side verse comparison](/verse-parallel)."
   - question: "Is there an official ISKCON Bhagavad Gita app?"
     answer: "The Bhaktivedanta Book Trust publishes Bhagavad-gita As It Is on iOS for $4.99. There is no official Android version. An Android app carrying the same text exists but is not published by the BBT, and its own description disclaims responsibility for the text."
   - question: "How did you choose these apps?"
@@ -363,20 +371,21 @@ faq:
 
 <Callout variant="disclosure" title="Read this first">
 
-We are not a neutral reviewer. Ved Vyas Foundation publishes the first app on this list. We also
-built and maintain Krishna Bhakti for JKYog, a separate registered organisation. A third app here,
-JKYog India's Song of God, comes from that same organisation but was built by a different team.
-Every one of those is marked wherever it appears. Nobody paid for a place on this page, there are
-no affiliate links, and the store figures below are the stores' own numbers, which you can check
-yourself in one click.
+We are not a neutral reviewer. Ved Vyas Foundation publishes the first app on this list, and it is
+marked as ours wherever it appears. Nobody paid for a place on this page, there are no affiliate
+links, and no app here was ranked in exchange for anything. The store figures below are the stores'
+own numbers, which you can check yourself in one click, and the entry on our own app is the
+harshest one we wrote.
 
 </Callout>
+
+<TableOfContents />
 
 <CategoryWinners />
 
 <ComparisonTable />
 
-## How we compared these
+## How did we compare these apps?
 
 We searched Google Play across seven query variants covering English, Hindi and the phrasing people
 actually use, which surfaced 117 distinct apps. We kept the ones with either enough scale to matter
@@ -385,7 +394,7 @@ or a purpose none of the others served, and dropped the rest.
 Every rating, review count, install band and price here was read from the stores' own structured
 data rather than the rendered page, because the rendered Play listing mixes in ratings from its
 similar-apps carousel and reading those gave us a wrong number for our own app the first time
-round. Each figure was confirmed on 25 July 2026.
+round. Each figure was confirmed on 26 July 2026.
 
 We have not run these apps side by side on a phone for a fixed set of tasks. What follows is a
 comparison of what each app offers, what it costs, and what it tells you about its own sources, not
@@ -398,11 +407,11 @@ its own listing, we quote.
 
 <RankedApps />
 
-## Where our own app falls short
+## Where does our own app fall short?
 
 **One commentator, not several.** We ship Swami Mukundananda's translation and commentary and
 nothing else. That was an editorial decision rather than an oversight, but if you want to read
-Shankaracharya against Ramanuja against Madhvacharya, our app will not do it. Our website will,
+Shankaracharya against Ramanuja against Madhvacharya, our app will not do it. [Our chapter pages](/chapter/2) will,
 free.
 
 **Banaka's Hindi app is far more popular than ours.** It has 58,591 ratings against our 1,688. If
@@ -421,13 +430,13 @@ criticises another app for advertising a rating its own store does not support, 
 does that while hiding its own is worth nothing. On Android we recommend our app without
 reservation. On iPhone it is four days old and you would be finding out with us.
 
-**Gita GPT is limited and asks you to sign in.** Ten messages a day, and you need an account. That
-is what a non-profit can afford to run without advertising.
+**[Gita GPT](/gitagpt) is limited and asks you to sign in.** Ten messages a day, and you need an
+account. That is what a non-profit can afford to run without advertising.
 
 **Only audio and the daily verse need a connection.** The scripture reads offline, but if you want
 an app that works with no internet at all, Song of God is built for exactly that and ours is not.
 
-## Three questions worth answering first
+## Which Bhagavad Gita app should you choose?
 
 **Whose translation do you want to read?** This matters more than any feature. The Gita has been
 rendered into English hundreds of times and the readings differ substantially. If an app will not

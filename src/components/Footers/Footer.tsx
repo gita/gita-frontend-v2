@@ -151,6 +151,18 @@ const Footer = (props: Props) => {
                 </LinkWithLocale>
               </li>
               <li>
+                {/* The comparison page had no inbound internal links at all —
+                    it was reachable only from the sitemap, so it inherited no
+                    internal link equity and crawlers that follow links rather
+                    than sitemaps could miss it entirely. */}
+                <LinkWithLocale
+                  href="/best-bhagavad-gita-apps"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {translate("Best Gita Apps")}
+                </LinkWithLocale>
+              </li>
+              <li>
                 <LinkWithLocale
                   href="/acknowledgements"
                   className="text-muted-foreground hover:text-primary transition-colors"

@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { isValidLocaleSegment } from "shared/functions";
 
+import { Breadcrumb } from "@/components/content/blocks";
 import { MDXBody } from "@/components/content/mdx";
 import { findByUrl } from "@/lib/content";
 import { comparisonJsonLd } from "@/lib/content-jsonld";
@@ -62,12 +64,22 @@ export default async function Page({
   const doc = findByUrl(PATH);
   if (!doc) notFound();
 
-  const verifiedLabel = doc.verifiedOn
-    ? new Date(`${doc.verifiedOn.slice(0, 10)}T00:00:00Z`).toLocaleDateString(
-        "en-GB",
-        { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" },
-      )
-    : null;
+  // Three different dates, each meaning something different. Published is when
+  // the page appeared, updated is when the words last changed, and verifiedOn
+  // is when the figures were last re-pulled from the stores — which is the one
+  // that actually matters on a page made of store numbers.
+  const fmt = (iso?: string) =>
+    iso
+      ? new Date(`${iso.slice(0, 10)}T00:00:00Z`).toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          timeZone: "UTC",
+        })
+      : null;
+  const publishedLabel = fmt(doc.published);
+  const updatedLabel = fmt(doc.updated);
+  const verifiedLabel = fmt(doc.verifiedOn);
 
   return (
     <>
@@ -87,6 +99,7 @@ export default async function Page({
         <header className="relative overflow-hidden pt-16 pb-2 md:pt-24 md:pb-4">
           <div className="from-prakash-primary/20 dark:from-nisha-primary/20 absolute inset-0 -z-10 bg-linear-to-b to-transparent" />
           <div className="container mx-auto max-w-[44rem] px-4">
+            <Breadcrumb title="Best Bhagavad Gita apps" />
             {verifiedLabel ? (
               <p className="bg-prakash-primary/10 text-prakash-primary dark:bg-nisha-primary/10 dark:text-nisha-primary mb-6 inline-flex rounded-full px-4 py-1.5 text-sm font-semibold tracking-wide uppercase">
                 Every figure checked {verifiedLabel}
@@ -100,6 +113,19 @@ export default async function Page({
                 {doc.standfirst}
               </p>
             ) : null}
+
+            {/* Who wrote this, and when. No invented staff byline: the page is
+                genuinely organisation-authored and saying so is the honest
+                version of the credential the surveyed pages carry. */}
+            <p className="text-foreground/60 mt-6 text-sm">
+              By the{" "}
+              <Link href="/about" className="underline underline-offset-4">
+                Ved Vyas Foundation
+              </Link>
+              , who publish bhagavadgita.com
+              {publishedLabel ? ` · Published ${publishedLabel}` : ""}
+              {updatedLabel ? ` · Updated ${updatedLabel}` : ""}
+            </p>
           </div>
         </header>
 
