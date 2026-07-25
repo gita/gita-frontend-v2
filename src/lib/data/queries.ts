@@ -159,31 +159,27 @@ export async function queryChapterData(
   const authorVerseMap = new Map(authorVerses.map((v) => [v.verse_number, v]));
 
   // Build verses array - keep ranges as-is
-  const verses = commonVerses
-    .map((commonVerse) => {
-      // Parse first verse number for ID generation and sorting
-      const firstVerseNum = parseVerseNumber(commonVerse.verse_number);
+  // Note: Verses are already sorted in the JSON files
+  const verses = commonVerses.map((commonVerse) => {
+    // Parse first verse number for ID generation
+    const firstVerseNum = parseVerseNumber(commonVerse.verse_number);
 
-      return {
-        id: chapterNumber * 100 + firstVerseNum,
-        verse_number: commonVerse.verse_number, // Keep original string (e.g., "4-6")
-        word_meanings: commonVerse.word_meanings, // word_meanings is already a string in v4 data
-        chapter_number: chapterNumber,
-        gita_translations: authorVerseMap.get(commonVerse.verse_number)
-          ?.translation
-          ? [
-              {
-                description: authorVerseMap.get(commonVerse.verse_number)!
-                  .translation!,
-              },
-            ]
-          : [],
-      };
-    })
-    .sort(
-      (a, b) =>
-        parseVerseNumber(a.verse_number) - parseVerseNumber(b.verse_number),
-    ); // Sort by first verse number in range
+    return {
+      id: chapterNumber * 100 + firstVerseNum,
+      verse_number: commonVerse.verse_number, // Keep original string (e.g., "4-6")
+      word_meanings: commonVerse.word_meanings, // word_meanings is already a string in v4 data
+      chapter_number: chapterNumber,
+      gita_translations: authorVerseMap.get(commonVerse.verse_number)
+        ?.translation
+        ? [
+            {
+              description: authorVerseMap.get(commonVerse.verse_number)!
+                .translation!,
+            },
+          ]
+        : [],
+    };
+  });
 
   return {
     gita_chapters_by_pk: {
