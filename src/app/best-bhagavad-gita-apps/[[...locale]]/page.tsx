@@ -86,7 +86,7 @@ export default async function Page({
             Equal padding on both sides left a visible hole under the standfirst. */}
         <header className="relative overflow-hidden pt-16 pb-2 md:pt-24 md:pb-4">
           <div className="from-prakash-primary/20 dark:from-nisha-primary/20 absolute inset-0 -z-10 bg-linear-to-b to-transparent" />
-          <div className="container mx-auto max-w-3xl px-4">
+          <div className="container mx-auto max-w-[44rem] px-4">
             {verifiedLabel ? (
               <p className="bg-prakash-primary/10 text-prakash-primary dark:bg-nisha-primary/10 dark:text-nisha-primary mb-6 inline-flex rounded-full px-4 py-1.5 text-sm font-semibold tracking-wide uppercase">
                 Every figure checked {verifiedLabel}
@@ -96,7 +96,7 @@ export default async function Page({
               {doc.heading ?? doc.title}
             </h1>
             {doc.standfirst ? (
-              <p className="text-muted-foreground text-lg leading-relaxed">
+              <p className="text-foreground/85 text-lg leading-relaxed">
                 {doc.standfirst}
               </p>
             ) : null}
@@ -106,7 +106,7 @@ export default async function Page({
         {/* One reading column for the whole page. The blocks that need to be
             wider, the table in particular, scroll inside themselves rather than
             breaking out of it. */}
-        <div className="container mx-auto max-w-3xl px-4 pb-20">
+        <div className="container mx-auto max-w-[44rem] px-4 pb-20">
           <MDXBody doc={doc} />
         </div>
       </article>

@@ -43,8 +43,23 @@ function componentsFor(doc: ContentDoc) {
         {...props}
       />
     ),
+    // Body copy is foreground, not muted. Setting every paragraph to
+    // `text-muted-foreground` put the page's running text at rgb(131,130,125)
+    // on the cream ground — 3.65:1, under the 4.5:1 WCAG AA needs for body
+    // text. Muted is for captions and asides, not for the thing people came to
+    // read. 18px/32px matches the reading measurements in
+    // docs/ui-reference-analysis.md.
     p: (props: HTMLAttributes<HTMLParagraphElement>) => (
-      <p className="text-muted-foreground my-4 leading-relaxed" {...props} />
+      <p
+        className="text-foreground/90 my-5 text-[1.0625rem] leading-[1.75] md:text-[1.125rem]"
+        {...props}
+      />
+    ),
+    ul: (props: HTMLAttributes<HTMLUListElement>) => (
+      <ul
+        className="text-foreground/90 my-5 list-disc space-y-2 pl-5 text-[1.0625rem] leading-[1.75] md:text-[1.125rem]"
+        {...props}
+      />
     ),
     strong: (props: HTMLAttributes<HTMLElement>) => (
       <strong className="text-foreground font-semibold" {...props} />
