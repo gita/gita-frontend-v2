@@ -16,18 +16,21 @@ Verified against `bhagavadgita.com`, not assumed:
 | **App comparison fact sheet** (#307)  | `notes/app-comparison-facts.md`                                                         |
 | **Tier 1 install conversion** (#312)  | `/go/app` 307s to the App Store under an iPhone UA; Smart App Banner in the HTML        |
 | **Tailwind v4 + Next 16.2.11** (#316) | Served CSS carries `@property --tw`, `@layer properties`, `shadow-xs`, `outline-hidden` |
+| **Homepage performance** (#327) | LCP 11,032 ms → 1,588 ms; zero skeletons in the served HTML |
+| **Velite content system** (#330) | `/best-bhagavad-gita-apps` renders from `content/*.mdx`; 4 schema types intact |
+| **Comparison page structure** (#333) | TOC, breadcrumb, dates, corrected ads data, footer inbound link |
 
 Also live: the install bar (rebuilt on radhakrishna.com's pattern — icon, one pill, 69px on
 mobile, corner card on desktop, 700px scroll trigger, 30-day dismissal).
 
 ## Open work, in priority order
 
-Item 26 is done — it went first so the design work below lands on v4 tokens rather than being
-ported twice.
+Items 24 and 26 are done. The design work below now lands on v4 tokens and the block vocabulary
+rather than being ported twice.
 
-1. **Item 24 — Velite content system.** The next thing to build. Rebuilds
-   `/best-bhagavad-gita-apps` on typed MDX blocks; the current version is factually correct but
-   visually unpolished because there is no block vocabulary behind it.
+1. **Item 29 — design system and UI kit.** Next up, and the founder's explicit instruction: fix the
+   tokens, type scale and component kit in one pass rather than page by page. `--muted-foreground`
+   fails WCAG AA site-wide. Measurements are in the roadmap item.
 2. **Item 20 — homepage rebuild.** Highest-traffic page, and the weakest.
 3. **Items 21–23** — reading UI, then content/growth.
 4. **Item 25** — chapter descriptions in house voice.
@@ -54,6 +57,16 @@ ported twice.
   again, `node /opt/homebrew/lib/node_modules/npm/bin/npm-cli.js` bypasses the shim.
 - **`package-lock.json` is git-ignored and `yarn.lock` is the tracked lockfile.** Commit the
   yarn.lock change after any `npm install`; npm 7+ keeps it in sync for you.
+- **Measure, do not eyeball.** A WCAG failure (3.65:1 body text) was live on the comparison page and
+  looked fine to me in screenshots for a full day. It only became visible by computing the ratio.
+  The same went for the type scale: "looks smaller than radhakrishna" was useless until it was
+  16px/26px against 18px/32px. Read computed styles from a real browser and do the arithmetic.
+- **Play listings: read the raw payload, never `innerText`.** Checking the ads column with
+  `innerText` reported "no ads" for an app known to carry them. The raw HTML has it. This is the
+  same trap the header of `content/best-bhagavad-gita-apps.mdx` already records for ratings, and I
+  walked into it anyway. Controls that work: an app whose value was verified another way should
+  reproduce, and our own listing should return zero ad badges despite rendering a "Similar apps"
+  section.
 - **Skeletons in a screenshot are a bug until proven otherwise.** During the Tailwind v4
   verification I saw blank sections and skeleton placeholders in production captures and wrote them
   off as a capture artifact of lazy loading. They were not. The homepage was shipping a skeleton in
@@ -113,8 +126,20 @@ which is real weight it genuinely needs, but it has not been looked at properly.
   ~$5–10 per variant in paid.
 - **radhakrishna.com is one-way top-of-funnel** into the app install, sharing the Gita social
   accounts.
-- **No blog.** Evergreen pages at flat URLs. srimadgita's `/questions/*` does 14,371 visits across
-  146 URLs; `/blog/*` does 56 across 184.
+- **No blog, but the reasoning was wrong and is now corrected.** Comparison pages should be
+  structured as editorial articles — a 12-agent research pass over top-ranking "best X" pages (CRM,
+  project management, phones, password managers, email, VPN) found all of them are. But **the folder
+  string is not a ranking factor**: only 1 of 6 sits under `/blog/`, and flat root-level slugs rank
+  fine. The srimadgita figure (`/questions/*` 14,371 visits across 146 URLs; `/blog/*` 56 across
+  184) is evidence that question-shaped pages beat corporate announcement posts, *not* evidence
+  about folder names. Keep flat URLs; when a second comparison page exists, give them a named folder
+  and a hub and link the flat URL into it.
+- **`/best-bhagavad-gita-apps` keeps its slug.** No migration. Confirmed against the research above.
+- **The Krishna Bhakti connection is not disclosed on the comparison page.** Founder decision,
+  2026-07-26, made with the tradeoff stated: the page ranks it #2 and awarded it two category wins.
+  Only the Foundation's own published app carries a marker. The disclosure paragraph was rewritten
+  at the same time so it no longer claims to enumerate every connection — leaving that framing while
+  removing one would have made a true paragraph false. Do not "fix" this back as a bug.
 
 ## Open questions for the founder
 
