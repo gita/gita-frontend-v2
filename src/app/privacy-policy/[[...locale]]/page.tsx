@@ -11,6 +11,7 @@ import {
   LegalContentPage,
   LegalContentSection,
 } from "@/components/blocks/page-sections";
+import { ogImageUrl } from "@/lib/og/brand";
 
 // Force static generation for better SEO
 export const dynamic = "force-static";
@@ -36,6 +37,7 @@ export async function generateMetadata({
       ? "जानें कि हम आपके डेटा की सुरक्षा कैसे करते हैं, आपकी गोपनीयता सुनिश्चित करते हैं और सुरक्षा बनाए रखते हैं। डेटा संग्रह, उपयोग, कुकीज़ और आपके अधिकारों के बारे में पढ़ें।"
       : "Learn how we protect your data, ensure your privacy, and maintain security. Read about data collection, usage, cookies, and your rights.",
     openGraph: {
+      images: [ogImageUrl({ heading: "Privacy Policy" })],
       title: isHindi
         ? "गोपनीयता नीति - BhagavadGita.com"
         : "Privacy Policy - BhagavadGita.com",
@@ -48,17 +50,9 @@ export async function generateMetadata({
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
-      images: [
-        {
-          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          height: 1080,
-          width: 1920,
-        },
-      ],
     },
     twitter: {
+      images: [ogImageUrl({ heading: "Privacy Policy" })],
       card: "summary_large_image",
       title: isHindi
         ? "गोपनीयता नीति - BhagavadGita.com"
@@ -66,9 +60,6 @@ export async function generateMetadata({
       description: isHindi
         ? "जानें कि हम आपके डेटा की सुरक्षा कैसे करते हैं।"
         : "Learn how we protect your data, ensure your privacy, and maintain security. Read about data collection, usage, cookies, and your rights.",
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {

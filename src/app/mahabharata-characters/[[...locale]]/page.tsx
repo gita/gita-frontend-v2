@@ -32,6 +32,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ogImageUrl } from "@/lib/og/brand";
 
 // Force static generation for better SEO
 export const dynamic = "force-static";
@@ -48,6 +49,7 @@ const baseMetadata: Metadata = {
   keywords:
     "mahabharata characters, bhagavad gita characters, lord krishna, arjuna, bhishma, dronacharya, yudhishthir, karna, pandavas, kauravas",
   openGraph: {
+      images: [ogImageUrl({ heading: "Characters of the Mahabharata", eyebrow: "Characters" })],
     title: "Mahabharata Characters - Key Figures in the Bhagavad Gita",
     description:
       "Explore the main characters of the Mahabharata featured in the Bhagavad Gita - Lord Krishna, Arjuna, Bhishma, Dronacharya, Yudhishthir, and more.",
@@ -55,22 +57,13 @@ const baseMetadata: Metadata = {
     siteName: "Bhagavad Gita",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-        height: 1080,
-        width: 1920,
-      },
-    ],
   },
   twitter: {
+      images: [ogImageUrl({ heading: "Characters of the Mahabharata", eyebrow: "Characters" })],
     card: "summary_large_image",
     title: "Mahabharata Characters - Key Figures in the Bhagavad Gita",
     description:
       "Explore the main characters of the Mahabharata featured in the Bhagavad Gita.",
-    images: [
-      "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-    ],
     site: "@ShriKrishna",
   },
   alternates: {

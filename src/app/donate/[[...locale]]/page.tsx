@@ -20,6 +20,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
+import { ogImageUrl } from "@/lib/og/brand";
 
 // Force static generation for better SEO
 export const dynamic = "force-static";
@@ -51,6 +52,7 @@ export async function generateMetadata({
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
+      images: [ogImageUrl({ heading: "Donate to Ved Vyas Foundation", eyebrow: "Support" })],
       title: isHindi
         ? "दान करें - भगवद गीता - वेद व्यास फाउंडेशन"
         : "Donate - Bhagavad Gita - Ved Vyas Foundation",
@@ -59,19 +61,11 @@ export async function generateMetadata({
         : "Donate to the Bhagavad Gita project to help us continue our mission of spreading the message of the Bhagavad Gita and Krishna's wisdom to the world.",
       url: isHindi ? `${baseUrl}/donate/hi` : `${baseUrl}/donate`,
       siteName: "Bhagavad Gita",
-      images: [
-        {
-          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          height: 1080,
-          width: 1920,
-        },
-      ],
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
     },
     twitter: {
+      images: [ogImageUrl({ heading: "Donate to Ved Vyas Foundation", eyebrow: "Support" })],
       card: "summary_large_image",
       title: isHindi
         ? "दान करें - भगवद गीता - वेद व्यास फाउंडेशन"
@@ -79,9 +73,6 @@ export async function generateMetadata({
       description: isHindi
         ? "भगवद गीता परियोजना में दान करें और दुनिया भर में भगवद गीता और कृष्ण की बुद्धिमत्ता के संदेश को फैलाने के हमारे मिशन को जारी रखने में मदद करें।"
         : "Donate to the Bhagavad Gita project to help us continue our mission of spreading the message of the Bhagavad Gita and Krishna's wisdom to the world.",
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {

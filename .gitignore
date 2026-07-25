@@ -51,3 +51,6 @@ X_API_KEY:"gita-api-key!"
 .env*
 .gstack/
 supabase/.temp/
+
+# Local design reference captures (large images, regenerate with design-refs/capture.mjs)
+design-refs/

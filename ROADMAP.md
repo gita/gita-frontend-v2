@@ -281,6 +281,11 @@ well): don't interrupt on first paint. Wait until someone has shown intent — s
 chapter, read a few verses, come back a second time — then show a dismissible bar or sheet, and
 remember the dismissal.
 
+**Founder direction, 2026-07-25:** a persistent bottom-floating banner with a close button,
+carrying both store buttons, on mobile _and_ desktop. References: srimadgita.com and bible.com
+both do this well. The install is the conversion event for the whole site — everything else on
+bhagavadgita.com is top-of-funnel toward it (see `marketing/00-cross-property-plan.md`).
+
 Requirements:
 
 - platform detection for Android vs iOS, deep link if the app is installed
@@ -288,6 +293,32 @@ Requirements:
 - dismissible, and stays dismissed
 - no layout shift, no CLS penalty, no impact on crawlers
 - replace the current modal, which is dated
+
+**Worth checking first — iOS gives this away free.** Safari on iOS supports a native Smart App
+Banner via a single meta tag:
+
+```html
+<meta name="apple-itunes-app" content="app-id=1602895635">
+```
+
+It renders Apple's own banner, opens the app if installed, and users already recognise it, so it
+annoys nobody. Costs one line. Android has no equivalent, so the custom banner is really an
+Android-and-desktop problem — which simplifies the build considerably.
+
+**The annoyance question is the real design work.** Interstitials that block content are a
+[Google-documented ranking penalty](https://developers.google.com/search/docs/appearance/page-experience),
+and a bottom bar is the safe form. Things to settle before building:
+
+- **Never show it to someone who already has the app.** No reliable detection exists, so use
+  proxies: arrived via an app deep link, or has dismissed twice.
+- **Dismissal must persist properly** — localStorage, and a long window (30+ days), not a session.
+- **Frequency cap.** Once dismissed, do not re-show on the next page view.
+- **Height and safe-area.** Must not cover the reading text or fight the iOS home indicator.
+- **Measure it.** Tracked link per surface, so we learn whether it converts or just irritates.
+  This ties into the signup-attribution work from item 6.
+
+Design should follow the rules in memory (`bg-landing-page-design-rules`) — two text levels
+maximum, brand tokens, no shouting.
 
 ---
 
@@ -403,8 +434,25 @@ what the Gita doesn't claim, a prompt to explore it through Gita AI, related rea
 
 ## 12. One comparison page, not a cluster
 
-**Status:** todo — next up
+**Status:** in review — PR #308
 **Branch:** `feat/best-bhagavad-gita-apps`
+**Page:** `/best-bhagavad-gita-apps`, English only, `/hi` redirects to it
+
+Built from `notes/app-comparison-facts.md`, the sheet fact-checked before a word of the page was
+written. No figure appears on the page that is not in that sheet.
+
+Two conditions the page is holding to, both worth re-checking on any future edit:
+
+- **The disclosure sits above the comparison table, not beneath it.** We publish the app ranked
+  first and built the app ranked second. Ordering categories by reader intent is defensible only
+  while the reader learns that before they read the ordering. If that block ever moves down the
+  page, the ordering has to change with it.
+- **We take 5 of 15 categories and are connected to a 6th.** Verified in the built HTML: 15
+  category headings, 5 ownership badges, plus Song of God from the related organisation. If that
+  count creeps up on a later edit, something has gone wrong.
+
+The methodology says plainly that these were not bench-tested on a phone. That is an upgrade
+waiting on the device screenshots, not a permanent limitation.
 
 ### What the citation data says
 
@@ -775,6 +823,107 @@ From the GTM notes, not yet scheduled:
   Sanskrit glossary, the Gita's timeline within the Mahabharata, a concept graph across all 700
   verses, a "which verse discusses this" search, and an upgraded public API with proper docs,
   versioning, provenance and citation guidelines.
+
+## 19. Tier 1 — app install conversion
+
+**Status:** in progress
+**Branch:** `feat/app-install-tier1`
+**Source:** [`docs/ui-reference-analysis.md`](docs/ui-reference-analysis.md)
+
+Four small, independent changes. The device-emulated capture settled one question first: **none of
+bible.com, quran.com, hallow or abide hide the wrong-platform store badge.** All show both on all
+devices. The only device adaptation any of them makes is dropping the QR on mobile. So we do not
+build user-agent detection.
+
+- **19a. iOS Smart App Banner** with a verse deep link. One meta tag; Safari renders it on iOS
+  only, so Apple does the detection for free. Copy bible.com's `app-argument` trick so it opens
+  the app _at that verse_.
+- **19b. Branded redirect links** — `/go/ios`, `/go/android` — so installs are measurable and the
+  destination can change without a deploy. Extends the attribution work in item 6.
+- **19c. "Get the app" in the nav**, not footer-only.
+- **19d. Sticky mobile app bar**, social proof first (`4.9 ★ · 500,000+ downloads`), dismissible
+  for 30 days, never over scripture, both badges.
+
+---
+
+## 20. Homepage rebuild
+
+**Status:** todo — part of Tier 1
+**Branch:** `feat/homepage-rebuild`
+
+Most-visited page on the site. Captured on all three device profiles
+(`design-refs/OURS/`, local; regenerate with `docs/design-capture/capture.mjs`) and compared against the references. What is wrong with it today:
+
+- **The 18-chapter grid dominates the page.** It is a table of contents where a homepage should
+  be. bible.com's homepage has no chapter list at all — it leads with _Read the Bible Online /
+  Continue Reading_ and topic entry points.
+- **No app CTA above the footer**, on the page that exists to drive installs. The single biggest
+  miss.
+- **The h1 is a keyword string** — "Bhagavad Gita in Hindi & English with Audio" reads like a meta
+  title. Compare "The Holy Bible. For Everyone. 100% Free." Ours never says the thing that
+  actually differentiates us: complete, free, no ads, no subscription.
+- **The hero image sits behind the h1**, competing with it and hurting contrast. bible.com puts
+  art beside the text on a plain ground.
+- **Two equal-weight CTAs** — "Read now" and "Learn more". The second is weak and takes half the
+  space.
+- **No search.** quran.com leads with a large search field; we have an icon in the nav.
+- **No "continue reading"** — both bible.com and quran.com remember where you were.
+- **No social proof** — no rating, no download count.
+- **No topic or emotion entry points** (overlaps item 11).
+- **The newsletter block occupies prime real estate** for something the founder reports barely
+  converts.
+- **No non-profit mission stated.** sefaria puts it in the reading sidebar. It is our strongest
+  differentiator against a ₹79/month competitor and we barely say it.
+- Whole page is a single `<section>`; long paragraphs are centred.
+
+Target shape: short hero with a real proposition → search or continue-reading → app CTA with
+proof → topics/emotions → chapters (compressed) → mission → FAQ.
+
+---
+
+## 21. Reading UI — mobile shell and verse interactions
+
+**Status:** todo
+**Branch:** `feat/reading-ui-shell`
+
+Found only under real device emulation, so these were invisible to earlier passes:
+
+- **21a. Bottom tab bar on mobile.** bible.com runs `Home · Bible · Plans · Videos`; quran.com
+  runs `Surah · Verse · Juz · Page`. Their mobile web feels like an app. We hide everything behind
+  a hamburger. **Largest single gap on the list.**
+- **21b. Verse-selection action sheet** — select a verse, get Highlight / Copy / Share / Note, and
+  an account prompt at the moment it has value. We have no verse-selection interaction at all.
+- **21c. Per-verse action row** — play, bookmark, copy, share, note (quran.com).
+- **21d. Reader settings** — text size, font, verse numbers on/off. Four controls, Devanagari-aware.
+
+---
+
+## 22. Reading UI — modes and commentary
+
+**Status:** todo
+**Branch:** `feat/reading-modes`
+
+- **22a. "Verse by Verse" / "Reading" mode toggle** (quran.com) — study versus read-through from
+  one text.
+- **22b. Commentary as per-verse tabs** — quran.com does Tafsirs / Lessons / Reflections /
+  Answers inline. **This supersedes the separate-picker approach in item 8**, folding the
+  translation and commentary choice into the reading page itself.
+- **22c. Parallel translation view** (bible.com's `Parallel` toggle).
+- **22d. "Continue reading"** state memory.
+
+---
+
+## 23. Content and growth features
+
+**Status:** todo
+
+- **23a. Emotion/topic cards** — Love, Anxiety, Healing, Anger, Hope, Grief as gradient tiles.
+  This is the life-situation layer of item 11, and bible.com puts it on the homepage.
+- **23b. Verse Images** — a shareable graphic per verse. Free social content from assets we
+  already hold; feeds the pipeline in `marketing/06-video-pipeline.md`.
+- **23c. Reading plans with streaks** — the retention mechanism behind the push work in item 5.
+- **23d. Name the reciter** and give audio a real surface (quran.com has a whole `/reciters` page).
+- **23e. State the non-profit mission on reading pages**, sefaria-style.
 
 ## 24. Content system — Velite + MDX blocks
 

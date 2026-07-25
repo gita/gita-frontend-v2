@@ -30,6 +30,7 @@ import { FloralDivider, VedicPattern } from "@/components/blocks/decorative";
 import { CTASection } from "@/components/blocks/page-sections";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
+import { ogImageUrl } from "@/lib/og/brand";
 
 // Static so the page ships as HTML with no server work per request. Crawlers
 // and AI answer engines get the full content without executing any JavaScript.
@@ -64,6 +65,13 @@ export async function generateMetadata({
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
+      images: [ogImageUrl({
+        eyebrow: "Free forever, no ads",
+        heading: "Bhagavad Gita App",
+        subheading:
+          "700 verses in seven languages, with Sanskrit recitation, offline reading and Gita GPT.",
+        meta: "Android and iPhone",
+      })],
       title: isHindi
         ? "सबसे अच्छा निःशुल्क भगवद गीता ऐप - बिना विज्ञापन, संस्कृत ऑडियो, Gita GPT AI"
         : "Best Free Bhagavad Gita App - No Ads, Sanskrit Audio, Gita GPT AI",
@@ -72,19 +80,17 @@ export async function generateMetadata({
         : "All 18 chapters and 700 verses in seven languages, with Sanskrit recitation, offline reading and Gita GPT. Run by Ved Vyas Foundation, a non-profit.",
       url,
       siteName: "Bhagavad Gita",
-      images: [
-        {
-          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          height: 1080,
-          width: 1920,
-        },
-      ],
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
     },
     twitter: {
+      images: [ogImageUrl({
+        eyebrow: "Free forever, no ads",
+        heading: "Bhagavad Gita App",
+        subheading:
+          "700 verses in seven languages, with Sanskrit recitation, offline reading and Gita GPT.",
+        meta: "Android and iPhone",
+      })],
       card: "summary_large_image",
       title: isHindi
         ? "सबसे अच्छा निःशुल्क भगवद गीता ऐप - बिना विज्ञापन"
@@ -92,9 +98,6 @@ export async function generateMetadata({
       description: isHindi
         ? "सभी 18 अध्याय और 700 श्लोक सात भाषाओं में, संस्कृत पाठ, ऑफ़लाइन पठन और Gita GPT।"
         : "All 18 chapters and 700 verses in seven languages, with Sanskrit recitation, offline reading and Gita GPT.",
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {

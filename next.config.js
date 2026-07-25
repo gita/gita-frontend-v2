@@ -100,6 +100,54 @@ module.exports = {
         destination: "/bhagavad-gita-app",
         permanent: true,
       },
+      // The app comparison page exists in English only. The header language
+      // dropdown rewrites the current path to append /hi, so without this the
+      // reader who switches to Hindi lands on a 404. Redirecting rather than
+      // rendering keeps the page at exactly one URL: a /hi copy carrying
+      // English app descriptions would be a thin duplicate of this one.
+      {
+        source: "/best-bhagavad-gita-apps/hi",
+        destination: "/best-bhagavad-gita-apps",
+        permanent: false,
+      },
+      // Branded install links, so store clicks are measurable in one place and
+      // the destination can change without a deploy. bible.com does the same
+      // via app.bible.com/app-ios. Not permanent: store URLs do change.
+      // /go/app picks the store from the User-Agent. This is server-side routing,
+      // not UI branching: nothing is hidden, and a wrong guess still lands the
+      // visitor on a real store page. It buys the single-button layout, which is
+      // what lets the title and subtitle breathe on a 393px screen.
+      {
+        source: "/go/app",
+        has: [
+          {
+            type: "header",
+            key: "user-agent",
+            value: ".*(iPhone|iPad|iPod|Macintosh).*",
+          },
+        ],
+        destination:
+          "https://apps.apple.com/app/bhagavad-gita-hindi-english/id1602895635",
+        permanent: false,
+      },
+      {
+        source: "/go/app",
+        destination:
+          "https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita",
+        permanent: false,
+      },
+      {
+        source: "/go/ios",
+        destination:
+          "https://apps.apple.com/app/bhagavad-gita-hindi-english/id1602895635",
+        permanent: false,
+      },
+      {
+        source: "/go/android",
+        destination:
+          "https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita",
+        permanent: false,
+      },
       ...generateVerseRedirects(),
     ];
   },

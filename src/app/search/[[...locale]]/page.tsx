@@ -8,6 +8,8 @@ import { getTranslations } from "shared/translate/server";
 
 import SearchPage from "./SearchPage";
 
+import { ogImageUrl } from "@/lib/og/brand";
+
 // Pre-generate search pages for SEO
 export async function generateStaticParams() {
   return [{ locale: [] }, { locale: ["hi"] }];
@@ -27,6 +29,7 @@ export const metadata: Metadata = {
   creator: "Ved Vyas Foundation",
   publisher: "Ved Vyas Foundation",
   openGraph: {
+      images: [ogImageUrl({ heading: "Search the Bhagavad Gita", eyebrow: "Search" })],
     title: "Search Bhagavad Gita - Find Verses, Chapters & Teachings",
     description:
       "Search the complete Bhagavad Gita text. Find specific verses, chapters, keywords, and teachings from Lord Krishna in multiple languages.",
@@ -34,24 +37,13 @@ export const metadata: Metadata = {
     siteName: "Bhagavad Gita",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-        secureUrl:
-          "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-        height: 1080,
-        width: 1920,
-      },
-    ],
   },
   twitter: {
+      images: [ogImageUrl({ heading: "Search the Bhagavad Gita", eyebrow: "Search" })],
     card: "summary_large_image",
     title: "Search Bhagavad Gita",
     description:
       "Search the complete Bhagavad Gita text. Find verses, chapters, and Krishna's teachings in Sanskrit, English, and Hindi.",
-    images: [
-      "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-    ],
     site: "@ShriKrishna",
   },
   alternates: {

@@ -34,6 +34,7 @@ import FAQ from "@/components/Home/FAQ";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
+import { ogImageUrl } from "@/lib/og/brand";
 
 // Force static generation for better SEO
 export const dynamic = "force-static";
@@ -64,6 +65,7 @@ export async function generateMetadata({
     authors: [{ name: "Ved Vyasa" }],
     publisher: "Ved Vyas Foundation",
     openGraph: {
+      images: [ogImageUrl({ heading: "The Bhagavad Gita", eyebrow: "About" })],
       title: isHindi
         ? "भगवद गीता के बारे में - कृष्ण की शिक्षाएं | महाभारत"
         : "About Bhagavad Gita - Krishna's Teachings to Arjuna | Mahabharata",
@@ -74,17 +76,9 @@ export async function generateMetadata({
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
-      images: [
-        {
-          url: "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          secureUrl:
-            "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-          height: 1080,
-          width: 1920,
-        },
-      ],
     },
     twitter: {
+      images: [ogImageUrl({ heading: "The Bhagavad Gita", eyebrow: "About" })],
       card: "summary_large_image",
       title: isHindi
         ? "भगवद गीता के बारे में - कृष्ण की शिक्षाएं | महाभारत"
@@ -92,9 +86,6 @@ export async function generateMetadata({
       description: isHindi
         ? "भगवद गीता की खोज करें: भगवान कृष्ण से अर्जुन को कालातीत ज्ञान के 700 श्लोक। महाभारत संदर्भ, वेद व्यास और प्रमुख पात्रों के बारे में जानें।"
         : "Discover the Bhagavad Gita: 700 verses of timeless wisdom from Lord Krishna to Arjuna. Learn about the Mahabharata context, Ved Vyasa, and key characters.",
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {
