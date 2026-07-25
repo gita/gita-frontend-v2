@@ -106,23 +106,23 @@ Dutch, Português, русский. A native-feeling pattern; we use a dropdown.
 
 ### bible.com — the benchmark
 
-| They have                                                                   | We have                     | Gap           |
-| --------------------------------------------------------------------------- | --------------------------- | ------------- |
-| Bottom tab bar on mobile                                                    | Hamburger                   | **Large**     |
-| Verse-selection action sheet (highlight/copy/compare/share)                 | Nothing                     | **Large**     |
-| **Parallel** translation view                                               | Single translation          | **Large**     |
-| Reading plans (12/21/7-day, third-party publishers)                         | Nothing                     | **Large**     |
-| Verse Images — shareable graphic per verse                                  | Nothing                     | **Large**     |
-| Video per verse                                                             | Nothing                     | Medium        |
-| Reader settings: size, sans/serif font, footnotes, numbers                  | Nothing                     | Medium        |
-| "Continue Reading" state memory                                             | Nothing                     | Medium        |
-| Emotion/topic cards (Love, Anxiety, Healing, Anger, Hope, Depression, Fear) | Nothing                     | **Large**     |
-| Audio "Listen" alongside every chapter                                      | Audio exists                | Small         |
-| Sticky app bar with social proof (`20M Ratings. 4.9`)                       | Nothing                     | Medium        |
-| Dedicated `/app` page with mockup + testimonials                            | `/bhagavad-gita-app` exists | Small         |
-| Smart App Banner with verse deep link                                       | Nothing                     | **Quick win** |
-| Branded redirect links for attribution                                      | Nothing                     | **Quick win** |
-| "Get the app" permanently in nav                                            | Footer only                 | **Quick win** |
+| They have                                                                   | We have                                                                                                                         | Gap           |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| Bottom tab bar on mobile                                                    | Hamburger                                                                                                                       | **Large**     |
+| Verse-selection action sheet (highlight/copy/compare/share)                 | Nothing                                                                                                                         | **Large**     |
+| **Parallel** translation view                                               | Single translation                                                                                                              | **Large**     |
+| Reading plans (12/21/7-day, third-party publishers)                         | Nothing                                                                                                                         | **Large**     |
+| Verse Images — shareable graphic per verse                                  | Nothing                                                                                                                         | **Large**     |
+| Video per verse                                                             | Nothing                                                                                                                         | Medium        |
+| Reader settings: size, sans/serif font, footnotes, numbers                  | Nothing                                                                                                                         | Medium        |
+| "Continue Reading" state memory                                             | Nothing                                                                                                                         | Medium        |
+| Emotion/topic cards (Love, Anxiety, Healing, Anger, Hope, Depression, Fear) | Nothing                                                                                                                         | **Large**     |
+| Audio "Listen" alongside every chapter                                      | Audio exists                                                                                                                    | Small         |
+| Sticky app bar with social proof (`20M Ratings. 4.9`)                       | Nothing                                                                                                                         | Medium        |
+| Dedicated app page                                                          | **`/bhagavad-gita-app` exists** — has screenshots, ratings, FAQ. Missing only a device mockup and named testimonials with faces | Small         |
+| Smart App Banner with verse deep link                                       | Nothing                                                                                                                         | **Quick win** |
+| Branded redirect links for attribution                                      | Nothing                                                                                                                         | **Quick win** |
+| "Get the app" permanently in nav                                            | Footer only                                                                                                                     | **Quick win** |
 
 ### quran.com — the closest analogue
 
