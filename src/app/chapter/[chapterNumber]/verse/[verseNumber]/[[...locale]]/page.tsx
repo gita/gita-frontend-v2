@@ -7,7 +7,11 @@ import { loadChapters } from "lib/data";
 import { findVerseRange } from "lib/data/loaders";
 import { getChapterData } from "lib/getChapterData";
 import { getVerseData } from "lib/getVerseData";
-import { getLanguageSettings, isValidLocaleSegment, paramsToLocale } from "shared/functions";
+import {
+  getLanguageSettings,
+  isValidLocaleSegment,
+  paramsToLocale,
+} from "shared/functions";
 import { getTranslations } from "shared/translate/server";
 
 import VersePage from "./VersePage";
@@ -108,29 +112,33 @@ export async function generateMetadata({
     creator: "Ved Vyas Foundation",
     publisher: "Ved Vyas Foundation",
     openGraph: {
-      images: [ogImageUrl({
-        eyebrow: "Verse",
-        heading: `Bhagavad Gita ${chapterNumber}.${verseNumber}`,
-        subheading:
-          "Sanskrit, transliteration, word meanings, translation and commentary.",
-      })],
+      images: [
+        ogImageUrl({
+          eyebrow: "Verse",
+          heading: `Bhagavad Gita ${chapterNumber}.${verseNumber}`,
+          subheading:
+            "Sanskrit, transliteration, word meanings, translation and commentary.",
+        }),
+      ],
       url: isHindi ? `${verseUrl}/hi` : verseUrl,
       siteName: "Bhagavad Gita",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "article",
-      authors: "https://www.facebook.com/radhakrishnablog/",
+      authors: "https://www.facebook.com/vedvyasfoundation/",
       tags: ["Krishna", "Bhagavad Gita", "Bhagwad Gita"],
       section: "Bhagavad Gita",
       title,
       description,
     },
     twitter: {
-      images: [ogImageUrl({
-        eyebrow: "Verse",
-        heading: `Bhagavad Gita ${chapterNumber}.${verseNumber}`,
-        subheading:
-          "Sanskrit, transliteration, word meanings, translation and commentary.",
-      })],
+      images: [
+        ogImageUrl({
+          eyebrow: "Verse",
+          heading: `Bhagavad Gita ${chapterNumber}.${verseNumber}`,
+          subheading:
+            "Sanskrit, transliteration, word meanings, translation and commentary.",
+        }),
+      ],
       card: "summary_large_image",
       title,
       description,
