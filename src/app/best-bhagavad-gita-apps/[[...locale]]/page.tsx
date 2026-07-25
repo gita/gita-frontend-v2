@@ -81,7 +81,10 @@ export default async function Page({
       <article className="bg-prakash-bg dark:bg-nisha-bg">
         {/* Hero. Three levels only: the verification badge, the heading, and one
             self-contained answer paragraph an AI assistant can lift whole. */}
-        <header className="relative overflow-hidden py-16 md:py-24">
+        {/* Asymmetric padding on purpose: the header owns the space above it,
+            and the first block in the MDX body brings its own margin below.
+            Equal padding on both sides left a visible hole under the standfirst. */}
+        <header className="relative overflow-hidden pt-16 pb-2 md:pt-24 md:pb-4">
           <div className="from-prakash-primary/20 dark:from-nisha-primary/20 absolute inset-0 -z-10 bg-linear-to-b to-transparent" />
           <div className="container mx-auto max-w-3xl px-4">
             {verifiedLabel ? (
