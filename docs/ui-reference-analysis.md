@@ -1,7 +1,6 @@
 # UI/UX reference analysis — what the leaders do that we don't
 
-Captured 2026-07-25 with Playwright using **real device profiles**, not window resizing. 118
-screenshots in [`design-refs/`](../design-refs/), organised `<site>/<profile>/<page>-{full,fold}.jpg`
+Captured 2026-07-25 with Playwright using **real device profiles**, not window resizing. 118 screenshots, organised `<site>/<profile>/<page>-{full,fold}.jpg`
 — `full` is the entire page, so every section is visible, not just the hero.
 
 | Profile | Viewport | DPR       | Touch   | User agent                 |
@@ -10,11 +9,14 @@ screenshots in [`design-refs/`](../design-refs/), organised `<site>/<profile>/<p
 | iphone  | 393×852  | **3**     | **yes** | iPhone; CPU iPhone OS 17_5 |
 | android | 412×915  | **2.625** | **yes** | Linux; Android 14; Pixel 7 |
 
-Reproduce with [`design-refs/capture.mjs`](../design-refs/capture.mjs). Raw device probe data in
-`design-refs/probe.json`.
+Reproduce with [`design-capture/capture.mjs`](design-capture/capture.mjs). Raw device probe data in [`design-capture/probe.json`](design-capture/probe.json).
 
 Sites: **bible.com** (YouVersion, 500M+ installs), **quran.com**, **sefaria.org**, **hallow.com**,
 **abide.com**, **glorify-app.com**, **calm.com**.
+
+> **Screenshots are local-only** and git-ignored — they are large and regenerate in a few
+> minutes. Run `node docs/design-capture/capture.mjs` with Playwright installed to rebuild them
+> into `design-refs/`.
 
 ---
 
@@ -214,5 +216,5 @@ misleading error page.
 - Screenshots downscaled (full pages to 1400px, folds to 900px) to keep the repo reasonable at
   ~9 MB.
 - These are **behavioural and structural** observations. Type scales and control dimensions are in
-  [`design-refs/README.md`](../design-refs/README.md); per your note, detailed style replication
+  the capture script's output; per your note, detailed style replication
   comes later, item by item.

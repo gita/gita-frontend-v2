@@ -852,7 +852,7 @@ build user-agent detection.
 **Branch:** `feat/homepage-rebuild`
 
 Most-visited page on the site. Captured on all three device profiles
-(`design-refs/OURS/`) and compared against the references. What is wrong with it today:
+(`design-refs/OURS/`, local; regenerate with `docs/design-capture/capture.mjs`) and compared against the references. What is wrong with it today:
 
 - **The 18-chapter grid dominates the page.** It is a table of contents where a homepage should
   be. bible.com's homepage has no chapter list at all — it leads with _Read the Bible Online /
