@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const DISMISS_KEY = "app-install-bar-dismissed-until";
 const DISMISS_DAYS = 30;
