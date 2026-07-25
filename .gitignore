@@ -57,3 +57,6 @@ design-refs/
 
 # Local Claude Code session logs
 .claude/
+
+# Velite generated content layer
+.velite/
