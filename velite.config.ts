@@ -99,6 +99,15 @@ const content = defineCollection({
         .array(s.object({ question: s.string(), answer: s.string() }))
         .default([]),
       draft: s.boolean().default(false),
+      /**
+       * The raw MDX source alongside the compiled body.
+       *
+       * The table of contents is derived from this rather than declared by
+       * hand, so it cannot drift out of step with the page. Compiled MDX is
+       * a JS string and parsing headings back out of it is brittle; the
+       * source still has `## Heading` and `<BlockName />` in document order.
+       */
+      source: s.raw(),
       body: s.mdx(),
     })
     .transform((data) => ({

@@ -10,6 +10,7 @@ import {
   FaqBlock,
   Provenance,
   RankedApps,
+  TableOfContents,
 } from "./blocks";
 
 import type { ContentDoc } from "@/lib/content";
@@ -80,6 +81,7 @@ function componentsFor(doc: ContentDoc) {
       );
     },
     Callout,
+    TableOfContents: () => <TableOfContents doc={doc} />,
     CategoryWinners: () => <CategoryWinners doc={doc} />,
     ComparisonTable: () => <ComparisonTable doc={doc} />,
     RankedApps: () => <RankedApps doc={doc} />,

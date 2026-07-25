@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import type { ContentDoc } from "@/lib/content";
+import { tableOfContents } from "@/lib/content-toc";
 
 /**
  * Block vocabulary for MDX content pages (ROADMAP item 24).
@@ -143,6 +144,77 @@ function StoreLinks({ app }: { app: App }) {
 }
 
 /* -------------------------------------------------------------------- blocks */
+
+/**
+ * Breadcrumb. The BreadcrumbList schema already existed but nothing rendered,
+ * so the trail was visible to crawlers and invisible to readers.
+ */
+export function Breadcrumb({ title }: { title: string }) {
+  return (
+    <nav aria-label="Breadcrumb" className="mb-6">
+      <ol className="text-foreground/60 flex flex-wrap items-center gap-1.5 text-sm">
+        <li>
+          <Link
+            href="/"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            Home
+          </Link>
+        </li>
+        <li aria-hidden className="text-foreground/40">
+          /
+        </li>
+        <li className="text-foreground/80" aria-current="page">
+          {title}
+        </li>
+      </ol>
+    </nav>
+  );
+}
+
+/**
+ * Section index with jump links.
+ *
+ * Derived from the MDX source, so it stays in step with the page. Not sticky:
+ * only 2 of the 6 top-ranking comparison pages surveyed use a floating one, and
+ * a persistent rail costs more on a phone than it returns.
+ *
+ * The real reason this earns its place is extraction. Stable anchors plus a
+ * visible index is how an answer engine cites a *section* of a page rather than
+ * the whole undifferentiated thing.
+ */
+export function TableOfContents({ doc }: { doc: ContentDoc }) {
+  const entries = tableOfContents(doc);
+  if (entries.length < 3) return null;
+  return (
+    <nav
+      aria-labelledby="toc-heading"
+      className="border-border bg-adhyayan-bg/50 dark:bg-nisha-bg/40 my-10 rounded-2xl border p-6"
+    >
+      <p
+        id="toc-heading"
+        className="text-foreground/60 mb-3 text-xs font-semibold tracking-[0.16em] uppercase"
+      >
+        On this page
+      </p>
+      <ol className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
+        {entries.map((e, i) => (
+          <li key={e.id} className="flex gap-2 text-sm leading-snug">
+            <span className="text-foreground/40 tabular-nums" aria-hidden>
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <a
+              href={`#${e.id}`}
+              className="text-foreground/85 hover:text-prakash-primary dark:hover:text-nisha-primary underline-offset-4 hover:underline"
+            >
+              {e.title}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
 
 /** Freeform note. `disclosure` is the conflict-of-interest variant. */
 export function Callout({
