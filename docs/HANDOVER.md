@@ -54,10 +54,16 @@ ported twice.
   again, `node /opt/homebrew/lib/node_modules/npm/bin/npm-cli.js` bypasses the shim.
 - **`package-lock.json` is git-ignored and `yarn.lock` is the tracked lockfile.** Commit the
   yarn.lock change after any `npm install`; npm 7+ keeps it in sync for you.
-- **Screenshotting production under-renders.** Several sections are gated on IntersectionObserver,
-  so a capture that only waits a few seconds gets skeletons and blank space, not the page. Walk the
-  scroll position down the page before shooting or the diff will be full of false positives — this
-  produced three of them during the v4 verification.
+- **Skeletons in a screenshot are a bug until proven otherwise.** During the Tailwind v4
+  verification I saw blank sections and skeleton placeholders in production captures and wrote them
+  off as a capture artifact of lazy loading. They were not. The homepage was shipping a skeleton in
+  the HTML on every single load and filling it about eleven seconds later (#327). The founder found
+  it by using the site. If a capture shows a skeleton, load the page and time it before explaining
+  it away.
+- **Measure font cost with `performance.getEntriesByType("resource")`, not by reading the config.**
+  `next/font` emits its preloads as an HTTP `Link:` response header, so grepping the HTML for
+  `<link rel=preload>` finds nothing and the CDP request initiator reads `other`. Two wrong
+  hypotheses died on that before the header turned up.
 - **`Vercel – bg-frontend` fails on every PR.** It is an orphaned project in the `gita-v2` Vercel
   team, which `samanyougarg` is not a member of. Both projects share one GitHub App installation,
   so it cannot be removed from the GitHub side without breaking the working deploy. It is **not a
@@ -71,6 +77,24 @@ ported twice.
   headlessly. Verification has to happen on production after merge, against a baseline captured
   beforehand.
 - **`design-refs/` is git-ignored.** Regenerate rather than looking for it in git.
+
+## Performance baseline, measured 2026-07-25 after #327
+
+Desktop, cold context, fast connection. Re-measure against these rather than against a feeling.
+
+| Page         | LCP before   | LCP after |
+| ------------ | ------------ | --------- |
+| `/`          | 11,032 ms    | 1,588 ms  |
+| `/chapter/2` | 3,960 ms     | 2,068 ms  |
+| `/hi`        | not measured | 4,336 ms  |
+
+Font payload on the English homepage went from 1,045 kB across 15 files to 182 kB across 4. The
+remaining known drag is the hero image: `bhagavad-gita-16x9-2304x1296.webp` is 617 kB and there is
+no variant between 1152w and 2304w, so a 1440px viewport pulls the 2304 file. A 1600w variant is
+the obvious next win and nobody has cut one yet.
+
+`/hi` is the slowest page left at 4.3 s. It now correctly loads Noto Serif Devanagari on demand,
+which is real weight it genuinely needs, but it has not been looked at properly.
 
 ## Decisions worth not re-litigating
 
