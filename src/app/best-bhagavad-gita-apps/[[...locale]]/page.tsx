@@ -100,8 +100,12 @@ export default async function Page({
           <div className="from-prakash-primary/20 dark:from-nisha-primary/20 absolute inset-0 -z-10 bg-linear-to-b to-transparent" />
           <div className="container mx-auto max-w-[44rem] px-4">
             <Breadcrumb title="Best Bhagavad Gita apps" />
+            {/* An eyebrow, not a badge. The filled terracotta pill this replaces
+                was the loudest element above the fold and competed with the
+                headline for first read; set in gold at 12px it labels the page
+                without arguing with it. */}
             {verifiedLabel ? (
-              <p className="bg-prakash-primary/10 text-prakash-primary dark:bg-nisha-primary/10 dark:text-nisha-primary mb-6 inline-flex rounded-full px-4 py-1.5 text-sm font-semibold tracking-wide uppercase">
+              <p className="text-gold-ink mb-3 text-xs font-semibold tracking-[0.18em] uppercase">
                 Every figure checked {verifiedLabel}
               </p>
             ) : null}

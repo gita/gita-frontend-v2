@@ -226,16 +226,21 @@ export function Callout({
   title?: string;
   children: React.ReactNode;
 }) {
+  // Gold rather than terracotta. A disclosure is an aside, not an alarm, and
+  // tinting it with the action colour made it read as the loudest thing on the
+  // page. Gold is the ornament colour and says "read this" without shouting.
   const tone =
     variant === "disclosure"
-      ? "border-prakash-primary/30 bg-prakash-primary/5 dark:border-nisha-primary/30 dark:bg-nisha-primary/10"
+      ? "border-gold/30 bg-gold/5"
       : "border-border bg-adhyayan-bg/60 dark:bg-nisha-bg/40";
   return (
     <aside className={`my-10 rounded-2xl border p-6 md:p-7 ${tone}`}>
       {title ? (
-        <p className="font-crimson mb-2 text-lg font-bold">{title}</p>
+        <p className="text-gold-ink mb-3 text-xs font-semibold tracking-[0.16em] uppercase">
+          {title}
+        </p>
       ) : null}
-      <div className="text-muted-foreground [&>p]:mt-0 [&>p]:leading-relaxed [&>p+p]:mt-3">
+      <div className="text-foreground/85 text-[1.0625rem] [&>p]:mt-0 [&>p]:leading-[1.7] [&>p+p]:mt-3">
         {children}
       </div>
     </aside>
