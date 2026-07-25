@@ -73,6 +73,27 @@ const content = defineCollection({
       /** Which storefront the ratings came from. Ratings differ by storefront. */
       storefront: s.string().optional(),
       apps: s.array(app).default([]),
+      /** "Best for X" picks. `ours` repeats the disclosure at the point of claim. */
+      categoryWinners: s
+        .array(
+          s.object({
+            category: s.string(),
+            winner: s.string(),
+            ours: s.enum(["published", "built-for-jkyog"]).optional(),
+            why: s.string(),
+          }),
+        )
+        .default([]),
+      /** Left off the ranked list on purpose, each with the reason stated. */
+      alsoConsidered: s
+        .array(
+          s.object({
+            name: s.string(),
+            developer: s.string(),
+            note: s.string(),
+          }),
+        )
+        .default([]),
       /** Genuine Q&A, mirrored in-body, feeding FAQPage schema. */
       faq: s
         .array(s.object({ question: s.string(), answer: s.string() }))
