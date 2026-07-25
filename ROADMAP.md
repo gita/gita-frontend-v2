@@ -1049,6 +1049,71 @@ resource timings, and map every font file back to its family. Do not infer paylo
 
 ---
 
+## 29. Design system and UI kit — one pass, not page by page
+
+**Status:** todo — next up
+**Branch:** `feat/design-system`
+
+**Founder direction, 2026-07-26:** *"this page is very hard to read because the visual hierarchy and
+textual hierarchy are not there... When we do the visual check, compare with radhakrishna, bible,
+calm.com and other things. At that point, we'll need to fix the overall styles, the design system,
+and the UI kit in one go."*
+
+The instruction is explicit and it is right: stop patching pages individually. Fix the tokens, the
+type scale and the component kit once, then let every page inherit it.
+
+### What is measured and known
+
+Taken 2026-07-26, desktop, against `radhakrishna.com/stories/when-krishna-dressed-as-a-gopi`:
+
+| | radhakrishna story | our comparison page (before fixes) | after #332 |
+| --- | --- | --- | --- |
+| body size / leading | 18px / 32px (1.78) | 16px / 26px (1.63) | 17–18px / 1.75 |
+| body contrast on cream | ~10:1 | **3.65:1 — failed WCAG AA** | 14.5:1 |
+| characters per line | 78 | 92 | 75 |
+| images in the article | 4 | 0 | 0 |
+| visible breadcrumb | yes | no | yes (#333) |
+| heading style | question-shaped | statement | question-shaped (#333) |
+
+### The token-level problem, which is the actual job
+
+**`--muted-foreground` is `rgb(131,130,125)` — 3.65:1 on our cream ground, everywhere it appears on
+the site.** That is below the 4.5:1 WCAG AA needs for body text. #332 fixed it on one page by moving
+content off the token; it is still wrong everywhere else. Changing the token itself is the real fix
+and has a site-wide blast radius, which is exactly why it belongs here rather than in a page fix.
+
+Audit the other tokens the same way while in there — `--border`, `--verse-*`, the dark-mode set.
+Nothing has been checked for contrast.
+
+### Scope
+
+- **Tokens first.** Contrast-audit every foreground/background pair in `src/app/global.css`, in both
+  themes. Fix at the token, not the call site.
+- **A type scale.** There isn't one. Sizes are picked per component. bible.com sets scripture at
+  18px/36px in a 480px column and its chapter headings at *body size* so furniture never competes
+  with the text (`docs/ui-reference-analysis.md`). We have no equivalent rule.
+- **The UI kit.** `src/components/ui/*` is stock shadcn with our colours dropped in. It has never
+  been designed. The blocks in `src/components/content/blocks.tsx` are the first components built to
+  a measurement rather than by eye — extend that approach rather than starting over.
+- **Reading measure.** 44rem worked on the comparison page. Decide it once, globally.
+- **Images.** The single biggest visual difference from radhakrishna.com is that their pages have
+  art and ours have none. Ties into item 27.
+
+### Reference set
+
+`radhakrishna.com` (ours, and the bar to clear), `bible.com`, `calm.com`, `quran.com`, `sefaria.org`.
+Capture scripts and the existing gap list are in `docs/design-capture/` and
+`docs/ui-reference-analysis.md`.
+
+### Method that worked, and should be reused
+
+**Measure, do not eyeball.** The WCAG failure had been live and looked fine to me in screenshots; it
+took computing the ratio to see it. Same for the type scale — "looks smaller" became actionable only
+as 16/26 against 18/32. Read computed styles out of a real browser and compute contrast, rather than
+comparing images.
+
+---
+
 - **Anti-thin-content standard** for everything above: every important page needs at least three
   genuine human contributions — editorial judgment, verified primary sources, real examples,
   comparisons, expert review. Scaled low-value pages count against us whether or not AI wrote
