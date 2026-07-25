@@ -10,6 +10,7 @@ import { jsonLdFirst, jsonLdTwo, quotes } from "./constants";
 import { VedicPattern } from "@/components/blocks/decorative";
 import { CTASection, PageHero } from "@/components/blocks/page-sections";
 import { Card, CardContent } from "@/components/ui/card";
+import { ogImageUrl } from "@/lib/og/brand";
 
 // Force static generation for better SEO
 export const dynamic = "force-static";
@@ -48,22 +49,19 @@ export async function generateMetadata({
     authors: [{ name: "Ved Vyasa" }],
     publisher: "Ved Vyas Foundation",
     openGraph: {
+      images: [ogImageUrl({ heading: "Bhagavad Gita Quotes by Lord Krishna", eyebrow: "Quotes" })],
       title,
       description,
       url,
       siteName: "Bhagavad Gita",
-      images:
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
       locale: isHindi ? "hi_IN" : "en_US",
       type: "website",
     },
     twitter: {
+      images: [ogImageUrl({ heading: "Bhagavad Gita Quotes by Lord Krishna", eyebrow: "Quotes" })],
       card: "summary_large_image",
       title,
       description,
-      images: [
-        "https://bhagavadgita.com/_next/image?url=%2Fbanner2.png&w=3840&q=75",
-      ],
       site: "@ShriKrishna",
     },
     alternates: {
